@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EDF0C39626B405F60061552F /* TARAS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TARAS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39D26B405F70061552F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +24,7 @@
 		EDF0C3A226B405F70061552F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDF0C3A526B405F70061552F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDF0C3A726B405F70061552F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TARAS-Dev.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		EDF0C38D26B405F60061552F = {
 			isa = PBXGroup;
 			children = (
+				EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */,
 				EDF0C39826B405F60061552F /* TARAS */,
 				EDF0C39726B405F60061552F /* Products */,
 			);
@@ -48,7 +50,7 @@
 		EDF0C39726B405F60061552F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDF0C39626B405F60061552F /* TARAS.app */,
+				EDF0C39626B405F60061552F /* TARAS-Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +72,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EDF0C39526B405F60061552F /* TARAS */ = {
+		EDF0C39526B405F60061552F /* TARAS-Dev */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDF0C3AA26B405F70061552F /* Build configuration list for PBXNativeTarget "TARAS" */;
+			buildConfigurationList = EDF0C3AA26B405F70061552F /* Build configuration list for PBXNativeTarget "TARAS-Dev" */;
 			buildPhases = (
 				EDF0C39226B405F60061552F /* Sources */,
 				EDF0C39326B405F60061552F /* Frameworks */,
@@ -82,9 +84,9 @@
 			);
 			dependencies = (
 			);
-			name = TARAS;
+			name = "TARAS-Dev";
 			productName = TARAS;
-			productReference = EDF0C39626B405F60061552F /* TARAS.app */;
+			productReference = EDF0C39626B405F60061552F /* TARAS-Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -114,7 +116,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EDF0C39526B405F60061552F /* TARAS */,
+				EDF0C39526B405F60061552F /* TARAS-Dev */,
 			);
 		};
 /* End PBXProject section */
@@ -200,6 +202,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -223,6 +226,10 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TRS_APP_BUILD = 1;
+				TRS_APP_VERSION = 0.0.1;
+				TRS_DB_VERSION = 1;
+				TRS_SERVER_ENDPOINT = "";
 			};
 			name = Debug;
 		};
@@ -261,6 +268,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -277,6 +285,10 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TRS_APP_BUILD = 1;
+				TRS_APP_VERSION = 0.0.1;
+				TRS_DB_VERSION = 1;
+				TRS_SERVER_ENDPOINT = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -286,7 +298,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TARAS-Dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(TRS_APP_BUILD)";
 				DEVELOPMENT_TEAM = Y4DVJNGENA;
 				INFOPLIST_FILE = TARAS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -294,14 +308,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.twinny.taras;
+				MARKETING_VERSION = "$(TRS_APP_VERSION)";
+				OTHER_SWIFT_FLAGS = "-D DEV";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.twinny.taras.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_APP_BUILD = 1;
-				TRS_APP_VERSION = 0.0.1;
-				TRS_DB_VERSION = 1;
+				TRS_SERVER_ENDPOINT = "https://dev-api.taras.twinny.io/graphql";
 			};
 			name = Debug;
 		};
@@ -310,7 +323,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TARAS-Dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(TRS_APP_BUILD)";
 				DEVELOPMENT_TEAM = Y4DVJNGENA;
 				INFOPLIST_FILE = TARAS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -318,14 +333,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.twinny.taras;
+				MARKETING_VERSION = "$(TRS_APP_VERSION)";
+				OTHER_SWIFT_FLAGS = "-D DEV";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.twinny.taras.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_APP_BUILD = 1;
-				TRS_APP_VERSION = 0.0.1;
-				TRS_DB_VERSION = 1;
+				TRS_SERVER_ENDPOINT = "https://dev-api.taras.twinny.io/graphql";
 			};
 			name = Release;
 		};
@@ -341,7 +355,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDF0C3AA26B405F70061552F /* Build configuration list for PBXNativeTarget "TARAS" */ = {
+		EDF0C3AA26B405F70061552F /* Build configuration list for PBXNativeTarget "TARAS-Dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDF0C3AB26B405F70061552F /* Debug */,
