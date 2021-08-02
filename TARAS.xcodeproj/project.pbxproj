@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
+		ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */; };
+		ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
+		ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F426B7DF7D00C2FA6D /* Position.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C39E26B405F70061552F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39D26B405F70061552F /* ViewController.swift */; };
@@ -20,6 +24,10 @@
 		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
+		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigatableViewController.swift; sourceTree = "<group>"; };
+		ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		ED6B45F426B7DF7D00C2FA6D /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +68,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		ED6B45F026B7DF7D00C2FA6D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */,
+				ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */,
+				ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */,
+				ED6B45F426B7DF7D00C2FA6D /* Position.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		EDF0C38D26B405F60061552F = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +101,7 @@
 		EDF0C39826B405F60061552F /* TARAS */ = {
 			isa = PBXGroup;
 			children = (
+				ED6B45F026B7DF7D00C2FA6D /* Base */,
 				EDF0C39926B405F60061552F /* AppDelegate.swift */,
 				EDF0C39B26B405F60061552F /* SceneDelegate.swift */,
 				EDF0C39D26B405F70061552F /* ViewController.swift */,
@@ -226,7 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
+				ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */,
 				EDF0C39E26B405F70061552F /* ViewController.swift in Sources */,
+				ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */,
+				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,
 			);
