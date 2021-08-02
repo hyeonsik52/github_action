@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,13 @@
 		EDF0C3A126B405F70061552F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C39F26B405F70061552F /* Main.storyboard */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
 		EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
+		FA3FCE30536CE7CEE5FA0BFF /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
+		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,18 +36,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3FCE30536CE7CEE5FA0BFF /* Pods_TARAS_Dev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B78B945B18F3A657F0DEEFC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEE83EA739F40AF88EFBC2BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */,
+				D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EDF0C38D26B405F60061552F = {
 			isa = PBXGroup;
 			children = (
 				EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */,
 				EDF0C39826B405F60061552F /* TARAS */,
 				EDF0C39726B405F60061552F /* Products */,
+				BEE83EA739F40AF88EFBC2BE /* Pods */,
+				B78B945B18F3A657F0DEEFC7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,9 +100,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDF0C3AA26B405F70061552F /* Build configuration list for PBXNativeTarget "TARAS-Dev" */;
 			buildPhases = (
+				86C4D66D1468F977BED34B6C /* [CP] Check Pods Manifest.lock */,
+				ED6B45EF26B7C6C300C2FA6D /* Generate Apollo GraphQL API */,
 				EDF0C39226B405F60061552F /* Sources */,
 				EDF0C39326B405F60061552F /* Frameworks */,
 				EDF0C39426B405F60061552F /* Resources */,
+				B8644044C0CCB20F37BBB37C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		86C4D66D1468F977BED34B6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TARAS-Dev-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8644044C0CCB20F37BBB37C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED6B45EF26B7C6C300C2FA6D /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EDF0C39226B405F60061552F /* Sources */ = {
@@ -295,6 +382,7 @@
 		};
 		EDF0C3AB26B405F70061552F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -309,7 +397,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "$(TRS_APP_VERSION)";
-				OTHER_SWIFT_FLAGS = "-D DEV";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D DEV";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.twinny.taras.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -320,6 +408,7 @@
 		};
 		EDF0C3AC26B405F70061552F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -334,7 +423,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "$(TRS_APP_VERSION)";
-				OTHER_SWIFT_FLAGS = "-D DEV";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D DEV";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.twinny.taras.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
