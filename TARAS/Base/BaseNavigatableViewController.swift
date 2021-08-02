@@ -13,7 +13,8 @@ import RxCocoa
 class BaseNavigatableViewController: BaseViewController {
     
     lazy var backButton = UIBarButtonItem(
-        image: Asset.Images.Navigation.naviBack.image,
+//        image: Asset.Images.Navigation.naviBack.image,
+        image: nil,
         style: .plain,
         target: self,
         action: nil

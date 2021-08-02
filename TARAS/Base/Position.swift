@@ -16,31 +16,41 @@ struct Position {
         case left, center, right
     }
     
-    var anchorY: VerticalAnchor = .center
-    var anchorX: HorizontalAnchor = .center
+    struct Anchor {
+        var vertical: VerticalAnchor = .center
+        var horizontal: HorizontalAnchor = .center
+        
+        static let center = Anchor()
+    }
+    
+    var anchor: Anchor = .center
     var offset: CGPoint = .zero
     
     var isTop: Bool {
-        return (self.anchorY == .top)
+        return (self.anchor.vertical == .top)
     }
     
     var isCenterY: Bool {
-        return (self.anchorY == .center)
+        return (self.anchor.vertical == .center)
     }
     
     var isBottom: Bool {
-        return (self.anchorY == .bottom)
+        return (self.anchor.vertical == .bottom)
     }
     
     var isLeft: Bool {
-        return (self.anchorX == .left)
+        return (self.anchor.horizontal == .left)
     }
     
     var isCenterX: Bool {
-        return (self.anchorX == .center)
+        return (self.anchor.horizontal == .center)
     }
     
     var isRight: Bool {
-        return (self.anchorX == .right)
+        return (self.anchor.horizontal == .right)
+    }
+    
+    var isCenter: Bool {
+        return (self.isCenterX && self.isCenterY)
     }
 }

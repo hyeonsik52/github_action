@@ -11,10 +11,85 @@
 		ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */; };
 		ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
 		ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F426B7DF7D00C2FA6D /* Position.swift */; };
+		ED6B460326B7DFF700C2FA6D /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FA26B7DFF700C2FA6D /* Log.swift */; };
+		ED6B460426B7DFF700C2FA6D /* SwiftEntryKit_Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FC26B7DFF700C2FA6D /* SwiftEntryKit_Show.swift */; };
+		ED6B460526B7DFF700C2FA6D /* SwiftEntryKit_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FD26B7DFF700C2FA6D /* SwiftEntryKit_String.swift */; };
+		ED6B460626B7DFF700C2FA6D /* SwiftEntryKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FE26B7DFF700C2FA6D /* SwiftEntryKit.swift */; };
+		ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FF26B7DFF700C2FA6D /* SwiftEntryKit_View.swift */; };
+		ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B460026B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift */; };
+		ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED6B460F26B7E51800C2FA6D /* GoogleService-Info.plist */; };
+		ED6B463A26B7E7CC00C2FA6D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461226B7E7CC00C2FA6D /* Date.swift */; };
+		ED6B463B26B7E7CC00C2FA6D /* CocoaLumberjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461326B7E7CC00C2FA6D /* CocoaLumberjack.swift */; };
+		ED6B463C26B7E7CC00C2FA6D /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461426B7E7CC00C2FA6D /* Int.swift */; };
+		ED6B463D26B7E7CC00C2FA6D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461626B7E7CC00C2FA6D /* UIView.swift */; };
+		ED6B463E26B7E7CC00C2FA6D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461726B7E7CC00C2FA6D /* UIColor.swift */; };
+		ED6B463F26B7E7CC00C2FA6D /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461826B7E7CC00C2FA6D /* UIRefreshControl.swift */; };
+		ED6B464026B7E7CC00C2FA6D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461926B7E7CC00C2FA6D /* UITableView.swift */; };
+		ED6B464126B7E7CC00C2FA6D /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461A26B7E7CC00C2FA6D /* UIDevice.swift */; };
+		ED6B464226B7E7CC00C2FA6D /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461B26B7E7CC00C2FA6D /* UITextField.swift */; };
+		ED6B464326B7E7CC00C2FA6D /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461C26B7E7CC00C2FA6D /* UIButton.swift */; };
+		ED6B464426B7E7CC00C2FA6D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461D26B7E7CC00C2FA6D /* UIViewController.swift */; };
+		ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461E26B7E7CC00C2FA6D /* UIWindow.swift */; };
+		ED6B464626B7E7CC00C2FA6D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461F26B7E7CC00C2FA6D /* UIImageView.swift */; };
+		ED6B464726B7E7CC00C2FA6D /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462026B7E7CC00C2FA6D /* UIFont.swift */; };
+		ED6B464826B7E7CC00C2FA6D /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462126B7E7CC00C2FA6D /* UITextView.swift */; };
+		ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462226B7E7CC00C2FA6D /* UINavigationController.swift */; };
+		ED6B464A26B7E7CC00C2FA6D /* Log+Extract.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462326B7E7CC00C2FA6D /* Log+Extract.swift */; };
+		ED6B464B26B7E7CC00C2FA6D /* GraphQLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462526B7E7CC00C2FA6D /* GraphQLOperation.swift */; };
+		ED6B464C26B7E7CC00C2FA6D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462626B7E7CC00C2FA6D /* String.swift */; };
+		ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462726B7E7CC00C2FA6D /* Optional.swift */; };
+		ED6B464E26B7E7CC00C2FA6D /* UILabel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462926B7E7CC00C2FA6D /* UILabel+Rx.swift */; };
+		ED6B464F26B7E7CC00C2FA6D /* FilterNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462A26B7E7CC00C2FA6D /* FilterNil.swift */; };
+		ED6B465026B7E7CC00C2FA6D /* Reactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462B26B7E7CC00C2FA6D /* Reactor.swift */; };
+		ED6B465126B7E7CC00C2FA6D /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462C26B7E7CC00C2FA6D /* UIView+Rx.swift */; };
+		ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462D26B7E7CC00C2FA6D /* UIButton+Rx.swift */; };
+		ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462E26B7E7CC00C2FA6D /* UIViewController+Rx.swift */; };
+		ED6B465426B7E7CC00C2FA6D /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462F26B7E7CC00C2FA6D /* UICollectionView+Rx.swift */; };
+		ED6B465526B7E7CC00C2FA6D /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463026B7E7CC00C2FA6D /* UITableView+Rx.swift */; };
+		ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */; };
+		ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463226B7E7CC00C2FA6D /* RxSwift+Operator.swift */; };
+		ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463326B7E7CC00C2FA6D /* TimeInterval.swift */; };
+		ED6B465926B7E7CC00C2FA6D /* List_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463526B7E7CC00C2FA6D /* List_BaseObject.swift */; };
+		ED6B465A26B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463626B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift */; };
+		ED6B465B26B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463726B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift */; };
+		ED6B465C26B7E7CC00C2FA6D /* Results_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463826B7E7CC00C2FA6D /* Results_BaseObject.swift */; };
+		ED6B465D26B7E7CC00C2FA6D /* Sequence_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463926B7E7CC00C2FA6D /* Sequence_BaseObject.swift */; };
+		ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466226B7E8B500C2FA6D /* TokenAddingInterceptor.swift */; };
+		ED6B467F26B7E8B500C2FA6D /* ErrorInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466326B7E8B500C2FA6D /* ErrorInterceptor.swift */; };
+		ED6B468026B7E8B500C2FA6D /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466426B7E8B500C2FA6D /* BaseInterceptor.swift */; };
+		ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466526B7E8B500C2FA6D /* LoggingInterceptor.swift */; };
+		ED6B468226B7E8B500C2FA6D /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466626B7E8B500C2FA6D /* NetworkInterceptorProvider.swift */; };
+		ED6B468326B7E8B500C2FA6D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */; };
+		ED6B468426B7E8B500C2FA6D /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466926B7E8B500C2FA6D /* SubscriptionManager.swift */; };
+		ED6B468626B7E8B500C2FA6D /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466C26B7E8B500C2FA6D /* PushManager.swift */; };
+		ED6B468726B7E8B500C2FA6D /* NotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466E26B7E8B500C2FA6D /* NotificationInfo.swift */; };
+		ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466F26B7E8B500C2FA6D /* NotificationType.swift */; };
+		ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467026B7E8B500C2FA6D /* BaseManager.swift */; };
+		ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467126B7E8B500C2FA6D /* ManagerProvider.swift */; };
+		ED6B468B26B7E8B500C2FA6D /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467326B7E8B500C2FA6D /* UserManager.swift */; };
+		ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467626B7E8B500C2FA6D /* TypeUnification.swift */; };
+		ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467726B7E8B500C2FA6D /* ServiceManager.swift */; };
+		ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467926B7E8B500C2FA6D /* RealmManager.swift */; };
+		ED6B469026B7E8B500C2FA6D /* TEST_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467B26B7E8B500C2FA6D /* TEST_TB.swift */; };
+		ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467C26B7E8B500C2FA6D /* USER_TB.swift */; };
+		ED6B469226B7E8B500C2FA6D /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467D26B7E8B500C2FA6D /* BaseObject.swift */; };
+		ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469426B7E9CE00C2FA6D /* TRSError.swift */; };
+		ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */; };
+		ED6B46A026B7E9CE00C2FA6D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469626B7E9CE00C2FA6D /* Service.swift */; };
+		ED6B46A126B7E9CE00C2FA6D /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469726B7E9CE00C2FA6D /* Workspace.swift */; };
+		ED6B46A226B7E9CE00C2FA6D /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469826B7E9CE00C2FA6D /* Worker.swift */; };
+		ED6B46A326B7E9CE00C2FA6D /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469926B7E9CE00C2FA6D /* Stop.swift */; };
+		ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */; };
+		ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469B26B7E9CE00C2FA6D /* Account.swift */; };
+		ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469C26B7E9CE00C2FA6D /* Robot.swift */; };
+		ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469D26B7E9CE00C2FA6D /* InputPolicy.swift */; };
+		ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AB26B7EA3F00C2FA6D /* LaunchScreenViewController.swift */; };
+		ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AC26B7EA3F00C2FA6D /* LaunchScreenViewReactor.swift */; };
+		ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */; };
+		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
+		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
-		EDF0C39E26B405F70061552F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39D26B405F70061552F /* ViewController.swift */; };
-		EDF0C3A126B405F70061552F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C39F26B405F70061552F /* Main.storyboard */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
 		EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
 		FA3FCE30536CE7CEE5FA0BFF /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */; };
@@ -28,14 +103,89 @@
 		ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigatableViewController.swift; sourceTree = "<group>"; };
 		ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		ED6B45F426B7DF7D00C2FA6D /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		ED6B45FA26B7DFF700C2FA6D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		ED6B45FC26B7DFF700C2FA6D /* SwiftEntryKit_Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEntryKit_Show.swift; sourceTree = "<group>"; };
+		ED6B45FD26B7DFF700C2FA6D /* SwiftEntryKit_String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEntryKit_String.swift; sourceTree = "<group>"; };
+		ED6B45FE26B7DFF700C2FA6D /* SwiftEntryKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEntryKit.swift; sourceTree = "<group>"; };
+		ED6B45FF26B7DFF700C2FA6D /* SwiftEntryKit_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEntryKit_View.swift; sourceTree = "<group>"; };
+		ED6B460026B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEntryKit_ViewController.swift; sourceTree = "<group>"; };
+		ED6B460F26B7E51800C2FA6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ED6B461226B7E7CC00C2FA6D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		ED6B461326B7E7CC00C2FA6D /* CocoaLumberjack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaLumberjack.swift; sourceTree = "<group>"; };
+		ED6B461426B7E7CC00C2FA6D /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		ED6B461626B7E7CC00C2FA6D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		ED6B461726B7E7CC00C2FA6D /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		ED6B461826B7E7CC00C2FA6D /* UIRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
+		ED6B461926B7E7CC00C2FA6D /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		ED6B461A26B7E7CC00C2FA6D /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		ED6B461B26B7E7CC00C2FA6D /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		ED6B461C26B7E7CC00C2FA6D /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		ED6B461D26B7E7CC00C2FA6D /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		ED6B461E26B7E7CC00C2FA6D /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		ED6B461F26B7E7CC00C2FA6D /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		ED6B462026B7E7CC00C2FA6D /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		ED6B462126B7E7CC00C2FA6D /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		ED6B462226B7E7CC00C2FA6D /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		ED6B462326B7E7CC00C2FA6D /* Log+Extract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Log+Extract.swift"; sourceTree = "<group>"; };
+		ED6B462526B7E7CC00C2FA6D /* GraphQLOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLOperation.swift; sourceTree = "<group>"; };
+		ED6B462626B7E7CC00C2FA6D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		ED6B462726B7E7CC00C2FA6D /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		ED6B462926B7E7CC00C2FA6D /* UILabel+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Rx.swift"; sourceTree = "<group>"; };
+		ED6B462A26B7E7CC00C2FA6D /* FilterNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterNil.swift; sourceTree = "<group>"; };
+		ED6B462B26B7E7CC00C2FA6D /* Reactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reactor.swift; sourceTree = "<group>"; };
+		ED6B462C26B7E7CC00C2FA6D /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
+		ED6B462D26B7E7CC00C2FA6D /* UIButton+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Rx.swift"; sourceTree = "<group>"; };
+		ED6B462E26B7E7CC00C2FA6D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		ED6B462F26B7E7CC00C2FA6D /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
+		ED6B463026B7E7CC00C2FA6D /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
+		ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Rx.swift"; sourceTree = "<group>"; };
+		ED6B463226B7E7CC00C2FA6D /* RxSwift+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+Operator.swift"; sourceTree = "<group>"; };
+		ED6B463326B7E7CC00C2FA6D /* TimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		ED6B463526B7E7CC00C2FA6D /* List_BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List_BaseObject.swift; sourceTree = "<group>"; };
+		ED6B463626B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadConfined_BaseObject.swift; sourceTree = "<group>"; };
+		ED6B463726B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadSafeReference_BaseObject.swift; sourceTree = "<group>"; };
+		ED6B463826B7E7CC00C2FA6D /* Results_BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results_BaseObject.swift; sourceTree = "<group>"; };
+		ED6B463926B7E7CC00C2FA6D /* Sequence_BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence_BaseObject.swift; sourceTree = "<group>"; };
+		ED6B466226B7E8B500C2FA6D /* TokenAddingInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAddingInterceptor.swift; sourceTree = "<group>"; };
+		ED6B466326B7E8B500C2FA6D /* ErrorInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorInterceptor.swift; sourceTree = "<group>"; };
+		ED6B466426B7E8B500C2FA6D /* BaseInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
+		ED6B466526B7E8B500C2FA6D /* LoggingInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingInterceptor.swift; sourceTree = "<group>"; };
+		ED6B466626B7E8B500C2FA6D /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
+		ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		ED6B466926B7E8B500C2FA6D /* SubscriptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		ED6B466C26B7E8B500C2FA6D /* PushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
+		ED6B466E26B7E8B500C2FA6D /* NotificationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationInfo.swift; sourceTree = "<group>"; };
+		ED6B466F26B7E8B500C2FA6D /* NotificationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
+		ED6B467026B7E8B500C2FA6D /* BaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
+		ED6B467126B7E8B500C2FA6D /* ManagerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerProvider.swift; sourceTree = "<group>"; };
+		ED6B467326B7E8B500C2FA6D /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		ED6B467626B7E8B500C2FA6D /* TypeUnification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeUnification.swift; sourceTree = "<group>"; };
+		ED6B467726B7E8B500C2FA6D /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		ED6B467926B7E8B500C2FA6D /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		ED6B467B26B7E8B500C2FA6D /* TEST_TB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TEST_TB.swift; sourceTree = "<group>"; };
+		ED6B467C26B7E8B500C2FA6D /* USER_TB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USER_TB.swift; sourceTree = "<group>"; };
+		ED6B467D26B7E8B500C2FA6D /* BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
+		ED6B469426B7E9CE00C2FA6D /* TRSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRSError.swift; sourceTree = "<group>"; };
+		ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnit.swift; sourceTree = "<group>"; };
+		ED6B469626B7E9CE00C2FA6D /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		ED6B469726B7E9CE00C2FA6D /* Workspace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workspace.swift; sourceTree = "<group>"; };
+		ED6B469826B7E9CE00C2FA6D /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
+		ED6B469926B7E9CE00C2FA6D /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLog.swift; sourceTree = "<group>"; };
+		ED6B469B26B7E9CE00C2FA6D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		ED6B469C26B7E9CE00C2FA6D /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
+		ED6B469D26B7E9CE00C2FA6D /* InputPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPolicy.swift; sourceTree = "<group>"; };
+		ED6B46AB26B7EA3F00C2FA6D /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		ED6B46AC26B7EA3F00C2FA6D /* LaunchScreenViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewReactor.swift; sourceTree = "<group>"; };
+		ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EDF0C39D26B405F70061552F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EDF0C3A026B405F70061552F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDF0C3A226B405F70061552F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDF0C3A526B405F70061552F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EDF0C3A726B405F70061552F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDF0C3A726B405F70061552F /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TARAS-Dev.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,10 +229,278 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		ED6B45F926B7DFF700C2FA6D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B46B126B7EE5B00C2FA6D /* Constants.swift */,
+				ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */,
+				ED6B45FA26B7DFF700C2FA6D /* Log.swift */,
+				ED6B46B326B8025500C2FA6D /* Info.swift */,
+				ED6B45FB26B7DFF700C2FA6D /* SwiftEntryKit */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		ED6B45FB26B7DFF700C2FA6D /* SwiftEntryKit */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B45FC26B7DFF700C2FA6D /* SwiftEntryKit_Show.swift */,
+				ED6B45FD26B7DFF700C2FA6D /* SwiftEntryKit_String.swift */,
+				ED6B45FE26B7DFF700C2FA6D /* SwiftEntryKit.swift */,
+				ED6B45FF26B7DFF700C2FA6D /* SwiftEntryKit_View.swift */,
+				ED6B460026B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift */,
+			);
+			path = SwiftEntryKit;
+			sourceTree = "<group>";
+		};
+		ED6B460D26B7E34900C2FA6D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0C3A226B405F70061552F /* Assets.xcassets */,
+				EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */,
+				EDF0C3A726B405F70061552F /* Info-dev.plist */,
+				ED6B460F26B7E51800C2FA6D /* GoogleService-Info.plist */,
+				EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ED6B460E26B7E37800C2FA6D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0C39926B405F60061552F /* AppDelegate.swift */,
+				EDF0C39B26B405F60061552F /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		ED6B461126B7E7CC00C2FA6D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B461226B7E7CC00C2FA6D /* Date.swift */,
+				ED6B461426B7E7CC00C2FA6D /* Int.swift */,
+				ED6B462626B7E7CC00C2FA6D /* String.swift */,
+				ED6B462726B7E7CC00C2FA6D /* Optional.swift */,
+				ED6B463326B7E7CC00C2FA6D /* TimeInterval.swift */,
+				ED6B461526B7E7CC00C2FA6D /* Cocoa */,
+				ED6B462826B7E7CC00C2FA6D /* Rx */,
+				ED6B462426B7E7CC00C2FA6D /* GraphQL */,
+				ED6B463426B7E7CC00C2FA6D /* Realm */,
+				ED6B465E26B7E86700C2FA6D /* CocoaLumberjack */,
+			);
+			name = Extensions;
+			path = TARAS/Extensions;
+			sourceTree = SOURCE_ROOT;
+		};
+		ED6B461526B7E7CC00C2FA6D /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B461626B7E7CC00C2FA6D /* UIView.swift */,
+				ED6B461726B7E7CC00C2FA6D /* UIColor.swift */,
+				ED6B461826B7E7CC00C2FA6D /* UIRefreshControl.swift */,
+				ED6B461926B7E7CC00C2FA6D /* UITableView.swift */,
+				ED6B461A26B7E7CC00C2FA6D /* UIDevice.swift */,
+				ED6B461B26B7E7CC00C2FA6D /* UITextField.swift */,
+				ED6B461C26B7E7CC00C2FA6D /* UIButton.swift */,
+				ED6B461D26B7E7CC00C2FA6D /* UIViewController.swift */,
+				ED6B461E26B7E7CC00C2FA6D /* UIWindow.swift */,
+				ED6B461F26B7E7CC00C2FA6D /* UIImageView.swift */,
+				ED6B462026B7E7CC00C2FA6D /* UIFont.swift */,
+				ED6B462126B7E7CC00C2FA6D /* UITextView.swift */,
+				ED6B462226B7E7CC00C2FA6D /* UINavigationController.swift */,
+			);
+			path = Cocoa;
+			sourceTree = "<group>";
+		};
+		ED6B462426B7E7CC00C2FA6D /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B462526B7E7CC00C2FA6D /* GraphQLOperation.swift */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
+		ED6B462826B7E7CC00C2FA6D /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B462926B7E7CC00C2FA6D /* UILabel+Rx.swift */,
+				ED6B462A26B7E7CC00C2FA6D /* FilterNil.swift */,
+				ED6B462B26B7E7CC00C2FA6D /* Reactor.swift */,
+				ED6B462C26B7E7CC00C2FA6D /* UIView+Rx.swift */,
+				ED6B462D26B7E7CC00C2FA6D /* UIButton+Rx.swift */,
+				ED6B462E26B7E7CC00C2FA6D /* UIViewController+Rx.swift */,
+				ED6B462F26B7E7CC00C2FA6D /* UICollectionView+Rx.swift */,
+				ED6B463026B7E7CC00C2FA6D /* UITableView+Rx.swift */,
+				ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */,
+				ED6B463226B7E7CC00C2FA6D /* RxSwift+Operator.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
+		ED6B463426B7E7CC00C2FA6D /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B463526B7E7CC00C2FA6D /* List_BaseObject.swift */,
+				ED6B463626B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift */,
+				ED6B463726B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift */,
+				ED6B463826B7E7CC00C2FA6D /* Results_BaseObject.swift */,
+				ED6B463926B7E7CC00C2FA6D /* Sequence_BaseObject.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		ED6B465E26B7E86700C2FA6D /* CocoaLumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B461326B7E7CC00C2FA6D /* CocoaLumberjack.swift */,
+				ED6B462326B7E7CC00C2FA6D /* Log+Extract.swift */,
+			);
+			path = CocoaLumberjack;
+			sourceTree = "<group>";
+		};
+		ED6B465F26B7E8B500C2FA6D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B467026B7E8B500C2FA6D /* BaseManager.swift */,
+				ED6B467126B7E8B500C2FA6D /* ManagerProvider.swift */,
+				ED6B466026B7E8B500C2FA6D /* NetworkManager */,
+				ED6B466826B7E8B500C2FA6D /* SubscriptionManager */,
+				ED6B466B26B7E8B500C2FA6D /* PushManager */,
+				ED6B467226B7E8B500C2FA6D /* UserManager */,
+				ED6B467526B7E8B500C2FA6D /* ServiceManager */,
+				ED6B467826B7E8B500C2FA6D /* DBManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		ED6B466026B7E8B500C2FA6D /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
+				ED6B466126B7E8B500C2FA6D /* Interceptors */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		ED6B466126B7E8B500C2FA6D /* Interceptors */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B466226B7E8B500C2FA6D /* TokenAddingInterceptor.swift */,
+				ED6B466326B7E8B500C2FA6D /* ErrorInterceptor.swift */,
+				ED6B466426B7E8B500C2FA6D /* BaseInterceptor.swift */,
+				ED6B466526B7E8B500C2FA6D /* LoggingInterceptor.swift */,
+				ED6B466626B7E8B500C2FA6D /* NetworkInterceptorProvider.swift */,
+			);
+			path = Interceptors;
+			sourceTree = "<group>";
+		};
+		ED6B466826B7E8B500C2FA6D /* SubscriptionManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B466926B7E8B500C2FA6D /* SubscriptionManager.swift */,
+			);
+			path = SubscriptionManager;
+			sourceTree = "<group>";
+		};
+		ED6B466B26B7E8B500C2FA6D /* PushManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B466C26B7E8B500C2FA6D /* PushManager.swift */,
+				ED6B466D26B7E8B500C2FA6D /* Model */,
+			);
+			path = PushManager;
+			sourceTree = "<group>";
+		};
+		ED6B466D26B7E8B500C2FA6D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B466E26B7E8B500C2FA6D /* NotificationInfo.swift */,
+				ED6B466F26B7E8B500C2FA6D /* NotificationType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ED6B467226B7E8B500C2FA6D /* UserManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B467326B7E8B500C2FA6D /* UserManager.swift */,
+			);
+			path = UserManager;
+			sourceTree = "<group>";
+		};
+		ED6B467526B7E8B500C2FA6D /* ServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B467626B7E8B500C2FA6D /* TypeUnification.swift */,
+				ED6B467726B7E8B500C2FA6D /* ServiceManager.swift */,
+			);
+			path = ServiceManager;
+			sourceTree = "<group>";
+		};
+		ED6B467826B7E8B500C2FA6D /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B467926B7E8B500C2FA6D /* RealmManager.swift */,
+				ED6B467A26B7E8B500C2FA6D /* Models */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
+		ED6B467A26B7E8B500C2FA6D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B467B26B7E8B500C2FA6D /* TEST_TB.swift */,
+				ED6B467C26B7E8B500C2FA6D /* USER_TB.swift */,
+				ED6B467D26B7E8B500C2FA6D /* BaseObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ED6B469326B7E9CE00C2FA6D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B469426B7E9CE00C2FA6D /* TRSError.swift */,
+				ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */,
+				ED6B469626B7E9CE00C2FA6D /* Service.swift */,
+				ED6B469726B7E9CE00C2FA6D /* Workspace.swift */,
+				ED6B469826B7E9CE00C2FA6D /* Worker.swift */,
+				ED6B469926B7E9CE00C2FA6D /* Stop.swift */,
+				ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */,
+				ED6B469B26B7E9CE00C2FA6D /* Account.swift */,
+				ED6B469C26B7E9CE00C2FA6D /* Robot.swift */,
+				ED6B469D26B7E9CE00C2FA6D /* InputPolicy.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ED6B46A826B7EA3F00C2FA6D /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B46A926B7EA3F00C2FA6D /* Intro */,
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		ED6B46A926B7EA3F00C2FA6D /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B46AA26B7EA3F00C2FA6D /* Launch */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		ED6B46AA26B7EA3F00C2FA6D /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				ED6B46AB26B7EA3F00C2FA6D /* LaunchScreenViewController.swift */,
+				ED6B46AC26B7EA3F00C2FA6D /* LaunchScreenViewReactor.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
 		EDF0C38D26B405F60061552F = {
 			isa = PBXGroup;
 			children = (
-				EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */,
 				EDF0C39826B405F60061552F /* TARAS */,
 				EDF0C39726B405F60061552F /* Products */,
 				BEE83EA739F40AF88EFBC2BE /* Pods */,
@@ -101,14 +519,14 @@
 		EDF0C39826B405F60061552F /* TARAS */ = {
 			isa = PBXGroup;
 			children = (
+				ED6B460E26B7E37800C2FA6D /* App */,
 				ED6B45F026B7DF7D00C2FA6D /* Base */,
-				EDF0C39926B405F60061552F /* AppDelegate.swift */,
-				EDF0C39B26B405F60061552F /* SceneDelegate.swift */,
-				EDF0C39D26B405F70061552F /* ViewController.swift */,
-				EDF0C39F26B405F70061552F /* Main.storyboard */,
-				EDF0C3A226B405F70061552F /* Assets.xcassets */,
-				EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */,
-				EDF0C3A726B405F70061552F /* Info.plist */,
+				ED6B465F26B7E8B500C2FA6D /* Managers */,
+				ED6B469326B7E9CE00C2FA6D /* Models */,
+				ED6B46A826B7EA3F00C2FA6D /* Presentations */,
+				ED6B461126B7E7CC00C2FA6D /* Extensions */,
+				ED6B45F926B7DFF700C2FA6D /* Utilities */,
+				ED6B460D26B7E34900C2FA6D /* Resources */,
 			);
 			path = TARAS;
 			sourceTree = "<group>";
@@ -175,7 +593,7 @@
 			files = (
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
-				EDF0C3A126B405F70061552F /* Main.storyboard in Resources */,
+				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +655,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
+			shellScript = "#SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n#cd \"${SRCROOT}\"\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -246,27 +664,94 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6B468326B7E8B500C2FA6D /* NetworkManager.swift in Sources */,
+				ED6B46A226B7E9CE00C2FA6D /* Worker.swift in Sources */,
 				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
+				ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */,
+				ED6B463F26B7E7CC00C2FA6D /* UIRefreshControl.swift in Sources */,
+				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
+				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
+				ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */,
+				ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */,
+				ED6B464A26B7E7CC00C2FA6D /* Log+Extract.swift in Sources */,
+				ED6B460626B7DFF700C2FA6D /* SwiftEntryKit.swift in Sources */,
+				ED6B465026B7E7CC00C2FA6D /* Reactor.swift in Sources */,
+				ED6B468626B7E8B500C2FA6D /* PushManager.swift in Sources */,
+				ED6B46B426B8025500C2FA6D /* Info.swift in Sources */,
+				ED6B464226B7E7CC00C2FA6D /* UITextField.swift in Sources */,
+				ED6B465D26B7E7CC00C2FA6D /* Sequence_BaseObject.swift in Sources */,
+				ED6B465C26B7E7CC00C2FA6D /* Results_BaseObject.swift in Sources */,
 				ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */,
-				EDF0C39E26B405F70061552F /* ViewController.swift in Sources */,
+				ED6B468426B7E8B500C2FA6D /* SubscriptionManager.swift in Sources */,
+				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
+				ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */,
+				ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */,
+				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
+				ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */,
+				ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */,
 				ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */,
+				ED6B463B26B7E7CC00C2FA6D /* CocoaLumberjack.swift in Sources */,
+				ED6B468726B7E8B500C2FA6D /* NotificationInfo.swift in Sources */,
+				ED6B469226B7E8B500C2FA6D /* BaseObject.swift in Sources */,
 				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
+				ED6B465126B7E7CC00C2FA6D /* UIView+Rx.swift in Sources */,
+				ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */,
+				ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */,
+				ED6B464B26B7E7CC00C2FA6D /* GraphQLOperation.swift in Sources */,
+				ED6B467F26B7E8B500C2FA6D /* ErrorInterceptor.swift in Sources */,
+				ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */,
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
+				ED6B464F26B7E7CC00C2FA6D /* FilterNil.swift in Sources */,
+				ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */,
+				ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */,
+				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
+				ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */,
+				ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */,
+				ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */,
+				ED6B463A26B7E7CC00C2FA6D /* Date.swift in Sources */,
+				ED6B460326B7DFF700C2FA6D /* Log.swift in Sources */,
+				ED6B465426B7E7CC00C2FA6D /* UICollectionView+Rx.swift in Sources */,
+				ED6B464426B7E7CC00C2FA6D /* UIViewController.swift in Sources */,
+				ED6B464126B7E7CC00C2FA6D /* UIDevice.swift in Sources */,
+				ED6B464626B7E7CC00C2FA6D /* UIImageView.swift in Sources */,
+				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
+				ED6B464726B7E7CC00C2FA6D /* UIFont.swift in Sources */,
+				ED6B464326B7E7CC00C2FA6D /* UIButton.swift in Sources */,
+				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
+				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
+				ED6B465926B7E7CC00C2FA6D /* List_BaseObject.swift in Sources */,
+				ED6B468026B7E8B500C2FA6D /* BaseInterceptor.swift in Sources */,
+				ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */,
+				ED6B460426B7DFF700C2FA6D /* SwiftEntryKit_Show.swift in Sources */,
+				ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */,
+				ED6B464826B7E7CC00C2FA6D /* UITextView.swift in Sources */,
+				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
+				ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */,
+				ED6B463E26B7E7CC00C2FA6D /* UIColor.swift in Sources */,
+				ED6B463D26B7E7CC00C2FA6D /* UIView.swift in Sources */,
+				ED6B46A026B7E9CE00C2FA6D /* Service.swift in Sources */,
+				ED6B460526B7DFF700C2FA6D /* SwiftEntryKit_String.swift in Sources */,
+				ED6B469026B7E8B500C2FA6D /* TEST_TB.swift in Sources */,
+				ED6B465526B7E7CC00C2FA6D /* UITableView+Rx.swift in Sources */,
+				ED6B465B26B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift in Sources */,
+				ED6B46A326B7E9CE00C2FA6D /* Stop.swift in Sources */,
+				ED6B464026B7E7CC00C2FA6D /* UITableView.swift in Sources */,
+				ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */,
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,
+				ED6B464C26B7E7CC00C2FA6D /* String.swift in Sources */,
+				ED6B468B26B7E8B500C2FA6D /* UserManager.swift in Sources */,
+				ED6B465A26B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift in Sources */,
+				ED6B46A126B7E9CE00C2FA6D /* Workspace.swift in Sources */,
+				ED6B464E26B7E7CC00C2FA6D /* UILabel+Rx.swift in Sources */,
+				ED6B468226B7E8B500C2FA6D /* NetworkInterceptorProvider.swift in Sources */,
+				ED6B463C26B7E7CC00C2FA6D /* Int.swift in Sources */,
+				ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EDF0C39F26B405F70061552F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EDF0C3A026B405F70061552F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -410,11 +895,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "TARAS-Dev.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "TARAS/Resources/TARAS-Dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(TRS_APP_BUILD)";
 				DEVELOPMENT_TEAM = Y4DVJNGENA;
-				INFOPLIST_FILE = TARAS/Info.plist;
+				INFOPLIST_FILE = "TARAS/Resources/Info-dev.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -436,11 +921,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "TARAS-Dev.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "TARAS/Resources/TARAS-Dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(TRS_APP_BUILD)";
 				DEVELOPMENT_TEAM = Y4DVJNGENA;
-				INFOPLIST_FILE = TARAS/Info.plist;
+				INFOPLIST_FILE = "TARAS/Resources/Info-dev.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

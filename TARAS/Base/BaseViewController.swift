@@ -18,7 +18,7 @@ class BaseViewController: UIViewController {
         return self.navigationController as? BaseNavigationController
     }
     
-    let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+    let activityIndicatorView = UIActivityIndicatorView(style: Constants.indicatorStyle)
     private(set) var activityIndicatorPosition: Position = .init()
     
     lazy private(set) var className: String = {
