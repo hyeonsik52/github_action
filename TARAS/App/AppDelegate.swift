@@ -74,7 +74,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             try? reachability.startNotifier()
         }
+        
+        self.applicationWillEnterForeground(application)
+        
         return true
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        
+        guard let topViewController = self.window?.topViewController() else { return }
+        
+        //TODO: 최소 버전 확인 로직
+        Observable.just(true)
+            .filter { $0 == false }
+            .flatMapLatest { _ -> Observable<Int> in
+                UIAlertController.present(
+                    in: topViewController,
+                    title: "업데이트 필요",
+                    message: "최소버전 안 맞음",
+                    style: .alert,
+                    actions: [
+                        .init(title: "확인", style: .default)
+                    ]
+                )
+            }.subscribe(onNext: { _ in
+                "강제 종료합니다.".sek.showToast {
+                    exit(1)
+                }
+            }).disposed(by: self.disposeBag)
     }
 }
 
