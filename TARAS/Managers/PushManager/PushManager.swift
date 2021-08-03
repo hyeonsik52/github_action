@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol PushManagerType: AnyObject {
     var window: UIWindow? { get }
@@ -17,16 +18,24 @@ final class PushManager: BaseManager, PushManagerType {
     var window: UIWindow? {
         return UIApplication.shared.windows.filter { $0.isKeyWindow }.first
     }
+    var disposeBag = DisposeBag()
 
     func setupTabBarController(_ info: NotificationInfo) {
-        DispatchQueue.main.async {
-            if let _ = self.window {
-                switch info.notificationType {
-                case .created, .arrived:
-                    self.setupWorkspaceListViewController(pushInfo: info)
+        
+        guard let topViewController = self.window?.topViewController() else { return }
+        
+        //TODO: 최소 버전 확인 로직
+        Observable.just(true)
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isValid in
+                guard let self = self, let _ = self.window else { return }
+                if isValid {
+                    switch info.notificationType {
+                    case .created, .arrived:
+                        self.setupWorkspaceListViewController(pushInfo: info)
+                    }
                 }
-            }
-        }
+            }).disposed(by: self.disposeBag)
     }
     
     enum TabType: Int {
