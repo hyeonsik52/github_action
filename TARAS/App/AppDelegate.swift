@@ -35,13 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        self.setupNavigationBar()
-        
         // Log
         self.setupCocoaLumberjack()
         
         // Realm
         RealmManager.shared.openRealm()
+        
+        // Basics
+        self.setupWindow()
+        self.setupNavigationBar()
         
         // FCM Related
         FirebaseApp.configure()
@@ -80,6 +82,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - Basic Settings
 
 extension AppDelegate {
+    
+    /// iOS 버전에 따른 window 설정
+    func setupWindow() {
+        if #available(iOS 13, *) {
+            Log.debug("Operated in iOS 13")
+        } else {
+            let window = UIWindow(frame: UIScreen.main.bounds)
+            let reactor = LaunchScreenViewReactor(provider: self.provider)
+            let viewController = LaunchScreenViewController()
+            viewController.reactor = reactor
+            window.rootViewController = viewController
+            window.backgroundColor = .white
+            self.window = window
+            window.makeKeyAndVisible()
+        }
+    }
     
     /// Naviagation Bar 설정
     func setupNavigationBar() {
