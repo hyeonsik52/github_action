@@ -39,7 +39,7 @@ class LaunchScreenViewController: BaseViewController, ReactorKit.View {
 
         RealmManager.shared.openRelay
             .filterNil()
-            .map(Reactor.Action.checkRealm)
+            .map(Reactor.Action.check)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         

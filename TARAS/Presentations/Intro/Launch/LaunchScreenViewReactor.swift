@@ -10,11 +10,11 @@ import ReactorKit
 class LaunchScreenViewReactor: Reactor {
 
     enum Action: Equatable {
-        case checkRealm(isOpened: Bool)
+        case check(isRealmOpened: Bool)
     }
 
     enum Mutation {
-        case updateAutoSignInEnablility(isEnabled: Bool)
+        case updateAutoSignInEnablility(Bool)
     }
 
     struct State {
@@ -33,15 +33,15 @@ class LaunchScreenViewReactor: Reactor {
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case let .checkRealm(isOpened):
-            return self.checkRealm(isOpened)
+        case .check(let isRealmOpened):
+            return self.check(isRealmOpened)
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case let .updateAutoSignInEnablility(isEnabled):
+        case .updateAutoSignInEnablility(let isEnabled):
             state.isAutoSignInEnabled = isEnabled
         }
         return state
@@ -53,15 +53,24 @@ class LaunchScreenViewReactor: Reactor {
 
 extension LaunchScreenViewReactor {
 
-    private func checkRealm(_ isOpened: Bool) -> Observable<Mutation> {
-        if isOpened {
+    private func check(_ isRealmOpened: Bool) -> Observable<Mutation> {
+        if isRealmOpened {
             // Realm 이 성공적으로 open 되었다면
             // 1. clien info 를 업데이트
             self.provider.userManager.updateClientInfo()
             
-            // 2. accessToken, refreshToken 이 DB 에 존재하는지로 자동 로그인 가능 여부 판단, 전달
-            let hasToken = self.provider.userManager.hasTokens
-            return .just(.updateAutoSignInEnablility(isEnabled: hasToken))
+            // 2. 최소 버전 확인
+            return Observable.just(true)
+                .flatMapLatest { isValid -> Observable<Mutation> in
+                    if isValid {
+                        // 3-1. accessToken, refreshToken 이 DB 에 존재하는지로 자동 로그인 가능 여부 판단, 전달
+                        let hasToken = self.provider.userManager.hasTokens
+                        return .just(.updateAutoSignInEnablility(hasToken))
+                    } else {
+                        // 3-2. 업데이트 알림 표출 -> AppDelegate 또는 SceneDelegate에서 표시하므로 무시함
+                        return .empty()
+                    }
+                }
         }
         return .empty()
     }
