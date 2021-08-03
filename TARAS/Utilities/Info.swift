@@ -21,4 +21,12 @@ enum Info {
     static var serverEndpoint: String {
         return self["ServerEndpoint"]!
     }
+    
+    static var appVersion: String {
+        return self["CFBundleShortVersionString"]!
+    }
+    
+    static var appBuild: String {
+        return self[kCFBundleVersionKey as String]!
+    }
 }

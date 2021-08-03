@@ -2,7 +2,6 @@
 //  FilterNil.swift
 //  ServiceRobotPlatform-iOS
 //
-//  Created by Suzy Park on 2020/05/25.
 //  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
 //
 

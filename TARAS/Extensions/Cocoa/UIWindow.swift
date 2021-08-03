@@ -2,7 +2,6 @@
 //  UIWindow.swift
 //  ServiceRobotPlatform-iOS
 //
-//  Created by Suzy Park on 2020/06/30.
 //  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
 //
 

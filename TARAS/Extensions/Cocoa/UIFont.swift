@@ -2,7 +2,6 @@
 //  UIFont.swift
 //  TARAS-AL
 //
-//  Created by Suzy Park on 2020/11/23.
 //
 
 import UIKit

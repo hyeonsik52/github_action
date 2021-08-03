@@ -2,7 +2,6 @@
 //  String.swift
 //  ServiceRobotPlatform-iOS
 //
-//  Created by Suzy Park on 2020/05/19.
 //  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
 //
 

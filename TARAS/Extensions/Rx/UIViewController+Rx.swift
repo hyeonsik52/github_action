@@ -2,9 +2,6 @@
 //  UIViewController+Rx.swift
 //  ServiceRobotPlatform-iOS
 //
-//  Created by Suzy Park on 2020/06/01.
-//  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
-//
 
 #if os(iOS)
 

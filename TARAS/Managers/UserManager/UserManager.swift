@@ -118,7 +118,7 @@ extension UserManager {
 
     /// userTB 의 clientInfo (앱버전/장치명/OS/OS버전/언어) 업데이트
     func updateClientInfo() {
-        let appVersion = ""//PlistFiles.Info.cfBundleShortVersionString
+        let appVersion = Info.appVersion
         let deviceName = UIDevice.current.modelName
         let osName = "ios"
         let osVersion = UIDevice.current.systemVersion
