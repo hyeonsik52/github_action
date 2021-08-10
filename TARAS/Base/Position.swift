@@ -21,6 +21,10 @@ struct Position {
         var horizontal: HorizontalAnchor = .center
         
         static let center = Anchor()
+        static let top = Anchor(vertical: .top)
+        static let bottom = Anchor(vertical: .bottom)
+        static let left = Anchor(horizontal: .left)
+        static let right = Anchor(horizontal: .right)
     }
     
     var anchor: Anchor = .center
