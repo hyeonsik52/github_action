@@ -55,19 +55,19 @@ class LaunchScreenViewController: BaseViewController, ReactorKit.View {
 //                let navigationController = BaseNavigationController(rootViewController: viewController)
 //                self.view.window?.rootViewController = navigationController
 //            }).disposed(by: self.disposeBag)
-//
-//        // DB에 토큰 정보가 없는 경우, 로그인 화면으로 이동
-//        reactor.state.map { $0.isAutoSignInEnabled }
-//            .distinctUntilChanged()
-//            .filter { $0 == false }
-//            .map { _ in reactor.reactorForSignIn() }
-//            .subscribe(onNext: { [weak self] reactor in
-//                guard let self = self else { return }
-//                let viewController = SignInViewController()
-//                viewController.reactor = reactor
-//                let navigationController = BaseNavigationController(rootViewController: viewController)
-//                navigationController.modalTransitionStyle = .crossDissolve
-//                self.view.window?.rootViewController = navigationController
-//            }).disposed(by: self.disposeBag)
+
+        // DB에 토큰 정보가 없는 경우, 로그인 화면으로 이동
+        reactor.state.map { $0.isAutoSignInEnabled }
+            .distinctUntilChanged()
+            .filter { $0 == false }
+            .map { _ in reactor.reactorForSignIn() }
+            .subscribe(onNext: { [weak self] reactor in
+                guard let self = self else { return }
+                let viewController = SignInViewController()
+                viewController.reactor = reactor
+                let navigationController = BaseNavigationController(rootViewController: viewController)
+                navigationController.modalTransitionStyle = .crossDissolve
+                self.view.window?.rootViewController = navigationController
+            }).disposed(by: self.disposeBag)
     }
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED52732426C255FC0077CD9D /* SignInViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED52730826C255FC0077CD9D /* SignInViewReactor.graphql */; };
+		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
+		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
+		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
+		ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */; };
+		ED52732926C255FC0077CD9D /* TRSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730E26C255FC0077CD9D /* TRSButton.swift */; };
+		ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730F26C255FC0077CD9D /* SignInViewController.swift */; };
+		ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52731026C255FC0077CD9D /* SignInViewReactor.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
 		ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */; };
 		ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
@@ -98,6 +106,14 @@
 		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
+		ED52730826C255FC0077CD9D /* SignInViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignInViewReactor.graphql; sourceTree = "<group>"; };
+		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
+		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		ED52730C26C255FC0077CD9D /* LargeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
+		ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignTextFieldView.swift; sourceTree = "<group>"; };
+		ED52730E26C255FC0077CD9D /* TRSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRSButton.swift; sourceTree = "<group>"; };
+		ED52730F26C255FC0077CD9D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		ED52731026C255FC0077CD9D /* SignInViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewReactor.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigatableViewController.swift; sourceTree = "<group>"; };
 		ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
@@ -214,6 +230,29 @@
 				D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		ED52730726C255FC0077CD9D /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				ED52730926C255FC0077CD9D /* View */,
+				ED52730F26C255FC0077CD9D /* SignInViewController.swift */,
+				ED52731026C255FC0077CD9D /* SignInViewReactor.swift */,
+				ED52730826C255FC0077CD9D /* SignInViewReactor.graphql */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		ED52730926C255FC0077CD9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED52730A26C255FC0077CD9D /* GostButton.swift */,
+				ED52730B26C255FC0077CD9D /* SignInView.swift */,
+				ED52730C26C255FC0077CD9D /* LargeTitleView.swift */,
+				ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */,
+				ED52730E26C255FC0077CD9D /* TRSButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		ED6B45F026B7DF7D00C2FA6D /* Base */ = {
@@ -482,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				ED6B46AA26B7EA3F00C2FA6D /* Launch */,
+				ED52730726C255FC0077CD9D /* SignIn */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -591,6 +631,7 @@
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
+				ED52732426C255FC0077CD9D /* SignInViewReactor.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,11 +704,13 @@
 			files = (
 				ED6B468326B7E8B500C2FA6D /* NetworkManager.swift in Sources */,
 				ED6B46A226B7E9CE00C2FA6D /* Worker.swift in Sources */,
+				ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */,
 				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
 				ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */,
 				ED6B463F26B7E7CC00C2FA6D /* UIRefreshControl.swift in Sources */,
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
+				ED52732926C255FC0077CD9D /* TRSButton.swift in Sources */,
 				ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */,
 				ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */,
 				ED6B464A26B7E7CC00C2FA6D /* Log+Extract.swift in Sources */,
@@ -687,12 +730,14 @@
 				ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */,
 				ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */,
 				ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */,
+				ED52732626C255FC0077CD9D /* SignInView.swift in Sources */,
 				ED6B463B26B7E7CC00C2FA6D /* CocoaLumberjack.swift in Sources */,
 				ED6B468726B7E8B500C2FA6D /* NotificationInfo.swift in Sources */,
 				ED6B469226B7E8B500C2FA6D /* BaseObject.swift in Sources */,
 				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
 				ED6B465126B7E7CC00C2FA6D /* UIView+Rx.swift in Sources */,
 				ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */,
+				ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */,
 				ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */,
 				ED6B464B26B7E7CC00C2FA6D /* GraphQLOperation.swift in Sources */,
 				ED6B467F26B7E8B500C2FA6D /* ErrorInterceptor.swift in Sources */,
@@ -700,8 +745,10 @@
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
 				ED6B464F26B7E7CC00C2FA6D /* FilterNil.swift in Sources */,
 				ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */,
+				ED52732526C255FC0077CD9D /* GostButton.swift in Sources */,
 				ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
+				ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */,
 				ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */,
 				ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */,
 				ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */,
@@ -722,6 +769,7 @@
 				ED6B460426B7DFF700C2FA6D /* SwiftEntryKit_Show.swift in Sources */,
 				ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */,
 				ED6B464826B7E7CC00C2FA6D /* UITextView.swift in Sources */,
+				ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
 				ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */,
 				ED6B463E26B7E7CC00C2FA6D /* UIColor.swift in Sources */,

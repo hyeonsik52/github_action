@@ -81,10 +81,10 @@ extension LaunchScreenViewReactor {
 
 extension LaunchScreenViewReactor {
     
-//    func reactorForSignIn() -> SignInViewReactor {
-//        return SignInViewReactor(provider: self.provider)
-//    }
-//
+    func reactorForSignIn() -> SignInViewReactor {
+        return SignInViewReactor(provider: self.provider)
+    }
+
 //    func reactorForWorkspaceList() -> WorkspaceListViewReactor {
 //        return WorkspaceListViewReactor(provider: self.provider, isFrom: .launch)
 //    }
