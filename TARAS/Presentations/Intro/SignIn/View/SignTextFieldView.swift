@@ -29,12 +29,12 @@ class SignTextFieldView: UIView {
     init(_ placeholder: String) {
         super.init(frame: .zero)
         
-        self.backgroundColor = .lightGrayF6F6F6
-        self.layer.cornerRadius = 4
+//        self.backgroundColor = .lightGrayF6F6F6
+//        self.layer.cornerRadius = 4
         
         let attributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.gray9A9A9A,
-            NSAttributedString.Key.font: UIFont.bold.18
+            NSAttributedString.Key.foregroundColor: UIColor.gray787878,
+            NSAttributedString.Key.font: UIFont.regular.16
         ]
         let attributedString = NSAttributedString(string: placeholder, attributes: attributes)
         self.textField.attributedPlaceholder = attributedString
@@ -55,9 +55,18 @@ class SignTextFieldView: UIView {
     private func setupConstraints() {
         self.addSubview(self.textField)
         self.textField.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalToSuperview().offset(-16)
+            $0.leading.equalToSuperview().offset(12)
+            $0.trailing.equalToSuperview().offset(-12)
             $0.centerY.equalToSuperview()
+        }
+        
+        let underline = UIView().then {
+            $0.backgroundColor = .grayC9C9C9
+        }
+        self.addSubview(underline)
+        underline.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalTo(self.textField)
+            $0.height.equalTo(1)
         }
     }
 }

@@ -63,20 +63,20 @@ class SignInViewController: BaseNavigatableViewController, ReactorKit.View {
             .disposed(by: self.disposeBag)
 
         // 아이디 · 비밀번호 찾기
-//        signInView.forgotAccountButton.rx.tap
-//            .subscribe(onNext: { [weak self] _ in
-//                self?.signInView.idTextFieldView.textField.resignFirstResponder()
-//                self?.signInView.passwordTextFieldView.textField.resignFirstResponder()
-//                self?.forgotAccountAlert(idHandler: { [weak self] in
+        signInView.forgotAccountButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.signInView.idTextFieldView.textField.resignFirstResponder()
+                self?.signInView.passwordTextFieldView.textField.resignFirstResponder()
+                self?.forgotAccountAlert(idHandler: { [weak self] in
 //                    let viewController = FindAccountEmailViewController()
 //                    viewController.reactor = reactor.reactorForFindAccountId()
 //                    self?.navigationController?.pushViewController(viewController, animated: true)
-//                }, passwordHandler: { [weak self] in
+                }, passwordHandler: { [weak self] in
 //                    let viewController = FindAccountIdViewController()
 //                    viewController.reactor = reactor.reactorForFindPassword()
 //                    self?.navigationController?.pushViewController(viewController, animated: true)
-//                })
-//            }).disposed(by: self.disposeBag)
+                })
+            }).disposed(by: self.disposeBag)
 
         // 회원가입
 //        signInView.signUpButton.rx.tap

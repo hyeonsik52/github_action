@@ -14,8 +14,8 @@ import SnapKit
 class LargeTitleView: UIView {
     
     let titleLabel = UILabel().then {
-        $0.font = .bold.24
-        $0.textColor = .black
+        $0.font = .medium.20
+        $0.textColor = .black303030
     }
 
 
