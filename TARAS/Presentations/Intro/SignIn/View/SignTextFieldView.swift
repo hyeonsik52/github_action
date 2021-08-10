@@ -17,8 +17,8 @@ class SignTextFieldView: UIView {
     let ZERO: CGFloat = 0
     
     let textField = UITextField().then {
-        $0.font = .bold.18
-        $0.textColor = .black
+        $0.font = .regular.16
+        $0.textColor = .gray535353
         $0.clearButtonMode = .whileEditing
         $0.enablesReturnKeyAutomatically = true
     }
@@ -56,7 +56,7 @@ class SignTextFieldView: UIView {
         self.addSubview(self.textField)
         self.textField.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(12)
-            $0.trailing.equalToSuperview().offset(-12)
+            $0.trailing.equalToSuperview().offset(-4)
             $0.centerY.equalToSuperview()
         }
         
@@ -65,7 +65,7 @@ class SignTextFieldView: UIView {
         }
         self.addSubview(underline)
         underline.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalTo(self.textField)
+            $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(1)
         }
     }

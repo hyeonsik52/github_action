@@ -36,8 +36,8 @@ class TRSButton: UIButton {
         }
         
         var font: UIFont = .medium.16
-        var titleColors: [StateColor] = [.normal(.white), .disabled(.lightPurpleCACAEA)]
-        var backgroundColors: [StateColor] = [.normal(.purple4A3C9F), .disabled(.lightPurpleEAEAF6)]
+        var titleColors: [StateColor] = [.normal(.white), .disabled(.purpleCACAEA)]
+        var backgroundColors: [StateColor] = [.normal(.purple4A3C9F), .disabled(.purpleEAEAF6)]
         var cornerRadius: CGFloat = 8
         
         static let instance = Appearance()

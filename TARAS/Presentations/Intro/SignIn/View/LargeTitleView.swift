@@ -15,7 +15,7 @@ class LargeTitleView: UIView {
     
     let titleLabel = UILabel().then {
         $0.font = .medium.20
-        $0.textColor = .black303030
+        $0.textColor = .darkGray303030
     }
 
 

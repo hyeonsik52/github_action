@@ -46,10 +46,10 @@ class SignInView: UIView {
     }
     
     /// '계정찾기' 버튼
-    let forgotAccountButton = GostButton("아이디 · 비밀번호 찾기")
+    let forgotAccountButton = GostButton("아이디·비밀번호 찾기")
     
     /// '회원가입' 버튼
-    let signUpButton = GostButton("회원가입하기")
+    let signUpButton = GostButton("회원가입")
     
     
     // MARK: - Init
@@ -70,52 +70,71 @@ class SignInView: UIView {
     func setupContraints() {
         self.addSubview(self.titleView)
         self.titleView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.top.equalToSuperview().offset(-4)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
         }
         
         self.addSubview(self.idTextFieldView)
         self.idTextFieldView.snp.makeConstraints {
-            $0.top.equalTo(self.titleView.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(60)
+            $0.top.equalTo(self.titleView.snp.bottom).offset(14)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.height.equalTo(36)
         }
         
         self.addSubview(self.passwordTextFieldView)
         self.passwordTextFieldView.snp.makeConstraints {
-            $0.top.equalTo(self.idTextFieldView.snp.bottom).offset(12)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(60)
+            $0.top.equalTo(self.idTextFieldView.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.height.equalTo(36)
         }
         
         self.addSubview(self.warningLabel)
         self.warningLabel.snp.makeConstraints {
-            $0.top.equalTo(self.passwordTextFieldView.snp.bottom).offset(14)
+            $0.top.equalTo(self.passwordTextFieldView.snp.bottom).offset(0)
             $0.leading.trailing.equalTo(self.passwordTextFieldView)
         }
         
         self.addSubview(self.signInButton)
         self.signInButton.snp.makeConstraints {
-            $0.top.equalTo(self.warningLabel.snp.bottom).offset(30)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(60)
+            $0.top.equalTo(self.warningLabel.snp.bottom).offset(22)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.height.equalTo(48)
         }
         
-        self.addSubview(self.forgotAccountButton)
-        self.forgotAccountButton.snp.makeConstraints {
-            $0.top.equalTo(self.signInButton.snp.bottom).offset(12)
+        let bottomContainer = UIView()
+        self.addSubview(bottomContainer)
+        bottomContainer.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-22)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(40)
+            $0.height.equalTo(24)
         }
         
-        self.addSubview(self.signUpButton)
+        bottomContainer.addSubview(self.signUpButton)
         self.signUpButton.snp.makeConstraints {
-            $0.top.equalTo(self.forgotAccountButton.snp.bottom)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(40)
+            $0.top.leading.bottom.equalToSuperview()
+            $0.width.equalTo(55)
+        }
+        
+        let separator = UIView().then {
+            $0.backgroundColor = .black
+        }
+        bottomContainer.addSubview(separator)
+        separator.snp.makeConstraints {
+            $0.leading.equalTo(self.signUpButton.snp.trailing).offset(8)
+            $0.centerY.equalToSuperview()
+            $0.width.equalTo(1)
+            $0.height.equalTo(12)
+        }
+        
+        bottomContainer.addSubview(self.forgotAccountButton)
+        self.forgotAccountButton.snp.makeConstraints {
+            $0.leading.equalTo(separator.snp.trailing).offset(8)
+            $0.top.trailing.bottom.equalToSuperview()
+            $0.width.equalTo(109)
         }
     }
 }

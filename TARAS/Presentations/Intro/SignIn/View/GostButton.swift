@@ -10,16 +10,14 @@ import UIKit
 /// SignInViewController 에서 사용되는 '회원가입하기' 버튼입니다.
 class GostButton: UIButton {
     
-    init(_ title: String, color: UIColor = .black0F0F0F) {
+    init(_ title: String, color: UIColor = .darkGray303030) {
         super.init(frame: .zero)
         
         var attributedString: NSMutableAttributedString
         
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: color,
-            .font: UIFont.bold.14,
-            .underlineStyle: NSUnderlineStyle.single.rawValue,
-            .underlineColor: UIColor.purple4A3C9F
+            .font: UIFont.regular.12
         ]
         
         attributedString = NSMutableAttributedString(
