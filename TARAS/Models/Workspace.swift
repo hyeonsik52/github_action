@@ -66,3 +66,48 @@
 //        self.joinRequestIdx = result.myJoinRequest?.asSwsJoinRequest?.swsJoinRequestIdx
 //    }
 //}
+
+struct Workspace: Identifiable {
+    
+    var id: String
+    var name: String
+    var code: String
+    var isPublic: Bool
+    var memberList: [User]?
+    var stationGroups: [StationGroup]
+    var stations: [Station]
+}
+
+extension Workspace: FragmentModel {
+    
+    init(_ fragment: WorkspaceFragment) {
+        
+        self.id = fragment.id
+        self.name = fragment.name
+        self.code = fragment.code
+        self.isPublic = fragment.isPublic
+        self.memberList = fragment.memberList.edges
+            .compactMap(\.?.node?.fragments.userForWorkspaceFragment)
+            .map(User.init)
+        self.stationGroups = fragment.stationGroups?.edges
+            .compactMap(\.?.node?.fragments.stationGroupFragment)
+            .map(StationGroup.init) ?? []
+        self.stations = fragment.stations?.edges
+            .compactMap(\.?.node?.fragments.stationFragment)
+            .map(Station.init) ?? []
+    }
+    
+    init(alt fragment: WorkspaceForUserFragment) {
+        
+        self.id = fragment.id
+        self.name = fragment.name
+        self.code = fragment.code
+        self.isPublic = fragment.isPublic
+        self.stationGroups = fragment.stationGroups?.edges
+            .compactMap(\.?.node?.fragments.stationGroupFragment)
+            .map(StationGroup.init) ?? []
+        self.stations = fragment.stations?.edges
+            .compactMap(\.?.node?.fragments.stationFragment)
+            .map(Station.init) ?? []
+    }
+}

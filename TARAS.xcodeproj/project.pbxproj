@@ -87,6 +87,16 @@
 		ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */; };
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
+		EDA1FA2126C12EE400E8C39B /* Station.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2026C12EE400E8C39B /* Station.graphql */; };
+		EDA1FA2326C1347200E8C39B /* Workspace.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2226C1347200E8C39B /* Workspace.graphql */; };
+		EDA1FA2526C1350900E8C39B /* User.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2426C1350900E8C39B /* User.graphql */; };
+		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
+		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
+		EDA1FA2D26C1524500E8C39B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2C26C1524500E8C39B /* Station.swift */; };
+		EDA1FA2F26C152E000E8C39B /* StationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* StationGroup.swift */; };
+		EDA1FA3126C1564700E8C39B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3026C1564700E8C39B /* User.swift */; };
+		EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3226C1590100E8C39B /* FragmentModel.swift */; };
+		EDA1FA3826C15DC300E8C39B /* SignUp.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA3726C15DC300E8C39B /* SignUp.graphql */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -178,6 +188,16 @@
 		ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		EDA1FA2026C12EE400E8C39B /* Station.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Station.graphql; sourceTree = "<group>"; };
+		EDA1FA2226C1347200E8C39B /* Workspace.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Workspace.graphql; sourceTree = "<group>"; };
+		EDA1FA2426C1350900E8C39B /* User.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
+		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = SOURCE_ROOT; };
+		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
+		EDA1FA2C26C1524500E8C39B /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		EDA1FA2E26C152E000E8C39B /* StationGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationGroup.swift; sourceTree = "<group>"; };
+		EDA1FA3026C1564700E8C39B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EDA1FA3226C1590100E8C39B /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
+		EDA1FA3726C15DC300E8C39B /* SignUp.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SignUp.graphql; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -259,6 +279,8 @@
 				EDF0C3A726B405F70061552F /* Info-dev.plist */,
 				ED6B460F26B7E51800C2FA6D /* GoogleService-Info.plist */,
 				EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */,
+				EDA1FA2626C14B9A00E8C39B /* schema.json */,
+				EDA1FA2826C14B9F00E8C39B /* API.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -375,6 +397,7 @@
 			children = (
 				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
 				ED6B466126B7E8B500C2FA6D /* Interceptors */,
+				EDA1FA2A26C1517000E8C39B /* GraphQLModels */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -462,10 +485,14 @@
 				ED6B469726B7E9CE00C2FA6D /* Workspace.swift */,
 				ED6B469826B7E9CE00C2FA6D /* Worker.swift */,
 				ED6B469926B7E9CE00C2FA6D /* Stop.swift */,
+				EDA1FA2C26C1524500E8C39B /* Station.swift */,
+				EDA1FA2E26C152E000E8C39B /* StationGroup.swift */,
+				EDA1FA3026C1564700E8C39B /* User.swift */,
 				ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */,
 				ED6B469B26B7E9CE00C2FA6D /* Account.swift */,
 				ED6B469C26B7E9CE00C2FA6D /* Robot.swift */,
 				ED6B469D26B7E9CE00C2FA6D /* InputPolicy.swift */,
+				EDA1FA3226C1590100E8C39B /* FragmentModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -481,6 +508,7 @@
 		ED6B46A926B7EA3F00C2FA6D /* Intro */ = {
 			isa = PBXGroup;
 			children = (
+				EDA1FA3426C15AA700E8C39B /* SignUp */,
 				ED6B46AA26B7EA3F00C2FA6D /* Launch */,
 			);
 			path = Intro;
@@ -493,6 +521,24 @@
 				ED6B46AC26B7EA3F00C2FA6D /* LaunchScreenViewReactor.swift */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		EDA1FA2A26C1517000E8C39B /* GraphQLModels */ = {
+			isa = PBXGroup;
+			children = (
+				EDA1FA2026C12EE400E8C39B /* Station.graphql */,
+				EDA1FA2226C1347200E8C39B /* Workspace.graphql */,
+				EDA1FA2426C1350900E8C39B /* User.graphql */,
+			);
+			path = GraphQLModels;
+			sourceTree = "<group>";
+		};
+		EDA1FA3426C15AA700E8C39B /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				EDA1FA3726C15DC300E8C39B /* SignUp.graphql */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		EDF0C38D26B405F60061552F = {
@@ -588,8 +634,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */,
+				EDA1FA3826C15DC300E8C39B /* SignUp.graphql in Resources */,
+				EDA1FA2526C1350900E8C39B /* User.graphql in Resources */,
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
+				EDA1FA2326C1347200E8C39B /* Workspace.graphql in Resources */,
+				EDA1FA2126C12EE400E8C39B /* Station.graphql in Resources */,
 				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,7 +703,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n#cd \"${SRCROOT}\"\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -662,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED6B468326B7E8B500C2FA6D /* NetworkManager.swift in Sources */,
+				EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */,
 				ED6B46A226B7E9CE00C2FA6D /* Worker.swift in Sources */,
 				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
 				ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */,
@@ -683,6 +735,7 @@
 				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
 				ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */,
 				ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */,
+				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
 				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
 				ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */,
 				ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */,
@@ -703,6 +756,7 @@
 				ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
 				ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */,
+				EDA1FA2D26C1524500E8C39B /* Station.swift in Sources */,
 				ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */,
 				ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */,
 				ED6B463A26B7E7CC00C2FA6D /* Date.swift in Sources */,
@@ -717,8 +771,10 @@
 				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
 				ED6B465926B7E7CC00C2FA6D /* List_BaseObject.swift in Sources */,
+				EDA1FA3126C1564700E8C39B /* User.swift in Sources */,
 				ED6B468026B7E8B500C2FA6D /* BaseInterceptor.swift in Sources */,
 				ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */,
+				EDA1FA2F26C152E000E8C39B /* StationGroup.swift in Sources */,
 				ED6B460426B7DFF700C2FA6D /* SwiftEntryKit_Show.swift in Sources */,
 				ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */,
 				ED6B464826B7E7CC00C2FA6D /* UITextView.swift in Sources */,
