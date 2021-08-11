@@ -1,0 +1,28 @@
+
+fragment userFragment on UserNode {
+    id
+    username
+    displayName
+    email
+    phoneNumber
+    joinedWorkspaces(offset: $joinedWorkspacesOffset,
+                     before: $joinedWorkspacesBefore,
+                     after: $joinedWorkspacesAfter,
+                     first: $joinedWorkspacesFirst,
+                     last: $joinedWorkspacesLast,
+                     id: $joinedWorkspacesId) {
+        edges {
+            node {
+                ...workspaceForUserFragment
+            }
+        }
+    }
+}
+
+fragment userForWorkspaceFragment on UserNode {
+    id
+    username
+    displayName
+    email
+    phoneNumber
+}
