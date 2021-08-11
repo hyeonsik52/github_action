@@ -36,8 +36,8 @@ class SignInView: UIView {
     /// 로그인 에러 메시지 label
     let warningLabel = UILabel().then {
         $0.textColor = .redEB4D39
-        $0.font = .bold.14
-        $0.numberOfLines = 0
+        $0.font = .regular.12
+        $0.numberOfLines = 2
     }
     
     /// '로그인' 버튼
@@ -85,7 +85,7 @@ class SignInView: UIView {
         
         self.addSubview(self.passwordTextFieldView)
         self.passwordTextFieldView.snp.makeConstraints {
-            $0.top.equalTo(self.idTextFieldView.snp.bottom).offset(8)
+            $0.top.equalTo(self.idTextFieldView.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(36)
@@ -99,7 +99,7 @@ class SignInView: UIView {
         
         self.addSubview(self.signInButton)
         self.signInButton.snp.makeConstraints {
-            $0.top.equalTo(self.warningLabel.snp.bottom).offset(22)
+            $0.top.equalTo(self.passwordTextFieldView.snp.bottom).offset(48)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(48)
