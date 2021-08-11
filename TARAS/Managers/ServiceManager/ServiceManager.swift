@@ -42,7 +42,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                )
 //                attributed.addAttribute(
 //                    .foregroundColor,
-//                    value: Asset.Colors.purple4A3C9F.color,
+//                    value: .purple4A3C9F,
 //                    range: .init(location: 0, length: processing.stop.name.utf16.count+2)
 //                )
 //                return attributed
@@ -80,7 +80,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                )
 //                attributed.addAttribute(
 //                    .foregroundColor,
-//                    value: Asset.Colors.purple4A3C9F.color,
+//                    value: .purple4A3C9F,
 //                    range: .init(location: 0, length: userName.utf16.count)
 //                )
 //                return attributed
@@ -104,7 +104,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                )
 //                attributed.addAttribute(
 //                    .foregroundColor,
-//                    value: Asset.Colors.purple4A3C9F.color,
+//                    value: .purple4A3C9F,
 //                    range: .init(location: 4, length: stopName.utf16.count)
 //                )
 //                return attributed
@@ -130,7 +130,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                    )
 //                    attributed.addAttribute(
 //                        .foregroundColor,
-//                        value: Asset.Colors.purple4A3C9F.color,
+//                        value: .purple4A3C9F,
 //                        range: .init(location: 0, length: userName.utf16.count)
 //                    )
 //                    return attributed
@@ -148,7 +148,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                    string: "관리자에 의해 서비스가 중단되었습니다.",
 //                    attributes: [
 //                        .font: UIFont.MEDIUM_16,
-//                        .foregroundColor: Asset.Colors.redEc5C4A.color
+//                        .foregroundColor: .redEc5C4A
 //                    ]
 //                )
 //            case .error(let error):
@@ -156,7 +156,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                    string: error.description,
 //                    attributes: [
 //                        .font: UIFont.MEDIUM_16,
-//                        .foregroundColor: Asset.Colors.redEc5C4A.color
+//                        .foregroundColor: .redEc5C4A
 //                    ]
 //                )
 //            }

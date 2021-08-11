@@ -10,7 +10,6 @@ import UIKit
 extension UIColor {
     static let lightPurpleEBEAF4 = UIColor(hex: "EBEAF4")
     static let higlightPurpleF1EFFF = UIColor(hex: "F1EFFF")
-    static let redEB4D39 = UIColor(hex: "EB4D39")
     static let lightRedFFE8E6 = UIColor(hex: "FFE8E6")
     static let black0F0F0F = UIColor(hex: "0F0F0F")
     static let gray9A9A9A = UIColor(hex: "9A9A9A")
