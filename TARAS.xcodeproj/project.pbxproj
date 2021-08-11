@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED52732426C255FC0077CD9D /* SignInViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED52730826C255FC0077CD9D /* SignInViewReactor.graphql */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
 		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
@@ -631,7 +630,6 @@
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
-				ED52732426C255FC0077CD9D /* SignInViewReactor.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
