@@ -101,7 +101,7 @@ extension AccountError {
         case .idEmailNotMatch:
             return "등록된 이메일 정보와 일치하지 않습니다."
         case .invalidPassword:
-            return "비밀번호를 확인해 주세요."
+            return "잘못된 비밀번호입니다."
         }
     }
 }
