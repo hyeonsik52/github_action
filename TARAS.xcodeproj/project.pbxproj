@@ -15,6 +15,18 @@
 		ED52732926C255FC0077CD9D /* TRSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730E26C255FC0077CD9D /* TRSButton.swift */; };
 		ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730F26C255FC0077CD9D /* SignInViewController.swift */; };
 		ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52731026C255FC0077CD9D /* SignInViewReactor.swift */; };
+		ED52737126C3A03C0077CD9D /* SignUpIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */; };
+		ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735A26C3A03C0077CD9D /* SignUpIdViewReactor.swift */; };
+		ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735B26C3A03C0077CD9D /* SignUpIdView.swift */; };
+		ED52737426C3A03C0077CD9D /* SignUpNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735D26C3A03C0077CD9D /* SignUpNameViewController.swift */; };
+		ED52737526C3A03C0077CD9D /* SignUpNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735E26C3A03C0077CD9D /* SignUpNameView.swift */; };
+		ED52737626C3A03C0077CD9D /* SignUpNameViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735F26C3A03C0077CD9D /* SignUpNameViewReactor.swift */; };
+		ED52737726C3A03C0077CD9D /* SignUpPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736126C3A03C0077CD9D /* SignUpPasswordView.swift */; };
+		ED52737826C3A03C0077CD9D /* SignUpPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736226C3A03C0077CD9D /* SignUpPasswordViewController.swift */; };
+		ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */; };
+		ED52737E26C3A03C0077CD9D /* SignUp.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED52736926C3A03C0077CD9D /* SignUp.graphql */; };
+		ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */; };
+		ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
 		ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */; };
 		ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
@@ -114,6 +126,19 @@
 		ED52730E26C255FC0077CD9D /* TRSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRSButton.swift; sourceTree = "<group>"; };
 		ED52730F26C255FC0077CD9D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ED52731026C255FC0077CD9D /* SignInViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewReactor.swift; sourceTree = "<group>"; };
+		ED52735826C3A03C0077CD9D /* SignUpIdViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUpIdViewReactor.graphql; sourceTree = "<group>"; };
+		ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpIdViewController.swift; sourceTree = "<group>"; };
+		ED52735A26C3A03C0077CD9D /* SignUpIdViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpIdViewReactor.swift; sourceTree = "<group>"; };
+		ED52735B26C3A03C0077CD9D /* SignUpIdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpIdView.swift; sourceTree = "<group>"; };
+		ED52735D26C3A03C0077CD9D /* SignUpNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpNameViewController.swift; sourceTree = "<group>"; };
+		ED52735E26C3A03C0077CD9D /* SignUpNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpNameView.swift; sourceTree = "<group>"; };
+		ED52735F26C3A03C0077CD9D /* SignUpNameViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpNameViewReactor.swift; sourceTree = "<group>"; };
+		ED52736126C3A03C0077CD9D /* SignUpPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordView.swift; sourceTree = "<group>"; };
+		ED52736226C3A03C0077CD9D /* SignUpPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewController.swift; sourceTree = "<group>"; };
+		ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewReactor.swift; sourceTree = "<group>"; };
+		ED52736926C3A03C0077CD9D /* SignUp.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUp.graphql; sourceTree = "<group>"; };
+		ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
+		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigatableViewController.swift; sourceTree = "<group>"; };
 		ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
@@ -251,6 +276,58 @@
 				ED52730C26C255FC0077CD9D /* LargeTitleView.swift */,
 				ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */,
 				ED52730E26C255FC0077CD9D /* TRSButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ED52735226C3A03C0077CD9D /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				ED52736A26C3A03C0077CD9D /* View */,
+				ED52735726C3A03C0077CD9D /* SignUpId */,
+				ED52736026C3A03C0077CD9D /* SignUpPassword */,
+				ED52735C26C3A03C0077CD9D /* SignUpName */,
+				ED52736926C3A03C0077CD9D /* SignUp.graphql */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		ED52735726C3A03C0077CD9D /* SignUpId */ = {
+			isa = PBXGroup;
+			children = (
+				ED52735B26C3A03C0077CD9D /* SignUpIdView.swift */,
+				ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */,
+				ED52735A26C3A03C0077CD9D /* SignUpIdViewReactor.swift */,
+				ED52735826C3A03C0077CD9D /* SignUpIdViewReactor.graphql */,
+			);
+			path = SignUpId;
+			sourceTree = "<group>";
+		};
+		ED52735C26C3A03C0077CD9D /* SignUpName */ = {
+			isa = PBXGroup;
+			children = (
+				ED52735E26C3A03C0077CD9D /* SignUpNameView.swift */,
+				ED52735D26C3A03C0077CD9D /* SignUpNameViewController.swift */,
+				ED52735F26C3A03C0077CD9D /* SignUpNameViewReactor.swift */,
+			);
+			path = SignUpName;
+			sourceTree = "<group>";
+		};
+		ED52736026C3A03C0077CD9D /* SignUpPassword */ = {
+			isa = PBXGroup;
+			children = (
+				ED52736126C3A03C0077CD9D /* SignUpPasswordView.swift */,
+				ED52736226C3A03C0077CD9D /* SignUpPasswordViewController.swift */,
+				ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */,
+			);
+			path = SignUpPassword;
+			sourceTree = "<group>";
+		};
+		ED52736A26C3A03C0077CD9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */,
+				ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -522,6 +599,7 @@
 			children = (
 				ED6B46AA26B7EA3F00C2FA6D /* Launch */,
 				ED52730726C255FC0077CD9D /* SignIn */,
+				ED52735226C3A03C0077CD9D /* SignUp */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -632,6 +710,7 @@
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
 				ED52732426C255FC0077CD9D /* SignInViewReactor.graphql in Resources */,
+				ED52737E26C3A03C0077CD9D /* SignUp.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,7 +792,9 @@
 				ED52732926C255FC0077CD9D /* TRSButton.swift in Sources */,
 				ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */,
 				ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */,
+				ED52737726C3A03C0077CD9D /* SignUpPasswordView.swift in Sources */,
 				ED6B464A26B7E7CC00C2FA6D /* Log+Extract.swift in Sources */,
+				ED52737126C3A03C0077CD9D /* SignUpIdViewController.swift in Sources */,
 				ED6B460626B7DFF700C2FA6D /* SwiftEntryKit.swift in Sources */,
 				ED6B465026B7E7CC00C2FA6D /* Reactor.swift in Sources */,
 				ED6B468626B7E8B500C2FA6D /* PushManager.swift in Sources */,
@@ -753,16 +834,21 @@
 				ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */,
 				ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */,
 				ED6B463A26B7E7CC00C2FA6D /* Date.swift in Sources */,
+				ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */,
 				ED6B460326B7DFF700C2FA6D /* Log.swift in Sources */,
 				ED6B465426B7E7CC00C2FA6D /* UICollectionView+Rx.swift in Sources */,
 				ED6B464426B7E7CC00C2FA6D /* UIViewController.swift in Sources */,
 				ED6B464126B7E7CC00C2FA6D /* UIDevice.swift in Sources */,
 				ED6B464626B7E7CC00C2FA6D /* UIImageView.swift in Sources */,
 				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
+				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				ED6B464726B7E7CC00C2FA6D /* UIFont.swift in Sources */,
 				ED6B464326B7E7CC00C2FA6D /* UIButton.swift in Sources */,
 				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
+				ED52737526C3A03C0077CD9D /* SignUpNameView.swift in Sources */,
+				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
+				ED52737426C3A03C0077CD9D /* SignUpNameViewController.swift in Sources */,
 				ED6B465926B7E7CC00C2FA6D /* List_BaseObject.swift in Sources */,
 				ED6B468026B7E8B500C2FA6D /* BaseInterceptor.swift in Sources */,
 				ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */,
@@ -770,7 +856,10 @@
 				ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */,
 				ED6B464826B7E7CC00C2FA6D /* UITextView.swift in Sources */,
 				ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */,
+				ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
+				ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */,
+				ED52737626C3A03C0077CD9D /* SignUpNameViewReactor.swift in Sources */,
 				ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */,
 				ED6B463E26B7E7CC00C2FA6D /* UIColor.swift in Sources */,
 				ED6B463D26B7E7CC00C2FA6D /* UIView.swift in Sources */,
@@ -779,6 +868,7 @@
 				ED6B469026B7E8B500C2FA6D /* TEST_TB.swift in Sources */,
 				ED6B465526B7E7CC00C2FA6D /* UITableView+Rx.swift in Sources */,
 				ED6B465B26B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift in Sources */,
+				ED52737826C3A03C0077CD9D /* SignUpPasswordViewController.swift in Sources */,
 				ED6B46A326B7E9CE00C2FA6D /* Stop.swift in Sources */,
 				ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */,
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,

@@ -1,0 +1,15 @@
+
+mutation signUp($input: UserMutationInput!) {
+    createAccount(input: $input) {
+        username
+        displayName
+        email
+        phoneNumber
+        joinedWorkspace
+        errors {
+            field
+            messages
+        }
+        clientMutationId
+    }
+}
