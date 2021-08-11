@@ -113,7 +113,7 @@ class SignInViewController: BaseNavigatableViewController, ReactorKit.View {
             .bind(to: signInView.warningLabel.rx.text)
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.isValid }
+        reactor.state.map { $0.isValid && $0.errorMessage == nil }
             .bind(to: self.signInView.signInButton.rx.isEnabled)
             .disposed(by: self.disposeBag)
     }
