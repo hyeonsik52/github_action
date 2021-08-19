@@ -16,9 +16,9 @@ class SignUpPasswordView: UIView {
     
     enum Text {
         static let SUPVC_1 = "비밀번호 설정"
-        static let SUPVC_2 = "비밀번호를 입력해주세요."
-        static let SUPVC_3 = "비밀번호"
-        static let SUPVC_4 = "비밀번호 확인"
+        static let SUPVC_2 = "사용하실 비밀번호를 입력해주세요."
+        static let SUPVC_3 = "비밀번호를 입력해주세요."
+        static let SUPVC_4 = "한번 더 비밀번호를 입력해주세요."
         static let SUPVC_5 = "비밀번호는 8~32자로 설정해 주세요."
     }
     

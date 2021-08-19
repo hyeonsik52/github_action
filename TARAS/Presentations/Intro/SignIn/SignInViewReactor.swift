@@ -138,9 +138,9 @@ class SignInViewReactor: Reactor {
         return state
     }
     
-//    func reactorForSignUp() -> SignUpIdViewReactor {
-//        return SignUpIdViewReactor(provider: self.provider)
-//    }
+    func reactorForSignUp() -> SignUpIdViewReactor {
+        return SignUpIdViewReactor(provider: self.provider)
+    }
 
 //    func reactorForWorkspaceList() -> WorkspaceListViewReactor {
 //        return WorkspaceListViewReactor(provider: self.provider, isFrom: .signIn)

@@ -74,7 +74,7 @@ class SignUpNameViewReactor: Reactor {
         return state
     }
     
-    private func signUp(_ name: String?) -> Observable<Mutation> {
+    private func signUp(_ name: String) -> Observable<Mutation> {
         guard let clientInfo = self.provider.userManager.userTB.clientInfo else {
             return .empty()
         }
@@ -93,47 +93,40 @@ class SignUpNameViewReactor: Reactor {
 //
 //        return self.signUp(input: input)
         
-        return .empty()
+        let input = CreateUserMutationInput(
+            password: self.accountInfo.password,
+            username: self.accountInfo.id,
+            displayName: name
+        )
+        
+        return self.signUp(input: input)
     }
         
-//    private func signUp(input: SignupInput) -> Observable<Mutation> {
-//
-//        let mutation = SignUpMutation(input: input)
-//
-//        let prevIsValid = self.currentState.isValid
-//        return .concat([
-//            .just(.updateIsValid(false)),
-//            .just(.updateIsProcessing(true)),
-//
-//            self.provider.networkManager.perform(mutation)
-//                .map { $0.signupMutation }
-//                .flatMap { result -> Observable<Mutation> in
-//                    if let typeError = result.asTypeError?.fragments.typeErrorFragment {
-//                        return .concat([
-//                            .just(.updateIsValid(prevIsValid)),
-//                            .just(.updateError(.common(.type(typeError))))
-//                        ])
-//                    }else if let error = result.asSignupError {
-//                        let error: TRSError? = {
-//                            switch error.signUpErrorCode {
-//                            case .duplicatedUserId:
-//                                return .account(.idExisted)
-//                            default:
-//                                return .etc(error.signUpErrorCode.rawValue)
-//                            }
-//                        }()
-//                        return .concat([
-//                            .just(.updateIsValid(prevIsValid)),
-//                            .just(.updateError(error))
-//                        ])
-//                    }else if let _ = result.asLoginPayload {
-//                        return .just(.updateIsSignUp(true))
-//                    }
-//                    return .empty()
-//                }
-//                .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-//
-//            .just(.updateIsProcessing(false))
-//        ])
-//    }
+    private func signUp(input: CreateUserMutationInput) -> Observable<Mutation> {
+
+        let mutation = SignUpMutation(input: input)
+
+        let prevIsValid = self.currentState.isValid
+        return .concat([
+            .just(.updateIsValid(false)),
+            .just(.updateIsProcessing(true)),
+
+            self.provider.networkManager.perform(mutation)
+                .map { $0.createUser }
+                .flatMap { result -> Observable<Mutation> in
+                    if let errors = result?.errors {
+                        let etcErrors = TRSError.list(errors.compactMap { $0 }.map { TRSError.etc("[\($0.field)]: \($0.messages)") })
+                        return .concat([
+                            .just(.updateIsValid(prevIsValid)),
+                            .just(.updateError(etcErrors))
+                        ])
+                    } else {
+                        return .just(.updateIsSignUp(true))
+                    }
+                }
+                .catchAndReturn(.updateError(.common(.networkNotConnect))),
+
+            .just(.updateIsProcessing(false))
+        ])
+    }
 }

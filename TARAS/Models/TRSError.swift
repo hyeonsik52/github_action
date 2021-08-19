@@ -17,6 +17,8 @@ enum TRSError: Error {
     case workspace(WorkspaceError)
     /// 기타 오류
     case etc(String)
+    /// 오류 목록
+    case list([TRSError])
 }
 extension TRSError {
 
@@ -30,6 +32,8 @@ extension TRSError {
             return subError.description
         case .etc(let message):
             return message
+        case .list(let errors):
+            return errors.map(\.description).reduce("", { "\($0) | \($1)" })
         }
     }
 }

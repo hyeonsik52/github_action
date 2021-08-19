@@ -19,9 +19,9 @@ protocol SignUpTextFieldDelegate: class {
 class SignUpIdView: UIView {
     
     enum Text {
-        static let SUVC_1 = "아이디 설정"
-        static let SUVC_2 = "아이디를 입력해주세요."
-        static let SUVC_3 = "아이디"
+        static let SUVC_1 = "회원가입"
+        static let SUVC_2 = "사용하실 아이디를 입력해주세요."
+        static let SUVC_3 = "아이디를 입력해주세요."
         static let SUVC_4 = "중복 확인"
         static let SUVC_5 = "5~20자의 알파벳과 숫자, 일부 특수문자(-,_)만 사용해주세요."
     }

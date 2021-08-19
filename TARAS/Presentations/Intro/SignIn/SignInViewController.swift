@@ -79,13 +79,13 @@ class SignInViewController: BaseNavigatableViewController, ReactorKit.View {
             }).disposed(by: self.disposeBag)
 
         // 회원가입
-//        signInView.signUpButton.rx.tap
-//            .map { _ in reactor.reactorForSignUp() }
-//            .subscribe(onNext: { [weak self] reactor in
-//                let viewController = SignUpIdViewController()
-//                viewController.reactor = reactor
-//                self?.navigationController?.pushViewController(viewController, animated: true)
-//            }).disposed(by: self.disposeBag)
+        signInView.signUpButton.rx.tap
+            .map { _ in reactor.reactorForSignUp() }
+            .subscribe(onNext: { [weak self] reactor in
+                let viewController = SignUpIdViewController()
+                viewController.reactor = reactor
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: self.disposeBag)
         
         
         // State

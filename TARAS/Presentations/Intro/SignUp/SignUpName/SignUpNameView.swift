@@ -15,9 +15,9 @@ import RxSwift
 class SignUpNameView: UIView {
     
     enum Text {
-        static let SUPVC_1 = "이름 설정"
+        static let SUPVC_1 = "회원가입"
         static let SUPVC_2 = "이름을 입력해주세요."
-        static let SUPVC_3 = "이름"
+        static let SUPVC_3 = "이름을 입력해주세요."
     }
     
     let name = PublishRelay<String>()
