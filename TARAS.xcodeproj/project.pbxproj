@@ -23,6 +23,7 @@
 		ED52737726C3A03C0077CD9D /* SignUpPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736126C3A03C0077CD9D /* SignUpPasswordView.swift */; };
 		ED52737826C3A03C0077CD9D /* SignUpPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736226C3A03C0077CD9D /* SignUpPasswordViewController.swift */; };
 		ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */; };
+		ED52737E26C3A03C0077CD9D /* SignUpNameViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED52736926C3A03C0077CD9D /* SignUpNameViewReactor.graphql */; };
 		ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */; };
 		ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
@@ -141,6 +142,7 @@
 		ED52736126C3A03C0077CD9D /* SignUpPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordView.swift; sourceTree = "<group>"; };
 		ED52736226C3A03C0077CD9D /* SignUpPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewController.swift; sourceTree = "<group>"; };
 		ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewReactor.swift; sourceTree = "<group>"; };
+		ED52736926C3A03C0077CD9D /* SignUpNameViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUpNameViewReactor.graphql; sourceTree = "<group>"; };
 		ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				ED52735E26C3A03C0077CD9D /* SignUpNameView.swift */,
 				ED52735D26C3A03C0077CD9D /* SignUpNameViewController.swift */,
 				ED52735F26C3A03C0077CD9D /* SignUpNameViewReactor.swift */,
+				ED52736926C3A03C0077CD9D /* SignUpNameViewReactor.graphql */,
 			);
 			path = SignUpName;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				EDA1FA2326C1347200E8C39B /* Workspace.graphql in Resources */,
 				EDA1FA2126C12EE400E8C39B /* Station.graphql in Resources */,
 				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
+				ED52737E26C3A03C0077CD9D /* SignUpNameViewReactor.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
