@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED52732426C255FC0077CD9D /* SignInViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED52730826C255FC0077CD9D /* SignInViewReactor.graphql */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
 		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
@@ -24,7 +23,6 @@
 		ED52737726C3A03C0077CD9D /* SignUpPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736126C3A03C0077CD9D /* SignUpPasswordView.swift */; };
 		ED52737826C3A03C0077CD9D /* SignUpPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736226C3A03C0077CD9D /* SignUpPasswordViewController.swift */; };
 		ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */; };
-		ED52737E26C3A03C0077CD9D /* SignUp.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED52736926C3A03C0077CD9D /* SignUp.graphql */; };
 		ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */; };
 		ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
@@ -116,7 +114,6 @@
 		EDA1FA2F26C152E000E8C39B /* StationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* StationGroup.swift */; };
 		EDA1FA3126C1564700E8C39B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3026C1564700E8C39B /* User.swift */; };
 		EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3226C1590100E8C39B /* FragmentModel.swift */; };
-		EDA1FA3826C15DC300E8C39B /* SignUp.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA3726C15DC300E8C39B /* SignUp.graphql */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -128,7 +125,6 @@
 		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
-		ED52730826C255FC0077CD9D /* SignInViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignInViewReactor.graphql; sourceTree = "<group>"; };
 		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
 		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		ED52730C26C255FC0077CD9D /* LargeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
@@ -136,7 +132,6 @@
 		ED52730E26C255FC0077CD9D /* TRSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRSButton.swift; sourceTree = "<group>"; };
 		ED52730F26C255FC0077CD9D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ED52731026C255FC0077CD9D /* SignInViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewReactor.swift; sourceTree = "<group>"; };
-		ED52735826C3A03C0077CD9D /* SignUpIdViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUpIdViewReactor.graphql; sourceTree = "<group>"; };
 		ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpIdViewController.swift; sourceTree = "<group>"; };
 		ED52735A26C3A03C0077CD9D /* SignUpIdViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpIdViewReactor.swift; sourceTree = "<group>"; };
 		ED52735B26C3A03C0077CD9D /* SignUpIdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpIdView.swift; sourceTree = "<group>"; };
@@ -146,7 +141,6 @@
 		ED52736126C3A03C0077CD9D /* SignUpPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordView.swift; sourceTree = "<group>"; };
 		ED52736226C3A03C0077CD9D /* SignUpPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewController.swift; sourceTree = "<group>"; };
 		ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewReactor.swift; sourceTree = "<group>"; };
-		ED52736926C3A03C0077CD9D /* SignUp.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUp.graphql; sourceTree = "<group>"; };
 		ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -238,7 +232,6 @@
 		EDA1FA2E26C152E000E8C39B /* StationGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationGroup.swift; sourceTree = "<group>"; };
 		EDA1FA3026C1564700E8C39B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EDA1FA3226C1590100E8C39B /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
-		EDA1FA3726C15DC300E8C39B /* SignUp.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SignUp.graphql; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -283,7 +276,6 @@
 				ED52730926C255FC0077CD9D /* View */,
 				ED52730F26C255FC0077CD9D /* SignInViewController.swift */,
 				ED52731026C255FC0077CD9D /* SignInViewReactor.swift */,
-				ED52730826C255FC0077CD9D /* SignInViewReactor.graphql */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -307,7 +299,6 @@
 				ED52735726C3A03C0077CD9D /* SignUpId */,
 				ED52736026C3A03C0077CD9D /* SignUpPassword */,
 				ED52735C26C3A03C0077CD9D /* SignUpName */,
-				ED52736926C3A03C0077CD9D /* SignUp.graphql */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -318,7 +309,6 @@
 				ED52735B26C3A03C0077CD9D /* SignUpIdView.swift */,
 				ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */,
 				ED52735A26C3A03C0077CD9D /* SignUpIdViewReactor.swift */,
-				ED52735826C3A03C0077CD9D /* SignUpIdViewReactor.graphql */,
 			);
 			path = SignUpId;
 			sourceTree = "<group>";
@@ -624,7 +614,6 @@
 		ED6B46A926B7EA3F00C2FA6D /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				EDA1FA3426C15AA700E8C39B /* SignUp */,
 				ED6B46AA26B7EA3F00C2FA6D /* Launch */,
 				ED52730726C255FC0077CD9D /* SignIn */,
 				ED52735226C3A03C0077CD9D /* SignUp */,
@@ -649,14 +638,6 @@
 				EDA1FA2426C1350900E8C39B /* User.graphql */,
 			);
 			path = GraphQLModels;
-			sourceTree = "<group>";
-		};
-		EDA1FA3426C15AA700E8C39B /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				EDA1FA3726C15DC300E8C39B /* SignUp.graphql */,
-			);
-			path = SignUp;
 			sourceTree = "<group>";
 		};
 		EDF0C38D26B405F60061552F = {
@@ -753,15 +734,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */,
-				EDA1FA3826C15DC300E8C39B /* SignUp.graphql in Resources */,
 				EDA1FA2526C1350900E8C39B /* User.graphql in Resources */,
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				EDA1FA2326C1347200E8C39B /* Workspace.graphql in Resources */,
 				EDA1FA2126C12EE400E8C39B /* Station.graphql in Resources */,
 				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
-				ED52732426C255FC0077CD9D /* SignInViewReactor.graphql in Resources */,
-				ED52737E26C3A03C0077CD9D /* SignUp.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

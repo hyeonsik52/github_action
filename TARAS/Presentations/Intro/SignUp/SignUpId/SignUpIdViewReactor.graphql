@@ -1,9 +1,0 @@
-mutation userIDDuplicatedCheck($input: UserIdDuplicateCheckInput!) {
-	userIdDuplicateCheckMutation(input: $input) {
-		... on UserDuplicateCheckPayload {
-			result
-		}
-	}
-}
-
-# 중복체크 뮤테이션 작성 후 Target Membership 추가
