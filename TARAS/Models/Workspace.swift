@@ -71,9 +71,12 @@ struct Workspace: Identifiable {
     
     var id: String
     var name: String
-    var code: String
-    var isPublic: Bool
-    var memberList: [User]?
+    var code: String?
+    var isAllowedToSearch: Bool
+    var isRequiredToAcceptToJoin: Bool
+    var isRequiredUserEmailToJoin: Bool
+    var isRequiredUserPhoneNumberToJoin: Bool
+    var members: [User]?
     var stationGroups: [StationGroup]
     var stations: [Station]
 }
@@ -85,8 +88,11 @@ extension Workspace: FragmentModel {
         self.id = fragment.id
         self.name = fragment.name
         self.code = fragment.code
-        self.isPublic = fragment.isPublic
-        self.memberList = fragment.memberList.edges
+        self.isAllowedToSearch = fragment.isAllowedToSearch
+        self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
+        self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
+        self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
+        self.members = fragment.members.edges
             .compactMap(\.?.node?.fragments.userForWorkspaceFragment)
             .map(User.init)
         self.stationGroups = fragment.stationGroups?.edges
@@ -102,7 +108,11 @@ extension Workspace: FragmentModel {
         self.id = fragment.id
         self.name = fragment.name
         self.code = fragment.code
-        self.isPublic = fragment.isPublic
+        self.isAllowedToSearch = fragment.isAllowedToSearch
+        self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
+        self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
+        self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
+        self.isAllowedToSearch = fragment.isAllowedToSearch
         self.stationGroups = fragment.stationGroups?.edges
             .compactMap(\.?.node?.fragments.stationGroupFragment)
             .map(StationGroup.init) ?? []
