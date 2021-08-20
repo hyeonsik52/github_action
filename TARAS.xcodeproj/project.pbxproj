@@ -115,6 +115,7 @@
 		EDA1FA2F26C152E000E8C39B /* StationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* StationGroup.swift */; };
 		EDA1FA3126C1564700E8C39B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3026C1564700E8C39B /* User.swift */; };
 		EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3226C1590100E8C39B /* FragmentModel.swift */; };
+		EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -234,6 +235,7 @@
 		EDA1FA2E26C152E000E8C39B /* StationGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationGroup.swift; sourceTree = "<group>"; };
 		EDA1FA3026C1564700E8C39B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EDA1FA3226C1590100E8C39B /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
+		EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteViewController.swift; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				ED52735726C3A03C0077CD9D /* SignUpId */,
 				ED52736026C3A03C0077CD9D /* SignUpPassword */,
 				ED52735C26C3A03C0077CD9D /* SignUpName */,
+				EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
 				ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */,
 				ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */,
+				EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */,
 				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
 				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
 				ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */,

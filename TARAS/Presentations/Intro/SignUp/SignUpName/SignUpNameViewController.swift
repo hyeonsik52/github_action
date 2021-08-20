@@ -88,15 +88,13 @@ class SignUpNameViewController: BaseNavigatableViewController, ReactorKit.View {
 //            .bind(to: self.signUpView.errorMessageLabel.rx.text)
 //            .disposed(by: self.disposeBag)
 //
-//        reactor.state.map { $0.isSignUp }
-//            .distinctUntilChanged()
-//            .filter { $0 == true }
-//            .subscribe(onNext: { [weak self] _ in
-//                self?.signUpSuccessAlert {
-//                    self?.navigationController?.popToRootViewController(animated: true)
-//                }
-//                //다음 화면으로 전환
-//            }).disposed(by: self.disposeBag)
+        reactor.state.map { $0.isSignUp }
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .subscribe(onNext: { [weak self] _ in
+                let viewController = SignUpCompleteViewController()
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: self.disposeBag)
         
         // 화면 전환
 //        self.nextButton.rx.tap
