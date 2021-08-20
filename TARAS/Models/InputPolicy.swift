@@ -58,7 +58,7 @@ extension InputPolicy {
     
     /// 아이디
     /// 4~20자 (영어 소문자 / 영어 소문자&숫자 조합)
-    static let id = InputPolicy(range: 4...20, format: "^(?=[a-z])+[0-9a-z]*$")
+    static let id = InputPolicy(range: 4...20, format: "^[a-z]+[0-9a-z]*$")
 
     /// 비밀번호
     /// 10~32자 (영어 대문자, 소문자, 숫자, 특수문자 중 2종류 이상 조합)
