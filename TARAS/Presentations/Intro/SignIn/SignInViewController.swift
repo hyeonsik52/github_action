@@ -165,12 +165,12 @@ extension SignInViewController: UITextFieldDelegate {
         return true
     }
     
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        let policy: InputPolicy = (textField == self.signInView.idTextFieldView.textField ? .id: .password)
-        return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: policy)
-    }
+//    func textField(
+//        _ textField: UITextField,
+//        shouldChangeCharactersIn range: NSRange,
+//        replacementString string: String
+//    ) -> Bool {
+//        let policy: InputPolicy = (textField == self.signInView.idTextFieldView.textField ? .id: .password)
+//        return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: policy)
+//    }
 }

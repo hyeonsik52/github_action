@@ -48,15 +48,15 @@ class SignInViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .checkValidation(id, password):
-            let isValid = InputPolicy.id.matchRange(id) && InputPolicy.password.matchRange(password)
+            let isValid = id.count > 0 && password.count > 0
             return .just(.updateIsValid(isValid))
         case let .signIn(id, password):
             
             // 로그인 시도 전, 아이디와 비밀번호 포맷 검사
-            guard InputPolicy.id.matchFormat(id) else {
+            guard InputPolicy.id.match(id) else {
                 return .just(.updateError(.common(.invalidInputFormat(.id))))
             }
-            guard InputPolicy.password.matchFormat(password) else {
+            guard InputPolicy.password.match(password) else {
                 return .just(.updateError(.common(.invalidInputFormat(.password))))
             }
             guard let clientInfo = self.provider.userManager.userTB.clientInfo else {
