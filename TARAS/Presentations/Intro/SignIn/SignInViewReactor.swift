@@ -23,6 +23,7 @@ class SignInViewReactor: Reactor {
         case updateIsSignIn(Bool?)
         case updateIsProcessing(Bool)
         case updateError(TRSError?)
+        case resetPassword
     }
     
     struct State {
@@ -30,6 +31,7 @@ class SignInViewReactor: Reactor {
         var isSignIn: Bool?
         var isProcessing: Bool
         var errorMessage: String?
+        var passwordReset: Int?
     }
     
     let provider: ManagerProviderType
@@ -38,7 +40,8 @@ class SignInViewReactor: Reactor {
         isValid: false,
         isSignIn: nil,
         isProcessing: false,
-        errorMessage: nil
+        errorMessage: nil,
+        passwordReset: nil
     )
     
     init(provider: ManagerProviderType) {
@@ -48,15 +51,15 @@ class SignInViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .checkValidation(id, password):
-            let isValid = InputPolicy.id.matchRange(id) && InputPolicy.password.matchRange(password)
+            let isValid = id.count > 0 && password.count > 0
             return .just(.updateIsValid(isValid))
         case let .signIn(id, password):
             
             // 로그인 시도 전, 아이디와 비밀번호 포맷 검사
-            guard InputPolicy.id.matchFormat(id) else {
+            guard InputPolicy.id.match(id) else {
                 return .just(.updateError(.common(.invalidInputFormat(.id))))
             }
-            guard InputPolicy.password.matchFormat(password) else {
+            guard InputPolicy.password.match(password) else {
                 return .just(.updateError(.common(.invalidInputFormat(.password))))
             }
             guard let clientInfo = self.provider.userManager.userTB.clientInfo else {
@@ -110,7 +113,10 @@ class SignInViewReactor: Reactor {
 //                                    return .etc(error.errorCode.rawValue)
 //                                }
 //                            }()
-//                            return .just(.updateError(error))
+//                            return .concat([
+//                                .just(.updateError(error)),
+//                                .just(.resetPassword)
+//                            ])
 //                        }
 //                        return .empty()
 //                    }
@@ -128,12 +134,15 @@ class SignInViewReactor: Reactor {
         case .updateIsValid(let isValid):
             state.isValid = isValid
             state.errorMessage = nil
+            state.passwordReset = nil
         case .updateIsSignIn(let isSignIn):
             state.isSignIn = isSignIn
         case .updateIsProcessing(let isProcessing):
             state.isProcessing = isProcessing
         case .updateError(let error):
             state.errorMessage = error?.description
+        case .resetPassword:
+            state.passwordReset = 0
         }
         return state
     }

@@ -93,7 +93,7 @@ class SignInView: UIView {
         
         self.addSubview(self.warningLabel)
         self.warningLabel.snp.makeConstraints {
-            $0.top.equalTo(self.passwordTextFieldView.snp.bottom).offset(0)
+            $0.top.equalTo(self.passwordTextFieldView.snp.bottom).offset(6)
             $0.leading.trailing.equalTo(self.passwordTextFieldView)
         }
         

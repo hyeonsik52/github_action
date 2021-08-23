@@ -116,6 +116,13 @@ class SignInViewController: BaseNavigatableViewController, ReactorKit.View {
         reactor.state.map { $0.isValid && $0.errorMessage == nil }
             .bind(to: self.signInView.signInButton.rx.isEnabled)
             .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.passwordReset }
+            .distinctUntilChanged()
+            .filterNil()
+            .map {_ in "" }
+            .bind(to: self.signInView.passwordTextFieldView.textField.rx.text)
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: - Custom Methods
@@ -165,12 +172,12 @@ extension SignInViewController: UITextFieldDelegate {
         return true
     }
     
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        let policy: InputPolicy = (textField == self.signInView.idTextFieldView.textField ? .id: .password)
-        return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: policy)
-    }
+//    func textField(
+//        _ textField: UITextField,
+//        shouldChangeCharactersIn range: NSRange,
+//        replacementString string: String
+//    ) -> Bool {
+//        let policy: InputPolicy = (textField == self.signInView.idTextFieldView.textField ? .id: .password)
+//        return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: policy)
+//    }
 }
