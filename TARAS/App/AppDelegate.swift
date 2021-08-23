@@ -90,11 +90,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .flatMapLatest { _ -> Observable<Int> in
                 UIAlertController.present(
                     in: topViewController,
-                    title: "업데이트 필요",
-                    message: "최소버전 안 맞음",
+                    title: "업데이트",
+                    message: "안정적인 앱 사용을 위해\n업데이트를 진행해주세요.",
                     style: .alert,
                     actions: [
-                        .init(title: "확인", style: .default)
+                        .init(title: "업데이트", style: .default)
                     ]
                 )
             }.subscribe(onNext: { _ in
