@@ -21,7 +21,7 @@ class SignUpCompleteViewController: BaseNavigatableViewController {
     
     private let guideView = SignUpGuideView(Text.title, guideText: Text.guide)
     
-    let nextButton = TRSButton(Text.loginButtonTitle)
+    let nextButton = SRPButton(Text.loginButtonTitle)
     
 
     // MARK: - Life Cycles

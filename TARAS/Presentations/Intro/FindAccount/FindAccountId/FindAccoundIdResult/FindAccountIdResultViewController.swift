@@ -19,7 +19,7 @@ class FindAccountIdResultViewController: BaseViewController, ReactorKit.View {
     }
     
     private let findAccountView = FindAccountIdResultView()
-    private let nextButton = TRSButton(Text.FAIRVC_1)
+    private let nextButton = SRPButton(Text.FAIRVC_1)
     
 
     // MARK: - Life Cycles

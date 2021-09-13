@@ -22,7 +22,7 @@ class SignUpNameViewController: BaseNavigatableViewController, ReactorKit.View {
         $0.nameTextFieldsDelegate = self
     }
     
-    let nextButton = TRSButton(Text.SUNVC_1).then {
+    let nextButton = SRPButton(Text.SUNVC_1).then {
         $0.isEnabled = false
     }
     

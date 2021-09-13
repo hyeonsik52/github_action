@@ -41,7 +41,7 @@ class SignInView: UIView {
     }
     
     /// '로그인' 버튼
-    let signInButton = TRSButton(Text.SIVC_1).then {
+    let signInButton = SRPButton(Text.SIVC_1).then {
         $0.isEnabled = false
     }
     

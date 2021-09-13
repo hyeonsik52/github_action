@@ -20,7 +20,7 @@ class FindAccountPasswordCompleteViewController: BaseViewController {
     }
     
     private let guideView = SignUpGuideView(Text.FAPCVC_1, guideText: Text.FAPCVC_2)
-    private let nextButton = TRSButton(Text.FAPCVC_3)
+    private let nextButton = SRPButton(Text.FAPCVC_3)
 
     override func viewDidLoad() {
         super.viewDidLoad()

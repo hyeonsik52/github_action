@@ -24,7 +24,7 @@ class FindAccountPasswordViewController: BaseNavigatableViewController, ReactorK
         $0.passwordTextFieldsDelegate = self
     }
     
-    let nextButton = TRSButton("").then {
+    let nextButton = SRPButton("").then {
         $0.isEnabled = false
     }
     

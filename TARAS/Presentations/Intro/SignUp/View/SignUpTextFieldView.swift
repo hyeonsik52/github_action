@@ -32,7 +32,7 @@ class SignUpTextFieldView: UIView {
         $0.enablesReturnKeyAutomatically = true
     }
     
-    let innerButton = TRSButton("").then {
+    let innerButton = SRPButton("").then {
         $0.titleLabel?.font = .bold.14
         $0.isEnabled = false
     }

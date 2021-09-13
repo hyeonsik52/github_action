@@ -23,7 +23,7 @@ class FindAccountEmailViewController: BaseNavigatableViewController, ReactorKit.
         $0.emailTextFieldsDelegate = self
     }
     
-    let nextButton = TRSButton(Text.FAEVC_1).then {
+    let nextButton = SRPButton(Text.FAEVC_1).then {
         $0.isEnabled = false
     }
     

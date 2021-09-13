@@ -26,6 +26,10 @@
 		ED52737E26C3A03C0077CD9D /* SignUpNameViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED52736926C3A03C0077CD9D /* SignUpNameViewReactor.graphql */; };
 		ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */; };
 		ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
+		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
+		ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */; };
+		ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */; };
+		ED68E1C126D49CBF003D6442 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1C026D49CBF003D6442 /* NetworkError.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
 		ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */; };
 		ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
@@ -359,6 +363,7 @@
 		EDC11B0326D3A39E0020AB09 /* WorkspaceSearchResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1C26D3A39D0020AB09 /* WorkspaceSearchResultViewReactor.swift */; };
 		EDC11B0426D3A39E0020AB09 /* WorkspaceSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1E26D3A39D0020AB09 /* WorkspaceSearchViewController.swift */; };
 		EDC11B0526D3A39E0020AB09 /* WorkspaceSearchViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1F26D3A39D0020AB09 /* WorkspaceSearchViewReactor.swift */; };
+		EDC11B0726D3AE4E0020AB09 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -389,6 +394,10 @@
 		ED52736926C3A03C0077CD9D /* SignUpNameViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUpNameViewReactor.graphql; sourceTree = "<group>"; };
 		ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
+		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPClearTextView.swift; sourceTree = "<group>"; };
+		ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPInputView.swift; sourceTree = "<group>"; };
+		ED68E1C026D49CBF003D6442 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigatableViewController.swift; sourceTree = "<group>"; };
 		ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
@@ -722,6 +731,7 @@
 		EDC11A1C26D3A39D0020AB09 /* WorkspaceSearchResultViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchResultViewReactor.swift; sourceTree = "<group>"; };
 		EDC11A1E26D3A39D0020AB09 /* WorkspaceSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchViewController.swift; sourceTree = "<group>"; };
 		EDC11A1F26D3A39D0020AB09 /* WorkspaceSearchViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchViewReactor.swift; sourceTree = "<group>"; };
+		EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -778,6 +788,8 @@
 				ED52730C26C255FC0077CD9D /* LargeTitleView.swift */,
 				ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */,
 				ED52730E26C255FC0077CD9D /* SRPButton.swift */,
+				ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */,
+				ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -834,12 +846,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		ED68E1BF26D49CB4003D6442 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				ED68E1C026D49CBF003D6442 /* NetworkError.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		ED6B45F026B7DF7D00C2FA6D /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */,
 				ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */,
 				ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */,
+				EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */,
 				ED6B45F426B7DF7D00C2FA6D /* Position.swift */,
 			);
 			path = Base;
@@ -924,6 +945,7 @@
 				ED6B461F26B7E7CC00C2FA6D /* UIImageView.swift */,
 				ED6B462026B7E7CC00C2FA6D /* UIFont.swift */,
 				ED6B462126B7E7CC00C2FA6D /* UITextView.swift */,
+				ED68E1B926D4867C003D6442 /* UITableView.swift */,
 				ED6B462226B7E7CC00C2FA6D /* UINavigationController.swift */,
 			);
 			path = Cocoa;
@@ -993,6 +1015,7 @@
 		ED6B466026B7E8B500C2FA6D /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED68E1BF26D49CB4003D6442 /* Enum */,
 				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
 				ED6B466126B7E8B500C2FA6D /* Interceptors */,
 				EDA1FA2A26C1517000E8C39B /* GraphQLModels */,
@@ -2268,6 +2291,7 @@
 				EDC11A9A26D3A39D0020AB09 /* StopInChargeListViewController.swift in Sources */,
 				EDC11AE826D3A39E0020AB09 /* DetailStackView.swift in Sources */,
 				EDC11AA526D3A39D0020AB09 /* AddWaypointCell.swift in Sources */,
+				EDC11B0726D3AE4E0020AB09 /* BaseTableViewCell.swift in Sources */,
 				EDC11A6126D3A39D0020AB09 /* WorkRequestTargetView.swift in Sources */,
 				EDC11A8426D3A39D0020AB09 /* UpdateNameViewController.swift in Sources */,
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
@@ -2478,6 +2502,8 @@
 				EDC11AFD26D3A39E0020AB09 /* ServiceStateCollectionReusableView.swift in Sources */,
 				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
+				ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */,
+				ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */,
 				EDC11A3926D3A39D0020AB09 /* CreatedServicesViewController.swift in Sources */,
 				EDC11AF026D3A39E0020AB09 /* RequestCollectionViewHeader.swift in Sources */,
 				EDC11AA226D3A39D0020AB09 /* AddWaypointCellViewReactor.swift in Sources */,
@@ -2512,6 +2538,7 @@
 				EDC11A4226D3A39D0020AB09 /* ServiceUnitCellReactor.swift in Sources */,
 				EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */,
 				EDA1FA2F26C152E000E8C39B /* StationGroup.swift in Sources */,
+				ED68E1C126D49CBF003D6442 /* NetworkError.swift in Sources */,
 				EDC11A8126D3A39D0020AB09 /* WorkspaceInfoView.swift in Sources */,
 				ED6B460426B7DFF700C2FA6D /* SwiftEntryKit_Show.swift in Sources */,
 				ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */,
@@ -2520,6 +2547,7 @@
 				EDC11A2A26D3A39D0020AB09 /* Default_Email_ViewReactor.swift in Sources */,
 				ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */,
 				EDC11AD726D3A39E0020AB09 /* RecipientGroupSection.swift in Sources */,
+				ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */,
 				EDC11A9726D3A39D0020AB09 /* SettingWorkspaceInfoView.swift in Sources */,
 				EDC11AB626D3A39D0020AB09 /* TargetStopViewController.swift in Sources */,
 				EDC11A3726D3A39D0020AB09 /* WorkspaceListViewController.swift in Sources */,

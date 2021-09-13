@@ -22,7 +22,7 @@ class FindAccountIdViewController: BaseNavigatableViewController, ReactorKit.Vie
         $0.idTextFieldsDelegate = self
     }
     
-    let nextButton = TRSButton(Text.FAIVC_1).then {
+    let nextButton = SRPButton(Text.FAIVC_1).then {
         $0.isEnabled = false
     }
     

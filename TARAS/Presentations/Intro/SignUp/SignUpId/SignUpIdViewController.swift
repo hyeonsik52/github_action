@@ -22,7 +22,7 @@ class SignUpIdViewController: BaseNavigatableViewController, ReactorKit.View {
         $0.idTextFieldDelegate = self
     }
     
-    let nextButton = TRSButton(Text.SUVC_1).then {
+    let nextButton = SRPButton(Text.SUVC_1).then {
         $0.isEnabled = false
     }
     

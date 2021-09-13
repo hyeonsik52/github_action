@@ -22,7 +22,7 @@ class SignUpPasswordViewController: BaseNavigatableViewController, ReactorKit.Vi
         $0.passwordTextFieldsDelegate = self
     }
     
-    let nextButton = TRSButton(Text.SUPVC_1).then {
+    let nextButton = SRPButton(Text.SUPVC_1).then {
         $0.isEnabled = false
     }
     
