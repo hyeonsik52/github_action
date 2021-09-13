@@ -1,6 +1,5 @@
 //
 //  WorkspaceListViewReactor.swift
-//  ServiceRobotPlatform-iOS
 //
 //  Created by Suzy Park on 2020/06/23.
 //  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
@@ -11,7 +10,7 @@ import Foundation
 import ReactorKit
 import RxDataSources
 import RxSwift
-import FirebaseInstanceID
+import FirebaseMessaging
 
 final class WorkspaceListViewReactor: Reactor {
     
@@ -94,18 +93,18 @@ final class WorkspaceListViewReactor: Reactor {
             }
             
         case .updateFCMToken:
-            InstanceID.instanceID().instanceID { result, error in
-                if let result = result,
+            Messaging.messaging().token { token, error in
+                if let token = token,
                     let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString,
                     self.provider.userManager.userTB.accessToken.count > 0
                 {
                     let input = UpdateFcmRegistrationIdInput(
                         clientType: "ios",
                         deviceUniqueKey: deviceUniqueKey,
-                        registrationId: result.token
+                        registrationId: token
                     )
 
-                    Log.info("\(input)")
+                    Log.debug("\(input)")
 
                     let _ = self.provider.networkManager
                         .perform(UpdateFcmTokenMutation(input: input))

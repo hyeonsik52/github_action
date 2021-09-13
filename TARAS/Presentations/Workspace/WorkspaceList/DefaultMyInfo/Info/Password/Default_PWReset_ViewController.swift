@@ -27,6 +27,11 @@ class Default_PWReset_ViewController: BaseNavigatableViewController, View {
     
     // MARK: - Life cycles
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.bind()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -49,7 +54,7 @@ class Default_PWReset_ViewController: BaseNavigatableViewController, View {
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    override func bind() {
+    func bind() {
         self.backButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: self.disposeBag)
@@ -57,7 +62,7 @@ class Default_PWReset_ViewController: BaseNavigatableViewController, View {
         self.pwInputView.textView.rx.text.orEmpty
             .map { [weak self] _ -> Bool in
                 guard let self = self, let pw = self.originalPasswordText else { return false }
-                return pw.matches(Regex.password)
+                return InputPolicy.password.match(pw)
         }.bind(to: self.pwInputView.confirmButton.rx.isEnabled)
         .disposed(by: self.disposeBag)
         
@@ -97,7 +102,7 @@ class Default_PWReset_ViewController: BaseNavigatableViewController, View {
 
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
     }
 }

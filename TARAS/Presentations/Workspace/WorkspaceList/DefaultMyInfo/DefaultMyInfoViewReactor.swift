@@ -1,6 +1,5 @@
 //
 //  DefaultMyInfoViewReactor.swift
-//  ServiceRobotPlatform-iOS
 //
 //  Created by Suzy Park on 2020/07/17.
 //  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
@@ -9,8 +8,7 @@
 import Foundation
 import ReactorKit
 import RxSwift
-
-import FirebaseInstanceID
+import FirebaseMessaging
 
 class DefaultMyInfoViewReactor: Reactor {
 
@@ -137,18 +135,18 @@ class DefaultMyInfoViewReactor: Reactor {
                                                                 // 로그아웃 실패
                                                                 // 서버 측 케이스 처리 따로 안되어있음
                                                                 return .just(.updateErrorMessage("로그아웃을 할 수 없습니다. 잠시 후에 다시 시도해 주세요. (error #6)"))
-                                                            }.catchErrorJustReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #7)"))
+                                                            }.catchAndReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #7)"))
                                                     }
                                                 }
                                                 return .empty()
-                                            }.catchErrorJustReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #8)"))
+                                            }.catchAndReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #8)"))
                                     }
                                 }
                                 return .empty()
-                            }.catchErrorJustReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #9)"))
+                            }.catchAndReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #9)"))
                     }
                     return .empty()
-                }.catchErrorJustReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #10)"))
+                }.catchAndReturn(.updateErrorMessage("네트워크/서버 상태가 원활하지 않습니다. 잠시 후에 다시 시도해 주세요. (error #10)"))
 
         case .escapeSockse:
             return self.provider.networkManager
@@ -179,12 +177,12 @@ class DefaultMyInfoViewReactor: Reactor {
     func getFCMToken() -> Observable<String?> {
         return .create { observer -> Disposable in
             
-            InstanceID.instanceID().instanceID { result, error in
+            Messaging.messaging().token { token, error in
                 if let error = error {
                     observer.onError(error)
                 }
                 
-                if let token = result?.token {
+                if let token = token {
                     observer.onNext(token)
                     observer.onCompleted()
                 }
