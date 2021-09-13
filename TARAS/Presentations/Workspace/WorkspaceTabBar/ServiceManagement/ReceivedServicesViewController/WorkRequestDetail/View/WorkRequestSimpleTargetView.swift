@@ -15,14 +15,14 @@ import RxCocoa
 class WorkRequestSimpleTargetView: UIView {
 
     private let titleLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.font = .bold.16
+        $0.textColor = .purple4A3C9F
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     
     private let contentLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.font = .bold.16
+        $0.textColor = .purple4A3C9F
         $0.lineBreakMode = .byTruncatingMiddle
     }
     

@@ -23,22 +23,22 @@ class ServiceDetailNumberProfileView: UIView {
     private let numberLabel = UILabel().then {
         $0.clipsToBounds = true
         $0.cornerRadius = 10
-        $0.font = .systemFont(ofSize: 12, weight: .bold)
+        $0.font = .bold.12
         $0.textColor = .white
-        $0.backgroundColor = Color.SKY_BLUE_85AEFF
+        $0.backgroundColor = .skyBlue85AEFF
         $0.textAlignment = .center
         $0.setContentHuggingPriority(.defaultLow+1, for: .horizontal)
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
         $0.textAlignment = .left
     }
     
     private let contentLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 12, weight: .medium)
-        $0.textColor = Color.GRAY_888888
+        $0.font = .medium.12
+        $0.textColor = .gray8C8C8C
     }
     
     override init(frame: CGRect) {

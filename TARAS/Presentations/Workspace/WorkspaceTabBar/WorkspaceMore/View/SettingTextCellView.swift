@@ -15,13 +15,13 @@ import RxSwift
 class SettingTextCellView: UIView {
     
     private var titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     
     private let detailLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
         $0.textAlignment = .right
     }
     

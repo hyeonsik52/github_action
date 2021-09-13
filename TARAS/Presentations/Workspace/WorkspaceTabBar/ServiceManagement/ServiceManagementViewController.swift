@@ -19,24 +19,24 @@ class ServiceManagementViewController: BaseViewController, View {
         $0.layer.cornerRadius = 10
         $0.isSelected = true
         $0.setBackgroundColor(color: .white, forState: .normal)
-        $0.setBackgroundColor(color: Color.LIGHT_PUPLE_EBEAF4, forState: .selected)
-        $0.setTitleColor(Color.GRAY_999999, for: .normal)
-        $0.setTitleColor(Color.PURPLE_4A3C9F, for: .selected)
+        $0.setBackgroundColor(color: .LIGHT_PUPLE_EBEAF4, forState: .selected)
+        $0.setTitleColor(.grayA0A0A0, for: .normal)
+        $0.setTitleColor(.purple4A3C9F, for: .selected)
         $0.tintColor = .clear
         $0.setTitle("수신 서비스", for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+        $0.titleLabel?.font = .bold.13
         $0.adjustsImageWhenHighlighted = false
     }
     private var createdServiceButton = UIButton(type: .custom).then{
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 10
         $0.setBackgroundColor(color: .white, forState: .normal)
-        $0.setBackgroundColor(color: Color.LIGHT_PUPLE_EBEAF4, forState: .selected)
-        $0.setTitleColor(Color.GRAY_999999, for: .normal)
-        $0.setTitleColor(Color.PURPLE_4A3C9F, for: .selected)
+        $0.setBackgroundColor(color: .LIGHT_PUPLE_EBEAF4, forState: .selected)
+        $0.setTitleColor(.grayA0A0A0, for: .normal)
+        $0.setTitleColor(.purple4A3C9F, for: .selected)
         $0.tintColor = .clear
         $0.setTitle("생성 서비스", for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+        $0.titleLabel?.font = .bold.13
         $0.adjustsImageWhenHighlighted = false
     }
     

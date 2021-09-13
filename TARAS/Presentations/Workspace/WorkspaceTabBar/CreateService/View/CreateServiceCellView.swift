@@ -19,7 +19,7 @@ final class CreateServiceCellView: UIView {
     let deleteButton = UIButton().then {
         $0.setImage(UIImage(named: "navi-close")?.withRenderingMode(.alwaysTemplate), for: .normal)
         $0.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        $0.tintColor = Color.GRAY_A2A2A2
+        $0.tintColor = .grayA0A0A0
     }
 
     let bypassEditButton = UIButton()
@@ -29,8 +29,8 @@ final class CreateServiceCellView: UIView {
     let targetInfoView = TargetInfoView()
 
     let freightsDescriptionLabel = UILabel().then {
-        $0.font = Font.BOLD_20
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.font = .bold.20
+        $0.textColor = .purple4A3C9F
         $0.textAlignment = .right
         $0.lineBreakMode = .byTruncatingMiddle
     }

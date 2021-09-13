@@ -14,7 +14,7 @@ import ReactorKit
 class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
     
     private let backgroundHighlightView = UIView().then {
-        $0.backgroundColor = Color.HIGH_LIGHT_PUPLE_F1EFFF
+        $0.backgroundColor = .HIGH_LIGHT_PUPLE_F1EFFF
         $0.isHidden = true
     }
     private let bypassView = TRSBypassView()
@@ -22,8 +22,8 @@ class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
     private let answerStateView = SRPStateView()
     private let serviceStateView = SRPStateView()
     private let freightsDescriptionView = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.font = .bold.20
+        $0.textColor = .purple4A3C9F
         $0.textAlignment = .right
         $0.lineBreakMode = .byTruncatingMiddle
     }

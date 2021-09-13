@@ -16,29 +16,29 @@ class WorkRequestTopView: UIView {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.cornerRadius = 20
-        $0.backgroundColor = Color.LIGHT_GRAY_F6F6F6
+        $0.backgroundColor = .LIGHT_GRAY_F6F6F6
     }
     
     private let numberLabelContainer = UIView().then { $0.isHidden = true }
     
     private let numberLabel = UILabel().then {
-        $0.font = Font.BOLD_12
+        $0.font = .bold.12
         $0.textColor = .white
         $0.clipsToBounds = true
         $0.cornerRadius = 10
-        $0.backgroundColor = Color.SKY_BLUE_85AEFF
+        $0.backgroundColor = .skyBlue85AEFF
         $0.textAlignment = .center
     }
     
     private let contentLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
         $0.lineBreakMode = .byTruncatingMiddle
     }
     
     private let subContentLabel = UILabel().then {
-        $0.font = Font.MEDIUM_12
-        $0.textColor = Color.GRAY_888888
+        $0.font = .medium.12
+        $0.textColor = .gray8C8C8C
     }
     
     override init(frame: CGRect) {

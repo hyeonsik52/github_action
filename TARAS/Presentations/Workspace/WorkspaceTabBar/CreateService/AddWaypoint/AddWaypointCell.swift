@@ -17,7 +17,7 @@ final class AddWaypointUpperView: UIView {
     let disposeBag = DisposeBag()
 
     let barView = UIView().then {
-        $0.backgroundColor = Color.LIGHT_PUPLE_EBEAF4
+        $0.backgroundColor = .lightPurpleEDECF5
     }
 
     let shadowView = UIImageView().then {
@@ -26,7 +26,7 @@ final class AddWaypointUpperView: UIView {
     }
 
     let circleView = UIView().then {
-        $0.backgroundColor = Color.SKY_BLUE_85AEFF
+        $0.backgroundColor = .skyBlue85AEFF
         $0.cornerRadius = 6
     }
     

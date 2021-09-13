@@ -18,8 +18,8 @@ class WorkspaceHeaderView: UIView {
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.6
         $0.lineBreakMode = .byTruncatingHead
-        $0.font = .systemFont(ofSize: 20)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .regular.20
+        $0.textColor = .black
         $0.text = " "
     }
     
@@ -55,8 +55,8 @@ class WorkspaceHeaderView: UIView {
         let staticLabel = UILabel().then{
             $0.minimumScaleFactor = 0.8
             $0.adjustsFontSizeToFitWidth = true
-            $0.font = .systemFont(ofSize: 24, weight: .bold)
-            $0.textColor = Color.BLACK_0F0F0F
+            $0.font = .bold.24
+            $0.textColor = .black
             $0.text = "서비스를 생성해보세요"
         }
         container.addSubview(staticLabel)
@@ -67,7 +67,7 @@ class WorkspaceHeaderView: UIView {
         }
         
         let addButton = UIButton().then{
-            $0.backgroundColor = Color.PURPLE_4A3C9F
+            $0.backgroundColor = .purple4A3C9F
             $0.setImage(UIImage(named: "sws-create"), for: .normal)
             $0.clipsToBounds = true
             $0.layer.cornerRadius = 20

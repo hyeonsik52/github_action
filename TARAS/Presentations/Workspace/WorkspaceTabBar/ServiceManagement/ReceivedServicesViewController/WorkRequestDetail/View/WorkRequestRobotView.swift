@@ -14,8 +14,8 @@ class WorkRequestRobotView: UIView {
 
     private let titleView = WorkRequestSectionTitleView(title: "로봇 정보")
     private let robotNameLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     
     override init(frame: CGRect) {
@@ -38,7 +38,7 @@ class WorkRequestRobotView: UIView {
         let container = UIView().then {
             $0.clipsToBounds = true
             $0.cornerRadius = 8
-            $0.backgroundColor = Color.GRAY_F8F8F8
+            $0.backgroundColor = .lightGrayF1F1F1
         }
         self.addSubview(container)
         container.snp.makeConstraints {

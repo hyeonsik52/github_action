@@ -21,18 +21,18 @@ class FreightListCellView: UIView, ReactorKit.View {
     var disposeBag = DisposeBag()
     
     let deleteButton = QuantityButton(type: .delete).then {
-        $0.setBackgroundColor(color: Color.LIGHT_GRAY_F6F6F6, forState: .normal)
+        $0.setBackgroundColor(color: .LIGHT_GRAY_F6F6F6, forState: .normal)
     }
     
     let freightNameLabel = UILabel().then {
-        $0.font = Font.MEDIUM_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .medium.16
+        $0.textColor = .black
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
     
     let quantityLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     
     init() {

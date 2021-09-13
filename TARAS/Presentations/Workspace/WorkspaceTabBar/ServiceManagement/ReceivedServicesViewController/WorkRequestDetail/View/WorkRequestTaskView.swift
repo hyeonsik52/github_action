@@ -44,7 +44,7 @@ class WorkRequestTaskView: UIView {
         let container = UIView().then {
             $0.clipsToBounds = true
             $0.cornerRadius = 8
-            $0.backgroundColor = Color.GRAY_F8F8F8
+            $0.backgroundColor = .lightGrayF1F1F1
         }
         self.addSubview(container)
         container.snp.makeConstraints {
@@ -67,8 +67,8 @@ class WorkRequestTaskView: UIView {
         let view = UIView()
         
         let nameLabel = UILabel().then {
-            $0.font = .systemFont(ofSize: 16)
-            $0.textColor = Color.BLACK_0F0F0F
+            $0.font = .regular.16
+            $0.textColor = .black
             $0.text = task.object.name
         }
         view.addSubview(nameLabel)
@@ -78,8 +78,8 @@ class WorkRequestTaskView: UIView {
         }
         
         let quantityLabel = UILabel().then {
-            $0.font = .systemFont(ofSize: 16, weight: .bold)
-            $0.textColor = Color.BLACK_0F0F0F
+            $0.font = .bold.16
+            $0.textColor = .black
             $0.text = "\(task.count.currencyFormatted) 개"
             $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
         }

@@ -26,17 +26,17 @@ class ChangeWorkPlaceViewController: BaseViewController, View {
         $0.setImage(UIImage(named: "navi-close"), for: .normal)
     }
     private let titleLabel = UILabel().then {
-        $0.font = Font.BOLD_20
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.20
+        $0.textColor = .black
         $0.textAlignment = .center
         $0.text = "작업 위치"
     }
     private let placeTextView = UITextView().then {
-        $0.font = Font.BOLD_18
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.18
+        $0.textColor = .black
         $0.attributedPlaceholder = NSAttributedString(string: "설정된 위치 정보가 없습니다.",
-        attributes: [.font: Font.BOLD_18,
-                     .foregroundColor: Color.BLACK_0F0F0F.withAlphaComponent(0.3)])
+        attributes: [.font: Font.bold.18,
+                     .foregroundColor: UIColor.black.withAlphaComponent(0.3)])
         $0.isScrollEnabled = false
         $0.backgroundColor = .clear
         $0.isEditable = false
@@ -45,17 +45,17 @@ class ChangeWorkPlaceViewController: BaseViewController, View {
     }
     private let editPlaceButton = UIButton().then {
         var attributedString = NSAttributedString(string: "위치 선택",
-                                                  attributes: [.font: Font.BOLD_14,
-                                                               .foregroundColor: Color.PURPLE_4A3C9F,
+                                                  attributes: [.font: Font.bold.14,
+                                                               .foregroundColor: UIColor.purple4A3C9F,
                                                                .underlineStyle: 1,
-                                                               .underlineColor: Color.PURPLE_4A3C9F])
+                                                               .underlineColor: UIColor.purple4A3C9F])
         $0.setAttributedTitle(attributedString, for: .normal)
     }
     private let allowButton = UIButton().then {
         $0.setTitle("이 위치로 수락하기", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(Color.GRAY_A5A5A5, for: .disabled)
-        $0.titleLabel?.font = Font.BOLD_15
+        $0.setTitleColor(.grayA5A5A5, for: .disabled)
+        $0.titleLabel?.font = .bold.15
         $0.clipsToBounds = true
         $0.cornerRadius = 10
     }
@@ -103,7 +103,7 @@ class ChangeWorkPlaceViewController: BaseViewController, View {
         }
         
         let placeContainer = UIView().then {
-            $0.backgroundColor = Color.GRAY_F8F8F8
+            $0.backgroundColor = .lightGrayF1F1F1
             $0.clipsToBounds = true
             $0.cornerRadius = 8
         }
@@ -185,7 +185,7 @@ class ChangeWorkPlaceViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.place != nil }
-            .map { $0 ? Color.PURPLE_4A3C9F: Color.GRAY_E6E6E6}
+            .map { $0 ? UIColor.purple4A3C9F: UIColor.grayE6E6E6}
             .bind(to: self.allowButton.rx.backgroundColor)
             .disposed(by: self.disposeBag)
         
@@ -194,10 +194,10 @@ class ChangeWorkPlaceViewController: BaseViewController, View {
             .map {
                 NSAttributedString(
                     string: $0,
-                    attributes: [.font: Font.BOLD_14,
-                                 .foregroundColor: Color.PURPLE_4A3C9F,
+                    attributes: [.font: Font.bold.14,
+                                 .foregroundColor: UIColor.purple4A3C9F,
                                  .underlineStyle: 1,
-                                 .underlineColor: Color.PURPLE_4A3C9F]
+                                 .underlineColor: UIColor.purple4A3C9F]
                 )
         }
         .bind(to: self.editPlaceButton.rx.attributedTitle(for: .normal))

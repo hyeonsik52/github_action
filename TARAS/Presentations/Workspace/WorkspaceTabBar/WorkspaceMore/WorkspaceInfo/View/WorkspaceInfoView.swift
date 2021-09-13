@@ -20,21 +20,21 @@ class WorkspaceInfoView: UIView {
     }
     
     private let nameLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.font = .bold.22
         $0.textAlignment = .center
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.textColor = .black
     }
     
     private let createLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .bold)
+        $0.font = .bold.14
         $0.textAlignment = .center
-        $0.textColor = Color.GRAY_9A9A9A
+        $0.textColor = .grayA0A0A0
     }
     
     private let memberCountLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 13, weight: .bold)
+        $0.font = .bold.13
         $0.textAlignment = .center
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.textColor = .purple4A3C9F
     }
     
     override init(frame: CGRect) {
@@ -71,7 +71,7 @@ class WorkspaceInfoView: UIView {
         let memberCountContainer = UIView().then {
             $0.clipsToBounds = true
             $0.cornerRadius = 10
-            $0.backgroundColor = Color.LIGHT_PUPLE_EBEAF4
+            $0.backgroundColor = .LIGHT_PUPLE_EBEAF4
         }
         self.addSubview(memberCountContainer)
         memberCountContainer.snp.makeConstraints {

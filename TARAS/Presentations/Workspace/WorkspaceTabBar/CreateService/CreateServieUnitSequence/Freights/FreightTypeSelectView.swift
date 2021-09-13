@@ -24,23 +24,23 @@ class FreightTypeSelectView: UIView {
     
     private let loadLabel = UILabel().then {
         $0.text = "실을 물품" // 고정
-        $0.textColor = Color.GRAY_999999
-        $0.font = Font.BOLD_15
+        $0.textColor = .grayA0A0A0
+        $0.font = .bold.15
     }
     
     private let unLoadLabel = UILabel().then {
         $0.text = "내릴 물품" // 고정
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.BOLD_15
+        $0.textColor = .black
+        $0.font = .bold.15
     }
     
     private let barView = UIView().then {
-        $0.backgroundColor = Color.LIGHT_PUPLE_EBEAF4
+        $0.backgroundColor = .LIGHT_PUPLE_EBEAF4
         $0.cornerRadius = 2
     }
     
     private let thumbNailView = UIView().then {
-        $0.backgroundColor = Color.PURPLE_4A3C9F
+        $0.backgroundColor = .purple4A3C9F
         $0.cornerRadius = 6
     }
     
@@ -102,8 +102,8 @@ class FreightTypeSelectView: UIView {
         self.type = type
         
         let isLoad = (type == .load)
-        self.loadLabel.textColor = isLoad ? Color.BLACK_0F0F0F: Color.GRAY_999999
-        self.unLoadLabel.textColor = isLoad ? Color.GRAY_999999: Color.BLACK_0F0F0F
+        self.loadLabel.textColor = isLoad ? .black: .grayA0A0A0
+        self.unLoadLabel.textColor = isLoad ? .grayA0A0A0: .black
         let thumbNailLeadingMargin: CGFloat = isLoad ? 3: 16
 
         self.thumbNailView.snp.updateConstraints {

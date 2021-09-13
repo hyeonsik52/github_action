@@ -27,7 +27,7 @@ class QuantityButton: UIButton {
     init(type: quantityButtonType) {
         super.init(frame: .zero)
         
-        self.backgroundColor = Color.LIGHT_GRAY_F6F6F6
+        self.backgroundColor = .LIGHT_GRAY_F6F6F6
         self.cornerRadius = 12
         self.clipsToBounds = true
         

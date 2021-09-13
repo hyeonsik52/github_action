@@ -29,14 +29,14 @@ class RecipientListCellView: UIView, ReactorKit.View {
     }
 
     let nameLabel = UILabel().then {
-        $0.font = Font.MEDIUM_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .medium.16
+        $0.textColor = .black
     }
 
     let groupNameLabel = UILabel().then {
         $0.text = "-"
-        $0.font = Font.MEDIUM_12
-        $0.textColor = Color.GRAY_999999
+        $0.font = .medium.12
+        $0.textColor = .grayA0A0A0
     }
 
     init() {

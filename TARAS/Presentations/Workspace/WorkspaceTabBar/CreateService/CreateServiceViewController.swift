@@ -41,18 +41,18 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
 
     let titleLabel = UILabel().then {
         $0.text = "0개의 목적지"
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.BOLD_24
+        $0.textColor = .black
+        $0.font = .bold.24
     }
 
     // ⚠️ '경유지' 기능 임시 주석 처리 /////////////////////////////////////////////////////////////////
     // https://twinny.slack.com/archives/G017W1M1DJR/p1600249271062300 참고
     // '경유지' 기능을 살리고 싶다면 이곳의 주석을 풀어주세요
 //    let stopoverButton = UIButton().then {
-//        $0.backgroundColor = Color.LIGHT_GRAY_F0F0F0
+//        $0.backgroundColor = .LIGHT_GRAY_F0F0F0
 //        $0.setTitle("+ 경유지", for: .normal)
-//        $0.setTitleColor(Color.PURPLE_4A3C9F, for: .normal)
-//        $0.titleLabel?.font = Font.BOLD_15
+//        $0.setTitleColor(.purple4A3C9F, for: .normal)
+//        $0.titleLabel?.font = .bold.15
 //        $0.cornerRadius = 8
 //    }
     // ///////////////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Color.LIGHT_GRAY_F6F6F6
+        self.view.backgroundColor = .LIGHT_GRAY_F6F6F6
     }
 
     override func setupConstraints() {
@@ -123,7 +123,7 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
         }
 
         let buttonBackgroundView = UIView().then {
-            $0.backgroundColor = Color.LIGHT_GRAY_F6F6F6
+            $0.backgroundColor = .LIGHT_GRAY_F6F6F6
         }
 
         buttonBackgroundView.addSubview(self.requestButton)

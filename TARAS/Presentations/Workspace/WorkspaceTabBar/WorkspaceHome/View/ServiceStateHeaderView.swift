@@ -15,8 +15,8 @@ import RxCocoa
 class ServiceStateHeaderView: UITableViewHeaderFooterView {
         
     private var titleLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.20
+        $0.textColor = .black
     }
     private var arrowImageView = UIImageView().then {
         $0.image = UIImage(named: "sws-toDetail")

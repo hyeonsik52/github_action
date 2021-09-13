@@ -13,8 +13,8 @@ import Then
 class SettingScrollViewHeader: UIView {
     
     private var titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .medium)
-        $0.textColor = Color.GRAY_888888
+        $0.font = .medium.14
+        $0.textColor = .gray8C8C8C
     }
     
     convenience init(title: String) {

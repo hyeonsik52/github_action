@@ -13,8 +13,8 @@ import Then
 class WorkRequestSectionTitleView: UIView {
 
     private var titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.font = .bold.16
+        $0.textColor = .purple4A3C9F
     }
     
     convenience init(title: String) {

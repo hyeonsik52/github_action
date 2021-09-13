@@ -11,24 +11,24 @@ import UIKit
 class AutoModeSelectView: UIView {
     
     let titleLabel = UILabel().then {
-        $0.font = Font.BOLD_18
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.18
+        $0.textColor = .black
         $0.textAlignment = .center
         $0.text = "자동 경로 모드로 설정하시겠습니까?"
         $0.numberOfLines = 2
     }
     
     let descriptionLabel = UILabel().then {
-        $0.font = Font.MEDIUM_16
-        $0.textColor = Color.GRAY_999999
+        $0.font = .medium.16
+        $0.textColor = .grayA0A0A0
         $0.textAlignment = .center
         $0.text = "자동 경로 모드 설정 시 최적 경로로\n재설정 됩니다."
         $0.numberOfLines = 2
     }
     
     let noButton = SRPButton("아니요").then {
-        $0.setBackgroundColor(color: Color.GRAY_E6E6E6, forState: .normal)
-        $0.setTitleColor(Color.BLACK_0F0F0F, for: .normal)
+        $0.setBackgroundColor(color: .grayE6E6E6, forState: .normal)
+        $0.setTitleColor(.black, for: .normal)
     }
     
     let autoModeButton = SRPButton("자동 경로 생성")

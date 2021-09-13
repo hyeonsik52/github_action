@@ -24,8 +24,8 @@ class DetailHeaderCellView: UIView, ReactorKit.View {
     
     let nameLabel = UILabel().then {
         $0.text = "-에게 요청"
-        $0.font = Font.BOLD_18
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.18
+        $0.textColor = .black
     }
     
     let arrowImageView = UIImageView(image: UIImage(named: "service-arrow-down"))
@@ -34,8 +34,8 @@ class DetailHeaderCellView: UIView, ReactorKit.View {
     
     let groupNameLabel = UILabel().then {
         $0.text = "-"
-        $0.font = Font.BOLD_14
-        $0.textColor = Color.GRAY_999999
+        $0.font = .bold.14
+        $0.textColor = .grayA0A0A0
     }
     
     init() {

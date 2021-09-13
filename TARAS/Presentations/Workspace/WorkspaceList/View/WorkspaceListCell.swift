@@ -23,27 +23,27 @@ final class WorkspaceListCell: BaseTableViewCell, ReactorKit.View {
     
     let titleLabel = UILabel().then {
         $0.text = "Twinny_대전 지사"
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.BOLD_16
+        $0.textColor = .black
+        $0.font = .bold.16
         $0.numberOfLines = 2
     }
     
     let memberCountLabel = UILabel().then {
         $0.text = "회원 123명"
-        $0.textColor = Color.GRAY_9A9A9A
-        $0.font = Font.REGULAR_12
+        $0.textColor = .grayA0A0A0
+        $0.font = .regular.12
     }
     
     private let separatorLabel = UILabel().then {
         $0.text = " ㆍ "
-        $0.textColor = Color.GRAY_9A9A9A
-        $0.font = Font.REGULAR_12
+        $0.textColor = .grayA0A0A0
+        $0.font = .regular.12
     }
     
     let createdAtLabel = UILabel().then {
         $0.text = "20.05.10 생성"
-        $0.textColor = Color.GRAY_9A9A9A
-        $0.font = Font.REGULAR_12
+        $0.textColor = .grayA0A0A0
+        $0.font = .regular.12
     }
     
     

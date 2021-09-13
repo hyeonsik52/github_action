@@ -21,19 +21,19 @@ class ReceivedServiceCellView: UIView {
         $0.isSkeletonable = true
     }
     private var titleLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
         $0.isSkeletonable = true
     }
     private var secondaryLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 12)
-        $0.textColor = Color.GRAY_9A9A9A
+        $0.font = .regular.12
+        $0.textColor = .grayA0A0A0
         $0.lineBreakMode = .byTruncatingMiddle
         $0.isSkeletonable = true
     }
     private var tertiaryLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 12)
-        $0.textColor = Color.GRAY_9A9A9A
+        $0.font = .regular.12
+        $0.textColor = .grayA0A0A0
         $0.isSkeletonable = true
     }
     

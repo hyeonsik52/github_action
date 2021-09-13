@@ -15,7 +15,7 @@ final class TargetMemberCell: BaseTableViewCell, ReactorKit.View {
     
     /// 대상의 프로필 이미지를 표출합니다.
     let profileImageView = UIImageView().then {
-        $0.backgroundColor = Color.GRAY_E6E6E6
+        $0.backgroundColor = .grayE6E6E6
         $0.image = UIImage(named: "common-workspacePlaceholder-happy")
         $0.layer.cornerRadius = 22
         $0.clipsToBounds = true
@@ -23,8 +23,8 @@ final class TargetMemberCell: BaseTableViewCell, ReactorKit.View {
     
     /// 대상의 이름을 표출합니다.
     let nameLabel = UILabel().then {
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.MEDIUM_16
+        $0.textColor = .black
+        $0.font = .medium.16
         $0.numberOfLines = 2
     }
     
@@ -32,8 +32,8 @@ final class TargetMemberCell: BaseTableViewCell, ReactorKit.View {
     /// 대상이 복수의 그룹에 소속되어 있을 경우, 하나의 그룹 이름만을 표출합니다.
     /// - 대상-정차지의 경우: 대상이 속한 그룹이 없으므로 label이 숨김 처리됩니다.
     let groupNameLabel = UILabel().then {
-        $0.textColor = Color.GRAY_9A9A9A
-        $0.font = Font.MEDIUM_16
+        $0.textColor = .grayA0A0A0
+        $0.font = .medium.16
     }
     
     
@@ -53,7 +53,7 @@ final class TargetMemberCell: BaseTableViewCell, ReactorKit.View {
         
         self.nameLabel.text = targetInfo.name
         self.groupNameLabel.text = targetInfo.groupName
-        self.backgroundColor = targetInfo.isSelected ? Color.LIGHT_GRAY_F6F6F6: .white
+        self.backgroundColor = targetInfo.isSelected ? .LIGHT_GRAY_F6F6F6: .white
     }
     
     

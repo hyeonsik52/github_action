@@ -66,7 +66,7 @@ class WaypointViewController: BaseNavigationViewController, ReactorKit.View {
                 cell.reactor = cellReactor
                 
                 if let selectedStopIdx = reactor.waypointInput?.stopIdx ?? nil {
-                    cell.backgroundColor = cellReactor.cellModel.stopIdx == selectedStopIdx ? Color.LIGHT_GRAY_F6F6F6: .white
+                    cell.backgroundColor = cellReactor.cellModel.stopIdx == selectedStopIdx ? .LIGHT_GRAY_F6F6F6: .white
                 }
                 return cell
         })

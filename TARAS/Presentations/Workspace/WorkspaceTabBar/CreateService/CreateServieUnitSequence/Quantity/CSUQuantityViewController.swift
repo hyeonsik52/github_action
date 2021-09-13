@@ -21,8 +21,8 @@ class CSUQuantityViewController: BaseNavigationViewController, ReactorKit.View {
     // MARK: - UI
 
     lazy var textField = UITextField().then {
-        $0.font = Font.BOLD_30
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.font = .bold.30
+        $0.textColor = .purple4A3C9F
         $0.textAlignment = .center
         $0.keyboardType = .numberPad
         $0.delegate = self
@@ -38,8 +38,8 @@ class CSUQuantityViewController: BaseNavigationViewController, ReactorKit.View {
 
     let guideLabel = UILabel().then {
         $0.text = "품목의 수량을 입력해주세요."
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.MEDIUM_16
+        $0.textColor = .black
+        $0.font = .medium.16
         $0.textAlignment = .center
     }
 

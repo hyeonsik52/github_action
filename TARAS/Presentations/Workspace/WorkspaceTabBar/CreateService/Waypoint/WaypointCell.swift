@@ -15,7 +15,7 @@ import RxCocoa
 final class WaypointCell: BaseTableViewCell, ReactorKit.View {
     
     let profileImageView = UIImageView().then {
-        $0.backgroundColor = Color.GRAY_E6E6E6
+        $0.backgroundColor = .grayE6E6E6
         $0.image = UIImage(named: "common-workspacePlaceholder-happy")
         $0.layer.cornerRadius = 22
         $0.clipsToBounds = true
@@ -23,8 +23,8 @@ final class WaypointCell: BaseTableViewCell, ReactorKit.View {
     }
     
     let nameLabel = UILabel().then {
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.MEDIUM_16
+        $0.textColor = .black
+        $0.font = .medium.16
     }
 
     override func initial() {

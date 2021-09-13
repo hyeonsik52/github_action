@@ -55,7 +55,7 @@ class FindAccountEmailView: UIView {
     /// 에러 메시지 라벨
     let errorMessageLabel = UILabel().then {
         $0.textColor = Asset.Colors.redEb4D39.color
-        $0.font = .BOLD_14
+        $0.font = .bold.14
         $0.numberOfLines = 0
     }
     

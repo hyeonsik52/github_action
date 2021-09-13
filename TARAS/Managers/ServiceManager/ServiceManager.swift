@@ -36,7 +36,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                let attributed = NSMutableAttributedString(
 //                    string: "'\(processing.stop.name)'\(rear)",
 //                    attributes: [
-//                        .font: UIFont.MEDIUM_14,
+//                        .font: UIFont.medium.14,
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -74,7 +74,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                let attributed = NSMutableAttributedString(
 //                    string: "\(userName)님이 서비스를 생성하였습니다.",
 //                    attributes: [
-//                        .font: UIFont.MEDIUM_16,
+//                        .font: UIFont.medium.16,
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -88,7 +88,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: "로봇이 배정되었습니다. 서비스가 시작되었습니다.",
 //                    attributes: [
-//                        .font: UIFont.MEDIUM_16,
+//                        .font: UIFont.medium.16,
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -98,7 +98,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                let attributed = NSMutableAttributedString(
 //                    string: "로봇이 \(stopName)에 도착하였습니다.",
 //                    attributes: [
-//                        .font: UIFont.MEDIUM_16,
+//                        .font: UIFont.medium.16,
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -115,7 +115,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                    return .init(
 //                        string: "로봇이 상하차 작업을 완료하였습니다.",
 //                        attributes: [
-//                            .font: UIFont.MEDIUM_16,
+//                            .font: UIFont.medium.16,
 //                            .foregroundColor: UIColor.black
 //                        ]
 //                    )
@@ -124,7 +124,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                    let attributed = NSMutableAttributedString(
 //                        string: "\(userName)님이 작업을 완료하였습니다.",
 //                        attributes: [
-//                            .font: UIFont.MEDIUM_16,
+//                            .font: UIFont.medium.16,
 //                            .foregroundColor: UIColor.black
 //                        ]
 //                    )
@@ -139,7 +139,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: "서비스가 완료되었습니다.",
 //                    attributes: [
-//                        .font: UIFont.MEDIUM_16,
+//                        .font: UIFont.medium.16,
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -147,7 +147,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: "관리자에 의해 서비스가 중단되었습니다.",
 //                    attributes: [
-//                        .font: UIFont.MEDIUM_16,
+//                        .font: UIFont.medium.16,
 //                        .foregroundColor: .redEc5C4A
 //                    ]
 //                )
@@ -155,7 +155,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: error.description,
 //                    attributes: [
-//                        .font: UIFont.MEDIUM_16,
+//                        .font: UIFont.medium.16,
 //                        .foregroundColor: .redEc5C4A
 //                    ]
 //                )

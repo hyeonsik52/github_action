@@ -24,12 +24,12 @@ class SRPProfileTextTagTableViewCell: UITableViewCell, ReactorKit.View {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.cornerRadius = 22
-        $0.backgroundColor = Color.GRAY_EDEDED
+        $0.backgroundColor = .grayEDEDED
     }
     
     private let label = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .medium)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .medium.16
+        $0.textColor = .black
     }
     
     private let stateView = SRPStateView()

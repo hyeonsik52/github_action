@@ -15,8 +15,8 @@ import RxSwift
 class SRPDetailInfoCellView: UIView {
 
     private let titleLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     private let profileImageView = UIImageView().then {
@@ -27,8 +27,8 @@ class SRPDetailInfoCellView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     private let contentLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     private let arrowImageView = UIImageView().then {
         $0.contentMode = .center

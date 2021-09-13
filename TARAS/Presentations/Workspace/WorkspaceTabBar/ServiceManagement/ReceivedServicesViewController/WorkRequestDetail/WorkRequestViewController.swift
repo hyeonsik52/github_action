@@ -28,8 +28,8 @@ class WorkRequestViewController: BaseNavigationViewController, View {
     
     private var detailLabelContainer = UIView()
     private var detailLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.20
+        $0.textColor = .black
         $0.numberOfLines = 0
         $0.lineBreakMode = .byCharWrapping
     }
@@ -50,10 +50,10 @@ class WorkRequestViewController: BaseNavigationViewController, View {
     
     private var rejectButton = UIButton().then {
         $0.setTitle("거절", for: .normal)
-        $0.titleLabel?.font = Font.BOLD_15
-        $0.setTitleColor(Color.GRAY_888888, for: .disabled)
-        $0.setTitleColor(Color.BLACK_0F0F0F, for: .normal)
-        $0.backgroundColor = Color.GRAY_E6E6E6
+        $0.titleLabel?.font = .bold.15
+        $0.setTitleColor(.gray8C8C8C, for: .disabled)
+        $0.setTitleColor(.black, for: .normal)
+        $0.backgroundColor = .grayE6E6E6
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
     }

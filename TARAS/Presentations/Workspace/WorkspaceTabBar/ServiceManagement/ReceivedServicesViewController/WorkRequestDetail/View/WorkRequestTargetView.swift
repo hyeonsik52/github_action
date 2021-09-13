@@ -23,8 +23,8 @@ class WorkRequestTargetView: UIView {
     }
     
     private let contentLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     
     private let arrowImageView = UIImageView().then {

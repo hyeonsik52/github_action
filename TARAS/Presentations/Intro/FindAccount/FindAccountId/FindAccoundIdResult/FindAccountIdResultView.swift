@@ -84,8 +84,8 @@ class FindAccountIdResultView: UIView {
             $0.layer.cornerRadius = 4
         }
         let label = UILabel().then {
-            $0.font = .BOLD_18
-            $0.textColor = Asset.Colors.black0F0F0F.color
+            $0.font = .bold.18
+            $0.textColor = Asset.Colors.black.color
             $0.text = text
         }
         container.addSubview(label)

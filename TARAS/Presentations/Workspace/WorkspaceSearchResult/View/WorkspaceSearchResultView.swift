@@ -25,22 +25,22 @@ class WorkspaceSearchResultView: UIView {
     
     let nameLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.BOLD_22
+        $0.textColor = .black
+        $0.font = .bold.22
         $0.numberOfLines = 0
     }
     
     let createdAtLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.textColor = Color.GRAY_9A9A9A
-        $0.font = Font.BOLD_14
+        $0.textColor = .grayA0A0A0
+        $0.font = .bold.14
         $0.numberOfLines = 0
     }
     
     let memberCountLabel = UILabel().then {
-        $0.textColor = Color.PURPLE_4A3C9F
-        $0.backgroundColor = Color.LIGHT_PUPLE_EBEAF4
-        $0.font = Font.BOLD_13
+        $0.textColor = .purple4A3C9F
+        $0.backgroundColor = .LIGHT_PUPLE_EBEAF4
+        $0.font = .bold.13
         $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.layer.cornerRadius = 10
@@ -48,8 +48,8 @@ class WorkspaceSearchResultView: UIView {
     }
     
     let guideLabel = UILabel().then {
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.MEDIUM_16
+        $0.textColor = .black
+        $0.font = .medium.16
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
@@ -124,7 +124,7 @@ class WorkspaceSearchResultView: UIView {
         let date = dateFormatter.date(from: info.creatAt ?? "")
         self.createdAtLabel.text = Formatter.YYMMDD.string(from: date ?? Date()) + " 생성"
         self.memberCountLabel.text = "회원 \(info.memberCount ?? 0)명"
-        self.enterButton.setBackgroundColor(color: Color.PURPLE_4A3C9F, forState: .normal)
+        self.enterButton.setBackgroundColor(color: .purple4A3C9F, forState: .normal)
         
         if let profileImageURL = info.profileImageURL, let url = URL(string: profileImageURL) {
             self.profileImageView.kf.setImage(with: url)
@@ -141,7 +141,7 @@ class WorkspaceSearchResultView: UIView {
             
         case .requested:
             self.guideLabel.text = Text.WSSRV_6
-            self.enterButton.setBackgroundColor(color: Color.GRAY_E6E6E6, forState: .normal)
+            self.enterButton.setBackgroundColor(color: .grayE6E6E6, forState: .normal)
             self.enterButton.setTitle(Text.WSSRV_5, for: .normal)
         }
     }

@@ -14,14 +14,14 @@ import ReactorKit
 class ServiceDetailLogTableViewCell: UITableViewCell, View {
 
     private let contentLabel = UILabel().then {
-        $0.font = Font.BOLD_16
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
         $0.lineBreakMode = .byTruncatingHead
         $0.numberOfLines = 0 //temp
     }
     private let dateLabel = UILabel().then {
-        $0.font = Font.REGULAR_12
-        $0.textColor = Color.GRAY_9A9A9A
+        $0.font = .regular.12
+        $0.textColor = .grayA0A0A0
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     

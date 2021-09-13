@@ -15,7 +15,7 @@ final class RecipientGroupCell: BaseTableViewCell, ReactorKit.View {
     
     /// 수신자-그룹의 프로필 이미지를 표출합니다.
     let profileImageView = UIImageView().then {
-        $0.backgroundColor = Color.GRAY_E6E6E6
+        $0.backgroundColor = .grayE6E6E6
         $0.image = UIImage(named: "common-workspacePlaceholder-happy")
         $0.layer.cornerRadius = 22
         $0.clipsToBounds = true
@@ -23,8 +23,8 @@ final class RecipientGroupCell: BaseTableViewCell, ReactorKit.View {
     
     /// 수신자-그룹의 이름을 표출합니다.
     let nameLabel = UILabel().then {
-        $0.textColor = Color.BLACK_0F0F0F
-        $0.font = Font.MEDIUM_16
+        $0.textColor = .black
+        $0.font = .medium.16
         $0.numberOfLines = 2
     }
     

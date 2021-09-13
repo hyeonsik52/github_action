@@ -27,7 +27,7 @@ class CSUFreightsViewController: BaseNavigationViewController, ReactorKit.View {
     
     lazy var textView = SRPClearTextView().then {
         $0.placeholder = "ex) 간식류"
-        $0.placeholderColor = Color.GRAY_CDCDCD
+        $0.placeholderColor = .grayCDCDCD
         $0.placeholderTextView.textAlignment = .center
         $0.srpClearTextViewDelegate = self
     }

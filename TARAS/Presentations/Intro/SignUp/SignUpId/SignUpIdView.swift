@@ -56,7 +56,7 @@ class SignUpIdView: UIView {
     /// "5~20자의 알파벳과 숫자, 일부 특수문자(-,_)만 사용해주세요." 라벨
     private let inputGuideLabel = UILabel().then {
         $0.text = Text.SUVC_5
-        $0.textColor = .gray9A9A9A
+        $0.textColor = .grayA0A0A0
         $0.font = .medium.14
         $0.numberOfLines = 0
     }

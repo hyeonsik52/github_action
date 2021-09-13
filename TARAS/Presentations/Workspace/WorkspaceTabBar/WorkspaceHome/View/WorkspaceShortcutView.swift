@@ -13,12 +13,12 @@ import Then
 class WorkspaceShortcutView: UIView {
     
     let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 18, weight: .bold)
+        $0.font = .bold.18
         $0.textColor = UIColor(hex: "#0F0F0F")
     }
     
     let contentLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.font = .medium.14
         $0.textColor = UIColor(hex: "#0F0F0F")
         $0.numberOfLines = 0
     }

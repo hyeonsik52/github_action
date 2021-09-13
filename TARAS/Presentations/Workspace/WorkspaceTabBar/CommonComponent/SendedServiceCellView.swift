@@ -17,44 +17,44 @@ class SendedServiceCellView: UIView {
     private var imageViews = [UIImageView]()
     
     private var titleLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.20
+        $0.textColor = .black
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
         $0.isSkeletonable = true
     }
     
     private var secondaryLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 16, weight: .medium)
-        $0.textColor = Color.BLACK_0F0F0F
         $0.isSkeletonable = true
+        $0.font = .medium.16
+        $0.textColor = .black
     }
     
     private var targetsView: ServiceTargetsView!
     
     private var targetContentLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
         $0.lineBreakMode = .byTruncatingMiddle
         $0.isSkeletonable = true
     }
     
     private var tertiaryLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 16, weight: .medium)
-        $0.textColor = Color.GRAY_A2A2A2
         $0.isSkeletonable = true
+        $0.font = .medium.16
+        $0.textColor = .grayA0A0A0
     }
     
     ///작업 진행 순번 ex) 3/12
     private var requestStatusContainer = UIView().then {
         $0.clipsToBounds = true
         $0.cornerRadius = 6
-        $0.backgroundColor = Color.LIGHT_GRAY_F2F2F2
+        $0.backgroundColor = .lightGrayF1F1F1
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
         $0.isSkeletonable = true
     }
     private var requestStatusLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .bold)
-        $0.textColor = Color.PURPLE_4A3C9F
+        $0.font = .bold.14
+        $0.textColor = .purple4A3C9F
     }
     
     ///작업 순번과 위치 ex) 3 회의실
@@ -64,16 +64,16 @@ class SendedServiceCellView: UIView {
     private var sequenceNumberLabel = UILabel().then {
         $0.clipsToBounds = true
         $0.cornerRadius = 10
-        $0.backgroundColor = Color.SKY_BLUE_85AEFF
+        $0.backgroundColor = .skyBlue85AEFF
         $0.textAlignment = .center
-        $0.font = .systemFont(ofSize: 12, weight: .bold)
+        $0.font = .bold.12
         $0.textColor = .white
         $0.isSkeletonable = true
     }
     private var placeLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
         $0.isSkeletonable = true
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     
     convenience init(_ maxWidth: CGFloat = UIScreen.main.bounds.width) {
@@ -94,7 +94,7 @@ class SendedServiceCellView: UIView {
         
         self.isSkeletonable = true
         
-        self.backgroundColor = Color.GRAY_F8F8F8
+        self.backgroundColor = .lightGrayF1F1F1
         self.clipsToBounds = true
         self.layer.cornerRadius = 12
         

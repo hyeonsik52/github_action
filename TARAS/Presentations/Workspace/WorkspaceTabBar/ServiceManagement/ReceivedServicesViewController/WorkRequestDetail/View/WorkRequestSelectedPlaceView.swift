@@ -18,12 +18,12 @@ class WorkRequestSelectedPlaceView: UIView {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.cornerRadius = 22
-        $0.backgroundColor = Color.LIGHT_PUPLE_EBEAF4
+        $0.backgroundColor = .LIGHT_PUPLE_EBEAF4
     }
     
     private var placeNameLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     
     override init(frame: CGRect) {

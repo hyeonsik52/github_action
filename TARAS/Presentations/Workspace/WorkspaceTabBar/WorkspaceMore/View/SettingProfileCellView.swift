@@ -15,8 +15,8 @@ import RxSwift
 class SettingProfileCellView: UIView {
     
     private var titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.16
+        $0.textColor = .black
     }
     
     private let profileImageView = UIImageView().then {

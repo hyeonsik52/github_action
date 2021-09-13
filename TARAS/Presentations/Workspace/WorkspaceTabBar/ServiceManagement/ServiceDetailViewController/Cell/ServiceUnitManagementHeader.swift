@@ -13,8 +13,8 @@ import Then
 class ServiceUnitManagementHeader: UICollectionReusableView {
         
     private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 24, weight: .bold)
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.24
+        $0.textColor = .black
     }
     
     private let answerState = SRPStateView().then {

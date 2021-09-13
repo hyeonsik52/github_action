@@ -27,8 +27,8 @@ class AddWaypointViewController: BaseViewController, ReactorKit.View {
     }
 
     let titleLabel = UILabel().then {
-        $0.font = Font.BOLD_20
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.20
+        $0.textColor = .black
         $0.text = "경유지 추가 위치 선택"
     }
 
@@ -43,7 +43,7 @@ class AddWaypointViewController: BaseViewController, ReactorKit.View {
     // MARK: - Life cycles
 
     override func setupConstraints() {
-        self.view.backgroundColor = Color.LIGHT_GRAY_F6F6F6
+        self.view.backgroundColor = .LIGHT_GRAY_F6F6F6
 
         self.view.addSubview(self.closeButton)
         self.closeButton.snp.makeConstraints {

@@ -133,13 +133,13 @@ extension AppDelegate {
             coloredAppearance.configureWithOpaqueBackground()
             coloredAppearance.backgroundColor = .white
             coloredAppearance.shadowColor = UIColor.clear
-            coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black0F0F0F, .font: UIFont.bold.20]
+            coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.bold.20]
             
             // large title text left margin
             let style = NSMutableParagraphStyle()
             style.firstLineHeadIndent = 6
             coloredAppearance.largeTitleTextAttributes = [
-                .foregroundColor: UIColor.black0F0F0F,
+                .foregroundColor: UIColor.black,
                 .font: UIFont.bold.24,
                 .paragraphStyle: style
             ]
@@ -153,7 +153,7 @@ extension AppDelegate {
             UINavigationBar.appearance().shadowImage = UIImage()
         }
         
-        UINavigationBar.appearance().tintColor = .black0F0F0F
+        UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().prefersLargeTitles = true
     }
 }

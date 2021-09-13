@@ -27,8 +27,8 @@ class SelectPlaceViewController: BaseViewController, View {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = Font.BOLD_20
-        $0.textColor = Color.BLACK_0F0F0F
+        $0.font = .bold.20
+        $0.textColor = .black
         $0.textAlignment = .center
         $0.text = "작업 위치 선택"
     }

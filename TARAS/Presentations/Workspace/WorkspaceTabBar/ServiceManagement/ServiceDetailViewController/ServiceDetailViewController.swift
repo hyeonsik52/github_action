@@ -70,7 +70,7 @@ class ServiceDetailViewController: BaseViewController, View {
     override func setupConstraints() {
         super.setupConstraints()
         
-        self.view.backgroundColor = Color.LIGHT_GRAY_F6F6F6
+        self.view.backgroundColor = .LIGHT_GRAY_F6F6F6
         
         let navigationBar = UIView()
         self.view.addSubview(navigationBar)
