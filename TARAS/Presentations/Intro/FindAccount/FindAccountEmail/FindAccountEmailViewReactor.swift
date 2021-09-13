@@ -97,95 +97,99 @@ class FindAccountEmailViewReactor: Reactor {
                 return .just(.updateError(.common(.invalidInputFormat(.email))))
             }
             
-            let input = CreateEmailAuthCodeInput(
-                checkExist: "true",
-                email: email,
-                userId: self.accountInfo.id
-            )
-            let mutation = CreateEmailAuthCodeMutation(input: input)
-
-            return .concat([
-                .just(.updateRequested(nil)),
-                .just(.updateIsAvailable(false)),
-                .just(.updateError(nil)),
-                .just(.updateIsProcessing(true)),
-
-                self.provider.networkManager.perform(mutation)
-                    .map { $0.createEmailAuthCodeMutation }
-                    .flatMap { result -> Observable<Mutation> in
-                        if let typeError = result.asTypeError?.fragments.typeErrorFragment {
+//            let input = CreateEmailAuthCodeInput(
+//                checkExist: "true",
+//                email: email,
+//                userId: self.accountInfo.id
+//            )
+//            let mutation = CreateEmailAuthCodeMutation(input: input)
+//
+//            return .concat([
+//                .just(.updateRequested(nil)),
+//                .just(.updateIsAvailable(false)),
+//                .just(.updateError(nil)),
+//                .just(.updateIsProcessing(true)),
+//
+//                self.provider.networkManager.perform(mutation)
+//                    .map { $0.createEmailAuthCodeMutation }
+//                    .flatMap { result -> Observable<Mutation> in
+//                        if let typeError = result.asTypeError?.fragments.typeErrorFragment {
+//                            return .concat([
+//                                .just(.updateError(.common(.type(typeError)))),
+//                                .just(.updateIsFirst(false))
+//                            ])
+//                        }else if let _ = result.asCreateEmailAuthCodeError {
+//                            let error: TRSError = {
+//                                switch self.initialState.type {
+//                                case .id:
+//                                    return .account(.unregisteredEmail)
+//                                case .password:
+//                                    return .account(.idEmailNotMatch)
+//                                }
+//                            }()
+//                            return .concat([
+//                                .just(.updateError(error)),
+//                                .just(.updateIsFirst(false))
+//                            ])
+//                        }else if let payload = result.asCreateEmailAuthCodePayload {
+//                            let calendar = Calendar.current
+//                            let expireDate = calendar.date(byAdding: .second, value: payload.expiresIn, to: Date())
+//                            self.expireDate = expireDate
+//                            let now = Date()
+//                            let guaranteed = expireDate ?? now
+//                            let interval = Int(guaranteed.timeIntervalSince(now))
                             return .concat([
-                                .just(.updateError(.common(.type(typeError)))),
-                                .just(.updateIsFirst(false))
-                            ])
-                        }else if let _ = result.asCreateEmailAuthCodeError {
-                            let error: TRSError = {
-                                switch self.initialState.type {
-                                case .id:
-                                    return .account(.unregisteredEmail)
-                                case .password:
-                                    return .account(.idEmailNotMatch)
-                                }
-                            }()
-                            return .concat([
-                                .just(.updateError(error)),
-                                .just(.updateIsFirst(false))
-                            ])
-                        }else if let payload = result.asCreateEmailAuthCodePayload {
-                            let calendar = Calendar.current
-                            let expireDate = calendar.date(byAdding: .second, value: payload.expiresIn, to: Date())
-                            self.expireDate = expireDate
-                            let now = Date()
-                            let guaranteed = expireDate ?? now
-                            let interval = Int(guaranteed.timeIntervalSince(now))
-                            return .concat([
-                                .just(.updateRemainTime(interval)),
+//                                .just(.updateRemainTime(interval)),
+                                //temp
+                                .just(.updateRemainTime(Int(Date().addingTimeInterval(60).timeIntervalSince1970))),
                                 .just(.updateRequested(true)),
                                 .just(.updateIsFirst(false))
                             ])
-                        }
-                        return .empty()
-                    }
-                    .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-
-                .just(.updateIsProcessing(false))
-            ])
+//                        }
+//                        return .empty()
+//                    }
+//                    .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
+//
+//                .just(.updateIsProcessing(false))
+//            ])
             
         case .checkAuthNumber(let email, let authCode):
             
-            let input = CheckEmailAuthCodeInput(authCode: authCode, email: email)
-            let mutation = CheckEmailAuthCodeMutation(input: input)
-            
-            return .concat([
-                .just(.updateIsProcessing(true)),
-
-                self.provider.networkManager.perform(mutation)
-                    .map { $0.checkEmailAuthCodeMutation }
-                    .flatMap { result -> Observable<Mutation> in
-                        if let typeError = result.asTypeError?.fragments.typeErrorFragment {
-                            return .just(.updateError(.common(.type(typeError))))
-                        }else if let error = result.asCheckEmailAuthCodeError {
-                            let error: TRSError? = {
-                                switch error.authErrorCode {
-                                case .invalidEmailAuthCode:
-                                    return .account(.authNumberNotMatch)
-                                default:
-                                    return .etc(error.authErrorCode.rawValue)
-                                }
-                            }()
-                            return .just(.updateError(error))
-                        }else if let payload = result.asCheckEmailAuthCodePayload {
+//            let input = CheckEmailAuthCodeInput(authCode: authCode, email: email)
+//            let mutation = CheckEmailAuthCodeMutation(input: input)
+//
+//            return .concat([
+//                .just(.updateIsProcessing(true)),
+//
+//                self.provider.networkManager.perform(mutation)
+//                    .map { $0.checkEmailAuthCodeMutation }
+//                    .flatMap { result -> Observable<Mutation> in
+//                        if let typeError = result.asTypeError?.fragments.typeErrorFragment {
+//                            return .just(.updateError(.common(.type(typeError))))
+//                        }else if let error = result.asCheckEmailAuthCodeError {
+//                            let error: TRSError? = {
+//                                switch error.authErrorCode {
+//                                case .invalidEmailAuthCode:
+//                                    return .account(.authNumberNotMatch)
+//                                default:
+//                                    return .etc(error.authErrorCode.rawValue)
+//                                }
+//                            }()
+//                            return .just(.updateError(error))
+//                        }else if let payload = result.asCheckEmailAuthCodePayload {
                             return .concat([
-                                .just(.updateIsAuthComplete(payload.emailToken)),
+//                                .just(.updateIsAuthComplete(payload.emailToken)),
+                                //temp
+                                .just(.updateIsAuthComplete("tempToken")),
                                 .just(.updateIsAuthComplete(nil))
                             ])
-                        }
-                        return .empty()
-                    }
-                    .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-
-                .just(.updateIsProcessing(false))
-            ])
+//                        }
+//                        return .empty()
+//                    }
+//                    .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
+//
+//                .just(.updateIsProcessing(false))
+//            ])
             
         case .tickTime:
             guard let expireDate = self.expireDate else {
@@ -203,39 +207,41 @@ class FindAccountEmailViewReactor: Reactor {
                 return .just(.updateError(.account(.authNumberNotMatch)))
             }
             
-            let input = FindUserIdByEmailInput(email: email, emailToken: authToken)
-            let mutation = FindUserIdListByEmailMutation(input: input)
-            
-            return .concat([
-                .just(.updateIsProcessing(true)),
-                
-                self.provider.networkManager.perform(mutation)
-                    .map { $0.findUserIdListByEmailMutation }
-                    .flatMap { result -> Observable<Mutation> in
-                        if let typeError = result.asTypeError?.fragments.typeErrorFragment {
-                            return .just(.updateError(.common(.type(typeError))))
-                        }else if let error = result.asFindUserIdError {
-                            let error: TRSError? = {
-                                switch error.findErrorCode {
-                                case .invalidEmail:
-                                    return .account(.unregisteredEmail)
-                                case .invalidEmailToken:
-                                    return .account(.authNumberNotMatch)
-                                default:
-                                    return .etc(error.findErrorCode.rawValue)
-                                }
-                            }()
-                            return .just(.updateError(error))
-                        }else if let payload = result.asFindUserIdListPayload {
-                            let idList = payload.userIdList.compactMap { $0 }
-                            return .just(.updateFindIds(idList))
-                        }
-                        return .empty()
-                    }
-                    .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-                
-                .just(.updateIsProcessing(false))
-            ])
+//            let input = FindUserIdByEmailInput(email: email, emailToken: authToken)
+//            let mutation = FindUserIdListByEmailMutation(input: input)
+//
+//            return .concat([
+//                .just(.updateIsProcessing(true)),
+//
+//                self.provider.networkManager.perform(mutation)
+//                    .map { $0.findUserIdListByEmailMutation }
+//                    .flatMap { result -> Observable<Mutation> in
+//                        if let typeError = result.asTypeError?.fragments.typeErrorFragment {
+//                            return .just(.updateError(.common(.type(typeError))))
+//                        }else if let error = result.asFindUserIdError {
+//                            let error: TRSError? = {
+//                                switch error.findErrorCode {
+//                                case .invalidEmail:
+//                                    return .account(.unregisteredEmail)
+//                                case .invalidEmailToken:
+//                                    return .account(.authNumberNotMatch)
+//                                default:
+//                                    return .etc(error.findErrorCode.rawValue)
+//                                }
+//                            }()
+//                            return .just(.updateError(error))
+//                        }else if let payload = result.asFindUserIdListPayload {
+//                            let idList = payload.userIdList.compactMap { $0 }
+//                            return .just(.updateFindIds(idList))
+                            //temp
+                            return .just(.updateFindIds([]))
+//                        }
+//                        return .empty()
+//                    }
+//                    .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
+//
+//                .just(.updateIsProcessing(false))
+//            ])
         case .resetStates:
             return .just(.stateReset)
         }

@@ -177,35 +177,35 @@ class SendedServiceCellView: UIView {
         title: String?,
         subTitle: String?,
         detail: String?,
-        targets: [ServiceNode],
-        targetContent: String? = nil,
-        answerStates: AnswerStates? = nil,
-        sequenceInfo: (number: Int, node: ServiceNode)? = nil
+//        targets: [ServiceNode],
+        targetContent: String? = nil//,
+//        answerStates: AnswerStates? = nil,
+//        sequenceInfo: (number: Int, node: ServiceNode)? = nil
     ) {
         
         self.titleLabel.text = title
         
-        if let answerStates = answerStates {
-            self.requestStatusContainer.isHidden = false
-            self.requestStatusLabel.text = "\(answerStates.accepted)/\(answerStates.total)"
-        }else{
-            self.requestStatusContainer.isHidden = true
-            self.requestStatusLabel.text = nil
-        }
-        
-        if let sequenceInfo = sequenceInfo {
-            self.sequenceContainer.isHidden = false
-            self.sequenceNumberLabel.text = sequenceInfo.number.description
-            self.placeLabel.text = sequenceInfo.node.name
-        }else{
-            self.sequenceContainer.isHidden = true
-            self.sequenceNumberLabel.text = nil
-            self.placeLabel.text = nil
-        }
+//        if let answerStates = answerStates {
+//            self.requestStatusContainer.isHidden = false
+//            self.requestStatusLabel.text = "\(answerStates.accepted)/\(answerStates.total)"
+//        }else{
+//            self.requestStatusContainer.isHidden = true
+//            self.requestStatusLabel.text = nil
+//        }
+//
+//        if let sequenceInfo = sequenceInfo {
+//            self.sequenceContainer.isHidden = false
+//            self.sequenceNumberLabel.text = sequenceInfo.number.description
+//            self.placeLabel.text = sequenceInfo.node.name
+//        }else{
+//            self.sequenceContainer.isHidden = true
+//            self.sequenceNumberLabel.text = nil
+//            self.placeLabel.text = nil
+//        }
         
         self.secondaryLabel.text = subTitle
         
-        self.targetsView.bind(targets)
+//        self.targetsView.bind(targets)
         self.targetContentLabel.text = targetContent == nil ? nil: "\(targetContent!)님의 요청"
         
         self.tertiaryLabel.text = detail

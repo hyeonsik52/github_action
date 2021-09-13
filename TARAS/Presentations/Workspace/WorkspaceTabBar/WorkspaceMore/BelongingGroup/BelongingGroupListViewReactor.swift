@@ -45,29 +45,31 @@ class BelongingGroupListViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .refresh:
-            if let userIdx = self.userIdx {
-                return .concat([
-                    .just(.setLoading(true)),
-                    
-                    self.provider.networkManager
-                        .fetch(UserByUserIdxQuery(userIdx: userIdx, swsIdx: self.swsIdx))
-                        .map{ UserInfo($0.userByUserIdx.asUser)?.swsUserInfo }
-                        .map{ Mutation.loadedUserInfo($0) },
-                    
-                    .just(.setLoading(false))
-                ])
-            }else{
-                return .concat([
-                    .just(.setLoading(true)),
-                    
-                    self.provider.networkManager
-                        .fetch(MyUserInfoQuery(swsIdx: self.swsIdx))
-                        .map{ UserInfo($0.myUserInfo.asUser)?.swsUserInfo }
-                        .map{ Mutation.loadedUserInfo($0) },
-                    
-                    .just(.setLoading(false))
-                ])
-            }
+            //temp
+            return .empty()
+//            if let userIdx = self.userIdx {
+//                return .concat([
+//                    .just(.setLoading(true)),
+//
+//                    self.provider.networkManager
+//                        .fetch(UserByUserIdxQuery(userIdx: userIdx, swsIdx: self.swsIdx))
+//                        .map{ UserInfo($0.userByUserIdx.asUser)?.swsUserInfo }
+//                        .map{ Mutation.loadedUserInfo($0) },
+//
+//                    .just(.setLoading(false))
+//                ])
+//            }else{
+//                return .concat([
+//                    .just(.setLoading(true)),
+//
+//                    self.provider.networkManager
+//                        .fetch(MyUserInfoQuery(swsIdx: self.swsIdx))
+//                        .map{ UserInfo($0.myUserInfo.asUser)?.swsUserInfo }
+//                        .map{ Mutation.loadedUserInfo($0) },
+//
+//                    .just(.setLoading(false))
+//                ])
+//            }
         }
     }
     

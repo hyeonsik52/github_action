@@ -22,7 +22,7 @@ final class WorkspaceSearchViewReactor: Reactor {
     enum Mutation {
         case setCode(String)
         case setLoading(Bool)
-        case setResult(Result<WorkspaceInfoByCode, Error>)
+//        case setResult(Result<WorkspaceInfoByCode, Error>)
     }
     
     struct State {
@@ -59,9 +59,9 @@ final class WorkspaceSearchViewReactor: Reactor {
             return .concat([
                 .just(.setLoading(true)),
                 
-                self.provider.workspaceManager
-                    .serchWorkspace(by: code)
-                    .map { Mutation.setResult($0) },
+//                self.provider.workspaceManager
+//                    .serchWorkspace(by: code)
+//                    .map { Mutation.setResult($0) },
                 
                 .just(.setLoading(false))
             ])
@@ -90,26 +90,26 @@ final class WorkspaceSearchViewReactor: Reactor {
             state.workspaceInfo = nil
             return state
             
-        case let .setResult(result):
-            switch result {
-            case let .success(workspaceInfo):
-                let model = WorkspaceListCellModel(infoByCode: workspaceInfo)
-                
-                state.errorMessage = nil
-                state.workspaceInfo = model
-                return state
-                
-            case let .failure(error):
-                if let _ = error as? SWSErrorCode {
-                    state.errorMessage = "존재하지 않는 워크스페이스 코드입니다."
-                    state.workspaceInfo = nil
-                    return state
-                }
-                
-                state.errorMessage = "네트워크/서버 연결이 원할하지 않습니다. 잠시 후 다시 시도해주세요."
-                state.workspaceInfo = nil
-                return state
-            }
+//        case let .setResult(result):
+//            switch result {
+//            case let .success(workspaceInfo):
+//                let model = WorkspaceListCellModel(infoByCode: workspaceInfo)
+//
+//                state.errorMessage = nil
+//                state.workspaceInfo = model
+//                return state
+//
+//            case let .failure(error):
+//                if let _ = error as? SWSErrorCode {
+//                    state.errorMessage = "존재하지 않는 워크스페이스 코드입니다."
+//                    state.workspaceInfo = nil
+//                    return state
+//                }
+//
+//                state.errorMessage = "네트워크/서버 연결이 원할하지 않습니다. 잠시 후 다시 시도해주세요."
+//                state.workspaceInfo = nil
+//                return state
+//            }
         }
     }
 

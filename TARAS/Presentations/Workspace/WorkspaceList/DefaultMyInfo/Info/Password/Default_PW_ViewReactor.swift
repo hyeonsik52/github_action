@@ -48,27 +48,29 @@ class Default_PW_ViewReactor: Reactor {
             return .empty()
             
         case let .requestAuthCode(password):
-            let authCodeInput = CreateAuthCodeInput(codeType: .updateUserInfo, password: password)
-            
-            return .concat([
-                .just(.updateIsLoading(true)),
-                
-                self.provider.networkManager.perform(CreateAuthCodeMutation(input: authCodeInput))
-                    .map { $0.createAuthCodeMutation }
-                    .flatMap { data -> Observable<Mutation> in
-                        if let payload = data.asCreateAuthCodePayload {
-                            return .just(.updateAuthCode(payload.authCode))
-                        }
-                        if let errorCode = data.asCreateAuthCodeError?.errorCode {
-                            if errorCode == .invalidPassword {
-                                return .just(.updateErrorMessage("비밀번호가 정확하지 않습니다."))
-                            }
-                        }
-                        return .just(.updateErrorMessage("알 수 없는 오류가 발생했습니다. 잠시 후에 다시 시도해 주세요."))
-                }.catchErrorJustReturn(.updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)")),
-                
-                .just(.updateIsLoading(false))
-            ])
+//            let authCodeInput = CreateAuthCodeInput(codeType: .updateUserInfo, password: password)
+//
+//            return .concat([
+//                .just(.updateIsLoading(true)),
+//
+//                self.provider.networkManager.perform(CreateAuthCodeMutation(input: authCodeInput))
+//                    .map { $0.createAuthCodeMutation }
+//                    .flatMap { data -> Observable<Mutation> in
+//                        if let payload = data.asCreateAuthCodePayload {
+//                            return .just(.updateAuthCode(payload.authCode))
+                            //temp
+                            return .just(.updateAuthCode("tempCode"))
+//                        }
+//                        if let errorCode = data.asCreateAuthCodeError?.errorCode {
+//                            if errorCode == .invalidPassword {
+//                                return .just(.updateErrorMessage("비밀번호가 정확하지 않습니다."))
+//                            }
+//                        }
+//                        return .just(.updateErrorMessage("알 수 없는 오류가 발생했습니다. 잠시 후에 다시 시도해 주세요."))
+//                }.catchErrorJustReturn(.updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)")),
+//
+//                .just(.updateIsLoading(false))
+//            ])
         }
     }
 

@@ -21,12 +21,12 @@ class DetailListWithHeaderView: UIView {
     // MARK: - Init
     
     /// DetailStackView -> LoadList/UnloadList 전용 Init
-    init(type: ServiceUnitFreightType) {
-        super.init(frame: .zero)
-        
-        self.setupConstraintsForFreights()
-        self.titleLabel.text = (type == .load) ? "실을 물품": "내릴 물품"
-    }
+//    init(type: ServiceUnitFreightType) {
+//        super.init(frame: .zero)
+//
+//        self.setupConstraintsForFreights()
+//        self.titleLabel.text = (type == .load) ? "실을 물품": "내릴 물품"
+//    }
     
     /// DetailStackView -> RecipientListView 전용 Init
     init() {

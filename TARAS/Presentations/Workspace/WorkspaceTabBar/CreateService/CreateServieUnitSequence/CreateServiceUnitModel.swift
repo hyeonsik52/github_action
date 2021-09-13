@@ -23,7 +23,7 @@ struct CSUInfo {
     var targetGroupName: String?
     
     /// 목적지의 정보입니다.
-    var info: CreateServiceUnitInput
+//    var info: CreateServiceUnitInput
 }
 
 /// 단위서비스 모델입니다.
@@ -37,13 +37,13 @@ struct CreateServiceUnitModel {
     
     init(
         serviceUnitTargetName: String,
-        serviceUnitTargetGroupName: String? = nil,
-        serviceUnitInfo: CreateServiceUnitInput
+        serviceUnitTargetGroupName: String? = nil//,
+//        serviceUnitInfo: CreateServiceUnitInput
     ) {
         self.serviceUnit = .init(
             targetName: serviceUnitTargetName,
-            targetGroupName: serviceUnitTargetGroupName,
-            info: serviceUnitInfo
+            targetGroupName: serviceUnitTargetGroupName//,
+//            info: serviceUnitInfo
         )
     }
     

@@ -48,16 +48,18 @@ class Default_Name_ViewReactor: Reactor {
         switch action {
         case let .setName(name):
             
-            let input = UpdateUserInfoInput(name: name)
-            
-            return self.provider.networkManager.perform(UpdateUserInfoMutation(input: input))
-                .map { $0.updateUserInfoMutation }
-                .flatMap { data -> Observable<Mutation> in
-                    if let name = data.asUser?.name {
-                        return .just(.updateName(name))
-                    }
-                    return .just(.updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)"))
-            }.catchErrorJustReturn(.updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)"))
+            //temp
+            return .empty()
+//            let input = UpdateUserInfoInput(name: name)
+//
+//            return self.provider.networkManager.perform(UpdateUserInfoMutation(input: input))
+//                .map { $0.updateUserInfoMutation }
+//                .flatMap { data -> Observable<Mutation> in
+//                    if let name = data.asUser?.name {
+//                        return .just(.updateName(name))
+//                    }
+//                    return .just(.updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)"))
+//            }.catchErrorJustReturn(.updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)"))
         }
     }
     

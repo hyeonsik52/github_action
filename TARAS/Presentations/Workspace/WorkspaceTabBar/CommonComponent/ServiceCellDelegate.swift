@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ServiceCellDelegate: class {
-    func didSelect(_ service: ServiceModel, _ serviceUnit: ServiceUnitModel?, _ isServiceDetail: Bool)
+//    func didSelect(_ service: ServiceModel, _ serviceUnit: ServiceUnitModel?, _ isServiceDetail: Bool)
 }

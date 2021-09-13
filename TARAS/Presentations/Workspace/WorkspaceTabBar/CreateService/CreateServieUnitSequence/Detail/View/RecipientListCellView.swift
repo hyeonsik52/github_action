@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 
 struct RecipientListCellModel {
-    var type: ServiceUnitRecipientType
+//    var type: ServiceUnitRecipientType
     var name: String
     var groupName: String?
 }

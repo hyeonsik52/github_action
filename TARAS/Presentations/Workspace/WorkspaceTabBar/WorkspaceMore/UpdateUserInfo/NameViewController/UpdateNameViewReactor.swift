@@ -47,24 +47,26 @@ class UpdateNameViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .update(let name):
-            guard 1...20 ~= name.count else { return .just(.updated(.failure(.etc(Text.UNVR_1))))}
-            let myUserIdx = self.provider.userManager.userTB.userIdx
-            let input = UpdateUserSWSInfoInput(name: name, swsIdx: self.swsIdx, userIdx: myUserIdx.value)
-            return .concat([
-                .just(.setProcessing(true)),
-                self.provider.networkManager
-                    .perform(UpdateUserSwsInfoMutationMutation(input: input))
-                    .map { $0.updateUserSwsInfoMutation }
-                    .map { data -> Info? in
-                        if let updatedName = data.asUserSwsInfo?.name {
-                            return .success(updatedName)
-                        }else if let error = data.asUpdateUserSwsInfoError {
-                            return .failure(.etc(error.errorCode.rawValue))
-                        }
-                        return nil
-                }.map { Mutation.updated($0) },
-                .just(.setProcessing(false))
-            ])
+            //temp
+            return .empty()
+//            guard 1...20 ~= name.count else { return .just(.updated(.failure(.etc(Text.UNVR_1))))}
+//            let myUserIdx = self.provider.userManager.userTB.userIdx
+//            let input = UpdateUserSWSInfoInput(name: name, swsIdx: self.swsIdx, userIdx: myUserIdx.value)
+//            return .concat([
+//                .just(.setProcessing(true)),
+//                self.provider.networkManager
+//                    .perform(UpdateUserSwsInfoMutationMutation(input: input))
+//                    .map { $0.updateUserSwsInfoMutation }
+//                    .map { data -> Info? in
+//                        if let updatedName = data.asUserSwsInfo?.name {
+//                            return .success(updatedName)
+//                        }else if let error = data.asUpdateUserSwsInfoError {
+//                            return .failure(.etc(error.errorCode.rawValue))
+//                        }
+//                        return nil
+//                }.map { Mutation.updated($0) },
+//                .just(.setProcessing(false))
+//            ])
         }
     }
     

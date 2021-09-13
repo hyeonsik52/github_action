@@ -124,44 +124,44 @@ final class AddWaypointCell: BaseTableViewCell, ReactorKit.View {
         }
     }
     
-    func freightsDescription(_ freights: [CreateServiceUnitFreightInput]) -> String {
-        var freights = freights
-
-        if freights.count == 1 {
-            return freights[0].name
-        } else if freights.count > 1 {
-            let first = freights.remove(at: 0)
-            let count = freights.count
-            return "\(first.name) 외 \(count)"
-        }
-        return "(물품 없음)"
-    }
-    
-    fileprivate func targetInfo(
-        _ serviceUnitModel: CreateServiceUnitModel
-    ) -> CreateServiceTargetInfoModel {
-
-        let serviceUnit = serviceUnitModel.serviceUnit
-        let targetType = serviceUnit.info.targetType
-
-        if targetType == .recipient {
-            if let recipient = serviceUnit.info.recipients.compactMap({ $0 }).first {
-                return .init(
-                    idx: recipient.targetIdx,
-                    name: serviceUnit.targetName,
-                    groupName: serviceUnit.targetGroupName,
-                    targetType: (recipient.targetType == .user) ? .user : .group
-                )
-            }
-        }
-        // targetType == .stop
-        return .init(
-            idx: (serviceUnit.info.stopIdx ?? 0) ?? 0,
-            name: serviceUnit.targetName,
-            groupName: serviceUnit.targetGroupName,
-            targetType: .stop
-        )
-    }
+//    func freightsDescription(_ freights: [CreateServiceUnitFreightInput]) -> String {
+//        var freights = freights
+//
+//        if freights.count == 1 {
+//            return freights[0].name
+//        } else if freights.count > 1 {
+//            let first = freights.remove(at: 0)
+//            let count = freights.count
+//            return "\(first.name) 외 \(count)"
+//        }
+//        return "(물품 없음)"
+//    }
+//
+//    fileprivate func targetInfo(
+//        _ serviceUnitModel: CreateServiceUnitModel
+//    ) -> CreateServiceTargetInfoModel {
+//
+//        let serviceUnit = serviceUnitModel.serviceUnit
+//        let targetType = serviceUnit.info.targetType
+//
+//        if targetType == .recipient {
+//            if let recipient = serviceUnit.info.recipients.compactMap({ $0 }).first {
+//                return .init(
+//                    idx: recipient.targetIdx,
+//                    name: serviceUnit.targetName,
+//                    groupName: serviceUnit.targetGroupName,
+//                    targetType: (recipient.targetType == .user) ? .user : .group
+//                )
+//            }
+//        }
+//        // targetType == .stop
+//        return .init(
+//            idx: (serviceUnit.info.stopIdx ?? 0) ?? 0,
+//            name: serviceUnit.targetName,
+//            groupName: serviceUnit.targetGroupName,
+//            targetType: .stop
+//        )
+//    }
     
     func bind(reactor: AddWaypointCellViewReactor) {
         
@@ -175,7 +175,7 @@ final class AddWaypointCell: BaseTableViewCell, ReactorKit.View {
             }, completion: nil
         )
 
-        self.cellView.targetInfoView.bind(self.targetInfo(reactor.serviceUnitModel))
+//        self.cellView.targetInfoView.bind(self.targetInfo(reactor.serviceUnitModel))
 
         // TODO: - 경유지 처리
         if reactor.serviceUnitModel.hasBypass {
@@ -215,14 +215,14 @@ final class AddWaypointCell: BaseTableViewCell, ReactorKit.View {
             .bind(to: self.upperView.rx.isHidden)
             .disposed(by: self.disposeBag)
 
-        let serviceUnitInfo = reactor.serviceUnitModel.serviceUnit.info
-        
-        // 품목 정보를 표출합니다.
-        let freights = serviceUnitInfo.freights.compactMap { $0 }
-        self.cellView.freightsDescriptionLabel.text = self.freightsDescription(freights)
-
-        // 상세 요청 사항을 표출합니다.
-        self.cellView.messageView.bind(text: (serviceUnitInfo.message ?? "") ?? "")
-        self.cellView.messageView.isHidden = (serviceUnitInfo.message == nil)
+//        let serviceUnitInfo = reactor.serviceUnitModel.serviceUnit.info
+//
+//        // 품목 정보를 표출합니다.
+//        let freights = serviceUnitInfo.freights.compactMap { $0 }
+//        self.cellView.freightsDescriptionLabel.text = self.freightsDescription(freights)
+//
+//        // 상세 요청 사항을 표출합니다.
+//        self.cellView.messageView.bind(text: (serviceUnitInfo.message ?? "") ?? "")
+//        self.cellView.messageView.isHidden = (serviceUnitInfo.message == nil)
     }
 }

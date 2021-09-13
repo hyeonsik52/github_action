@@ -13,23 +13,24 @@ class CSUFreightsViewReactor: Reactor {
     
     enum Action {
         case setFreightType
-        case toggleFreightMode
+//        case toggleFreightMode
         case setName(String)
     }
     
     enum Mutation {
         case updateFreightType
-        case updateFreightMode(ServiceUnitFreightType)
+//        case updateFreightMode(ServiceUnitFreightType)
         case updateName(String)
     }
     
     struct State {
-        var freightType: ServiceUnitFreightType
+//        var freightType: ServiceUnitFreightType
         var freightName: String
     }
     
     var initialState: State {
-        return .init(freightType: .unload, freightName: "")
+//        return .init(freightType: .unload, freightName: "")
+        return .init(freightName: "")
     }
     
     let provider : ManagerProviderType
@@ -38,25 +39,25 @@ class CSUFreightsViewReactor: Reactor {
     
     var serviceUnitModel: CreateServiceUnitModel
     
-    var freightType: ServiceUnitFreightType
+//    var freightType: ServiceUnitFreightType
     
     init(
         provider: ManagerProviderType,
         swsIdx: Int,
-        serviceUnitModel: CreateServiceUnitModel,
-        freightType: ServiceUnitFreightType
+        serviceUnitModel: CreateServiceUnitModel//,
+//        freightType: ServiceUnitFreightType
         
     ) {
         self.provider = provider
         self.swsIdx = swsIdx
         self.serviceUnitModel = serviceUnitModel
-        self.freightType = freightType
+//        self.freightType = freightType
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .toggleFreightMode:
-            return .just(.updateFreightMode(self.currentState.freightType))
+//        case .toggleFreightMode:
+//            return .just(.updateFreightMode(self.currentState.freightType))
             
         case let .setName(name):
             return .just(.updateName(name))
@@ -70,12 +71,12 @@ class CSUFreightsViewReactor: Reactor {
         var state = state
         switch mutation {
         case .updateFreightType:
-            state.freightType = self.freightType
+//            state.freightType = self.freightType
             return state
             
-        case let .updateFreightMode(mode):
-            state.freightType = (mode == .load) ? .unload: .load
-            return state
+//        case let .updateFreightMode(mode):
+//            state.freightType = (mode == .load) ? .unload: .load
+//            return state
             
         case let .updateName(name):
             state.freightName = name
@@ -89,7 +90,7 @@ class CSUFreightsViewReactor: Reactor {
             swsIdx: self.swsIdx,
             serviceUnitModel: self.serviceUnitModel,
             freightName: self.currentState.freightName,
-            freightMode: self.currentState.freightType
+//            freightMode: self.currentState.freightType
         )
     }
 }

@@ -54,7 +54,7 @@ class UpdateNameViewController: BaseNavigatableViewController, View {
     func bind(reactor: UpdateNameViewReactor) {
         
         //placeholder
-        self.nameInputView.textView.placeholder = try? reactor.initialState.result?.get()
+//        self.nameInputView.textView.placeholder = try? reactor.initialState.result?.get()
         
         //Action
         self.nameInputView.confirmButton.rx.tap
@@ -113,10 +113,10 @@ class UpdateNameViewController: BaseNavigatableViewController, View {
             })
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.isProcessing }
-            .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
-            .disposed(by: self.disposeBag)
+//        reactor.state.map { $0.isProcessing }
+//            .distinctUntilChanged()
+//            .bind(to: self.activityIndicator.rx.isAnimating)
+//            .disposed(by: self.disposeBag)
     }
 }
 

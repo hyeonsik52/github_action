@@ -21,8 +21,8 @@ class ServiceCellReactor: Reactor {
     }
     
     struct State {
-        var service: ServiceModel
-        var serviceUnit: ServiceUnitModel?
+//        var service: ServiceModel
+//        var serviceUnit: ServiceUnitModel?
         var serviceUnitOffset: Int?
     }
     
@@ -30,8 +30,12 @@ class ServiceCellReactor: Reactor {
     
     let mode: SerciceCellVisibleMode
     
-    init(mode: SerciceCellVisibleMode, service: ServiceModel, serviceUnit: ServiceUnitModel? = nil, serviceUnitOffset: Int? = nil) {
-        self.initialState = State(service: service, serviceUnit: serviceUnit, serviceUnitOffset: serviceUnitOffset)
+//    init(mode: SerciceCellVisibleMode, service: ServiceModel, serviceUnit: ServiceUnitModel? = nil, serviceUnitOffset: Int? = nil) {
+//        self.initialState = State(service: service, serviceUnit: serviceUnit, serviceUnitOffset: serviceUnitOffset)
+//        self.mode = mode
+//    }
+    init(mode: SerciceCellVisibleMode, serviceUnitOffset: Int? = nil) {
+        self.initialState = .init()
         self.mode = mode
     }
 }
@@ -39,10 +43,12 @@ class ServiceCellReactor: Reactor {
 extension ServiceCellReactor: Hashable {
     
     static func == (lhs: ServiceCellReactor, rhs: ServiceCellReactor) -> Bool {
-        return (lhs.currentState.serviceUnit?.serviceUnitIdx == rhs.currentState.serviceUnit?.serviceUnitIdx)
+//        return (lhs.currentState.serviceUnit?.serviceUnitIdx == rhs.currentState.serviceUnit?.serviceUnitIdx)
+        return false
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.currentState.serviceUnit?.serviceUnitIdx)
+//        hasher.combine(self.currentState.serviceUnit?.serviceUnitIdx)
+        hasher.combine(self.currentState.serviceUnitOffset)
     }
 }

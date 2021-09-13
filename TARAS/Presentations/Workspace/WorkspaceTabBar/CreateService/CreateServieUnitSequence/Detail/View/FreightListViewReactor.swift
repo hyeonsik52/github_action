@@ -9,8 +9,8 @@
 import ReactorKit
 
 struct freightListViewModel {
-    var type: ServiceUnitFreightType
-    var list: [CreateServiceUnitFreightInput]
+//    var type: ServiceUnitFreightType
+//    var list: [CreateServiceUnitFreightInput]
 }
 
 class FreightListViewReactor: Reactor {

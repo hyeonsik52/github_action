@@ -80,9 +80,9 @@ class WorkspaceHomeReceivedRequestTableViewCell: UITableViewCell, View {
         self.collectionView.rx.modelSelected(ServiceCellReactor.self)
             .subscribe(onNext: { [weak self] reactor in
                 guard let delegate = self?.delegate else { return }
-                let service = reactor.currentState.service
-                let serviceUnit = reactor.currentState.serviceUnit
-                delegate.didSelect(service, serviceUnit, false)
+//                let service = reactor.currentState.service
+//                let serviceUnit = reactor.currentState.serviceUnit
+//                delegate.didSelect(service, serviceUnit, false)
             })
             .disposed(by: self.disposeBag)
         

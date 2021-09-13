@@ -26,7 +26,7 @@ class WorkspaceSelectView: UIView {
         $0.textColor = .black
     }
     
-    private var swsInfo: SWSInfoType!
+//    private var swsInfo: SWSInfoType!
     let didSelect = PublishRelay<Void>()
     
     private let disposeBag = DisposeBag()
@@ -83,6 +83,6 @@ class WorkspaceSelectView: UIView {
     func bind(_ workspace: Workspace) {
         
         self.nameLabel.text = workspace.name
-        self.profileImageView.setImage(strUrl: workspace.profileImageURL)
+//        self.profileImageView.setImage(strUrl: workspace.profileImageURL)
     }
 }

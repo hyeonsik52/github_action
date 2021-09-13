@@ -40,20 +40,20 @@ class CSUQuantityViewReactor: Reactor {
     
     var freightName: String
     
-    var freightMode: ServiceUnitFreightType
+//    var freightMode: ServiceUnitFreightType
     
     init(
         provider: ManagerProviderType,
         swsIdx: Int,
         serviceUnitModel: CreateServiceUnitModel,
-        freightName: String,
-        freightMode: ServiceUnitFreightType
+        freightName: String//,
+//        freightMode: ServiceUnitFreightType
     ) {
         self.provider = provider
         self.swsIdx = swsIdx
         self.serviceUnitModel = serviceUnitModel
         self.freightName = freightName
-        self.freightMode = freightMode
+//        self.freightMode = freightMode
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -97,14 +97,14 @@ class CSUQuantityViewReactor: Reactor {
     }
     
     func updateCreateServiceUnitInput() -> CreateServiceUnitModel {
-        let freightType: ServiceUnitFreightType = (self.freightMode == .load) ? .load: .unload
-        let freightInput = CreateServiceUnitFreightInput(
-            name: self.freightName,
-            quantity: self.currentState.quantity,
-            type: freightType
-        )
-        
-        self.serviceUnitModel.serviceUnit.info.freights.append(freightInput)
+//        let freightType: ServiceUnitFreightType = (self.freightMode == .load) ? .load: .unload
+//        let freightInput = CreateServiceUnitFreightInput(
+//            name: self.freightName,
+//            quantity: self.currentState.quantity,
+//            type: freightType
+//        )
+//
+//        self.serviceUnitModel.serviceUnit.info.freights.append(freightInput)
         return self.serviceUnitModel
     }
     

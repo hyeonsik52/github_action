@@ -12,9 +12,11 @@ class DetailStackView: UIStackView {
     
     let headerView = DetailHeaderCellView()
     
-    let loadView = FreightListView(type: .load)
+//    let loadView = FreightListView(type: .load)
+    let loadView = FreightListView()
     
-    let unloadView = FreightListView(type: .unload)
+//    let unloadView = FreightListView(type: .unload)
+    let unloadView = FreightListView()
     
     let messageView = MessageView()
     

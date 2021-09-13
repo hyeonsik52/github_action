@@ -135,58 +135,58 @@ final class CreateServiceCellView: UIView {
         }
         
         // 대상 정보를 표출합니다.
-        self.targetInfoView.bind(self.targetInfo(serviceUnitModel))
+//        self.targetInfoView.bind(self.targetInfo(serviceUnitModel))
         
         // 품목 정보를 표출합니다.
-        let serviceUnitInfo = serviceUnitModel.serviceUnit.info
-        let freights = serviceUnitInfo.freights.compactMap { $0 }
-        self.freightsDescriptionLabel.text = self.freightsDescription(freights)
+//        let serviceUnitInfo = serviceUnitModel.serviceUnit.info
+//        let freights = serviceUnitInfo.freights.compactMap { $0 }
+//        self.freightsDescriptionLabel.text = self.freightsDescription(freights)
         
         // 상세 요청 사항을 표출합니다.
         // 메시지 입력 -> 수정 -> 메시지 삭제 시 nil 대신 "" 이 넘어와서 count 로 처리해놓았습니다.
-        if let optMessage = serviceUnitInfo.message, let message = optMessage, message.count > 0 {
-            self.messageView.bind(text: message)
-            self.messageView.isHidden = false
-        } else {
-            self.messageView.isHidden = true
-        }
+//        if let optMessage = serviceUnitInfo.message, let message = optMessage, message.count > 0 {
+//            self.messageView.bind(text: message)
+//            self.messageView.isHidden = false
+//        } else {
+//            self.messageView.isHidden = true
+//        }
     }
 
-    fileprivate func targetInfo(
-        _ serviceUnitModel: CreateServiceUnitModel
-    ) -> CreateServiceTargetInfoModel {
-        let serviceUnit = serviceUnitModel.serviceUnit
-        let targetType = serviceUnit.info.targetType
-
-        if targetType == .recipient {
-            if let recipient = serviceUnit.info.recipients.compactMap({ $0 }).first {
-                return .init(
-                    idx: recipient.targetIdx,
-                    name: serviceUnit.targetName,
-                    groupName: serviceUnit.targetGroupName,
-                    targetType: (recipient.targetType == .user) ? .user : .group
-                )
-            }
-        }
-        // targetType == .stop 인 경우입니다.
-        return .init(
-            idx: (serviceUnit.info.stopIdx ?? 0) ?? 0,
-            name: serviceUnit.targetName,
-            groupName: serviceUnit.targetGroupName,
-            targetType: .stop
-        )
-    }
+//    fileprivate func targetInfo(
+//        _ serviceUnitModel: CreateServiceUnitModel
+//    ) -> CreateServiceTargetInfoModel {
+//        let serviceUnit = serviceUnitModel.serviceUnit
+//        let targetType = serviceUnit.info.targetType
+//
+//        if targetType == .recipient {
+//            if let recipient = serviceUnit.info.recipients.compactMap({ $0 }).first {
+//                return .init(
+//                    idx: recipient.targetIdx,
+//                    name: serviceUnit.targetName,
+//                    groupName: serviceUnit.targetGroupName,
+//                    targetType: (recipient.targetType == .user) ? .user : .group
+//                )
+//            }
+//        }
+//        // targetType == .stop 인 경우입니다.
+//        return .init(
+//            idx: (serviceUnit.info.stopIdx ?? 0) ?? 0,
+//            name: serviceUnit.targetName,
+//            groupName: serviceUnit.targetGroupName,
+//            targetType: .stop
+//        )
+//    }
     
-    func freightsDescription(_ freights: [CreateServiceUnitFreightInput]) -> String {
-        var freights = freights
-        
-        if freights.count == 1 {
-            return freights[0].name
-        } else if freights.count > 1 {
-            let first = freights.remove(at: 0)
-            let count = freights.count
-            return "\(first.name) 외 \(count)"
-        }
-        return "(물품 없음)"
-    }
+//    func freightsDescription(_ freights: [CreateServiceUnitFreightInput]) -> String {
+//        var freights = freights
+//
+//        if freights.count == 1 {
+//            return freights[0].name
+//        } else if freights.count > 1 {
+//            let first = freights.remove(at: 0)
+//            let count = freights.count
+//            return "\(first.name) 외 \(count)"
+//        }
+//        return "(물품 없음)"
+//    }
 }
