@@ -14,7 +14,7 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-class StopInChargeListViewController: BaseNavigationViewController, View {
+class StopInChargeListViewController: BaseNavigatableViewController, View {
 
     private let tableView = UITableView().then {
         $0.separatorStyle = .none

@@ -14,7 +14,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class WorkTargetsViewController: BaseNavigationViewController, View {
+class WorkTargetsViewController: BaseNavigatableViewController, View {
 
     private let tableView = UITableView().then {
         $0.backgroundColor = .clear

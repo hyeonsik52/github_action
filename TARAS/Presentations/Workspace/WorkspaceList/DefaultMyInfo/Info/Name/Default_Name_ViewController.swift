@@ -14,7 +14,7 @@ import RxCocoa
 import ReactorKit
 import RxKeyboard
 
-class Default_Name_ViewController: BaseNavigationViewController, View {
+class Default_Name_ViewController: BaseNavigatableViewController, View {
 
     enum Text {
         static let UN_VC_1 = "사용자 이름 설정"

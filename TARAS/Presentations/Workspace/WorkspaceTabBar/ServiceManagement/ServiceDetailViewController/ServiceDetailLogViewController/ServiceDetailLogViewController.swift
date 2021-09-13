@@ -14,7 +14,7 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-class ServiceDetailLogViewController: BaseNavigationViewController, View {
+class ServiceDetailLogViewController: BaseNavigatableViewController, View {
 
     private let tableView = UITableView().then {
         

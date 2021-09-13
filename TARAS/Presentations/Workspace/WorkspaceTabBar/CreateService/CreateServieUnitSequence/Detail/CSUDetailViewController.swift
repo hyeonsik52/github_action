@@ -25,7 +25,7 @@ extension CSUDelegate {
 }
 
 
-class CSUDetailViewController: BaseNavigationViewController, ReactorKit.View {
+class CSUDetailViewController: BaseNavigatableViewController, ReactorKit.View {
     
     weak var csuEditDelegate: CSUEditDelegate?
     

@@ -14,7 +14,7 @@ import RxCocoa
 import ReactorKit
 import RxKeyboard
 
-class UpdateNameViewController: BaseNavigationViewController, View {
+class UpdateNameViewController: BaseNavigatableViewController, View {
     
     enum Text {
         static let UN_VC_1 = "이름 변경"

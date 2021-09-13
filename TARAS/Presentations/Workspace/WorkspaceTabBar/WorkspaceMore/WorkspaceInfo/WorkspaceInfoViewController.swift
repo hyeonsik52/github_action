@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import ReactorKit
 
-class WorkspaceInfoViewController: BaseNavigationViewController, View {
+class WorkspaceInfoViewController: BaseNavigatableViewController, View {
 
     enum Text {
         static let WI_VC_1 = "워크스페이스 정보"

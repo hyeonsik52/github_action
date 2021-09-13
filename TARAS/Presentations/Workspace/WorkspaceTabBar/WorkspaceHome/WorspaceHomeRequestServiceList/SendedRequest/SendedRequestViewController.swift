@@ -15,7 +15,7 @@ import ReactorKit
 import RxDataSources
 import SkeletonView
 
-class SendedRequestViewController: BaseNavigationViewController, View {
+class SendedRequestViewController: BaseNavigatableViewController, View {
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         $0.minimumLineSpacing = 10

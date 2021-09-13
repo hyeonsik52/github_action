@@ -13,7 +13,7 @@ import RxCocoa
 import RxSwift
 import RxKeyboard
 
-class CSUQuantityViewController: BaseNavigationViewController, ReactorKit.View {
+class CSUQuantityViewController: BaseNavigatableViewController, ReactorKit.View {
 
     weak var csuDelegate: CSUDelegate?
 

@@ -13,7 +13,7 @@ import RxCocoa
 import RxSwift
 import RxKeyboard
 
-class Default_PWReset_ViewController: BaseNavigationViewController, View {
+class Default_PWReset_ViewController: BaseNavigatableViewController, View {
     
     private lazy var pwInputView = SRPInputView(
         description: "8~16자의 영문 대 소문자, 숫자, 특수문자 조합으로 설정해주세요."

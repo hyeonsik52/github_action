@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import ReactorKit
 
-class DefaultMyInfoViewController: BaseNavigationViewController, View {
+class DefaultMyInfoViewController: BaseNavigatableViewController, View {
 
     private let profileImageCellView = SettingProfileCellView(title: "프로필 사진")
     private let idCellView = SettingTextCellView(title: "아이디", isArrowHidden: true)

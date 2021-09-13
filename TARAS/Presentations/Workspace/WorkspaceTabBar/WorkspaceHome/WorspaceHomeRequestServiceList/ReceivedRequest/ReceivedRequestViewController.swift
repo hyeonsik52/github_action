@@ -16,7 +16,7 @@ import RxDataSources
 import PanModal
 import SkeletonView
 
-class ReceivedRequestViewController: BaseNavigationViewController, View {
+class ReceivedRequestViewController: BaseNavigatableViewController, View {
     
     private var tableView = UITableView(frame: .zero, style: .grouped).then {
         

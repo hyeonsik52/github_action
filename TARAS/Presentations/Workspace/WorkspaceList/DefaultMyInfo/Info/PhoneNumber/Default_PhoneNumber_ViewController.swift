@@ -14,7 +14,7 @@ import RxSwift
 import RxKeyboard
 import ReactorKit
 
-class Default_PhoneNumber_ViewController: BaseNavigationViewController, ReactorKit.View {
+class Default_PhoneNumber_ViewController: BaseNavigatableViewController, ReactorKit.View {
     
     enum Text {
         static let SU_ID_VC_1 = "전화번호 입력"

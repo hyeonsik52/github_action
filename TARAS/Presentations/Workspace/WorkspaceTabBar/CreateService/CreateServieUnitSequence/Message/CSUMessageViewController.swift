@@ -11,7 +11,7 @@ import UIKit
 import ReactorKit
 import RxKeyboard
 
-class CSUMessageViewController: BaseNavigationViewController, ReactorKit.View {
+class CSUMessageViewController: BaseNavigatableViewController, ReactorKit.View {
 
     weak var csuDelegate: CSUDelegate?
     

@@ -12,7 +12,7 @@ import ReactorKit
 import RxDataSources
 import SnapKit
 
-class RecipientUserViewController: BaseNavigationViewController, ReactorKit.View {
+class RecipientUserViewController: BaseNavigatableViewController, ReactorKit.View {
 
     weak var recipientDelegate: CSURecipientDelegate?
 

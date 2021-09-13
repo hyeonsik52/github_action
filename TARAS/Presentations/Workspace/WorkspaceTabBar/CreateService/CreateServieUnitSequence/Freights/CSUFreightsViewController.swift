@@ -11,7 +11,7 @@ import UIKit
 import ReactorKit
 import RxKeyboard
 
-class CSUFreightsViewController: BaseNavigationViewController, ReactorKit.View {
+class CSUFreightsViewController: BaseNavigatableViewController, ReactorKit.View {
     
     weak var csuDelegate: CSUDelegate?
     

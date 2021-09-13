@@ -11,7 +11,7 @@ import UIKit
 import ReactorKit
 import RxKeyboard
 
-class Default_PWConfirm_ViewController: BaseNavigationViewController, View {
+class Default_PWConfirm_ViewController: BaseNavigatableViewController, View {
     
     private lazy var pwInputView = SRPInputView(description: "비밀번호를 한 번 더 입력해주세요.").then {
         $0.textView.srpClearTextViewDelegate = self

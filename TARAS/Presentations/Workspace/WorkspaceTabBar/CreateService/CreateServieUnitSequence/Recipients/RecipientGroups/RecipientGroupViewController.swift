@@ -11,7 +11,7 @@ import UIKit
 import ReactorKit
 import RxDataSources
 
-class RecipientGroupViewController: BaseNavigationViewController, ReactorKit.View {
+class RecipientGroupViewController: BaseNavigatableViewController, ReactorKit.View {
 
     weak var recipientDelegate: CSURecipientDelegate?
 

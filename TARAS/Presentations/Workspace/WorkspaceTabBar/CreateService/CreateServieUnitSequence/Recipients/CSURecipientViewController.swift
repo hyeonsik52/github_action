@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class CSURecipientViewController: BaseNavigationViewController, ReactorKit.View {
+class CSURecipientViewController: BaseNavigatableViewController, ReactorKit.View {
 
     weak var csuDelegate: CSUDelegate?
     

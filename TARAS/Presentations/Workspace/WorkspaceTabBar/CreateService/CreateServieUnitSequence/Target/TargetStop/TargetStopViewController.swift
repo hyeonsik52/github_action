@@ -11,7 +11,7 @@ import UIKit
 import ReactorKit
 import RxDataSources
 
-class TargetStopViewController: BaseNavigationViewController, ReactorKit.View {
+class TargetStopViewController: BaseNavigatableViewController, ReactorKit.View {
 
     weak var targetDelegate: CSUTargetDelegate?
 

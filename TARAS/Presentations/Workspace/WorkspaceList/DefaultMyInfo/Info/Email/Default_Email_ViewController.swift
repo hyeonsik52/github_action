@@ -13,7 +13,7 @@ import RxSwift
 import RxKeyboard
 import ReactorKit
 
-class Default_Email_ViewController: BaseNavigationViewController, View {
+class Default_Email_ViewController: BaseNavigatableViewController, View {
 
     enum Text {
         static let SU_ID_VC_1 = "이메일 입력"

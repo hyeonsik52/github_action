@@ -10,7 +10,7 @@ import UIKit
 import ReactorKit
 import RxDataSources
 
-class BelongingGroupListViewController: BaseNavigationViewController, View {
+class BelongingGroupListViewController: BaseNavigatableViewController, View {
 
     var preferredTitle: String?
     

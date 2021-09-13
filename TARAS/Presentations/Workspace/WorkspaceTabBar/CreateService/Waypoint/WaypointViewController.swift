@@ -17,7 +17,7 @@ protocol CreateServiceWaypointChangeDelegate: class {
     func didCreateServiceWaypointChange(prevStopIdx: Int?, stopIdx: Int)
 }
 
-class WaypointViewController: BaseNavigationViewController, ReactorKit.View {
+class WaypointViewController: BaseNavigatableViewController, ReactorKit.View {
     
     weak var createServiceWaypointChangeDelegate: CreateServiceWaypointChangeDelegate?
     

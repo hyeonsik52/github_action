@@ -10,7 +10,7 @@ import UIKit
 import ReactorKit
 import RxDataSources
 
-class SelectDefaultPlaceViewController: BaseNavigationViewController, View {
+class SelectDefaultPlaceViewController: BaseNavigatableViewController, View {
     
     enum Text {
         static let SDP_VC_1 = "기본 위치 설정"

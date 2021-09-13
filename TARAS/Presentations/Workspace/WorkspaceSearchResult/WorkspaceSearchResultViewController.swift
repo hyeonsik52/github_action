@@ -12,7 +12,7 @@ import Apollo
 import RxSwift
 import ReactorKit
 
-class WorkspaceSearchResultViewController: BaseNavigationViewController, ReactorKit.View {
+class WorkspaceSearchResultViewController: BaseNavigatableViewController, ReactorKit.View {
 
     enum Text {
         static let WSSRVC_1 = "워크스페이스 가입"

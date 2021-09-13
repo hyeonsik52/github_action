@@ -15,7 +15,7 @@ import RxDataSources
 
 /// 단위서비스 생성 과정 중 '대상을 선택'하는 viewController 입니다.
 /// CSU 는 Create Service Unit(단위서비스 생성) 의 약자입니다.
-class CSUTargetViewController: BaseNavigationViewController, ReactorKit.View {
+class CSUTargetViewController: BaseNavigatableViewController, ReactorKit.View {
 
     weak var csuDelegate: CSUDelegate?
 
