@@ -12,7 +12,7 @@ import Then
 import RxSwift
 import RxCocoa
 import RxDataSources
-import SkeletonView
+//import SkeletonView
 
 class CreatedServicesViewController: BaseViewController, View {
     

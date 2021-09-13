@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import Kingfisher
 import ReactorKit
-import SkeletonView
+//import SkeletonView
 
 class WorkspaceHomeReceivedRequestCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     typealias Reactor = ServiceCellReactor

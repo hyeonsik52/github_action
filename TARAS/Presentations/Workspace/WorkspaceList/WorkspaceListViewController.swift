@@ -9,7 +9,7 @@
 import UIKit
 
 import Apollo
-import NVActivityIndicatorView
+//import NVActivityIndicatorView
 import SnapKit
 import RxCocoa
 import RxSwift

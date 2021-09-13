@@ -12,7 +12,7 @@ import Then
 import ReactorKit
 import RxSwift
 import RxCocoa
-import PanModal
+//import PanModal
 
 class WorkRequestViewController: BaseNavigatableViewController, View {
     

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 import Kingfisher
-import SkeletonView
+//import SkeletonView
 
 class ReceivedServiceCellView: UIView {
     

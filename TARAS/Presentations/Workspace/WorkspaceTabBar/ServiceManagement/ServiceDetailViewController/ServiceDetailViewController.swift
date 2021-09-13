@@ -13,7 +13,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 import RxDataSources
-import PanModal
+//import PanModal
 
 class ServiceDetailViewController: BaseViewController, View {
     

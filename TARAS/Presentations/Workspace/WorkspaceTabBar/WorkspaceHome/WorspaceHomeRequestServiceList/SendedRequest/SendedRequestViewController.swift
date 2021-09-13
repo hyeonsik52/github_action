@@ -13,7 +13,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 import RxDataSources
-import SkeletonView
+//import SkeletonView
 
 class SendedRequestViewController: BaseNavigatableViewController, View {
     

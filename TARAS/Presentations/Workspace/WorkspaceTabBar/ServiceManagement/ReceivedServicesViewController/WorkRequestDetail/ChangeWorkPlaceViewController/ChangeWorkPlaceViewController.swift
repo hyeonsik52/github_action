@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 import Then
 import ReactorKit
-import UITextView_Placeholder
-import PanModal
+//import UITextView_Placeholder
+//import PanModal
 
 protocol ChangeWorkPlaceViewControllerDelegate: class {
     func didAccept()

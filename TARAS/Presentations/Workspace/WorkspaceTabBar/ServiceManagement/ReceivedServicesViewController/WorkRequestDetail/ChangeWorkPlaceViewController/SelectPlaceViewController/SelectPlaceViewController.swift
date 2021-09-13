@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import ReactorKit
-import PanModal
+//import PanModal
 
 protocol SelectPlaceViewControllerDelegate: class {
     func didSelect(_ place: ServicePlace)
