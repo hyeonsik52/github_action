@@ -1,5 +1,5 @@
 //
-//  TRSButton.swift
+//  SRPButton.swift
 //  TARAS-2.0
 //
 //  Created by nexmond on 2021/01/12.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// TARAS 프로젝트에서 공통으로 사용되는 solid 타입 버튼입니다.
-class TRSButton: UIButton {
+class SRPButton: UIButton {
     
     struct Appearance {
         

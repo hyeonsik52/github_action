@@ -11,7 +11,7 @@
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
 		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
 		ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */; };
-		ED52732926C255FC0077CD9D /* TRSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730E26C255FC0077CD9D /* TRSButton.swift */; };
+		ED52732926C255FC0077CD9D /* SRPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730E26C255FC0077CD9D /* SRPButton.swift */; };
 		ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730F26C255FC0077CD9D /* SignInViewController.swift */; };
 		ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52731026C255FC0077CD9D /* SignInViewReactor.swift */; };
 		ED52737126C3A03C0077CD9D /* SignUpIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */; };
@@ -374,7 +374,7 @@
 		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		ED52730C26C255FC0077CD9D /* LargeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
 		ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignTextFieldView.swift; sourceTree = "<group>"; };
-		ED52730E26C255FC0077CD9D /* TRSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRSButton.swift; sourceTree = "<group>"; };
+		ED52730E26C255FC0077CD9D /* SRPButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPButton.swift; sourceTree = "<group>"; };
 		ED52730F26C255FC0077CD9D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ED52731026C255FC0077CD9D /* SignInViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewReactor.swift; sourceTree = "<group>"; };
 		ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpIdViewController.swift; sourceTree = "<group>"; };
@@ -777,7 +777,7 @@
 				ED52730B26C255FC0077CD9D /* SignInView.swift */,
 				ED52730C26C255FC0077CD9D /* LargeTitleView.swift */,
 				ED52730D26C255FC0077CD9D /* SignTextFieldView.swift */,
-				ED52730E26C255FC0077CD9D /* TRSButton.swift */,
+				ED52730E26C255FC0077CD9D /* SRPButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2273,7 +2273,7 @@
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
 				EDC11AF526D3A39E0020AB09 /* WorkspaceHomeReceivedRequestTableViewCell.swift in Sources */,
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
-				ED52732926C255FC0077CD9D /* TRSButton.swift in Sources */,
+				ED52732926C255FC0077CD9D /* SRPButton.swift in Sources */,
 				ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */,
 				EDC11A9C26D3A39D0020AB09 /* BelongingGroupListViewReactor.swift in Sources */,
 				EDC11A7226D3A39D0020AB09 /* ServiceContainerCellReactor.swift in Sources */,
