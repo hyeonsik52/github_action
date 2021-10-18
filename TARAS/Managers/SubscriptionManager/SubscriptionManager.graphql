@@ -1,3 +1,11 @@
+subscription serviceBySWSIdxSubscription($swsIdx: Int!) {
+	serviceBySWSIdxSubscription(serviceIdx: $serviceIdx) {
+		... on ServiceDeleted {
+			serviceIdx
+		}
+	}
+}
+
 subscription receivedService {
 	receivedServiceSubscription {
 		... on ServiceCreated {
@@ -12,6 +20,7 @@ subscription receivedService {
 		}
 	}
 }
+
 subscription serviceByServiceIdx($serviceIdx: Int!) {
 	serviceByServiceIdxSubscription(serviceIdx: $serviceIdx) {
 		... on Service {
@@ -28,4 +37,16 @@ subscription serviceLog($serviceIdx: Int!) {
 	  }
     }
   }
+}
+
+
+subscription hiddenServiceSubscription {
+	hiddenServiceSubscription {
+		... on ServiceError {
+			errorCode
+		}
+		... on Service {
+			serviceIdx
+		}
+	}
 }

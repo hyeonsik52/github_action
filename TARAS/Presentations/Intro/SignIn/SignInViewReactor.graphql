@@ -28,9 +28,3 @@ fragment UserFragment on User {
 	email
 	phoneNumber
 }
-
-query allSWS{
-	allSWS {
-	name
-  }
-}

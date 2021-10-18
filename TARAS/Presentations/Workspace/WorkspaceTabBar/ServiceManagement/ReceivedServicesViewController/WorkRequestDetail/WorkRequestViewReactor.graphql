@@ -31,24 +31,16 @@ mutation startServiceUnitMutation($input: StartServiceUnitInput!) {
     }
 }
 
-mutation completeServiceUnitMutation($input: CompleteServiceUnitInput!) {
-    completeServiceUnitMutation(input: $input) {
-        ... on CompleteServiceUnitError {
-            errorCode
-        }
-        ... on CompleteServiceUnitPayload {
-            result
-        }
-    }
-}
-
-mutation cancelServiceUnitCompletionMutation($input: CancelServiceUnitCompletionInput!) {
-    cancelServiceUnitCompletionMutation(input: $input) {
-        ... on CancelServiceUnitCompletionError {
-            errorCode
-        }
-        ... on CancelServiceUnitCompletionPayload {
-            result
-        }
-    }
+mutation completeServiceUnit($input: CompleteServiceUnitInput!) {
+	completeServiceUnitMutation(input: $input) {
+		... on TypeError {
+			... TypeErrorFragment
+		}
+		... on CompleteServiceUnitError {
+			serviceErrorCode: errorCode
+		}
+		... on CompleteServiceUnitPayload {
+			result
+		}
+	}
 }

@@ -1,88 +1,10 @@
 query userByUserIdx($userIdx: Int!, $swsIdx: Int!) {
-    userByUserIdx(userIdx: $userIdx) {
-        ... on UserError {
-            errorCode
-        }
-        ... on User {
-            id
-            name
-            userIdx
-            userId
-            phoneNumber
-            profileImageUrl
-            email
-            userSWSInfo(swsIdx: $swsIdx) {
-                ... on UserSWSInfoError {
-                    errorCode
-                }
-                ... on UserSWSInfo {
-                    id
-                    name
-                    userIdx
-                    phoneNumber
-                    profileImageUrl
-                    email
-                    swsIdx
-                    userSwsInfoIdx
-                    stop {
-                        ... on StopError {
-                            errorCode
-                        }
-                        ... on Stop {
-                            id
-                            stopIdx
-                            name
-                        }
-                    }
-                    groupStop {
-                        ... on StopError {
-                            errorCode
-                        }
-                        ... on Stop {
-                            id
-                            stopIdx
-                            name
-                        }
-                    }
-                    groupsConnection {
-                        totalCount
-                        pageInfo {
-                            hasNextPage
-                            hasPreviousPage
-                            startCursor
-                            endCursor
-                        }
-                        edges {
-                            cursor
-                            node {
-                                id
-                                groupIdx
-                                name
-                                profileImageUrl
-                                locatedStop {
-                                    ... on StopError {
-                                        errorCode
-                                    }
-                                    ... on Stop {
-                                        id
-                                        stopIdx
-                                        name
-                                    }
-                                }
-                                stopsConnection(first: 2147483647) {
-                                    edges {
-                                        node {
-                                            id
-                                            stopIdx
-                                            name
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+	userByUserIdx(userIdx: $userIdx) {
+		... on UserError {
+			errorCode
+		}
+		... on User {
+			... UserFragment
+		}
+	}
 }

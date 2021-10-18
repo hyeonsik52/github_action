@@ -1,8 +1,0 @@
-query groupByGroupIdx($groupIdx: Int!) {
-    groupByGroupIdx(groupIdx: $groupIdx) {
-        ... on Group {
-            name
-            groupIdx
-        }
-    }
-}

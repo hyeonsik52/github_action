@@ -1,3 +1,10 @@
+mutation userEmailDuplicateCheck($input: UserEmailDuplicateCheckInput!) {
+	userEmailDuplicateCheckMutation(input: $input) {
+		... on UserDuplicateCheckPayload {
+			result
+		}
+	}
+}
 mutation createEmailAuthCode($input: CreateEmailAuthCodeInput!) {
 	createEmailAuthCodeMutation(input: $input) {
 		... on TypeError {
@@ -26,16 +33,40 @@ mutation checkEmailAuthCode($input: CheckEmailAuthCodeInput!) {
 	}
 }
 
-mutation findUserIdListByEmail($input: FindUserIdByEmailInput!) {
-	findUserIdListByEmailMutation(input: $input) {
-		... on TypeError {
-            ... TypeErrorFragment
-		}
+#mutation findUserIdListByEmail($input: FindUserIdByEmailInput!) {
+#	findUserIdListByEmailMutation(input: $input) {
+#		... on TypeError {
+#            ... TypeErrorFragment
+#		}
+#		... on FindUserIdError {
+#			findErrorCode: errorCode
+#		}
+#		... on FindUserIdListPayload {
+#			userIdList
+#		}
+#	}
+#}
+
+mutation findUserIdByEmail($input: FindUserIdByEmailInput!) {
+	findUserIdByEmailMutation(input: $input) {
 		... on FindUserIdError {
-			findErrorCode: errorCode
+			errorCode
 		}
-		... on FindUserIdListPayload {
-			userIdList
+		
+		... on FindUserIdPayload {
+			userId
+		}
+	}
+}
+
+mutation findUserIdByPhoneNumber($input: FindUserIdByPhoneNumberInput!) {
+	findUserIdByPhoneNumberMutation(input: $input) {
+		... on FindUserIdError {
+			errorCode
+		}
+		
+		... on FindUserIdPayload {
+			userId
 		}
 	}
 }

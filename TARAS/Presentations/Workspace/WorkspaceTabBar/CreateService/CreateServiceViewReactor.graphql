@@ -1,7 +1,0 @@
-mutation createService($input: CreateServiceInput!) {
-    createServiceMutation(input: $input) {
-        ... on Service {
-            serviceIdx
-        }
-    }
-}

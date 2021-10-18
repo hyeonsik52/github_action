@@ -42,3 +42,17 @@ query presetServices($swsIdx: Int!) {
 		}
 	}
 }
+
+mutation createServiceWithPreset($input: CreateServiceWithPresetInput) {
+	createServiceWithPresetMutation(input: $input) {
+		... on TypeError {
+			typeErrorCode: errorCode
+		}
+		... on CreateServiceWithPresetError {
+			presetErrorCode: errorCode
+		}
+		... on Service {
+			serviceIdx
+		}
+	}
+}
