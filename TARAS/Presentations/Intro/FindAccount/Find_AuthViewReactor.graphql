@@ -1,0 +1,12 @@
+mutation createPhoneNumberAuthCode($input: CreatePhoneNumberAuthCodeInput!) {
+    createPhoneNumberAuthCodeMutation(input: $input) {
+        ... on CreatePhoneNumberAuthCodeError {
+            errorCode
+        }
+        
+        ... on CreatePhoneNumberAuthCodePayload {
+            expiresIn
+            phoneNumber
+        }
+    }
+}

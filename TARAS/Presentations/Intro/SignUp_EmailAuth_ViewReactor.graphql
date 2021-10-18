@@ -1,0 +1,11 @@
+mutation checkEmailAuthCode($input: CheckEmailAuthCodeInput!) {
+    checkEmailAuthCodeMutation(input: $input) {
+        ... on CheckEmailAuthCodeError {
+            errorCode
+        }
+        ... on CheckEmailAuthCodePayload {
+            email
+            emailToken
+        }
+    }
+}

@@ -1,0 +1,19 @@
+mutation userEmailDuplicateCheck($input: UserEmailDuplicateCheckInput!) {
+    userEmailDuplicateCheckMutation(input: $input) {
+        ... on UserDuplicateCheckPayload {
+            result
+        }
+    }
+}
+
+mutation createEmailAuthCode($input: CreateEmailAuthCodeInput!) {
+    createEmailAuthCodeMutation(input: $input) {
+        ... on CreateEmailAuthCodeError {
+            errorCode
+        }
+        ... on CreateEmailAuthCodePayload {
+            email
+            expiresIn
+        }
+    }
+}

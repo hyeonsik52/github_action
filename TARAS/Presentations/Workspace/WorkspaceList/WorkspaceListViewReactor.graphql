@@ -1,0 +1,48 @@
+query allMyWorkspace {
+	allMySWS {
+		... WorkspaceFragment
+	}
+}
+
+mutation requestQuitSWS($input: RequestQuitSWSInput!) {
+	requestQuitSWSMutation(input: $input) {
+		... on TypeError {
+            ... TypeErrorFragment
+		}
+		... on RequestQuitSWSError {
+			quitErrorCode: errorCode
+		}
+		... on RequestQuitSWSPayload {
+			result
+		}
+	}
+}
+
+fragment WorkspaceFragment on SWS {
+	swsIdx
+	code
+	name
+	profileImageUrl
+	createAt
+	myMemberStatus
+	myJoinRequest {
+		... on SWSJoinRequestError {
+			errorCode
+		}
+		... on SWSJoinRequest {
+			swsJoinRequestIdx
+		}
+	}
+}
+
+query requestedSWSJoinRequests {
+	requestedSWSJoinRequestsConnection {
+		edges {
+			node {
+				sws {
+					... WorkspaceFragment
+				}
+			}
+		}
+	}
+}

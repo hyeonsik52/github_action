@@ -1,0 +1,42 @@
+mutation logout {
+	logoutMutation {
+		... on LogoutPayload {
+			result
+		}
+	}
+}
+
+mutation resign {
+	resignMutation {
+		... on TypeError {
+            ... TypeErrorFragment
+		}
+		... on ResignError {
+			resignErrorCode: errorCode
+		}
+		... on ResignPayload {
+			result
+		}
+	}
+}
+
+mutation updateUserInfo($input: UpdateUserInfoInput!) {
+	updateUserInfoMutation(input: $input) {
+		... on TypeError {
+            ... TypeErrorFragment
+		}
+		... on UpdateUserInfoError {
+			userErrorCode: errorCode
+		}
+		... on User {
+			... UserFragment
+		}
+	}
+}
+
+fragment TypeErrorFragment on TypeError {
+    typeErrorCode: errorCode
+    description
+    key
+    value
+}

@@ -1,0 +1,54 @@
+mutation signOut {
+    logoutMutation{
+        ... on LogoutPayload {
+            result
+        }
+    }
+}
+
+mutation escapeSockse {
+    resignMutation {
+        ... on ResignPayload {
+            result
+        }
+    }
+}
+
+mutation createAuthCode($input: CreateAuthCodeInput!) {
+    createAuthCodeMutation(input: $input) {
+        ... on CreateAuthCodeError {
+            errorCode
+        }
+        ... on CreateAuthCodePayload {
+            authCode
+        }
+    }
+}
+
+mutation updateUserInfo($input: UpdateUserInfoInput!) {
+    updateUserInfoMutation(input: $input) {
+        ... on UpdateUserInfoError {
+            errorCode
+        }
+        ... on User {
+            email
+            name
+            phoneNumber
+        }
+    }
+}
+
+query defaultUserInfo {
+    myUserInfo {
+        ... on UserError {
+            errorCode
+        }
+        ... on User {
+            name
+            userId
+            phoneNumber
+            profileImageUrl
+            email
+        }
+    }
+}

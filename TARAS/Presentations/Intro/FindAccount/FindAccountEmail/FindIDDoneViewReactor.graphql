@@ -1,0 +1,23 @@
+mutation findUserIdByEmail($input: FindUserIdByEmailInput!) {
+    findUserIdByEmailMutation(input: $input) {
+        ... on FindUserIdError {
+            errorCode
+        }
+        
+        ... on FindUserIdPayload {
+            userId
+        }
+    }
+}
+
+mutation findUserIdByPhoneNumber($input: FindUserIdByPhoneNumberInput!) {
+    findUserIdByPhoneNumberMutation(input: $input) {
+        ... on FindUserIdError {
+            errorCode
+        }
+        
+        ... on FindUserIdPayload {
+            userId
+        }
+    }
+}

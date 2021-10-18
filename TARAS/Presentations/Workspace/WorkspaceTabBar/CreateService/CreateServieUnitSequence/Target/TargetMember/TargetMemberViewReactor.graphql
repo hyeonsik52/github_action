@@ -1,0 +1,57 @@
+query groupList($first: Int, $swsIdx: Int!) {
+    swsGroupsConnection(first: $first, swsIdx: $swsIdx) {
+        edges {
+            node {
+                groupIdx
+                name
+                profileImageUrl
+                locatedStop {
+                    ... on Stop {
+                        stopIdx
+                    }
+                }
+                stopIdx
+            }
+        }
+    }
+}
+
+query userList($first: Int, $swsIdx: Int!) {
+    swsUsersConnection(first: $first, swsIdx: $swsIdx) {
+        edges {
+            node {
+                userIdx
+                name
+                profileImageUrl
+                userSWSInfo(swsIdx: $swsIdx) {
+                    ... on UserSWSInfo {
+                        name
+                        stopIdx
+                        profileImageUrl
+                        
+                        # 유저가 속한 첫 번째 그룹 이름을 가져오기 위해서 사용
+                        groupsConnection(first: 1) {
+                            edges {
+                                node {
+                                    name
+                                    groupIdx
+                                    stopIdx
+                                }
+                            }
+                        }
+                        
+                        # 가입된 그룹 중 그룹 기본 위치가 유효한 그룹을 가져옵니다.
+                        # 그럼 기본 위치가 유효한 그룹이 복수일 경우에는 어떤 그룹이 오는걸까요?
+                        # 그건 아무도 모릅니다! 이 기준을 알아내신다면 주석을 남겨주세요.
+                        groupStop {
+                            ... on Stop {
+                                name
+                                stopIdx
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

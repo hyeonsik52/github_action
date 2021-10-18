@@ -1,0 +1,44 @@
+mutation createService($input: CreateServiceInput!) {
+	createServiceMutation(input: $input) {
+		... on TypeError {
+            ... TypeErrorFragment
+		}
+		... on CreateServiceError {
+			presetErrorCode: errorCode
+		}
+		... on Service {
+			serviceIdx
+		}
+	}
+}
+
+query presetServices($swsIdx: Int!) {
+	presetServicesConnection(swsIdx: $swsIdx) {
+		edges {
+			node {
+				presetServiceIdx
+				mode
+				name
+				presetServiceUnits {
+					freights {
+						name
+						quantity
+						type
+					}
+					isBypass
+					isStopFixed
+					recipients {
+						targetIdx
+						targetType
+					}
+					stop {
+						stopIdx
+						name
+					}
+					stopType
+					targetType
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,70 @@
+query searchWorkspace($code: String!) {
+    swsByCode(code: $code) {
+        ... on SWSError {
+            errorCode
+        }
+    
+        ... on SWS {
+            swsIdx
+            name
+            createAt
+            memberCount
+            profileImageUrl
+        }
+    }
+}
+
+query myWorkspaces {
+    allMySWS {
+        name
+        memberCount
+        createAt
+        profileImageUrl
+        swsIdx
+    }
+}
+
+query myJoinRequests($first: Int) {
+    requestedSWSJoinRequestsConnection(first: $first) {
+        edges {
+            node {
+                swsIdx
+                status
+                swsJoinRequestIdx
+                sws {
+                    ... on SWSError {
+                        errorCode
+                    }
+                    ... on SWS {
+                        createAt
+                        memberCount
+                        name
+                        profileImageUrl
+                    }
+                }
+            }
+        }
+    }
+}
+
+mutation requestJoinWorkspace($input: RequestJoinSWSInput!) {
+    requestJoinSWSMutation(input: $input) {
+        ... on RequestJoinSWSError {
+            errorCode
+        }
+        ... on RequestJoinSWSPayload {
+            result
+        }
+    }
+}
+
+mutation cancelJoinWorkspace($input: CancelSWSJoinRequestInput!) {
+    cancelSWSJoinRequestMutation(input: $input) {
+        ... on CancelSWSJoinRequestError {
+            errorCode
+        }
+        ... on CancelSWSJoinRequestPayload {
+            result
+        }
+    }
+}

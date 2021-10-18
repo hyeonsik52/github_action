@@ -1,0 +1,54 @@
+mutation acceptServiceUnitMutation($input: AcceptServiceUnitInput!) {
+    acceptServiceUnitMutation(input: $input) {
+        ... on AcceptServiceUnitError {
+            errorCode
+        }
+        ... on AcceptServiceUnitPayload {
+            result
+        }
+    }
+}
+
+mutation rejectServiceUnitMutation($input: RejectServiceUnitInput!) {
+    rejectServiceUnitMutation(input: $input) {
+        ... on RejectServiceUnitError {
+            errorCode
+        }
+        ... on RejectServiceUnitPayload {
+            result
+        }
+    }
+}
+
+mutation startServiceUnitMutation($input: StartServiceUnitInput!) {
+    startServiceUnitMutation(input: $input) {
+        ... on StartServiceUnitError {
+            errorCode
+        }
+        ... on StartServiceUnitPayload {
+            result
+        }
+    }
+}
+
+mutation completeServiceUnitMutation($input: CompleteServiceUnitInput!) {
+    completeServiceUnitMutation(input: $input) {
+        ... on CompleteServiceUnitError {
+            errorCode
+        }
+        ... on CompleteServiceUnitPayload {
+            result
+        }
+    }
+}
+
+mutation cancelServiceUnitCompletionMutation($input: CancelServiceUnitCompletionInput!) {
+    cancelServiceUnitCompletionMutation(input: $input) {
+        ... on CancelServiceUnitCompletionError {
+            errorCode
+        }
+        ... on CancelServiceUnitCompletionPayload {
+            result
+        }
+    }
+}

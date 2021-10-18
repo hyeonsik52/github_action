@@ -1,0 +1,606 @@
+query service($serviceIdx: Int!) {
+	serviceByServiceIdx(serviceIdx: $serviceIdx) {
+		... on ServiceError {
+			errorCode
+		}
+		... on Service {
+			... ServiceFragment
+		}
+	}
+}
+
+mutation completeServiceUnit($input: CompleteServiceUnitInput!) {
+	completeServiceUnitMutation(input: $input) {
+		... on TypeError {
+			... TypeErrorFragment
+		}
+		... on CompleteServiceUnitError {
+			serviceErrorCode: errorCode
+		}
+		... on CompleteServiceUnitPayload {
+			result
+		}
+	}
+}
+
+
+query serviceByServiceIdx($swsIdx: Int!, $serviceIdx: Int!) {
+    serviceByServiceIdx(serviceIdx: $serviceIdx) {
+        ... on ServiceError {
+            errorCode
+        }
+        ... on Service {
+            id
+            serviceIdx
+            swsIdx
+            responseTimeout
+            retryTimeout
+            creatorUserIdx
+            status
+            previousStatus
+            mode
+            requestRobotAssignmentAt
+            robotAssignAt
+            createAt
+            updateAt
+            completeAt
+            serviceNum
+            creatorUser {
+                ... on UserError {
+                    errorCode
+                }
+                ... on User {
+                    id
+                    userIdx
+                    name
+                    profileImageUrl
+                    userSWSInfo(swsIdx: $swsIdx) {
+                        ... on UserSWSInfoError {
+                            errorCode
+                        }
+                        ... on UserSWSInfo {
+                            id
+                            userIdx
+                            name
+                            profileImageUrl
+                            groupsConnection(first: 1) {
+                                edges {
+                                    node {
+                                        id
+                                        groupIdx
+                                        name
+                                        profileImageUrl
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            assignedRobot {
+                ... on RobotError {
+                    errorCode
+                }
+                ... on RWSRobot {
+                    id
+                    name
+                }
+            }
+            serviceUnits {
+                serviceUnitIdx
+                serviceIdx
+                workerUserIdx
+                acceptorUserIdx
+                rejectorUserIdx
+                stopIdx
+                stopType
+                status
+                responseType
+                message
+                isBypass
+                isStopFixed
+                sortWeight
+                responseAt
+                createAt
+                updateAt
+                completeAt
+                targetType
+                amIRecipient
+                
+                target {
+                    ... on User {
+                        id
+                        userIdx
+                        name
+                        profileImageUrl
+                        userSWSInfo(swsIdx: $swsIdx) {
+                            ... on UserSWSInfoError {
+                                errorCode
+                            }
+                            ... on UserSWSInfo {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                                groupsConnection(first: 1) {
+                                    edges {
+                                        node {
+                                            id
+                                            groupIdx
+                                            name
+                                            profileImageUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ... on Group {
+                        id
+                        groupIdx
+                        name
+                        profileImageUrl
+                    }
+                    ... on Stop {
+                        id
+                        stopIdx
+                        name
+                    }
+                }
+
+                workerUser {
+                    ... on UserError {
+                        errorCode
+                    }
+                    ... on User {
+                        id
+                        userIdx
+                        name
+                        profileImageUrl
+                    }
+                }
+                
+                acceptors {
+                    id
+                    responseAt
+                    responseType
+                    serviceUnitIdx
+                    userIdx
+                    ... on ServiceUnitAcceptorUser {
+                        user {
+                            ... on UserError {
+                                errorCode
+                            }
+                            ... on User {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                                userSWSInfo(swsIdx: $swsIdx) {
+                                    ... on UserSWSInfoError {
+                                        errorCode
+                                    }
+                                    ... on UserSWSInfo {
+                                        id
+                                        userIdx
+                                        name
+                                        profileImageUrl
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ... on ServiceUnitAcceptorGroup {
+                        group {
+                            ... on GroupError {
+                                errorCode
+                            }
+                            ... on Group {
+                                id
+                                groupIdx
+                                name
+                                profileImageUrl
+                            }
+                        }
+                    }
+                }
+
+                rejectorUsers {
+                    id
+                    userIdx
+                    name
+                    profileImageUrl
+                }
+
+                stop {
+                    ... on StopError {
+                        errorCode
+                    }
+                    ... on Stop {
+                        id
+                        stopIdx
+                        name
+                    }
+                }
+
+                freights {
+                    id
+                    type
+                    name
+                    quantity
+                }
+
+                recipients {
+                    targetType
+                    targetIdx
+                    ... on ServiceUnitRecipientUser {
+                        user {
+                            ... on UserError {
+                                errorCode
+                            }
+                            ... on User {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                                userSWSInfo(swsIdx: $swsIdx) {
+                                    ... on UserSWSInfoError {
+                                        errorCode
+                                    }
+                                    ... on UserSWSInfo {
+                                        id
+                                        userIdx
+                                        name
+                                        profileImageUrl
+                                        groupsConnection(first: 1) {
+                                            edges {
+                                                node {
+                                                    id
+                                                    groupIdx
+                                                    name
+                                                    profileImageUrl
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ... on ServiceUnitRecipientGroup {
+                        group {
+                            ... on GroupError {
+                                errorCode
+                            }
+                            ... on Group {
+                                id
+                                groupIdx
+                                name
+                                profileImageUrl
+                            }
+                        }
+                    }
+                }
+
+                recipientUserAndResponseList {
+                    id
+                    response
+                    responseType
+                    user {
+                        id
+                        userIdx
+                        name
+                        profileImageUrl
+                        userSWSInfo(swsIdx: $swsIdx) {
+                            ... on UserSWSInfoError {
+                                errorCode
+                            }
+                            ... on UserSWSInfo {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+subscription serviceByServiceIdxSubscription($swsIdx: Int!, $serviceIdx: Int!) {
+    serviceByServiceIdxSubscription(serviceIdx: $serviceIdx) {
+        ... on ServiceError {
+            errorCode
+        }
+        ... on Service {
+            serviceIdx
+            retryTimeout
+            status
+            previousStatus
+            requestRobotAssignmentAt
+            robotAssignAt
+            createAt
+            updateAt
+            completeAt
+            serviceNum
+            creatorUser {
+                ... on UserError {
+                    errorCode
+                }
+                ... on User {
+                    id
+                    userIdx
+                    name
+                    profileImageUrl
+                    userSWSInfo(swsIdx: $swsIdx) {
+                        ... on UserSWSInfoError {
+                            errorCode
+                        }
+                        ... on UserSWSInfo {
+                            id
+                            userIdx
+                            name
+                            profileImageUrl
+                            groupsConnection(first: 1) {
+                                edges {
+                                    node {
+                                        id
+                                        groupIdx
+                                        name
+                                        profileImageUrl
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            assignedRobot {
+                ... on RobotError {
+                    errorCode
+                }
+                ... on RWSRobot {
+                    id
+                    name
+                }
+            }
+            serviceUnits {
+                serviceUnitIdx
+                stopIdx
+                stopType
+                status
+                responseType
+                message
+                isBypass
+                isStopFixed
+                createAt
+                updateAt
+                completeAt
+                targetType
+                amIRecipient
+                
+                target {
+                    ... on User {
+                        id
+                        userIdx
+                        name
+                        profileImageUrl
+                        userSWSInfo(swsIdx: $swsIdx) {
+                            ... on UserSWSInfoError {
+                                errorCode
+                            }
+                            ... on UserSWSInfo {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                                groupsConnection(first: 1) {
+                                    edges {
+                                        node {
+                                            id
+                                            groupIdx
+                                            name
+                                            profileImageUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ... on Group {
+                        id
+                        groupIdx
+                        name
+                        profileImageUrl
+                    }
+                    ... on Stop {
+                        id
+                        stopIdx
+                        name
+                    }
+                }
+
+                workerUser {
+                    ... on UserError {
+                        errorCode
+                    }
+                    ... on User {
+                        id
+                        userIdx
+                        name
+                        profileImageUrl
+                    }
+                }
+                
+                acceptors {
+                    id
+                    responseAt
+                    responseType
+                    serviceUnitIdx
+                    userIdx
+                    ... on ServiceUnitAcceptorUser {
+                        user {
+                            ... on UserError {
+                                errorCode
+                            }
+                            ... on User {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                                userSWSInfo(swsIdx: $swsIdx) {
+                                    ... on UserSWSInfoError {
+                                        errorCode
+                                    }
+                                    ... on UserSWSInfo {
+                                        id
+                                        userIdx
+                                        name
+                                        profileImageUrl
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ... on ServiceUnitAcceptorGroup {
+                        group {
+                            ... on GroupError {
+                                errorCode
+                            }
+                            ... on Group {
+                                id
+                                groupIdx
+                                name
+                                profileImageUrl
+                            }
+                        }
+                    }
+                }
+
+                rejectorUsers {
+                    id
+                    userIdx
+                    name
+                    profileImageUrl
+                }
+
+                stop {
+                    ... on StopError {
+                        errorCode
+                    }
+                    ... on Stop {
+                        id
+                        stopIdx
+                        name
+                    }
+                }
+
+                freights {
+                    id
+                    type
+                    name
+                    quantity
+                }
+
+                recipients {
+                    targetType
+                    targetIdx
+                    ... on ServiceUnitRecipientUser {
+                        user {
+                            ... on UserError {
+                                errorCode
+                            }
+                            ... on User {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                                userSWSInfo(swsIdx: $swsIdx) {
+                                    ... on UserSWSInfoError {
+                                        errorCode
+                                    }
+                                    ... on UserSWSInfo {
+                                        id
+                                        userIdx
+                                        name
+                                        profileImageUrl
+                                        groupsConnection(first: 1) {
+                                            edges {
+                                                node {
+                                                    id
+                                                    groupIdx
+                                                    name
+                                                    profileImageUrl
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ... on ServiceUnitRecipientGroup {
+                        group {
+                            ... on GroupError {
+                                errorCode
+                            }
+                            ... on Group {
+                                id
+                                groupIdx
+                                name
+                                profileImageUrl
+                            }
+                        }
+                    }
+                }
+                
+                recipientUserAndResponseList {
+                    id
+                    response
+                    responseType
+                    user {
+                        id
+                        userIdx
+                        name
+                        profileImageUrl
+                        userSWSInfo(swsIdx: $swsIdx) {
+                            ... on UserSWSInfoError {
+                                errorCode
+                            }
+                            ... on UserSWSInfo {
+                                id
+                                userIdx
+                                name
+                                profileImageUrl
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+mutation cancelServiceMutation($input: CancelServiceInput!) {
+    cancelServiceMutation(input: $input) {
+        ... on CancelServiceError {
+            errorCode
+        }
+        ... on CancelServicePayload {
+            result
+        }
+    }
+}
+
+mutation hideServiceMutation($input: HideServiceInput!) {
+    hideServiceMutation(input: $input) {
+        ... on HideServiceError {
+            errorCode
+        }
+        ... on HideServicePayload {
+            result
+        }
+    }
+}

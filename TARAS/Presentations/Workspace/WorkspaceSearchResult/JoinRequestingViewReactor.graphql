@@ -1,0 +1,38 @@
+query workspaceByIdx($swsIdx: Int!) {
+	swsBySWSIdx(swsIdx: $swsIdx) {
+		... on SWSError {
+			errorCode
+		}
+		... on SWS {
+			... WorkspaceFragment
+		}
+	}
+}
+
+mutation requestJoinWorkspace($input: RequestJoinSWSInput!) {
+	requestJoinSWSMutation(input: $input) {
+		... on TypeError {
+            ... TypeErrorFragment
+		}
+		... on RequestJoinSWSError {
+			joinErrorCode: errorCode
+		}
+		... on RequestJoinSWSPayload {
+			result
+		}
+	}
+}
+
+mutation cancelJoinWorkspace($input: CancelSWSJoinRequestInput!) {
+	cancelSWSJoinRequestMutation(input: $input) {
+		... on TypeError {
+            ... TypeErrorFragment
+		}
+		... on CancelSWSJoinRequestError {
+			joinErrorCode: errorCode
+		}
+		... on CancelSWSJoinRequestPayload {
+			result
+		}
+	}
+}

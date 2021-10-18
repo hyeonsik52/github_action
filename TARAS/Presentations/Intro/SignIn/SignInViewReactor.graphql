@@ -1,0 +1,36 @@
+mutation signIn($input: LoginInput!) {
+	loginMutation(input: $input) {
+		... on LoginError {
+			errorCode
+		}
+		... on LoginPayload {
+			accessToken
+			refreshToken
+		}
+	}
+}
+
+query myUserInfo {
+	myUserInfo {
+		... on UserError {
+			errorCode
+		}
+		... on User {
+			... UserFragment
+		}
+	}
+}
+
+fragment UserFragment on User {
+	userIdx
+	userId
+	name
+	email
+	phoneNumber
+}
+
+query allSWS{
+	allSWS {
+	name
+  }
+}

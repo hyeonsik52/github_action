@@ -1,0 +1,12 @@
+mutation checkPhoneNumberAuthCode($input: CheckPhoneNumberAuthCodeInput!) {
+    checkPhoneNumberAuthCodeMutation(input: $input) {
+        ... on CheckPhoneNumberAuthCodePayload {
+            phoneNumber
+            phoneNumberToken
+        }
+        
+        ... on CheckPhoneNumberAuthCodeError {
+            errorCode
+        }
+    }
+}

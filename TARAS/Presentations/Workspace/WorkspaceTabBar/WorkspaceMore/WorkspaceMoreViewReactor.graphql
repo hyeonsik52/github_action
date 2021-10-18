@@ -1,0 +1,359 @@
+mutation requestQuitSWS($input: RequestQuitSWSInput!) {
+    requestQuitSWSMutation(input: $input) {
+        ... on RequestQuitSWSPayload {
+            result
+        }
+        ... on RequestQuitSWSError {
+            errorCode
+        }
+    }
+}
+
+query myUserInfo($swsIdx: Int!) {
+    myUserInfo {
+        ... on UserError {
+            errorCode
+        }
+        ... on User {
+            id
+            name
+            userIdx
+            userId
+            name
+            phoneNumber
+            profileImageUrl
+            email
+            userSWSInfo(swsIdx: $swsIdx) {
+                ... on UserSWSInfoError {
+                    errorCode
+                }
+                ... on UserSWSInfo {
+                    id
+                    name
+                    userIdx
+                    name
+                    phoneNumber
+                    profileImageUrl
+                    email
+                    swsIdx
+                    userSwsInfoIdx
+                    stop {
+                        ... on StopError {
+                            errorCode
+                        }
+                        ... on Stop {
+                            id
+                            stopIdx
+                            name
+                        }
+                    }
+                    groupStop {
+                        ... on StopError {
+                            errorCode
+                        }
+                        ... on Stop {
+                            id
+                            stopIdx
+                            name
+                        }
+                    }
+                    groupsConnection(first: 2147483647) {
+                        totalCount
+                        pageInfo {
+                            hasNextPage
+                            hasPreviousPage
+                            startCursor
+                            endCursor
+                        }
+                        edges {
+                            cursor
+                            node {
+                                id
+                                groupIdx
+                                name
+                                profileImageUrl
+                                locatedStop {
+                                    ... on StopError {
+                                        errorCode
+                                    }
+                                    ... on Stop {
+                                        id
+                                        stopIdx
+                                        name
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+mutation updateUserInfoMutation($input: UpdateUserInfoInput!, $swsIdx: Int!) {
+    updateUserInfoMutation(input: $input) {
+        ... on UpdateUserInfoError {
+            errorCode
+        }
+        ... on User {
+            id
+            name
+            userIdx
+            userId
+            name
+            phoneNumber
+            profileImageUrl
+            email
+            userSWSInfo(swsIdx: $swsIdx) {
+                ... on UserSWSInfoError {
+                    errorCode
+                }
+                ... on UserSWSInfo {
+                    id
+                    name
+                    userIdx
+                    name
+                    phoneNumber
+                    profileImageUrl
+                    email
+                    swsIdx
+                    userSwsInfoIdx
+                    stop {
+                        ... on StopError {
+                            errorCode
+                        }
+                        ... on Stop {
+                            id
+                            stopIdx
+                            name
+                        }
+                    }
+                    groupStop {
+                        ... on StopError {
+                            errorCode
+                        }
+                        ... on Stop {
+                            id
+                            stopIdx
+                            name
+                        }
+                    }
+                    groupsConnection {
+                        totalCount
+                        pageInfo {
+                            hasNextPage
+                            hasPreviousPage
+                            startCursor
+                            endCursor
+                        }
+                        edges {
+                            cursor
+                            node {
+                                id
+                                groupIdx
+                                name
+                                profileImageUrl
+                                locatedStop {
+                                    ... on StopError {
+                                        errorCode
+                                    }
+                                    ... on Stop {
+                                        id
+                                        stopIdx
+                                        name
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+mutation updateUserSWSInfoMutation($input: UpdateUserSWSInfoInput!) {
+    updateUserSWSInfoMutation(input: $input) {
+        ... on UpdateUserSWSInfoError {
+            errorCode
+        }
+        ... on UserSWSInfo {
+            id
+            name
+            userIdx
+            name
+            phoneNumber
+            profileImageUrl
+            email
+            swsIdx
+            userSwsInfoIdx
+            stop {
+                ... on StopError {
+                    errorCode
+                }
+                ... on Stop {
+                    id
+                    stopIdx
+                    name
+                }
+            }
+            groupStop {
+                ... on StopError {
+                    errorCode
+                }
+                ... on Stop {
+                    id
+                    stopIdx
+                    name
+                }
+            }
+            groupsConnection {
+                totalCount
+                pageInfo {
+                    hasNextPage
+                    hasPreviousPage
+                    startCursor
+                    endCursor
+                }
+                edges {
+                    cursor
+                    node {
+                        id
+                        groupIdx
+                        name
+                        profileImageUrl
+                        locatedStop {
+                            ... on StopError {
+                                errorCode
+                            }
+                            ... on Stop {
+                                id
+                                stopIdx
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+mutation updateUserSWSInfoStopMutation($input: UpdateUserSWSInfoStopInput!) {
+    updateUserSWSInfoStopMutation(input: $input) {
+        ... on UpdateUserSWSInfoStopError {
+            errorCode
+        }
+        ... on UserSWSInfo {
+            id
+            name
+            userIdx
+            name
+            phoneNumber
+            profileImageUrl
+            email
+            swsIdx
+            userSwsInfoIdx
+            stop {
+                ... on StopError {
+                    errorCode
+                }
+                ... on Stop {
+                    id
+                    stopIdx
+                    name
+                }
+            }
+            groupStop {
+                ... on StopError {
+                    errorCode
+                }
+                ... on Stop {
+                    id
+                    stopIdx
+                    name
+                }
+            }
+            groupsConnection {
+                totalCount
+                pageInfo {
+                    hasNextPage
+                    hasPreviousPage
+                    startCursor
+                    endCursor
+                }
+                edges {
+                    cursor
+                    node {
+                        id
+                        groupIdx
+                        name
+                        profileImageUrl
+                        locatedStop {
+                            ... on StopError {
+                                errorCode
+                            }
+                            ... on Stop {
+                                id
+                                stopIdx
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query swsStopsConnection($swsIdx: Int!) {
+    swsStopsConnection(swsIdx: $swsIdx, first: 2147483647) {
+        edges {
+            node {
+                id
+                stopIdx
+                name
+                sortWeight
+            }
+        }
+    }
+}
+
+mutation createPhoneNumberAuthCodeMutation($input: CreatePhoneNumberAuthCodeInput!) {
+    createPhoneNumberAuthCodeMutation(input: $input) {
+        ... on CreatePhoneNumberAuthCodeError {
+            errorCode
+        }
+        ... on CreatePhoneNumberAuthCodePayload {
+            expiresIn
+            phoneNumber
+        }
+    }
+}
+
+mutation checkPhoneNumberAuthCodeMutation($input: CheckPhoneNumberAuthCodeInput!) {
+    checkPhoneNumberAuthCodeMutation(input: $input) {
+        ... on CheckPhoneNumberAuthCodeError {
+            errorCode
+        }
+        ... on CheckPhoneNumberAuthCodePayload {
+            expiresIn
+            phoneNumber
+            phoneNumberToken
+        }
+    }
+}
+
+query swsStopsToSetMyStopConnection($swsIdx: Int!) {
+    swsStopsToSetMyStopConnection(swsIdx: $swsIdx, first: 2147483647) {
+        edges {
+            node {
+                id
+                stopIdx
+                name
+                sortWeight
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+mutation resetUserPasswordByEmail($input: ResetUserPasswordByEmailInput!) {
+    resetUserPasswordByEmailMutation(input: $input) {
+        ... on ResetUserPasswordError {
+            errorCode
+        }
+        
+        ... on ResetUserPasswordPayload {
+            result
+        }
+    }
+}
+
+mutation resetUserPasswordByPhoneNumber($input: ResetUserPasswordByPhoneNumberInput!) {
+    resetUserPasswordByPhoneNumberMutation(input: $input) {
+        ... on ResetUserPasswordError {
+            errorCode
+        }
+        
+        ... on ResetUserPasswordPayload {
+            result
+        }
+    }
+}

@@ -1,0 +1,23 @@
+mutation refreshSession($input: RefreshSessionInput!) {
+    refreshSessionMutation(input: $input) {
+        ... on RefreshSessionError {
+            errorCode
+        }
+        ... on LoginPayload {
+            accessToken
+            refreshToken
+        }
+    }
+}
+
+mutation signUp($input: SignupInput!) {
+    signupMutation(input: $input) {
+        ... on SignupError {
+            errorCode
+        }
+        ... on LoginPayload {
+            accessToken
+            refreshToken
+        }
+    }
+}

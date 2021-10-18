@@ -1,0 +1,31 @@
+subscription receivedService {
+	receivedServiceSubscription {
+		... on ServiceCreated {
+			item {
+				... ServiceFragment
+			}
+		}
+		... on ServiceUpdated {
+			item {
+				... ServiceFragment
+			}
+		}
+	}
+}
+subscription serviceByServiceIdx($serviceIdx: Int!) {
+	serviceByServiceIdxSubscription(serviceIdx: $serviceIdx) {
+		... on Service {
+			... ServiceFragment
+		}
+	}
+}
+
+subscription serviceLog($serviceIdx: Int!) {
+  serviceLogByServiceIdxSubscription(serviceIdx: $serviceIdx) {
+    ... on ServiceLogCreated {
+      item {
+		... ServiceLogFragment
+	  }
+    }
+  }
+}
