@@ -110,26 +110,26 @@
 		ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */; };
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
-		ED6D75FC271D6E08006B6728 /* AppDelegate.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D75FB271D6E08006B6728 /* AppDelegate.graphql */; };
-		ED6D75FE271D6FCA006B6728 /* UserManager.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D75FD271D6FCA006B6728 /* UserManager.graphql */; };
+		ED6D75FC271D6E08006B6728 /* AppDelegate.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D75FB271D6E08006B6728 /* AppDelegate.graphql_ */; };
+		ED6D75FE271D6FCA006B6728 /* UserManager.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D75FD271D6FCA006B6728 /* UserManager.graphql_ */; };
 		ED6D7604271D7133006B6728 /* SubscriptionManager.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7603271D7133006B6728 /* SubscriptionManager.graphql */; };
 		ED6D7606271D72F9006B6728 /* SignInViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7605271D72F9006B6728 /* SignInViewReactor.graphql */; };
-		ED6D7608271D7342006B6728 /* SignUpIdViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7607271D7342006B6728 /* SignUpIdViewReactor.graphql */; };
-		ED6D760E271D73E2006B6728 /* FindAccountEmailViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D760D271D73E2006B6728 /* FindAccountEmailViewReactor.graphql */; };
-		ED6D7618271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7617271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql */; };
+		ED6D7608271D7342006B6728 /* SignUpIdViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7607271D7342006B6728 /* SignUpIdViewReactor.graphql_ */; };
+		ED6D760E271D73E2006B6728 /* FindAccountEmailViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D760D271D73E2006B6728 /* FindAccountEmailViewReactor.graphql_ */; };
+		ED6D7618271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7617271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql_ */; };
 		ED6D761E271D7590006B6728 /* WorkspaceListViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D761D271D7590006B6728 /* WorkspaceListViewReactor.graphql */; };
 		ED6D7620271D760A006B6728 /* AddWorkspaceViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D761F271D760A006B6728 /* AddWorkspaceViewReactor.graphql */; };
 		ED6D7622271D7629006B6728 /* JoinRequestingViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7621271D7629006B6728 /* JoinRequestingViewReactor.graphql */; };
 		ED6D7624271D7688006B6728 /* ServiceListViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7623271D7688006B6728 /* ServiceListViewReactor.graphql */; };
-		ED6D762C271D7731006B6728 /* ServiceRequestViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql */; };
+		ED6D762C271D7731006B6728 /* ServiceRequestViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql_ */; };
 		ED6D762E271D775B006B6728 /* TargetMemberViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D762D271D775B006B6728 /* TargetMemberViewReactor.graphql */; };
 		ED6D7630271D7777006B6728 /* TargetStopViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D762F271D7777006B6728 /* TargetStopViewReactor.graphql */; };
 		ED6D7636271D77E1006B6728 /* WorkRequestViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7635271D77E1006B6728 /* WorkRequestViewReactor.graphql */; };
 		ED6D763A271D7817006B6728 /* ServiceDetailViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7639271D7817006B6728 /* ServiceDetailViewReactor.graphql */; };
-		ED6D763C271D785D006B6728 /* ServiceDetailLogViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D763B271D785C006B6728 /* ServiceDetailLogViewReactor.graphql */; };
+		ED6D763C271D785D006B6728 /* ServiceDetailLogViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D763B271D785C006B6728 /* ServiceDetailLogViewReactor.graphql_ */; };
 		ED6D763E271D787F006B6728 /* SWSUserInfoViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D763D271D787F006B6728 /* SWSUserInfoViewReactor.graphql */; };
 		ED6D7642271D78CC006B6728 /* SettingViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7641271D78CB006B6728 /* SettingViewReactor.graphql */; };
-		ED6D7644271D790B006B6728 /* ResetPasswordViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql */; };
+		ED6D7644271D790B006B6728 /* ResetPasswordViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql_ */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2D26C1524500E8C39B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2C26C1524500E8C39B /* Station.swift */; };
@@ -495,26 +495,26 @@
 		ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		ED6D75FB271D6E08006B6728 /* AppDelegate.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppDelegate.graphql; sourceTree = "<group>"; };
-		ED6D75FD271D6FCA006B6728 /* UserManager.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserManager.graphql; sourceTree = "<group>"; };
+		ED6D75FB271D6E08006B6728 /* AppDelegate.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppDelegate.graphql_; sourceTree = "<group>"; };
+		ED6D75FD271D6FCA006B6728 /* UserManager.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserManager.graphql_; sourceTree = "<group>"; };
 		ED6D7603271D7133006B6728 /* SubscriptionManager.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SubscriptionManager.graphql; sourceTree = "<group>"; };
 		ED6D7605271D72F9006B6728 /* SignInViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignInViewReactor.graphql; sourceTree = "<group>"; };
-		ED6D7607271D7342006B6728 /* SignUpIdViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUpIdViewReactor.graphql; sourceTree = "<group>"; };
-		ED6D760D271D73E2006B6728 /* FindAccountEmailViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FindAccountEmailViewReactor.graphql; sourceTree = "<group>"; };
-		ED6D7617271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ResetConfirmPWViewReactor.graphql; sourceTree = "<group>"; };
+		ED6D7607271D7342006B6728 /* SignUpIdViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SignUpIdViewReactor.graphql_; sourceTree = "<group>"; };
+		ED6D760D271D73E2006B6728 /* FindAccountEmailViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FindAccountEmailViewReactor.graphql_; sourceTree = "<group>"; };
+		ED6D7617271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ResetConfirmPWViewReactor.graphql_; sourceTree = "<group>"; };
 		ED6D761D271D7590006B6728 /* WorkspaceListViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WorkspaceListViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D761F271D760A006B6728 /* AddWorkspaceViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AddWorkspaceViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7621271D7629006B6728 /* JoinRequestingViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JoinRequestingViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7623271D7688006B6728 /* ServiceListViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceListViewReactor.graphql; sourceTree = "<group>"; };
-		ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceRequestViewReactor.graphql; sourceTree = "<group>"; };
+		ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceRequestViewReactor.graphql_; sourceTree = "<group>"; };
 		ED6D762D271D775B006B6728 /* TargetMemberViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TargetMemberViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D762F271D7777006B6728 /* TargetStopViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TargetStopViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7635271D77E1006B6728 /* WorkRequestViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WorkRequestViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7639271D7817006B6728 /* ServiceDetailViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceDetailViewReactor.graphql; sourceTree = "<group>"; };
-		ED6D763B271D785C006B6728 /* ServiceDetailLogViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceDetailLogViewReactor.graphql; sourceTree = "<group>"; };
+		ED6D763B271D785C006B6728 /* ServiceDetailLogViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceDetailLogViewReactor.graphql_; sourceTree = "<group>"; };
 		ED6D763D271D787F006B6728 /* SWSUserInfoViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWSUserInfoViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7641271D78CB006B6728 /* SettingViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SettingViewReactor.graphql; sourceTree = "<group>"; };
-		ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ResetPasswordViewReactor.graphql; sourceTree = "<group>"; };
+		ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ResetPasswordViewReactor.graphql_; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2C26C1524500E8C39B /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
@@ -847,7 +847,7 @@
 				ED52735B26C3A03C0077CD9D /* SignUpIdView.swift */,
 				ED52735926C3A03C0077CD9D /* SignUpIdViewController.swift */,
 				ED52735A26C3A03C0077CD9D /* SignUpIdViewReactor.swift */,
-				ED6D7607271D7342006B6728 /* SignUpIdViewReactor.graphql */,
+				ED6D7607271D7342006B6728 /* SignUpIdViewReactor.graphql_ */,
 			);
 			path = SignUpId;
 			sourceTree = "<group>";
@@ -945,7 +945,7 @@
 			children = (
 				EDF0C39926B405F60061552F /* AppDelegate.swift */,
 				EDF0C39B26B405F60061552F /* SceneDelegate.swift */,
-				ED6D75FB271D6E08006B6728 /* AppDelegate.graphql */,
+				ED6D75FB271D6E08006B6728 /* AppDelegate.graphql_ */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1102,7 +1102,7 @@
 			isa = PBXGroup;
 			children = (
 				ED6B467326B7E8B500C2FA6D /* UserManager.swift */,
-				ED6D75FD271D6FCA006B6728 /* UserManager.graphql */,
+				ED6D75FD271D6FCA006B6728 /* UserManager.graphql_ */,
 			);
 			path = UserManager;
 			sourceTree = "<group>";
@@ -1222,7 +1222,7 @@
 				EDC118D326D3A24A0020AB09 /* FindAccountEmailViewController.swift */,
 				EDC118D426D3A24A0020AB09 /* FindAccountEmailViewReactor.swift */,
 				EDC118D526D3A24A0020AB09 /* FindAccountEmailView.swift */,
-				ED6D760D271D73E2006B6728 /* FindAccountEmailViewReactor.graphql */,
+				ED6D760D271D73E2006B6728 /* FindAccountEmailViewReactor.graphql_ */,
 			);
 			path = FindAccountEmail;
 			sourceTree = "<group>";
@@ -1234,7 +1234,7 @@
 				EDC118D826D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift */,
 				EDC118D926D3A24A0020AB09 /* FindAccountPasswordView.swift */,
 				EDC118DA26D3A24A0020AB09 /* FindAccountPasswordViewController.swift */,
-				ED6D7617271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql */,
+				ED6D7617271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql_ */,
 			);
 			path = FindAccountPassword;
 			sourceTree = "<group>";
@@ -1295,7 +1295,7 @@
 				EDC118F026D3A39C0020AB09 /* Default_PWConfirm_ViewController.swift */,
 				EDC118F126D3A39C0020AB09 /* Default_PWReset_ViewController.swift */,
 				EDC118F226D3A39C0020AB09 /* Default_PWConfirmed_ViewReactor.swift */,
-				ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql */,
+				ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql_ */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -1456,7 +1456,7 @@
 				EDC1192626D3A39C0020AB09 /* Model */,
 				EDC1192A26D3A39C0020AB09 /* ServiceDetailLogViewReactor.swift */,
 				EDC1192B26D3A39C0020AB09 /* ServiceDetailLogViewController.swift */,
-				ED6D763B271D785C006B6728 /* ServiceDetailLogViewReactor.graphql */,
+				ED6D763B271D785C006B6728 /* ServiceDetailLogViewReactor.graphql_ */,
 			);
 			path = ServiceDetailLogViewController;
 			sourceTree = "<group>";
@@ -1773,7 +1773,7 @@
 		EDC1199926D3A39D0020AB09 /* CreateService */ = {
 			isa = PBXGroup;
 			children = (
-				ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql */,
+				ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql_ */,
 				EDC1199A26D3A39D0020AB09 /* CreateServiceViewController.swift */,
 				EDC1199B26D3A39D0020AB09 /* AddWaypoint */,
 				EDC119A126D3A39D0020AB09 /* Model */,
@@ -2230,17 +2230,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED6D7644271D790B006B6728 /* ResetPasswordViewReactor.graphql in Resources */,
-				ED6D760E271D73E2006B6728 /* FindAccountEmailViewReactor.graphql in Resources */,
+				ED6D7644271D790B006B6728 /* ResetPasswordViewReactor.graphql_ in Resources */,
+				ED6D760E271D73E2006B6728 /* FindAccountEmailViewReactor.graphql_ in Resources */,
 				EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */,
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				ED6D7604271D7133006B6728 /* SubscriptionManager.graphql in Resources */,
 				ED6D761E271D7590006B6728 /* WorkspaceListViewReactor.graphql in Resources */,
-				ED6D763C271D785D006B6728 /* ServiceDetailLogViewReactor.graphql in Resources */,
-				ED6D75FC271D6E08006B6728 /* AppDelegate.graphql in Resources */,
-				ED6D762C271D7731006B6728 /* ServiceRequestViewReactor.graphql in Resources */,
-				ED6D7618271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql in Resources */,
-				ED6D75FE271D6FCA006B6728 /* UserManager.graphql in Resources */,
+				ED6D763C271D785D006B6728 /* ServiceDetailLogViewReactor.graphql_ in Resources */,
+				ED6D75FC271D6E08006B6728 /* AppDelegate.graphql_ in Resources */,
+				ED6D762C271D7731006B6728 /* ServiceRequestViewReactor.graphql_ in Resources */,
+				ED6D7618271D74D6006B6728 /* ResetConfirmPWViewReactor.graphql_ in Resources */,
+				ED6D75FE271D6FCA006B6728 /* UserManager.graphql_ in Resources */,
 				ED6D7624271D7688006B6728 /* ServiceListViewReactor.graphql in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				ED6D7620271D760A006B6728 /* AddWorkspaceViewReactor.graphql in Resources */,
@@ -2253,7 +2253,7 @@
 				ED6D7606271D72F9006B6728 /* SignInViewReactor.graphql in Resources */,
 				ED6D7622271D7629006B6728 /* JoinRequestingViewReactor.graphql in Resources */,
 				ED6B461026B7E51800C2FA6D /* GoogleService-Info.plist in Resources */,
-				ED6D7608271D7342006B6728 /* SignUpIdViewReactor.graphql in Resources */,
+				ED6D7608271D7342006B6728 /* SignUpIdViewReactor.graphql_ in Resources */,
 				ED52737E26C3A03C0077CD9D /* SignUpNameViewReactor.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

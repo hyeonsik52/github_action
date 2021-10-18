@@ -1,10 +1,19 @@
-query userByUserIdx($userIdx: Int!, $swsIdx: Int!) {
-	userByUserIdx(userIdx: $userIdx) {
-		... on UserError {
-			errorCode
+#query userById($workspaceId: String, $userId: String) {
+query userById($workspaceId: String) {
+  signedUser {
+	joinedWorkspaces(id: $workspaceId) {
+	  edges {
+		node {
+#		  members(id: $userId) {
+		  members {
+			edges {
+			  node {
+				  ... MemberFragment
+			  }
+			}
+		  }
 		}
-		... on User {
-			... UserFragment
-		}
+	  }
 	}
+  }
 }

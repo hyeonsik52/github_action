@@ -1,82 +1,41 @@
-query receivedServices($swsIdx: Int!, $before: String, $last: Int) {
-	receivedServicesConnection(swsIdx: $swsIdx, before: $before, last: $last) {
-		pageInfo {
-			startCursor
-			hasPreviousPage
-		}
-		edges {
-			cursor
-			node {
-				... ServiceFragment
-			}
-		}
-	}
-}
-
-fragment ServiceFragment on Service {
-	serviceIdx
-	status
-	serviceNum
-	createAt
-	assignedRobot {
-		... on RWSRobot {
-			... RobotFragment
-		}
+fragment ServiceFragment on HiGlovisServiceNode {
+	id
+	phase
+	type
+	state
+	timestamps
+	robot {
+		... RobotFragment
 	}
 	serviceUnits {
 		... ServiceUnitFragment
 	}
 }
 
-fragment ServiceUnitFragment on ServiceUnit {
-	serviceUnitIdx
-	status
-	createAt
+fragment ServiceUnitFragment on ServiceUnitNode {
+	id
+	state
 	stop {
-		... on Stop {
-			... StopFragment
-		}
+		... StopFragment
 	}
-	recipients {
-		... on ServiceUnitRecipientUser {
-			user {
-				... on User {
-					... UserFragment
-				}
-			}
-		}
-	}
-	message
-	station {
-		... on Station {
-			stationType
-		}
-	}
+	data
 }
 
-fragment StopFragment on Stop {
-	stopIdx
-	name
-}
-
-fragment RobotFragment on RWSRobot {
+fragment StopFragment on StationGroupNode {
 	id
 	name
+	isStop
 }
 
-fragment ServiceLogFragment on ServiceLog {
-	serviceLogIdx
-	type
-	errorStatus
-	createAt
-	user {
-		... on User {
-			... UserFragment
-		}
-	}
-	serviceUnit {
-		... on ServiceUnit {
-			... ServiceUnitFragment
-		}
+fragment RobotFragment on RobotNode {
+	id
+	name
+	lockKey
+	extensions {
+		#      ... on DoorLockExtensionType {
+		id
+		#        deviceName
+		#        doorOpenState
+		#      }
 	}
 }

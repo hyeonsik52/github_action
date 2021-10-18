@@ -1,10 +1,9 @@
-query workspaceByCode($code: String!) {
-	swsByCode(code: $code) {
-		... on SWSError {
-			errorCode
-		}
-		... on SWS {
-			... WorkspaceFragment
+query searchWorkspaceByCode($code: String) {
+	linkedWorkspaces(code: $code) {
+		edges {
+			node {
+				... WorkspaceFragment
+			}
 		}
 	}
 }

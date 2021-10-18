@@ -1,42 +1,28 @@
-mutation logout {
-	logoutMutation {
-		... on LogoutPayload {
-			result
-		}
-	}
-}
+#REST로 대체
+#mutation logout {
+#	logoutMutation {
+#		... on LogoutPayload {
+#			result
+#		}
+#	}
+#}
 
-mutation resign {
-	resignMutation {
-		... on TypeError {
-            ... TypeErrorFragment
-		}
-		... on ResignError {
-			resignErrorCode: errorCode
-		}
-		... on ResignPayload {
-			result
-		}
-	}
-}
+#mutation resign {
+#	resignMutation {
+#		... on TypeError {
+#            ... TypeErrorFragment
+#		}
+#		... on ResignError {
+#			resignErrorCode: errorCode
+#		}
+#		... on ResignPayload {
+#			result
+#		}
+#	}
+#}
 
-mutation updateUserInfo($input: UpdateUserInfoInput!) {
-	updateUserInfoMutation(input: $input) {
-		... on TypeError {
-            ... TypeErrorFragment
-		}
-		... on UpdateUserInfoError {
-			userErrorCode: errorCode
-		}
-		... on User {
-			... UserFragment
-		}
+mutation updateUserInfo($input: UpdateUserMutationInput!) {
+	updateUser(input: $input) {
+		... UserFragment
 	}
-}
-
-fragment TypeErrorFragment on TypeError {
-    typeErrorCode: errorCode
-    description
-    key
-    value
 }

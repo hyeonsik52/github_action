@@ -1,46 +1,38 @@
-mutation acceptServiceUnitMutation($input: AcceptServiceUnitInput!) {
-    acceptServiceUnitMutation(input: $input) {
-        ... on AcceptServiceUnitError {
-            errorCode
-        }
-        ... on AcceptServiceUnitPayload {
-            result
-        }
-    }
-}
+#mutation acceptServiceUnitMutation($input: AcceptServiceUnitInput!) {
+#    acceptServiceUnitMutation(input: $input) {
+#        ... on AcceptServiceUnitError {
+#            errorCode
+#        }
+#        ... on AcceptServiceUnitPayload {
+#            result
+#        }
+#    }
+#}
 
-mutation rejectServiceUnitMutation($input: RejectServiceUnitInput!) {
-    rejectServiceUnitMutation(input: $input) {
-        ... on RejectServiceUnitError {
-            errorCode
-        }
-        ... on RejectServiceUnitPayload {
-            result
-        }
-    }
-}
+#mutation rejectServiceUnitMutation($input: RejectServiceUnitInput!) {
+#    rejectServiceUnitMutation(input: $input) {
+#        ... on RejectServiceUnitError {
+#            errorCode
+#        }
+#        ... on RejectServiceUnitPayload {
+#            result
+#        }
+#    }
+#}
 
-mutation startServiceUnitMutation($input: StartServiceUnitInput!) {
-    startServiceUnitMutation(input: $input) {
-        ... on StartServiceUnitError {
-            errorCode
-        }
-        ... on StartServiceUnitPayload {
-            result
-        }
-    }
-}
+#mutation startServiceUnitMutation($input: StartServiceUnitInput!) {
+#    startServiceUnitMutation(input: $input) {
+#        ... on StartServiceUnitError {
+#            errorCode
+#        }
+#        ... on StartServiceUnitPayload {
+#            result
+#        }
+#    }
+#}
 
-mutation completeServiceUnit($input: CompleteServiceUnitInput!) {
-	completeServiceUnitMutation(input: $input) {
-		... on TypeError {
-			... TypeErrorFragment
-		}
-		... on CompleteServiceUnitError {
-			serviceErrorCode: errorCode
-		}
-		... on CompleteServiceUnitPayload {
-			result
-		}
+mutation completeServiceUnit($serviceId: String, $serviceStep: Int) {
+	completeServiceUnit(serviceId: $serviceId, serviceStep: $serviceStep) {
+		ok
 	}
 }

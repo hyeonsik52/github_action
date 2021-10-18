@@ -1,9 +1,22 @@
-query userList($first: Int, $swsIdx: Int!) {
-	swsUsersConnection(first: $first, swsIdx: $swsIdx) {
-		edges {
-			node {
-				...UserFragment
+query userList($workspaceId: String) {
+  signedUser {
+	joinedWorkspaces(id: $workspaceId) {
+	  edges {
+		node {
+		  members {
+			edges {
+			  node {
+				... MemberFragment
+			  }
 			}
+		  }
 		}
+	  }
 	}
+  }
+}
+
+fragment MemberFragment on MemberNode {
+	id
+	displayName
 }

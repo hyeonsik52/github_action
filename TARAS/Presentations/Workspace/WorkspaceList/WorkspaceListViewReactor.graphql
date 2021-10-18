@@ -1,48 +1,25 @@
-query allMyWorkspace {
-	allMySWS {
-		... WorkspaceFragment
-	}
-}
 
-mutation requestQuitSWS($input: RequestQuitSWSInput!) {
-	requestQuitSWSMutation(input: $input) {
-		... on TypeError {
-            ... TypeErrorFragment
-		}
-		... on RequestQuitSWSError {
-			quitErrorCode: errorCode
-		}
-		... on RequestQuitSWSPayload {
-			result
-		}
-	}
-}
-
-fragment WorkspaceFragment on SWS {
-	swsIdx
-	code
-	name
-	profileImageUrl
-	createAt
-	myMemberStatus
-	myJoinRequest {
-		... on SWSJoinRequestError {
-			errorCode
-		}
-		... on SWSJoinRequest {
-			swsJoinRequestIdx
-		}
-	}
-}
-
-query requestedSWSJoinRequests {
-	requestedSWSJoinRequestsConnection {
-		edges {
-			node {
-				sws {
+query allMyWorkspaces {
+	signedUser {
+		joinedWorkspaces {
+			edges {
+				node {
 					... WorkspaceFragment
 				}
 			}
 		}
 	}
+}
+
+mutation leaveWorkspace($workspaceId: String) {
+	leaveWorkspace(workspaceId: $workspaceId)
+}
+
+fragment WorkspaceFragment on WorkspaceNode {
+	id
+	name
+	createdAt
+	isRequiredToAcceptToJoin
+	isRequiredUserEmailToJoin
+	isRequiredUserPhoneNumberToJoin
 }

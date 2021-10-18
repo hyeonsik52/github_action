@@ -1,10 +1,17 @@
-query stopsList($first: Int, $swsIdx: Int!) {
-    swsStopsConnection(first: $first, swsIdx: $swsIdx) {
-        edges {
-            node {
-                name
-                stopIdx
-            }
-        }
-    }
+query stopsByWorkspaceId($workspaceId: String) {
+  signedUser {
+	joinedWorkspaces(id: $workspaceId) {
+	  edges {
+		node {
+		  stationGroups {
+			edges {
+			  node {
+				  ... StopFragment
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
 }
