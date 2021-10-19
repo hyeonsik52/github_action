@@ -11,7 +11,6 @@ import SnapKit
 import Then
 import Kingfisher
 import ReactorKit
-//import SkeletonView
 
 class SendedRequestCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     typealias Reactor = ServiceCellReactor
@@ -31,8 +30,6 @@ class SendedRequestCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     }
     
     private func setupConstraints() {
-        
-        self.isSkeletonable = true
         
         let maxWidth = UIScreen.main.bounds.width - 22*2
         self.view = SendedServiceCellView(maxWidth)

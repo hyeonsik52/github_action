@@ -11,7 +11,6 @@ import SnapKit
 import Then
 import Kingfisher
 import ReactorKit
-//import SkeletonView
 
 class WorkspaceHomeReceivedRequestCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     typealias Reactor = ServiceCellReactor
@@ -31,8 +30,6 @@ class WorkspaceHomeReceivedRequestCollectionViewCell: UICollectionViewCell, Reac
     }
     
     private func setupConstraints() {
-        
-        self.isSkeletonable = true
         
         self.contentView.addSubview(self.view)
         self.view.snp.makeConstraints {

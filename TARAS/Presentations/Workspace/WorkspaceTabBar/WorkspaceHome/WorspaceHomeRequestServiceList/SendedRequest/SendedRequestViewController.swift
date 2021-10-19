@@ -13,7 +13,6 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 import RxDataSources
-//import SkeletonView
 
 class SendedRequestViewController: BaseNavigatableViewController, View {
     
@@ -33,8 +32,6 @@ class SendedRequestViewController: BaseNavigatableViewController, View {
         
         $0.register(SendedRequestCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         $0.register(RequestCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
-        
-        $0.isSkeletonable = true
         
         $0.refreshControl = UIRefreshControl()
     }
@@ -77,22 +74,6 @@ class SendedRequestViewController: BaseNavigatableViewController, View {
         //State
         reactor.state.map { $0.sections }
             .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.preparingIsLoading }
-            .distinctUntilChanged()
-            .queueing(2)
-            .map { (0, $0) }
-            .observeOn(MainScheduler.instance)
-            .bind(to: self.collectionView.rx.skeleton)
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.canceledIsLoading }
-            .distinctUntilChanged()
-            .queueing(2)
-            .map { (1, $0) }
-            .observeOn(MainScheduler.instance)
-            .bind(to: self.collectionView.rx.skeleton)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.preparingIsLoading ?? false && $0.canceledIsLoading ?? false }

@@ -63,11 +63,8 @@
 		ED6B464E26B7E7CC00C2FA6D /* UILabel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462926B7E7CC00C2FA6D /* UILabel+Rx.swift */; };
 		ED6B464F26B7E7CC00C2FA6D /* FilterNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462A26B7E7CC00C2FA6D /* FilterNil.swift */; };
 		ED6B465026B7E7CC00C2FA6D /* Reactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462B26B7E7CC00C2FA6D /* Reactor.swift */; };
-		ED6B465126B7E7CC00C2FA6D /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462C26B7E7CC00C2FA6D /* UIView+Rx.swift */; };
 		ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462D26B7E7CC00C2FA6D /* UIButton+Rx.swift */; };
 		ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462E26B7E7CC00C2FA6D /* UIViewController+Rx.swift */; };
-		ED6B465426B7E7CC00C2FA6D /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462F26B7E7CC00C2FA6D /* UICollectionView+Rx.swift */; };
-		ED6B465526B7E7CC00C2FA6D /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463026B7E7CC00C2FA6D /* UITableView+Rx.swift */; };
 		ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */; };
 		ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463226B7E7CC00C2FA6D /* RxSwift+Operator.swift */; };
 		ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463326B7E7CC00C2FA6D /* TimeInterval.swift */; };
@@ -445,11 +442,8 @@
 		ED6B462926B7E7CC00C2FA6D /* UILabel+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Rx.swift"; sourceTree = "<group>"; };
 		ED6B462A26B7E7CC00C2FA6D /* FilterNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterNil.swift; sourceTree = "<group>"; };
 		ED6B462B26B7E7CC00C2FA6D /* Reactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reactor.swift; sourceTree = "<group>"; };
-		ED6B462C26B7E7CC00C2FA6D /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		ED6B462D26B7E7CC00C2FA6D /* UIButton+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Rx.swift"; sourceTree = "<group>"; };
 		ED6B462E26B7E7CC00C2FA6D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
-		ED6B462F26B7E7CC00C2FA6D /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
-		ED6B463026B7E7CC00C2FA6D /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Rx.swift"; sourceTree = "<group>"; };
 		ED6B463226B7E7CC00C2FA6D /* RxSwift+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+Operator.swift"; sourceTree = "<group>"; };
 		ED6B463326B7E7CC00C2FA6D /* TimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
@@ -996,11 +990,8 @@
 				ED6B462926B7E7CC00C2FA6D /* UILabel+Rx.swift */,
 				ED6B462A26B7E7CC00C2FA6D /* FilterNil.swift */,
 				ED6B462B26B7E7CC00C2FA6D /* Reactor.swift */,
-				ED6B462C26B7E7CC00C2FA6D /* UIView+Rx.swift */,
 				ED6B462D26B7E7CC00C2FA6D /* UIButton+Rx.swift */,
 				ED6B462E26B7E7CC00C2FA6D /* UIViewController+Rx.swift */,
-				ED6B462F26B7E7CC00C2FA6D /* UICollectionView+Rx.swift */,
-				ED6B463026B7E7CC00C2FA6D /* UITableView+Rx.swift */,
 				ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */,
 				ED6B463226B7E7CC00C2FA6D /* RxSwift+Operator.swift */,
 			);
@@ -2443,7 +2434,6 @@
 				EDC11A9526D3A39D0020AB09 /* SettingWorkspaceInfoView_Reactive.swift in Sources */,
 				EDC11A4926D3A39D0020AB09 /* ServiceLogCellReactor.swift in Sources */,
 				EDC11A7826D3A39D0020AB09 /* SRPProfileTextTableViewCell.swift in Sources */,
-				ED6B465126B7E7CC00C2FA6D /* UIView+Rx.swift in Sources */,
 				ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */,
 				ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */,
 				EDC11AAD26D3A39D0020AB09 /* AutoModeSelectView.swift in Sources */,
@@ -2506,7 +2496,6 @@
 				ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */,
 				ED6B460326B7DFF700C2FA6D /* Log.swift in Sources */,
 				EDC118E426D3A24A0020AB09 /* FindAccountPasswordViewReactor.swift in Sources */,
-				ED6B465426B7E7CC00C2FA6D /* UICollectionView+Rx.swift in Sources */,
 				EDC11A6826D3A39D0020AB09 /* SWSUserInfoViewReactor.swift in Sources */,
 				EDC11B0226D3A39E0020AB09 /* WorkspaceSearchResultView.swift in Sources */,
 				EDC11ABA26D3A39D0020AB09 /* TargetStopCell.swift in Sources */,
@@ -2631,7 +2620,6 @@
 				ED6B46A026B7E9CE00C2FA6D /* Service.swift in Sources */,
 				ED6B460526B7DFF700C2FA6D /* SwiftEntryKit_String.swift in Sources */,
 				ED6B469026B7E8B500C2FA6D /* TEST_TB.swift in Sources */,
-				ED6B465526B7E7CC00C2FA6D /* UITableView+Rx.swift in Sources */,
 				ED6B465B26B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift in Sources */,
 				ED52737826C3A03C0077CD9D /* SignUpPasswordViewController.swift in Sources */,
 				EDC11A8626D3A39D0020AB09 /* UpdateEmailViewController.swift in Sources */,

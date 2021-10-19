@@ -9,7 +9,6 @@
 import UIKit
 import ReactorKit
 import RxDataSources
-//import SkeletonView
 
 class WorkspaceHomeSendedRequestTableViewCell: UITableViewCell, View {
     typealias Reactor = ServiceContainerCellReactor
@@ -33,8 +32,6 @@ class WorkspaceHomeSendedRequestTableViewCell: UITableViewCell, View {
         $0.register(WorkspaceHomeSendedRequestCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         
         $0.showsHorizontalScrollIndicator = false
-        
-        $0.isSkeletonable = true
     }
     
     private var draggingBeginIndex: Int!
@@ -58,8 +55,6 @@ class WorkspaceHomeSendedRequestTableViewCell: UITableViewCell, View {
     }
     
     private func setupConstraints() {
-        
-        self.isSkeletonable = true
         
         self.selectionStyle = .none
         

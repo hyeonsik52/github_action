@@ -14,7 +14,6 @@ import RxSwift
 import ReactorKit
 import RxDataSources
 //import PanModal
-//import SkeletonView
 
 class ReceivedRequestViewController: BaseNavigatableViewController, View {
     
@@ -30,8 +29,6 @@ class ReceivedRequestViewController: BaseNavigatableViewController, View {
         $0.register(RequestTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "header")
         
         $0.separatorStyle = .none
-        
-        $0.isSkeletonable = true
         
         $0.refreshControl = UIRefreshControl()
     }
@@ -66,22 +63,6 @@ class ReceivedRequestViewController: BaseNavigatableViewController, View {
         //State
         reactor.state.map { $0.sections }
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.waitingIsLoading }
-            .distinctUntilChanged()
-            .queueing(2)
-            .map { (0, $0) }
-            .observeOn(MainScheduler.instance)
-            .bind(to: self.tableView.rx.skeleton)
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.acceptedIsLoading }
-            .distinctUntilChanged()
-            .queueing(2)
-            .map { (1, $0) }
-            .observeOn(MainScheduler.instance)
-            .bind(to: self.tableView.rx.skeleton)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.waitingIsLoading ?? false && $0.acceptedIsLoading ?? false }

@@ -13,7 +13,6 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-//import SkeletonView
 
 class ReceivedServicesViewController: BaseViewController, View {
     
@@ -35,8 +34,6 @@ class ReceivedServicesViewController: BaseViewController, View {
         
         $0.register(MyServiceCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         $0.register(ServiceStateCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
-        
-        $0.isSkeletonable = true
         
         $0.refreshControl = UIRefreshControl()
     }
@@ -73,22 +70,6 @@ class ReceivedServicesViewController: BaseViewController, View {
         reactor.state.map { $0.sections }
         .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
         .disposed(by: self.disposeBag)
-        
-//        reactor.state.map { $0.processingIsLoading }
-//            .distinctUntilChanged()
-//            .queueing(2)
-//            .map { (0, $0) }
-//            .observeOn(MainScheduler.instance)
-//            .bind(to: self.collectionView.rx.skeleton)
-//            .disposed(by: self.disposeBag)
-//
-//        reactor.state.map { $0.completedIsLoading }
-//            .distinctUntilChanged()
-//            .queueing(2)
-//            .map { (1, $0) }
-//            .observeOn(MainScheduler.instance)
-//            .bind(to: self.collectionView.rx.skeleton)
-//            .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.processingIsLoading ?? false && $0.completedIsLoading ?? false }
             .filter { $0 == false }

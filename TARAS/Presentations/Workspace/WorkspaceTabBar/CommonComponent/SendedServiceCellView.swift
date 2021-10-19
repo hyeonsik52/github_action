@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Then
 import Kingfisher
-//import SkeletonView
 
 class SendedServiceCellView: UIView {
     
@@ -20,13 +19,11 @@ class SendedServiceCellView: UIView {
         $0.font = .bold.20
         $0.textColor = .black
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
-//        $0.isSkeletonable = true
     }
     
     private var secondaryLabel = UILabel().then{
         $0.font = .medium.16
         $0.textColor = .black
-//        $0.isSkeletonable = true
     }
     
     private var targetsView: ServiceTargetsView!
@@ -35,13 +32,11 @@ class SendedServiceCellView: UIView {
         $0.font = .bold.16
         $0.textColor = .black
         $0.lineBreakMode = .byTruncatingMiddle
-//        $0.isSkeletonable = true
     }
     
     private var tertiaryLabel = UILabel().then{
         $0.font = .medium.16
         $0.textColor = .grayA0A0A0
-//        $0.isSkeletonable = true
     }
     
     ///작업 진행 순번 ex) 3/12
@@ -50,7 +45,6 @@ class SendedServiceCellView: UIView {
         $0.cornerRadius = 6
         $0.backgroundColor = .lightGrayF1F1F1
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
-//        $0.isSkeletonable = true
     }
     private var requestStatusLabel = UILabel().then {
         $0.font = .bold.14
@@ -58,9 +52,7 @@ class SendedServiceCellView: UIView {
     }
     
     ///작업 순번과 위치 ex) 3 회의실
-    private var sequenceContainer = UIView().then {
-//        $0.isSkeletonable = true
-    }
+    private var sequenceContainer = UIView()
     private var sequenceNumberLabel = UILabel().then {
         $0.clipsToBounds = true
         $0.cornerRadius = 10
@@ -68,12 +60,10 @@ class SendedServiceCellView: UIView {
         $0.textAlignment = .center
         $0.font = .bold.12
         $0.textColor = .white
-//        $0.isSkeletonable = true
     }
     private var placeLabel = UILabel().then {
         $0.font = .bold.16
         $0.textColor = .black
-//        $0.isSkeletonable = true
     }
     
     convenience init(_ maxWidth: CGFloat = UIScreen.main.bounds.width) {
@@ -91,8 +81,6 @@ class SendedServiceCellView: UIView {
     }
     
     private func setupConstraints(_ maxWidth: CGFloat) {
-        
-//        self.isSkeletonable = true
         
         self.backgroundColor = .lightGrayF1F1F1
         self.clipsToBounds = true

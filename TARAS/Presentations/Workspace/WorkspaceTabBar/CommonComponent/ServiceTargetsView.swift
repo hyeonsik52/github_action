@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Then
 import Kingfisher
-//import SkeletonView
 
 class ServiceTargetsView: UIView {
 
@@ -37,8 +36,6 @@ class ServiceTargetsView: UIView {
     
     private func setupConstraints(_ maxWidth: CGFloat) {
         
-        self.isSkeletonable = true
-        
         self.maxCount = Int((maxWidth+2-self.overlap)/self.distance)
         
         for i in 0..<self.maxCount {
@@ -51,7 +48,6 @@ class ServiceTargetsView: UIView {
                 $0.layer.borderWidth = 2
                 $0.layer.borderColor = UIColor.white.cgColor
                 $0.backgroundColor = .white
-                $0.isSkeletonable = true
             }
             
             self.addSubview(imageView)

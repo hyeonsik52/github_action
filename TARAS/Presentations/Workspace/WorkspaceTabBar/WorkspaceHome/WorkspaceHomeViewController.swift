@@ -14,7 +14,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 //import PanModal
-//import SkeletonView
 
 class WorkspaceHomeViewController: BaseViewController, View {
     
@@ -52,8 +51,6 @@ class WorkspaceHomeViewController: BaseViewController, View {
         
         $0.separatorStyle = .none
         $0.sectionFooterHeight = .leastNonzeroMagnitude
-        
-        $0.isSkeletonable = true
         
         $0.refreshControl = UIRefreshControl()
     }
@@ -240,12 +237,6 @@ class WorkspaceHomeViewController: BaseViewController, View {
                     ])
                 ])]}
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.isLoading }
-            .distinctUntilChanged()
-            .queueing(2)
-            .bind(to: self.tableView.rx.skeleton)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLoading }

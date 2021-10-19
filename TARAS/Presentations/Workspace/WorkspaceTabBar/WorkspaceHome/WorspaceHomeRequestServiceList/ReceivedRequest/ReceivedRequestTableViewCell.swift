@@ -32,7 +32,6 @@ class ReceivedRequestTableViewCell: UITableViewCell, ReactorKit.View {
     
     private func setupConstraints() {
         
-        self.isSkeletonable = true
         self.selectionStyle = .none
         
         self.contentView.addSubview(self.view)
