@@ -99,8 +99,6 @@
 		ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */; };
 		ED6B46A026B7E9CE00C2FA6D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469626B7E9CE00C2FA6D /* Service.swift */; };
 		ED6B46A126B7E9CE00C2FA6D /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469726B7E9CE00C2FA6D /* Workspace.swift */; };
-		ED6B46A226B7E9CE00C2FA6D /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469826B7E9CE00C2FA6D /* Worker.swift */; };
-		ED6B46A326B7E9CE00C2FA6D /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469926B7E9CE00C2FA6D /* Stop.swift */; };
 		ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */; };
 		ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469B26B7E9CE00C2FA6D /* Account.swift */; };
 		ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469C26B7E9CE00C2FA6D /* Robot.swift */; };
@@ -132,8 +130,7 @@
 		ED6D7644271D790B006B6728 /* ResetPasswordViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql_ */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
-		EDA1FA2D26C1524500E8C39B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2C26C1524500E8C39B /* Station.swift */; };
-		EDA1FA2F26C152E000E8C39B /* StationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* StationGroup.swift */; };
+		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
 		EDA1FA3126C1564700E8C39B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3026C1564700E8C39B /* User.swift */; };
 		EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3226C1590100E8C39B /* FragmentModel.swift */; };
 		EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */; };
@@ -484,8 +481,6 @@
 		ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnit.swift; sourceTree = "<group>"; };
 		ED6B469626B7E9CE00C2FA6D /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		ED6B469726B7E9CE00C2FA6D /* Workspace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workspace.swift; sourceTree = "<group>"; };
-		ED6B469826B7E9CE00C2FA6D /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
-		ED6B469926B7E9CE00C2FA6D /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLog.swift; sourceTree = "<group>"; };
 		ED6B469B26B7E9CE00C2FA6D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		ED6B469C26B7E9CE00C2FA6D /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
@@ -517,8 +512,7 @@
 		ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ResetPasswordViewReactor.graphql_; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
-		EDA1FA2C26C1524500E8C39B /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
-		EDA1FA2E26C152E000E8C39B /* StationGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationGroup.swift; sourceTree = "<group>"; };
+		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		EDA1FA3026C1564700E8C39B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EDA1FA3226C1590100E8C39B /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
 		EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteViewController.swift; sourceTree = "<group>"; };
@@ -1142,10 +1136,7 @@
 				ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */,
 				ED6B469626B7E9CE00C2FA6D /* Service.swift */,
 				ED6B469726B7E9CE00C2FA6D /* Workspace.swift */,
-				ED6B469826B7E9CE00C2FA6D /* Worker.swift */,
-				ED6B469926B7E9CE00C2FA6D /* Stop.swift */,
-				EDA1FA2C26C1524500E8C39B /* Station.swift */,
-				EDA1FA2E26C152E000E8C39B /* StationGroup.swift */,
+				EDA1FA2E26C152E000E8C39B /* Stop.swift */,
 				EDA1FA3026C1564700E8C39B /* User.swift */,
 				ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */,
 				ED6B469B26B7E9CE00C2FA6D /* Account.swift */,
@@ -2330,7 +2321,6 @@
 				EDC118E226D3A24A0020AB09 /* FindAccountEmailViewReactor.swift in Sources */,
 				EDC11AE726D3A39E0020AB09 /* RecipientListCellViewReactor.swift in Sources */,
 				EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */,
-				ED6B46A226B7E9CE00C2FA6D /* Worker.swift in Sources */,
 				EDC11A3826D3A39D0020AB09 /* PagingCreatedServicesViewReactor.swift in Sources */,
 				EDC11AD226D3A39D0020AB09 /* RecipientUserViewController.swift in Sources */,
 				EDC11A2626D3A39D0020AB09 /* Default_PhoneNumber_ViewController.swift in Sources */,
@@ -2502,7 +2492,6 @@
 				ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */,
 				EDC11A7C26D3A39D0020AB09 /* PlaceModelSection.swift in Sources */,
 				ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */,
-				EDA1FA2D26C1524500E8C39B /* Station.swift in Sources */,
 				EDC11AC626D3A39D0020AB09 /* CSUMessageViewController.swift in Sources */,
 				EDC11AF326D3A39E0020AB09 /* PagingSendedRequestReactor.swift in Sources */,
 				ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */,
@@ -2597,7 +2586,7 @@
 				EDC11A7F26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift in Sources */,
 				EDC11A4226D3A39D0020AB09 /* ServiceUnitCellReactor.swift in Sources */,
 				EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */,
-				EDA1FA2F26C152E000E8C39B /* StationGroup.swift in Sources */,
+				EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */,
 				ED68E1C126D49CBF003D6442 /* NetworkError.swift in Sources */,
 				EDC11A8126D3A39D0020AB09 /* WorkspaceInfoView.swift in Sources */,
 				ED6B460426B7DFF700C2FA6D /* SwiftEntryKit_Show.swift in Sources */,
@@ -2650,7 +2639,6 @@
 				EDC11AB226D3A39D0020AB09 /* WaypointViewController.swift in Sources */,
 				EDC11AB726D3A39D0020AB09 /* TargetStopViewReactor.swift in Sources */,
 				EDC11AB326D3A39D0020AB09 /* FreightTypeSelectView.swift in Sources */,
-				ED6B46A326B7E9CE00C2FA6D /* Stop.swift in Sources */,
 				EDC11AA826D3A39D0020AB09 /* CreateServiceCellReactor.swift in Sources */,
 				EDC11A9926D3A39D0020AB09 /* StopInChargeListViewReactor.swift in Sources */,
 				EDC11A7526D3A39D0020AB09 /* ServiceCellDelegate.swift in Sources */,

@@ -4,8 +4,14 @@ fragment ServiceFragment on HiGlovisServiceNode {
 	type
 	state
 	timestamps
+	serviceNumber
+	creator
 	robot {
 		... RobotFragment
+	}
+	currentServiceUnitStep
+	currentServiceUnit {
+		... ServiceUnitFragment
 	}
 	serviceUnits {
 		... ServiceUnitFragment

@@ -9,15 +9,18 @@ import Foundation
 
 struct User: Identifiable {
     
-    var id: String
+    ///식별 아이디
+    let id: String
     
-    var userName: String
-    var displayName: String
+    ///유저 아이디
+    let userName: String
+    ///유저 이름
+    let displayName: String
     
-    var email: String?
-    var phonenumber: String?
-    
-    var joinedWorkspaces: [Workspace]?
+    ///유저 이메일
+    let email: String?
+    ///유저 전화번호
+    let phonenumber: String?
 }
 
 extension User: FragmentModel {
@@ -31,20 +34,13 @@ extension User: FragmentModel {
         
         self.email = fragment.email
         self.phonenumber = fragment.phoneNumber
-        
-        self.joinedWorkspaces = fragment.joinedWorkspaces?.edges
-            .compactMap(\.?.node?.fragments.workspaceForUserFragment)
-            .map(Workspace.init) ?? []
     }
     
-    init(alt fragment: UserForWorkspaceFragment) {
+    init(member fragment: MemberFragment) {
         
         self.id = fragment.id
         
-        self.userName = fragment.username
+        self.userName = ""
         self.displayName = fragment.displayName
-        
-        self.email = fragment.email
-        self.phonenumber = fragment.phoneNumber
     }
 }

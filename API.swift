@@ -3197,9 +3197,16 @@ public struct ServiceFragment: GraphQLFragment {
       type
       state
       timestamps
+      serviceNumber
+      creator
       robot {
         __typename
         ...RobotFragment
+      }
+      currentServiceUnitStep
+      currentServiceUnit {
+        __typename
+        ...ServiceUnitFragment
       }
       serviceUnits {
         __typename
@@ -3218,7 +3225,11 @@ public struct ServiceFragment: GraphQLFragment {
       GraphQLField("type", type: .scalar(String.self)),
       GraphQLField("state", type: .nonNull(.scalar(String.self))),
       GraphQLField("timestamps", type: .scalar(String.self)),
+      GraphQLField("serviceNumber", type: .nonNull(.scalar(String.self))),
+      GraphQLField("creator", type: .scalar(String.self)),
       GraphQLField("robot", type: .object(Robot.selections)),
+      GraphQLField("currentServiceUnitStep", type: .scalar(Int.self)),
+      GraphQLField("currentServiceUnit", type: .object(CurrentServiceUnit.selections)),
       GraphQLField("serviceUnits", type: .list(.object(ServiceUnit.selections))),
     ]
   }
@@ -3229,8 +3240,8 @@ public struct ServiceFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, phase: String? = nil, type: String? = nil, state: String, timestamps: String? = nil, robot: Robot? = nil, serviceUnits: [ServiceUnit?]? = nil) {
-    self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNode", "id": id, "phase": phase, "type": type, "state": state, "timestamps": timestamps, "robot": robot.flatMap { (value: Robot) -> ResultMap in value.resultMap }, "serviceUnits": serviceUnits.flatMap { (value: [ServiceUnit?]) -> [ResultMap?] in value.map { (value: ServiceUnit?) -> ResultMap? in value.flatMap { (value: ServiceUnit) -> ResultMap in value.resultMap } } }])
+  public init(id: GraphQLID, phase: String? = nil, type: String? = nil, state: String, timestamps: String? = nil, serviceNumber: String, creator: String? = nil, robot: Robot? = nil, currentServiceUnitStep: Int? = nil, currentServiceUnit: CurrentServiceUnit? = nil, serviceUnits: [ServiceUnit?]? = nil) {
+    self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNode", "id": id, "phase": phase, "type": type, "state": state, "timestamps": timestamps, "serviceNumber": serviceNumber, "creator": creator, "robot": robot.flatMap { (value: Robot) -> ResultMap in value.resultMap }, "currentServiceUnitStep": currentServiceUnitStep, "currentServiceUnit": currentServiceUnit.flatMap { (value: CurrentServiceUnit) -> ResultMap in value.resultMap }, "serviceUnits": serviceUnits.flatMap { (value: [ServiceUnit?]) -> [ResultMap?] in value.map { (value: ServiceUnit?) -> ResultMap? in value.flatMap { (value: ServiceUnit) -> ResultMap in value.resultMap } } }])
   }
 
   public var __typename: String {
@@ -3287,12 +3298,48 @@ public struct ServiceFragment: GraphQLFragment {
     }
   }
 
+  public var serviceNumber: String {
+    get {
+      return resultMap["serviceNumber"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "serviceNumber")
+    }
+  }
+
+  public var creator: String? {
+    get {
+      return resultMap["creator"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "creator")
+    }
+  }
+
   public var robot: Robot? {
     get {
       return (resultMap["robot"] as? ResultMap).flatMap { Robot(unsafeResultMap: $0) }
     }
     set {
       resultMap.updateValue(newValue?.resultMap, forKey: "robot")
+    }
+  }
+
+  public var currentServiceUnitStep: Int? {
+    get {
+      return resultMap["currentServiceUnitStep"] as? Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "currentServiceUnitStep")
+    }
+  }
+
+  public var currentServiceUnit: CurrentServiceUnit? {
+    get {
+      return (resultMap["currentServiceUnit"] as? ResultMap).flatMap { CurrentServiceUnit(unsafeResultMap: $0) }
+    }
+    set {
+      resultMap.updateValue(newValue?.resultMap, forKey: "currentServiceUnit")
     }
   }
 
@@ -3349,6 +3396,58 @@ public struct ServiceFragment: GraphQLFragment {
       public var robotFragment: RobotFragment {
         get {
           return RobotFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+
+  public struct CurrentServiceUnit: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["ServiceUnitNode"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(ServiceUnitFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var serviceUnitFragment: ServiceUnitFragment {
+        get {
+          return ServiceUnitFragment(unsafeResultMap: resultMap)
         }
         set {
           resultMap += newValue.resultMap
