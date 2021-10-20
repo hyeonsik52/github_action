@@ -132,11 +132,11 @@ public struct UpdateUserMutationInput: GraphQLMapConvertible {
   }
 }
 
-public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
+public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription serviceByWorkspaceId($workspaceId: String) {
+    subscription servicesByWorkspaceId($workspaceId: String) {
       subscribeHiGlovisServices(workspaceId: $workspaceId) {
         __typename
         edges {
@@ -150,7 +150,7 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
     }
     """
 
-  public let operationName: String = "serviceByWorkspaceId"
+  public let operationName: String = "servicesByWorkspaceId"
 
   public var queryDocument: String {
     var document: String = operationDefinition
@@ -2346,6 +2346,290 @@ public final class StopsByWorkspaceIdQuery: GraphQLQuery {
   }
 }
 
+public final class ServicesQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query services($workspaceId: String, $before: String, $last: Int) {
+      hiGlovisServices(workspaceId: $workspaceId, before: $before, last: $last) {
+        __typename
+        pageInfo {
+          __typename
+          startCursor
+          hasPreviousPage
+        }
+        edges {
+          __typename
+          cursor
+          node {
+            __typename
+            ...ServiceFragment
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "services"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ServiceFragment.fragmentDefinition)
+    document.append("\n" + RobotFragment.fragmentDefinition)
+    document.append("\n" + ServiceUnitFragment.fragmentDefinition)
+    document.append("\n" + StopFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: String?
+  public var before: String?
+  public var last: Int?
+
+  public init(workspaceId: String? = nil, before: String? = nil, last: Int? = nil) {
+    self.workspaceId = workspaceId
+    self.before = before
+    self.last = last
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId, "before": before, "last": last]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("hiGlovisServices", arguments: ["workspaceId": GraphQLVariable("workspaceId"), "before": GraphQLVariable("before"), "last": GraphQLVariable("last")], type: .object(HiGlovisService.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(hiGlovisServices: HiGlovisService? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "hiGlovisServices": hiGlovisServices.flatMap { (value: HiGlovisService) -> ResultMap in value.resultMap }])
+    }
+
+    public var hiGlovisServices: HiGlovisService? {
+      get {
+        return (resultMap["hiGlovisServices"] as? ResultMap).flatMap { HiGlovisService(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "hiGlovisServices")
+      }
+    }
+
+    public struct HiGlovisService: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["HiGlovisServiceNodeConnection"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("pageInfo", type: .nonNull(.object(PageInfo.selections))),
+          GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(pageInfo: PageInfo, edges: [Edge?]) {
+        self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNodeConnection", "pageInfo": pageInfo.resultMap, "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// Pagination data for this connection.
+      public var pageInfo: PageInfo {
+        get {
+          return PageInfo(unsafeResultMap: resultMap["pageInfo"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "pageInfo")
+        }
+      }
+
+      /// Contains the nodes in this connection.
+      public var edges: [Edge?] {
+        get {
+          return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+        }
+      }
+
+      public struct PageInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PageInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("startCursor", type: .scalar(String.self)),
+            GraphQLField("hasPreviousPage", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(startCursor: String? = nil, hasPreviousPage: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PageInfo", "startCursor": startCursor, "hasPreviousPage": hasPreviousPage])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// When paginating backwards, the cursor to continue.
+        public var startCursor: String? {
+          get {
+            return resultMap["startCursor"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "startCursor")
+          }
+        }
+
+        /// When paginating backwards, are there more items?
+        public var hasPreviousPage: Bool {
+          get {
+            return resultMap["hasPreviousPage"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasPreviousPage")
+          }
+        }
+      }
+
+      public struct Edge: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["HiGlovisServiceNodeEdge"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("cursor", type: .nonNull(.scalar(String.self))),
+            GraphQLField("node", type: .object(Node.selections)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(cursor: String, node: Node? = nil) {
+          self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNodeEdge", "cursor": cursor, "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// A cursor for use in pagination
+        public var cursor: String {
+          get {
+            return resultMap["cursor"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "cursor")
+          }
+        }
+
+        /// The item at the end of the edge
+        public var node: Node? {
+          get {
+            return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "node")
+          }
+        }
+
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["HiGlovisServiceNode"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(ServiceFragment.self),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var serviceFragment: ServiceFragment {
+              get {
+                return ServiceFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 public final class CompleteServiceUnitMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -3198,6 +3482,7 @@ public struct ServiceFragment: GraphQLFragment {
       state
       timestamps
       serviceNumber
+      createdAt
       creator
       robot {
         __typename
@@ -3226,6 +3511,7 @@ public struct ServiceFragment: GraphQLFragment {
       GraphQLField("state", type: .nonNull(.scalar(String.self))),
       GraphQLField("timestamps", type: .scalar(String.self)),
       GraphQLField("serviceNumber", type: .nonNull(.scalar(String.self))),
+      GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
       GraphQLField("creator", type: .scalar(String.self)),
       GraphQLField("robot", type: .object(Robot.selections)),
       GraphQLField("currentServiceUnitStep", type: .scalar(Int.self)),
@@ -3240,8 +3526,8 @@ public struct ServiceFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, phase: String? = nil, type: String? = nil, state: String, timestamps: String? = nil, serviceNumber: String, creator: String? = nil, robot: Robot? = nil, currentServiceUnitStep: Int? = nil, currentServiceUnit: CurrentServiceUnit? = nil, serviceUnits: [ServiceUnit?]? = nil) {
-    self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNode", "id": id, "phase": phase, "type": type, "state": state, "timestamps": timestamps, "serviceNumber": serviceNumber, "creator": creator, "robot": robot.flatMap { (value: Robot) -> ResultMap in value.resultMap }, "currentServiceUnitStep": currentServiceUnitStep, "currentServiceUnit": currentServiceUnit.flatMap { (value: CurrentServiceUnit) -> ResultMap in value.resultMap }, "serviceUnits": serviceUnits.flatMap { (value: [ServiceUnit?]) -> [ResultMap?] in value.map { (value: ServiceUnit?) -> ResultMap? in value.flatMap { (value: ServiceUnit) -> ResultMap in value.resultMap } } }])
+  public init(id: GraphQLID, phase: String? = nil, type: String? = nil, state: String, timestamps: String? = nil, serviceNumber: String, createdAt: String, creator: String? = nil, robot: Robot? = nil, currentServiceUnitStep: Int? = nil, currentServiceUnit: CurrentServiceUnit? = nil, serviceUnits: [ServiceUnit?]? = nil) {
+    self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNode", "id": id, "phase": phase, "type": type, "state": state, "timestamps": timestamps, "serviceNumber": serviceNumber, "createdAt": createdAt, "creator": creator, "robot": robot.flatMap { (value: Robot) -> ResultMap in value.resultMap }, "currentServiceUnitStep": currentServiceUnitStep, "currentServiceUnit": currentServiceUnit.flatMap { (value: CurrentServiceUnit) -> ResultMap in value.resultMap }, "serviceUnits": serviceUnits.flatMap { (value: [ServiceUnit?]) -> [ResultMap?] in value.map { (value: ServiceUnit?) -> ResultMap? in value.flatMap { (value: ServiceUnit) -> ResultMap in value.resultMap } } }])
   }
 
   public var __typename: String {
@@ -3304,6 +3590,15 @@ public struct ServiceFragment: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "serviceNumber")
+    }
+  }
+
+  public var createdAt: String {
+    get {
+      return resultMap["createdAt"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "createdAt")
     }
   }
 

@@ -124,6 +124,7 @@
 		ED6D763E271D787F006B6728 /* SWSUserInfoViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D763D271D787F006B6728 /* SWSUserInfoViewReactor.graphql */; };
 		ED6D7642271D78CC006B6728 /* SettingViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7641271D78CB006B6728 /* SettingViewReactor.graphql */; };
 		ED6D7644271D790B006B6728 /* ResetPasswordViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql_ */; };
+		ED6D7646271FCB85006B6728 /* ReceivedServicesViewReacotor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7645271FCB85006B6728 /* ReceivedServicesViewReacotor.graphql */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -438,6 +439,7 @@
 		ED6D763D271D787F006B6728 /* SWSUserInfoViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWSUserInfoViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7641271D78CB006B6728 /* SettingViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SettingViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7643271D790B006B6728 /* ResetPasswordViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ResetPasswordViewReactor.graphql_; sourceTree = "<group>"; };
+		ED6D7645271FCB85006B6728 /* ReceivedServicesViewReacotor.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReceivedServicesViewReacotor.graphql; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -1323,6 +1325,7 @@
 			isa = PBXGroup;
 			children = (
 				EDC1192E26D3A39C0020AB09 /* ReceivedServicesViewController.swift */,
+				ED6D7645271FCB85006B6728 /* ReceivedServicesViewReacotor.graphql */,
 				EDC1192F26D3A39C0020AB09 /* WorkRequestDetail */,
 				EDC1194D26D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift */,
 			);
@@ -1853,6 +1856,7 @@
 				ED6D760E271D73E2006B6728 /* FindAccountEmailViewReactor.graphql_ in Resources */,
 				EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */,
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
+				ED6D7646271FCB85006B6728 /* ReceivedServicesViewReacotor.graphql in Resources */,
 				ED6D7604271D7133006B6728 /* SubscriptionManager.graphql in Resources */,
 				ED6D761E271D7590006B6728 /* WorkspaceListViewReactor.graphql in Resources */,
 				ED6D763C271D785D006B6728 /* ServiceDetailLogViewReactor.graphql_ in Resources */,
