@@ -117,7 +117,6 @@
 		ED6D7622271D7629006B6728 /* JoinRequestingViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7621271D7629006B6728 /* JoinRequestingViewReactor.graphql */; };
 		ED6D7624271D7688006B6728 /* ServiceListViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7623271D7688006B6728 /* ServiceListViewReactor.graphql */; };
 		ED6D762C271D7731006B6728 /* ServiceRequestViewReactor.graphql_ in Resources */ = {isa = PBXBuildFile; fileRef = ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql_ */; };
-		ED6D762E271D775B006B6728 /* TargetMemberViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D762D271D775B006B6728 /* TargetMemberViewReactor.graphql */; };
 		ED6D7630271D7777006B6728 /* TargetStopViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D762F271D7777006B6728 /* TargetStopViewReactor.graphql */; };
 		ED6D7636271D77E1006B6728 /* WorkRequestViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7635271D77E1006B6728 /* WorkRequestViewReactor.graphql */; };
 		ED6D763A271D7817006B6728 /* ServiceDetailViewReactor.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED6D7639271D7817006B6728 /* ServiceDetailViewReactor.graphql */; };
@@ -163,13 +162,10 @@
 		EDC11A3026D3A39D0020AB09 /* WorkspaceListViewController_TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190026D3A39C0020AB09 /* WorkspaceListViewController_TableView.swift */; };
 		EDC11A3126D3A39D0020AB09 /* WorkspaceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190126D3A39C0020AB09 /* WorkspaceListViewReactor.swift */; };
 		EDC11A3226D3A39D0020AB09 /* WorkspaceListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190326D3A39C0020AB09 /* WorkspaceListSection.swift */; };
-		EDC11A3326D3A39D0020AB09 /* WorkspaceListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190426D3A39C0020AB09 /* WorkspaceListCellModel.swift */; };
 		EDC11A3426D3A39D0020AB09 /* WorkspaceListCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190626D3A39C0020AB09 /* WorkspaceListCellReactor.swift */; };
 		EDC11A3526D3A39D0020AB09 /* WorkspaceListPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190726D3A39C0020AB09 /* WorkspaceListPlaceholderView.swift */; };
 		EDC11A3626D3A39D0020AB09 /* WorkspaceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190826D3A39C0020AB09 /* WorkspaceListCell.swift */; };
 		EDC11A3726D3A39D0020AB09 /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190926D3A39C0020AB09 /* WorkspaceListViewController.swift */; };
-		EDC11A3826D3A39D0020AB09 /* PagingCreatedServicesViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190D26D3A39C0020AB09 /* PagingCreatedServicesViewReactor.swift */; };
-		EDC11A3926D3A39D0020AB09 /* CreatedServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190E26D3A39C0020AB09 /* CreatedServicesViewController.swift */; };
 		EDC11A3A26D3A39D0020AB09 /* ServiceManagementViewController_Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1190F26D3A39C0020AB09 /* ServiceManagementViewController_Delegate.swift */; };
 		EDC11A3B26D3A39D0020AB09 /* MyServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191126D3A39C0020AB09 /* MyServiceCollectionViewCell.swift */; };
 		EDC11A3C26D3A39D0020AB09 /* SRPDetailInfoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191526D3A39C0020AB09 /* SRPDetailInfoCellView.swift */; };
@@ -187,7 +183,6 @@
 		EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192526D3A39C0020AB09 /* ServiceDetailLogTableViewCell.swift */; };
 		EDC11A4926D3A39D0020AB09 /* ServiceLogCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192726D3A39C0020AB09 /* ServiceLogCellReactor.swift */; };
 		EDC11A4A26D3A39D0020AB09 /* ServiceLogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192826D3A39C0020AB09 /* ServiceLogSection.swift */; };
-		EDC11A4B26D3A39D0020AB09 /* ServiceLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192926D3A39C0020AB09 /* ServiceLogModel.swift */; };
 		EDC11A4C26D3A39D0020AB09 /* ServiceDetailLogViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192A26D3A39C0020AB09 /* ServiceDetailLogViewReactor.swift */; };
 		EDC11A4D26D3A39D0020AB09 /* ServiceDetailLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192B26D3A39C0020AB09 /* ServiceDetailLogViewController.swift */; };
 		EDC11A4E26D3A39D0020AB09 /* ServiceDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192C26D3A39C0020AB09 /* ServiceDetailViewReactor.swift */; };
@@ -198,12 +193,8 @@
 		EDC11A5326D3A39D0020AB09 /* WorkTargetSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193526D3A39D0020AB09 /* WorkTargetSection.swift */; };
 		EDC11A5426D3A39D0020AB09 /* WorkRequestViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193626D3A39D0020AB09 /* WorkRequestViewReactor.swift */; };
 		EDC11A5526D3A39D0020AB09 /* WorkRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193726D3A39D0020AB09 /* WorkRequestViewController.swift */; };
-		EDC11A5626D3A39D0020AB09 /* StartServiceUnitErrorCode_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193926D3A39D0020AB09 /* StartServiceUnitErrorCode_Message.swift */; };
-		EDC11A5726D3A39D0020AB09 /* AcceptServiceUnitErrorCode_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193A26D3A39D0020AB09 /* AcceptServiceUnitErrorCode_Message.swift */; };
-		EDC11A5826D3A39D0020AB09 /* CancelServiceUnitCompletionErrorCode_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193B26D3A39D0020AB09 /* CancelServiceUnitCompletionErrorCode_Message.swift */; };
 		EDC11A5926D3A39D0020AB09 /* CompleteServiceUnitErrorCode_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193C26D3A39D0020AB09 /* CompleteServiceUnitErrorCode_Message.swift */; };
 		EDC11A5A26D3A39D0020AB09 /* ServiceUnitErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193D26D3A39D0020AB09 /* ServiceUnitErrorMessage.swift */; };
-		EDC11A5B26D3A39D0020AB09 /* RejectServiceUnitErrorCode_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1193E26D3A39D0020AB09 /* RejectServiceUnitErrorCode_Message.swift */; };
 		EDC11A5C26D3A39D0020AB09 /* WorkRequestSectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194026D3A39D0020AB09 /* WorkRequestSectionTitleView.swift */; };
 		EDC11A5D26D3A39D0020AB09 /* WorkRequestTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194126D3A39D0020AB09 /* WorkRequestTaskView.swift */; };
 		EDC11A5E26D3A39D0020AB09 /* WorkRequestSelectedPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194226D3A39D0020AB09 /* WorkRequestSelectedPlaceView.swift */; };
@@ -211,10 +202,6 @@
 		EDC11A6026D3A39D0020AB09 /* WorkRequestRobotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194426D3A39D0020AB09 /* WorkRequestRobotView.swift */; };
 		EDC11A6126D3A39D0020AB09 /* WorkRequestTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194526D3A39D0020AB09 /* WorkRequestTargetView.swift */; };
 		EDC11A6226D3A39D0020AB09 /* WorkRequestSimpleTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194626D3A39D0020AB09 /* WorkRequestSimpleTargetView.swift */; };
-		EDC11A6326D3A39D0020AB09 /* SelectPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194926D3A39D0020AB09 /* SelectPlaceViewController.swift */; };
-		EDC11A6426D3A39D0020AB09 /* SelectPlaceViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194A26D3A39D0020AB09 /* SelectPlaceViewReactor.swift */; };
-		EDC11A6526D3A39D0020AB09 /* ChangeWorkPlaceViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194B26D3A39D0020AB09 /* ChangeWorkPlaceViewReactor.swift */; };
-		EDC11A6626D3A39D0020AB09 /* ChangeWorkPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194C26D3A39D0020AB09 /* ChangeWorkPlaceViewController.swift */; };
 		EDC11A6726D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194D26D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift */; };
 		EDC11A6826D3A39D0020AB09 /* SWSUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194F26D3A39D0020AB09 /* SWSUserInfoViewReactor.swift */; };
 		EDC11A6926D3A39D0020AB09 /* SWSUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */; };
@@ -235,9 +222,6 @@
 		EDC11A7826D3A39D0020AB09 /* SRPProfileTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196126D3A39D0020AB09 /* SRPProfileTextTableViewCell.swift */; };
 		EDC11A7926D3A39D0020AB09 /* WorkspaceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196226D3A39D0020AB09 /* WorkspaceTabBarController.swift */; };
 		EDC11A7A26D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196326D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift */; };
-		EDC11A7B26D3A39D0020AB09 /* SelectDefaultPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196626D3A39D0020AB09 /* SelectDefaultPlaceViewController.swift */; };
-		EDC11A7C26D3A39D0020AB09 /* PlaceModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196826D3A39D0020AB09 /* PlaceModelSection.swift */; };
-		EDC11A7D26D3A39D0020AB09 /* SelectDefaultPlaceViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196926D3A39D0020AB09 /* SelectDefaultPlaceViewReactor.swift */; };
 		EDC11A7E26D3A39D0020AB09 /* WorkspaceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196B26D3A39D0020AB09 /* WorkspaceInfoViewController.swift */; };
 		EDC11A7F26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196C26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift */; };
 		EDC11A8026D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196E26D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift */; };
@@ -265,19 +249,8 @@
 		EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1198B26D3A39D0020AB09 /* SettingTextCellView_Reactive.swift */; };
 		EDC11A9726D3A39D0020AB09 /* SettingWorkspaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1198C26D3A39D0020AB09 /* SettingWorkspaceInfoView.swift */; };
 		EDC11A9826D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1198D26D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift */; };
-		EDC11A9926D3A39D0020AB09 /* StopInChargeListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1198F26D3A39D0020AB09 /* StopInChargeListViewReactor.swift */; };
-		EDC11A9A26D3A39D0020AB09 /* StopInChargeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199026D3A39D0020AB09 /* StopInChargeListViewController.swift */; };
-		EDC11A9B26D3A39D0020AB09 /* BelongingGroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199226D3A39D0020AB09 /* BelongingGroupListViewController.swift */; };
-		EDC11A9C26D3A39D0020AB09 /* BelongingGroupListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199326D3A39D0020AB09 /* BelongingGroupListViewReactor.swift */; };
-		EDC11A9D26D3A39D0020AB09 /* BelongingGroupListViewController_Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199426D3A39D0020AB09 /* BelongingGroupListViewController_Delegate.swift */; };
-		EDC11A9E26D3A39D0020AB09 /* GroupModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199626D3A39D0020AB09 /* GroupModelSection.swift */; };
 		EDC11A9F26D3A39D0020AB09 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199826D3A39D0020AB09 /* HelpViewController.swift */; };
 		EDC11AA026D3A39D0020AB09 /* CreateServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199A26D3A39D0020AB09 /* CreateServiceViewController.swift */; };
-		EDC11AA126D3A39D0020AB09 /* AddWaypointViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199C26D3A39D0020AB09 /* AddWaypointViewReactor.swift */; };
-		EDC11AA226D3A39D0020AB09 /* AddWaypointCellViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199D26D3A39D0020AB09 /* AddWaypointCellViewReactor.swift */; };
-		EDC11AA326D3A39D0020AB09 /* AddWaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199E26D3A39D0020AB09 /* AddWaypointViewController.swift */; };
-		EDC11AA426D3A39D0020AB09 /* AddWaypointSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1199F26D3A39D0020AB09 /* AddWaypointSection.swift */; };
-		EDC11AA526D3A39D0020AB09 /* AddWaypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A026D3A39D0020AB09 /* AddWaypointCell.swift */; };
 		EDC11AA626D3A39D0020AB09 /* CreateServiceCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A226D3A39D0020AB09 /* CreateServiceCellModel.swift */; };
 		EDC11AA726D3A39D0020AB09 /* CreateServiceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A326D3A39D0020AB09 /* CreateServiceSection.swift */; };
 		EDC11AA826D3A39D0020AB09 /* CreateServiceCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A526D3A39D0020AB09 /* CreateServiceCellReactor.swift */; };
@@ -286,34 +259,17 @@
 		EDC11AAB26D3A39D0020AB09 /* CreateServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A826D3A39D0020AB09 /* CreateServiceCell.swift */; };
 		EDC11AAC26D3A39D0020AB09 /* CreateServiceFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A926D3A39D0020AB09 /* CreateServiceFooterView.swift */; };
 		EDC11AAD26D3A39D0020AB09 /* AutoModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119AA26D3A39D0020AB09 /* AutoModeSelectView.swift */; };
-		EDC11AAE26D3A39D0020AB09 /* WaypointSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119AC26D3A39D0020AB09 /* WaypointSection.swift */; };
-		EDC11AAF26D3A39D0020AB09 /* WaypointViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119AD26D3A39D0020AB09 /* WaypointViewReactor.swift */; };
-		EDC11AB026D3A39D0020AB09 /* WaypointCellViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119AE26D3A39D0020AB09 /* WaypointCellViewReactor.swift */; };
-		EDC11AB126D3A39D0020AB09 /* WaypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119AF26D3A39D0020AB09 /* WaypointCell.swift */; };
-		EDC11AB226D3A39D0020AB09 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B026D3A39D0020AB09 /* WaypointViewController.swift */; };
-		EDC11AB326D3A39D0020AB09 /* FreightTypeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B326D3A39D0020AB09 /* FreightTypeSelectView.swift */; };
-		EDC11AB426D3A39D0020AB09 /* CSUFreightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B426D3A39D0020AB09 /* CSUFreightsViewController.swift */; };
-		EDC11AB526D3A39D0020AB09 /* CSUFreightsViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B526D3A39D0020AB09 /* CSUFreightsViewReactor.swift */; };
 		EDC11AB626D3A39D0020AB09 /* TargetStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B826D3A39D0020AB09 /* TargetStopViewController.swift */; };
 		EDC11AB726D3A39D0020AB09 /* TargetStopViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B926D3A39D0020AB09 /* TargetStopViewReactor.swift */; };
 		EDC11AB826D3A39D0020AB09 /* TargetStopSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119BB26D3A39D0020AB09 /* TargetStopSection.swift */; };
 		EDC11AB926D3A39D0020AB09 /* TargetStopCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119BC26D3A39D0020AB09 /* TargetStopCellModel.swift */; };
 		EDC11ABA26D3A39D0020AB09 /* TargetStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119BE26D3A39D0020AB09 /* TargetStopCell.swift */; };
 		EDC11ABB26D3A39D0020AB09 /* TargetStopCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119BF26D3A39D0020AB09 /* TargetStopCellReactor.swift */; };
-		EDC11ABC26D3A39D0020AB09 /* TargetMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119C126D3A39D0020AB09 /* TargetMemberViewController.swift */; };
-		EDC11ABD26D3A39D0020AB09 /* TargetMemeberSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119C326D3A39D0020AB09 /* TargetMemeberSection.swift */; };
-		EDC11ABE26D3A39D0020AB09 /* TargetMemberCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119C426D3A39D0020AB09 /* TargetMemberCellModel.swift */; };
-		EDC11ABF26D3A39D0020AB09 /* TargetMemberCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119C626D3A39D0020AB09 /* TargetMemberCellReactor.swift */; };
-		EDC11AC026D3A39D0020AB09 /* TargetMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119C726D3A39D0020AB09 /* TargetMemberCell.swift */; };
-		EDC11AC126D3A39D0020AB09 /* TargetMemberViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119C826D3A39D0020AB09 /* TargetMemberViewReactor.swift */; };
 		EDC11AC226D3A39D0020AB09 /* CSUTargetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119C926D3A39D0020AB09 /* CSUTargetDelegate.swift */; };
 		EDC11AC326D3A39D0020AB09 /* CSUTargetViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119CA26D3A39D0020AB09 /* CSUTargetViewReactor.swift */; };
 		EDC11AC426D3A39D0020AB09 /* CSUTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119CB26D3A39D0020AB09 /* CSUTargetViewController.swift */; };
 		EDC11AC526D3A39D0020AB09 /* CSUMessageViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119CD26D3A39D0020AB09 /* CSUMessageViewReactor.swift */; };
 		EDC11AC626D3A39D0020AB09 /* CSUMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119CE26D3A39D0020AB09 /* CSUMessageViewController.swift */; };
-		EDC11AC726D3A39D0020AB09 /* CSUQuantityViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119D026D3A39D0020AB09 /* CSUQuantityViewReactor.swift */; };
-		EDC11AC826D3A39D0020AB09 /* QuantityButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119D126D3A39D0020AB09 /* QuantityButtonView.swift */; };
-		EDC11AC926D3A39D0020AB09 /* CSUQuantityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119D226D3A39D0020AB09 /* CSUQuantityViewController.swift */; };
 		EDC11ACA26D3A39D0020AB09 /* RecipientUserSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119D626D3A39D0020AB09 /* RecipientUserSection.swift */; };
 		EDC11ACB26D3A39D0020AB09 /* RecipientUserCollectionViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119D726D3A39D0020AB09 /* RecipientUserCollectionViewSection.swift */; };
 		EDC11ACC26D3A39D0020AB09 /* RecipientCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119D826D3A39D0020AB09 /* RecipientCellModel.swift */; };
@@ -324,42 +280,21 @@
 		EDC11AD126D3A39D0020AB09 /* RecipientUserViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119DE26D3A39D0020AB09 /* RecipientUserViewReactor.swift */; };
 		EDC11AD226D3A39D0020AB09 /* RecipientUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119DF26D3A39D0020AB09 /* RecipientUserViewController.swift */; };
 		EDC11AD326D3A39D0020AB09 /* CSURecipientViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E026D3A39D0020AB09 /* CSURecipientViewReactor.swift */; };
-		EDC11AD426D3A39D0020AB09 /* RecipientGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E226D3A39D0020AB09 /* RecipientGroupViewController.swift */; };
-		EDC11AD526D3A39D0020AB09 /* RecipientGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E426D3A39D0020AB09 /* RecipientGroupCell.swift */; };
-		EDC11AD626D3A39E0020AB09 /* RecipientGroupCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E526D3A39D0020AB09 /* RecipientGroupCellReactor.swift */; };
-		EDC11AD726D3A39E0020AB09 /* RecipientGroupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E626D3A39D0020AB09 /* RecipientGroupSection.swift */; };
-		EDC11AD826D3A39E0020AB09 /* RecipientsGroupViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E726D3A39D0020AB09 /* RecipientsGroupViewReactor.swift */; };
 		EDC11AD926D3A39E0020AB09 /* CSURecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E826D3A39D0020AB09 /* CSURecipientViewController.swift */; };
 		EDC11ADA26D3A39E0020AB09 /* CSURecipientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119E926D3A39D0020AB09 /* CSURecipientDelegate.swift */; };
 		EDC11ADB26D3A39E0020AB09 /* CSUDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119EB26D3A39D0020AB09 /* CSUDetailViewReactor.swift */; };
 		EDC11ADC26D3A39E0020AB09 /* CSUDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119EC26D3A39D0020AB09 /* CSUDetailViewController.swift */; };
 		EDC11ADD26D3A39E0020AB09 /* DetailListWithHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119EE26D3A39D0020AB09 /* DetailListWithHeaderView.swift */; };
-		EDC11ADE26D3A39E0020AB09 /* FreightListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119EF26D3A39D0020AB09 /* FreightListViewReactor.swift */; };
 		EDC11ADF26D3A39E0020AB09 /* RecipientListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F026D3A39D0020AB09 /* RecipientListCellView.swift */; };
-		EDC11AE026D3A39E0020AB09 /* FreightListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F126D3A39D0020AB09 /* FreightListCellView.swift */; };
-		EDC11AE126D3A39E0020AB09 /* FreightListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F226D3A39D0020AB09 /* FreightListView.swift */; };
 		EDC11AE226D3A39E0020AB09 /* RecipientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F326D3A39D0020AB09 /* RecipientListView.swift */; };
 		EDC11AE326D3A39E0020AB09 /* DetailHeaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F426D3A39D0020AB09 /* DetailHeaderCellView.swift */; };
 		EDC11AE426D3A39E0020AB09 /* DetailHeaderCellViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F526D3A39D0020AB09 /* DetailHeaderCellViewReactor.swift */; };
 		EDC11AE526D3A39E0020AB09 /* RecipientListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F626D3A39D0020AB09 /* RecipientListViewReactor.swift */; };
-		EDC11AE626D3A39E0020AB09 /* FreightListCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F726D3A39D0020AB09 /* FreightListCellReactor.swift */; };
 		EDC11AE726D3A39E0020AB09 /* RecipientListCellViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F826D3A39D0020AB09 /* RecipientListCellViewReactor.swift */; };
 		EDC11AE826D3A39E0020AB09 /* DetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119F926D3A39D0020AB09 /* DetailStackView.swift */; };
 		EDC11AE926D3A39E0020AB09 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119FA26D3A39D0020AB09 /* MessageView.swift */; };
 		EDC11AEA26D3A39E0020AB09 /* CreateServiceUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119FB26D3A39D0020AB09 /* CreateServiceUnitModel.swift */; };
 		EDC11AEB26D3A39E0020AB09 /* CreateServiceViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119FC26D3A39D0020AB09 /* CreateServiceViewReactor.swift */; };
-		EDC11AEC26D3A39E0020AB09 /* ReceivedRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0026D3A39D0020AB09 /* ReceivedRequestViewController.swift */; };
-		EDC11AED26D3A39E0020AB09 /* PagingReceivedRequestReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0126D3A39D0020AB09 /* PagingReceivedRequestReactor.swift */; };
-		EDC11AEE26D3A39E0020AB09 /* ReceivedRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0226D3A39D0020AB09 /* ReceivedRequestTableViewCell.swift */; };
-		EDC11AEF26D3A39E0020AB09 /* RequestTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0326D3A39D0020AB09 /* RequestTableViewHeader.swift */; };
-		EDC11AF026D3A39E0020AB09 /* RequestCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0426D3A39D0020AB09 /* RequestCollectionViewHeader.swift */; };
-		EDC11AF126D3A39E0020AB09 /* SendedRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0626D3A39D0020AB09 /* SendedRequestViewController.swift */; };
-		EDC11AF226D3A39E0020AB09 /* SendedRequestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0726D3A39D0020AB09 /* SendedRequestCollectionViewCell.swift */; };
-		EDC11AF326D3A39E0020AB09 /* PagingSendedRequestReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0826D3A39D0020AB09 /* PagingSendedRequestReactor.swift */; };
-		EDC11AF426D3A39E0020AB09 /* WorkspaceHomeSendedRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0A26D3A39D0020AB09 /* WorkspaceHomeSendedRequestTableViewCell.swift */; };
-		EDC11AF526D3A39E0020AB09 /* WorkspaceHomeReceivedRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0B26D3A39D0020AB09 /* WorkspaceHomeReceivedRequestTableViewCell.swift */; };
-		EDC11AF626D3A39E0020AB09 /* ReceivedServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0C26D3A39D0020AB09 /* ReceivedServiceCollectionViewCell.swift */; };
-		EDC11AF726D3A39E0020AB09 /* WorkspaceHomeSendedRequestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0D26D3A39D0020AB09 /* WorkspaceHomeSendedRequestCollectionViewCell.swift */; };
 		EDC11AF826D3A39E0020AB09 /* WorkspaceHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0E26D3A39D0020AB09 /* WorkspaceHomeViewController.swift */; };
 		EDC11AF926D3A39E0020AB09 /* WorkspaceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1026D3A39D0020AB09 /* WorkspaceHeaderView.swift */; };
 		EDC11AFA26D3A39E0020AB09 /* WorkspaceHeaderView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1126D3A39D0020AB09 /* WorkspaceHeaderView_Reactive.swift */; };
@@ -496,7 +431,6 @@
 		ED6D7621271D7629006B6728 /* JoinRequestingViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JoinRequestingViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7623271D7688006B6728 /* ServiceListViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceListViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql_ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceRequestViewReactor.graphql_; sourceTree = "<group>"; };
-		ED6D762D271D775B006B6728 /* TargetMemberViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TargetMemberViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D762F271D7777006B6728 /* TargetStopViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TargetStopViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7635271D77E1006B6728 /* WorkRequestViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WorkRequestViewReactor.graphql; sourceTree = "<group>"; };
 		ED6D7639271D7817006B6728 /* ServiceDetailViewReactor.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceDetailViewReactor.graphql; sourceTree = "<group>"; };
@@ -542,13 +476,10 @@
 		EDC1190026D3A39C0020AB09 /* WorkspaceListViewController_TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewController_TableView.swift; sourceTree = "<group>"; };
 		EDC1190126D3A39C0020AB09 /* WorkspaceListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewReactor.swift; sourceTree = "<group>"; };
 		EDC1190326D3A39C0020AB09 /* WorkspaceListSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListSection.swift; sourceTree = "<group>"; };
-		EDC1190426D3A39C0020AB09 /* WorkspaceListCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListCellModel.swift; sourceTree = "<group>"; };
 		EDC1190626D3A39C0020AB09 /* WorkspaceListCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListCellReactor.swift; sourceTree = "<group>"; };
 		EDC1190726D3A39C0020AB09 /* WorkspaceListPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListPlaceholderView.swift; sourceTree = "<group>"; };
 		EDC1190826D3A39C0020AB09 /* WorkspaceListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListCell.swift; sourceTree = "<group>"; };
 		EDC1190926D3A39C0020AB09 /* WorkspaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewController.swift; sourceTree = "<group>"; };
-		EDC1190D26D3A39C0020AB09 /* PagingCreatedServicesViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCreatedServicesViewReactor.swift; sourceTree = "<group>"; };
-		EDC1190E26D3A39C0020AB09 /* CreatedServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedServicesViewController.swift; sourceTree = "<group>"; };
 		EDC1190F26D3A39C0020AB09 /* ServiceManagementViewController_Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManagementViewController_Delegate.swift; sourceTree = "<group>"; };
 		EDC1191126D3A39C0020AB09 /* MyServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyServiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		EDC1191526D3A39C0020AB09 /* SRPDetailInfoCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPDetailInfoCellView.swift; sourceTree = "<group>"; };
@@ -566,7 +497,6 @@
 		EDC1192526D3A39C0020AB09 /* ServiceDetailLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailLogTableViewCell.swift; sourceTree = "<group>"; };
 		EDC1192726D3A39C0020AB09 /* ServiceLogCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLogCellReactor.swift; sourceTree = "<group>"; };
 		EDC1192826D3A39C0020AB09 /* ServiceLogSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLogSection.swift; sourceTree = "<group>"; };
-		EDC1192926D3A39C0020AB09 /* ServiceLogModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLogModel.swift; sourceTree = "<group>"; };
 		EDC1192A26D3A39C0020AB09 /* ServiceDetailLogViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailLogViewReactor.swift; sourceTree = "<group>"; };
 		EDC1192B26D3A39C0020AB09 /* ServiceDetailLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailLogViewController.swift; sourceTree = "<group>"; };
 		EDC1192C26D3A39C0020AB09 /* ServiceDetailViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewReactor.swift; sourceTree = "<group>"; };
@@ -577,12 +507,8 @@
 		EDC1193526D3A39D0020AB09 /* WorkTargetSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkTargetSection.swift; sourceTree = "<group>"; };
 		EDC1193626D3A39D0020AB09 /* WorkRequestViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestViewReactor.swift; sourceTree = "<group>"; };
 		EDC1193726D3A39D0020AB09 /* WorkRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestViewController.swift; sourceTree = "<group>"; };
-		EDC1193926D3A39D0020AB09 /* StartServiceUnitErrorCode_Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartServiceUnitErrorCode_Message.swift; sourceTree = "<group>"; };
-		EDC1193A26D3A39D0020AB09 /* AcceptServiceUnitErrorCode_Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptServiceUnitErrorCode_Message.swift; sourceTree = "<group>"; };
-		EDC1193B26D3A39D0020AB09 /* CancelServiceUnitCompletionErrorCode_Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelServiceUnitCompletionErrorCode_Message.swift; sourceTree = "<group>"; };
 		EDC1193C26D3A39D0020AB09 /* CompleteServiceUnitErrorCode_Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteServiceUnitErrorCode_Message.swift; sourceTree = "<group>"; };
 		EDC1193D26D3A39D0020AB09 /* ServiceUnitErrorMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnitErrorMessage.swift; sourceTree = "<group>"; };
-		EDC1193E26D3A39D0020AB09 /* RejectServiceUnitErrorCode_Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RejectServiceUnitErrorCode_Message.swift; sourceTree = "<group>"; };
 		EDC1194026D3A39D0020AB09 /* WorkRequestSectionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestSectionTitleView.swift; sourceTree = "<group>"; };
 		EDC1194126D3A39D0020AB09 /* WorkRequestTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestTaskView.swift; sourceTree = "<group>"; };
 		EDC1194226D3A39D0020AB09 /* WorkRequestSelectedPlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestSelectedPlaceView.swift; sourceTree = "<group>"; };
@@ -590,10 +516,6 @@
 		EDC1194426D3A39D0020AB09 /* WorkRequestRobotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestRobotView.swift; sourceTree = "<group>"; };
 		EDC1194526D3A39D0020AB09 /* WorkRequestTargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestTargetView.swift; sourceTree = "<group>"; };
 		EDC1194626D3A39D0020AB09 /* WorkRequestSimpleTargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestSimpleTargetView.swift; sourceTree = "<group>"; };
-		EDC1194926D3A39D0020AB09 /* SelectPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPlaceViewController.swift; sourceTree = "<group>"; };
-		EDC1194A26D3A39D0020AB09 /* SelectPlaceViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPlaceViewReactor.swift; sourceTree = "<group>"; };
-		EDC1194B26D3A39D0020AB09 /* ChangeWorkPlaceViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeWorkPlaceViewReactor.swift; sourceTree = "<group>"; };
-		EDC1194C26D3A39D0020AB09 /* ChangeWorkPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeWorkPlaceViewController.swift; sourceTree = "<group>"; };
 		EDC1194D26D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingReceivedServicesViewReactor.swift; sourceTree = "<group>"; };
 		EDC1194F26D3A39D0020AB09 /* SWSUserInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWSUserInfoViewReactor.swift; sourceTree = "<group>"; };
 		EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWSUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -614,9 +536,6 @@
 		EDC1196126D3A39D0020AB09 /* SRPProfileTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPProfileTextTableViewCell.swift; sourceTree = "<group>"; };
 		EDC1196226D3A39D0020AB09 /* WorkspaceTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceTabBarController.swift; sourceTree = "<group>"; };
 		EDC1196326D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceTabBarControllerReactor.swift; sourceTree = "<group>"; };
-		EDC1196626D3A39D0020AB09 /* SelectDefaultPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDefaultPlaceViewController.swift; sourceTree = "<group>"; };
-		EDC1196826D3A39D0020AB09 /* PlaceModelSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceModelSection.swift; sourceTree = "<group>"; };
-		EDC1196926D3A39D0020AB09 /* SelectDefaultPlaceViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDefaultPlaceViewReactor.swift; sourceTree = "<group>"; };
 		EDC1196B26D3A39D0020AB09 /* WorkspaceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceInfoViewController.swift; sourceTree = "<group>"; };
 		EDC1196C26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceInfoViewReactor.swift; sourceTree = "<group>"; };
 		EDC1196E26D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceInfoView_Reactive.swift; sourceTree = "<group>"; };
@@ -644,19 +563,8 @@
 		EDC1198B26D3A39D0020AB09 /* SettingTextCellView_Reactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTextCellView_Reactive.swift; sourceTree = "<group>"; };
 		EDC1198C26D3A39D0020AB09 /* SettingWorkspaceInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingWorkspaceInfoView.swift; sourceTree = "<group>"; };
 		EDC1198D26D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceMoreViewReactor.swift; sourceTree = "<group>"; };
-		EDC1198F26D3A39D0020AB09 /* StopInChargeListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopInChargeListViewReactor.swift; sourceTree = "<group>"; };
-		EDC1199026D3A39D0020AB09 /* StopInChargeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopInChargeListViewController.swift; sourceTree = "<group>"; };
-		EDC1199226D3A39D0020AB09 /* BelongingGroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BelongingGroupListViewController.swift; sourceTree = "<group>"; };
-		EDC1199326D3A39D0020AB09 /* BelongingGroupListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BelongingGroupListViewReactor.swift; sourceTree = "<group>"; };
-		EDC1199426D3A39D0020AB09 /* BelongingGroupListViewController_Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BelongingGroupListViewController_Delegate.swift; sourceTree = "<group>"; };
-		EDC1199626D3A39D0020AB09 /* GroupModelSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupModelSection.swift; sourceTree = "<group>"; };
 		EDC1199826D3A39D0020AB09 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		EDC1199A26D3A39D0020AB09 /* CreateServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceViewController.swift; sourceTree = "<group>"; };
-		EDC1199C26D3A39D0020AB09 /* AddWaypointViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWaypointViewReactor.swift; sourceTree = "<group>"; };
-		EDC1199D26D3A39D0020AB09 /* AddWaypointCellViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWaypointCellViewReactor.swift; sourceTree = "<group>"; };
-		EDC1199E26D3A39D0020AB09 /* AddWaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWaypointViewController.swift; sourceTree = "<group>"; };
-		EDC1199F26D3A39D0020AB09 /* AddWaypointSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWaypointSection.swift; sourceTree = "<group>"; };
-		EDC119A026D3A39D0020AB09 /* AddWaypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWaypointCell.swift; sourceTree = "<group>"; };
 		EDC119A226D3A39D0020AB09 /* CreateServiceCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceCellModel.swift; sourceTree = "<group>"; };
 		EDC119A326D3A39D0020AB09 /* CreateServiceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceSection.swift; sourceTree = "<group>"; };
 		EDC119A526D3A39D0020AB09 /* CreateServiceCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceCellReactor.swift; sourceTree = "<group>"; };
@@ -665,34 +573,17 @@
 		EDC119A826D3A39D0020AB09 /* CreateServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceCell.swift; sourceTree = "<group>"; };
 		EDC119A926D3A39D0020AB09 /* CreateServiceFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceFooterView.swift; sourceTree = "<group>"; };
 		EDC119AA26D3A39D0020AB09 /* AutoModeSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoModeSelectView.swift; sourceTree = "<group>"; };
-		EDC119AC26D3A39D0020AB09 /* WaypointSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointSection.swift; sourceTree = "<group>"; };
-		EDC119AD26D3A39D0020AB09 /* WaypointViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewReactor.swift; sourceTree = "<group>"; };
-		EDC119AE26D3A39D0020AB09 /* WaypointCellViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointCellViewReactor.swift; sourceTree = "<group>"; };
-		EDC119AF26D3A39D0020AB09 /* WaypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointCell.swift; sourceTree = "<group>"; };
-		EDC119B026D3A39D0020AB09 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
-		EDC119B326D3A39D0020AB09 /* FreightTypeSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreightTypeSelectView.swift; sourceTree = "<group>"; };
-		EDC119B426D3A39D0020AB09 /* CSUFreightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUFreightsViewController.swift; sourceTree = "<group>"; };
-		EDC119B526D3A39D0020AB09 /* CSUFreightsViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUFreightsViewReactor.swift; sourceTree = "<group>"; };
 		EDC119B826D3A39D0020AB09 /* TargetStopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopViewController.swift; sourceTree = "<group>"; };
 		EDC119B926D3A39D0020AB09 /* TargetStopViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopViewReactor.swift; sourceTree = "<group>"; };
 		EDC119BB26D3A39D0020AB09 /* TargetStopSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopSection.swift; sourceTree = "<group>"; };
 		EDC119BC26D3A39D0020AB09 /* TargetStopCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopCellModel.swift; sourceTree = "<group>"; };
 		EDC119BE26D3A39D0020AB09 /* TargetStopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopCell.swift; sourceTree = "<group>"; };
 		EDC119BF26D3A39D0020AB09 /* TargetStopCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopCellReactor.swift; sourceTree = "<group>"; };
-		EDC119C126D3A39D0020AB09 /* TargetMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetMemberViewController.swift; sourceTree = "<group>"; };
-		EDC119C326D3A39D0020AB09 /* TargetMemeberSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetMemeberSection.swift; sourceTree = "<group>"; };
-		EDC119C426D3A39D0020AB09 /* TargetMemberCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetMemberCellModel.swift; sourceTree = "<group>"; };
-		EDC119C626D3A39D0020AB09 /* TargetMemberCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetMemberCellReactor.swift; sourceTree = "<group>"; };
-		EDC119C726D3A39D0020AB09 /* TargetMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetMemberCell.swift; sourceTree = "<group>"; };
-		EDC119C826D3A39D0020AB09 /* TargetMemberViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetMemberViewReactor.swift; sourceTree = "<group>"; };
 		EDC119C926D3A39D0020AB09 /* CSUTargetDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUTargetDelegate.swift; sourceTree = "<group>"; };
 		EDC119CA26D3A39D0020AB09 /* CSUTargetViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUTargetViewReactor.swift; sourceTree = "<group>"; };
 		EDC119CB26D3A39D0020AB09 /* CSUTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUTargetViewController.swift; sourceTree = "<group>"; };
 		EDC119CD26D3A39D0020AB09 /* CSUMessageViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUMessageViewReactor.swift; sourceTree = "<group>"; };
 		EDC119CE26D3A39D0020AB09 /* CSUMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUMessageViewController.swift; sourceTree = "<group>"; };
-		EDC119D026D3A39D0020AB09 /* CSUQuantityViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUQuantityViewReactor.swift; sourceTree = "<group>"; };
-		EDC119D126D3A39D0020AB09 /* QuantityButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityButtonView.swift; sourceTree = "<group>"; };
-		EDC119D226D3A39D0020AB09 /* CSUQuantityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUQuantityViewController.swift; sourceTree = "<group>"; };
 		EDC119D626D3A39D0020AB09 /* RecipientUserSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientUserSection.swift; sourceTree = "<group>"; };
 		EDC119D726D3A39D0020AB09 /* RecipientUserCollectionViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientUserCollectionViewSection.swift; sourceTree = "<group>"; };
 		EDC119D826D3A39D0020AB09 /* RecipientCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientCellModel.swift; sourceTree = "<group>"; };
@@ -703,42 +594,21 @@
 		EDC119DE26D3A39D0020AB09 /* RecipientUserViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientUserViewReactor.swift; sourceTree = "<group>"; };
 		EDC119DF26D3A39D0020AB09 /* RecipientUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientUserViewController.swift; sourceTree = "<group>"; };
 		EDC119E026D3A39D0020AB09 /* CSURecipientViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSURecipientViewReactor.swift; sourceTree = "<group>"; };
-		EDC119E226D3A39D0020AB09 /* RecipientGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientGroupViewController.swift; sourceTree = "<group>"; };
-		EDC119E426D3A39D0020AB09 /* RecipientGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientGroupCell.swift; sourceTree = "<group>"; };
-		EDC119E526D3A39D0020AB09 /* RecipientGroupCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientGroupCellReactor.swift; sourceTree = "<group>"; };
-		EDC119E626D3A39D0020AB09 /* RecipientGroupSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientGroupSection.swift; sourceTree = "<group>"; };
-		EDC119E726D3A39D0020AB09 /* RecipientsGroupViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsGroupViewReactor.swift; sourceTree = "<group>"; };
 		EDC119E826D3A39D0020AB09 /* CSURecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSURecipientViewController.swift; sourceTree = "<group>"; };
 		EDC119E926D3A39D0020AB09 /* CSURecipientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSURecipientDelegate.swift; sourceTree = "<group>"; };
 		EDC119EB26D3A39D0020AB09 /* CSUDetailViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUDetailViewReactor.swift; sourceTree = "<group>"; };
 		EDC119EC26D3A39D0020AB09 /* CSUDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUDetailViewController.swift; sourceTree = "<group>"; };
 		EDC119EE26D3A39D0020AB09 /* DetailListWithHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailListWithHeaderView.swift; sourceTree = "<group>"; };
-		EDC119EF26D3A39D0020AB09 /* FreightListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreightListViewReactor.swift; sourceTree = "<group>"; };
 		EDC119F026D3A39D0020AB09 /* RecipientListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientListCellView.swift; sourceTree = "<group>"; };
-		EDC119F126D3A39D0020AB09 /* FreightListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreightListCellView.swift; sourceTree = "<group>"; };
-		EDC119F226D3A39D0020AB09 /* FreightListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreightListView.swift; sourceTree = "<group>"; };
 		EDC119F326D3A39D0020AB09 /* RecipientListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientListView.swift; sourceTree = "<group>"; };
 		EDC119F426D3A39D0020AB09 /* DetailHeaderCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailHeaderCellView.swift; sourceTree = "<group>"; };
 		EDC119F526D3A39D0020AB09 /* DetailHeaderCellViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailHeaderCellViewReactor.swift; sourceTree = "<group>"; };
 		EDC119F626D3A39D0020AB09 /* RecipientListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientListViewReactor.swift; sourceTree = "<group>"; };
-		EDC119F726D3A39D0020AB09 /* FreightListCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreightListCellReactor.swift; sourceTree = "<group>"; };
 		EDC119F826D3A39D0020AB09 /* RecipientListCellViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientListCellViewReactor.swift; sourceTree = "<group>"; };
 		EDC119F926D3A39D0020AB09 /* DetailStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		EDC119FA26D3A39D0020AB09 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EDC119FB26D3A39D0020AB09 /* CreateServiceUnitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceUnitModel.swift; sourceTree = "<group>"; };
 		EDC119FC26D3A39D0020AB09 /* CreateServiceViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceViewReactor.swift; sourceTree = "<group>"; };
-		EDC11A0026D3A39D0020AB09 /* ReceivedRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedRequestViewController.swift; sourceTree = "<group>"; };
-		EDC11A0126D3A39D0020AB09 /* PagingReceivedRequestReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingReceivedRequestReactor.swift; sourceTree = "<group>"; };
-		EDC11A0226D3A39D0020AB09 /* ReceivedRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedRequestTableViewCell.swift; sourceTree = "<group>"; };
-		EDC11A0326D3A39D0020AB09 /* RequestTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTableViewHeader.swift; sourceTree = "<group>"; };
-		EDC11A0426D3A39D0020AB09 /* RequestCollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCollectionViewHeader.swift; sourceTree = "<group>"; };
-		EDC11A0626D3A39D0020AB09 /* SendedRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendedRequestViewController.swift; sourceTree = "<group>"; };
-		EDC11A0726D3A39D0020AB09 /* SendedRequestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendedRequestCollectionViewCell.swift; sourceTree = "<group>"; };
-		EDC11A0826D3A39D0020AB09 /* PagingSendedRequestReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingSendedRequestReactor.swift; sourceTree = "<group>"; };
-		EDC11A0A26D3A39D0020AB09 /* WorkspaceHomeSendedRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceHomeSendedRequestTableViewCell.swift; sourceTree = "<group>"; };
-		EDC11A0B26D3A39D0020AB09 /* WorkspaceHomeReceivedRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceHomeReceivedRequestTableViewCell.swift; sourceTree = "<group>"; };
-		EDC11A0C26D3A39D0020AB09 /* ReceivedServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedServiceCollectionViewCell.swift; sourceTree = "<group>"; };
-		EDC11A0D26D3A39D0020AB09 /* WorkspaceHomeSendedRequestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceHomeSendedRequestCollectionViewCell.swift; sourceTree = "<group>"; };
 		EDC11A0E26D3A39D0020AB09 /* WorkspaceHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceHomeViewController.swift; sourceTree = "<group>"; };
 		EDC11A1026D3A39D0020AB09 /* WorkspaceHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceHeaderView.swift; sourceTree = "<group>"; };
 		EDC11A1126D3A39D0020AB09 /* WorkspaceHeaderView_Reactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceHeaderView_Reactive.swift; sourceTree = "<group>"; };
@@ -1315,7 +1185,6 @@
 			isa = PBXGroup;
 			children = (
 				EDC1190326D3A39C0020AB09 /* WorkspaceListSection.swift */,
-				EDC1190426D3A39C0020AB09 /* WorkspaceListCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1347,7 +1216,6 @@
 		EDC1190B26D3A39C0020AB09 /* ServiceManagement */ = {
 			isa = PBXGroup;
 			children = (
-				EDC1190C26D3A39C0020AB09 /* CreatedServicesViewController */,
 				EDC1190F26D3A39C0020AB09 /* ServiceManagementViewController_Delegate.swift */,
 				EDC1191026D3A39C0020AB09 /* Cell */,
 				EDC1191226D3A39C0020AB09 /* ServiceDetailViewController */,
@@ -1358,15 +1226,6 @@
 				ED6D7623271D7688006B6728 /* ServiceListViewReactor.graphql */,
 			);
 			path = ServiceManagement;
-			sourceTree = "<group>";
-		};
-		EDC1190C26D3A39C0020AB09 /* CreatedServicesViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1190D26D3A39C0020AB09 /* PagingCreatedServicesViewReactor.swift */,
-				EDC1190E26D3A39C0020AB09 /* CreatedServicesViewController.swift */,
-			);
-			path = CreatedServicesViewController;
 			sourceTree = "<group>";
 		};
 		EDC1191026D3A39C0020AB09 /* Cell */ = {
@@ -1456,7 +1315,6 @@
 			children = (
 				EDC1192726D3A39C0020AB09 /* ServiceLogCellReactor.swift */,
 				EDC1192826D3A39C0020AB09 /* ServiceLogSection.swift */,
-				EDC1192926D3A39C0020AB09 /* ServiceLogModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1480,7 +1338,6 @@
 				EDC1193726D3A39D0020AB09 /* WorkRequestViewController.swift */,
 				EDC1193826D3A39D0020AB09 /* ServiceUnitError_Message */,
 				EDC1193F26D3A39D0020AB09 /* View */,
-				EDC1194726D3A39D0020AB09 /* ChangeWorkPlaceViewController */,
 			);
 			path = WorkRequestDetail;
 			sourceTree = "<group>";
@@ -1507,12 +1364,8 @@
 		EDC1193826D3A39D0020AB09 /* ServiceUnitError_Message */ = {
 			isa = PBXGroup;
 			children = (
-				EDC1193926D3A39D0020AB09 /* StartServiceUnitErrorCode_Message.swift */,
-				EDC1193A26D3A39D0020AB09 /* AcceptServiceUnitErrorCode_Message.swift */,
-				EDC1193B26D3A39D0020AB09 /* CancelServiceUnitCompletionErrorCode_Message.swift */,
 				EDC1193C26D3A39D0020AB09 /* CompleteServiceUnitErrorCode_Message.swift */,
 				EDC1193D26D3A39D0020AB09 /* ServiceUnitErrorMessage.swift */,
-				EDC1193E26D3A39D0020AB09 /* RejectServiceUnitErrorCode_Message.swift */,
 			);
 			path = ServiceUnitError_Message;
 			sourceTree = "<group>";
@@ -1529,25 +1382,6 @@
 				EDC1194626D3A39D0020AB09 /* WorkRequestSimpleTargetView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		EDC1194726D3A39D0020AB09 /* ChangeWorkPlaceViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1194826D3A39D0020AB09 /* SelectPlaceViewController */,
-				EDC1194B26D3A39D0020AB09 /* ChangeWorkPlaceViewReactor.swift */,
-				EDC1194C26D3A39D0020AB09 /* ChangeWorkPlaceViewController.swift */,
-			);
-			path = ChangeWorkPlaceViewController;
-			sourceTree = "<group>";
-		};
-		EDC1194826D3A39D0020AB09 /* SelectPlaceViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1194926D3A39D0020AB09 /* SelectPlaceViewController.swift */,
-				EDC1194A26D3A39D0020AB09 /* SelectPlaceViewReactor.swift */,
-			);
-			path = SelectPlaceViewController;
 			sourceTree = "<group>";
 		};
 		EDC1194E26D3A39D0020AB09 /* SWSUserInfoViewController */ = {
@@ -1591,36 +1425,15 @@
 		EDC1196426D3A39D0020AB09 /* WorkspaceMore */ = {
 			isa = PBXGroup;
 			children = (
-				EDC1196526D3A39D0020AB09 /* SelectDefaultPlace */,
 				EDC1196A26D3A39D0020AB09 /* WorkspaceInfo */,
 				EDC1197226D3A39D0020AB09 /* UpdateUserInfo */,
 				EDC1197E26D3A39D0020AB09 /* WorkspaceMoreViewController.swift */,
 				EDC1197F26D3A39D0020AB09 /* Model */,
 				EDC1198526D3A39D0020AB09 /* View */,
 				EDC1198D26D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift */,
-				EDC1198E26D3A39D0020AB09 /* StopInCharge */,
-				EDC1199126D3A39D0020AB09 /* BelongingGroup */,
 				EDC1199726D3A39D0020AB09 /* Help */,
 			);
 			path = WorkspaceMore;
-			sourceTree = "<group>";
-		};
-		EDC1196526D3A39D0020AB09 /* SelectDefaultPlace */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1196626D3A39D0020AB09 /* SelectDefaultPlaceViewController.swift */,
-				EDC1196726D3A39D0020AB09 /* Model */,
-				EDC1196926D3A39D0020AB09 /* SelectDefaultPlaceViewReactor.swift */,
-			);
-			path = SelectDefaultPlace;
-			sourceTree = "<group>";
-		};
-		EDC1196726D3A39D0020AB09 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1196826D3A39D0020AB09 /* PlaceModelSection.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		EDC1196A26D3A39D0020AB09 /* WorkspaceInfo */ = {
@@ -1716,34 +1529,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		EDC1198E26D3A39D0020AB09 /* StopInCharge */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1198F26D3A39D0020AB09 /* StopInChargeListViewReactor.swift */,
-				EDC1199026D3A39D0020AB09 /* StopInChargeListViewController.swift */,
-			);
-			path = StopInCharge;
-			sourceTree = "<group>";
-		};
-		EDC1199126D3A39D0020AB09 /* BelongingGroup */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1199226D3A39D0020AB09 /* BelongingGroupListViewController.swift */,
-				EDC1199326D3A39D0020AB09 /* BelongingGroupListViewReactor.swift */,
-				EDC1199426D3A39D0020AB09 /* BelongingGroupListViewController_Delegate.swift */,
-				EDC1199526D3A39D0020AB09 /* Model */,
-			);
-			path = BelongingGroup;
-			sourceTree = "<group>";
-		};
-		EDC1199526D3A39D0020AB09 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1199626D3A39D0020AB09 /* GroupModelSection.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		EDC1199726D3A39D0020AB09 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -1757,26 +1542,12 @@
 			children = (
 				ED6D762B271D7731006B6728 /* ServiceRequestViewReactor.graphql_ */,
 				EDC1199A26D3A39D0020AB09 /* CreateServiceViewController.swift */,
-				EDC1199B26D3A39D0020AB09 /* AddWaypoint */,
 				EDC119A126D3A39D0020AB09 /* Model */,
 				EDC119A426D3A39D0020AB09 /* View */,
-				EDC119AB26D3A39D0020AB09 /* Waypoint */,
 				EDC119B126D3A39D0020AB09 /* CreateServieUnitSequence */,
 				EDC119FC26D3A39D0020AB09 /* CreateServiceViewReactor.swift */,
 			);
 			path = CreateService;
-			sourceTree = "<group>";
-		};
-		EDC1199B26D3A39D0020AB09 /* AddWaypoint */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1199C26D3A39D0020AB09 /* AddWaypointViewReactor.swift */,
-				EDC1199D26D3A39D0020AB09 /* AddWaypointCellViewReactor.swift */,
-				EDC1199E26D3A39D0020AB09 /* AddWaypointViewController.swift */,
-				EDC1199F26D3A39D0020AB09 /* AddWaypointSection.swift */,
-				EDC119A026D3A39D0020AB09 /* AddWaypointCell.swift */,
-			);
-			path = AddWaypoint;
 			sourceTree = "<group>";
 		};
 		EDC119A126D3A39D0020AB09 /* Model */ = {
@@ -1801,25 +1572,11 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		EDC119AB26D3A39D0020AB09 /* Waypoint */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119AC26D3A39D0020AB09 /* WaypointSection.swift */,
-				EDC119AD26D3A39D0020AB09 /* WaypointViewReactor.swift */,
-				EDC119AE26D3A39D0020AB09 /* WaypointCellViewReactor.swift */,
-				EDC119AF26D3A39D0020AB09 /* WaypointCell.swift */,
-				EDC119B026D3A39D0020AB09 /* WaypointViewController.swift */,
-			);
-			path = Waypoint;
-			sourceTree = "<group>";
-		};
 		EDC119B126D3A39D0020AB09 /* CreateServieUnitSequence */ = {
 			isa = PBXGroup;
 			children = (
-				EDC119B226D3A39D0020AB09 /* Freights */,
 				EDC119B626D3A39D0020AB09 /* Target */,
 				EDC119CC26D3A39D0020AB09 /* Message */,
-				EDC119CF26D3A39D0020AB09 /* Quantity */,
 				EDC119D326D3A39D0020AB09 /* Recipients */,
 				EDC119EA26D3A39D0020AB09 /* Detail */,
 				EDC119FB26D3A39D0020AB09 /* CreateServiceUnitModel.swift */,
@@ -1827,21 +1584,10 @@
 			path = CreateServieUnitSequence;
 			sourceTree = "<group>";
 		};
-		EDC119B226D3A39D0020AB09 /* Freights */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119B326D3A39D0020AB09 /* FreightTypeSelectView.swift */,
-				EDC119B426D3A39D0020AB09 /* CSUFreightsViewController.swift */,
-				EDC119B526D3A39D0020AB09 /* CSUFreightsViewReactor.swift */,
-			);
-			path = Freights;
-			sourceTree = "<group>";
-		};
 		EDC119B626D3A39D0020AB09 /* Target */ = {
 			isa = PBXGroup;
 			children = (
 				EDC119B726D3A39D0020AB09 /* TargetStop */,
-				EDC119C026D3A39D0020AB09 /* TargetMember */,
 				EDC119C926D3A39D0020AB09 /* CSUTargetDelegate.swift */,
 				EDC119CA26D3A39D0020AB09 /* CSUTargetViewReactor.swift */,
 				EDC119CB26D3A39D0020AB09 /* CSUTargetViewController.swift */,
@@ -1879,36 +1625,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		EDC119C026D3A39D0020AB09 /* TargetMember */ = {
-			isa = PBXGroup;
-			children = (
-				ED6D762D271D775B006B6728 /* TargetMemberViewReactor.graphql */,
-				EDC119C126D3A39D0020AB09 /* TargetMemberViewController.swift */,
-				EDC119C226D3A39D0020AB09 /* Model */,
-				EDC119C526D3A39D0020AB09 /* View */,
-				EDC119C826D3A39D0020AB09 /* TargetMemberViewReactor.swift */,
-			);
-			path = TargetMember;
-			sourceTree = "<group>";
-		};
-		EDC119C226D3A39D0020AB09 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119C326D3A39D0020AB09 /* TargetMemeberSection.swift */,
-				EDC119C426D3A39D0020AB09 /* TargetMemberCellModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EDC119C526D3A39D0020AB09 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119C626D3A39D0020AB09 /* TargetMemberCellReactor.swift */,
-				EDC119C726D3A39D0020AB09 /* TargetMemberCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		EDC119CC26D3A39D0020AB09 /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -1918,22 +1634,11 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
-		EDC119CF26D3A39D0020AB09 /* Quantity */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119D026D3A39D0020AB09 /* CSUQuantityViewReactor.swift */,
-				EDC119D126D3A39D0020AB09 /* QuantityButtonView.swift */,
-				EDC119D226D3A39D0020AB09 /* CSUQuantityViewController.swift */,
-			);
-			path = Quantity;
-			sourceTree = "<group>";
-		};
 		EDC119D326D3A39D0020AB09 /* Recipients */ = {
 			isa = PBXGroup;
 			children = (
 				EDC119D426D3A39D0020AB09 /* RecipientUsers */,
 				EDC119E026D3A39D0020AB09 /* CSURecipientViewReactor.swift */,
-				EDC119E126D3A39D0020AB09 /* RecipientGroups */,
 				EDC119E826D3A39D0020AB09 /* CSURecipientViewController.swift */,
 				EDC119E926D3A39D0020AB09 /* CSURecipientDelegate.swift */,
 			);
@@ -1972,26 +1677,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		EDC119E126D3A39D0020AB09 /* RecipientGroups */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119E226D3A39D0020AB09 /* RecipientGroupViewController.swift */,
-				EDC119E326D3A39D0020AB09 /* View */,
-				EDC119E726D3A39D0020AB09 /* RecipientsGroupViewReactor.swift */,
-			);
-			path = RecipientGroups;
-			sourceTree = "<group>";
-		};
-		EDC119E326D3A39D0020AB09 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119E426D3A39D0020AB09 /* RecipientGroupCell.swift */,
-				EDC119E526D3A39D0020AB09 /* RecipientGroupCellReactor.swift */,
-				EDC119E626D3A39D0020AB09 /* RecipientGroupSection.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		EDC119EA26D3A39D0020AB09 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -2006,15 +1691,11 @@
 			isa = PBXGroup;
 			children = (
 				EDC119EE26D3A39D0020AB09 /* DetailListWithHeaderView.swift */,
-				EDC119EF26D3A39D0020AB09 /* FreightListViewReactor.swift */,
 				EDC119F026D3A39D0020AB09 /* RecipientListCellView.swift */,
-				EDC119F126D3A39D0020AB09 /* FreightListCellView.swift */,
-				EDC119F226D3A39D0020AB09 /* FreightListView.swift */,
 				EDC119F326D3A39D0020AB09 /* RecipientListView.swift */,
 				EDC119F426D3A39D0020AB09 /* DetailHeaderCellView.swift */,
 				EDC119F526D3A39D0020AB09 /* DetailHeaderCellViewReactor.swift */,
 				EDC119F626D3A39D0020AB09 /* RecipientListViewReactor.swift */,
-				EDC119F726D3A39D0020AB09 /* FreightListCellReactor.swift */,
 				EDC119F826D3A39D0020AB09 /* RecipientListCellViewReactor.swift */,
 				EDC119F926D3A39D0020AB09 /* DetailStackView.swift */,
 				EDC119FA26D3A39D0020AB09 /* MessageView.swift */,
@@ -2025,55 +1706,11 @@
 		EDC119FD26D3A39D0020AB09 /* WorkspaceHome */ = {
 			isa = PBXGroup;
 			children = (
-				EDC119FE26D3A39D0020AB09 /* WorspaceHomeRequestServiceList */,
-				EDC11A0926D3A39D0020AB09 /* Cell */,
 				EDC11A0E26D3A39D0020AB09 /* WorkspaceHomeViewController.swift */,
 				EDC11A0F26D3A39D0020AB09 /* View */,
 				EDC11A1726D3A39D0020AB09 /* WorkspaceHomeReactor.swift */,
 			);
 			path = WorkspaceHome;
-			sourceTree = "<group>";
-		};
-		EDC119FE26D3A39D0020AB09 /* WorspaceHomeRequestServiceList */ = {
-			isa = PBXGroup;
-			children = (
-				EDC119FF26D3A39D0020AB09 /* ReceivedRequest */,
-				EDC11A0326D3A39D0020AB09 /* RequestTableViewHeader.swift */,
-				EDC11A0426D3A39D0020AB09 /* RequestCollectionViewHeader.swift */,
-				EDC11A0526D3A39D0020AB09 /* SendedRequest */,
-			);
-			path = WorspaceHomeRequestServiceList;
-			sourceTree = "<group>";
-		};
-		EDC119FF26D3A39D0020AB09 /* ReceivedRequest */ = {
-			isa = PBXGroup;
-			children = (
-				EDC11A0026D3A39D0020AB09 /* ReceivedRequestViewController.swift */,
-				EDC11A0126D3A39D0020AB09 /* PagingReceivedRequestReactor.swift */,
-				EDC11A0226D3A39D0020AB09 /* ReceivedRequestTableViewCell.swift */,
-			);
-			path = ReceivedRequest;
-			sourceTree = "<group>";
-		};
-		EDC11A0526D3A39D0020AB09 /* SendedRequest */ = {
-			isa = PBXGroup;
-			children = (
-				EDC11A0626D3A39D0020AB09 /* SendedRequestViewController.swift */,
-				EDC11A0726D3A39D0020AB09 /* SendedRequestCollectionViewCell.swift */,
-				EDC11A0826D3A39D0020AB09 /* PagingSendedRequestReactor.swift */,
-			);
-			path = SendedRequest;
-			sourceTree = "<group>";
-		};
-		EDC11A0926D3A39D0020AB09 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				EDC11A0A26D3A39D0020AB09 /* WorkspaceHomeSendedRequestTableViewCell.swift */,
-				EDC11A0B26D3A39D0020AB09 /* WorkspaceHomeReceivedRequestTableViewCell.swift */,
-				EDC11A0C26D3A39D0020AB09 /* ReceivedServiceCollectionViewCell.swift */,
-				EDC11A0D26D3A39D0020AB09 /* WorkspaceHomeSendedRequestCollectionViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		EDC11A0F26D3A39D0020AB09 /* View */ = {
@@ -2226,7 +1863,6 @@
 				ED6D7624271D7688006B6728 /* ServiceListViewReactor.graphql in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				ED6D7620271D760A006B6728 /* AddWorkspaceViewReactor.graphql in Resources */,
-				ED6D762E271D775B006B6728 /* TargetMemberViewReactor.graphql in Resources */,
 				ED6D7642271D78CC006B6728 /* SettingViewReactor.graphql in Resources */,
 				ED6D7630271D7777006B6728 /* TargetStopViewReactor.graphql in Resources */,
 				ED6D763E271D787F006B6728 /* SWSUserInfoViewReactor.graphql in Resources */,
@@ -2312,35 +1948,26 @@
 				EDC118E226D3A24A0020AB09 /* FindAccountEmailViewReactor.swift in Sources */,
 				EDC11AE726D3A39E0020AB09 /* RecipientListCellViewReactor.swift in Sources */,
 				EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */,
-				EDC11A3826D3A39D0020AB09 /* PagingCreatedServicesViewReactor.swift in Sources */,
 				EDC11AD226D3A39D0020AB09 /* RecipientUserViewController.swift in Sources */,
 				EDC11A2626D3A39D0020AB09 /* Default_PhoneNumber_ViewController.swift in Sources */,
 				ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */,
-				EDC11A3326D3A39D0020AB09 /* WorkspaceListCellModel.swift in Sources */,
 				EDC11ACE26D3A39D0020AB09 /* RecipientUserCellReactor.swift in Sources */,
 				EDC11AE526D3A39E0020AB09 /* RecipientListViewReactor.swift in Sources */,
-				EDC11AD826D3A39E0020AB09 /* RecipientsGroupViewReactor.swift in Sources */,
-				EDC11AE026D3A39E0020AB09 /* FreightListCellView.swift in Sources */,
 				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
-				EDC11A9B26D3A39D0020AB09 /* BelongingGroupListViewController.swift in Sources */,
 				EDC11AAB26D3A39D0020AB09 /* CreateServiceCell.swift in Sources */,
 				EDC11A8A26D3A39D0020AB09 /* UpdatePhoneNumberViewReactor.swift in Sources */,
 				EDC11ACB26D3A39D0020AB09 /* RecipientUserCollectionViewSection.swift in Sources */,
 				EDC11A7E26D3A39D0020AB09 /* WorkspaceInfoViewController.swift in Sources */,
 				ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */,
 				ED6B463F26B7E7CC00C2FA6D /* UIRefreshControl.swift in Sources */,
-				EDC11A9A26D3A39D0020AB09 /* StopInChargeListViewController.swift in Sources */,
 				EDC11AE826D3A39E0020AB09 /* DetailStackView.swift in Sources */,
-				EDC11AA526D3A39D0020AB09 /* AddWaypointCell.swift in Sources */,
 				EDC11B0726D3AE4E0020AB09 /* BaseTableViewCell.swift in Sources */,
 				EDC11A6126D3A39D0020AB09 /* WorkRequestTargetView.swift in Sources */,
 				EDC11A8426D3A39D0020AB09 /* UpdateNameViewController.swift in Sources */,
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
-				EDC11AF526D3A39E0020AB09 /* WorkspaceHomeReceivedRequestTableViewCell.swift in Sources */,
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
 				ED52732926C255FC0077CD9D /* SRPButton.swift in Sources */,
 				ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */,
-				EDC11A9C26D3A39D0020AB09 /* BelongingGroupListViewReactor.swift in Sources */,
 				EDC11A7226D3A39D0020AB09 /* ServiceContainerCellReactor.swift in Sources */,
 				ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */,
 				ED52737726C3A03C0077CD9D /* SignUpPasswordView.swift in Sources */,
@@ -2356,7 +1983,6 @@
 				EDC11A2226D3A39D0020AB09 /* Default_PW_ViewReactor.swift in Sources */,
 				ED6B468626B7E8B500C2FA6D /* PushManager.swift in Sources */,
 				EDC11A8026D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift in Sources */,
-				EDC11ABD26D3A39D0020AB09 /* TargetMemeberSection.swift in Sources */,
 				ED6B46B426B8025500C2FA6D /* Info.swift in Sources */,
 				ED6B464226B7E7CC00C2FA6D /* UITextField.swift in Sources */,
 				EDC11A5F26D3A39D0020AB09 /* WorkRequestTopView.swift in Sources */,
@@ -2367,43 +1993,32 @@
 				EDC11A6926D3A39D0020AB09 /* SWSUserInfoViewController.swift in Sources */,
 				EDC11A7626D3A39D0020AB09 /* PanModalNavigationController.swift in Sources */,
 				EDC11A2D26D3A39D0020AB09 /* Default_Email_ViewController.swift in Sources */,
-				EDC11A6326D3A39D0020AB09 /* SelectPlaceViewController.swift in Sources */,
 				ED6B465C26B7E7CC00C2FA6D /* Results_BaseObject.swift in Sources */,
 				EDC11AAA26D3A39D0020AB09 /* CreateServiceCellView.swift in Sources */,
 				ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */,
 				ED6B468426B7E8B500C2FA6D /* SubscriptionManager.swift in Sources */,
 				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
-				EDC11AE626D3A39E0020AB09 /* FreightListCellReactor.swift in Sources */,
-				EDC11A5626D3A39D0020AB09 /* StartServiceUnitErrorCode_Message.swift in Sources */,
 				ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */,
-				EDC11AC026D3A39D0020AB09 /* TargetMemberCell.swift in Sources */,
 				EDC11A5526D3A39D0020AB09 /* WorkRequestViewController.swift in Sources */,
-				EDC11A6426D3A39D0020AB09 /* SelectPlaceViewReactor.swift in Sources */,
 				EDC11A3526D3A39D0020AB09 /* WorkspaceListPlaceholderView.swift in Sources */,
 				EDC11AF926D3A39E0020AB09 /* WorkspaceHeaderView.swift in Sources */,
 				EDC11A2C26D3A39D0020AB09 /* Default_EmailAuth_ViewController.swift in Sources */,
 				EDC11A3E26D3A39D0020AB09 /* ServieBasicInfoViewController.swift in Sources */,
 				EDC11ACC26D3A39D0020AB09 /* RecipientCellModel.swift in Sources */,
 				ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */,
-				EDC11AD626D3A39E0020AB09 /* RecipientGroupCellReactor.swift in Sources */,
 				EDC11A8526D3A39D0020AB09 /* UpdateEmailViewReactor.swift in Sources */,
 				EDC118E626D3A24A0020AB09 /* FindAccountPasswordView.swift in Sources */,
-				EDC11A7D26D3A39D0020AB09 /* SelectDefaultPlaceViewReactor.swift in Sources */,
 				EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */,
 				EDC11A7326D3A39D0020AB09 /* ServiceModelSection.swift in Sources */,
-				EDC11AC726D3A39D0020AB09 /* CSUQuantityViewReactor.swift in Sources */,
 				EDC11AB826D3A39D0020AB09 /* TargetStopSection.swift in Sources */,
 				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
 				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
-				EDC11A5726D3A39D0020AB09 /* AcceptServiceUnitErrorCode_Message.swift in Sources */,
 				EDC11AF826D3A39E0020AB09 /* WorkspaceHomeViewController.swift in Sources */,
 				EDC11A7426D3A39D0020AB09 /* ServiceCellReactor.swift in Sources */,
-				EDC11AA326D3A39D0020AB09 /* AddWaypointViewController.swift in Sources */,
 				EDC11ADC26D3A39E0020AB09 /* CSUDetailViewController.swift in Sources */,
 				ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */,
 				ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */,
 				ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */,
-				EDC11AA126D3A39D0020AB09 /* AddWaypointViewReactor.swift in Sources */,
 				EDC11A7026D3A39D0020AB09 /* ServiceUnitSection.swift in Sources */,
 				EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */,
 				ED52732626C255FC0077CD9D /* SignInView.swift in Sources */,
@@ -2411,18 +2026,14 @@
 				ED6B463B26B7E7CC00C2FA6D /* CocoaLumberjack.swift in Sources */,
 				ED6B468726B7E8B500C2FA6D /* NotificationInfo.swift in Sources */,
 				EDC11A2026D3A39D0020AB09 /* Default_PWReset_ViewReactor.swift in Sources */,
-				EDC11A4B26D3A39D0020AB09 /* ServiceLogModel.swift in Sources */,
 				EDC11A5926D3A39D0020AB09 /* CompleteServiceUnitErrorCode_Message.swift in Sources */,
 				EDC11A5126D3A39D0020AB09 /* WorkTargetsViewControllerReactor.swift in Sources */,
 				EDC11AD926D3A39E0020AB09 /* CSURecipientViewController.swift in Sources */,
 				EDC11A2326D3A39D0020AB09 /* Default_PWConfirm_ViewController.swift in Sources */,
-				EDC11A6526D3A39D0020AB09 /* ChangeWorkPlaceViewReactor.swift in Sources */,
-				EDC11AD426D3A39D0020AB09 /* RecipientGroupViewController.swift in Sources */,
 				EDC11AFF26D3A39E0020AB09 /* WorkspaceShortcutView.swift in Sources */,
 				EDC11A8226D3A39D0020AB09 /* WorkspaceStopDetailViewController.swift in Sources */,
 				EDC118E126D3A24A0020AB09 /* FindAccountEmailViewController.swift in Sources */,
 				ED6B469226B7E8B500C2FA6D /* BaseObject.swift in Sources */,
-				EDC11A6626D3A39D0020AB09 /* ChangeWorkPlaceViewController.swift in Sources */,
 				EDC11A4A26D3A39D0020AB09 /* ServiceLogSection.swift in Sources */,
 				EDC11A9426D3A39D0020AB09 /* SettingScrollViewHeader.swift in Sources */,
 				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
@@ -2444,19 +2055,14 @@
 				ED6B467F26B7E8B500C2FA6D /* ErrorInterceptor.swift in Sources */,
 				EDC11A5026D3A39D0020AB09 /* WorkTargetsViewController.swift in Sources */,
 				EDC11A9026D3A39D0020AB09 /* UserInfo_Extension.swift in Sources */,
-				EDC11AC126D3A39D0020AB09 /* TargetMemberViewReactor.swift in Sources */,
-				EDC11AF626D3A39E0020AB09 /* ReceivedServiceCollectionViewCell.swift in Sources */,
 				EDC11A6726D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift in Sources */,
 				EDC11A6B26D3A39D0020AB09 /* ServiceManagementViewReactor.swift in Sources */,
-				EDC11AF426D3A39E0020AB09 /* WorkspaceHomeSendedRequestTableViewCell.swift in Sources */,
 				ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */,
 				EDC11A3426D3A39D0020AB09 /* WorkspaceListCellReactor.swift in Sources */,
-				EDC11AAE26D3A39D0020AB09 /* WaypointSection.swift in Sources */,
 				EDC11ADA26D3A39E0020AB09 /* CSURecipientDelegate.swift in Sources */,
 				EDC11A4426D3A39D0020AB09 /* ServiceDetailNumberProfileView.swift in Sources */,
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
 				EDC11AA626D3A39D0020AB09 /* CreateServiceCellModel.swift in Sources */,
-				EDC11AF726D3A39E0020AB09 /* WorkspaceHomeSendedRequestCollectionViewCell.swift in Sources */,
 				EDC118DF26D3A24A0020AB09 /* FindAccountIdViewReactor.swift in Sources */,
 				ED6B464F26B7E7CC00C2FA6D /* FilterNil.swift in Sources */,
 				EDC11A2F26D3A39D0020AB09 /* DefaultMyInfoViewController.swift in Sources */,
@@ -2464,7 +2070,6 @@
 				EDC118E726D3A24A0020AB09 /* FindAccountPasswordViewController.swift in Sources */,
 				EDC11A4C26D3A39D0020AB09 /* ServiceDetailLogViewReactor.swift in Sources */,
 				EDC11A7A26D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift in Sources */,
-				EDC11AC926D3A39D0020AB09 /* CSUQuantityViewController.swift in Sources */,
 				EDC11A3C26D3A39D0020AB09 /* SRPDetailInfoCellView.swift in Sources */,
 				EDC11B0126D3A39E0020AB09 /* WorkspaceSearchResultViewController.swift in Sources */,
 				ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */,
@@ -2472,18 +2077,14 @@
 				EDC11A9F26D3A39D0020AB09 /* HelpViewController.swift in Sources */,
 				ED52732526C255FC0077CD9D /* GostButton.swift in Sources */,
 				EDC11A2926D3A39D0020AB09 /* Default_Name_ViewController.swift in Sources */,
-				EDC11A9E26D3A39D0020AB09 /* GroupModelSection.swift in Sources */,
-				EDC11AB526D3A39D0020AB09 /* CSUFreightsViewReactor.swift in Sources */,
 				ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */,
 				EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */,
 				EDC11AFB26D3A39E0020AB09 /* ServiceStateHeaderView.swift in Sources */,
 				EDC11A8C26D3A39D0020AB09 /* UserInfo.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
 				ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */,
-				EDC11A7C26D3A39D0020AB09 /* PlaceModelSection.swift in Sources */,
 				ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */,
 				EDC11AC626D3A39D0020AB09 /* CSUMessageViewController.swift in Sources */,
-				EDC11AF326D3A39E0020AB09 /* PagingSendedRequestReactor.swift in Sources */,
 				ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */,
 				ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */,
 				EDC11A8826D3A39D0020AB09 /* UpdateEmailAuthViewReactor.swift in Sources */,
@@ -2491,7 +2092,6 @@
 				EDC11A4626D3A39D0020AB09 /* TRSBypassView.swift in Sources */,
 				EDC11A5A26D3A39D0020AB09 /* ServiceUnitErrorMessage.swift in Sources */,
 				ED6B463A26B7E7CC00C2FA6D /* Date.swift in Sources */,
-				EDC11AEE26D3A39E0020AB09 /* ReceivedRequestTableViewCell.swift in Sources */,
 				EDC11AA726D3A39D0020AB09 /* CreateServiceSection.swift in Sources */,
 				ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */,
 				ED6B460326B7DFF700C2FA6D /* Log.swift in Sources */,
@@ -2502,24 +2102,17 @@
 				ED6B464426B7E7CC00C2FA6D /* UIViewController.swift in Sources */,
 				ED6B464126B7E7CC00C2FA6D /* UIDevice.swift in Sources */,
 				ED6B464626B7E7CC00C2FA6D /* UIImageView.swift in Sources */,
-				EDC11A5B26D3A39D0020AB09 /* RejectServiceUnitErrorCode_Message.swift in Sources */,
 				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
 				EDC11A8F26D3A39D0020AB09 /* SWSUserInfo.swift in Sources */,
 				EDC118E326D3A24A0020AB09 /* FindAccountEmailView.swift in Sources */,
-				EDC11AF226D3A39E0020AB09 /* SendedRequestCollectionViewCell.swift in Sources */,
-				EDC11ABE26D3A39D0020AB09 /* TargetMemberCellModel.swift in Sources */,
 				EDC11A4126D3A39D0020AB09 /* ServiceUnitManagementCollectionViewCell.swift in Sources */,
 				EDC118DE26D3A24A0020AB09 /* FindAccountIdViewController.swift in Sources */,
 				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */,
-				EDC11AB026D3A39D0020AB09 /* WaypointCellViewReactor.swift in Sources */,
-				EDC11ABF26D3A39D0020AB09 /* TargetMemberCellReactor.swift in Sources */,
 				ED6B464726B7E7CC00C2FA6D /* UIFont.swift in Sources */,
 				EDC11A4D26D3A39D0020AB09 /* ServiceDetailLogViewController.swift in Sources */,
 				EDC11ABB26D3A39D0020AB09 /* TargetStopCellReactor.swift in Sources */,
 				EDC11A6026D3A39D0020AB09 /* WorkRequestRobotView.swift in Sources */,
-				EDC11AB126D3A39D0020AB09 /* WaypointCell.swift in Sources */,
-				EDC11A5826D3A39D0020AB09 /* CancelServiceUnitCompletionErrorCode_Message.swift in Sources */,
 				ED6B464326B7E7CC00C2FA6D /* UIButton.swift in Sources */,
 				EDC11AD026D3A39D0020AB09 /* RecipientUserCell.swift in Sources */,
 				EDC11A4326D3A39D0020AB09 /* ServiceUnitManagementHeader.swift in Sources */,
@@ -2527,41 +2120,32 @@
 				EDC11AC226D3A39D0020AB09 /* CSUTargetDelegate.swift in Sources */,
 				EDC11AE926D3A39E0020AB09 /* MessageView.swift in Sources */,
 				EDC11A6226D3A39D0020AB09 /* WorkRequestSimpleTargetView.swift in Sources */,
-				EDC11AD526D3A39D0020AB09 /* RecipientGroupCell.swift in Sources */,
-				EDC11AEC26D3A39E0020AB09 /* ReceivedRequestViewController.swift in Sources */,
 				EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */,
 				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
 				EDC11A3626D3A39D0020AB09 /* WorkspaceListCell.swift in Sources */,
 				ED52737526C3A03C0077CD9D /* SignUpNameView.swift in Sources */,
 				EDC11A4726D3A39D0020AB09 /* SRPStateView.swift in Sources */,
 				EDC11AD126D3A39D0020AB09 /* RecipientUserViewReactor.swift in Sources */,
-				EDC11AA426D3A39D0020AB09 /* AddWaypointSection.swift in Sources */,
 				EDC11A3A26D3A39D0020AB09 /* ServiceManagementViewController_Delegate.swift in Sources */,
 				EDC11AFD26D3A39E0020AB09 /* ServiceStateCollectionReusableView.swift in Sources */,
 				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
 				ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */,
 				ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */,
-				EDC11A3926D3A39D0020AB09 /* CreatedServicesViewController.swift in Sources */,
-				EDC11AF026D3A39E0020AB09 /* RequestCollectionViewHeader.swift in Sources */,
-				EDC11AA226D3A39D0020AB09 /* AddWaypointCellViewReactor.swift in Sources */,
 				EDC11A6A26D3A39D0020AB09 /* ServiceManagementViewController.swift in Sources */,
 				EDC11A7726D3A39D0020AB09 /* ReceivedServiceCellView.swift in Sources */,
 				EDC11AE326D3A39E0020AB09 /* DetailHeaderCellView.swift in Sources */,
 				ED52737426C3A03C0077CD9D /* SignUpNameViewController.swift in Sources */,
 				EDC11ADD26D3A39E0020AB09 /* DetailListWithHeaderView.swift in Sources */,
 				ED6B465926B7E7CC00C2FA6D /* List_BaseObject.swift in Sources */,
-				EDC11AF126D3A39E0020AB09 /* SendedRequestViewController.swift in Sources */,
 				EDC11A2126D3A39D0020AB09 /* Default_PW_ViewController.swift in Sources */,
 				EDC11A3126D3A39D0020AB09 /* WorkspaceListViewReactor.swift in Sources */,
 				EDC11AC326D3A39D0020AB09 /* CSUTargetViewReactor.swift in Sources */,
 				EDC11ACD26D3A39D0020AB09 /* RecipientUserCollectionViewCellReactor.swift in Sources */,
 				EDC11A8726D3A39D0020AB09 /* UpdateEmailAuthViewController.swift in Sources */,
 				EDC11B0426D3A39E0020AB09 /* WorkspaceSearchViewController.swift in Sources */,
-				EDC11ADE26D3A39E0020AB09 /* FreightListViewReactor.swift in Sources */,
 				EDA1FA3126C1564700E8C39B /* User.swift in Sources */,
 				EDC11AC526D3A39D0020AB09 /* CSUMessageViewReactor.swift in Sources */,
-				EDC11AEF26D3A39E0020AB09 /* RequestTableViewHeader.swift in Sources */,
 				EDC11A2526D3A39D0020AB09 /* Default_PWConfirmed_ViewReactor.swift in Sources */,
 				EDC11A7926D3A39D0020AB09 /* WorkspaceTabBarController.swift in Sources */,
 				EDC11A9126D3A39D0020AB09 /* SettingProfileCellView_Reactive.swift in Sources */,
@@ -2569,7 +2153,6 @@
 				EDC11A3026D3A39D0020AB09 /* WorkspaceListViewController_TableView.swift in Sources */,
 				ED6B468026B7E8B500C2FA6D /* BaseInterceptor.swift in Sources */,
 				ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */,
-				EDC11A9D26D3A39D0020AB09 /* BelongingGroupListViewController_Delegate.swift in Sources */,
 				EDC118E526D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift in Sources */,
 				EDC11A6D26D3A39D0020AB09 /* SRPProfileTextTagTableViewCell.swift in Sources */,
 				EDC11A7F26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift in Sources */,
@@ -2584,7 +2167,6 @@
 				ED6B464826B7E7CC00C2FA6D /* UITextView.swift in Sources */,
 				EDC11A2A26D3A39D0020AB09 /* Default_Email_ViewReactor.swift in Sources */,
 				ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */,
-				EDC11AD726D3A39E0020AB09 /* RecipientGroupSection.swift in Sources */,
 				ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */,
 				EDC11A9726D3A39D0020AB09 /* SettingWorkspaceInfoView.swift in Sources */,
 				EDC11AB626D3A39D0020AB09 /* TargetStopViewController.swift in Sources */,
@@ -2597,13 +2179,10 @@
 				EDC11ADB26D3A39E0020AB09 /* CSUDetailViewReactor.swift in Sources */,
 				EDC11A6E26D3A39D0020AB09 /* SendedServiceCellView.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
-				EDC11AED26D3A39E0020AB09 /* PagingReceivedRequestReactor.swift in Sources */,
 				EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */,
-				EDC11A7B26D3A39D0020AB09 /* SelectDefaultPlaceViewController.swift in Sources */,
 				ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */,
 				ED52737626C3A03C0077CD9D /* SignUpNameViewReactor.swift in Sources */,
 				EDC11AC426D3A39D0020AB09 /* CSUTargetViewController.swift in Sources */,
-				EDC11AE126D3A39E0020AB09 /* FreightListView.swift in Sources */,
 				EDC11A2726D3A39D0020AB09 /* Default_PhoneNumber_ViewReactor.swift in Sources */,
 				EDC11AE426D3A39E0020AB09 /* DetailHeaderCellViewReactor.swift in Sources */,
 				ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */,
@@ -2615,7 +2194,6 @@
 				EDC11AFC26D3A39E0020AB09 /* WorkspaceSelectView_Reactive.swift in Sources */,
 				EDC11A3226D3A39D0020AB09 /* WorkspaceListSection.swift in Sources */,
 				EDC11A5426D3A39D0020AB09 /* WorkRequestViewReactor.swift in Sources */,
-				EDC11AC826D3A39D0020AB09 /* QuantityButtonView.swift in Sources */,
 				ED6B463D26B7E7CC00C2FA6D /* UIView.swift in Sources */,
 				ED6B46A026B7E9CE00C2FA6D /* Service.swift in Sources */,
 				ED6B460526B7DFF700C2FA6D /* SwiftEntryKit_String.swift in Sources */,
@@ -2624,17 +2202,12 @@
 				ED52737826C3A03C0077CD9D /* SignUpPasswordViewController.swift in Sources */,
 				EDC11A8626D3A39D0020AB09 /* UpdateEmailViewController.swift in Sources */,
 				EDC11A5326D3A39D0020AB09 /* WorkTargetSection.swift in Sources */,
-				EDC11AB226D3A39D0020AB09 /* WaypointViewController.swift in Sources */,
 				EDC11AB726D3A39D0020AB09 /* TargetStopViewReactor.swift in Sources */,
-				EDC11AB326D3A39D0020AB09 /* FreightTypeSelectView.swift in Sources */,
 				EDC11AA826D3A39D0020AB09 /* CreateServiceCellReactor.swift in Sources */,
-				EDC11A9926D3A39D0020AB09 /* StopInChargeListViewReactor.swift in Sources */,
 				EDC11A7526D3A39D0020AB09 /* ServiceCellDelegate.swift in Sources */,
 				EDC11ACA26D3A39D0020AB09 /* RecipientUserSection.swift in Sources */,
 				EDC11A5D26D3A39D0020AB09 /* WorkRequestTaskView.swift in Sources */,
 				EDC11B0326D3A39E0020AB09 /* WorkspaceSearchResultViewReactor.swift in Sources */,
-				EDC11AB426D3A39D0020AB09 /* CSUFreightsViewController.swift in Sources */,
-				EDC11AAF26D3A39D0020AB09 /* WaypointViewReactor.swift in Sources */,
 				ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */,
 				EDC118E026D3A24A0020AB09 /* FindAccountIdView.swift in Sources */,
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,
@@ -2651,7 +2224,6 @@
 				ED6B468226B7E8B500C2FA6D /* NetworkInterceptorProvider.swift in Sources */,
 				EDC11AA926D3A39D0020AB09 /* TargetInfoView.swift in Sources */,
 				ED6B463C26B7E7CC00C2FA6D /* Int.swift in Sources */,
-				EDC11ABC26D3A39D0020AB09 /* TargetMemberViewController.swift in Sources */,
 				ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */,
 				EDC11AD326D3A39D0020AB09 /* CSURecipientViewReactor.swift in Sources */,
 			);
