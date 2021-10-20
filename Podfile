@@ -26,6 +26,8 @@ def pods
   pod 'Kingfisher', '~> 6'
 
   pod 'CocoaLumberjack/Swift', '~> 3.7.2'
+  
+  pod 'PanModal', '~> 1.2.7'
 end
 
 target 'TARAS-Dev' do
