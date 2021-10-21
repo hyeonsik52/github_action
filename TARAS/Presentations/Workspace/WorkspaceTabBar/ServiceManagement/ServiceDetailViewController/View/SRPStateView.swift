@@ -18,7 +18,7 @@ class SRPStateView: UIView {
     }
     
     private let label = UILabel().then {
-        $0.font = .bold.14
+        $0.font = .bold[14]
         $0.textAlignment = .center
     }
     

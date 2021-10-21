@@ -1,5 +1,5 @@
 
-subscription serviceByWorkspaceId($workspaceId: String) {
+subscription servicesByWorkspaceId($workspaceId: String) {
 	subscribeHiGlovisServices(workspaceId: $workspaceId) {
 		edges {
 			node {

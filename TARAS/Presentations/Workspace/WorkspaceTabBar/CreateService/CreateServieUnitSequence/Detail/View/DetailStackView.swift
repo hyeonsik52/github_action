@@ -12,12 +12,6 @@ class DetailStackView: UIStackView {
     
     let headerView = DetailHeaderCellView()
     
-//    let loadView = FreightListView(type: .load)
-    let loadView = FreightListView()
-    
-//    let unloadView = FreightListView(type: .unload)
-    let unloadView = FreightListView()
-    
     let messageView = MessageView()
     
     let recipientsView = RecipientListView()
@@ -35,16 +29,6 @@ class DetailStackView: UIStackView {
         self.headerView.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.height.equalTo(60)
-        }
-        
-        self.addArrangedSubview(self.loadView)
-        self.loadView.snp.makeConstraints {
-            $0.width.equalToSuperview()
-        }
-        
-        self.addArrangedSubview(self.unloadView)
-        self.unloadView.snp.makeConstraints {
-            $0.width.equalToSuperview()
         }
         
         self.addArrangedSubview(self.messageView)

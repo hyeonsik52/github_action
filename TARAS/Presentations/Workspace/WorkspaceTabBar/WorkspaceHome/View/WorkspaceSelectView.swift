@@ -22,7 +22,7 @@ class WorkspaceSelectView: UIView {
         $0.setImage(strUrl: nil)
     }
     private var nameLabel = UILabel().then{
-        $0.font = .bold.14
+        $0.font = .bold[14]
         $0.textColor = .black
     }
     

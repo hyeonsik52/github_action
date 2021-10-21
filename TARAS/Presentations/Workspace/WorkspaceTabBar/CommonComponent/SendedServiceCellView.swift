@@ -16,26 +16,26 @@ class SendedServiceCellView: UIView {
     private var imageViews = [UIImageView]()
     
     private var titleLabel = UILabel().then{
-        $0.font = .bold.20
+        $0.font = .bold[20]
         $0.textColor = .black
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     
     private var secondaryLabel = UILabel().then{
-        $0.font = .medium.16
+        $0.font = .medium[16]
         $0.textColor = .black
     }
     
     private var targetsView: ServiceTargetsView!
     
     private var targetContentLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
         $0.lineBreakMode = .byTruncatingMiddle
     }
     
     private var tertiaryLabel = UILabel().then{
-        $0.font = .medium.16
+        $0.font = .medium[16]
         $0.textColor = .grayA0A0A0
     }
     
@@ -47,7 +47,7 @@ class SendedServiceCellView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     private var requestStatusLabel = UILabel().then {
-        $0.font = .bold.14
+        $0.font = .bold[14]
         $0.textColor = .purple4A3C9F
     }
     
@@ -58,11 +58,11 @@ class SendedServiceCellView: UIView {
         $0.cornerRadius = 10
         $0.backgroundColor = .skyBlue85AEFF
         $0.textAlignment = .center
-        $0.font = .bold.12
+        $0.font = .bold[12]
         $0.textColor = .white
     }
     private var placeLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
     }
     

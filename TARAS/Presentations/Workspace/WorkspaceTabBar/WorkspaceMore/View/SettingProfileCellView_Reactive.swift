@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: SettingProfileCellView {
-    var info: Binder<UserInfo> {
+    var info: Binder<User> {
         return Binder(base) { base, info in
             base.bind(info)
         }

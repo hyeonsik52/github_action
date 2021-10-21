@@ -32,7 +32,7 @@ class FindAccountIdResultView: UIView {
         $0.axis = .vertical
         $0.spacing = 10
     }
-    let findPasswordButton = GostButton(Text.FAIRV_3, color: Asset.Colors.purple4A3C9F.color).then {
+    let findPasswordButton = GostButton(Text.FAIRV_3, color: .purple4A3C9F).then {
         $0.setContentHuggingPriority(.defaultLow+1, for: .vertical)
     }
     
@@ -79,13 +79,13 @@ class FindAccountIdResultView: UIView {
     
     private func getCellView(_ text: String) -> UIView {
         let container = UIView().then {
-            $0.backgroundColor = Asset.Colors.grayF6F6F6.color
+            $0.backgroundColor = .lightGrayF1F1F1
             $0.clipsToBounds = true
             $0.layer.cornerRadius = 4
         }
         let label = UILabel().then {
-            $0.font = .bold.18
-            $0.textColor = Asset.Colors.black.color
+            $0.font = .bold[18]
+            $0.textColor = .black
             $0.text = text
         }
         container.addSubview(label)

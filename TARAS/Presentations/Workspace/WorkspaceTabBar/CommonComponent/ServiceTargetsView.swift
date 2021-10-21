@@ -18,6 +18,7 @@ class ServiceTargetsView: UIView {
     private lazy var distance = self.width - self.overlap
     
     private var imageViews = [UIImageView]()
+    
     private var maxCount: Int!
     
     convenience init(_ maxWidth: CGFloat = UIScreen.main.bounds.width) {
@@ -61,16 +62,16 @@ class ServiceTargetsView: UIView {
         }
     }
     
-    func bind(_ targets: [ServiceNode]) {
+    func bind(_ targets: [Stop]) {
         
-        for i in 0..<self.imageViews.count {
-            self.imageViews[i].setImage(strUrl: nil)
-            if i < min(self.maxCount,targets.count) {
-                self.imageViews[i].isHidden = false
-                self.imageViews[i].setImage(strUrl: targets[i].profileImageURL)
-            }else{
-                self.imageViews[i].isHidden = true
-            }
-        }
+//        for i in 0..<self.imageViews.count {
+//            self.imageViews[i].setImage(strUrl: nil)
+//            if i < min(self.maxCount,targets.count) {
+//                self.imageViews[i].isHidden = false
+//                self.imageViews[i].setImage(strUrl: targets[i].profileImageURL)
+//            }else{
+//                self.imageViews[i].isHidden = true
+//            }
+//        }
     }
 }

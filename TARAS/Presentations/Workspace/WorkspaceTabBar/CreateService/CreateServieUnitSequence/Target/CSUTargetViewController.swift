@@ -29,16 +29,12 @@ class CSUTargetViewController: BaseNavigatableViewController, ReactorKit.View {
         action: nil
     )
 
-    private var memberButton = SRPSegmentButton(title: "회원 및 그룹")
-
     private var stopButton = SRPSegmentButton(title: "작업 위치")
 
     private var innerPageViewController = UIPageViewController(
         transitionStyle: .scroll,
         navigationOrientation: .horizontal
     )
-
-    private var targetMemberViewController: TargetMemberViewController!
 
     private var targetStopViewController: TargetStopViewController!
 
@@ -71,7 +67,6 @@ class CSUTargetViewController: BaseNavigatableViewController, ReactorKit.View {
             $0.height.equalTo(30)
         }
 
-        stackView.addArrangedSubview(self.memberButton)
         stackView.addArrangedSubview(self.stopButton)
 
         self.view.addSubview(self.innerPageViewController.view)
@@ -81,84 +76,26 @@ class CSUTargetViewController: BaseNavigatableViewController, ReactorKit.View {
         }
     }
 
-    override func bind() {
-        self.backButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.navigationController?.popViewController(animated: true)
-            }).disposed(by: self.disposeBag)
 
+    // MARK: - ReactorKit
+
+    func bind(reactor: CSUTargetViewReactor) {
+        
         self.closeButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.navigationController?.dismiss(animated: true, completion: nil)
             }).disposed(by: self.disposeBag)
-    }
-
-
-    // MARK: - ReactorKit
-
-    func bind(reactor: CSUTargetViewReactor) {
-        self.setSegmentButtons(on: .recipient)
-
-        self.memberButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.setSegmentButtons(on: .recipient)
-                self?.setUsersPage(reactor)
-            }).disposed(by: self.disposeBag)
 
         self.stopButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.setSegmentButtons(on: .stop)
                 self?.setLocationPage(reactor)
             }).disposed(by: self.disposeBag)
 
-        self.rx.viewDidLoad.map { _ in Reactor.Action.setInitialPage }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-
-        /// targetType 의 값에 따라 pageViewController 초기 설정을 분기합니다.
-        /// - nil 일 경우: '회원 및 그룹' 화면 세팅
-        /// - .recipient 일 경우: '회원 및 그룹' 화면 및 버튼 세팅
-        /// - .stop 일 경우: '정차지' 화면 및 버튼 세팅
-        reactor.state.map { $0.targetType }
-            .subscribe(onNext: { [weak self] targetType in
-                guard let self = self else { return }
-                self.setSegmentButtons(on: targetType)
-
-                switch targetType {
-                case nil: self.setUsersPage(reactor)
-                case .recipient: self.setUsersPage(reactor)
-                case .stop: self.setLocationPage(reactor)
-                default: break
-                }
+        self.rx.viewDidLoad
+            .subscribe(onNext: { [weak self] in
+                self?.setLocationPage(reactor)
             }).disposed(by: self.disposeBag)
-    }
-
-    private func setSegmentButtons(on: ServiceUnitTargetType?) {
-        if let targetType = on {
-            let isRecipientsButtonOn = (targetType == .recipient)
-            self.memberButton.isSelected = isRecipientsButtonOn ? true : false
-            self.stopButton.isSelected = isRecipientsButtonOn ? false : true
-        }
-    }
-
-    private func setUsersPage(_ reactor: CSUTargetViewReactor) {
-        var viewController = self.targetMemberViewController
-
-        if viewController == nil {
-            viewController = TargetMemberViewController().then {
-                $0.reactor = reactor.reactorForTargetMemeber()
-                $0.targetDelegate = self
-            }
-            self.targetMemberViewController = viewController
-        }
-
-        self.innerPageViewController.setViewControllers(
-            [viewController!],
-            direction: .forward,
-            animated: false
-        )
     }
 
     private func setLocationPage(_ reactor: CSUTargetViewReactor) {
@@ -184,23 +121,9 @@ class CSUTargetViewController: BaseNavigatableViewController, ReactorKit.View {
 extension CSUTargetViewController: CSUTargetDelegate {
 
     func didTargetSelected(_ serviceUnitModel: CreateServiceUnitModel) {
-        if serviceUnitModel.serviceUnit.info.targetType == .recipient
-        {
-            if self.csuDelegate == nil {
-                let viewController = CSUFreightsViewController()
-                viewController.reactor = self.reactor?.reactorForFreight(serviceUnitModel)
-                self.navigationController?.pushViewController(viewController, animated: true)
-            } else {
-                self.csuDelegate?.didUpdate(serviceUnitModel)
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }
-        }
-        else if serviceUnitModel.serviceUnit.info.targetType == .stop
-        {
-            let viewController = CSURecipientViewController()
-            viewController.reactor = self.reactor?.reactorForRecipients(serviceUnitModel)
-            viewController.csuDelegate = self.csuDelegate
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+        let viewController = CSURecipientViewController()
+        viewController.reactor = self.reactor?.reactorForRecipients(serviceUnitModel)
+        viewController.csuDelegate = self.csuDelegate
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

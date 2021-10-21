@@ -47,14 +47,6 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
         self.navigationController?.navigationBar.isHidden = false
     }
 
-    override func bind() {
-        // 뒤로가기 버튼 액션
-        self.backButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }).disposed(by: self.disposeBag)
-    }
-
     // MARK: - ReactorKit
 
     func bind(reactor: WorkspaceSearchResultViewReactor) {
@@ -67,50 +59,20 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
             .map { _ in Reactor.Action.requestJoin }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+        self.resultView.enterButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                //가입 상태에 따른 요청
+            }).disposed(by: self.disposeBag)
 
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.joinState }
-            .distinctUntilChanged()
-            .map { _ in reactor.currentState.cellModel }
-            .subscribe(onNext: { [weak self] cellModel in
-                guard let self = self else { return }
-                self.resultView.setupView(with: cellModel)
-            }).disposed(by: self.disposeBag)
-
-        reactor.state.map { $0.requestResult }
-            .distinctUntilChanged()
-            .filter { $0 == true }
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.navigationController?.popToRootViewController(animated: true)
-            }).disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.cancelResult }
-            .distinctUntilChanged()
-            .filter { $0 == true }
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.navigationController?.popToRootViewController(animated: true)
-            }).disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.enterResult }
-            .distinctUntilChanged()
-            .filter { $0 == true }
-            .map { _ in reactor.currentState.cellModel.swsIdx }
-            .map(reactor.reactorForSWSHome)
-            .subscribe(onNext: { [weak self] reactor in
-                if let rootViewController = self?.navigationController?.viewControllers.first as? WorkspaceListViewController {
-                    let viewController = WorkspaceTabBarController()
-                    viewController.reactor = reactor
-                    rootViewController.navigationController?.pushViewController(viewController, animated: true)
-                    rootViewController.navigationController?.viewControllers.removeAll(where: {
-                        $0.isKind(of: WorkspaceSearchViewController.self) || $0.isKind(of: WorkspaceSearchResultViewController.self)
-                    })
-                }
+        reactor.state.compactMap { $0.workspace }
+            .subscribe(onNext: { [weak self] workspace in
+                //가입 상태에 따른 상태 표시
             }).disposed(by: self.disposeBag)
     }
 }

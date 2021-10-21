@@ -31,11 +31,11 @@ class WorkspaceInfoViewReactor: Reactor {
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
+    let workspaceId: String
     
-    init(provider: ManagerProviderType, swsIdx: Int) {
+    init(provider: ManagerProviderType, workspaceId: String) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -45,9 +45,10 @@ class WorkspaceInfoViewReactor: Reactor {
                 .just(.setLoading(true)),
                 
                 self.provider.networkManager
-                    .fetch(SwsBySwsIdxQuery(swsIdx: self.swsIdx))
-                    .map{ Workspace(sws: $0.swsBySwsIdx.asSws) }
-                    .map{ Mutation.loadedSwsInfo($0) },
+                    .fetch(WorkspaceByIdQuery(workspaceId: self.workspaceId))
+                    .compactMap(\.signedUser?.joinedWorkspaces?.edges.first)
+                    .compactMap(\.?.node?.fragments.workspaceFragment)
+                    .map{ Mutation.loadedSwsInfo(.init($0)) },
                 
                 .just(.setLoading(false))
             ])

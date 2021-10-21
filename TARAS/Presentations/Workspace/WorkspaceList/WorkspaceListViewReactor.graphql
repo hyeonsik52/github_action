@@ -18,8 +18,17 @@ mutation leaveWorkspace($workspaceId: String) {
 fragment WorkspaceFragment on WorkspaceNode {
 	id
 	name
+	code
 	createdAt
 	isRequiredToAcceptToJoin
 	isRequiredUserEmailToJoin
 	isRequiredUserPhoneNumberToJoin
+	members {
+		totalCount
+		edges {
+			node {
+				id
+			}
+		}
+	}
 }

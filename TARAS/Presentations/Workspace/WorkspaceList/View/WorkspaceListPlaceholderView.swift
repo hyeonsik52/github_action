@@ -17,7 +17,7 @@ class WorkspaceListPlaceholderView: UIView {
         $0.textColor = .grayA0A0A0
         $0.numberOfLines = 2
         $0.textAlignment = .center
-        $0.font = .medium.16
+        $0.font = .medium[16]
     }
     
     init() {

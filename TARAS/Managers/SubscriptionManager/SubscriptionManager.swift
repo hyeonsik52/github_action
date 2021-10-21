@@ -39,16 +39,16 @@ extension SubscriptionManager: SubscriptionManagerType {
 
 extension SubscriptionManagerType {
     
-//    /// 내가 수신한 서비스 변화(생성, 수정, 삭제) 구독
-//    public func receivedService() -> Observable<Result<ReceivedServiceSubscription.Data, Error>> {
-//        return self.subscribe(ReceivedServiceSubscription())
-//    }
-//
-//    /// 특정 서비스 구독 (진행중 서비스 상세 화면)
-//    public func service(_ serviceIdx: Int) -> Observable<Result<ServiceByServiceIdxSubscription.Data, Error>> {
-//        return self.subscribe(ServiceByServiceIdxSubscription(serviceIdx: serviceIdx))
-//    }
-//
+    /// 내가 수신한 서비스 변화(생성, 수정, 삭제) 구독
+    public func services(by workspaceId: String) -> Observable<Result<ServicesByWorkspaceIdSubscription.Data, Error>> {
+        return self.subscribe(ServicesByWorkspaceIdSubscription(workspaceId: workspaceId))
+    }
+
+    /// 특정 서비스 구독 (진행중 서비스 상세 화면)
+    public func service(by serviceId: String) -> Observable<Result<ServiceByServiceIdSubscription.Data, Error>> {
+        return self.subscribe(ServiceByServiceIdSubscription(serviceId: serviceId))
+    }
+
 //    /// 특정 서비스의 서비스 로그(생성,수정,삭제) 구독 (로그 화면)
 //    public func serviceLog(_ serviceIdx: Int) -> Observable<Result<ServiceLogSubscription.Data, Error>> {
 //        return self.subscribe(ServiceLogSubscription(serviceIdx: serviceIdx))

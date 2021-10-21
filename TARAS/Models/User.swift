@@ -42,5 +42,8 @@ extension User: FragmentModel {
         
         self.userName = ""
         self.displayName = fragment.displayName
+        
+        self.email = nil
+        self.phonenumber = nil
     }
 }

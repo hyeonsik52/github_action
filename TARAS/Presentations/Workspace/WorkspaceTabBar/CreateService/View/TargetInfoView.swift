@@ -13,13 +13,6 @@ import Then
 /// CreateServiceCell 에서 사용되는 view 입니다.
 /// 대상의 정보(순번, 프로필 이미지, 이름, 소속 그룹 이름) 를 표출합니다.
 class TargetInfoView: UIView {
-
-    private let profileImageView = UIImageView().then {
-        $0.image = UIImage(named: "common-workspacePlaceholder-happy")
-        $0.contentMode = .scaleAspectFill
-        $0.clipsToBounds = true
-        $0.cornerRadius = 21
-    }
     
     private let numberContainer = UIView()
     
@@ -27,7 +20,7 @@ class TargetInfoView: UIView {
         $0.text = "1"
         $0.clipsToBounds = true
         $0.cornerRadius = 10
-        $0.font = .bold.12
+        $0.font = .bold[12]
         $0.textColor = .white
         $0.backgroundColor = .skyBlue85AEFF
         $0.textAlignment = .center
@@ -35,17 +28,12 @@ class TargetInfoView: UIView {
     }
     
     private let nameLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
         $0.textAlignment = .left
     }
     
     let arrowImageView = UIImageView(image: UIImage(named: "service-arrow-down"))
-    
-    private let groupNameLabel = UILabel().then {
-        $0.font = .medium.12
-        $0.textColor = .gray8C8C8C
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,11 +46,6 @@ class TargetInfoView: UIView {
     }
     
     private func setupConstraints() {
-        self.addSubview(self.profileImageView)
-        self.profileImageView.snp.makeConstraints {
-            $0.top.leading.bottom.equalToSuperview()
-            $0.width.height.equalTo(42)
-        }
         
         let verticalStackView = UIStackView().then {
             $0.axis = .vertical
@@ -73,8 +56,7 @@ class TargetInfoView: UIView {
         
         self.addSubview(verticalStackView)
         verticalStackView.snp.makeConstraints {
-            $0.top.bottom.trailing.equalToSuperview()
-            $0.leading.equalTo(self.profileImageView.snp.trailing).offset(10)
+            $0.top.bottom.leading.trailing.equalToSuperview()
         }
         
         let numberTextStackView = UIStackView().then {
@@ -115,16 +97,9 @@ class TargetInfoView: UIView {
         }
         
         numberTextStackView.addArrangedSubview(arrowContainerView)
-        
-        verticalStackView.addArrangedSubview(self.groupNameLabel)
-        self.groupNameLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-        }
     }
     
-    func bind(_ model: CreateServiceTargetInfoModel) {
+    func bind(_ model: Stop) {
         self.nameLabel.text = model.name
-        self.groupNameLabel.text = model.groupName
-        self.groupNameLabel.isHidden = (model.groupName == nil)
     }
 }

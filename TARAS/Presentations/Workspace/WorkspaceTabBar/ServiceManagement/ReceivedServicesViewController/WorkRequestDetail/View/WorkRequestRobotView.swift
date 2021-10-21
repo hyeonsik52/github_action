@@ -14,7 +14,7 @@ class WorkRequestRobotView: UIView {
 
     private let titleView = WorkRequestSectionTitleView(title: "로봇 정보")
     private let robotNameLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
     }
     

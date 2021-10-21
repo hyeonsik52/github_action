@@ -25,7 +25,7 @@ struct Workspace: Identifiable {
     ///워크스페이스 이름
     let name: String
     ///워크스페이스 생성일
-    let createdAt: Date = .init()
+    let createdAt: Date
     
     ///가입 승인 필요 여부
     let isRequiredToAcceptToJoin: Bool
@@ -36,6 +36,9 @@ struct Workspace: Identifiable {
     
     ///내 회원 상태
     var myMemberStatus: WorkspaceMemberStatus = .notMember
+    
+    var memberCount: Int
+    var code: String?
 }
 
 extension Workspace: FragmentModel {
@@ -48,13 +51,22 @@ extension Workspace: FragmentModel {
         if let createdAt = fragment.createdAt,
            let date = ISO8601DateFormatter().date(from: createdAt) {
             self.createdAt = date
+        } else {
+            self.createdAt = Date()
         }
         
         self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
         self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
         self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
         
+        self.memberCount = fragment.members?.totalCount ?? 0
+        self.code = fragment.code
+        
         //TODO
         //가입 상태 확인 필요
+        let memberIds = fragment.members?.edges.compactMap(\.?.node?.id) ?? []
+        let myId = "" //식별 아이디
+        let isMemberMe = memberIds.contains(myId)
+        self.myMemberStatus = (isMemberMe ? .member: .notMember)
     }
 }

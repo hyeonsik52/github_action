@@ -18,7 +18,7 @@ class WorkspaceHeaderView: UIView {
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.6
         $0.lineBreakMode = .byTruncatingHead
-        $0.font = .regular.20
+        $0.font = .regular[20]
         $0.textColor = .black
         $0.text = " "
     }
@@ -55,7 +55,7 @@ class WorkspaceHeaderView: UIView {
         let staticLabel = UILabel().then{
             $0.minimumScaleFactor = 0.8
             $0.adjustsFontSizeToFitWidth = true
-            $0.font = .bold.24
+            $0.font = .bold[24]
             $0.textColor = .black
             $0.text = "서비스를 생성해보세요"
         }
@@ -88,8 +88,8 @@ class WorkspaceHeaderView: UIView {
             .disposed(by: self.disposeBag)
     }
     
-    func bind(_ user: UserInfo) {
+    func bind(_ user: User) {
         
-        self.userNameLabel.text = "\(user.validName)님!"
+        self.userNameLabel.text = "\(user.displayName)님!"
     }
 }

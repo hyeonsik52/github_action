@@ -13,7 +13,6 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 import RxDataSources
-//import PanModal
 
 class ServiceDetailViewController: BaseViewController, View {
     
@@ -45,8 +44,6 @@ class ServiceDetailViewController: BaseViewController, View {
         $0.refreshControl = UIRefreshControl()
     }
     
-    private var dataSource: RxCollectionViewSectionedReloadDataSource<ServiceUnitSection>!
-    
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
@@ -70,7 +67,7 @@ class ServiceDetailViewController: BaseViewController, View {
     override func setupConstraints() {
         super.setupConstraints()
         
-        self.view.backgroundColor = .LIGHT_GRAY_F6F6F6
+        self.view.backgroundColor = .lightGrayF1F1F1
         
         let navigationBar = UIView()
         self.view.addSubview(navigationBar)
@@ -120,136 +117,7 @@ class ServiceDetailViewController: BaseViewController, View {
             })
             .disposed(by: self.disposeBag)
         
-        self.moreButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                let serviceModel = reactor.currentState.serviceModel
-                let status = serviceModel?.status ?? .__unknown("unknown")
-                //3가지 타입으로 나뉘어짐
-                
-                let actionController = UIAlertController(title: "더보기", message: nil, preferredStyle: .actionSheet)
-
-                actionController.addAction(
-                    UIAlertAction(title: "서비스 기본 정보", style: .default) { [weak self] action in
-                        
-                        let viewController = ServiceBasicInfoViewController()
-                        viewController.reactor = reactor.reactorForBasicInfo()
-                        
-                        self?.navigationController?.pushViewController(viewController, animated: true)
-                    }
-                )
-                actionController.addAction(
-                    UIAlertAction(title: "작업 로그", style: .default) { action in
-                        
-                        let viewController = ServiceDetailLogViewController()
-                        viewController.reactor = reactor.reactorForDetailLog()
-                        
-                        self?.navigationController?.pushViewController(viewController, animated: true)
-                    }
-                )
-                switch status {
-                case .waitingResponse: fallthrough
-                case .waitingRobotAssignment: fallthrough
-                case .moving:
-                    if reactor.mode != .preview,
-                        serviceModel?.creator.isMe == true {
-                        //서비스 상태가 이동중이면서, 첫번째 목적지의 상태가 작업 차례 대기라면, 출발지로 이동중 상태이다
-                        //서비스가 이동중 상태일 때, 위의 조건과 맞지 않으면 무시한다
-                        let firstServiceUnitStatus = reactor.currentState.serviceModel?.serviceUnitList.first?.status
-                        if status == .moving,
-                            firstServiceUnitStatus != .moving {
-                            break
-                        }
-                        actionController.addAction(
-                            UIAlertAction(title: "서비스 요청 취소", style: .default) { [weak self] action in
-                                let actionController = UIAlertController(title: "서비스를 취소하시겠습니까?", message: nil, preferredStyle: .alert)
-                                actionController.addAction(
-                                    UIAlertAction(title: "예", style: .destructive) { action in
-                                        reactor.action.onNext(.cancelRequest)
-                                    }
-                                )
-                                actionController.addAction(UIAlertAction(title: "아니오", style: .cancel))
-                                self?.navigationController?.present(actionController, animated: true)
-                            }
-                        )
-                    }
-                case .canceledOnWaiting: fallthrough
-                case .completed: fallthrough
-                case .canceledOnReady: fallthrough
-                case .error: fallthrough
-                case .canceledOnWorking:
-                    if reactor.mode != .preview,
-                        serviceModel?.creator.isMe == true {
-                        actionController.addAction(
-                            UIAlertAction(title: "서비스 삭제", style: .default) { action in
-                                let actionController = UIAlertController(title: "서비스를 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
-                                actionController.addAction(
-                                    UIAlertAction(title: "삭제", style: .destructive) { action in
-                                        reactor.action.onNext(.deleteService)
-                                    }
-                                )
-                                actionController.addAction(UIAlertAction(title: "취소", style: .cancel))
-                                self?.navigationController?.present(actionController, animated: true)
-                            }
-                        )
-                    }
-                default:
-                    break
-                }
-                //2단계
-//                actionController.addAction(
-//                    UIAlertAction(title: "댓글", style: .default) { action in
-//
-//                    }
-//                )
-                actionController.addAction(UIAlertAction(title: "취소", style: .cancel))
-                
-                self?.navigationController?.present(actionController, animated: true)
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.dataSource = .init(configureCell: { dataSource, collectionView, indexPath, cellRactor -> UICollectionViewCell in
-            
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ServiceUnitManagementCollectionViewCell
-            cell.reactor = cellRactor
-            
-            return cell
-        }, configureSupplementaryView: { dataSource, collectionView, string, indexPath -> UICollectionReusableView in
-            
-            let service = dataSource[indexPath.section].header
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! ServiceUnitManagementHeader
-            header.bind(mode: reactor.mode, service: service)
-            
-            return header
-        })
-        
-        self.collectionView.rx.modelSelected(ServiceUnitCellReactor.self)
-            .subscribe(onNext: { [weak self] cellReactor in
-                if cellReactor.currentState.mode != .preview {
-                    let viewController = WorkRequestViewController()
-                    let serviceUnitIdx = cellReactor.currentState.serviceSet.serviceUnit.serviceUnitIdx
-                    viewController.reactor = reactor.reactorForWorkRequest(with: serviceUnitIdx)
-                    let navigationController = PanModalNavigationController(rootViewController: viewController)
-                    
-                    self?.presentPanModal(navigationController)
-                }
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.collectionView.refreshControl?.rx.controlEvent(.valueChanged)
-            .map {_ in Reactor.Action.loadService(refresh: true) }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
         //State
-        reactor.state.compactMap { $0.serviceModel }
-            .map { service in
-                [ServiceUnitSection(
-                header: service,
-                items: service.serviceUnitList.enumerated()
-                    .map { ServiceUnitCellReactor(mode: reactor.mode, serviceSet: .init(service: service, serviceUnit: $1, offset: $0+1)) }
-                )]}
-            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)
         
         reactor.state.compactMap { $0.requestCanceled }
             .distinctUntilChanged()
@@ -271,12 +139,12 @@ class ServiceDetailViewController: BaseViewController, View {
             .distinctUntilChanged()
             .queueing(2)
             .map { $0[0] == nil && $0[1] == true }
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
         
         reactor.state.compactMap { $0.isProcessing }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLoading }
@@ -286,25 +154,6 @@ class ServiceDetailViewController: BaseViewController, View {
                 self?.collectionView.refreshControl?.endRefreshing()
             })
             .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.isFromPush }
-            .filter { $0 == true }
-            .subscribe(onNext: { [weak self] _ in
-                switch reactor.pushInfo?.notificationType {
-                case .robotArrived:
-                    if let serviceUnitIdx = reactor.pushInfo?.serviceUnitIdx
-                    {
-                        let viewController = WorkRequestViewController()
-                        viewController.reactor = reactor.reactorForWorkRequest(with: serviceUnitIdx)
-                        let navigationController = PanModalNavigationController(
-                            rootViewController: viewController
-                        )
-                        self?.presentPanModal(navigationController)
-                    }
-   
-                default: return
-                }
-            }).disposed(by: self.disposeBag)
     }
 }
 

@@ -23,7 +23,7 @@ class WorkRequestTargetView: UIView {
     }
     
     private let contentLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
     }
     

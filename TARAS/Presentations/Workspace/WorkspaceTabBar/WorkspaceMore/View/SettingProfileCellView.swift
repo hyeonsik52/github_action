@@ -15,7 +15,7 @@ import RxSwift
 class SettingProfileCellView: UIView {
     
     private var titleLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
     }
     
@@ -84,8 +84,8 @@ class SettingProfileCellView: UIView {
             .disposed(by: self.disposeBag)
     }
     
-    func bind(_ info: UserInfo) {
+    func bind(_ info: User) {
                 
-        self.profileImageView.setImage(strUrl: info.swsUserInfo?.profileImageURL ?? info.profileImageURL)
+        self.profileImageView.setImage(strUrl: nil)
     }
 }

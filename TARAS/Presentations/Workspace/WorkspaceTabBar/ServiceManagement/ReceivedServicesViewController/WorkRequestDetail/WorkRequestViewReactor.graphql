@@ -1,25 +1,3 @@
-#mutation acceptServiceUnitMutation($input: AcceptServiceUnitInput!) {
-#    acceptServiceUnitMutation(input: $input) {
-#        ... on AcceptServiceUnitError {
-#            errorCode
-#        }
-#        ... on AcceptServiceUnitPayload {
-#            result
-#        }
-#    }
-#}
-
-#mutation rejectServiceUnitMutation($input: RejectServiceUnitInput!) {
-#    rejectServiceUnitMutation(input: $input) {
-#        ... on RejectServiceUnitError {
-#            errorCode
-#        }
-#        ... on RejectServiceUnitPayload {
-#            result
-#        }
-#    }
-#}
-
 #mutation startServiceUnitMutation($input: StartServiceUnitInput!) {
 #    startServiceUnitMutation(input: $input) {
 #        ... on StartServiceUnitError {

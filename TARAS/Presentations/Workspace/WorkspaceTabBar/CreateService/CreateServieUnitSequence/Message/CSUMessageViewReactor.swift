@@ -29,13 +29,13 @@ class CSUMessageViewReactor: Reactor {
     
     let provider : ManagerProviderType
     
-    let swsIdx: Int
+    let workspaceId: String
     
     var serviceUnitModel: CreateServiceUnitModel
     
-    init(provider: ManagerProviderType, swsIdx: Int, serviceUnitModel: CreateServiceUnitModel) {
+    init(provider: ManagerProviderType, workspaceId: String, serviceUnitModel: CreateServiceUnitModel) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.serviceUnitModel = serviceUnitModel
     }
     

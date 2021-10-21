@@ -116,7 +116,7 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
         }
         
         self.tableView.rx.modelSelected(WorkspaceListCellReactor.self)
-            .filter { $0.currentState.joinState == .requested }
+            .filter { $0.currentState.myMemberStatus == .requestingToJoin }
             .map { reactor.reactorForResult($0) }
             .subscribe(onNext: { [weak self] reactor in
                 guard let self = self else { return }
@@ -126,8 +126,8 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
             }).disposed(by: self.disposeBag)
         
         self.tableView.rx.modelSelected(WorkspaceListCellReactor.self)
-            .filter { $0.currentState.joinState == .joined }
-            .map { reactor.reactorForSWSHome(swsIdx: $0.initialState.swsIdx) }
+            .filter { $0.currentState.myMemberStatus == .member }
+            .map { reactor.reactorForSWSHome(workspaceId: $0.initialState.id) }
             .subscribe(onNext: { [weak self] reactor in
                 guard let self = self else { return }
                 let viewController = WorkspaceTabBarController()
@@ -181,9 +181,9 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
                     }
 
                 case .launch:
-                    if let lastWorkspaceIdx = reactor.provider.userManager.userTB.lastWorkspaceIdx.value
+                    if let lastWorkspaceId = reactor.provider.userManager.userTB.lastWorkspaceId
                     {
-                        let nextReactor = reactor.reactorForSWSHome(swsIdx: lastWorkspaceIdx)
+                        let nextReactor = reactor.reactorForSWSHome(workspaceId: lastWorkspaceId)
                         let viewController = WorkspaceTabBarController()
                         viewController.reactor = nextReactor
                         self.navigationController?.pushViewController(viewController, animated: true)

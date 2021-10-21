@@ -115,7 +115,7 @@ class UpdateNameViewController: BaseNavigatableViewController, View {
         
 //        reactor.state.map { $0.isProcessing }
 //            .distinctUntilChanged()
-//            .bind(to: self.activityIndicator.rx.isAnimating)
+//            .bind(to: self.activityIndicatorView.rx.isAnimating)
 //            .disposed(by: self.disposeBag)
     }
 }

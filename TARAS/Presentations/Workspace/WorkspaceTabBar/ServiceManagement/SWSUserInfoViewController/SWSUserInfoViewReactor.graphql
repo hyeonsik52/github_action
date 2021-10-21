@@ -17,3 +17,29 @@ query userById($workspaceId: String) {
 	}
   }
 }
+
+query usersByWorkspaceId($workspaceId: String) {
+  signedUser {
+	joinedWorkspaces(id: $workspaceId) {
+	  edges {
+		node {
+		  members {
+			edges {
+			  node {
+				  ... MemberFragment
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
+}
+
+fragment MemberFragment on MemberNode {
+	id
+	username
+	displayName
+	email
+	phoneNumber
+}

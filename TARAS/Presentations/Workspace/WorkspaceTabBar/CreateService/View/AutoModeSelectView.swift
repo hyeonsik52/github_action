@@ -11,7 +11,7 @@ import UIKit
 class AutoModeSelectView: UIView {
     
     let titleLabel = UILabel().then {
-        $0.font = .bold.18
+        $0.font = .bold[18]
         $0.textColor = .black
         $0.textAlignment = .center
         $0.text = "자동 경로 모드로 설정하시겠습니까?"
@@ -19,7 +19,7 @@ class AutoModeSelectView: UIView {
     }
     
     let descriptionLabel = UILabel().then {
-        $0.font = .medium.16
+        $0.font = .medium[16]
         $0.textColor = .grayA0A0A0
         $0.textAlignment = .center
         $0.text = "자동 경로 모드 설정 시 최적 경로로\n재설정 됩니다."
@@ -27,7 +27,7 @@ class AutoModeSelectView: UIView {
     }
     
     let noButton = SRPButton("아니요").then {
-        $0.setBackgroundColor(color: .grayE6E6E6, forState: .normal)
+        $0.setBackgroundColor(color: .lightGrayF1F1F1, forState: .normal)
         $0.setTitleColor(.black, for: .normal)
     }
     

@@ -36,7 +36,7 @@ class RecipientUserCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     
     /// 수신자의 이름을 표출합니다.
     let nameLabel = UILabel().then {
-        $0.font = .medium.14
+        $0.font = .medium[14]
         $0.textAlignment = .center
     }
     

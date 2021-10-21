@@ -72,7 +72,7 @@ class TargetStopViewController: BaseNavigatableViewController, ReactorKit.View {
         
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
     }
 }

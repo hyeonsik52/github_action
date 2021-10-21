@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ServiceCellDelegate: class {
+protocol ServiceCellDelegate: AnyObject {
 //    func didSelect(_ service: ServiceModel, _ serviceUnit: ServiceUnitModel?, _ isServiceDetail: Bool)
 }

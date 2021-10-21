@@ -9,9 +9,15 @@ import Foundation
 
 enum NotificationType: String, Equatable {
     
-    // 로봇 배정됨 (서비스 생성)
-    case created = "robot_assignment"
+    // 서비스 시작됨
+    case serviceStarted = "service_started"
     
-    // 목적지에 도착
-    case arrived = "robot_on_stop"
+    // 작업 대기중
+    case waitingWorkCompleted = "wating_work_to_completed"
+    
+    // 서비스 종료됨
+    case serviceEnded = "service_ended"
+    
+    // 기타
+    case `default`
 }

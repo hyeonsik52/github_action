@@ -90,11 +90,10 @@ class ServiceBasicInfoViewController: BaseNavigatableViewController, View {
         
         self.serviceCreatorView.didSelect
             .subscribe(onNext: { [weak self] in
+                guard let service = reactor.currentState.service else { return }
                 
                 let viewController = SWSUserInfoViewController()
-                let userIdx = reactor.currentState.service?.creator.idx ?? -1
-                viewController.reactor = reactor.reactorForSwsUserInfo(userIdx: userIdx)
-                
+                viewController.reactor = reactor.reactorForSwsUserInfo(userId: service.creator.id)
                 self?.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: self.disposeBag)
@@ -103,41 +102,42 @@ class ServiceBasicInfoViewController: BaseNavigatableViewController, View {
         let service = reactor.state.compactMap { $0.service }
         
         service
-            .map { ($0.serviceNumber, false, nil, false) }
+            .map { ($0.serviceNumber, false) }
             .bind(to: self.serviceNumberView.rx.info)
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.creator.name, true, $0.creator.profileImageURL, false) }
+            .map { ($0.creator.displayName, false) }
             .bind(to: self.serviceCreatorView.rx.info)
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.requestAt?.overDescription ?? "-", false, nil, false) }
+            .map { ($0.createdAt.overDescription, false) }
             .bind(to: self.serviceRequestAtView.rx.info)
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.beginAt?.overDescription ?? "-", false, nil, false) }
+            .map { ($0.createdAt.overDescription, false) }
             .bind(to: self.serviceBeginAtView.rx.info)
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.endAt?.overDescription ?? "-", false, nil, false) }
+            .map { ($0.createdAt.overDescription, false) }
             .bind(to: self.serviceEndAtView.rx.info)
             .disposed(by: self.disposeBag)
         
-        service
-            .map {
-                guard let endAt = $0.endAt, let beginAt = $0.beginAt else { return "-" }
-                return (endAt.timeIntervalSince1970-beginAt.timeIntervalSince1970).toTimeString
-        }
-        .map { ($0, false, nil, false) }
+//        service
+//            .map {
+//                guard let endAt = $0.endAt, let beginAt = $0.beginAt else { return "-" }
+//                return (endAt.timeIntervalSince1970-beginAt.timeIntervalSince1970).toTimeString
+//        }
+        Observable.just("00:00")
+        .map { ($0, false) }
         .bind(to: self.serviceTimeView.rx.info)
         .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.robotName ?? "-", false, nil, false) }
+            .map { ($0.robot?.name ?? "-", false) }
             .bind(to: self.serviceRobotNameView.rx.info)
             .disposed(by: self.disposeBag)
         
@@ -145,9 +145,9 @@ class ServiceBasicInfoViewController: BaseNavigatableViewController, View {
             .distinctUntilChanged()
             .queueing(2)
             .map { $0[0] == nil && $0[1] == true }
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
-                
+
         reactor.state.map { $0.isLoading }
             .filter { $0 == false }
             .subscribe(onNext: { [weak self] isLoading in

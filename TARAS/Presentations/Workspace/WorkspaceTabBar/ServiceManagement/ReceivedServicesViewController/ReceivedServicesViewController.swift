@@ -71,7 +71,7 @@ class ReceivedServicesViewController: BaseViewController, View {
         .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
         .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.processingIsLoading ?? false && $0.completedIsLoading ?? false }
+        reactor.state.map { $0.isLoading ?? false }
             .filter { $0 == false }
             .subscribe(onNext: { [weak self] isLoading in
                 if self?.collectionView.refreshControl?.isRefreshing ?? false {
@@ -82,13 +82,13 @@ class ReceivedServicesViewController: BaseViewController, View {
         
         reactor.state.compactMap { $0.isProcessing }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.retryMoreCompleted }
+        reactor.state.map { $0.retryMore }
             .distinctUntilChanged()
             .map { [weak self] _ in self?.collectionView.numberOfItems(inSection: 1) ?? 0 }
-            .map { Reactor.Action.moreCompleted($0) }
+            .map { Reactor.Action.more($0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -105,7 +105,7 @@ class ReceivedServicesViewController: BaseViewController, View {
             .subscribe(onNext: { [weak self] reactor in
                 let service = reactor.currentState.service
                 let serviceUnit = reactor.currentState.serviceUnit
-                self?.delegate?.didSelect(service, serviceUnit, true)
+//                self?.delegate?.didSelect(service, serviceUnit, true)
             })
             .disposed(by: self.disposeBag)
         
@@ -121,7 +121,7 @@ extension ReceivedServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let lastIndex = self.dataSource[1].items.count-1
         if indexPath.section == 1, indexPath.item >= lastIndex {
-            self.reactor?.action.onNext(.moreCompleted(indexPath.item))
+            self.reactor?.action.onNext(.more(indexPath.item))
         }
     }
 }

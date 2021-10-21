@@ -19,16 +19,16 @@ class ReceivedServiceCellView: UIView {
         $0.layer.cornerRadius = 22
     }
     private var titleLabel = UILabel().then{
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
     }
     private var secondaryLabel = UILabel().then{
-        $0.font = .regular.12
+        $0.font = .regular[12]
         $0.textColor = .grayA0A0A0
         $0.lineBreakMode = .byTruncatingMiddle
     }
     private var tertiaryLabel = UILabel().then{
-        $0.font = .regular.12
+        $0.font = .regular[12]
         $0.textColor = .grayA0A0A0
     }
     

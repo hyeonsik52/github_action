@@ -36,7 +36,7 @@ class SignInView: UIView {
     /// 로그인 에러 메시지 label
     let warningLabel = UILabel().then {
         $0.textColor = .redF80003
-        $0.font = .regular.12
+        $0.font = .regular[12]
         $0.numberOfLines = 2
     }
     

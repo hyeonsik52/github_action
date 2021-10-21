@@ -10,13 +10,8 @@ import ReactorKit
 
 struct DetailHeaderCellModel {
     
-    var type: ServiceUnitTargetType
-    
     /// '수신자 우선 선택'의 경우 수신자 이름. '정차지 우선 선택'의 경우 정차지 이름.
     var name: String
-    
-    /// '수신자 우선 선택'의 경우 수신자의 그룹 이름. '정차지 우선 선택'의 경우에는 nil.
-    var groupName: String?
 }
 
 class DetailHeaderCellViewReactor: Reactor {

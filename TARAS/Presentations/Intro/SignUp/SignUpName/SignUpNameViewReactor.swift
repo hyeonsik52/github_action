@@ -94,8 +94,8 @@ class SignUpNameViewReactor: Reactor {
 //        return self.signUp(input: input)
         
         let input = CreateUserMutationInput(
-            password: self.accountInfo.password,
             username: self.accountInfo.id,
+            password: self.accountInfo.password,
             displayName: name
         )
         
@@ -114,14 +114,13 @@ class SignUpNameViewReactor: Reactor {
             self.provider.networkManager.perform(mutation)
                 .map { $0.createUser }
                 .flatMap { result -> Observable<Mutation> in
-                    if let errors = result?.errors {
-                        let etcErrors = TRSError.list(errors.compactMap { $0 }.map { TRSError.etc("[\($0.field)]: \($0.messages)") })
+                    if let _ = result?.id {
+                        return .just(.updateIsSignUp(true))
+                    } else {
                         return .concat([
                             .just(.updateIsValid(prevIsValid)),
-                            .just(.updateError(etcErrors))
+                            .just(.updateError(.etc("가입하지 못했습니다.")))
                         ])
-                    } else {
-                        return .just(.updateIsSignUp(true))
                     }
                 }
                 .catchAndReturn(.updateError(.common(.networkNotConnect))),

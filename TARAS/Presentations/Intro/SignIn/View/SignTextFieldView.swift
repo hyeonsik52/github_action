@@ -17,7 +17,7 @@ class SignTextFieldView: UIView {
     let ZERO: CGFloat = 0
     
     let textField = UITextField().then {
-        $0.font = .regular.16
+        $0.font = .regular[16]
         $0.textColor = .gray535353
         $0.clearButtonMode = .whileEditing
         $0.enablesReturnKeyAutomatically = true
@@ -34,7 +34,7 @@ class SignTextFieldView: UIView {
         
         let attributes = [
             NSAttributedString.Key.foregroundColor: UIColor.gray787878,
-            NSAttributedString.Key.font: UIFont.regular.16
+            NSAttributedString.Key.font: UIFont.regular[16]
         ]
         let attributedString = NSAttributedString(string: placeholder, attributes: attributes)
         self.textField.attributedPlaceholder = attributedString

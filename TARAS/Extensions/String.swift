@@ -88,28 +88,3 @@ extension Array where Element == String {
         self.sort(by: String.koreanCompare)
     }
 }
-
-extension String {
-    
-    // 전화번호를 문자열로만 처리함
-//    /// API 호출 하실 때, 모든 전화번호는 국제 번호 형식 (82~) 으로 전송해 주셔야 합니다.
-//    /// 슬랙 'srp_0-플랫폼본부' [전화번호 형식 공지](https://twinny.slack.com/archives/GSV3EBWBY/p1596724402141900) 참고
-//    var nationalizePhoneNumber: String {
-//        if self[0..<2] == "82" {
-//            return self
-//        } else if self[0] == "0" {
-//            return "82" + self.substring(fromIndex: 1)
-//        } else {
-//            return "82" + self
-//        }
-//    }
-//
-//    var denationalizePhoneNumber: String? {
-//        guard self.count > 2 else { return nil }
-//        if self[0..<2] == "82" {
-//            return "0" + self.substring(fromIndex: 2)
-//        } else {
-//            return self
-//        }
-//    }
-}

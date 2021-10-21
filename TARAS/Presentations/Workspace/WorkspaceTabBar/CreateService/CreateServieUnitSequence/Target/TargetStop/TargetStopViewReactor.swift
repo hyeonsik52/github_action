@@ -34,13 +34,13 @@ class TargetStopViewReactor: Reactor {
     
     let provider: ManagerProviderType
     
-    let swsIdx: Int
+    let workspaceId: String
     
     var serviceUnitModel: CreateServiceUnitModel?
     
-    init(provider: ManagerProviderType, swsIdx: Int, serviceUnitModel: CreateServiceUnitModel?) {
+    init(provider: ManagerProviderType, workspaceId: String, serviceUnitModel: CreateServiceUnitModel?) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.serviceUnitModel = serviceUnitModel
     }
     
@@ -48,18 +48,16 @@ class TargetStopViewReactor: Reactor {
         
         func loadSection() -> Observable<Mutation> {
             return self.provider.networkManager
-                .fetch(StopsListQuery(first: .max32, swsIdx: self.swsIdx))
-                .map { $0.swsStopsConnection.edges }
+                .fetch(StopsByWorkspaceIdQuery(workspaceId: self.workspaceId))
+                .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first }
+                .compactMap(\.?.node?.stationGroups?.edges)
                 .flatMap { [weak self] edges -> Observable<Mutation> in
 
-                    let serviceUnitInfo = self?.serviceUnitModel?.serviceUnit.info
-                    let stopIdx = serviceUnitInfo?.stopIdx
-                    let selectedIdx = (serviceUnitInfo?.targetType == .stop && stopIdx != nil) ? stopIdx! : nil
+                    let serviceUnitInfo = self?.serviceUnitModel?.serviceUnit
+                    let stopId = serviceUnitInfo?.targetId
 
-                    let items = edges
-                        .compactMap {
-                            TargetStopCellModel(stop: $0.node, selectedTargetStopIdx: selectedIdx)
-                        }
+                    let items = edges.compactMap(\.?.node?.fragments.stopFragment)
+                        .compactMap { TargetStopCellModel(stop: $0, selectedTargetStopId: stopId) }
                         .sorted(by: { $0.name < $1.name })
                         .map(TargetStopCellReactor.init)
 
@@ -101,38 +99,25 @@ class TargetStopViewReactor: Reactor {
         
         guard var serviceUnitModel = self.serviceUnitModel else {
             // 최초 '대상 선택' 인 경우, 새 unitInput 을 반환
-            let info = CreateServiceUnitInput(
-                freights: [],
-                isBypass: "false",
-                isStopFixed: "true",
-                message: nil,
-                recipients: [],
-                stopIdx: target.stopIdx,
-                stopType: .startingPoint,
-                targetType: .stop
-            )
+//            let info = CreateServiceUnitInput(
+//                message: nil,
+//                recipients: [],
+//                stopId: target.stopId
+//            )
             
             return CreateServiceUnitModel(
-                serviceUnitTargetName: target.name,
-                serviceUnitInfo: info
+                targetId: target.stopId,
+                serviceUnitTargetName: target.name
             )
         }
 
         // 기존 unitInput이 있는 경우,
         
         serviceUnitModel.serviceUnit.targetName = target.name
-        // isBypass 디폴트 값으로 초기화
-        serviceUnitModel.serviceUnit.info.isBypass = "false"
-        // isStopFixed 디폴트 값으로 초기화 (정차지를 먼저 선택한 경우 => true)
-        serviceUnitModel.serviceUnit.info.isStopFixed = "true"
-        // 기존 recipient 디폴트 값으로 초기화
-        serviceUnitModel.serviceUnit.info.recipients = []
-        // 선택된 정차지 위치로 업데이트
-        serviceUnitModel.serviceUnit.info.stopIdx = target.stopIdx
-        // stopType 디폴트 값으로 초기화
-        serviceUnitModel.serviceUnit.info.stopType = .startingPoint
-        // targetType 디폴트 값으로 초기화 (작업 위치를 장소이름으로 표기 할 때는 stop)
-        serviceUnitModel.serviceUnit.info.targetType = .stop
+//        // 기존 recipient 디폴트 값으로 초기화
+//        serviceUnitModel.serviceUnit.info.recipients = []
+//        // 선택된 정차지 위치로 업데이트
+//        serviceUnitModel.serviceUnit.info.stopId = target.stopId
 
         return serviceUnitModel
     }

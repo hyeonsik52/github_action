@@ -114,77 +114,79 @@ class FindAccountPasswordViewReactor: Reactor {
     
     private func resetPasswordByEmail(_ password: String, authToken: String) -> Observable<Mutation> {
         
-        let input = ResetUserPasswordByEmailInput(
-            email: self.accountInfo.email,
-            emailToken: authToken,
-            password: password
-        )
-        let mutation = ResetUserPasswordByEmailMutation(input: input)
-        
-        return .concat([
-            .just(.updateIsReset(nil)),
-            .just(.updateIsProcessing(true)),
-            
-            self.provider.networkManager.perform(mutation)
-                .map { $0.resetUserPasswordByEmailMutation }
-                .flatMapLatest { result -> Observable<Mutation> in
-                    if let typeError = result.asTypeError?.fragments.typeErrorFragment {
-                        return .just(.updateError(.common(.type(typeError))))
-                    }else if let error = result.asResetUserPasswordError {
-                        let error: TRSError? = {
-                            switch error.findErrorCode {
-                            case .invalidEmailToken:
-                                return .account(.authNumberNotMatch)
-                            default:
-                                return .etc(error.findErrorCode.rawValue)
-                            }
-                        }()
-                        return .just(.updateError(error))
-                    }else if let payload = result.asResetUserPasswordPayload {
-                        let success = payload.result.isTrue
-                        return .just(.updateIsReset(success))
-                    }
-                    return .empty()
-                }
-                .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-            
-            .just(.updateIsProcessing(false))
-        ])
+//        let input = ResetUserPasswordByEmailInput(
+//            email: self.accountInfo.email,
+//            emailToken: authToken,
+//            password: password
+//        )
+//        let mutation = ResetUserPasswordByEmailMutation(input: input)
+//
+//        return .concat([
+//            .just(.updateIsReset(nil)),
+//            .just(.updateIsProcessing(true)),
+//
+//            self.provider.networkManager.perform(mutation)
+//                .map { $0.resetUserPasswordByEmailMutation }
+//                .flatMapLatest { result -> Observable<Mutation> in
+//                    if let typeError = result.asTypeError?.fragments.typeErrorFragment {
+//                        return .just(.updateError(.common(.type(typeError))))
+//                    }else if let error = result.asResetUserPasswordError {
+//                        let error: TRSError? = {
+//                            switch error.findErrorCode {
+//                            case .invalidEmailToken:
+//                                return .account(.authNumberNotMatch)
+//                            default:
+//                                return .etc(error.findErrorCode.rawValue)
+//                            }
+//                        }()
+//                        return .just(.updateError(error))
+//                    }else if let payload = result.asResetUserPasswordPayload {
+//                        let success = payload.result.isTrue
+//                        return .just(.updateIsReset(success))
+//                    }
+//                    return .empty()
+//                }
+//                .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
+//
+//            .just(.updateIsProcessing(false))
+//        ])
+        return .empty()
     }
     
     private func resetPasswordByAuth(_ password: String, authToken: String) -> Observable<Mutation> {
         
-        let input = ResetUserPasswordByAuthCodeInput(authCode: authToken, password: password)
-        let mutation = ResetUserPasswordByAuthCodeMutation(input: input)
-        
-        return .concat([
-            .just(.updateIsReset(nil)),
-            .just(.updateIsProcessing(true)),
-            
-            self.provider.networkManager.perform(mutation)
-                .map { $0.resetUserPasswordByAuthCodeMutation }
-                .flatMapLatest { result -> Observable<Mutation> in
-                    if let typeError = result.asTypeError?.fragments.typeErrorFragment {
-                        return .just(.updateError(.common(.type(typeError))))
-                    }else if let error = result.asResetUserPasswordError {
-                        let error: TRSError? = {
-                            switch error.authErrorCode {
-                            case .invalidAuthCode:
-                                return .account(.authNumberNotMatch)
-                            default:
-                                return .etc(error.authErrorCode.rawValue)
-                            }
-                        }()
-                        return .just(.updateError(error))
-                    }else if let payload = result.asResetUserPasswordPayload {
-                        let success = payload.result.isTrue
-                        return .just(.updateIsReset(success))
-                    }
-                    return .empty()
-                }
-                .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-            
-            .just(.updateIsProcessing(false))
-        ])
+//        let input = ResetUserPasswordByAuthCodeInput(authCode: authToken, password: password)
+//        let mutation = ResetUserPasswordByAuthCodeMutation(input: input)
+//
+//        return .concat([
+//            .just(.updateIsReset(nil)),
+//            .just(.updateIsProcessing(true)),
+//
+//            self.provider.networkManager.perform(mutation)
+//                .map { $0.resetUserPasswordByAuthCodeMutation }
+//                .flatMapLatest { result -> Observable<Mutation> in
+//                    if let typeError = result.asTypeError?.fragments.typeErrorFragment {
+//                        return .just(.updateError(.common(.type(typeError))))
+//                    }else if let error = result.asResetUserPasswordError {
+//                        let error: TRSError? = {
+//                            switch error.authErrorCode {
+//                            case .invalidAuthCode:
+//                                return .account(.authNumberNotMatch)
+//                            default:
+//                                return .etc(error.authErrorCode.rawValue)
+//                            }
+//                        }()
+//                        return .just(.updateError(error))
+//                    }else if let payload = result.asResetUserPasswordPayload {
+//                        let success = payload.result.isTrue
+//                        return .just(.updateIsReset(success))
+//                    }
+//                    return .empty()
+//                }
+//                .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
+//
+//            .just(.updateIsProcessing(false))
+//        ])
+        return .empty()
     }
 }

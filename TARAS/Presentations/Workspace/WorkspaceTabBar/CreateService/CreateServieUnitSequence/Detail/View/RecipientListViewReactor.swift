@@ -8,25 +8,20 @@
 
 import ReactorKit
 
-struct RecipientListViewModel {
-    var type: ServiceUnitRecipientType
-    var list: [CreateRecipientInput]
-}
-
 class RecipientListViewReactor: Reactor {
     typealias Action = NoAction
 
     let provider: ManagerProviderType
-    let swsIdx: Int
-    let initialState: RecipientListViewModel
+    let workspaceId: String
+    let initialState: [User]
 
-    init(provider: ManagerProviderType, swsIdx: Int, model: RecipientListViewModel) {
-        self.initialState = model
+    init(provider: ManagerProviderType, workspaceId: String, models: [User]) {
+        self.initialState = models
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
     }
     
-    func reactorForCell(_ input: CreateRecipientInput) -> RecipientListCellViewReactor {
-        return RecipientListCellViewReactor(provider: provider, recipientInput: input, swsIdx: swsIdx)
+    func reactorForCell(_ input: User) -> RecipientListCellViewReactor {
+        return RecipientListCellViewReactor(provider: provider, recipientInput: input, workspaceId: workspaceId)
     }
 }

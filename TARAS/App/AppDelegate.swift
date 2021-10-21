@@ -61,8 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 네트워크 상태를 구독합니다.
         if let reachability = self.reachability {
             reachability.rx.isReachable.skip(1).map { $0 ?
-                ("네트워크에 연결되었습니다.", UIColor.networkGreen6DD400):
-                ("네트워크 연결이 유실되었습니다.", UIColor.networkRedFE4242)
+                ("네트워크에 연결되었습니다.", UIColor.green00BB23):
+                ("네트워크 연결이 유실되었습니다.", UIColor.redF80003)
             }.subscribe(onNext: { $0.0.sek.showTopNote(color: $0.1) })
             .disposed(by: self.disposeBag)
             
@@ -133,14 +133,14 @@ extension AppDelegate {
             coloredAppearance.configureWithOpaqueBackground()
             coloredAppearance.backgroundColor = .white
             coloredAppearance.shadowColor = UIColor.clear
-            coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.bold.20]
+            coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.bold[20]]
             
             // large title text left margin
             let style = NSMutableParagraphStyle()
             style.firstLineHeadIndent = 6
             coloredAppearance.largeTitleTextAttributes = [
                 .foregroundColor: UIColor.black,
-                .font: UIFont.bold.24,
+                .font: UIFont.bold[24],
                 .paragraphStyle: style
             ]
             UINavigationBar.appearance().standardAppearance = coloredAppearance

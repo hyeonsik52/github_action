@@ -54,7 +54,7 @@ extension ServiceState {
 /// 서비스 정보
 struct Service {
     /// 서비스 아이디
-    let id: Int
+    let id: String
     /// 서비스 상태
     let status: ServiceState
     /// 서비스 번호

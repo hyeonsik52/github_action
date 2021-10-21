@@ -20,24 +20,20 @@ class ServiceManagementViewReactor: Reactor {
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
-    let pushInfo: NotificationInfomation?
+    let workspaceId: String
+    let pushInfo: NotificationInfo?
     
-    init(provider: ManagerProviderType, swsIdx: Int, pushInfo: NotificationInfomation? = nil) {
+    init(provider: ManagerProviderType, workspaceId: String, pushInfo: NotificationInfo? = nil) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.pushInfo = pushInfo
     }
     
-    func reactorForServiceDetail(mode: ServiceDetailViewReactor.Mode, serviceIdx: Int) -> ServiceDetailViewReactor {
-        return ServiceDetailViewReactor(mode: mode, provider: self.provider, swsIdx: self.swsIdx, serviceIdx: serviceIdx)
+    func reactorForServiceDetail(serviceId: String) -> ServiceDetailViewReactor {
+        return ServiceDetailViewReactor(provider: self.provider, workspaceId: self.workspaceId, serviceId: serviceId)
     }
     
     func reactorForReceivedServices() -> PagingReceivedServicesViewReactor {
-        return PagingReceivedServicesViewReactor(provider: self.provider, swsIdx: self.swsIdx)
-    }
-    
-    func reactorForCreatedServices() -> PagingCreatedServicesViewReactor {
-        return PagingCreatedServicesViewReactor(provider: self.provider, swsIdx: self.swsIdx)
+        return PagingReceivedServicesViewReactor(provider: self.provider, workspaceId: self.workspaceId)
     }
 }

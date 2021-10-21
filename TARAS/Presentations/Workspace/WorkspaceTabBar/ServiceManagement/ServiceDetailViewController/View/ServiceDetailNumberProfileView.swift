@@ -23,7 +23,7 @@ class ServiceDetailNumberProfileView: UIView {
     private let numberLabel = UILabel().then {
         $0.clipsToBounds = true
         $0.cornerRadius = 10
-        $0.font = .bold.12
+        $0.font = .bold[12]
         $0.textColor = .white
         $0.backgroundColor = .skyBlue85AEFF
         $0.textAlignment = .center
@@ -31,13 +31,13 @@ class ServiceDetailNumberProfileView: UIView {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
         $0.textAlignment = .left
     }
     
     private let contentLabel = UILabel().then {
-        $0.font = .medium.12
+        $0.font = .medium[12]
         $0.textColor = .gray8C8C8C
     }
     

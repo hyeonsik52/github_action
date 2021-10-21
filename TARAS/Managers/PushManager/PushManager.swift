@@ -31,7 +31,7 @@ final class PushManager: BaseManager, PushManagerType {
                 guard let self = self, let _ = self.window else { return }
                 if isValid {
                     switch info.notificationType {
-                    case .created, .arrived:
+                    case .serviceStarted, .waitingWorkCompleted, .serviceEnded, .default:
                         self.setupWorkspaceListViewController(pushInfo: info)
                     }
                 }
@@ -46,22 +46,22 @@ final class PushManager: BaseManager, PushManagerType {
     
     fileprivate func setupWorkspaceListViewController(pushInfo: NotificationInfo) {
         
-//        let isLogin = (self.provider.userManager.userTB.accessToken != nil)
-//
-//        let viewController: UIViewController = {
-//            if isLogin {
-//                return WorkspaceListViewController().then {
-//                    $0.reactor = WorkspaceListViewReactor(provider: self.provider, isFrom: .push, pushInfo: pushInfo)
-//                }
-//            }else{
-//                return SignInViewController().then {
-//                    $0.reactor = SignInViewReactor(provider: self.provider)
-//                }
-//            }
-//        }()
-//
-//        let navigationController = BaseNavigationController(rootViewController: viewController)
-//        self.window?.rootViewController = navigationController
+        let isLogin = (self.provider.userManager.userTB.accessToken != nil)
+
+        let viewController: UIViewController = {
+            if isLogin {
+                return WorkspaceListViewController().then {
+                    $0.reactor = WorkspaceListViewReactor(provider: self.provider, isFrom: .push)
+                }
+            }else{
+                return SignInViewController().then {
+                    $0.reactor = SignInViewReactor(provider: self.provider)
+                }
+            }
+        }()
+
+        let navigationController = BaseNavigationController(rootViewController: viewController)
+        self.window?.rootViewController = navigationController
     }
 }
 

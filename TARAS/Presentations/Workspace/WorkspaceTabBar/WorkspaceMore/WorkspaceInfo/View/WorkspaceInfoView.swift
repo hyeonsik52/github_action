@@ -20,19 +20,19 @@ class WorkspaceInfoView: UIView {
     }
     
     private let nameLabel = UILabel().then {
-        $0.font = .bold.22
+        $0.font = .bold[22]
         $0.textAlignment = .center
         $0.textColor = .black
     }
     
     private let createLabel = UILabel().then {
-        $0.font = .bold.14
+        $0.font = .bold[14]
         $0.textAlignment = .center
         $0.textColor = .grayA0A0A0
     }
     
     private let memberCountLabel = UILabel().then {
-        $0.font = .bold.13
+        $0.font = .bold[13]
         $0.textAlignment = .center
         $0.textColor = .purple4A3C9F
     }
@@ -71,7 +71,7 @@ class WorkspaceInfoView: UIView {
         let memberCountContainer = UIView().then {
             $0.clipsToBounds = true
             $0.cornerRadius = 10
-            $0.backgroundColor = .LIGHT_PUPLE_EBEAF4
+            $0.backgroundColor = .purpleEAEAF6
         }
         self.addSubview(memberCountContainer)
         memberCountContainer.snp.makeConstraints {
@@ -92,17 +92,12 @@ class WorkspaceInfoView: UIView {
     
     func bind(_ workspace: Workspace) {
          
-        self.profileImageView.setImage(strUrl: workspace.profileImageURL)
+        self.profileImageView.setImage(strUrl: nil)
 
         self.nameLabel.text = workspace.name
         
-        if let date = workspace.createAt {
-            let formatted = Formatter.YYMMDD.string(from: date)
-            self.createLabel.text = "\(formatted) 생성"
-        }else{
-            //TODO: ??
-            self.createLabel.text = "00.00.00 생성"
-        }
+        let formatted = workspace.createdAt.toString("yy.MM.dd")
+        self.createLabel.text = "\(formatted) 생성"
         
         self.memberCountLabel.text = "회원 \(workspace.memberCount)명"
     }

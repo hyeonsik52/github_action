@@ -24,7 +24,7 @@ class MessageView: UIView {
     }
     
     let messageTextfield = UITextField().then {
-        $0.font = .bold.18
+        $0.font = .bold[18]
         $0.placeholder = "요청사항 입력"
         $0.textColor = .black
     }

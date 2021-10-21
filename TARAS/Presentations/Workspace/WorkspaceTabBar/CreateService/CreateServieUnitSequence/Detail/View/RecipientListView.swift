@@ -49,7 +49,7 @@ class RecipientListView: UIView, ReactorKit.View {
             $0.removeFromSuperview()
         }
 
-        let cellReactors = reactor.initialState.list
+        let cellReactors = reactor.initialState
             .map(reactor.reactorForCell)
         
         var index = 0

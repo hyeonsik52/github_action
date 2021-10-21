@@ -17,7 +17,7 @@ class GostButton: UIButton {
         
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: color,
-            .font: UIFont.regular.12
+            .font: UIFont.regular[12]
         ]
         
         attributedString = NSMutableAttributedString(

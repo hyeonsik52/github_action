@@ -10,10 +10,10 @@ import Foundation
 
 extension ServiceManagementViewController: ServiceCellDelegate {
     
-    func didSelect(_ service: ServiceModel, _ serviceUnit: ServiceUnitModel?, _ isServiceDetail: Bool) {
+    func didSelect(_ service: Service, _ serviceUnit: ServiceUnit?, _ isServiceDetail: Bool) {
         
         let viewController = ServiceDetailViewController()
-        viewController.reactor = self.reactor?.reactorForServiceDetail(mode: .processing, serviceIdx: service.serviceIdx)
+        viewController.reactor = self.reactor?.reactorForServiceDetail(serviceId: service.id)
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }

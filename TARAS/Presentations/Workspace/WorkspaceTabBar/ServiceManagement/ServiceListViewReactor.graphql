@@ -5,6 +5,7 @@ fragment ServiceFragment on HiGlovisServiceNode {
 	state
 	timestamps
 	serviceNumber
+	createdAt
 	creator
 	robot {
 		... RobotFragment

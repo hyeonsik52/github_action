@@ -11,19 +11,14 @@ import Foundation
 struct CSUInfo {
     
     /// 목적지의 대상의 이름입니다.
-    /// - '회원-개인' 일 경우: "박수지"
-    /// - '회원-그룹' 일 경우: "플랫폼본부 iOS팀"
     /// - '정차지' 일 경우: "플랫폼본부 입구"
     var targetName: String
     
-    /// 목적지의 대상이 속한 첫번째 그룹 이름입니다.
-    /// - '회원-개인' 일 경우: "플랫폼본부 iOS팀"
-    /// - '회원-그룹' 일 경우: nil
-    /// - '정차지' 일 경우: nil
-    var targetGroupName: String?
+    var targetId: String
     
-    /// 목적지의 정보입니다.
-//    var info: CreateServiceUnitInput
+    var recipients: [User]
+    
+    var message: String?
 }
 
 /// 단위서비스 모델입니다.
@@ -32,23 +27,13 @@ struct CreateServiceUnitModel {
     /// 단위서비스의 정보입니다.
     var serviceUnit: CSUInfo
     
-    /// 경유지 입니다.
-    var bypass: CSUInfo?
-    
-    init(
-        serviceUnitTargetName: String,
-        serviceUnitTargetGroupName: String? = nil//,
-//        serviceUnitInfo: CreateServiceUnitInput
-    ) {
+    init(targetId: String, serviceUnitTargetName: String) {
+        
         self.serviceUnit = .init(
             targetName: serviceUnitTargetName,
-            targetGroupName: serviceUnitTargetGroupName//,
-//            info: serviceUnitInfo
+            targetId: targetId,
+            recipients: [],
+            message: nil
         )
-    }
-    
-    /// 경유지 포함 여부를 반환합니다.
-    var hasBypass: Bool {
-        return self.bypass != nil
     }
 }

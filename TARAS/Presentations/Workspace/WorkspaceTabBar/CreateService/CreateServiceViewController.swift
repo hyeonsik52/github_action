@@ -14,24 +14,14 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-protocol CSUEditDelegate: class {
+protocol CSUEditDelegate: AnyObject {
     func didEdit(_ serviceUnitModel: CreateServiceUnitModel, index: Int)
 }
 
-protocol CreateServiceWaypointSelectDelegate: class {
-    func didSelectWaypoint(willAppendAt: Int, stopIndex: Int)
-}
-
 class CreateServiceViewController: BaseViewController, ReactorKit.View {
-    // TODO: refactoring
-    // prevStopIdx, newStopIdx
-    var waypointChangeSignal = PublishRelay<(Int, Int)>()
-    // cellModelIndex, appendedStopIdx
-    var waypointSelectSignal = PublishRelay<(Int, Int)>()
     
     /// self.tableView 의 footer 와 header 에서 공통으로 사용되는 CGRect 입니다.
-    let headerFooterRect = CGRect(x: 0, y: 0, width: (ScreenSize.width - 40), height: 60)
-
+    let headerFooterRect = CGRect(x: 0, y: 0, width: (UIScreen.main.bounds.width - 40), height: 60)
     
     // MARK: - UI
 
@@ -42,20 +32,8 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
     let titleLabel = UILabel().then {
         $0.text = "0개의 목적지"
         $0.textColor = .black
-        $0.font = .bold.24
+        $0.font = .bold[24]
     }
-
-    // ⚠️ '경유지' 기능 임시 주석 처리 /////////////////////////////////////////////////////////////////
-    // https://twinny.slack.com/archives/G017W1M1DJR/p1600249271062300 참고
-    // '경유지' 기능을 살리고 싶다면 이곳의 주석을 풀어주세요
-//    let stopoverButton = UIButton().then {
-//        $0.backgroundColor = .LIGHT_GRAY_F0F0F0
-//        $0.setTitle("+ 경유지", for: .normal)
-//        $0.setTitleColor(.purple4A3C9F, for: .normal)
-//        $0.titleLabel?.font = .bold.15
-//        $0.cornerRadius = 8
-//    }
-    // ///////////////////////////////////////////////////////////////////////////////////////////
 
     lazy var footerView = CreateServiceFooterView(frame: headerFooterRect)
 
@@ -81,16 +59,12 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
 
     let requestButton = SRPButton("요청하기")
 
-
     // MARK: - Life cycles
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = .LIGHT_GRAY_F6F6F6
-    }
-
     override func setupConstraints() {
+        
+        self.view.backgroundColor = .lightGrayF1F1F1
+        
         self.view.addSubview(self.closeButton)
         self.closeButton.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 24, height: 24))
@@ -98,24 +72,8 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
         }
 
-        // ⚠️ '경유지' 기능 임시 주석 처리 //////////////////////////////////////////////////////////////
-        // https://twinny.slack.com/archives/G017W1M1DJR/p1600249271062300 참고
-        // '경유지' 기능을 살리고 싶다면 이곳의 주석을 풀어주세요
-//        self.view.addSubview(self.stopoverButton)
-//        self.stopoverButton.snp.makeConstraints {
-//            $0.size.equalTo(CGSize(width: 87, height: 37))
-//            $0.trailing.equalToSuperview().offset(-16)
-//            $0.centerY.equalTo(self.closeButton)
-//        }
-        // ///////////////////////////////////////////////////////////////////////////////////////
-
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints {
-            // ⚠️ '경유지' 기능 임시 주석 처리 //////////////////////////////////////////////////////////
-            // https://twinny.slack.com/archives/G017W1M1DJR/p1600249271062300 참고
-            // '경유지' 기능을 살리고 싶다면 이곳의 주석을 풀어주세요
-//            $0.top.equalTo(self.stopoverButton.snp.bottom).offset(8)
-            // ////////////////////////////////////////////////////////////////////////////////////
             $0.top.equalTo(self.closeButton.snp.bottom).offset(8) // 위 주석 풀 시, 삭제 필요
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
@@ -123,7 +81,7 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
         }
 
         let buttonBackgroundView = UIView().then {
-            $0.backgroundColor = .LIGHT_GRAY_F6F6F6
+            $0.backgroundColor = .lightGrayF1F1F1
         }
 
         buttonBackgroundView.addSubview(self.requestButton)
@@ -145,18 +103,15 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
         self.navigationController?.navigationBar.isHidden = true
     }
 
-    override func bind() {
-        self.closeButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.dismiss(animated: true, completion: nil)
-        }).disposed(by: self.disposeBag)
-    }
-
 
     // MARK: - ReactorKit
 
     func bind(reactor: CreateServiceViewReactor) {
-        self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        
+        self.closeButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.dismiss(animated: true, completion: nil)
+        }).disposed(by: self.disposeBag)
         
         /// 단위서비스가 '생성'되었을 때에만 (수정할 때는 제외) tableView 를 footerView 까지 내립니다.
         func scrollToFooter() {
@@ -211,21 +166,6 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
                 
             }).disposed(by: self.disposeBag)
 
-        // ⚠️ '경유지' 기능 임시 주석 처리 /////////////////////////////////////////////////////////////
-        // https://twinny.slack.com/archives/G017W1M1DJR/p1600249271062300 참고
-        // '경유지' 기능을 살리고 싶다면 이곳의 주석을 풀어주세요
-//        self.stopoverButton.rx.tap
-//            .map { _ in reactor.reactorForAddWaypoint() }
-//            .subscribe(onNext: { [weak self] reactor in
-//                let viewController = AddWaypointViewController()
-//                viewController.reactor = reactor
-//                viewController.createServiceWaypointSelectDelegate = self
-//                let navigationController = UINavigationController(rootViewController: viewController)
-//                navigationController.modalPresentationStyle = .fullScreen
-//                self?.navigationController?.present(navigationController, animated: true, completion: nil)
-//            }).disposed(by: self.disposeBag)
-        // ///////////////////////////////////////////////////////////////////////////////////////
-
         self.footerView.didSelect
             .map { _ in reactor.reactorForTarget() }
             .subscribe(onNext: { [weak self] reactor in
@@ -234,59 +174,16 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
                 viewController.reactor = reactor
                 self.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
-
-        // ⚠️ '자동 경로 모드 설정' 기능 임시 주석 처리 ////////////////////////////////////////////////////
-        // https://twinny.slack.com/archives/GSV3EBWBY/p1600070001079900 참고
-        // '자동 경로 모드 설정' 기능을 살리고 싶다면 이곳의 주석을 풀어주세요
-//        self.requestButton.rx.tap
-//            .filter { reactor.isWaypointIndexZero == false && reactor.isAutoModeEnable == true }
-//            .subscribe(onNext: { _ in
-//                let view = AutoModeSelectView()
-//
-//                view.noButton.rx.tap.subscribe(onNext: { _ in
-//                    view.sek.dismiss {
-//                        reactor.action.onNext(.setRequest(.manual))
-//                    }
-//                }).disposed(by: self.disposeBag)
-//
-//                view.autoModeButton.rx.tap.subscribe(onNext: { _ in
-//                    view.sek.dismiss {
-//                        reactor.action.onNext(.setRequest(.auto))
-//                    }
-//                }).disposed(by: self.disposeBag)
-//
-//                view.sek.showPopup()
-//            }).disposed(by: self.disposeBag)
-//
-//        // 자동 경로 설정 여부 얼럴트
-//        self.requestButton.rx.tap
-//            .filter { reactor.isWaypointIndexZero == false && reactor.isAutoModeEnable == false }
-//            .map { _ in Reactor.Action.setRequest(.manual) }
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
-        // ///////////////////////////////////////////////////////////////////////////////////////
-        
-        // '자동 경로 모드 설정' 기능 재 추가 시, 아래 코드 삭제 필요 /////////////////////////////////////////
         
         self.requestButton.rx.tap
-            .map { _ in Reactor.Action.setRequest(.manual) }
+            .map { _ in Reactor.Action.setRequest }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
-        // ///////////////////////////////////////////////////////////////////////////////////////
-        
-        // ⚠️ '경유지' 기능 임시 주석 처리 /////////////////////////////////////////////////////////////
-        // https://twinny.slack.com/archives/G017W1M1DJR/p1600249271062300 참고
-        // '경유지' 기능을 살리고 싶다면 이곳의 주석을 풀어주세요
-//        // 목적지가 2개 이상일 때만 '+경유지' 버튼 표출
-//        reactor.state.map { !(($0.section.first?.items.count ?? 0) >= 2) }
-//            .bind(to: self.stopoverButton.rx.isHidden)
-//            .disposed(by: self.disposeBag)
-        // //////////////////////////////////////////////////////////////////////////////////////
 
-        reactor.state.map { $0.serviceIdx }
+        reactor.state.map { $0.serviceId }
             .filterNil()
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] serviceIdx in
+            .subscribe(onNext: { [weak self] serviceId in
                 let str = "서비스가 생성되었습니다."
                 str.sek.showToast()
                 self?.dismiss(animated: true, completion: nil)
@@ -326,7 +223,7 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
         
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
     }
 
@@ -391,19 +288,6 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
 }
 
 extension CreateServiceViewController: CreateServiceCellDelegate {
-    
-    func didBypassButtonTap(index: Int) {
-        let indexPath = IndexPath(row: index, section: 0)
-        
-        self.editWaypointAlert(editHandler: { [weak self] in
-            let viewController = WaypointViewController()
-            viewController.reactor = self?.reactor?.reactorForWaypoint(index: index)
-            viewController.createServiceWaypointChangeDelegate = self
-            self?.navigationController?.pushViewController(viewController, animated: true)
-        }, deleteHandler: { [weak self] in
-            self?.reactor?.action.onNext(.deleteBypass(indexPath))
-        })
-    }
 
     func didDeleteButtonTap(index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
@@ -421,39 +305,15 @@ extension CreateServiceViewController: CSUEditDelegate {
     }
 }
 
-extension CreateServiceViewController: CreateServiceWaypointChangeDelegate {
-    func didCreateServiceWaypointChange(prevStopIdx: Int?, stopIdx: Int) {
-        if let prevStopIdx = prevStopIdx {
-            self.waypointChangeSignal.accept((prevStopIdx, stopIdx))
-        }
-    }
-}
-
-extension CreateServiceViewController: CreateServiceWaypointSelectDelegate {
-    func didSelectWaypoint(willAppendAt: Int, stopIndex: Int) {
-        self.waypointSelectSignal.accept((willAppendAt, stopIndex))
-    }
-}
-
-extension CreateServiceViewController: UITableViewDelegate {
-    func tableView(
-        _ tableView: UITableView,
-        targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath,
-        toProposedIndexPath proposedDestinationIndexPath: IndexPath
-    ) -> IndexPath {
-        
-        // drag 된 셀에 경유지가 포함되어 있고, 그 셀을 index 0 으로 옮기려고 한다면 경고 얼럴트를 표출합니다.
-        // 경유지가 포함된 셀은 first 가 될 수 없습니다.
-        if let item = self.reactor?.currentState.section[0].items[sourceIndexPath.row],
-           item.serviceUnitModel.hasBypass,
-           proposedDestinationIndexPath.row == 0
-        {
-            self.warnWaypointAlert()
-            return sourceIndexPath
-        }
-        return proposedDestinationIndexPath
-    }
-}
+//extension CreateServiceViewController: UITableViewDelegate {
+//    func tableView(
+//        _ tableView: UITableView,
+//        targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath,
+//        toProposedIndexPath proposedDestinationIndexPath: IndexPath
+//    ) -> IndexPath {
+//        return proposedDestinationIndexPath
+//    }
+//}
 
 extension CreateServiceViewController: UITableViewDragDelegate {
     func tableView(

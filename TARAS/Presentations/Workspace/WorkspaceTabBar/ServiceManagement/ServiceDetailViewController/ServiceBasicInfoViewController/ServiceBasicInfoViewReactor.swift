@@ -17,27 +17,30 @@ class ServiceBasicInfoViewReactor: Reactor {
     }
     
     enum Mutation {
-        case loadedService(ServiceModel?)
+        case loadedService(Service?)
         case setLoading(Bool?)
     }
     
     struct State {
-        var service: ServiceModel?
+        var service: Service?
         var isLoading: Bool?
     }
     
     var initialState: State {
-        return State(service: nil, isLoading: nil)
+        return State(
+            service: nil,
+            isLoading: nil
+        )
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
-    let serviceIdx: Int
+    let workspaceId: String
+    let serviceId: String
     
-    init(provider: ManagerProviderType, swsIdx: Int, serviceIdx: Int) {
+    init(provider: ManagerProviderType, workspaceId: String, serviceId: String) {
         self.provider = provider
-        self.swsIdx = swsIdx
-        self.serviceIdx = serviceIdx
+        self.workspaceId = workspaceId
+        self.serviceId = serviceId
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -47,9 +50,9 @@ class ServiceBasicInfoViewReactor: Reactor {
                 .just(.setLoading(true)),
                 
                 self.provider.networkManager
-                    .fetch(ServiceByServiceIdxQuery(swsIdx: self.swsIdx, serviceIdx: self.serviceIdx))
-                    .compactMap { $0.serviceByServiceIdx.asService }
-                    .map { ServiceModel($0, with: self.provider.serviceManager) }
+                    .fetch(ServiceQuery(serviceId: self.serviceId))
+                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment }
+                    .map { self.provider.serviceManager.convert(service: $0) }
                     .map { Mutation.loadedService($0) },
                 
                 .just(.setLoading(false))
@@ -68,7 +71,7 @@ class ServiceBasicInfoViewReactor: Reactor {
         return state
     }
     
-    func reactorForSwsUserInfo(userIdx: Int) -> SWSUserInfoViewReactor {
-        return SWSUserInfoViewReactor(provider: self.provider, swsIdx: self.swsIdx, userIdx: userIdx)
+    func reactorForSwsUserInfo(userId: String) -> SWSUserInfoViewReactor {
+        return SWSUserInfoViewReactor(provider: self.provider, workspaceId: self.workspaceId, userId: userId)
     }
 }

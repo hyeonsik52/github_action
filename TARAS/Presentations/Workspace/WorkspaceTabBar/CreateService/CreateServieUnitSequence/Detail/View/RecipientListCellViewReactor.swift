@@ -19,45 +19,26 @@ class RecipientListCellViewReactor: Reactor {
     }
 
     let provider: ManagerProviderType
-//    let recipientInput: CreateRecipientInput
-    let swsIdx: Int
+    let recipientInput: User
+    let workspaceId: String
 
     struct State {
         var name: String?
-        var groupName: String?
     }
 
-    var initialState: State {
-        .init(name: nil, groupName: nil)
-    }
+    var initialState: State
     
-    init(provider: ManagerProviderType,
-//         recipientInput: CreateRecipientInput,
-         swsIdx: Int) {
+    init(provider: ManagerProviderType, recipientInput: User, workspaceId: String) {
         self.provider = provider
-//        self.recipientInput = recipientInput
-        self.swsIdx = swsIdx
+        self.recipientInput = recipientInput
+        self.workspaceId = workspaceId
+        
+        self.initialState = .init(name: recipientInput.displayName)
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .setData:
-//            if self.recipientInput.targetType == .user
-//            {
-//                return self.provider.networkManager
-//                    .fetch(UserInfoes(userIdx: self.recipientInput.targetIdx, swsIdx: self.swsIdx))
-//                    .compactMap { $0.userByUserIdx.asUser }
-//                    .map { RecipientListCellModel(type: .user, name: $0.userSwsInfo?.asUserSwsInfo?.name ?? $0.name, groupName: $0.userSwsInfo?.asUserSwsInfo?.groupsConnection.edges.first?.node?.name ?? "") }
-//                    .map(Mutation.updateData)
-//            }
-//            else if self.recipientInput.targetType == .group
-//            {
-//                return self.provider.networkManager
-//                    .fetch(GroupByGroupIdxQuery(groupIdx: self.recipientInput.targetIdx))
-//                    .map { $0.groupByGroupIdx.asGroup?.name ?? "" }
-//                    .map { RecipientListCellModel(type: .group, name: $0, groupName: nil) }
-//                    .map(Mutation.updateData)
-//            }
             return .empty()
         }
     }
@@ -67,8 +48,7 @@ class RecipientListCellViewReactor: Reactor {
         switch mutation {
         case let .updateData(model):
             state.name = model.name
-            state.groupName = model.groupName
-            return state
         }
+        return state
     }
 }

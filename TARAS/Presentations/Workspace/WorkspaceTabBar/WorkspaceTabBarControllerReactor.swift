@@ -20,35 +20,35 @@ class WorkspaceTabBarControllerReactor: Reactor {
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
-    let pushInfo: NotificationInfomation?
+    let workspaceId: String
+    let pushInfo: NotificationInfo?
     
-    init(provider: ManagerProviderType, swsIdx: Int, pushInfo: NotificationInfomation? = nil) {
+    init(provider: ManagerProviderType, workspaceId: String, pushInfo: NotificationInfo? = nil) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.pushInfo = pushInfo
     }
     
-    //TODO: 워크스페이스 - 서비스 요청
     func reactorForWorkspaceHome() -> WorkspaceHomeReactor {
         return WorkspaceHomeReactor(
             provider: self.provider,
-            swsIdx: self.swsIdx,
+            workspaceId: self.workspaceId,
             pushInfo: self.pushInfo
         )
     }
     
-    //TODO: 워크스페이스 - 내 서비스
     func reactorForMyServices() -> ServiceManagementViewReactor {
         return ServiceManagementViewReactor(
             provider: self.provider,
-            swsIdx: self.swsIdx,
+            workspaceId: self.workspaceId,
             pushInfo: self.pushInfo
         )
     }
     
-    //TODO: 워크스페이스  - 더보기
     func reactorForMore() -> WorkspaceMoreViewReactor {
-        return WorkspaceMoreViewReactor(provider: self.provider, swsIdx: self.swsIdx)
+        return WorkspaceMoreViewReactor(
+            provider: self.provider,
+            workspaceId: self.workspaceId
+        )
     }
 }

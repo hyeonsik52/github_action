@@ -11,7 +11,7 @@ import UIKit
 struct Account {
     
     /// 식별 아이디
-    var id: String
+    var id: String!
     /// 유저 아이디
     var ID: String!
     /// 비밀번호

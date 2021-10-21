@@ -15,7 +15,7 @@ struct ServiceUnit {
     ///단위서비스 상태
     let state: String?
     ///단위서비스 작업 위치
-    let stop: Stop = .init(id: "-1", name: "알 수 없는 위치")
+    let stop: Stop
     
     ///수신자 목록
     let receivers: [User]
@@ -35,10 +35,14 @@ extension ServiceUnit: FragmentModel {
         
         if let stopFragment = fragment.stop?.fragments.stopFragment {
             self.stop = .init(stopFragment)
+        } else {
+            self.stop = .init(id: "-1", name: "알 수 없는 위치")
         }
         
         //TODO
         self.receivers = []
         self.detail = nil
+        
+        self.orderWithinService = 0
     }
 }

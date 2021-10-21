@@ -41,7 +41,7 @@ class RecipientUserViewController: BaseNavigatableViewController, ReactorKit.Vie
         $0.backgroundColor = .white
         $0.separatorStyle = .none
         $0.register(RecipientUserCell.self)
-        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenSize.width, height: 100))
+        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
     }
 
     let confirmButton = SRPButton("0명 선택").then {
@@ -73,10 +73,6 @@ class RecipientUserViewController: BaseNavigatableViewController, ReactorKit.Vie
         }
     }
 
-    override func bind() {
-        
-    }
-
 
     // MARK: - ReactorKit
 
@@ -106,7 +102,7 @@ class RecipientUserViewController: BaseNavigatableViewController, ReactorKit.Vie
             .disposed(by: self.disposeBag)
 
         self.collectionView.rx.modelSelected(RecipientUserCollectionViewCellReactor.self)
-            .map { Reactor.Action.didSelectCollectionViewCell($0.initialState.idx) }
+            .map { Reactor.Action.didSelectCollectionViewCell($0.initialState.id) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
 
@@ -147,7 +143,7 @@ class RecipientUserViewController: BaseNavigatableViewController, ReactorKit.Vie
 
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
     }
 }

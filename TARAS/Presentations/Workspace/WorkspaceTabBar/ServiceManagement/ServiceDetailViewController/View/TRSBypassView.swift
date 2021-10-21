@@ -23,7 +23,7 @@ class TRSBypassView: UIView {
                 $0.addLine(to: CGPoint(x: 19, y: 6+29))
             }.cgPath
             
-            $0.strokeColor = .LIGHT_PUPLE_EBEAF4.cgColor
+            $0.strokeColor = UIColor.purpleEAEAF6.cgColor
             $0.lineWidth = 4
             $0.lineCap = .round
         }
@@ -40,7 +40,7 @@ class TRSBypassView: UIView {
                 )
             }.cgPath
             
-            $0.fillColor = .skyBlue85AEFF.cgColor
+            $0.fillColor = UIColor.skyBlue85AEFF.cgColor
             $0.lineWidth = 0
         }
         
@@ -49,7 +49,7 @@ class TRSBypassView: UIView {
     }
     
     private let textLabel = UILabel().then {
-        $0.font = .bold.12
+        $0.font = .bold[12]
         $0.textColor = .black
     }
     

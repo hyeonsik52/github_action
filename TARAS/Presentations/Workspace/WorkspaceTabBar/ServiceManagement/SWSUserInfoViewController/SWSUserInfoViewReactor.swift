@@ -17,12 +17,12 @@ class SWSUserInfoViewReactor: Reactor {
     }
     
     enum Mutation {
-        case loadedUserInfo(UserInfo?)
+        case loadedUserInfo(User?)
         case isLoading(Bool?) //초기 상태 nil, 로딩 시작 true, 로딩 종료 false/ nil에서 true가 된 경우일 때만 스켈레톤 뷰 출력
     }
     
     struct State {
-        var userInfo: UserInfo?
+        var userInfo: User?
         var isLoading: Bool?
     }
     
@@ -31,25 +31,27 @@ class SWSUserInfoViewReactor: Reactor {
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
-    let userIdx: Int
+    let workspaceId: String
+    let userId: String
     
-    init(provider: ManagerProviderType, swsIdx: Int, userIdx: Int) {
+    init(provider: ManagerProviderType, workspaceId: String, userId: String) {
         self.provider = provider
-        self.swsIdx = swsIdx
-        self.userIdx = userIdx
+        self.workspaceId = workspaceId
+        self.userId = userId
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
+        
         switch action {
         case .refresh:
             return .concat([
                 .just(.isLoading(true)),
                 
-                self.provider.networkManager
-                    .fetch(UserByUserIdxQuery(userIdx: self.userIdx, swsIdx: self.swsIdx))
-                    .compactMap { UserInfo($0.userByUserIdx.asUser) }
-                    .map { Mutation.loadedUserInfo($0) },
+                self.provider.networkManager.fetch(UserByIdQuery(workspaceId: self.workspaceId))
+                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.compactMap { $0?.node }.first }
+                    .compactMap { $0.members?.edges.compactMap { $0?.node }.first }
+                    .compactMap { $0.fragments.memberFragment }
+                    .map { .loadedUserInfo(.init(member: $0)) },
                 
                 .just(.isLoading(false))
             ])
@@ -65,13 +67,5 @@ class SWSUserInfoViewReactor: Reactor {
             state.isLoading = loading
         }
         return state
-    }
-    
-    func reactorForBelongingGroup() -> BelongingGroupListViewReactor {
-        return BelongingGroupListViewReactor(provider: self.provider, swsIdx: self.swsIdx, userIdx: self.userIdx)
-    }
-    
-    func reactorForStopInCharge() -> StopInChargeListViewReactor {
-        return StopInChargeListViewReactor(provider: self.provider, swsIdx: self.swsIdx, userIdx: self.userIdx)
     }
 }

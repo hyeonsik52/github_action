@@ -13,7 +13,7 @@ import Then
 class SRPServiceUnitDetailView: UIView {
 
     private let textLabel = UILabel().then {
-        $0.font = .medium.16
+        $0.font = .medium[16]
         $0.textColor = .black
     }
     
@@ -28,7 +28,7 @@ class SRPServiceUnitDetailView: UIView {
     
     private func setupConstraints() {
         
-        self.backgroundColor = .LIGHT_GRAY_F6F6F6
+        self.backgroundColor = .lightGrayF1F1F1
         self.clipsToBounds = true
         self.cornerRadius = 8
         

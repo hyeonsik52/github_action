@@ -22,18 +22,7 @@ final class CreateServiceCellView: UIView {
         $0.tintColor = .grayA0A0A0
     }
 
-    let bypassEditButton = UIButton()
-
-    let bypassView = TRSBypassView()
-
     let targetInfoView = TargetInfoView()
-
-    let freightsDescriptionLabel = UILabel().then {
-        $0.font = .bold.20
-        $0.textColor = .purple4A3C9F
-        $0.textAlignment = .right
-        $0.lineBreakMode = .byTruncatingMiddle
-    }
 
     let messageView = SRPServiceUnitDetailView()
     
@@ -70,16 +59,6 @@ final class CreateServiceCellView: UIView {
             $0.top.bottom.equalToSuperview()
         }
 
-        topLeftVerticalStackView.addArrangedSubview(self.bypassView)
-        self.bypassView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-        }
-
-        self.bypassView.addSubview(self.bypassEditButton)
-        self.bypassEditButton.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-
         topLeftVerticalStackView.addArrangedSubview(self.targetInfoView)
         self.targetInfoView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
@@ -108,11 +87,6 @@ final class CreateServiceCellView: UIView {
             $0.bottom.equalToSuperview().offset(-20)
         }
 
-        bottomVerticalStackView.addArrangedSubview(self.freightsDescriptionLabel)
-        self.freightsDescriptionLabel.snp.makeConstraints {
-            $0.width.equalToSuperview()
-        }
-
         bottomVerticalStackView.addArrangedSubview(self.messageView)
         self.messageView.snp.makeConstraints {
             $0.width.equalToSuperview()
@@ -126,13 +100,13 @@ final class CreateServiceCellView: UIView {
     
     func bind(_ serviceUnitModel: CreateServiceUnitModel) {
         
-        // 경유지 정보를 표출합니다.
-        if serviceUnitModel.hasBypass {
-            self.bypassView.isHidden = false
-            self.bypassView.bind(text: serviceUnitModel.bypass?.targetName ?? "")
-        } else {
-            self.bypassView.isHidden = true
-        }
+//        // 경유지 정보를 표출합니다.
+//        if serviceUnitModel.hasBypass {
+//            self.bypassView.isHidden = false
+//            self.bypassView.bind(text: serviceUnitModel.bypass?.targetName ?? "")
+//        } else {
+//            self.bypassView.isHidden = true
+//        }
         
         // 대상 정보를 표출합니다.
 //        self.targetInfoView.bind(self.targetInfo(serviceUnitModel))

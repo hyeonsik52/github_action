@@ -13,9 +13,9 @@ import RxSwift
 class WorkspaceListCellReactor: Reactor {
   typealias Action = NoAction
 
-  let initialState: WorkspaceListCellModel
+  let initialState: Workspace
 
-  init(_ workspaceCellModel: WorkspaceListCellModel) {
-    self.initialState = workspaceCellModel
+  init(_ workspace: Workspace) {
+    self.initialState = workspace
   }
 }

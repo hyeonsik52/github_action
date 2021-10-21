@@ -31,8 +31,8 @@ class UpdateEmailAuthViewReactor: Reactor {
     }
 
     let provider: ManagerProviderType
-    let swsIdx: Int
-    var userIdx: Int
+    let workspaceId: String
+    var userId: String
     var expireDate: Date
     var authCode: String?
     var email: String
@@ -49,14 +49,14 @@ class UpdateEmailAuthViewReactor: Reactor {
 
     init(
         provider: ManagerProviderType,
-        swsIdx: Int,
-        userIdx: Int,
+        workspaceId: String,
+        userId: String,
         expireDate: Date?,
         email: String
     ) {
         self.provider = provider
-        self.swsIdx = swsIdx
-        self.userIdx = userIdx
+        self.workspaceId = workspaceId
+        self.userId = userId
         self.expireDate = expireDate ?? Date()
         self.email = email
 
@@ -92,66 +92,66 @@ class UpdateEmailAuthViewReactor: Reactor {
                     ])
             }
 
-            let codeInput = CheckEmailAuthCodeInput(
-                authCode: authCode,
-                email: self.email
-            )
+//            let codeInput = CheckEmailAuthCodeInput(
+//                authCode: authCode,
+//                email: self.email
+//            )
 
             return .concat([
                     .just(.updateIsLoading(true)),
 
-                self.provider.networkManager
-                    .perform(CheckEmailAuthCodeMutation(input: codeInput))
-                    .map { $0.checkEmailAuthCodeMutation }
-                    .flatMap { data -> Observable<Mutation> in
-                        if let payload = data.asCheckEmailAuthCodePayload {
-                            if payload.email == self.email
-                            {
-                                let input = UpdateUserSWSInfoInput(
-                                    email: self.email,
-                                    emailToken: payload.emailToken,
-                                    swsIdx: self.swsIdx,
-                                    userIdx: self.userIdx
-                                )
-
-                                return self.provider.networkManager
-                                    .perform(UpdateUserSwsInfoMutationMutation(input: input))
-                                    .map { $0.updateUserSwsInfoMutation }
-                                    .flatMap { data -> Observable<Mutation> in
-                                        if let _ = data.asUserSwsInfo?.email {
-                                            let toastMessage = "이메일이 변경되었습니다."
-                                            toastMessage.sek.showToast()
-                                            
-                                            return .concat([
-                                                    .just(.updateIsCodeConfirmed(true)),
-                                                    .just(.updateTimeOver(true))
-                                                ])
-                                        }
-                                        if let errorCode = data.asUpdateUserSwsInfoError?.errorCode {
-                                            var message: String {
-                                                switch errorCode {
-                                                case .invalidAuthCode:
-                                                    return Text.SUACVR_1
-                                                    
-                                                case .invalidEmailToken:
-                                                    return "이메일 인증에 실패하였습니다. 다시 시도해 주세요."
-                                                    
-                                                default:
-                                                    return "잘못된 접근입니다. 잠시 후 다시 시도해주세요."
-                                                }
-                                            }
-                                            return .just(.updateErrorMessage(message))
-                                        }
-                                        return .empty()
-                                }
-                            }
-                        }
-
-                        if let _ = data.asCheckEmailAuthCodeError?.errorCode {
-                            return .just(.updateErrorMessage(Text.SUACVR_1))
-                        }
-                        return .empty()
-                    }.catchErrorJustReturn(.updateErrorMessage(Text.SUACVR_1)),
+//                self.provider.networkManager
+//                    .perform(CheckEmailAuthCodeMutation(input: codeInput))
+//                    .map { $0.checkEmailAuthCodeMutation }
+//                    .flatMap { data -> Observable<Mutation> in
+//                        if let payload = data.asCheckEmailAuthCodePayload {
+//                            if payload.email == self.email
+//                            {
+//                                let input = UpdateUserSWSInfoInput(
+//                                    email: self.email,
+//                                    emailToken: payload.emailToken,
+//                                    swsIdx: self.swsIdx,
+//                                    userIdx: self.userIdx
+//                                )
+//
+//                                return self.provider.networkManager
+//                                    .perform(UpdateUserSwsInfoMutationMutation(input: input))
+//                                    .map { $0.updateUserSwsInfoMutation }
+//                                    .flatMap { data -> Observable<Mutation> in
+//                                        if let _ = data.asUserSwsInfo?.email {
+//                                            let toastMessage = "이메일이 변경되었습니다."
+//                                            toastMessage.sek.showToast()
+//
+//                                            return .concat([
+//                                                    .just(.updateIsCodeConfirmed(true)),
+//                                                    .just(.updateTimeOver(true))
+//                                                ])
+//                                        }
+//                                        if let errorCode = data.asUpdateUserSwsInfoError?.errorCode {
+//                                            var message: String {
+//                                                switch errorCode {
+//                                                case .invalidAuthCode:
+//                                                    return Text.SUACVR_1
+//
+//                                                case .invalidEmailToken:
+//                                                    return "이메일 인증에 실패하였습니다. 다시 시도해 주세요."
+//
+//                                                default:
+//                                                    return "잘못된 접근입니다. 잠시 후 다시 시도해주세요."
+//                                                }
+//                                            }
+//                                            return .just(.updateErrorMessage(message))
+//                                        }
+//                                        return .empty()
+//                                }
+//                            }
+//                        }
+//
+//                        if let _ = data.asCheckEmailAuthCodeError?.errorCode {
+//                            return .just(.updateErrorMessage(Text.SUACVR_1))
+//                        }
+//                        return .empty()
+//                    }.catchErrorJustReturn(.updateErrorMessage(Text.SUACVR_1)),
 
                     .just(.updateIsLoading(false))
                 ])
@@ -159,42 +159,42 @@ class UpdateEmailAuthViewReactor: Reactor {
         case .resendAuthCode:
             let toastMessage = "이메일로 발송된 인증번호를 입력해주세요."
 
-            let codeInput = CreateEmailAuthCodeInput(
-                checkExist: "false",
-                email: self.email
-            )
+//            let codeInput = CreateEmailAuthCodeInput(
+//                checkExist: "false",
+//                email: self.email
+//            )
 
             return .concat([
                     .just(.updateIsLoading(true)),
 
-                self.provider.networkManager
-                    .perform(CreateEmailAuthCodeMutation(input: codeInput))
-                    .map { $0.createEmailAuthCodeMutation }
-                    .flatMap { result -> Observable<Mutation> in
-                        if let payload = result.asCreateEmailAuthCodePayload,
-                            payload.email == self.email
-                        {
-                            let calendar = Calendar.current
-                            let expireDate = calendar.date(
-                                byAdding: .second,
-                                value: payload.expiresIn,
-                                to: Date()
-                            )
-                            self.expireDate = expireDate ?? Date()
-                            toastMessage.sek.showToast()
-
-                            return .just(.updateTimeOver(false))
-                        }
-
-                        if let errorCode = result.asCreateEmailAuthCodeError?.errorCode {
-                            if errorCode == .userNotExist {
-                                return .just(.updateErrorMessage("존재하지 않는 이메일입니다."))
-                            }
-                        }
-                        return .empty()
-                    }.catchErrorJustReturn(
-                            .updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)")
-                    ),
+//                self.provider.networkManager
+//                    .perform(CreateEmailAuthCodeMutation(input: codeInput))
+//                    .map { $0.createEmailAuthCodeMutation }
+//                    .flatMap { result -> Observable<Mutation> in
+//                        if let payload = result.asCreateEmailAuthCodePayload,
+//                            payload.email == self.email
+//                        {
+//                            let calendar = Calendar.current
+//                            let expireDate = calendar.date(
+//                                byAdding: .second,
+//                                value: payload.expiresIn,
+//                                to: Date()
+//                            )
+//                            self.expireDate = expireDate ?? Date()
+//                            toastMessage.sek.showToast()
+//
+//                            return .just(.updateTimeOver(false))
+//                        }
+//
+//                        if let errorCode = result.asCreateEmailAuthCodeError?.errorCode {
+//                            if errorCode == .userNotExist {
+//                                return .just(.updateErrorMessage("존재하지 않는 이메일입니다."))
+//                            }
+//                        }
+//                        return .empty()
+//                    }.catchErrorJustReturn(
+//                            .updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)")
+//                    ),
 
                     .just(.updateIsLoading(false))
                 ])

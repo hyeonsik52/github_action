@@ -67,41 +67,6 @@ class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.V
         }
     }
 
-    override func bind() {
-        
-        // '뒤로가기' 버튼 액션
-        self.backButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.navigationController?.popViewController(animated: true)
-            }).disposed(by: self.disposeBag)
-
-        let codeText = self.workspaceSearchView.textView.rx.text.orEmpty
-
-        // 코드 입력 소문자 강제
-        codeText
-            .map { $0.lowercased() }
-            .bind(to: workspaceSearchView.textView.rx.text)
-            .disposed(by: self.disposeBag)
-
-        // 리턴키 교체
-        codeText
-            .subscribe(onNext: { [weak self] text in
-                guard let self = self else { return }
-                self.workspaceSearchView.textView.returnKeyType = text.count < 5 ? .default : .done
-                self.workspaceSearchView.textView.reloadInputViews()
-            }).disposed(by: self.disposeBag)
-        
-        RxKeyboard.instance.visibleHeight
-            .filter { $0 > 0 }
-            .drive(onNext: { [workspaceSearchView] visibleHeight in
-                workspaceSearchView.snp.updateConstraints {
-                    $0.bottom.equalToSuperview().offset(-(visibleHeight + 12))
-                }
-            }).disposed(by: self.disposeBag)
-    }
-    
-
     // MARK: - ReactorKit
 
     func bind(reactor: WorkspaceSearchViewReactor) {
@@ -126,7 +91,7 @@ class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.V
             .disposed(by: self.disposeBag)
 
         reactor.state.map { $0.isLoading }
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
 
         reactor.state.map { $0.workspaceInfo }
@@ -138,6 +103,30 @@ class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.V
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }, onError: { [weak self] error in
                 self?.workspaceSearchView.errorMessageLabel.text = "error"
+            }).disposed(by: self.disposeBag)
+        
+        let codeText = self.workspaceSearchView.textView.rx.text.orEmpty
+
+        // 코드 입력 소문자 강제
+        codeText
+            .map { $0.lowercased() }
+            .bind(to: workspaceSearchView.textView.rx.text)
+            .disposed(by: self.disposeBag)
+
+        // 리턴키 교체
+        codeText
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
+                self.workspaceSearchView.textView.returnKeyType = text.count < 5 ? .default : .done
+                self.workspaceSearchView.textView.reloadInputViews()
+            }).disposed(by: self.disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .filter { $0 > 0 }
+            .drive(onNext: { [workspaceSearchView] visibleHeight in
+                workspaceSearchView.snp.updateConstraints {
+                    $0.bottom.equalToSuperview().offset(-(visibleHeight + 12))
+                }
             }).disposed(by: self.disposeBag)
     }
 }

@@ -13,7 +13,7 @@ import Then
 class ServiceStateCollectionReusableView: UICollectionReusableView {
         
     private var titleLabel = UILabel().then{
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .black
     }
     
