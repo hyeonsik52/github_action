@@ -20,7 +20,7 @@ class SignUpTextFieldView: UIView {
     }
     
     private let backgroundView = UIView().then {
-        $0.backgroundColor = .lightGrayF1F1F1
+        $0.backgroundColor = .lightGrayF6F6F6
         $0.layer.cornerRadius = 4
     }
     
@@ -39,7 +39,7 @@ class SignUpTextFieldView: UIView {
     
     lazy var remainTimeLabel = UILabel().then {
         $0.font = .bold[14]
-        $0.textColor = .redF80003
+        $0.textColor = .redEB4D39
         $0.textAlignment = .center
     }
     

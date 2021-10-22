@@ -22,13 +22,13 @@ class WorkspaceInfoView: UIView {
     private let nameLabel = UILabel().then {
         $0.font = .bold[22]
         $0.textAlignment = .center
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     
     private let createLabel = UILabel().then {
         $0.font = .bold[14]
         $0.textAlignment = .center
-        $0.textColor = .grayA0A0A0
+        $0.textColor = .gray9A9A9A
     }
     
     private let memberCountLabel = UILabel().then {
@@ -71,7 +71,7 @@ class WorkspaceInfoView: UIView {
         let memberCountContainer = UIView().then {
             $0.clipsToBounds = true
             $0.cornerRadius = 10
-            $0.backgroundColor = .purpleEAEAF6
+            $0.backgroundColor = .lightPurpleEBEAF4
         }
         self.addSubview(memberCountContainer)
         memberCountContainer.snp.makeConstraints {

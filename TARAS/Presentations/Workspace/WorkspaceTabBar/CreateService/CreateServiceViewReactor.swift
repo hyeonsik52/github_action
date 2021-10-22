@@ -158,10 +158,6 @@ class CreateServiceViewReactor: Reactor {
 //        var serviceUnitInputs = [CreateServiceUnitInput]()
 //
 //        for model in serviceUnitModels {
-//            if let input = model.bypass?.info {
-//                // 여기 input 이 isBypass == true 인지 확인할 것 (경유지 셋팅이 맞는지)
-//                serviceUnitInputs.append(input)
-//            }
 //            let input = model.serviceUnit.info
 //            serviceUnitInputs.append(input)
 //        }

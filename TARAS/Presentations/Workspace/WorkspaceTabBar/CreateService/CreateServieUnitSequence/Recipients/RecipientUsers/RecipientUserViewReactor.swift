@@ -139,8 +139,6 @@ class RecipientUserViewReactor: Reactor {
 //            .filter({ $0.initialState.isSelected == true })
 //            .compactMap { CreateRecipientInput(targetIdx: $0.initialState.idx, targetType: .user) }
         
-//        // isBypass 디폴트 값으로 초기화
-//        serviceUnitModel.serviceUnit.info.isBypass = "false"
 //        // isStopFixed 디폴트 값으로 초기화 (정차지를 먼저 선택한 경우 => true)
 //        serviceUnitModel.serviceUnit.info.isStopFixed = "true"
 //        // 선택된 recipient 로 업데이트

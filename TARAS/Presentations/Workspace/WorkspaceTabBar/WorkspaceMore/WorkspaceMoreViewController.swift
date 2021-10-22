@@ -25,7 +25,7 @@ class WorkspaceMoreViewController: BaseNavigatableViewController, ReactorKit.Vie
             ]).then {
                 $0.addAttribute(
                     .foregroundColor,
-                    value: UIColor.redF80003,
+                    value: UIColor.redEB4D39,
                     range: NSRange(location: 29, length: 37)
                 )
             }

@@ -145,7 +145,7 @@ class JoinRequestView: UIView {
         let grayAppearance = SRPButton.Appearance(
             font: .bold[14],
             titleColors: [.normal(.black)],
-            backgroundColors: [.normal(.lightGrayF1F1F1)],
+            backgroundColors: [.normal(.grayF8F8F8)],
             cornerRadius: 4
         )
         let appearance: SRPButton.Appearance = (isNotMember ? .init(font: .bold[14]): grayAppearance)

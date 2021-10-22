@@ -19,7 +19,7 @@ class CreateServiceFooterView: UIView {
     private let disposeBag = DisposeBag()
     
     let addButton = UIButton().then {
-        $0.setBackgroundColor(color: .lightPurpleEDECF5, forState: .normal)
+        $0.setBackgroundColor(color: .lightPurpleEBEAF4, forState: .normal)
         $0.titleLabel?.font = .bold[20]
         $0.setTitle("+", for: .normal)
         $0.setTitleColor(.purple4A3C9F, for: .normal)

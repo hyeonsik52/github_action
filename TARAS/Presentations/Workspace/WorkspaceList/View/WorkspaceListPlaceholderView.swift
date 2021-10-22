@@ -14,7 +14,7 @@ class WorkspaceListPlaceholderView: UIView {
     
     let label = UILabel().then {
         $0.text = "가입한 워크스페이스가 없습니다.\n'+' 버튼을 눌러 가입해주세요."
-        $0.textColor = .grayA0A0A0
+        $0.textColor = .gray9A9A9A
         $0.numberOfLines = 2
         $0.textAlignment = .center
         $0.font = .medium[16]

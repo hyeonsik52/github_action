@@ -23,7 +23,7 @@ class WorkspaceSelectView: UIView {
     }
     private var nameLabel = UILabel().then{
         $0.font = .bold[14]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     
 //    private var swsInfo: SWSInfoType!

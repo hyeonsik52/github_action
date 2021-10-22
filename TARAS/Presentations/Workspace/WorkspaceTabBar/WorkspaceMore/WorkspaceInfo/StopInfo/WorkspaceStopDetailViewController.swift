@@ -15,7 +15,7 @@ class WorkspaceStopDetailViewController: BaseNavigatableViewController {
 
     private let imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.backgroundColor = .lightGrayF1F1F1
+        $0.backgroundColor = .lightGrayF5F5F5
     }
     
     private var imageUrl: String?

@@ -19,8 +19,8 @@ class ServiceManagementViewController: BaseViewController, View {
         $0.layer.cornerRadius = 10
         $0.isSelected = true
         $0.setBackgroundColor(color: .white, forState: .normal)
-        $0.setBackgroundColor(color: .lightPurpleEDECF5, forState: .selected)
-        $0.setTitleColor(.grayA0A0A0, for: .normal)
+        $0.setBackgroundColor(color: .lightPurpleEBEAF4, forState: .selected)
+        $0.setTitleColor(.gray999999, for: .normal)
         $0.setTitleColor(.purple4A3C9F, for: .selected)
         $0.tintColor = .clear
         $0.setTitle("수신 서비스", for: .normal)

@@ -13,7 +13,7 @@ class WorkspaceTitleView: UIView {
     
     let titleLabel = UILabel().then {
         $0.font = .bold[24]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     
     init(title: String, button: UIButton, buttonWidth: CGFloat) {
@@ -45,7 +45,7 @@ class WorkspaceTitleView: UIView {
         }
         
         let line = UIView().then {
-            $0.backgroundColor = .lightGrayF1F1F1
+            $0.backgroundColor = .grayF8F8F8
         }
         self.addSubview(line)
         line.snp.makeConstraints {

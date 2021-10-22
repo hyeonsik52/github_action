@@ -176,7 +176,6 @@
 		EDC11A4326D3A39D0020AB09 /* ServiceUnitManagementHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191D26D3A39C0020AB09 /* ServiceUnitManagementHeader.swift */; };
 		EDC11A4426D3A39D0020AB09 /* ServiceDetailNumberProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */; };
 		EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */; };
-		EDC11A4626D3A39D0020AB09 /* TRSBypassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192126D3A39C0020AB09 /* TRSBypassView.swift */; };
 		EDC11A4726D3A39D0020AB09 /* SRPStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192226D3A39C0020AB09 /* SRPStateView.swift */; };
 		EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192526D3A39C0020AB09 /* ServiceDetailLogTableViewCell.swift */; };
 		EDC11A4926D3A39D0020AB09 /* ServiceLogCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192726D3A39C0020AB09 /* ServiceLogCellReactor.swift */; };
@@ -197,7 +196,6 @@
 		EDC11A6A26D3A39D0020AB09 /* ServiceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195126D3A39D0020AB09 /* ServiceManagementViewController.swift */; };
 		EDC11A6B26D3A39D0020AB09 /* ServiceManagementViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195226D3A39D0020AB09 /* ServiceManagementViewReactor.swift */; };
 		EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */; };
-		EDC11A6E26D3A39D0020AB09 /* SendedServiceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195626D3A39D0020AB09 /* SendedServiceCellView.swift */; };
 		EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195726D3A39D0020AB09 /* PanModalFullNavigationController.swift */; };
 		EDC11A7026D3A39D0020AB09 /* ServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195926D3A39D0020AB09 /* ServiceUnitSection.swift */; };
 		EDC11A7126D3A39D0020AB09 /* ServiceModelContainerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195A26D3A39D0020AB09 /* ServiceModelContainerSection.swift */; };
@@ -241,7 +239,6 @@
 		EDC11AAA26D3A39D0020AB09 /* CreateServiceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A726D3A39D0020AB09 /* CreateServiceCellView.swift */; };
 		EDC11AAB26D3A39D0020AB09 /* CreateServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A826D3A39D0020AB09 /* CreateServiceCell.swift */; };
 		EDC11AAC26D3A39D0020AB09 /* CreateServiceFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119A926D3A39D0020AB09 /* CreateServiceFooterView.swift */; };
-		EDC11AAD26D3A39D0020AB09 /* AutoModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119AA26D3A39D0020AB09 /* AutoModeSelectView.swift */; };
 		EDC11AB626D3A39D0020AB09 /* TargetStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B826D3A39D0020AB09 /* TargetStopViewController.swift */; };
 		EDC11AB726D3A39D0020AB09 /* TargetStopViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119B926D3A39D0020AB09 /* TargetStopViewReactor.swift */; };
 		EDC11AB826D3A39D0020AB09 /* TargetStopSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC119BB26D3A39D0020AB09 /* TargetStopSection.swift */; };
@@ -473,7 +470,6 @@
 		EDC1191D26D3A39C0020AB09 /* ServiceUnitManagementHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnitManagementHeader.swift; sourceTree = "<group>"; };
 		EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailNumberProfileView.swift; sourceTree = "<group>"; };
 		EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPServiceUnitDetailView.swift; sourceTree = "<group>"; };
-		EDC1192126D3A39C0020AB09 /* TRSBypassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRSBypassView.swift; sourceTree = "<group>"; };
 		EDC1192226D3A39C0020AB09 /* SRPStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPStateView.swift; sourceTree = "<group>"; };
 		EDC1192526D3A39C0020AB09 /* ServiceDetailLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailLogTableViewCell.swift; sourceTree = "<group>"; };
 		EDC1192726D3A39C0020AB09 /* ServiceLogCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLogCellReactor.swift; sourceTree = "<group>"; };
@@ -494,7 +490,6 @@
 		EDC1195126D3A39D0020AB09 /* ServiceManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManagementViewController.swift; sourceTree = "<group>"; };
 		EDC1195226D3A39D0020AB09 /* ServiceManagementViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManagementViewReactor.swift; sourceTree = "<group>"; };
 		EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTargetsView.swift; sourceTree = "<group>"; };
-		EDC1195626D3A39D0020AB09 /* SendedServiceCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendedServiceCellView.swift; sourceTree = "<group>"; };
 		EDC1195726D3A39D0020AB09 /* PanModalFullNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanModalFullNavigationController.swift; sourceTree = "<group>"; };
 		EDC1195926D3A39D0020AB09 /* ServiceUnitSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnitSection.swift; sourceTree = "<group>"; };
 		EDC1195A26D3A39D0020AB09 /* ServiceModelContainerSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModelContainerSection.swift; sourceTree = "<group>"; };
@@ -538,7 +533,6 @@
 		EDC119A726D3A39D0020AB09 /* CreateServiceCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceCellView.swift; sourceTree = "<group>"; };
 		EDC119A826D3A39D0020AB09 /* CreateServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceCell.swift; sourceTree = "<group>"; };
 		EDC119A926D3A39D0020AB09 /* CreateServiceFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateServiceFooterView.swift; sourceTree = "<group>"; };
-		EDC119AA26D3A39D0020AB09 /* AutoModeSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoModeSelectView.swift; sourceTree = "<group>"; };
 		EDC119B826D3A39D0020AB09 /* TargetStopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopViewController.swift; sourceTree = "<group>"; };
 		EDC119B926D3A39D0020AB09 /* TargetStopViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopViewReactor.swift; sourceTree = "<group>"; };
 		EDC119BB26D3A39D0020AB09 /* TargetStopSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetStopSection.swift; sourceTree = "<group>"; };
@@ -1262,7 +1256,6 @@
 			children = (
 				EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */,
 				EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */,
-				EDC1192126D3A39C0020AB09 /* TRSBypassView.swift */,
 				EDC1192226D3A39C0020AB09 /* SRPStateView.swift */,
 			);
 			path = View;
@@ -1344,7 +1337,6 @@
 			isa = PBXGroup;
 			children = (
 				EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */,
-				EDC1195626D3A39D0020AB09 /* SendedServiceCellView.swift */,
 				EDC1195726D3A39D0020AB09 /* PanModalFullNavigationController.swift */,
 				EDC1195826D3A39D0020AB09 /* Model */,
 				EDC1195E26D3A39D0020AB09 /* ServiceCellDelegate.swift */,
@@ -1500,7 +1492,6 @@
 				EDC119A726D3A39D0020AB09 /* CreateServiceCellView.swift */,
 				EDC119A826D3A39D0020AB09 /* CreateServiceCell.swift */,
 				EDC119A926D3A39D0020AB09 /* CreateServiceFooterView.swift */,
-				EDC119AA26D3A39D0020AB09 /* AutoModeSelectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1972,7 +1963,6 @@
 				EDC11A7826D3A39D0020AB09 /* SRPProfileTextTableViewCell.swift in Sources */,
 				ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */,
 				ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */,
-				EDC11AAD26D3A39D0020AB09 /* AutoModeSelectView.swift in Sources */,
 				ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */,
 				ED6B464B26B7E7CC00C2FA6D /* GraphQLOperation.swift in Sources */,
 				EDC11A2E26D3A39D0020AB09 /* DefaultMyInfoViewReactor.swift in Sources */,
@@ -2011,7 +2001,6 @@
 				ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */,
 				EDC11A8826D3A39D0020AB09 /* UpdateEmailAuthViewReactor.swift in Sources */,
 				EDC11AB926D3A39D0020AB09 /* TargetStopCellModel.swift in Sources */,
-				EDC11A4626D3A39D0020AB09 /* TRSBypassView.swift in Sources */,
 				ED6B463A26B7E7CC00C2FA6D /* Date.swift in Sources */,
 				EDC11AA726D3A39D0020AB09 /* CreateServiceSection.swift in Sources */,
 				ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */,
@@ -2096,7 +2085,6 @@
 				ED7A0E602721242600AD6678 /* ServiceUnitModelSet.swift in Sources */,
 				EDC118DC26D3A24A0020AB09 /* FindAccountIdResultView.swift in Sources */,
 				EDC11ADB26D3A39E0020AB09 /* CSUDetailViewReactor.swift in Sources */,
-				EDC11A6E26D3A39D0020AB09 /* SendedServiceCellView.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
 				EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */,
 				ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */,

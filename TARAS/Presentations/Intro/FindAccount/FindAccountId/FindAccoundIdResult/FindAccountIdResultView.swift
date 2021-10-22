@@ -79,13 +79,13 @@ class FindAccountIdResultView: UIView {
     
     private func getCellView(_ text: String) -> UIView {
         let container = UIView().then {
-            $0.backgroundColor = .lightGrayF1F1F1
+            $0.backgroundColor = .grayF6F6F6
             $0.clipsToBounds = true
             $0.layer.cornerRadius = 4
         }
         let label = UILabel().then {
             $0.font = .bold[18]
-            $0.textColor = .black
+            $0.textColor = .black0F0F0F
             $0.text = text
         }
         container.addSubview(label)

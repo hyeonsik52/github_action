@@ -29,7 +29,7 @@ class WorkspaceInfoViewController: BaseNavigatableViewController, View {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.cornerRadius = 10
-        $0.backgroundColor = .lightGrayF1F1F1
+        $0.backgroundColor = .lightGrayF5F5F5
     }
 
     private let stopInfoButton = UIButton()

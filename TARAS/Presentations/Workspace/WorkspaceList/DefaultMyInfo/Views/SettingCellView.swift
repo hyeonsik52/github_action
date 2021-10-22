@@ -29,7 +29,7 @@ class SettingCellView: UIView {
     let button = UIButton().then {
         $0.titleLabel?.font = .bold[14]
         $0.setTitleColor(.black, for: .normal)
-        $0.setBackgroundColor(color: .lightGrayF1F1F1, forState: .normal)
+        $0.setBackgroundColor(color: .grayF8F8F8, forState: .normal)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 17
     }
@@ -77,7 +77,7 @@ class SettingCellView: UIView {
             
             let titleLabel = UILabel().then {
                 $0.font = .medium[14]
-                $0.textColor = .grayA0A0A0
+                $0.textColor = .gray9A9A9A
                 $0.text = title
             }
             self.addSubview(titleLabel)
@@ -119,7 +119,7 @@ class SettingCellView: UIView {
         }
         
         let bottomLine = UIView().then {
-            $0.backgroundColor = .lightGrayF1F1F1
+            $0.backgroundColor = .grayF8F8F8
         }
         self.addSubview(bottomLine)
         bottomLine.snp.makeConstraints {

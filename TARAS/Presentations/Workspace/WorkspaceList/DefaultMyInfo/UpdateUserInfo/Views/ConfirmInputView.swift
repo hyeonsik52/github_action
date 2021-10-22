@@ -54,7 +54,7 @@ class ConfirmInputView: UIView {
         }
         
         let separator = UIView().then {
-            $0.backgroundColor = .lightGrayF1F1F1
+            $0.backgroundColor = .grayF8F8F8
         }
         self.addSubview(separator)
         separator.snp.makeConstraints {

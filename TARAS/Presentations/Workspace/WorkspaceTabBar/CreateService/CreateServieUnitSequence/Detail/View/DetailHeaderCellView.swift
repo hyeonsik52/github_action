@@ -19,7 +19,7 @@ class DetailHeaderCellView: UIView, ReactorKit.View {
     let nameLabel = UILabel().then {
         $0.text = "-에게 요청"
         $0.font = .bold[18]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     
     let arrowImageView = UIImageView(image: UIImage(named: "service-arrow-down"))

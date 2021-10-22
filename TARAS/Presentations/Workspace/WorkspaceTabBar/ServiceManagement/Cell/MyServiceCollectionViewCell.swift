@@ -17,7 +17,7 @@ class MyServiceCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     
     var disposeBag = DisposeBag()
     
-    private var view: SendedServiceCellView!
+    private var view: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +32,7 @@ class MyServiceCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     private func setupConstraints() {
         
         let maxWidth = UIScreen.main.bounds.width - 22*2
-        self.view = SendedServiceCellView(maxWidth)
+        self.view = UIView()//SendedServiceCellView(maxWidth)
         self.contentView.addSubview(self.view)
         self.view.snp.makeConstraints {
             $0.edges.equalToSuperview()

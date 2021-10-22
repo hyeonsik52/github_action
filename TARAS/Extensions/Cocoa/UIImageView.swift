@@ -13,7 +13,7 @@ import Kingfisher
 
 extension UIImageView {
     
-    static let placeholder = UIColor.lightGrayF1F1F1.toImage
+    static let placeholder = UIColor.lightGrayF2F2F2.toImage
     
     func setImage(strUrl: String?) {
         

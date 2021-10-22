@@ -21,7 +21,7 @@ final class TargetStopCell: BaseTableViewCell, ReactorKit.View {
     }
     
     let nameLabel = UILabel().then {
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.font = .medium[16]
         $0.numberOfLines = 2
     }
@@ -42,7 +42,7 @@ final class TargetStopCell: BaseTableViewCell, ReactorKit.View {
         let targetInfo = reactor.currentState
         
         self.nameLabel.text = targetInfo.name
-        self.backgroundColor = targetInfo.isSelected ? .lightGrayDDDDDD: .white
+        self.backgroundColor = targetInfo.isSelected ? .lightGrayF6F6F6: .white
     }
     
     

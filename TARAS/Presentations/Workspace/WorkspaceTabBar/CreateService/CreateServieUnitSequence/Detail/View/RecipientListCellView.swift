@@ -30,7 +30,7 @@ class RecipientListCellView: UIView, ReactorKit.View {
 
     let nameLabel = UILabel().then {
         $0.font = .medium[16]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
 
     init() {

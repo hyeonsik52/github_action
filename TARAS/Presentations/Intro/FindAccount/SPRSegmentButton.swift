@@ -17,8 +17,8 @@ class SRPSegmentButton: UIButton {
         self.layer.cornerRadius = 10
         self.isSelected = true
         self.setBackgroundColor(color: .white, forState: .normal)
-        self.setBackgroundColor(color: .lightPurpleEDECF5, forState: .selected)
-        self.setTitleColor(.grayA0A0A0, for: .normal)
+        self.setBackgroundColor(color: .lightPurpleEBEAF4, forState: .selected)
+        self.setTitleColor(.gray999999, for: .normal)
         self.setTitleColor(.purple4A3C9F, for: .selected)
         self.tintColor = .clear
         self.setTitle(title, for: .normal)

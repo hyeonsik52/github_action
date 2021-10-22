@@ -19,7 +19,7 @@ class WorkspaceHeaderView: UIView {
         $0.minimumScaleFactor = 0.6
         $0.lineBreakMode = .byTruncatingHead
         $0.font = .regular[20]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.text = " "
     }
     
@@ -56,7 +56,7 @@ class WorkspaceHeaderView: UIView {
             $0.minimumScaleFactor = 0.8
             $0.adjustsFontSizeToFitWidth = true
             $0.font = .bold[24]
-            $0.textColor = .black
+            $0.textColor = .black0F0F0F
             $0.text = "서비스를 생성해보세요"
         }
         container.addSubview(staticLabel)

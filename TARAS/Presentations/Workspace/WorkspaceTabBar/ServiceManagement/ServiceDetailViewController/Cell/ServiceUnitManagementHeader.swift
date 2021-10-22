@@ -14,7 +14,7 @@ class ServiceUnitManagementHeader: UICollectionReusableView {
         
     private let titleLabel = UILabel().then {
         $0.font = .bold[24]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     
     override init(frame: CGRect) {

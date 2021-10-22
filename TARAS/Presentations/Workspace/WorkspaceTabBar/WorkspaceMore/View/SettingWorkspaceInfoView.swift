@@ -23,7 +23,7 @@ class SettingWorkspaceInfoView: UIView {
     
     private let titleLabel = UILabel().then {
         $0.font = .bold[18]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     
     let disposeBag = DisposeBag()

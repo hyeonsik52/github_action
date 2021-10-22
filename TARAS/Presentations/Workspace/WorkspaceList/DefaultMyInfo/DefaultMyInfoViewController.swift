@@ -37,7 +37,7 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
             ]).then {
                 $0.addAttribute(
                     .foregroundColor,
-                    value: UIColor.redF80003,
+                    value: UIColor.redEB4D39,
                     range: NSRange(location: 52, length: 41)
                 )
             }
@@ -65,7 +65,7 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
         Text.SVC_7,
         appearance: .init(
             titleColors: [.normal(.black)],
-            backgroundColors: [.normal(.lightGrayF1F1F1)]
+            backgroundColors: [.normal(.grayF8F8F8)]
         )
     )
     private let resignButton = SRPButton(
@@ -76,7 +76,7 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
         )
     ).then {
         $0.outlineWidth = 1
-        $0.outlineColor = .lightGrayDDDDDD
+        $0.outlineColor = .grayF6F6F6
     }
     
     override func viewDidLoad() {
@@ -137,7 +137,7 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
                 
         
         let line = UIView().then {
-            $0.backgroundColor = .lightGrayF1F1F1
+            $0.backgroundColor = .grayF8F8F8
         }
         self.view.addSubview(line)
         line.snp.makeConstraints {

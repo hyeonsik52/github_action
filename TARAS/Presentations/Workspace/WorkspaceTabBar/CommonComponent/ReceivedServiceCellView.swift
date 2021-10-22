@@ -20,16 +20,16 @@ class ReceivedServiceCellView: UIView {
     }
     private var titleLabel = UILabel().then{
         $0.font = .bold[16]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     private var secondaryLabel = UILabel().then{
         $0.font = .regular[12]
-        $0.textColor = .grayA0A0A0
+        $0.textColor = .gray9A9A9A
         $0.lineBreakMode = .byTruncatingMiddle
     }
     private var tertiaryLabel = UILabel().then{
         $0.font = .regular[12]
-        $0.textColor = .grayA0A0A0
+        $0.textColor = .gray9A9A9A
     }
     
     override init(frame: CGRect) {

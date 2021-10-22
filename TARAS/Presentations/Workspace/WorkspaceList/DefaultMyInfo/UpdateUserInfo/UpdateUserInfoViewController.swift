@@ -29,7 +29,7 @@ class UpdateUserInfoViewController: BaseNavigatableViewController, ReactorKit.Vi
     
     /// 에러 메시지 라벨
     let errorMessageLabel = UILabel().then {
-        $0.textColor = .lightGrayF1F1F1
+        $0.textColor = .redEB4D39
         $0.font = .bold[14]
         $0.numberOfLines = 0
     }
@@ -60,7 +60,7 @@ class UpdateUserInfoViewController: BaseNavigatableViewController, ReactorKit.Vi
         }
         
         let line = UIView().then {
-            $0.backgroundColor = .lightGrayF1F1F1
+            $0.backgroundColor = .grayF8F8F8
         }
         self.view.addSubview(line)
         line.snp.makeConstraints {

@@ -14,10 +14,9 @@ import ReactorKit
 class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
     
     private let backgroundHighlightView = UIView().then {
-        $0.backgroundColor = .lightPurpleEDECF5
+        $0.backgroundColor = .highlightPulpleF1EFFF
         $0.isHidden = true
     }
-    private let bypassView = TRSBypassView()
     private let profileNumberView = ServiceDetailNumberProfileView()
     private let answerStateView = SRPStateView()
     private let serviceStateView = SRPStateView()
@@ -73,11 +72,6 @@ class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
         topHorizontalStackView.addArrangedSubview(topLeftVerticalStackView)
         topLeftVerticalStackView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-        }
-
-        topLeftVerticalStackView.addArrangedSubview(self.bypassView)
-        self.bypassView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
         }
         topLeftVerticalStackView.addArrangedSubview(self.profileNumberView)
         self.profileNumberView.snp.makeConstraints {
@@ -136,15 +130,7 @@ class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
         
 //        //내가 수신자가 아니거나, 거절자, 다른 수신자가 수락한 경우 하이라이트하지 않는다
 //        self.backgroundHighlightView.isHidden = !serviceUnit.amIRecipient || serviceUnit.amIRejector || serviceUnit.isAnotherAccepted
-//
-//        if let waypoint = serviceUnit.bypassPlace {
-//            self.bypassView.bind(text: waypoint.name)
-//            self.bypassView.isHidden = false
-//        }else{
-//            self.bypassView.isHidden = true
-//        }
-//
-//
+
 //        let target = serviceUnit.target
 //        let userTargetTeamName = (target as? ServiceUser)?.teamName
 //        self.profileNumberView.bind(

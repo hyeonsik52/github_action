@@ -16,12 +16,12 @@ class SRPDetailInfoCellView: UIView {
 
     private let titleLabel = UILabel().then {
         $0.font = .bold[16]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     private let contentLabel = UILabel().then {
         $0.font = .bold[16]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     private let arrowImageView = UIImageView().then {
         $0.contentMode = .center

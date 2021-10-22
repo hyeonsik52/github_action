@@ -16,7 +16,7 @@ final class RecipientUserCell: BaseTableViewCell, ReactorKit.View {
     
     /// 수신자의 이름을 표출합니다.
     let nameLabel = UILabel().then {
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.font = .medium[16]
         $0.numberOfLines = 2
     }

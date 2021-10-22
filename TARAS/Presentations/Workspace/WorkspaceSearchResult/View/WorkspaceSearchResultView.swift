@@ -25,21 +25,21 @@ class WorkspaceSearchResultView: UIView {
     
     let nameLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.font = .bold[22]
         $0.numberOfLines = 0
     }
     
     let createdAtLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.textColor = .grayA0A0A0
+        $0.textColor = .gray9A9A9A
         $0.font = .bold[14]
         $0.numberOfLines = 0
     }
     
     let memberCountLabel = UILabel().then {
         $0.textColor = .purple4A3C9F
-        $0.backgroundColor = .purpleEAEAF6
+        $0.backgroundColor = .lightPurpleEBEAF4
         $0.font = .bold[13]
         $0.numberOfLines = 0
         $0.textAlignment = .center
@@ -48,7 +48,7 @@ class WorkspaceSearchResultView: UIView {
     }
     
     let guideLabel = UILabel().then {
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.font = .medium[16]
         $0.numberOfLines = 0
         $0.textAlignment = .center

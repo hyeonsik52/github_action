@@ -54,14 +54,14 @@ class SignUpPasswordView: UIView {
     /// "비밀번호는 8~32자로 설정해 주세요." 라벨
     private let inputGuideLabel = UILabel().then {
         $0.text = Text.SUPVC_5
-        $0.textColor = .grayA0A0A0
+        $0.textColor = .gray9A9A9A
         $0.font = .medium[14]
         $0.numberOfLines = 0
     }
     
     /// 에러 메시지 라벨
     let errorMessageLabel = UILabel().then {
-        $0.textColor = .redF80003
+        $0.textColor = .redEB4D39
         $0.font = .bold[14]
         $0.numberOfLines = 0
     }

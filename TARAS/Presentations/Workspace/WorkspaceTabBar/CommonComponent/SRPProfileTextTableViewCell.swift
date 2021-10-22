@@ -16,12 +16,12 @@ class SRPProfileTextTableViewCell: UITableViewCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.cornerRadius = 22
-        $0.backgroundColor = .lightGrayF1F1F1
+        $0.backgroundColor = .grayEDEDED
     }
     
     private let label = UILabel().then {
         $0.font = .medium[16]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
     }
     
     var usingSelection = false
@@ -61,6 +61,6 @@ class SRPProfileTextTableViewCell: UITableViewCell {
         
         self.label.text = text
         
-        self.contentView.backgroundColor = (isSelected ? .lightGrayF1F1F1: .clear)
+        self.contentView.backgroundColor = (isSelected ? .lightGrayF6F6F6: .clear)
     }
 }

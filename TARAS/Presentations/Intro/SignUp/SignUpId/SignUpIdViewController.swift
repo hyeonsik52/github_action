@@ -98,7 +98,7 @@ class SignUpIdViewController: BaseNavigatableViewController, ReactorKit.View {
             .bind(to: self.nextButton.rx.isEnabled)
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.message?.color ?? .redF80003 }
+        reactor.state.map { $0.message?.color ?? .redEB4D39 }
             .distinctUntilChanged()
             .bind(to: self.signUpView.errorMessageLabel.rx.textColor)
             .disposed(by: self.disposeBag)

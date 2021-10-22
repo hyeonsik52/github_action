@@ -25,7 +25,7 @@ class WorkRequestViewController: BaseNavigatableViewController, View {
     private var detailLabelContainer = UIView()
     private var detailLabel = UILabel().then{
         $0.font = .bold[20]
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.numberOfLines = 0
         $0.lineBreakMode = .byCharWrapping
     }

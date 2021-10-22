@@ -31,7 +31,7 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
 
     let titleLabel = UILabel().then {
         $0.text = "0개의 목적지"
-        $0.textColor = .black
+        $0.textColor = .black0F0F0F
         $0.font = .bold[24]
     }
 
@@ -63,7 +63,7 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
 
     override func setupConstraints() {
         
-        self.view.backgroundColor = .lightGrayF1F1F1
+        self.view.backgroundColor = .lightGrayF6F6F6
         
         self.view.addSubview(self.closeButton)
         self.closeButton.snp.makeConstraints {
@@ -81,7 +81,7 @@ class CreateServiceViewController: BaseViewController, ReactorKit.View {
         }
 
         let buttonBackgroundView = UIView().then {
-            $0.backgroundColor = .lightGrayF1F1F1
+            $0.backgroundColor = .grayF6F6F6
         }
 
         buttonBackgroundView.addSubview(self.requestButton)
