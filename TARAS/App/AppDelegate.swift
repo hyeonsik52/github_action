@@ -84,25 +84,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
+        self.checkUpdate()
+    }
+}
+
+extension AppDelegate {
+    
+    func checkUpdate() {
         
         guard let topViewController = self.window?.topViewController() else { return }
         
-        //TODO: 최소 버전 확인 로직
-        Observable.just(true)
-            .filter { $0 == false }
-            .flatMapLatest { _ -> Observable<Int> in
-                UIAlertController.present(
-                    in: topViewController,
-                    title: "업데이트",
-                    message: "안정적인 앱 사용을 위해\n업데이트를 진행해주세요.",
-                    style: .alert,
-                    actions: [
-                        .init(title: "업데이트", style: .default)
-                    ]
-                )
-            }.subscribe(onNext: { _ in
-                "강제 종료합니다.".sek.showToast {
-                    exit(1)
+        self.provider.networkManager.tempVersionCheck()
+            .filterNil()
+            .flatMapLatest { error -> Observable<Int> in
+                let errorUserInfo = (error as NSError).userInfo
+                let title = errorUserInfo[NSLocalizedFailureErrorKey] as? String
+                let message = errorUserInfo[NSLocalizedDescriptionKey] as? String
+                if title == title {
+                    let actionTitle = errorUserInfo[NSLocalizedRecoverySuggestionErrorKey] as? String
+                    return UIAlertController.present(
+                        in: topViewController,
+                        title: title,
+                        message: message,
+                        style: .alert,
+                        actions: [
+                            .init(title: actionTitle, style: .default)
+                        ]
+                    )
+                } else {
+                    Log.error(message ?? "error message empty")
+                    return .just(-1)
+                }
+            }.subscribe(onNext: { index in
+                if index >= 0 {
+                    //앱 설치 페이지로 이동
                 }
             }).disposed(by: self.disposeBag)
     }

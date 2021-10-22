@@ -43,18 +43,18 @@ class LaunchScreenViewController: BaseViewController, ReactorKit.View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-//        // DB에 토큰 정보가 있는 경우, 메인으로 진입
-//        reactor.state.map { $0.isAutoSignInEnabled }
-//            .distinctUntilChanged()
-//            .filter { $0 == true }
-//            .map { _ in reactor.reactorForWorkspaceList() }
-//            .subscribe(onNext: { [weak self] reactor in
-//                guard let self = self else { return }
-//                let viewController = WorkspaceListViewController()
-//                viewController.reactor = reactor
-//                let navigationController = BaseNavigationController(rootViewController: viewController)
-//                self.view.window?.rootViewController = navigationController
-//            }).disposed(by: self.disposeBag)
+        // DB에 토큰 정보가 있는 경우, 메인으로 진입
+        reactor.state.map { $0.isAutoSignInEnabled }
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .map { _ in reactor.reactorForWorkspaceList() }
+            .subscribe(onNext: { [weak self] reactor in
+                guard let self = self else { return }
+                let viewController = WorkspaceListViewController()
+                viewController.reactor = reactor
+                let navigationController = BaseNavigationController(rootViewController: viewController)
+                self.view.window?.rootViewController = navigationController
+            }).disposed(by: self.disposeBag)
 
         // DB에 토큰 정보가 없는 경우, 로그인 화면으로 이동
         reactor.state.map { $0.isAutoSignInEnabled }

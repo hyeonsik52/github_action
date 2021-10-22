@@ -60,7 +60,8 @@ extension LaunchScreenViewReactor {
             self.provider.userManager.updateClientInfo()
             
             // 2. 최소 버전 확인
-            return Observable.just(true)
+            return self.provider.networkManager.tempVersionCheck()
+                .map { $0 == nil }
                 .flatMapLatest { isValid -> Observable<Mutation> in
                     if isValid {
                         // 3-1. accessToken, refreshToken 이 DB 에 존재하는지로 자동 로그인 가능 여부 판단, 전달
@@ -85,7 +86,7 @@ extension LaunchScreenViewReactor {
         return SignInViewReactor(provider: self.provider)
     }
 
-//    func reactorForWorkspaceList() -> WorkspaceListViewReactor {
-//        return WorkspaceListViewReactor(provider: self.provider, isFrom: .launch)
-//    }
+    func reactorForWorkspaceList() -> WorkspaceListViewReactor {
+        return WorkspaceListViewReactor(provider: self.provider, isFrom: .launch)
+    }
 }
