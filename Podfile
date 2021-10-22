@@ -14,6 +14,7 @@ def pods
   
   pod 'Apollo', '~> 0.45.0'
   pod "Apollo/WebSocket", '~> 0.45.0'
+  pod 'RxAlamofire', '~> 6'
 
   pod 'Firebase/Analytics', '~> 8'
   pod 'Firebase/Messaging', '~> 8'
