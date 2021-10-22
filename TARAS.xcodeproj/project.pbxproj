@@ -12,6 +12,7 @@
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
+		ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
 		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
@@ -310,6 +311,7 @@
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CD1272298D40029AF7B /* RestAPIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIRequest.swift; sourceTree = "<group>"; };
+		ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+dictionary.swift"; sourceTree = "<group>"; };
 		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
 		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		ED52730C26C255FC0077CD9D /* LargeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 				ED6B462626B7E7CC00C2FA6D /* String.swift */,
 				ED6B462726B7E7CC00C2FA6D /* Optional.swift */,
 				ED6B463326B7E7CC00C2FA6D /* TimeInterval.swift */,
+				ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */,
 				ED6B461526B7E7CC00C2FA6D /* Cocoa */,
 				ED6B462826B7E7CC00C2FA6D /* Rx */,
 				ED6B462426B7E7CC00C2FA6D /* GraphQL */,
@@ -1934,6 +1937,7 @@
 				EDC11B0726D3AE4E0020AB09 /* BaseTableViewCell.swift in Sources */,
 				ED7A0E762721539400AD6678 /* ResetPasswordViewController.swift in Sources */,
 				EDC11A6126D3A39D0020AB09 /* WorkRequestTargetView.swift in Sources */,
+				ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */,
 				EDC11A8426D3A39D0020AB09 /* UpdateNameViewController.swift in Sources */,
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
