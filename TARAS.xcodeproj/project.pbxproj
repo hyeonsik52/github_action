@@ -11,6 +11,8 @@
 		ED508CC727227CC90029AF7B /* UIApplication+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC627227CC80029AF7B /* UIApplication+Info.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
+		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
+		ED508CD8272298D40029AF7B /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD0272298D40029AF7B /* LoginRequestModel.swift */; };
 		ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
 		ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
@@ -310,6 +312,8 @@
 		ED508CC627227CC80029AF7B /* UIApplication+Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Info.swift"; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
+		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
+		ED508CD0272298D40029AF7B /* LoginRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		ED508CD1272298D40029AF7B /* RestAPIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIRequest.swift; sourceTree = "<group>"; };
 		ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+dictionary.swift"; sourceTree = "<group>"; };
 		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
@@ -655,6 +659,7 @@
 			isa = PBXGroup;
 			children = (
 				ED508CCB272298D40029AF7B /* RestAPIResponse.swift */,
+				ED508CCC272298D40029AF7B /* LoginResponseModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 		ED508CCF272298D40029AF7B /* RequestModels */ = {
 			isa = PBXGroup;
 			children = (
+				ED508CD0272298D40029AF7B /* LoginRequestModel.swift */,
 				ED508CD1272298D40029AF7B /* RestAPIRequest.swift */,
 			);
 			path = RequestModels;
@@ -2025,6 +2031,7 @@
 				ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */,
 				ED508CC727227CC90029AF7B /* UIApplication+Info.swift in Sources */,
 				EDC11A3426D3A39D0020AB09 /* WorkspaceListCellReactor.swift in Sources */,
+				ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */,
 				EDC11ADA26D3A39E0020AB09 /* CSURecipientDelegate.swift in Sources */,
 				EDC11A4426D3A39D0020AB09 /* ServiceDetailNumberProfileView.swift in Sources */,
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
@@ -2095,6 +2102,7 @@
 				EDC11AFD26D3A39E0020AB09 /* ServiceStateCollectionReusableView.swift in Sources */,
 				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
+				ED508CD8272298D40029AF7B /* LoginRequestModel.swift in Sources */,
 				ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */,
 				ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */,
 				ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */,
