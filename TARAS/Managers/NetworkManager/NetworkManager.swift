@@ -9,6 +9,8 @@ import Apollo
 import RxSwift
 import FirebaseFirestore
 import Foundation
+import Alamofire
+import RxAlamofire
 
 typealias InterceptorsBlock = (_ store: ApolloStore, _ client: URLSessionClient, _ provider: ManagerProviderType) -> [ApolloInterceptor]
 
@@ -21,6 +23,8 @@ protocol NetworkManagerType: AnyObject {
     func perform<T: GraphQLMutation>(_ mutation: T) -> Observable<T.Data>
     func subscribe<T: GraphQLSubscription>(_ subscription: T) -> Observable<Result<T.Data, Error>>
     func updateWebSocketTransportConnectingPayload()
+    
+    func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>>
     
     func tempVersionCheck() -> Observable<Error?>
 }
@@ -256,5 +260,46 @@ extension NetworkManager: WebSocketTransportDelegate {
     
     func webSocketTransport(_ webSocketTransport: WebSocketTransport, didDisconnectWithError error: Error?) {
         Log.debug("💡 \(#function) | \(error?.localizedDescription ?? "unknowed error")")
+    }
+}
+
+struct RestError: Error {
+    var code: String
+    var description: String
+}
+
+extension NetworkManager {
+    
+    func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>> {
+        var parameters = api.parameters
+        parameters["client_id"] = "5xUj00F1dgLNkDkOMuXcaH2tEMtTyhyCu7DxQ3jG"
+        parameters["client_secret"] = "Q3IukgHRXdY8w1QzlTCaxkbQdrCHiGtdYYSQNnSJQ01fuNvXyeeN8cO8jpPwhLpt362EQAcIZSMaCFEsldMwAronfZt8wPNMv2jeHS6yo5fXw4o9XJLfgGWzZIFWkOQ9"
+        Log.request("\(api) \(parameters)")
+        return Session.default.rx
+            .request(
+                .post,
+                api.url,
+                parameters: parameters,
+                headers: .init([
+                    .contentType("application/x-www-form-urlencoded")
+                ])
+            ).responseData()
+            .map {
+                do {
+                    let responseModel = try JSONDecoder().decode(T.self, from: $0.1)
+                    return .success(responseModel)
+                } catch let error {
+                    if let errorModel = try? JSONDecoder().decode(ErrorResponseModel.self, from: $0.1) {
+                        Log.err("\(errorModel)")
+                        return .failure(errorModel.toRestError)
+                    } else {
+                        Log.fail("JSON serialization error \(error.localizedDescription)")
+                        return .failure(.init(
+                            code: "JSON serialization error",
+                            description: error.localizedDescription
+                        ))
+                    }
+                }
+            }
     }
 }

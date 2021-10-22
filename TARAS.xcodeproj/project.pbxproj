@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		ED508CC5272276110029AF7B /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC4272276110029AF7B /* VersionCheck.swift */; };
 		ED508CC727227CC90029AF7B /* UIApplication+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC627227CC80029AF7B /* UIApplication+Info.swift */; };
+		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
+		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
+		ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
 		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
@@ -304,6 +307,9 @@
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		ED508CC4272276110029AF7B /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
 		ED508CC627227CC80029AF7B /* UIApplication+Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Info.swift"; sourceTree = "<group>"; };
+		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
+		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
+		ED508CD1272298D40029AF7B /* RestAPIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIRequest.swift; sourceTree = "<group>"; };
 		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
 		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		ED52730C26C255FC0077CD9D /* LargeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
@@ -633,6 +639,32 @@
 			path = VersionCheck;
 			sourceTree = "<group>";
 		};
+		ED508CC8272298D40029AF7B /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CC9272298D40029AF7B /* RestAPIType.swift */,
+				ED508CCA272298D40029AF7B /* ResponseModels */,
+				ED508CCF272298D40029AF7B /* RequestModels */,
+			);
+			path = REST;
+			sourceTree = "<group>";
+		};
+		ED508CCA272298D40029AF7B /* ResponseModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CCB272298D40029AF7B /* RestAPIResponse.swift */,
+			);
+			path = ResponseModels;
+			sourceTree = "<group>";
+		};
+		ED508CCF272298D40029AF7B /* RequestModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CD1272298D40029AF7B /* RestAPIRequest.swift */,
+			);
+			path = RequestModels;
+			sourceTree = "<group>";
+		};
 		ED52730726C255FC0077CD9D /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,10 +912,11 @@
 		ED6B466026B7E8B500C2FA6D /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
 				ED508CC3272275F70029AF7B /* VersionCheck */,
 				ED68E1BF26D49CB4003D6442 /* Enum */,
-				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
 				ED6B466126B7E8B500C2FA6D /* Interceptors */,
+				ED508CC8272298D40029AF7B /* REST */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -2006,6 +2039,7 @@
 				EDC11A9226D3A39D0020AB09 /* SettingProfileCellView.swift in Sources */,
 				EDC11A9F26D3A39D0020AB09 /* HelpViewController.swift in Sources */,
 				ED52732526C255FC0077CD9D /* GostButton.swift in Sources */,
+				ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */,
 				ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */,
 				EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
@@ -2031,6 +2065,7 @@
 				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
 				EDC118E326D3A24A0020AB09 /* FindAccountEmailView.swift in Sources */,
 				EDC11A4126D3A39D0020AB09 /* ServiceUnitManagementCollectionViewCell.swift in Sources */,
+				ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */,
 				EDC118DE26D3A24A0020AB09 /* FindAccountIdViewController.swift in Sources */,
 				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */,
@@ -2056,6 +2091,7 @@
 				EDC11AFD26D3A39E0020AB09 /* ServiceStateCollectionReusableView.swift in Sources */,
 				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
+				ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */,
 				ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */,
 				ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */,
 				EDC11A6A26D3A39D0020AB09 /* ServiceManagementViewController.swift in Sources */,
