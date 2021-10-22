@@ -12,9 +12,11 @@
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
+		ED508CD6272298D40029AF7B /* LogoutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */; };
 		ED508CD7272298D40029AF7B /* ErrorResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */; };
 		ED508CD8272298D40029AF7B /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD0272298D40029AF7B /* LoginRequestModel.swift */; };
 		ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
+		ED508CDA272298D40029AF7B /* LogoutRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */; };
 		ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
@@ -314,9 +316,11 @@
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
+		ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutResponseModel.swift; sourceTree = "<group>"; };
 		ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponseModel.swift; sourceTree = "<group>"; };
 		ED508CD0272298D40029AF7B /* LoginRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		ED508CD1272298D40029AF7B /* RestAPIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIRequest.swift; sourceTree = "<group>"; };
+		ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutRequestModel.swift; sourceTree = "<group>"; };
 		ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+dictionary.swift"; sourceTree = "<group>"; };
 		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
 		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -662,6 +666,7 @@
 			children = (
 				ED508CCB272298D40029AF7B /* RestAPIResponse.swift */,
 				ED508CCC272298D40029AF7B /* LoginResponseModel.swift */,
+				ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */,
 				ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */,
 			);
 			path = ResponseModels;
@@ -672,6 +677,7 @@
 			children = (
 				ED508CD0272298D40029AF7B /* LoginRequestModel.swift */,
 				ED508CD1272298D40029AF7B /* RestAPIRequest.swift */,
+				ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */,
 			);
 			path = RequestModels;
 			sourceTree = "<group>";
@@ -1980,6 +1986,7 @@
 				ED6B468426B7E8B500C2FA6D /* SubscriptionManager.swift in Sources */,
 				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
 				ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */,
+				ED508CDA272298D40029AF7B /* LogoutRequestModel.swift in Sources */,
 				EDC11A5526D3A39D0020AB09 /* WorkRequestViewController.swift in Sources */,
 				EDC11A3526D3A39D0020AB09 /* WorkspaceListPlaceholderView.swift in Sources */,
 				EDC11AF926D3A39E0020AB09 /* WorkspaceHeaderView.swift in Sources */,
@@ -2096,6 +2103,7 @@
 				EDC11AC226D3A39D0020AB09 /* CSUTargetDelegate.swift in Sources */,
 				EDC11AE926D3A39E0020AB09 /* MessageView.swift in Sources */,
 				EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */,
+				ED508CD6272298D40029AF7B /* LogoutResponseModel.swift in Sources */,
 				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
 				EDC11A3626D3A39D0020AB09 /* WorkspaceListCell.swift in Sources */,
 				ED7A0E682721328600AD6678 /* SPRSegmentButton.swift in Sources */,
