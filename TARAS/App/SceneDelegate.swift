@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        appDelegate.window = window
         window?.windowScene = windowScene
         
         let reactor = LaunchScreenViewReactor(provider: appDelegate.provider)
@@ -51,26 +52,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         
-        guard let topViewController = self.window?.topViewController() else { return }
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        //TODO: 최소 버전 확인 로직
-        Observable.just(true)
-            .filter { $0 == false }
-            .flatMapLatest { _ -> Observable<Int> in
-                UIAlertController.present(
-                    in: topViewController,
-                    title: "업데이트",
-                    message: "안정적인 앱 사용을 위해\n업데이트를 진행해주세요.",
-                    style: .alert,
-                    actions: [
-                        .init(title: "업데이트", style: .default)
-                    ]
-                )
-            }.subscribe(onNext: { _ in
-                "강제 종료합니다.".sek.showToast {
-                    exit(1)
-                }
-            }).disposed(by: self.disposeBag)
+        (UIApplication.shared.delegate as? AppDelegate)?.checkUpdate()
     }
 }
