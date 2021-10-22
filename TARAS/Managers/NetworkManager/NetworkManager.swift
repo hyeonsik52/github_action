@@ -7,6 +7,8 @@
 
 import Apollo
 import RxSwift
+import FirebaseFirestore
+import Foundation
 
 typealias InterceptorsBlock = (_ store: ApolloStore, _ client: URLSessionClient, _ provider: ManagerProviderType) -> [ApolloInterceptor]
 
@@ -19,6 +21,8 @@ protocol NetworkManagerType: AnyObject {
     func perform<T: GraphQLMutation>(_ mutation: T) -> Observable<T.Data>
     func subscribe<T: GraphQLSubscription>(_ subscription: T) -> Observable<Result<T.Data, Error>>
     func updateWebSocketTransportConnectingPayload()
+    
+    func tempVersionCheck() -> Observable<Error?>
 }
 
 class NetworkManager: BaseManager, NetworkManagerType {
@@ -193,6 +197,50 @@ extension NetworkManager {
         Log.debug("💡 \(#function)")
         let authPayload = self.provider.userManager.authPayload()
         self.webSocketTransport.updateConnectingPayload(authPayload)
+    }
+    
+    //Temp
+    func tempVersionCheck() -> Observable<Error?> {
+        let thisVersionCode = Int(UIApplication.buildNumber ?? "1") ?? 1
+//            let thisVersionName = UIApplication.version ?? "0.0.1"
+        return .create { observer in
+            Firestore.firestore().collection("version")
+                .document("ap-ios").getDocument { snapshot, error in
+                    let error = NSError(
+                        domain: "TARAS",
+                        code: -99,
+                        userInfo: [
+                            NSLocalizedDescriptionKey: "버전 정보를 가져오지 못햇습니다."
+                        ]
+                    )
+                    if let json = snapshot?.data() {
+                        do {
+                            let data = try JSONSerialization.data(withJSONObject: json)
+                            let model = try JSONDecoder().decode(VersionCheck.self, from: data)
+                            
+                            if thisVersionCode >= model.minVersionCode {
+                                observer.onNext(nil)
+                            } else {
+                                let error = NSError(
+                                    domain: "TARAS",
+                                    code: -99,
+                                    userInfo: [
+                                        NSLocalizedFailureErrorKey: "업데이트",
+                                        NSLocalizedDescriptionKey: "안정적인 앱 사용을 위해\n업데이트를 진행해주세요.",
+                                        NSLocalizedRecoverySuggestionErrorKey: "업데이트"
+                                    ]
+                                )
+                                observer.onNext(error)
+                            }
+                        } catch {
+                            observer.onNext(error)
+                        }
+                    } else {
+                        observer.onNext(error)
+                    }
+                }
+            return Disposables.create()
+        }
     }
 }
 
