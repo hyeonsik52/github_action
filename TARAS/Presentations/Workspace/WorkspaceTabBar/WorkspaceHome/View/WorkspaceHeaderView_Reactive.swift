@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: WorkspaceHeaderView {
-    var user: Binder<UserInfo> {
+    var user: Binder<User> {
         return Binder(base) { base, user in
             base.bind(user)
         }

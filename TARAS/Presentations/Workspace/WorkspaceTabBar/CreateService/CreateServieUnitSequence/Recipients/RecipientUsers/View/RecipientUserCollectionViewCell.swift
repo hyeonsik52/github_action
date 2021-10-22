@@ -28,7 +28,7 @@ class RecipientUserCollectionViewCell: UICollectionViewCell, ReactorKit.View {
         let image = UIImage(named: "navi-close")?.withRenderingMode(.alwaysTemplate)
         $0.tintColor = .white
         $0.setImage(image, for: .normal)
-        $0.setBackgroundColor(color: .black.withAlphaComponent(0.1), forState: .normal)
+        $0.setBackgroundColor(color: .black0F0F0F.withAlphaComponent(0.1), forState: .normal)
         $0.cornerRadius = 22
         $0.clipsToBounds = true
         $0.isUserInteractionEnabled = false
@@ -36,7 +36,7 @@ class RecipientUserCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     
     /// 수신자의 이름을 표출합니다.
     let nameLabel = UILabel().then {
-        $0.font = .medium.14
+        $0.font = .medium[14]
         $0.textAlignment = .center
     }
     

@@ -20,150 +20,108 @@ final class WorkspaceSearchResultViewReactor: Reactor {
     enum Action {
         case refresh
         case requestJoin
+        case cancelRequest
     }
     
     enum Mutation {
+        case setWorkspace(Workspace)
         case setLoading(Bool)
-        case setJoinState(JoinStateType)
-        case setJoinResult(Result<Bool, Error>)
-        case setCancelResult(Result<Bool, Error>)
-        case setEnterResult(Bool)
+        case setJoinResult(Bool?)
+        case setCancelResult(Bool?)
+        case setError(String?)
     }
     
     struct State {
-        var joinState: JoinStateType
-        var cellModel: WorkspaceListCellModel
-        var errorMessage: String?
+        var workspace: Workspace?
         var isLoading: Bool
-        var requestResult: Bool
-        var cancelResult: Bool
-        var enterResult: Bool
+        var requestResult: Bool?
+        var cancelResult: Bool?
+        var errorMessage: String?
     }
     
-    let provider: ManagerProviderType
     let initialState: State
     
-    init(provider: ManagerProviderType, workspaceListCellModel: WorkspaceListCellModel) {
+    let provider: ManagerProviderType
+    let workspaceCode: String
+    
+    init(provider: ManagerProviderType, workspaceCode: String) {
         self.provider = provider
+        self.workspaceCode = workspaceCode
         
         self.initialState = State(
-            joinState: .none,
-            cellModel: workspaceListCellModel,
-            errorMessage: nil,
+            workspace: nil,
             isLoading: false,
             requestResult: false,
             cancelResult: false,
-            enterResult: false
+            errorMessage: nil
         )
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
+        
         switch action {
         case .refresh:
             return .concat([
-                    .just(.setLoading(true)),
-                    self.provider.workspaceManager
-                        .joinState(for: self.currentState.cellModel.swsIdx)
-                        .map { Mutation.setJoinState($0) },
-                    .just(.setLoading(false))
-                ])
-
+                .just(.setLoading(true)),
+                self.provider.networkManager
+                    .fetch(SearchWorkspaceByCodeQuery(code: self.workspaceCode))
+                    .compactMap(\.linkedWorkspaces?.edges.first)
+                    .compactMap(\.?.node?.fragments.workspaceFragment)
+                    .map { .setWorkspace(.init($0)) },
+                .just(.setLoading(false))
+            ])
+            
         case .requestJoin:
-            switch self.currentState.joinState {
-            case .none:
-                return .empty()
-                
-            case .new:
-                return .concat([
-                    .just(.setLoading(true)),
-                    self.provider.workspaceManager
-                        .requestJoinWorkspace(with: self.currentState.cellModel.swsIdx)
-                        .map { Mutation.setJoinResult($0) },
-                    .just(.setLoading(false))
-                ])
-                
-            case .requested:
-                return .concat([
-                    .just(.setLoading(true)),
-                    self.provider.workspaceManager
-                        .workspacesRequested()
-                        .flatMap { workspaces -> Observable<Mutation> in
-                            let matched = workspaces
-                                .filter { $0.node?.swsIdx == self.currentState.cellModel.swsIdx }
-                                .first
-
-                            guard let requestIdx = matched?.node?.swsJoinRequestIdx else { return .empty() }
-
-                            return self.provider.workspaceManager
-                                .cancelJoinWorkspace(with: requestIdx)
-                                .map { Mutation.setCancelResult($0) }
-                    },
-                    .just(.setLoading(false))
-                ])
-                
-            case .joined:
-                return .just(.setEnterResult(true))
-            }
+            guard let worksapceId = self.currentState.workspace?.id else { return .empty() }
+            return .concat([
+                .just(.setLoading(true)),
+                self.provider.networkManager
+                    .perform(RequestToJoinWorkspaceMutation(workspaceId: worksapceId))
+                    .compactMap(\.requestToJoinWorkspace)
+                    .map { .setJoinResult($0) },
+                .just(.setLoading(false))
+            ])
+        case .cancelRequest:
+            guard let worksapceId = self.currentState.workspace?.id else { return .empty() }
+            return .concat([
+                .just(.setLoading(true)),
+                self.provider.networkManager
+                    .perform(CancelToJoinWorkspaceMutation(workspaceId: worksapceId))
+                    .compactMap(\.cancelToJoinWorkspace)
+                    .map { .setCancelResult($0) },
+                .just(.setLoading(false))
+            ])
         }
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case let .setJoinState(joinState):
-            state.cellModel.joinState = joinState
-            state.joinState = joinState
-            return state
+        case let .setWorkspace(workspace):
+            state.workspace = workspace
             
         case let .setLoading(isLoading):
             state.isLoading = isLoading
-            return state
             
         case let .setJoinResult(result):
-            switch result {
-            case .success:
-                state.errorMessage = nil
-                state.requestResult = true
-                return state
-                
-            case let .failure(error):
-                if let err = error as? RequestJoinSWSErrorCode {
-                    state.errorMessage = err.description
-                    return state
-                }
-                
-                state.errorMessage = "네트워크/서버 연결이 원할하지 않습니다. 잠시 후 다시 시도해주세요."
-                return state
-            }
+            state.requestResult = result
+            state.errorMessage = (result == true ? nil: "")
             
         case let .setCancelResult(result):
-            switch result {
-            case .success:
-                state.errorMessage = nil
-                state.cancelResult = true
-                return state
-                
-            case let .failure(error):
-                if let err = error as? CancelSWSJoinRequestErrorCode {
-                    state.errorMessage = err.description
-                    return state
-                }
-                
-                state.errorMessage = "네트워크/서버 연결이 원할하지 않습니다. 잠시 후 다시 시도해주세요."
-                return state
-            }
+            state.cancelResult = result
+            state.errorMessage = (result == true ? nil: "")
             
-        case let .setEnterResult(result):
-            state.enterResult = result
-            return state
+        case let .setError(message):
+            state.errorMessage = message
         }
+        return state
     }
 
     func reactorForResult() -> SignInViewReactor {
         return SignInViewReactor(provider: self.provider)
     }
     
-    func reactorForSWSHome(swsIdx: Int) -> WorkspaceTabBarControllerReactor {
-        return WorkspaceTabBarControllerReactor(provider: self.provider, swsIdx: swsIdx)
+    func reactorForSWSHome(workspaceId: String) -> WorkspaceTabBarControllerReactor {
+        return WorkspaceTabBarControllerReactor(provider: self.provider, workspaceId: workspaceId)
     }
 }

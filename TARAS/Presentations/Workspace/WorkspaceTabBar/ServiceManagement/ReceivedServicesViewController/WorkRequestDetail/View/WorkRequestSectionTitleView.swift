@@ -13,7 +13,7 @@ import Then
 class WorkRequestSectionTitleView: UIView {
 
     private var titleLabel = UILabel().then {
-        $0.font = .bold.16
+        $0.font = .bold[16]
         $0.textColor = .purple4A3C9F
     }
     

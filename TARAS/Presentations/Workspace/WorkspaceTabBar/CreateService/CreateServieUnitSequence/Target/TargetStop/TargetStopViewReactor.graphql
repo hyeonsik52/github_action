@@ -1,0 +1,17 @@
+query stopsByWorkspaceId($workspaceId: String) {
+  signedUser {
+	joinedWorkspaces(id: $workspaceId) {
+	  edges {
+		node {
+		  stationGroups {
+			edges {
+			  node {
+				  ... StopFragment
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
+}

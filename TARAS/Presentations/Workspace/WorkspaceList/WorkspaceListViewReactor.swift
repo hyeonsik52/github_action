@@ -63,65 +63,65 @@ final class WorkspaceListViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .refresh:
-            return .zip(
-                self.provider.workspaceManager.workspacesRequested(),
-                self.provider.workspaceManager.workspacesJoined()
-            ){ requested, joined in
-                let requestedItems = requested
-                    .map { WorkspaceListCellModel.init(requested: $0) }
-                    .map(WorkspaceListCellReactor.init)
-                let requestedSection = WorkspaceListSection(header: "가입 신청 중", items: requestedItems)
-                
-                let joinedItems = joined
-                    .map { WorkspaceListCellModel.init(joined: $0) }
-                    .map(WorkspaceListCellReactor.init)
-                let joinedSection = WorkspaceListSection(header: "내 워크스페이스", items: joinedItems)
-                
-                if requestedItems.count == 0 && joinedItems.count == 0 {
-                    return .setSection([])
-                }
-                
-                if requestedItems.count != 0 && joinedItems.count == 0 {
-                    return .setSection([requestedSection])
-                }
-                
-                if requestedItems.count == 0 && joinedItems.count != 0 {
-                    return .setSection([joinedSection])
-                }
-                
-                return .setSection([requestedSection, joinedSection])
-            }
-            
+//            return .zip(
+//                self.provider.workspaceManager.workspacesRequested(),
+//                self.provider.workspaceManager.workspacesJoined()
+//            ){ requested, joined in
+//                let requestedItems = requested
+//                    .map { WorkspaceListCellModel.init(requested: $0) }
+//                    .map(WorkspaceListCellReactor.init)
+//                let requestedSection = WorkspaceListSection(header: "가입 신청 중", items: requestedItems)
+//
+//                let joinedItems = joined
+//                    .map { WorkspaceListCellModel.init(joined: $0) }
+//                    .map(WorkspaceListCellReactor.init)
+//                let joinedSection = WorkspaceListSection(header: "내 워크스페이스", items: joinedItems)
+//
+//                if requestedItems.count == 0 && joinedItems.count == 0 {
+//                    return .setSection([])
+//                }
+//
+//                if requestedItems.count != 0 && joinedItems.count == 0 {
+//                    return .setSection([requestedSection])
+//                }
+//
+//                if requestedItems.count == 0 && joinedItems.count != 0 {
+//                    return .setSection([joinedSection])
+//                }
+//
+//                return .setSection([requestedSection, joinedSection])
+//            }
+            return .empty()
         case .updateFCMToken:
-            Messaging.messaging().token { token, error in
-                if let token = token,
-                    let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString,
-                    self.provider.userManager.userTB.accessToken.count > 0
-                {
-                    let input = UpdateFcmRegistrationIdInput(
-                        clientType: "ios",
-                        deviceUniqueKey: deviceUniqueKey,
-                        registrationId: token
-                    )
-
-                    Log.debug("\(input)")
-
-                    let _ = self.provider.networkManager
-                        .perform(UpdateFcmTokenMutation(input: input))
-                        .map { $0.updateFcmRegistrationIdMutation }
-                        .flatMap { data -> Observable<Mutation> in
-                            if let payload = data.asUpdateFcmRegistrationIdPayload {
-                                if payload.result.isTrue {
-                                    Log.complete("updated FCM token to server")
-                                }
-                            }
-                            if let error = data.asUpdateFcmRegistrationIdError {
-                                Log.err("failed to update FCM token to server: \(error.errorCode)")
-                            }
-                            return .empty()
-                    }
-                }
-            }
+//            Messaging.messaging().token { token, error in
+//                if let token = token,
+//                    let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString,
+//                    self.provider.userManager.userTB.accessToken.count > 0
+//                {
+//                    let input = UpdateFcmRegistrationIdInput(
+//                        clientType: "ios",
+//                        deviceUniqueKey: deviceUniqueKey,
+//                        registrationId: token
+//                    )
+//
+//                    Log.debug("\(input)")
+//
+//                    let _ = self.provider.networkManager
+//                        .perform(UpdateFcmTokenMutation(input: input))
+//                        .map { $0.updateFcmRegistrationIdMutation }
+//                        .flatMap { data -> Observable<Mutation> in
+//                            if let payload = data.asUpdateFcmRegistrationIdPayload {
+//                                if payload.result.isTrue {
+//                                    Log.complete("updated FCM token to server")
+//                                }
+//                            }
+//                            if let error = data.asUpdateFcmRegistrationIdError {
+//                                Log.err("failed to update FCM token to server: \(error.errorCode)")
+//                            }
+//                            return .empty()
+//                    }
+//                }
+//            }
             return .empty()
             
         case .judgeEntrance:
@@ -147,17 +147,17 @@ final class WorkspaceListViewReactor: Reactor {
         return WorkspaceSearchViewReactor(provider: self.provider)
     }
     
-    func reactorForSWSHome(swsIdx: Int) -> WorkspaceTabBarControllerReactor {
-        return WorkspaceTabBarControllerReactor(provider: self.provider, swsIdx: swsIdx)
+    func reactorForSWSHome(workspaceId: String) -> WorkspaceTabBarControllerReactor {
+        return WorkspaceTabBarControllerReactor(provider: self.provider, workspaceId: workspaceId)
     }
     
     func reactorForResult(
         _ workspaceListCellReactor: WorkspaceListCellReactor
-    ) -> WorkspaceSearchResultViewReactor {
-        let workspace = workspaceListCellReactor.currentState
+    ) -> WorkspaceSearchResultViewReactor? {
+        guard let workspaceCode = workspaceListCellReactor.currentState.code else { return nil }
         return WorkspaceSearchResultViewReactor(
             provider: self.provider,
-            workspaceListCellModel: workspace
+            workspaceCode: workspaceCode
         )
     }
     

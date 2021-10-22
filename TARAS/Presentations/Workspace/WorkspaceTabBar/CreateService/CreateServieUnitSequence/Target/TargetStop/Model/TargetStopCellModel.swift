@@ -16,7 +16,7 @@ struct TargetStopCellModel {
     var name: String
     
     /// 작업 위치(정차지)의 인덱스입니다.
-    var stopIdx: Int
+    var stopId: String
     
     /// 작업 위치(정차지)의 프로필 이미지 URL입니다.
     /// API 미완성 상태이므로 주석 처리 해놓습니다.
@@ -25,15 +25,11 @@ struct TargetStopCellModel {
     /// 기존 대상-정차지 수정 시에 해당 셀의 선택 유무를 나타냅니다.
     var isSelected: Bool
     
-    init?(
-        stop: StopsListQuery.Data.SwsStopsConnection.Edge.Node?,
-        selectedTargetStopIdx: Int? = nil
-    ) {
-        guard let stop = stop else { return nil }
+    init(stop: StopFragment, selectedTargetStopId: String? = nil) {
         
         self.name = stop.name
-        self.stopIdx = stop.stopIdx
-        // self.profileImageURL = stop.profileImageUrl
-        self.isSelected = (stop.stopIdx == selectedTargetStopIdx)
+        self.stopId = stop.id
+        
+        self.isSelected = (stop.id == selectedTargetStopId)
     }
 }

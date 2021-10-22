@@ -9,33 +9,34 @@ import UIKit
 
 /// 계정 정보
 struct Account {
-    /// 유저 인덱스
-    var idx: Int!
-    /// 아이디
+    
+    /// 식별 아이디
     var id: String!
+    /// 유저 아이디
+    var ID: String!
     /// 비밀번호
     var password: String!
     /// 이름
     var name: String!
     /// 이메일
-    var email: String!
+    var email: String?
     /// 인증토큰 (계정 찾기)
     var authToken: String?
     /// 전화번호
     var phoneNumber: String?
 }
 
-//extension Account {
-//
-//    init(result: UserFragment) {
-//
-//        self.idx = result.userIdx
-//        self.id = result.userId
-//        self.name = result.name
-//        self.email = result.email
-//        self.phoneNumber = result.phoneNumber
-//    }
-//}
+extension Account: FragmentModel {
+    
+    init(_ fragmnet: UserFragment) {
+        
+        self.id = fragmnet.id
+        self.ID = fragmnet.username
+        self.name = fragmnet.displayName
+        self.email = fragmnet.email
+        self.phoneNumber = fragmnet.phoneNumber
+    }
+}
 
 /// 계정 입력 유형
 enum AccountInputType: String {

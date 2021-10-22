@@ -14,15 +14,14 @@ import ReactorKit
 class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
     
     private let backgroundHighlightView = UIView().then {
-        $0.backgroundColor = .HIGH_LIGHT_PUPLE_F1EFFF
+        $0.backgroundColor = .highlightPulpleF1EFFF
         $0.isHidden = true
     }
-    private let bypassView = TRSBypassView()
     private let profileNumberView = ServiceDetailNumberProfileView()
     private let answerStateView = SRPStateView()
     private let serviceStateView = SRPStateView()
     private let freightsDescriptionView = UILabel().then {
-        $0.font = .bold.20
+        $0.font = .bold[20]
         $0.textColor = .purple4A3C9F
         $0.textAlignment = .right
         $0.lineBreakMode = .byTruncatingMiddle
@@ -73,11 +72,6 @@ class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
         topHorizontalStackView.addArrangedSubview(topLeftVerticalStackView)
         topLeftVerticalStackView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-        }
-
-        topLeftVerticalStackView.addArrangedSubview(self.bypassView)
-        self.bypassView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
         }
         topLeftVerticalStackView.addArrangedSubview(self.profileNumberView)
         self.profileNumberView.snp.makeConstraints {
@@ -134,71 +128,63 @@ class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
         let service = reactor.currentState.serviceSet.service
         let serviceUnit = reactor.currentState.serviceSet.serviceUnit
         
-        //내가 수신자가 아니거나, 거절자, 다른 수신자가 수락한 경우 하이라이트하지 않는다
-        self.backgroundHighlightView.isHidden = !serviceUnit.amIRecipient || serviceUnit.amIRejector || serviceUnit.isAnotherAccepted
-        
-        if let waypoint = serviceUnit.bypassPlace {
-            self.bypassView.bind(text: waypoint.name)
-            self.bypassView.isHidden = false
-        }else{
-            self.bypassView.isHidden = true
-        }
-        
-        
-        let target = serviceUnit.target
-        let userTargetTeamName = (target as? ServiceUser)?.teamName
-        self.profileNumberView.bind(
-            number: reactor.currentState.serviceSet.serviceUnitOffset,
-            title: target.name,
-            content: userTargetTeamName,
-            profileImage: target.profileImageURL
-        )
-        
-        if service.combinePause(conditions: .waitingResponse, .canceledOnWaiting) {
-            if serviceUnit.status == .rejected {
-                self.answerStateView.setReject()
-                self.answerStateView.isHidden = false
-            }else{
-                if serviceUnit.isAcceptorExisted {
-                    self.answerStateView.setAllow()
-                    self.answerStateView.isHidden = false
-                }else{
-                    self.answerStateView.isHidden = true
-                }
-            }
-        }else{
-            self.answerStateView.isHidden = true
-        }
-        
-        if service.isProcessing {
-            if serviceUnit.isProcessing {
-                self.serviceStateView.setProcessing()
-                self.serviceStateView.isHidden = false
-            }else{
-                self.serviceStateView.isHidden = true
-            }
-        }else{
-            self.serviceStateView.isHidden = true
-        }
-            
-        
-        var taskList = serviceUnit.taskList
-        if taskList.isEmpty {
-            self.freightsDescriptionView.text = "물품이 없습니다."
-        }else if taskList.count == 1 {
-            self.freightsDescriptionView.text = taskList[0].object.name
-        }else{
-            let first = taskList.remove(at: 0)
-            let count = taskList.count
-            
-            self.freightsDescriptionView.text = "\(first.object.name) 외 \(count)"
-        }
-        
-        if let detail = serviceUnit.requestDetails {
-            self.messageView.bind(text: detail)
-            self.messageView.isHidden = false
-        }else{
-            self.messageView.isHidden = true
-        }
+//        //내가 수신자가 아니거나, 거절자, 다른 수신자가 수락한 경우 하이라이트하지 않는다
+//        self.backgroundHighlightView.isHidden = !serviceUnit.amIRecipient || serviceUnit.amIRejector || serviceUnit.isAnotherAccepted
+
+//        let target = serviceUnit.target
+//        let userTargetTeamName = (target as? ServiceUser)?.teamName
+//        self.profileNumberView.bind(
+//            number: reactor.currentState.serviceSet.serviceUnitOffset,
+//            title: target.name,
+//            content: userTargetTeamName,
+//            profileImage: target.profileImageURL
+//        )
+//
+//        if service.combinePause(conditions: .waitingResponse, .canceledOnWaiting) {
+//            if serviceUnit.status == .rejected {
+//                self.answerStateView.setReject()
+//                self.answerStateView.isHidden = false
+//            }else{
+//                if serviceUnit.isAcceptorExisted {
+//                    self.answerStateView.setAllow()
+//                    self.answerStateView.isHidden = false
+//                }else{
+//                    self.answerStateView.isHidden = true
+//                }
+//            }
+//        }else{
+//            self.answerStateView.isHidden = true
+//        }
+//
+//        if service.isProcessing {
+//            if serviceUnit.isProcessing {
+//                self.serviceStateView.setProcessing()
+//                self.serviceStateView.isHidden = false
+//            }else{
+//                self.serviceStateView.isHidden = true
+//            }
+//        }else{
+//            self.serviceStateView.isHidden = true
+//        }
+//
+//
+//        var taskList = serviceUnit.taskList
+//        if taskList.isEmpty {
+//            self.freightsDescriptionView.text = "물품이 없습니다."
+//        }else if taskList.count == 1 {
+//            self.freightsDescriptionView.text = taskList[0].object.name
+//        }else{
+//            let first = taskList.remove(at: 0)
+//            let count = taskList.count
+//
+//            self.freightsDescriptionView.text = "\(first.object.name) 외 \(count)"
+//        }
+//
+//        if let detail = serviceUnit.requestDetails {
+//            self.messageView.bind(text: detail)
+//            self.messageView.isHidden = false
+//        }else{
+//            self.messageView.isHidden = true
+//        }
     }
 }

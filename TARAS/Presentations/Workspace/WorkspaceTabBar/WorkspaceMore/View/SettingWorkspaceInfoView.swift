@@ -22,8 +22,8 @@ class SettingWorkspaceInfoView: UIView {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .bold.18
-        $0.textColor = .black
+        $0.font = .bold[18]
+        $0.textColor = .black0F0F0F
     }
     
     let disposeBag = DisposeBag()
@@ -82,7 +82,7 @@ class SettingWorkspaceInfoView: UIView {
     
     func bind(_ workspace: Workspace) {
         
-        self.profileImageView.setImage(strUrl: workspace.profileImageURL)
+        self.profileImageView.setImage(strUrl: nil)
         
         self.titleLabel.text = workspace.name
     }

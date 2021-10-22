@@ -19,35 +19,22 @@ final class CreateServiceCellView: UIView {
     let deleteButton = UIButton().then {
         $0.setImage(UIImage(named: "navi-close")?.withRenderingMode(.alwaysTemplate), for: .normal)
         $0.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        $0.tintColor = .grayA0A0A0
+        $0.tintColor = .grayA2A2A2
     }
-
-    let bypassEditButton = UIButton()
-
-    let bypassView = TRSBypassView()
 
     let targetInfoView = TargetInfoView()
 
-    let freightsDescriptionLabel = UILabel().then {
-        $0.font = .bold.20
-        $0.textColor = .purple4A3C9F
-        $0.textAlignment = .right
-        $0.lineBreakMode = .byTruncatingMiddle
-    }
-
     let messageView = SRPServiceUnitDetailView()
     
-    init(isBypassCell: Bool = false) {
+    init() {
         super.init(frame: .zero)
         
-        let backgroundBottomOffset = isBypassCell ? 0: -14
-
         self.addSubview(self.customBackgroundView)
         self.customBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalToSuperview().offset(backgroundBottomOffset)
+            $0.bottom.equalToSuperview()
         }
 
         let topHorizontalStackView = UIStackView().then {
@@ -68,16 +55,6 @@ final class CreateServiceCellView: UIView {
         topHorizontalStackView.addArrangedSubview(topLeftVerticalStackView)
         topLeftVerticalStackView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-        }
-
-        topLeftVerticalStackView.addArrangedSubview(self.bypassView)
-        self.bypassView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-        }
-
-        self.bypassView.addSubview(self.bypassEditButton)
-        self.bypassEditButton.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
 
         topLeftVerticalStackView.addArrangedSubview(self.targetInfoView)
@@ -108,11 +85,6 @@ final class CreateServiceCellView: UIView {
             $0.bottom.equalToSuperview().offset(-20)
         }
 
-        bottomVerticalStackView.addArrangedSubview(self.freightsDescriptionLabel)
-        self.freightsDescriptionLabel.snp.makeConstraints {
-            $0.width.equalToSuperview()
-        }
-
         bottomVerticalStackView.addArrangedSubview(self.messageView)
         self.messageView.snp.makeConstraints {
             $0.width.equalToSuperview()
@@ -125,14 +97,6 @@ final class CreateServiceCellView: UIView {
     }
     
     func bind(_ serviceUnitModel: CreateServiceUnitModel) {
-        
-        // 경유지 정보를 표출합니다.
-        if serviceUnitModel.hasBypass {
-            self.bypassView.isHidden = false
-            self.bypassView.bind(text: serviceUnitModel.bypass?.targetName ?? "")
-        } else {
-            self.bypassView.isHidden = true
-        }
         
         // 대상 정보를 표출합니다.
 //        self.targetInfoView.bind(self.targetInfo(serviceUnitModel))

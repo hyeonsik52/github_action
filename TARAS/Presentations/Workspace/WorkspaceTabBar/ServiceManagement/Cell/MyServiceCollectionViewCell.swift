@@ -11,14 +11,13 @@ import SnapKit
 import Then
 import Kingfisher
 import ReactorKit
-//import SkeletonView
 
 class MyServiceCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     typealias Reactor = ServiceCellReactor
     
     var disposeBag = DisposeBag()
     
-    private var view: SendedServiceCellView!
+    private var view: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,10 +31,8 @@ class MyServiceCollectionViewCell: UICollectionViewCell, ReactorKit.View {
     
     private func setupConstraints() {
         
-//        self.isSkeletonable = true
-        
         let maxWidth = UIScreen.main.bounds.width - 22*2
-        self.view = SendedServiceCellView(maxWidth)
+        self.view = UIView()//SendedServiceCellView(maxWidth)
         self.contentView.addSubview(self.view)
         self.view.snp.makeConstraints {
             $0.edges.equalToSuperview()

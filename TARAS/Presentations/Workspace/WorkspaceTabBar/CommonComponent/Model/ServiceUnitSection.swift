@@ -10,7 +10,7 @@ import Foundation
 import RxDataSources
 
 struct ServiceUnitSection {
-    var header: ServiceModel
+    var header: Service
     var items: [Item]
 }
 extension ServiceUnitSection: SectionModelType {

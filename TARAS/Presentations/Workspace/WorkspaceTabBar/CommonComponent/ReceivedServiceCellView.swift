@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Then
 import Kingfisher
-//import SkeletonView
 
 class ReceivedServiceCellView: UIView {
     
@@ -18,23 +17,19 @@ class ReceivedServiceCellView: UIView {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 22
-        $0.isSkeletonable = true
     }
     private var titleLabel = UILabel().then{
-        $0.font = .bold.16
-        $0.textColor = .black
-        $0.isSkeletonable = true
+        $0.font = .bold[16]
+        $0.textColor = .black0F0F0F
     }
     private var secondaryLabel = UILabel().then{
-        $0.font = .regular.12
-        $0.textColor = .grayA0A0A0
+        $0.font = .regular[12]
+        $0.textColor = .gray9A9A9A
         $0.lineBreakMode = .byTruncatingMiddle
-        $0.isSkeletonable = true
     }
     private var tertiaryLabel = UILabel().then{
-        $0.font = .regular.12
-        $0.textColor = .grayA0A0A0
-        $0.isSkeletonable = true
+        $0.font = .regular[12]
+        $0.textColor = .gray9A9A9A
     }
     
     override init(frame: CGRect) {
@@ -48,8 +43,6 @@ class ReceivedServiceCellView: UIView {
     }
     
     private func setupConstraints() {
-
-        self.isSkeletonable = true
         
         self.addSubview(self.thumbnailImageView)
         self.thumbnailImageView.snp.makeConstraints {
@@ -58,9 +51,7 @@ class ReceivedServiceCellView: UIView {
             $0.width.height.equalTo(44)
         }
         
-        let container = UIView().then {
-            $0.isSkeletonable = true
-        }
+        let container = UIView()
         self.addSubview(container)
         container.snp.makeConstraints{
             $0.leading.equalTo(self.thumbnailImageView.snp.trailing).offset(14)

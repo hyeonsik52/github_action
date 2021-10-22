@@ -1,0 +1,23 @@
+#mutation updateFCMToken($input: UpdateFcmRegistrationIdInput!) {
+#    updateFcmRegistrationIdMutation(input: $input) {
+#        ... on UpdateFcmRegistrationIdPayload {
+#            result
+#        }
+#
+#        ... on UpdateFcmRegistrationIdError {
+#            errorCode
+#        }
+#    }
+#}
+#
+#mutation deleteFCMToken($input: DeleteFcmRegistrationIdInput!) {
+#    deleteFcmRegistrationIdMutation(input: $input) {
+#        ... on DeleteFcmRegistrationIdPayload {
+#            result
+#        }
+#
+#        ... on DeleteFcmRegistrationIdError {
+#            errorCode
+#        }
+#    }
+#}

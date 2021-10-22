@@ -18,7 +18,7 @@ class SRPStateView: UIView {
     }
     
     private let label = UILabel().then {
-        $0.font = .bold.14
+        $0.font = .bold[14]
         $0.textAlignment = .center
     }
     
@@ -62,24 +62,24 @@ extension SRPStateView {
     func setAllow() {
         self.bind(
             title: "수락",
-            titleColor: .skyBlue85AEFF,
-            backgroundColor: .lightSkyBlueF0F5FF
+            titleColor: .skyblue85AEFF,
+            backgroundColor: .lightSkyblueF0F5FF
         )
     }
     
     func setReject() {
         self.bind(
             title: "거절",
-            titleColor: .redF8613B,
-            backgroundColor: .lightRedFEEFEB
+            titleColor: .redEB4D39,
+            backgroundColor: .lightRedFFE8E6
         )
     }
     
     func setProcessing() {
         self.bind(
             title: "진행중",
-            titleColor: .redF8613B,
-            backgroundColor: .lightRedFEEFEB
+            titleColor: .redEB4D39,
+            backgroundColor: .lightRedFFE8E6
         )
     }
     
@@ -87,7 +87,7 @@ extension SRPStateView {
         self.bind(
             title: "\(count)/\(total)",
             titleColor: .purple4A3C9F,
-            backgroundColor: .lightGrayF1F1F1
+            backgroundColor: .lightGrayF2F2F2
         )
     }
 }

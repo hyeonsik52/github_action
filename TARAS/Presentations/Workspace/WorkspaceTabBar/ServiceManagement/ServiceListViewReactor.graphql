@@ -1,0 +1,48 @@
+fragment ServiceFragment on HiGlovisServiceNode {
+	id
+	phase
+	type
+	state
+	timestamps
+	serviceNumber
+	createdAt
+	creator
+	robot {
+		... RobotFragment
+	}
+	currentServiceUnitStep
+	currentServiceUnit {
+		... ServiceUnitFragment
+	}
+	serviceUnits {
+		... ServiceUnitFragment
+	}
+}
+
+fragment ServiceUnitFragment on ServiceUnitNode {
+	id
+	state
+	stop {
+		... StopFragment
+	}
+	data
+}
+
+fragment StopFragment on StationGroupNode {
+	id
+	name
+	isStop
+}
+
+fragment RobotFragment on RobotNode {
+	id
+	name
+	lockKey
+	extensions {
+		#      ... on DoorLockExtensionType {
+		id
+		#        deviceName
+		#        doorOpenState
+		#      }
+	}
+}

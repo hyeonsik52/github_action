@@ -8,23 +8,22 @@ public struct CreateUserMutationInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
-  ///   - id
+  ///   - username
   ///   - password
-  ///   - username: Required. 100 characters or fewer. Letters, digits and _ only.
-  ///   - displayName: Required. 100 characters or fewer.
+  ///   - displayName
   ///   - email
-  ///   - phoneNumber: Digits only with county calling code. 30 characters or fewer.
-  ///   - clientMutationId
-  public init(id: Swift.Optional<Int?> = nil, password: String, username: String, displayName: String, email: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, clientMutationId: Swift.Optional<String?> = nil) {
-    graphQLMap = ["id": id, "password": password, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber, "clientMutationId": clientMutationId]
+  ///   - phoneNumber
+  ///   - remark
+  public init(username: String, password: String, displayName: Swift.Optional<String?> = nil, email: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, remark: Swift.Optional<String?> = nil) {
+    graphQLMap = ["username": username, "password": password, "displayName": displayName, "email": email, "phoneNumber": phoneNumber, "remark": remark]
   }
 
-  public var id: Swift.Optional<Int?> {
+  public var username: String {
     get {
-      return graphQLMap["id"] as? Swift.Optional<Int?> ?? Swift.Optional<Int?>.none
+      return graphQLMap["username"] as! String
     }
     set {
-      graphQLMap.updateValue(newValue, forKey: "id")
+      graphQLMap.updateValue(newValue, forKey: "username")
     }
   }
 
@@ -37,20 +36,9 @@ public struct CreateUserMutationInput: GraphQLMapConvertible {
     }
   }
 
-  /// Required. 100 characters or fewer. Letters, digits and _ only.
-  public var username: String {
+  public var displayName: Swift.Optional<String?> {
     get {
-      return graphQLMap["username"] as! String
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "username")
-    }
-  }
-
-  /// Required. 100 characters or fewer.
-  public var displayName: String {
-    get {
-      return graphQLMap["displayName"] as! String
+      return graphQLMap["displayName"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "displayName")
@@ -66,7 +54,6 @@ public struct CreateUserMutationInput: GraphQLMapConvertible {
     }
   }
 
-  /// Digits only with county calling code. 30 characters or fewer.
   public var phoneNumber: Swift.Optional<String?> {
     get {
       return graphQLMap["phoneNumber"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
@@ -76,12 +63,496 @@ public struct CreateUserMutationInput: GraphQLMapConvertible {
     }
   }
 
-  public var clientMutationId: Swift.Optional<String?> {
+  public var remark: Swift.Optional<String?> {
     get {
-      return graphQLMap["clientMutationId"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      return graphQLMap["remark"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
-      graphQLMap.updateValue(newValue, forKey: "clientMutationId")
+      graphQLMap.updateValue(newValue, forKey: "remark")
+    }
+  }
+}
+
+public struct UpdateUserMutationInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - username
+  ///   - password
+  ///   - displayName
+  ///   - email
+  ///   - phoneNumber
+  public init(username: String, password: Swift.Optional<String?> = nil, displayName: Swift.Optional<String?> = nil, email: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil) {
+    graphQLMap = ["username": username, "password": password, "displayName": displayName, "email": email, "phoneNumber": phoneNumber]
+  }
+
+  public var username: String {
+    get {
+      return graphQLMap["username"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "username")
+    }
+  }
+
+  public var password: Swift.Optional<String?> {
+    get {
+      return graphQLMap["password"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "password")
+    }
+  }
+
+  public var displayName: Swift.Optional<String?> {
+    get {
+      return graphQLMap["displayName"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "displayName")
+    }
+  }
+
+  public var email: Swift.Optional<String?> {
+    get {
+      return graphQLMap["email"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "email")
+    }
+  }
+
+  public var phoneNumber: Swift.Optional<String?> {
+    get {
+      return graphQLMap["phoneNumber"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "phoneNumber")
+    }
+  }
+}
+
+public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    subscription servicesByWorkspaceId($workspaceId: String) {
+      subscribeHiGlovisServices(workspaceId: $workspaceId) {
+        __typename
+        edges {
+          __typename
+          node {
+            __typename
+            ...ServiceFragment
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "servicesByWorkspaceId"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ServiceFragment.fragmentDefinition)
+    document.append("\n" + RobotFragment.fragmentDefinition)
+    document.append("\n" + ServiceUnitFragment.fragmentDefinition)
+    document.append("\n" + StopFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Subscription"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("subscribeHiGlovisServices", arguments: ["workspaceId": GraphQLVariable("workspaceId")], type: .object(SubscribeHiGlovisService.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(subscribeHiGlovisServices: SubscribeHiGlovisService? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Subscription", "subscribeHiGlovisServices": subscribeHiGlovisServices.flatMap { (value: SubscribeHiGlovisService) -> ResultMap in value.resultMap }])
+    }
+
+    public var subscribeHiGlovisServices: SubscribeHiGlovisService? {
+      get {
+        return (resultMap["subscribeHiGlovisServices"] as? ResultMap).flatMap { SubscribeHiGlovisService(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "subscribeHiGlovisServices")
+      }
+    }
+
+    public struct SubscribeHiGlovisService: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["HiGlovisServiceNodeConnection"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(edges: [Edge?]) {
+        self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// Contains the nodes in this connection.
+      public var edges: [Edge?] {
+        get {
+          return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+        }
+      }
+
+      public struct Edge: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["HiGlovisServiceNodeEdge"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("node", type: .object(Node.selections)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(node: Node? = nil) {
+          self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// The item at the end of the edge
+        public var node: Node? {
+          get {
+            return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "node")
+          }
+        }
+
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["HiGlovisServiceNode"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(ServiceFragment.self),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var serviceFragment: ServiceFragment {
+              get {
+                return ServiceFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class ServiceByServiceIdSubscription: GraphQLSubscription {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    subscription serviceByServiceId($serviceId: ID) {
+      subscribeHiGlovisServiceByServiceId(serviceId: $serviceId) {
+        __typename
+        ...ServiceFragment
+      }
+    }
+    """
+
+  public let operationName: String = "serviceByServiceId"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ServiceFragment.fragmentDefinition)
+    document.append("\n" + RobotFragment.fragmentDefinition)
+    document.append("\n" + ServiceUnitFragment.fragmentDefinition)
+    document.append("\n" + StopFragment.fragmentDefinition)
+    return document
+  }
+
+  public var serviceId: GraphQLID?
+
+  public init(serviceId: GraphQLID? = nil) {
+    self.serviceId = serviceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["serviceId": serviceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Subscription"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("subscribeHiGlovisServiceByServiceId", arguments: ["serviceId": GraphQLVariable("serviceId")], type: .object(SubscribeHiGlovisServiceByServiceId.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(subscribeHiGlovisServiceByServiceId: SubscribeHiGlovisServiceByServiceId? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Subscription", "subscribeHiGlovisServiceByServiceId": subscribeHiGlovisServiceByServiceId.flatMap { (value: SubscribeHiGlovisServiceByServiceId) -> ResultMap in value.resultMap }])
+    }
+
+    public var subscribeHiGlovisServiceByServiceId: SubscribeHiGlovisServiceByServiceId? {
+      get {
+        return (resultMap["subscribeHiGlovisServiceByServiceId"] as? ResultMap).flatMap { SubscribeHiGlovisServiceByServiceId(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "subscribeHiGlovisServiceByServiceId")
+      }
+    }
+
+    public struct SubscribeHiGlovisServiceByServiceId: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["HiGlovisServiceNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(ServiceFragment.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var serviceFragment: ServiceFragment {
+          get {
+            return ServiceFragment(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class MyUserInfoQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query myUserInfo {
+      signedUser {
+        __typename
+        ...UserFragment
+      }
+    }
+    """
+
+  public let operationName: String = "myUserInfo"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + UserFragment.fragmentDefinition)
+    return document
+  }
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("signedUser", type: .object(SignedUser.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(signedUser: SignedUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var signedUser: SignedUser? {
+      get {
+        return (resultMap["signedUser"] as? ResultMap).flatMap { SignedUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "signedUser")
+      }
+    }
+
+    public struct SignedUser: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(UserFragment.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var userFragment: UserFragment {
+          get {
+            return UserFragment(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
     }
   }
 }
@@ -94,19 +565,6 @@ public final class SignUpMutation: GraphQLMutation {
       createUser(input: $input) {
         __typename
         id
-        lastLogin
-        dateJoined
-        username
-        displayName
-        email
-        phoneNumber
-        joinedWorkspaces
-        errors {
-          __typename
-          field
-          messages
-        }
-        clientMutationId
       }
     }
     """
@@ -152,21 +610,12 @@ public final class SignUpMutation: GraphQLMutation {
     }
 
     public struct CreateUser: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["CreateUserMutationPayload"]
+      public static let possibleTypes: [String] = ["UserNode"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("id", type: .scalar(Int.self)),
-          GraphQLField("lastLogin", type: .scalar(String.self)),
-          GraphQLField("dateJoined", type: .scalar(String.self)),
-          GraphQLField("username", type: .scalar(String.self)),
-          GraphQLField("displayName", type: .scalar(String.self)),
-          GraphQLField("email", type: .scalar(String.self)),
-          GraphQLField("phoneNumber", type: .scalar(String.self)),
-          GraphQLField("joinedWorkspaces", type: .scalar(String.self)),
-          GraphQLField("errors", type: .list(.object(Error.selections))),
-          GraphQLField("clientMutationId", type: .scalar(String.self)),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         ]
       }
 
@@ -176,8 +625,8 @@ public final class SignUpMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int? = nil, lastLogin: String? = nil, dateJoined: String? = nil, username: String? = nil, displayName: String? = nil, email: String? = nil, phoneNumber: String? = nil, joinedWorkspaces: String? = nil, errors: [Error?]? = nil, clientMutationId: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "CreateUserMutationPayload", "id": id, "lastLogin": lastLogin, "dateJoined": dateJoined, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber, "joinedWorkspaces": joinedWorkspaces, "errors": errors.flatMap { (value: [Error?]) -> [ResultMap?] in value.map { (value: Error?) -> ResultMap? in value.flatMap { (value: Error) -> ResultMap in value.resultMap } } }, "clientMutationId": clientMutationId])
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "id": id])
       }
 
       public var __typename: String {
@@ -189,305 +638,54 @@ public final class SignUpMutation: GraphQLMutation {
         }
       }
 
-      public var id: Int? {
+      public var id: GraphQLID {
         get {
-          return resultMap["id"] as? Int
+          return resultMap["id"]! as! GraphQLID
         }
         set {
           resultMap.updateValue(newValue, forKey: "id")
         }
       }
-
-      public var lastLogin: String? {
-        get {
-          return resultMap["lastLogin"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "lastLogin")
-        }
-      }
-
-      public var dateJoined: String? {
-        get {
-          return resultMap["dateJoined"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "dateJoined")
-        }
-      }
-
-      /// Required. 100 characters or fewer. Letters, digits and _ only.
-      public var username: String? {
-        get {
-          return resultMap["username"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "username")
-        }
-      }
-
-      /// Required. 100 characters or fewer.
-      public var displayName: String? {
-        get {
-          return resultMap["displayName"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "displayName")
-        }
-      }
-
-      public var email: String? {
-        get {
-          return resultMap["email"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "email")
-        }
-      }
-
-      /// Digits only with county calling code. 30 characters or fewer.
-      public var phoneNumber: String? {
-        get {
-          return resultMap["phoneNumber"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "phoneNumber")
-        }
-      }
-
-      public var joinedWorkspaces: String? {
-        get {
-          return resultMap["joinedWorkspaces"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "joinedWorkspaces")
-        }
-      }
-
-      /// May contain more than one error for same field.
-      public var errors: [Error?]? {
-        get {
-          return (resultMap["errors"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Error?] in value.map { (value: ResultMap?) -> Error? in value.flatMap { (value: ResultMap) -> Error in Error(unsafeResultMap: value) } } }
-        }
-        set {
-          resultMap.updateValue(newValue.flatMap { (value: [Error?]) -> [ResultMap?] in value.map { (value: Error?) -> ResultMap? in value.flatMap { (value: Error) -> ResultMap in value.resultMap } } }, forKey: "errors")
-        }
-      }
-
-      public var clientMutationId: String? {
-        get {
-          return resultMap["clientMutationId"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "clientMutationId")
-        }
-      }
-
-      public struct Error: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["ErrorType"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("field", type: .nonNull(.scalar(String.self))),
-            GraphQLField("messages", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(field: String, messages: [String]) {
-          self.init(unsafeResultMap: ["__typename": "ErrorType", "field": field, "messages": messages])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var field: String {
-          get {
-            return resultMap["field"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "field")
-          }
-        }
-
-        public var messages: [String] {
-          get {
-            return resultMap["messages"]! as! [String]
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "messages")
-          }
-        }
-      }
     }
   }
 }
 
-public struct StationFragment: GraphQLFragment {
-  /// The raw GraphQL definition of this fragment.
-  public static let fragmentDefinition: String =
+public final class UpdateUserInfoMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
     """
-    fragment stationFragment on StationNode {
-      __typename
-      id
-      name
-    }
-    """
-
-  public static let possibleTypes: [String] = ["StationNode"]
-
-  public static var selections: [GraphQLSelection] {
-    return [
-      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-      GraphQLField("name", type: .nonNull(.scalar(String.self))),
-    ]
-  }
-
-  public private(set) var resultMap: ResultMap
-
-  public init(unsafeResultMap: ResultMap) {
-    self.resultMap = unsafeResultMap
-  }
-
-  public init(id: GraphQLID, name: String) {
-    self.init(unsafeResultMap: ["__typename": "StationNode", "id": id, "name": name])
-  }
-
-  public var __typename: String {
-    get {
-      return resultMap["__typename"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "__typename")
-    }
-  }
-
-  /// The ID of the object.
-  public var id: GraphQLID {
-    get {
-      return resultMap["id"]! as! GraphQLID
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "id")
-    }
-  }
-
-  public var name: String {
-    get {
-      return resultMap["name"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "name")
-    }
-  }
-}
-
-public struct StationGroupFragment: GraphQLFragment {
-  /// The raw GraphQL definition of this fragment.
-  public static let fragmentDefinition: String =
-    """
-    fragment stationGroupFragment on StationGroupNode {
-      __typename
-      id
-      name
-      stations(
-        offset: $stationsOffset
-        before: $stationsBefore
-        after: $stationsAfter
-        first: $stationsFirst
-        last: $stationsLast
-        id: $stationsId
-      ) {
+    mutation updateUserInfo($input: UpdateUserMutationInput!) {
+      updateUser(input: $input) {
         __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...stationFragment
-          }
-        }
+        ...UserFragment
       }
     }
     """
 
-  public static let possibleTypes: [String] = ["StationGroupNode"]
+  public let operationName: String = "updateUserInfo"
 
-  public static var selections: [GraphQLSelection] {
-    return [
-      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-      GraphQLField("name", type: .nonNull(.scalar(String.self))),
-      GraphQLField("stations", arguments: ["offset": GraphQLVariable("stationsOffset"), "before": GraphQLVariable("stationsBefore"), "after": GraphQLVariable("stationsAfter"), "first": GraphQLVariable("stationsFirst"), "last": GraphQLVariable("stationsLast"), "id": GraphQLVariable("stationsId")], type: .object(Station.selections)),
-    ]
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + UserFragment.fragmentDefinition)
+    return document
   }
 
-  public private(set) var resultMap: ResultMap
+  public var input: UpdateUserMutationInput
 
-  public init(unsafeResultMap: ResultMap) {
-    self.resultMap = unsafeResultMap
+  public init(input: UpdateUserMutationInput) {
+    self.input = input
   }
 
-  public init(id: GraphQLID, name: String, stations: Station? = nil) {
-    self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "stations": stations.flatMap { (value: Station) -> ResultMap in value.resultMap }])
+  public var variables: GraphQLMap? {
+    return ["input": input]
   }
 
-  public var __typename: String {
-    get {
-      return resultMap["__typename"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "__typename")
-    }
-  }
-
-  /// The ID of the object.
-  public var id: GraphQLID {
-    get {
-      return resultMap["id"]! as! GraphQLID
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "id")
-    }
-  }
-
-  public var name: String {
-    get {
-      return resultMap["name"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "name")
-    }
-  }
-
-  public var stations: Station? {
-    get {
-      return (resultMap["stations"] as? ResultMap).flatMap { Station(unsafeResultMap: $0) }
-    }
-    set {
-      resultMap.updateValue(newValue?.resultMap, forKey: "stations")
-    }
-  }
-
-  public struct Station: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["StationNodeConnection"]
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+        GraphQLField("updateUser", arguments: ["input": GraphQLVariable("input")], type: .object(UpdateUser.selections)),
       ]
     }
 
@@ -497,36 +695,26 @@ public struct StationGroupFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "StationNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+    public init(updateUser: UpdateUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "updateUser": updateUser.flatMap { (value: UpdateUser) -> ResultMap in value.resultMap }])
     }
 
-    public var __typename: String {
+    public var updateUser: UpdateUser? {
       get {
-        return resultMap["__typename"]! as! String
+        return (resultMap["updateUser"] as? ResultMap).flatMap { UpdateUser(unsafeResultMap: $0) }
       }
       set {
-        resultMap.updateValue(newValue, forKey: "__typename")
+        resultMap.updateValue(newValue?.resultMap, forKey: "updateUser")
       }
     }
 
-    /// Contains the nodes in this connection.
-    public var edges: [Edge?] {
-      get {
-        return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
-      }
-      set {
-        resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
-      }
-    }
-
-    public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["StationNodeEdge"]
+    public struct UpdateUser: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserNode"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("node", type: .object(Node.selections)),
+          GraphQLFragmentSpread(UserFragment.self),
         ]
       }
 
@@ -536,8 +724,8 @@ public struct StationGroupFragment: GraphQLFragment {
         self.resultMap = unsafeResultMap
       }
 
-      public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "StationNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+      public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber])
       }
 
       public var __typename: String {
@@ -549,23 +737,140 @@ public struct StationGroupFragment: GraphQLFragment {
         }
       }
 
-      /// The item at the end of the edge
-      public var node: Node? {
+      public var fragments: Fragments {
         get {
-          return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+          return Fragments(unsafeResultMap: resultMap)
         }
         set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "node")
+          resultMap += newValue.resultMap
         }
       }
 
-      public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["StationNode"]
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var userFragment: UserFragment {
+          get {
+            return UserFragment(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class AllMyWorkspacesQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query allMyWorkspaces {
+      signedUser {
+        __typename
+        joinedWorkspaces {
+          __typename
+          edges {
+            __typename
+            node {
+              __typename
+              ...WorkspaceFragment
+            }
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "allMyWorkspaces"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + WorkspaceFragment.fragmentDefinition)
+    return document
+  }
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("signedUser", type: .object(SignedUser.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(signedUser: SignedUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var signedUser: SignedUser? {
+      get {
+        return (resultMap["signedUser"] as? ResultMap).flatMap { SignedUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "signedUser")
+      }
+    }
+
+    public struct SignedUser: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("joinedWorkspaces", type: .object(JoinedWorkspace.selections)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(joinedWorkspaces: JoinedWorkspace? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var joinedWorkspaces: JoinedWorkspace? {
+        get {
+          return (resultMap["joinedWorkspaces"] as? ResultMap).flatMap { JoinedWorkspace(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "joinedWorkspaces")
+        }
+      }
+
+      public struct JoinedWorkspace: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["WorkspaceNodeConnection"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(StationFragment.self),
+            GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
           ]
         }
 
@@ -575,8 +880,8 @@ public struct StationGroupFragment: GraphQLFragment {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, name: String) {
-          self.init(unsafeResultMap: ["__typename": "StationNode", "id": id, "name": name])
+        public init(edges: [Edge?]) {
+          self.init(unsafeResultMap: ["__typename": "WorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
         }
 
         public var __typename: String {
@@ -588,28 +893,2305 @@ public struct StationGroupFragment: GraphQLFragment {
           }
         }
 
-        public var fragments: Fragments {
+        /// Contains the nodes in this connection.
+        public var edges: [Edge?] {
           get {
-            return Fragments(unsafeResultMap: resultMap)
+            return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
           }
           set {
-            resultMap += newValue.resultMap
+            resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
           }
         }
 
-        public struct Fragments {
+        public struct Edge: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["WorkspaceNodeEdge"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("node", type: .object(Node.selections)),
+            ]
+          }
+
           public private(set) var resultMap: ResultMap
 
           public init(unsafeResultMap: ResultMap) {
             self.resultMap = unsafeResultMap
           }
 
-          public var stationFragment: StationFragment {
+          public init(node: Node? = nil) {
+            self.init(unsafeResultMap: ["__typename": "WorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
             get {
-              return StationFragment(unsafeResultMap: resultMap)
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The item at the end of the edge
+          public var node: Node? {
+            get {
+              return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "node")
+            }
+          }
+
+          public struct Node: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["WorkspaceNode"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLFragmentSpread(WorkspaceFragment.self),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var fragments: Fragments {
+              get {
+                return Fragments(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+
+            public struct Fragments {
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public var workspaceFragment: WorkspaceFragment {
+                get {
+                  return WorkspaceFragment(unsafeResultMap: resultMap)
+                }
+                set {
+                  resultMap += newValue.resultMap
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class LeaveWorkspaceMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation leaveWorkspace($workspaceId: String) {
+      leaveWorkspace(workspaceId: $workspaceId)
+    }
+    """
+
+  public let operationName: String = "leaveWorkspace"
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("leaveWorkspace", arguments: ["workspaceId": GraphQLVariable("workspaceId")], type: .scalar(Bool.self)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(leaveWorkspace: Bool? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "leaveWorkspace": leaveWorkspace])
+    }
+
+    public var leaveWorkspace: Bool? {
+      get {
+        return resultMap["leaveWorkspace"] as? Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "leaveWorkspace")
+      }
+    }
+  }
+}
+
+public final class SearchWorkspaceByCodeQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query searchWorkspaceByCode($code: String) {
+      linkedWorkspaces(code: $code) {
+        __typename
+        edges {
+          __typename
+          node {
+            __typename
+            ...WorkspaceFragment
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "searchWorkspaceByCode"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + WorkspaceFragment.fragmentDefinition)
+    return document
+  }
+
+  public var code: String?
+
+  public init(code: String? = nil) {
+    self.code = code
+  }
+
+  public var variables: GraphQLMap? {
+    return ["code": code]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("linkedWorkspaces", arguments: ["code": GraphQLVariable("code")], type: .object(LinkedWorkspace.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(linkedWorkspaces: LinkedWorkspace? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "linkedWorkspaces": linkedWorkspaces.flatMap { (value: LinkedWorkspace) -> ResultMap in value.resultMap }])
+    }
+
+    public var linkedWorkspaces: LinkedWorkspace? {
+      get {
+        return (resultMap["linkedWorkspaces"] as? ResultMap).flatMap { LinkedWorkspace(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "linkedWorkspaces")
+      }
+    }
+
+    public struct LinkedWorkspace: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["WorkspaceNodeConnection"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(edges: [Edge?]) {
+        self.init(unsafeResultMap: ["__typename": "WorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// Contains the nodes in this connection.
+      public var edges: [Edge?] {
+        get {
+          return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+        }
+      }
+
+      public struct Edge: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["WorkspaceNodeEdge"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("node", type: .object(Node.selections)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(node: Node? = nil) {
+          self.init(unsafeResultMap: ["__typename": "WorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// The item at the end of the edge
+        public var node: Node? {
+          get {
+            return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "node")
+          }
+        }
+
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["WorkspaceNode"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(WorkspaceFragment.self),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
             }
             set {
               resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var workspaceFragment: WorkspaceFragment {
+              get {
+                return WorkspaceFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class WorkspaceByIdQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query workspaceById($workspaceId: String) {
+      signedUser {
+        __typename
+        joinedWorkspaces(id: $workspaceId) {
+          __typename
+          edges {
+            __typename
+            node {
+              __typename
+              ...WorkspaceFragment
+            }
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "workspaceById"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + WorkspaceFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("signedUser", type: .object(SignedUser.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(signedUser: SignedUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var signedUser: SignedUser? {
+      get {
+        return (resultMap["signedUser"] as? ResultMap).flatMap { SignedUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "signedUser")
+      }
+    }
+
+    public struct SignedUser: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("joinedWorkspaces", arguments: ["id": GraphQLVariable("workspaceId")], type: .object(JoinedWorkspace.selections)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(joinedWorkspaces: JoinedWorkspace? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var joinedWorkspaces: JoinedWorkspace? {
+        get {
+          return (resultMap["joinedWorkspaces"] as? ResultMap).flatMap { JoinedWorkspace(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "joinedWorkspaces")
+        }
+      }
+
+      public struct JoinedWorkspace: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["WorkspaceNodeConnection"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(edges: [Edge?]) {
+          self.init(unsafeResultMap: ["__typename": "WorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// Contains the nodes in this connection.
+        public var edges: [Edge?] {
+          get {
+            return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+          }
+        }
+
+        public struct Edge: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["WorkspaceNodeEdge"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("node", type: .object(Node.selections)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(node: Node? = nil) {
+            self.init(unsafeResultMap: ["__typename": "WorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The item at the end of the edge
+          public var node: Node? {
+            get {
+              return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "node")
+            }
+          }
+
+          public struct Node: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["WorkspaceNode"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLFragmentSpread(WorkspaceFragment.self),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var fragments: Fragments {
+              get {
+                return Fragments(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+
+            public struct Fragments {
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public var workspaceFragment: WorkspaceFragment {
+                get {
+                  return WorkspaceFragment(unsafeResultMap: resultMap)
+                }
+                set {
+                  resultMap += newValue.resultMap
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class RequestToJoinWorkspaceMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation requestToJoinWorkspace($workspaceId: String) {
+      requestToJoinWorkspace(workspaceId: $workspaceId)
+    }
+    """
+
+  public let operationName: String = "requestToJoinWorkspace"
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("requestToJoinWorkspace", arguments: ["workspaceId": GraphQLVariable("workspaceId")], type: .scalar(Bool.self)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(requestToJoinWorkspace: Bool? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "requestToJoinWorkspace": requestToJoinWorkspace])
+    }
+
+    public var requestToJoinWorkspace: Bool? {
+      get {
+        return resultMap["requestToJoinWorkspace"] as? Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "requestToJoinWorkspace")
+      }
+    }
+  }
+}
+
+public final class CancelToJoinWorkspaceMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation cancelToJoinWorkspace($workspaceId: String) {
+      cancelToJoinWorkspace(workspaceId: $workspaceId)
+    }
+    """
+
+  public let operationName: String = "cancelToJoinWorkspace"
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("cancelToJoinWorkspace", arguments: ["workspaceId": GraphQLVariable("workspaceId")], type: .scalar(Bool.self)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(cancelToJoinWorkspace: Bool? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "cancelToJoinWorkspace": cancelToJoinWorkspace])
+    }
+
+    public var cancelToJoinWorkspace: Bool? {
+      get {
+        return resultMap["cancelToJoinWorkspace"] as? Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "cancelToJoinWorkspace")
+      }
+    }
+  }
+}
+
+public final class StopsByWorkspaceIdQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query stopsByWorkspaceId($workspaceId: String) {
+      signedUser {
+        __typename
+        joinedWorkspaces(id: $workspaceId) {
+          __typename
+          edges {
+            __typename
+            node {
+              __typename
+              stationGroups {
+                __typename
+                edges {
+                  __typename
+                  node {
+                    __typename
+                    ...StopFragment
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "stopsByWorkspaceId"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + StopFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("signedUser", type: .object(SignedUser.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(signedUser: SignedUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var signedUser: SignedUser? {
+      get {
+        return (resultMap["signedUser"] as? ResultMap).flatMap { SignedUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "signedUser")
+      }
+    }
+
+    public struct SignedUser: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("joinedWorkspaces", arguments: ["id": GraphQLVariable("workspaceId")], type: .object(JoinedWorkspace.selections)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(joinedWorkspaces: JoinedWorkspace? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var joinedWorkspaces: JoinedWorkspace? {
+        get {
+          return (resultMap["joinedWorkspaces"] as? ResultMap).flatMap { JoinedWorkspace(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "joinedWorkspaces")
+        }
+      }
+
+      public struct JoinedWorkspace: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["WorkspaceNodeConnection"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(edges: [Edge?]) {
+          self.init(unsafeResultMap: ["__typename": "WorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// Contains the nodes in this connection.
+        public var edges: [Edge?] {
+          get {
+            return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+          }
+        }
+
+        public struct Edge: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["WorkspaceNodeEdge"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("node", type: .object(Node.selections)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(node: Node? = nil) {
+            self.init(unsafeResultMap: ["__typename": "WorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The item at the end of the edge
+          public var node: Node? {
+            get {
+              return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "node")
+            }
+          }
+
+          public struct Node: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["WorkspaceNode"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("stationGroups", type: .object(StationGroup.selections)),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(stationGroups: StationGroup? = nil) {
+              self.init(unsafeResultMap: ["__typename": "WorkspaceNode", "stationGroups": stationGroups.flatMap { (value: StationGroup) -> ResultMap in value.resultMap }])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var stationGroups: StationGroup? {
+              get {
+                return (resultMap["stationGroups"] as? ResultMap).flatMap { StationGroup(unsafeResultMap: $0) }
+              }
+              set {
+                resultMap.updateValue(newValue?.resultMap, forKey: "stationGroups")
+              }
+            }
+
+            public struct StationGroup: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["StationGroupNodeConnection"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(edges: [Edge?]) {
+                self.init(unsafeResultMap: ["__typename": "StationGroupNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// Contains the nodes in this connection.
+              public var edges: [Edge?] {
+                get {
+                  return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+                }
+                set {
+                  resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+                }
+              }
+
+              public struct Edge: GraphQLSelectionSet {
+                public static let possibleTypes: [String] = ["StationGroupNodeEdge"]
+
+                public static var selections: [GraphQLSelection] {
+                  return [
+                    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("node", type: .object(Node.selections)),
+                  ]
+                }
+
+                public private(set) var resultMap: ResultMap
+
+                public init(unsafeResultMap: ResultMap) {
+                  self.resultMap = unsafeResultMap
+                }
+
+                public init(node: Node? = nil) {
+                  self.init(unsafeResultMap: ["__typename": "StationGroupNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+                }
+
+                public var __typename: String {
+                  get {
+                    return resultMap["__typename"]! as! String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "__typename")
+                  }
+                }
+
+                /// The item at the end of the edge
+                public var node: Node? {
+                  get {
+                    return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+                  }
+                  set {
+                    resultMap.updateValue(newValue?.resultMap, forKey: "node")
+                  }
+                }
+
+                public struct Node: GraphQLSelectionSet {
+                  public static let possibleTypes: [String] = ["StationGroupNode"]
+
+                  public static var selections: [GraphQLSelection] {
+                    return [
+                      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                      GraphQLFragmentSpread(StopFragment.self),
+                    ]
+                  }
+
+                  public private(set) var resultMap: ResultMap
+
+                  public init(unsafeResultMap: ResultMap) {
+                    self.resultMap = unsafeResultMap
+                  }
+
+                  public init(id: GraphQLID, name: String, isStop: Bool) {
+                    self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop])
+                  }
+
+                  public var __typename: String {
+                    get {
+                      return resultMap["__typename"]! as! String
+                    }
+                    set {
+                      resultMap.updateValue(newValue, forKey: "__typename")
+                    }
+                  }
+
+                  public var fragments: Fragments {
+                    get {
+                      return Fragments(unsafeResultMap: resultMap)
+                    }
+                    set {
+                      resultMap += newValue.resultMap
+                    }
+                  }
+
+                  public struct Fragments {
+                    public private(set) var resultMap: ResultMap
+
+                    public init(unsafeResultMap: ResultMap) {
+                      self.resultMap = unsafeResultMap
+                    }
+
+                    public var stopFragment: StopFragment {
+                      get {
+                        return StopFragment(unsafeResultMap: resultMap)
+                      }
+                      set {
+                        resultMap += newValue.resultMap
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class ServicesQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query services($workspaceId: String, $before: String, $last: Int) {
+      hiGlovisServices(workspaceId: $workspaceId, before: $before, last: $last) {
+        __typename
+        pageInfo {
+          __typename
+          startCursor
+          hasPreviousPage
+        }
+        edges {
+          __typename
+          cursor
+          node {
+            __typename
+            ...ServiceFragment
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "services"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ServiceFragment.fragmentDefinition)
+    document.append("\n" + RobotFragment.fragmentDefinition)
+    document.append("\n" + ServiceUnitFragment.fragmentDefinition)
+    document.append("\n" + StopFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: String?
+  public var before: String?
+  public var last: Int?
+
+  public init(workspaceId: String? = nil, before: String? = nil, last: Int? = nil) {
+    self.workspaceId = workspaceId
+    self.before = before
+    self.last = last
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId, "before": before, "last": last]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("hiGlovisServices", arguments: ["workspaceId": GraphQLVariable("workspaceId"), "before": GraphQLVariable("before"), "last": GraphQLVariable("last")], type: .object(HiGlovisService.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(hiGlovisServices: HiGlovisService? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "hiGlovisServices": hiGlovisServices.flatMap { (value: HiGlovisService) -> ResultMap in value.resultMap }])
+    }
+
+    public var hiGlovisServices: HiGlovisService? {
+      get {
+        return (resultMap["hiGlovisServices"] as? ResultMap).flatMap { HiGlovisService(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "hiGlovisServices")
+      }
+    }
+
+    public struct HiGlovisService: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["HiGlovisServiceNodeConnection"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("pageInfo", type: .nonNull(.object(PageInfo.selections))),
+          GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(pageInfo: PageInfo, edges: [Edge?]) {
+        self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNodeConnection", "pageInfo": pageInfo.resultMap, "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// Pagination data for this connection.
+      public var pageInfo: PageInfo {
+        get {
+          return PageInfo(unsafeResultMap: resultMap["pageInfo"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "pageInfo")
+        }
+      }
+
+      /// Contains the nodes in this connection.
+      public var edges: [Edge?] {
+        get {
+          return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+        }
+      }
+
+      public struct PageInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PageInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("startCursor", type: .scalar(String.self)),
+            GraphQLField("hasPreviousPage", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(startCursor: String? = nil, hasPreviousPage: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PageInfo", "startCursor": startCursor, "hasPreviousPage": hasPreviousPage])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// When paginating backwards, the cursor to continue.
+        public var startCursor: String? {
+          get {
+            return resultMap["startCursor"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "startCursor")
+          }
+        }
+
+        /// When paginating backwards, are there more items?
+        public var hasPreviousPage: Bool {
+          get {
+            return resultMap["hasPreviousPage"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasPreviousPage")
+          }
+        }
+      }
+
+      public struct Edge: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["HiGlovisServiceNodeEdge"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("cursor", type: .nonNull(.scalar(String.self))),
+            GraphQLField("node", type: .object(Node.selections)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(cursor: String, node: Node? = nil) {
+          self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNodeEdge", "cursor": cursor, "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// A cursor for use in pagination
+        public var cursor: String {
+          get {
+            return resultMap["cursor"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "cursor")
+          }
+        }
+
+        /// The item at the end of the edge
+        public var node: Node? {
+          get {
+            return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "node")
+          }
+        }
+
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["HiGlovisServiceNode"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(ServiceFragment.self),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var serviceFragment: ServiceFragment {
+              get {
+                return ServiceFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class CompleteServiceUnitMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation completeServiceUnit($serviceId: String, $serviceStep: Int) {
+      completeServiceUnit(serviceId: $serviceId, serviceStep: $serviceStep) {
+        __typename
+        ok
+      }
+    }
+    """
+
+  public let operationName: String = "completeServiceUnit"
+
+  public var serviceId: String?
+  public var serviceStep: Int?
+
+  public init(serviceId: String? = nil, serviceStep: Int? = nil) {
+    self.serviceId = serviceId
+    self.serviceStep = serviceStep
+  }
+
+  public var variables: GraphQLMap? {
+    return ["serviceId": serviceId, "serviceStep": serviceStep]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("completeServiceUnit", arguments: ["serviceId": GraphQLVariable("serviceId"), "serviceStep": GraphQLVariable("serviceStep")], type: .object(CompleteServiceUnit.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(completeServiceUnit: CompleteServiceUnit? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "completeServiceUnit": completeServiceUnit.flatMap { (value: CompleteServiceUnit) -> ResultMap in value.resultMap }])
+    }
+
+    public var completeServiceUnit: CompleteServiceUnit? {
+      get {
+        return (resultMap["completeServiceUnit"] as? ResultMap).flatMap { CompleteServiceUnit(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "completeServiceUnit")
+      }
+    }
+
+    public struct CompleteServiceUnit: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["CompleteServiceUnit"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("ok", type: .scalar(Bool.self)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(ok: Bool? = nil) {
+        self.init(unsafeResultMap: ["__typename": "CompleteServiceUnit", "ok": ok])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var ok: Bool? {
+        get {
+          return resultMap["ok"] as? Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "ok")
+        }
+      }
+    }
+  }
+}
+
+public final class ServiceQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query service($serviceId: String) {
+      hiGlovisServiceByOrderId(orderId: $serviceId) {
+        __typename
+        ...ServiceFragment
+      }
+    }
+    """
+
+  public let operationName: String = "service"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ServiceFragment.fragmentDefinition)
+    document.append("\n" + RobotFragment.fragmentDefinition)
+    document.append("\n" + ServiceUnitFragment.fragmentDefinition)
+    document.append("\n" + StopFragment.fragmentDefinition)
+    return document
+  }
+
+  public var serviceId: String?
+
+  public init(serviceId: String? = nil) {
+    self.serviceId = serviceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["serviceId": serviceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("hiGlovisServiceByOrderId", arguments: ["orderId": GraphQLVariable("serviceId")], type: .object(HiGlovisServiceByOrderId.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(hiGlovisServiceByOrderId: HiGlovisServiceByOrderId? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "hiGlovisServiceByOrderId": hiGlovisServiceByOrderId.flatMap { (value: HiGlovisServiceByOrderId) -> ResultMap in value.resultMap }])
+    }
+
+    public var hiGlovisServiceByOrderId: HiGlovisServiceByOrderId? {
+      get {
+        return (resultMap["hiGlovisServiceByOrderId"] as? ResultMap).flatMap { HiGlovisServiceByOrderId(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "hiGlovisServiceByOrderId")
+      }
+    }
+
+    public struct HiGlovisServiceByOrderId: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["HiGlovisServiceNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(ServiceFragment.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var serviceFragment: ServiceFragment {
+          get {
+            return ServiceFragment(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class UserByIdQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query userById($workspaceId: String) {
+      signedUser {
+        __typename
+        joinedWorkspaces(id: $workspaceId) {
+          __typename
+          edges {
+            __typename
+            node {
+              __typename
+              members {
+                __typename
+                edges {
+                  __typename
+                  node {
+                    __typename
+                    ...MemberFragment
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "userById"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + MemberFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("signedUser", type: .object(SignedUser.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(signedUser: SignedUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var signedUser: SignedUser? {
+      get {
+        return (resultMap["signedUser"] as? ResultMap).flatMap { SignedUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "signedUser")
+      }
+    }
+
+    public struct SignedUser: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("joinedWorkspaces", arguments: ["id": GraphQLVariable("workspaceId")], type: .object(JoinedWorkspace.selections)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(joinedWorkspaces: JoinedWorkspace? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var joinedWorkspaces: JoinedWorkspace? {
+        get {
+          return (resultMap["joinedWorkspaces"] as? ResultMap).flatMap { JoinedWorkspace(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "joinedWorkspaces")
+        }
+      }
+
+      public struct JoinedWorkspace: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["WorkspaceNodeConnection"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(edges: [Edge?]) {
+          self.init(unsafeResultMap: ["__typename": "WorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// Contains the nodes in this connection.
+        public var edges: [Edge?] {
+          get {
+            return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+          }
+        }
+
+        public struct Edge: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["WorkspaceNodeEdge"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("node", type: .object(Node.selections)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(node: Node? = nil) {
+            self.init(unsafeResultMap: ["__typename": "WorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The item at the end of the edge
+          public var node: Node? {
+            get {
+              return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "node")
+            }
+          }
+
+          public struct Node: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["WorkspaceNode"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("members", type: .object(Member.selections)),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(members: Member? = nil) {
+              self.init(unsafeResultMap: ["__typename": "WorkspaceNode", "members": members.flatMap { (value: Member) -> ResultMap in value.resultMap }])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var members: Member? {
+              get {
+                return (resultMap["members"] as? ResultMap).flatMap { Member(unsafeResultMap: $0) }
+              }
+              set {
+                resultMap.updateValue(newValue?.resultMap, forKey: "members")
+              }
+            }
+
+            public struct Member: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["MemberNodeConnection"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(edges: [Edge?]) {
+                self.init(unsafeResultMap: ["__typename": "MemberNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// Contains the nodes in this connection.
+              public var edges: [Edge?] {
+                get {
+                  return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+                }
+                set {
+                  resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+                }
+              }
+
+              public struct Edge: GraphQLSelectionSet {
+                public static let possibleTypes: [String] = ["MemberNodeEdge"]
+
+                public static var selections: [GraphQLSelection] {
+                  return [
+                    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("node", type: .object(Node.selections)),
+                  ]
+                }
+
+                public private(set) var resultMap: ResultMap
+
+                public init(unsafeResultMap: ResultMap) {
+                  self.resultMap = unsafeResultMap
+                }
+
+                public init(node: Node? = nil) {
+                  self.init(unsafeResultMap: ["__typename": "MemberNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+                }
+
+                public var __typename: String {
+                  get {
+                    return resultMap["__typename"]! as! String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "__typename")
+                  }
+                }
+
+                /// The item at the end of the edge
+                public var node: Node? {
+                  get {
+                    return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+                  }
+                  set {
+                    resultMap.updateValue(newValue?.resultMap, forKey: "node")
+                  }
+                }
+
+                public struct Node: GraphQLSelectionSet {
+                  public static let possibleTypes: [String] = ["MemberNode"]
+
+                  public static var selections: [GraphQLSelection] {
+                    return [
+                      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                      GraphQLFragmentSpread(MemberFragment.self),
+                    ]
+                  }
+
+                  public private(set) var resultMap: ResultMap
+
+                  public init(unsafeResultMap: ResultMap) {
+                    self.resultMap = unsafeResultMap
+                  }
+
+                  public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil) {
+                    self.init(unsafeResultMap: ["__typename": "MemberNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber])
+                  }
+
+                  public var __typename: String {
+                    get {
+                      return resultMap["__typename"]! as! String
+                    }
+                    set {
+                      resultMap.updateValue(newValue, forKey: "__typename")
+                    }
+                  }
+
+                  public var fragments: Fragments {
+                    get {
+                      return Fragments(unsafeResultMap: resultMap)
+                    }
+                    set {
+                      resultMap += newValue.resultMap
+                    }
+                  }
+
+                  public struct Fragments {
+                    public private(set) var resultMap: ResultMap
+
+                    public init(unsafeResultMap: ResultMap) {
+                      self.resultMap = unsafeResultMap
+                    }
+
+                    public var memberFragment: MemberFragment {
+                      get {
+                        return MemberFragment(unsafeResultMap: resultMap)
+                      }
+                      set {
+                        resultMap += newValue.resultMap
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class UsersByWorkspaceIdQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query usersByWorkspaceId($workspaceId: String) {
+      signedUser {
+        __typename
+        joinedWorkspaces(id: $workspaceId) {
+          __typename
+          edges {
+            __typename
+            node {
+              __typename
+              members {
+                __typename
+                edges {
+                  __typename
+                  node {
+                    __typename
+                    ...MemberFragment
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "usersByWorkspaceId"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + MemberFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: String?
+
+  public init(workspaceId: String? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("signedUser", type: .object(SignedUser.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(signedUser: SignedUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var signedUser: SignedUser? {
+      get {
+        return (resultMap["signedUser"] as? ResultMap).flatMap { SignedUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "signedUser")
+      }
+    }
+
+    public struct SignedUser: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("joinedWorkspaces", arguments: ["id": GraphQLVariable("workspaceId")], type: .object(JoinedWorkspace.selections)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(joinedWorkspaces: JoinedWorkspace? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var joinedWorkspaces: JoinedWorkspace? {
+        get {
+          return (resultMap["joinedWorkspaces"] as? ResultMap).flatMap { JoinedWorkspace(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "joinedWorkspaces")
+        }
+      }
+
+      public struct JoinedWorkspace: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["WorkspaceNodeConnection"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(edges: [Edge?]) {
+          self.init(unsafeResultMap: ["__typename": "WorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// Contains the nodes in this connection.
+        public var edges: [Edge?] {
+          get {
+            return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+          }
+        }
+
+        public struct Edge: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["WorkspaceNodeEdge"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("node", type: .object(Node.selections)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(node: Node? = nil) {
+            self.init(unsafeResultMap: ["__typename": "WorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The item at the end of the edge
+          public var node: Node? {
+            get {
+              return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "node")
+            }
+          }
+
+          public struct Node: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["WorkspaceNode"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("members", type: .object(Member.selections)),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(members: Member? = nil) {
+              self.init(unsafeResultMap: ["__typename": "WorkspaceNode", "members": members.flatMap { (value: Member) -> ResultMap in value.resultMap }])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var members: Member? {
+              get {
+                return (resultMap["members"] as? ResultMap).flatMap { Member(unsafeResultMap: $0) }
+              }
+              set {
+                resultMap.updateValue(newValue?.resultMap, forKey: "members")
+              }
+            }
+
+            public struct Member: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["MemberNodeConnection"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(edges: [Edge?]) {
+                self.init(unsafeResultMap: ["__typename": "MemberNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// Contains the nodes in this connection.
+              public var edges: [Edge?] {
+                get {
+                  return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+                }
+                set {
+                  resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+                }
+              }
+
+              public struct Edge: GraphQLSelectionSet {
+                public static let possibleTypes: [String] = ["MemberNodeEdge"]
+
+                public static var selections: [GraphQLSelection] {
+                  return [
+                    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("node", type: .object(Node.selections)),
+                  ]
+                }
+
+                public private(set) var resultMap: ResultMap
+
+                public init(unsafeResultMap: ResultMap) {
+                  self.resultMap = unsafeResultMap
+                }
+
+                public init(node: Node? = nil) {
+                  self.init(unsafeResultMap: ["__typename": "MemberNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+                }
+
+                public var __typename: String {
+                  get {
+                    return resultMap["__typename"]! as! String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "__typename")
+                  }
+                }
+
+                /// The item at the end of the edge
+                public var node: Node? {
+                  get {
+                    return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+                  }
+                  set {
+                    resultMap.updateValue(newValue?.resultMap, forKey: "node")
+                  }
+                }
+
+                public struct Node: GraphQLSelectionSet {
+                  public static let possibleTypes: [String] = ["MemberNode"]
+
+                  public static var selections: [GraphQLSelection] {
+                    return [
+                      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                      GraphQLFragmentSpread(MemberFragment.self),
+                    ]
+                  }
+
+                  public private(set) var resultMap: ResultMap
+
+                  public init(unsafeResultMap: ResultMap) {
+                    self.resultMap = unsafeResultMap
+                  }
+
+                  public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil) {
+                    self.init(unsafeResultMap: ["__typename": "MemberNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber])
+                  }
+
+                  public var __typename: String {
+                    get {
+                      return resultMap["__typename"]! as! String
+                    }
+                    set {
+                      resultMap.updateValue(newValue, forKey: "__typename")
+                    }
+                  }
+
+                  public var fragments: Fragments {
+                    get {
+                      return Fragments(unsafeResultMap: resultMap)
+                    }
+                    set {
+                      resultMap += newValue.resultMap
+                    }
+                  }
+
+                  public struct Fragments {
+                    public private(set) var resultMap: ResultMap
+
+                    public init(unsafeResultMap: ResultMap) {
+                      self.resultMap = unsafeResultMap
+                    }
+
+                    public var memberFragment: MemberFragment {
+                      get {
+                        return MemberFragment(unsafeResultMap: resultMap)
+                      }
+                      set {
+                        resultMap += newValue.resultMap
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -622,262 +3204,7 @@ public struct UserFragment: GraphQLFragment {
   /// The raw GraphQL definition of this fragment.
   public static let fragmentDefinition: String =
     """
-    fragment userFragment on UserNode {
-      __typename
-      id
-      username
-      displayName
-      email
-      phoneNumber
-      joinedWorkspaces(
-        offset: $joinedWorkspacesOffset
-        before: $joinedWorkspacesBefore
-        after: $joinedWorkspacesAfter
-        first: $joinedWorkspacesFirst
-        last: $joinedWorkspacesLast
-        id: $joinedWorkspacesId
-      ) {
-        __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...workspaceForUserFragment
-          }
-        }
-      }
-    }
-    """
-
-  public static let possibleTypes: [String] = ["UserNode"]
-
-  public static var selections: [GraphQLSelection] {
-    return [
-      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-      GraphQLField("username", type: .nonNull(.scalar(String.self))),
-      GraphQLField("displayName", type: .nonNull(.scalar(String.self))),
-      GraphQLField("email", type: .scalar(String.self)),
-      GraphQLField("phoneNumber", type: .scalar(String.self)),
-      GraphQLField("joinedWorkspaces", arguments: ["offset": GraphQLVariable("joinedWorkspacesOffset"), "before": GraphQLVariable("joinedWorkspacesBefore"), "after": GraphQLVariable("joinedWorkspacesAfter"), "first": GraphQLVariable("joinedWorkspacesFirst"), "last": GraphQLVariable("joinedWorkspacesLast"), "id": GraphQLVariable("joinedWorkspacesId")], type: .object(JoinedWorkspace.selections)),
-    ]
-  }
-
-  public private(set) var resultMap: ResultMap
-
-  public init(unsafeResultMap: ResultMap) {
-    self.resultMap = unsafeResultMap
-  }
-
-  public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil, joinedWorkspaces: JoinedWorkspace? = nil) {
-    self.init(unsafeResultMap: ["__typename": "UserNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber, "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }])
-  }
-
-  public var __typename: String {
-    get {
-      return resultMap["__typename"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "__typename")
-    }
-  }
-
-  /// The ID of the object.
-  public var id: GraphQLID {
-    get {
-      return resultMap["id"]! as! GraphQLID
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "id")
-    }
-  }
-
-  /// Required. 100 characters or fewer. Letters, digits and _ only.
-  public var username: String {
-    get {
-      return resultMap["username"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "username")
-    }
-  }
-
-  /// Required. 100 characters or fewer.
-  public var displayName: String {
-    get {
-      return resultMap["displayName"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "displayName")
-    }
-  }
-
-  public var email: String? {
-    get {
-      return resultMap["email"] as? String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "email")
-    }
-  }
-
-  /// Digits only with county calling code. 30 characters or fewer.
-  public var phoneNumber: String? {
-    get {
-      return resultMap["phoneNumber"] as? String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "phoneNumber")
-    }
-  }
-
-  public var joinedWorkspaces: JoinedWorkspace? {
-    get {
-      return (resultMap["joinedWorkspaces"] as? ResultMap).flatMap { JoinedWorkspace(unsafeResultMap: $0) }
-    }
-    set {
-      resultMap.updateValue(newValue?.resultMap, forKey: "joinedWorkspaces")
-    }
-  }
-
-  public struct JoinedWorkspace: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["WorkspaceNodeConnection"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "WorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
-    }
-
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
-    }
-
-    /// Contains the nodes in this connection.
-    public var edges: [Edge?] {
-      get {
-        return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
-      }
-      set {
-        resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
-      }
-    }
-
-    public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["WorkspaceNodeEdge"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("node", type: .object(Node.selections)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "WorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The item at the end of the edge
-      public var node: Node? {
-        get {
-          return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "node")
-        }
-      }
-
-      public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["WorkspaceNode"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(WorkspaceForUserFragment.self),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var fragments: Fragments {
-          get {
-            return Fragments(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var workspaceForUserFragment: WorkspaceForUserFragment {
-            get {
-              return WorkspaceForUserFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-public struct UserForWorkspaceFragment: GraphQLFragment {
-  /// The raw GraphQL definition of this fragment.
-  public static let fragmentDefinition: String =
-    """
-    fragment userForWorkspaceFragment on UserNode {
+    fragment UserFragment on UserNode {
       __typename
       id
       username
@@ -919,7 +3246,6 @@ public struct UserForWorkspaceFragment: GraphQLFragment {
     }
   }
 
-  /// The ID of the object.
   public var id: GraphQLID {
     get {
       return resultMap["id"]! as! GraphQLID
@@ -973,81 +3299,23 @@ public struct WorkspaceFragment: GraphQLFragment {
   /// The raw GraphQL definition of this fragment.
   public static let fragmentDefinition: String =
     """
-    fragment workspaceFragment on WorkspaceNode {
+    fragment WorkspaceFragment on WorkspaceNode {
       __typename
       id
       name
-      isActive
       code
-      isAllowedToSearch
+      createdAt
       isRequiredToAcceptToJoin
       isRequiredUserEmailToJoin
       isRequiredUserPhoneNumberToJoin
-      members(
-        offset: $memberListOffset
-        before: $memberListBefore
-        after: $memberListAfter
-        first: $memberListFirst
-        last: $memberListLast
-        id: $memberListId
-      ) {
+      members {
         __typename
+        totalCount
         edges {
           __typename
           node {
             __typename
-            ...userForWorkspaceFragment
-          }
-        }
-      }
-      userSet(
-        offset: $userSetOffset
-        before: $userSetBefore
-        after: $userSetAfter
-        first: $userSetFirst
-        last: $userSetLast
-        id: $userSetId
-      ) {
-        __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...userForWorkspaceFragment
-          }
-        }
-      }
-      stationGroups(
-        offset: $stationGroupsOffset
-        before: $stationGroupsBefore
-        after: $stationGroupsAfter
-        first: $stationGroupsFirst
-        last: $stationGroupsLast
-        id: $stationGroupsId
-      ) {
-        __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...stationGroupFragment
-          }
-        }
-      }
-      stations(
-        offset: $stationsOffset
-        before: $stationsBefore
-        after: $stationsAfter
-        first: $stationsFirst
-        last: $stationsLast
-        id: $stationsId
-      ) {
-        __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...stationFragment
+            id
           }
         }
       }
@@ -1061,16 +3329,12 @@ public struct WorkspaceFragment: GraphQLFragment {
       GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
       GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
       GraphQLField("name", type: .nonNull(.scalar(String.self))),
-      GraphQLField("isActive", type: .nonNull(.scalar(Bool.self))),
       GraphQLField("code", type: .scalar(String.self)),
-      GraphQLField("isAllowedToSearch", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("createdAt", type: .scalar(String.self)),
       GraphQLField("isRequiredToAcceptToJoin", type: .nonNull(.scalar(Bool.self))),
       GraphQLField("isRequiredUserEmailToJoin", type: .nonNull(.scalar(Bool.self))),
       GraphQLField("isRequiredUserPhoneNumberToJoin", type: .nonNull(.scalar(Bool.self))),
-      GraphQLField("members", arguments: ["offset": GraphQLVariable("memberListOffset"), "before": GraphQLVariable("memberListBefore"), "after": GraphQLVariable("memberListAfter"), "first": GraphQLVariable("memberListFirst"), "last": GraphQLVariable("memberListLast"), "id": GraphQLVariable("memberListId")], type: .nonNull(.object(Member.selections))),
-      GraphQLField("userSet", arguments: ["offset": GraphQLVariable("userSetOffset"), "before": GraphQLVariable("userSetBefore"), "after": GraphQLVariable("userSetAfter"), "first": GraphQLVariable("userSetFirst"), "last": GraphQLVariable("userSetLast"), "id": GraphQLVariable("userSetId")], type: .nonNull(.object(UserSet.selections))),
-      GraphQLField("stationGroups", arguments: ["offset": GraphQLVariable("stationGroupsOffset"), "before": GraphQLVariable("stationGroupsBefore"), "after": GraphQLVariable("stationGroupsAfter"), "first": GraphQLVariable("stationGroupsFirst"), "last": GraphQLVariable("stationGroupsLast"), "id": GraphQLVariable("stationGroupsId")], type: .object(StationGroup.selections)),
-      GraphQLField("stations", arguments: ["offset": GraphQLVariable("stationsOffset"), "before": GraphQLVariable("stationsBefore"), "after": GraphQLVariable("stationsAfter"), "first": GraphQLVariable("stationsFirst"), "last": GraphQLVariable("stationsLast"), "id": GraphQLVariable("stationsId")], type: .object(Station.selections)),
+      GraphQLField("members", type: .object(Member.selections)),
     ]
   }
 
@@ -1080,8 +3344,8 @@ public struct WorkspaceFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, name: String, isActive: Bool, code: String? = nil, isAllowedToSearch: Bool, isRequiredToAcceptToJoin: Bool, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, members: Member, userSet: UserSet, stationGroups: StationGroup? = nil, stations: Station? = nil) {
-    self.init(unsafeResultMap: ["__typename": "WorkspaceNode", "id": id, "name": name, "isActive": isActive, "code": code, "isAllowedToSearch": isAllowedToSearch, "isRequiredToAcceptToJoin": isRequiredToAcceptToJoin, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "members": members.resultMap, "userSet": userSet.resultMap, "stationGroups": stationGroups.flatMap { (value: StationGroup) -> ResultMap in value.resultMap }, "stations": stations.flatMap { (value: Station) -> ResultMap in value.resultMap }])
+  public init(id: GraphQLID, name: String, code: String? = nil, createdAt: String? = nil, isRequiredToAcceptToJoin: Bool, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, members: Member? = nil) {
+    self.init(unsafeResultMap: ["__typename": "WorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "isRequiredToAcceptToJoin": isRequiredToAcceptToJoin, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "members": members.flatMap { (value: Member) -> ResultMap in value.resultMap }])
   }
 
   public var __typename: String {
@@ -1093,7 +3357,6 @@ public struct WorkspaceFragment: GraphQLFragment {
     }
   }
 
-  /// The ID of the object.
   public var id: GraphQLID {
     get {
       return resultMap["id"]! as! GraphQLID
@@ -1112,15 +3375,6 @@ public struct WorkspaceFragment: GraphQLFragment {
     }
   }
 
-  public var isActive: Bool {
-    get {
-      return resultMap["isActive"]! as! Bool
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "isActive")
-    }
-  }
-
   public var code: String? {
     get {
       return resultMap["code"] as? String
@@ -1130,12 +3384,12 @@ public struct WorkspaceFragment: GraphQLFragment {
     }
   }
 
-  public var isAllowedToSearch: Bool {
+  public var createdAt: String? {
     get {
-      return resultMap["isAllowedToSearch"]! as! Bool
+      return resultMap["createdAt"] as? String
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isAllowedToSearch")
+      resultMap.updateValue(newValue, forKey: "createdAt")
     }
   }
 
@@ -1166,48 +3420,22 @@ public struct WorkspaceFragment: GraphQLFragment {
     }
   }
 
-  public var members: Member {
+  public var members: Member? {
     get {
-      return Member(unsafeResultMap: resultMap["members"]! as! ResultMap)
+      return (resultMap["members"] as? ResultMap).flatMap { Member(unsafeResultMap: $0) }
     }
     set {
-      resultMap.updateValue(newValue.resultMap, forKey: "members")
-    }
-  }
-
-  public var userSet: UserSet {
-    get {
-      return UserSet(unsafeResultMap: resultMap["userSet"]! as! ResultMap)
-    }
-    set {
-      resultMap.updateValue(newValue.resultMap, forKey: "userSet")
-    }
-  }
-
-  public var stationGroups: StationGroup? {
-    get {
-      return (resultMap["stationGroups"] as? ResultMap).flatMap { StationGroup(unsafeResultMap: $0) }
-    }
-    set {
-      resultMap.updateValue(newValue?.resultMap, forKey: "stationGroups")
-    }
-  }
-
-  public var stations: Station? {
-    get {
-      return (resultMap["stations"] as? ResultMap).flatMap { Station(unsafeResultMap: $0) }
-    }
-    set {
-      resultMap.updateValue(newValue?.resultMap, forKey: "stations")
+      resultMap.updateValue(newValue?.resultMap, forKey: "members")
     }
   }
 
   public struct Member: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["UserNodeConnection"]
+    public static let possibleTypes: [String] = ["MemberNodeConnection"]
 
     public static var selections: [GraphQLSelection] {
       return [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("totalCount", type: .scalar(Int.self)),
         GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
       ]
     }
@@ -1218,8 +3446,8 @@ public struct WorkspaceFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "UserNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+    public init(totalCount: Int? = nil, edges: [Edge?]) {
+      self.init(unsafeResultMap: ["__typename": "MemberNodeConnection", "totalCount": totalCount, "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
     }
 
     public var __typename: String {
@@ -1228,6 +3456,15 @@ public struct WorkspaceFragment: GraphQLFragment {
       }
       set {
         resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var totalCount: Int? {
+      get {
+        return resultMap["totalCount"] as? Int
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "totalCount")
       }
     }
 
@@ -1242,7 +3479,7 @@ public struct WorkspaceFragment: GraphQLFragment {
     }
 
     public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["UserNodeEdge"]
+      public static let possibleTypes: [String] = ["MemberNodeEdge"]
 
       public static var selections: [GraphQLSelection] {
         return [
@@ -1258,7 +3495,7 @@ public struct WorkspaceFragment: GraphQLFragment {
       }
 
       public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "UserNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+        self.init(unsafeResultMap: ["__typename": "MemberNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -1281,12 +3518,12 @@ public struct WorkspaceFragment: GraphQLFragment {
       }
 
       public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["UserNode"]
+        public static let possibleTypes: [String] = ["MemberNode"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(UserForWorkspaceFragment.self),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           ]
         }
 
@@ -1296,8 +3533,8 @@ public struct WorkspaceFragment: GraphQLFragment {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "UserNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber])
+        public init(id: GraphQLID) {
+          self.init(unsafeResultMap: ["__typename": "MemberNode", "id": id])
         }
 
         public var __typename: String {
@@ -1309,433 +3546,12 @@ public struct WorkspaceFragment: GraphQLFragment {
           }
         }
 
-        public var fragments: Fragments {
+        public var id: GraphQLID {
           get {
-            return Fragments(unsafeResultMap: resultMap)
+            return resultMap["id"]! as! GraphQLID
           }
           set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var userForWorkspaceFragment: UserForWorkspaceFragment {
-            get {
-              return UserForWorkspaceFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-        }
-      }
-    }
-  }
-
-  public struct UserSet: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["UserNodeConnection"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "UserNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
-    }
-
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
-    }
-
-    /// Contains the nodes in this connection.
-    public var edges: [Edge?] {
-      get {
-        return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
-      }
-      set {
-        resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
-      }
-    }
-
-    public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["UserNodeEdge"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("node", type: .object(Node.selections)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "UserNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The item at the end of the edge
-      public var node: Node? {
-        get {
-          return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "node")
-        }
-      }
-
-      public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["UserNode"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(UserForWorkspaceFragment.self),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "UserNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var fragments: Fragments {
-          get {
-            return Fragments(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var userForWorkspaceFragment: UserForWorkspaceFragment {
-            get {
-              return UserForWorkspaceFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-        }
-      }
-    }
-  }
-
-  public struct StationGroup: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["StationGroupNodeConnection"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "StationGroupNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
-    }
-
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
-    }
-
-    /// Contains the nodes in this connection.
-    public var edges: [Edge?] {
-      get {
-        return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
-      }
-      set {
-        resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
-      }
-    }
-
-    public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["StationGroupNodeEdge"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("node", type: .object(Node.selections)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "StationGroupNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The item at the end of the edge
-      public var node: Node? {
-        get {
-          return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "node")
-        }
-      }
-
-      public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["StationGroupNode"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(StationGroupFragment.self),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var fragments: Fragments {
-          get {
-            return Fragments(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var stationGroupFragment: StationGroupFragment {
-            get {
-              return StationGroupFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-        }
-      }
-    }
-  }
-
-  public struct Station: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["StationNodeConnection"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "StationNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
-    }
-
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
-    }
-
-    /// Contains the nodes in this connection.
-    public var edges: [Edge?] {
-      get {
-        return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
-      }
-      set {
-        resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
-      }
-    }
-
-    public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["StationNodeEdge"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("node", type: .object(Node.selections)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "StationNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The item at the end of the edge
-      public var node: Node? {
-        get {
-          return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "node")
-        }
-      }
-
-      public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["StationNode"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(StationFragment.self),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(id: GraphQLID, name: String) {
-          self.init(unsafeResultMap: ["__typename": "StationNode", "id": id, "name": name])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var fragments: Fragments {
-          get {
-            return Fragments(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var stationFragment: StationFragment {
-            get {
-              return StationFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
+            resultMap.updateValue(newValue, forKey: "id")
           }
         }
       }
@@ -1743,72 +3559,53 @@ public struct WorkspaceFragment: GraphQLFragment {
   }
 }
 
-public struct WorkspaceForUserFragment: GraphQLFragment {
+public struct ServiceFragment: GraphQLFragment {
   /// The raw GraphQL definition of this fragment.
   public static let fragmentDefinition: String =
     """
-    fragment workspaceForUserFragment on WorkspaceNode {
+    fragment ServiceFragment on HiGlovisServiceNode {
       __typename
       id
-      name
-      isActive
-      code
-      isAllowedToSearch
-      isRequiredToAcceptToJoin
-      isRequiredUserEmailToJoin
-      isRequiredUserPhoneNumberToJoin
-      stationGroups(
-        offset: $stationGroupsOffset
-        before: $stationGroupsBefore
-        after: $stationGroupsAfter
-        first: $stationGroupsFirst
-        last: $stationGroupsLast
-        id: $stationGroupsId
-      ) {
+      phase
+      type
+      state
+      timestamps
+      serviceNumber
+      createdAt
+      creator
+      robot {
         __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...stationGroupFragment
-          }
-        }
+        ...RobotFragment
       }
-      stations(
-        offset: $stationsOffset
-        before: $stationsBefore
-        after: $stationsAfter
-        first: $stationsFirst
-        last: $stationsLast
-        id: $stationsId
-      ) {
+      currentServiceUnitStep
+      currentServiceUnit {
         __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...stationFragment
-          }
-        }
+        ...ServiceUnitFragment
+      }
+      serviceUnits {
+        __typename
+        ...ServiceUnitFragment
       }
     }
     """
 
-  public static let possibleTypes: [String] = ["WorkspaceNode"]
+  public static let possibleTypes: [String] = ["HiGlovisServiceNode"]
 
   public static var selections: [GraphQLSelection] {
     return [
       GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
       GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-      GraphQLField("name", type: .nonNull(.scalar(String.self))),
-      GraphQLField("isActive", type: .nonNull(.scalar(Bool.self))),
-      GraphQLField("code", type: .scalar(String.self)),
-      GraphQLField("isAllowedToSearch", type: .nonNull(.scalar(Bool.self))),
-      GraphQLField("isRequiredToAcceptToJoin", type: .nonNull(.scalar(Bool.self))),
-      GraphQLField("isRequiredUserEmailToJoin", type: .nonNull(.scalar(Bool.self))),
-      GraphQLField("isRequiredUserPhoneNumberToJoin", type: .nonNull(.scalar(Bool.self))),
-      GraphQLField("stationGroups", arguments: ["offset": GraphQLVariable("stationGroupsOffset"), "before": GraphQLVariable("stationGroupsBefore"), "after": GraphQLVariable("stationGroupsAfter"), "first": GraphQLVariable("stationGroupsFirst"), "last": GraphQLVariable("stationGroupsLast"), "id": GraphQLVariable("stationGroupsId")], type: .object(StationGroup.selections)),
-      GraphQLField("stations", arguments: ["offset": GraphQLVariable("stationsOffset"), "before": GraphQLVariable("stationsBefore"), "after": GraphQLVariable("stationsAfter"), "first": GraphQLVariable("stationsFirst"), "last": GraphQLVariable("stationsLast"), "id": GraphQLVariable("stationsId")], type: .object(Station.selections)),
+      GraphQLField("phase", type: .scalar(String.self)),
+      GraphQLField("type", type: .scalar(String.self)),
+      GraphQLField("state", type: .nonNull(.scalar(String.self))),
+      GraphQLField("timestamps", type: .scalar(String.self)),
+      GraphQLField("serviceNumber", type: .nonNull(.scalar(String.self))),
+      GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
+      GraphQLField("creator", type: .scalar(String.self)),
+      GraphQLField("robot", type: .object(Robot.selections)),
+      GraphQLField("currentServiceUnitStep", type: .scalar(Int.self)),
+      GraphQLField("currentServiceUnit", type: .object(CurrentServiceUnit.selections)),
+      GraphQLField("serviceUnits", type: .list(.object(ServiceUnit.selections))),
     ]
   }
 
@@ -1818,8 +3615,8 @@ public struct WorkspaceForUserFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, name: String, isActive: Bool, code: String? = nil, isAllowedToSearch: Bool, isRequiredToAcceptToJoin: Bool, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, stationGroups: StationGroup? = nil, stations: Station? = nil) {
-    self.init(unsafeResultMap: ["__typename": "WorkspaceNode", "id": id, "name": name, "isActive": isActive, "code": code, "isAllowedToSearch": isAllowedToSearch, "isRequiredToAcceptToJoin": isRequiredToAcceptToJoin, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "stationGroups": stationGroups.flatMap { (value: StationGroup) -> ResultMap in value.resultMap }, "stations": stations.flatMap { (value: Station) -> ResultMap in value.resultMap }])
+  public init(id: GraphQLID, phase: String? = nil, type: String? = nil, state: String, timestamps: String? = nil, serviceNumber: String, createdAt: String, creator: String? = nil, robot: Robot? = nil, currentServiceUnitStep: Int? = nil, currentServiceUnit: CurrentServiceUnit? = nil, serviceUnits: [ServiceUnit?]? = nil) {
+    self.init(unsafeResultMap: ["__typename": "HiGlovisServiceNode", "id": id, "phase": phase, "type": type, "state": state, "timestamps": timestamps, "serviceNumber": serviceNumber, "createdAt": createdAt, "creator": creator, "robot": robot.flatMap { (value: Robot) -> ResultMap in value.resultMap }, "currentServiceUnitStep": currentServiceUnitStep, "currentServiceUnit": currentServiceUnit.flatMap { (value: CurrentServiceUnit) -> ResultMap in value.resultMap }, "serviceUnits": serviceUnits.flatMap { (value: [ServiceUnit?]) -> [ResultMap?] in value.map { (value: ServiceUnit?) -> ResultMap? in value.flatMap { (value: ServiceUnit) -> ResultMap in value.resultMap } } }])
   }
 
   public var __typename: String {
@@ -1831,7 +3628,453 @@ public struct WorkspaceForUserFragment: GraphQLFragment {
     }
   }
 
-  /// The ID of the object.
+  public var id: GraphQLID {
+    get {
+      return resultMap["id"]! as! GraphQLID
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var phase: String? {
+    get {
+      return resultMap["phase"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "phase")
+    }
+  }
+
+  public var type: String? {
+    get {
+      return resultMap["type"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "type")
+    }
+  }
+
+  public var state: String {
+    get {
+      return resultMap["state"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "state")
+    }
+  }
+
+  public var timestamps: String? {
+    get {
+      return resultMap["timestamps"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "timestamps")
+    }
+  }
+
+  public var serviceNumber: String {
+    get {
+      return resultMap["serviceNumber"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "serviceNumber")
+    }
+  }
+
+  public var createdAt: String {
+    get {
+      return resultMap["createdAt"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "createdAt")
+    }
+  }
+
+  public var creator: String? {
+    get {
+      return resultMap["creator"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "creator")
+    }
+  }
+
+  public var robot: Robot? {
+    get {
+      return (resultMap["robot"] as? ResultMap).flatMap { Robot(unsafeResultMap: $0) }
+    }
+    set {
+      resultMap.updateValue(newValue?.resultMap, forKey: "robot")
+    }
+  }
+
+  public var currentServiceUnitStep: Int? {
+    get {
+      return resultMap["currentServiceUnitStep"] as? Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "currentServiceUnitStep")
+    }
+  }
+
+  public var currentServiceUnit: CurrentServiceUnit? {
+    get {
+      return (resultMap["currentServiceUnit"] as? ResultMap).flatMap { CurrentServiceUnit(unsafeResultMap: $0) }
+    }
+    set {
+      resultMap.updateValue(newValue?.resultMap, forKey: "currentServiceUnit")
+    }
+  }
+
+  public var serviceUnits: [ServiceUnit?]? {
+    get {
+      return (resultMap["serviceUnits"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [ServiceUnit?] in value.map { (value: ResultMap?) -> ServiceUnit? in value.flatMap { (value: ResultMap) -> ServiceUnit in ServiceUnit(unsafeResultMap: value) } } }
+    }
+    set {
+      resultMap.updateValue(newValue.flatMap { (value: [ServiceUnit?]) -> [ResultMap?] in value.map { (value: ServiceUnit?) -> ResultMap? in value.flatMap { (value: ServiceUnit) -> ResultMap in value.resultMap } } }, forKey: "serviceUnits")
+    }
+  }
+
+  public struct Robot: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["RobotNode"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(RobotFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var robotFragment: RobotFragment {
+        get {
+          return RobotFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+
+  public struct CurrentServiceUnit: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["ServiceUnitNode"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(ServiceUnitFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var serviceUnitFragment: ServiceUnitFragment {
+        get {
+          return ServiceUnitFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+
+  public struct ServiceUnit: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["ServiceUnitNode"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(ServiceUnitFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var serviceUnitFragment: ServiceUnitFragment {
+        get {
+          return ServiceUnitFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+}
+
+public struct ServiceUnitFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ServiceUnitFragment on ServiceUnitNode {
+      __typename
+      id
+      state
+      stop {
+        __typename
+        ...StopFragment
+      }
+      data
+    }
+    """
+
+  public static let possibleTypes: [String] = ["ServiceUnitNode"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      GraphQLField("state", type: .scalar(String.self)),
+      GraphQLField("stop", type: .object(Stop.selections)),
+      GraphQLField("data", type: .nonNull(.scalar(String.self))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: GraphQLID, state: String? = nil, stop: Stop? = nil, data: String) {
+    self.init(unsafeResultMap: ["__typename": "ServiceUnitNode", "id": id, "state": state, "stop": stop.flatMap { (value: Stop) -> ResultMap in value.resultMap }, "data": data])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: GraphQLID {
+    get {
+      return resultMap["id"]! as! GraphQLID
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var state: String? {
+    get {
+      return resultMap["state"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "state")
+    }
+  }
+
+  public var stop: Stop? {
+    get {
+      return (resultMap["stop"] as? ResultMap).flatMap { Stop(unsafeResultMap: $0) }
+    }
+    set {
+      resultMap.updateValue(newValue?.resultMap, forKey: "stop")
+    }
+  }
+
+  public var data: String {
+    get {
+      return resultMap["data"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "data")
+    }
+  }
+
+  public struct Stop: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["StationGroupNode"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(StopFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(id: GraphQLID, name: String, isStop: Bool) {
+      self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var stopFragment: StopFragment {
+        get {
+          return StopFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+}
+
+public struct StopFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment StopFragment on StationGroupNode {
+      __typename
+      id
+      name
+      isStop
+    }
+    """
+
+  public static let possibleTypes: [String] = ["StationGroupNode"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("isStop", type: .nonNull(.scalar(Bool.self))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: GraphQLID, name: String, isStop: Bool) {
+    self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
   public var id: GraphQLID {
     get {
       return resultMap["id"]! as! GraphQLID
@@ -1850,85 +4093,106 @@ public struct WorkspaceForUserFragment: GraphQLFragment {
     }
   }
 
-  public var isActive: Bool {
+  public var isStop: Bool {
     get {
-      return resultMap["isActive"]! as! Bool
+      return resultMap["isStop"]! as! Bool
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isActive")
+      resultMap.updateValue(newValue, forKey: "isStop")
+    }
+  }
+}
+
+public struct RobotFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment RobotFragment on RobotNode {
+      __typename
+      id
+      name
+      lockKey
+      extensions {
+        __typename
+        id
+      }
+    }
+    """
+
+  public static let possibleTypes: [String] = ["RobotNode"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      GraphQLField("name", type: .scalar(String.self)),
+      GraphQLField("lockKey", type: .scalar(String.self)),
+      GraphQLField("extensions", type: .list(.object(Extension.selections))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: GraphQLID, name: String? = nil, lockKey: String? = nil, extensions: [Extension?]? = nil) {
+    self.init(unsafeResultMap: ["__typename": "RobotNode", "id": id, "name": name, "lockKey": lockKey, "extensions": extensions.flatMap { (value: [Extension?]) -> [ResultMap?] in value.map { (value: Extension?) -> ResultMap? in value.flatMap { (value: Extension) -> ResultMap in value.resultMap } } }])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
     }
   }
 
-  public var code: String? {
+  public var id: GraphQLID {
     get {
-      return resultMap["code"] as? String
+      return resultMap["id"]! as! GraphQLID
     }
     set {
-      resultMap.updateValue(newValue, forKey: "code")
+      resultMap.updateValue(newValue, forKey: "id")
     }
   }
 
-  public var isAllowedToSearch: Bool {
+  public var name: String? {
     get {
-      return resultMap["isAllowedToSearch"]! as! Bool
+      return resultMap["name"] as? String
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isAllowedToSearch")
+      resultMap.updateValue(newValue, forKey: "name")
     }
   }
 
-  public var isRequiredToAcceptToJoin: Bool {
+  public var lockKey: String? {
     get {
-      return resultMap["isRequiredToAcceptToJoin"]! as! Bool
+      return resultMap["lockKey"] as? String
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isRequiredToAcceptToJoin")
+      resultMap.updateValue(newValue, forKey: "lockKey")
     }
   }
 
-  public var isRequiredUserEmailToJoin: Bool {
+  public var extensions: [Extension?]? {
     get {
-      return resultMap["isRequiredUserEmailToJoin"]! as! Bool
+      return (resultMap["extensions"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Extension?] in value.map { (value: ResultMap?) -> Extension? in value.flatMap { (value: ResultMap) -> Extension in Extension(unsafeResultMap: value) } } }
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isRequiredUserEmailToJoin")
+      resultMap.updateValue(newValue.flatMap { (value: [Extension?]) -> [ResultMap?] in value.map { (value: Extension?) -> ResultMap? in value.flatMap { (value: Extension) -> ResultMap in value.resultMap } } }, forKey: "extensions")
     }
   }
 
-  public var isRequiredUserPhoneNumberToJoin: Bool {
-    get {
-      return resultMap["isRequiredUserPhoneNumberToJoin"]! as! Bool
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "isRequiredUserPhoneNumberToJoin")
-    }
-  }
-
-  public var stationGroups: StationGroup? {
-    get {
-      return (resultMap["stationGroups"] as? ResultMap).flatMap { StationGroup(unsafeResultMap: $0) }
-    }
-    set {
-      resultMap.updateValue(newValue?.resultMap, forKey: "stationGroups")
-    }
-  }
-
-  public var stations: Station? {
-    get {
-      return (resultMap["stations"] as? ResultMap).flatMap { Station(unsafeResultMap: $0) }
-    }
-    set {
-      resultMap.updateValue(newValue?.resultMap, forKey: "stations")
-    }
-  }
-
-  public struct StationGroup: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["StationGroupNodeConnection"]
+  public struct Extension: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["DoorLockExtensionType"]
 
     public static var selections: [GraphQLSelection] {
       return [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
       ]
     }
 
@@ -1938,8 +4202,8 @@ public struct WorkspaceForUserFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "StationGroupNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+    public init(id: GraphQLID) {
+      self.init(unsafeResultMap: ["__typename": "DoorLockExtensionType", "id": id])
     }
 
     public var __typename: String {
@@ -1951,242 +4215,108 @@ public struct WorkspaceForUserFragment: GraphQLFragment {
       }
     }
 
-    /// Contains the nodes in this connection.
-    public var edges: [Edge?] {
+    public var id: GraphQLID {
       get {
-        return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+        return resultMap["id"]! as! GraphQLID
       }
       set {
-        resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
-      }
-    }
-
-    public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["StationGroupNodeEdge"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("node", type: .object(Node.selections)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "StationGroupNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The item at the end of the edge
-      public var node: Node? {
-        get {
-          return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "node")
-        }
-      }
-
-      public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["StationGroupNode"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(StationGroupFragment.self),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var fragments: Fragments {
-          get {
-            return Fragments(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var stationGroupFragment: StationGroupFragment {
-            get {
-              return StationGroupFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-        }
+        resultMap.updateValue(newValue, forKey: "id")
       }
     }
   }
+}
 
-  public struct Station: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["StationNodeConnection"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
-      ]
+public struct MemberFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment MemberFragment on MemberNode {
+      __typename
+      id
+      username
+      displayName
+      email
+      phoneNumber
     }
+    """
 
-    public private(set) var resultMap: ResultMap
+  public static let possibleTypes: [String] = ["MemberNode"]
 
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      GraphQLField("username", type: .nonNull(.scalar(String.self))),
+      GraphQLField("displayName", type: .nonNull(.scalar(String.self))),
+      GraphQLField("email", type: .scalar(String.self)),
+      GraphQLField("phoneNumber", type: .scalar(String.self)),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: GraphQLID, username: String, displayName: String, email: String? = nil, phoneNumber: String? = nil) {
+    self.init(unsafeResultMap: ["__typename": "MemberNode", "id": id, "username": username, "displayName": displayName, "email": email, "phoneNumber": phoneNumber])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
     }
-
-    public init(edges: [Edge?]) {
-      self.init(unsafeResultMap: ["__typename": "StationNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
     }
+  }
 
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
+  public var id: GraphQLID {
+    get {
+      return resultMap["id"]! as! GraphQLID
     }
-
-    /// Contains the nodes in this connection.
-    public var edges: [Edge?] {
-      get {
-        return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
-      }
-      set {
-        resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
-      }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
     }
+  }
 
-    public struct Edge: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["StationNodeEdge"]
+  /// Required. 100 characters or fewer. Letters, digits and _ only.
+  public var username: String {
+    get {
+      return resultMap["username"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "username")
+    }
+  }
 
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("node", type: .object(Node.selections)),
-        ]
-      }
+  /// Required. 100 characters or fewer.
+  public var displayName: String {
+    get {
+      return resultMap["displayName"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "displayName")
+    }
+  }
 
-      public private(set) var resultMap: ResultMap
+  public var email: String? {
+    get {
+      return resultMap["email"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "email")
+    }
+  }
 
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(node: Node? = nil) {
-        self.init(unsafeResultMap: ["__typename": "StationNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The item at the end of the edge
-      public var node: Node? {
-        get {
-          return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "node")
-        }
-      }
-
-      public struct Node: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["StationNode"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(StationFragment.self),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(id: GraphQLID, name: String) {
-          self.init(unsafeResultMap: ["__typename": "StationNode", "id": id, "name": name])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var fragments: Fragments {
-          get {
-            return Fragments(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var stationFragment: StationFragment {
-            get {
-              return StationFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-        }
-      }
+  /// Digits only with county calling code. 30 characters or fewer.
+  public var phoneNumber: String? {
+    get {
+      return resultMap["phoneNumber"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "phoneNumber")
     }
   }
 }

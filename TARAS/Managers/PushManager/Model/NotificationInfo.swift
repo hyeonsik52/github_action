@@ -10,28 +10,26 @@ import Foundation
 struct NotificationInfo {
     
     var notificationType: NotificationType
-    var swsIdx: Int
-    var serviceIdx: Int?
-    var serviceUnitIdx: Int?
-    var stopIdx: Int?
+    var workspaceId: String
+    var serviceId: String?
+    var serviceUnitId: String?
+    var stopId: String?
     
     init?(_ info: [String: AnyHashable]) {
         guard let type = info["notification_type"] as? String,
-            let swsIdx = info["sws_idx"] as? Int else {
-                return nil
-        }
+              let workspaceId = info["workspace_id"] as? String else { return nil }
         
-        self.notificationType = NotificationType.init(rawValue: type) ?? .arrived
-        self.swsIdx = swsIdx
+        self.notificationType = NotificationType.init(rawValue: type) ?? .default
+        self.workspaceId = workspaceId
         
-        if let serviceIdx = info["service_idx"] as? Int {
-            self.serviceIdx = serviceIdx
+        if let serviceId = info["service_id"] as? String {
+            self.serviceId = serviceId
         }
-        if let serviceUnitIdx = info["service_unit_idx"] as? Int {
-            self.serviceUnitIdx = serviceUnitIdx
+        if let serviceUnitId = info["service_unit_id"] as? String {
+            self.serviceUnitId = serviceUnitId
         }
-        if let stopIdx = info["stop_idx"] as? Int {
-            self.stopIdx = stopIdx
+        if let stopId = info["stop_id"] as? String {
+            self.stopId = stopId
         }
     }
 }

@@ -12,118 +12,61 @@ class ServiceDetailLogViewReactor: Reactor {
     
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
     
-    private var countPerLoading: Int = 20
-    
-    private var serviceLogs = [ServiceLogModel]()
-    
-    private var startCursor: String?
-    private var hasPreviousPage: Bool = true
-    
-    private var lastRow = -1
+    private var serviceLogs = [ServiceLog]()
     
     enum Action {
         case refresh
-        case loadMore(Int) // last row
     }
     
     enum Mutation {
-        case refreshServiceLogs([ServiceLogModel])
-        case addServiceLogs([ServiceLogModel])
-        case isProcessing(Bool)
+        case refreshServiceLogs([ServiceLog])
+        case addServiceLogs([ServiceLog])
         case isLoading(Bool?)
     }
     
     struct State {
-        var serviceLogs: [ServiceLogModel]
-        var isProcessing: Bool
+        var serviceLogs: [ServiceLog]
         var isLoading: Bool?
     }
     
     var initialState: State {
-        return State(serviceLogs: [], isProcessing: false, isLoading: nil)
+        return State(serviceLogs: [], isLoading: nil)
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
-    let serviceIdx: Int
+    let workspaceId: String
+    let serviceId: String
     
-    init(provider: ManagerProviderType, swsIdx: Int, serviceIdx: Int) {
+    init(provider: ManagerProviderType, workspaceId: String, serviceId: String) {
         self.provider = provider
-        self.swsIdx = swsIdx
-        self.serviceIdx = serviceIdx
+        self.workspaceId = workspaceId
+        self.serviceId = serviceId
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-        
         switch action {
         case .refresh:
-            self.startCursor = nil
-        case .loadMore(let lastRow):
-            guard self.currentState.isLoading == false else { return .empty() }
-            if lastRow > self.lastRow {
-                self.lastRow = lastRow
-                if !self.hasPreviousPage {
-                    print("🏆 loadedAll")
-                    return .empty()
-                }
-            }else{
-                print("🏆 pass")
-                return .empty()
-            }
+            return .concat([
+                .just(.isLoading(true)),
+                self.provider.networkManager.fetch(ServiceQuery(serviceId: self.serviceId))
+                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment.timestamps }
+                    .compactMap { $0.data(using: .utf8) }
+                    .compactMap { try? JSONSerialization.jsonObject(with: $0, options: .allowFragments) }
+                    .compactMap { $0 as? [String: Any] }
+                    .compactMap { self.provider.serviceManager.convert(log: $0) }
+                    .map { .refreshServiceLogs([$0]) },
+                .just(.isLoading(false))
+            ])
         }
-
-        print("🏆 begin", self.startCursor ?? "")
-        
-        let query = ServiceLogsByServiceIdxConnectionQuery(
-            swsIdx: self.swsIdx,
-            serviceIdx: self.serviceIdx,
-            before: self.startCursor,
-            last: self.countPerLoading
-        )
-        
-        func loadingState(_ flag: Bool) -> Observable<Mutation> {
-            switch action {
-            case .refresh:
-                return .just(.isLoading(flag))
-            case .loadMore:
-                return .just(.isProcessing(flag))
-            }
-        }
-        
-        return .concat([
-            loadingState(true),
-           self.provider.networkManager
-                .fetch(query)
-                .do(onNext: { [weak self] data in
-                    let pageInfo = data.serviceLogsByServiceIdxConnection.pageInfo
-                    self?.startCursor = pageInfo.startCursor
-                    self?.hasPreviousPage = (pageInfo.hasPreviousPage == "1")
-                    self?.lastRow = 0
-                    print("🏆 end", self?.startCursor ?? "")
-                })
-                .map { $0.serviceLogsByServiceIdxConnection.edges.compactMap{$0.node} }
-                .map { $0.compactMap(ServiceLogModel.init) }
-                .map {
-                    switch action {
-                    case .refresh:
-                        return Mutation.refreshServiceLogs($0)
-                    case .loadMore:
-                        return Mutation.addServiceLogs($0)
-                    }
-            },
-            loadingState(false)
-        ])
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
         case let .refreshServiceLogs(services):
-            state.serviceLogs = services.sorted { $0.serviceLogIdx > $1.serviceLogIdx }
+            state.serviceLogs = services.sorted { $0.date > $1.date }
         case let .addServiceLogs(services):
-            state.serviceLogs.append(contentsOf: services.sorted { $0.serviceLogIdx > $1.serviceLogIdx })
-        case .isProcessing(let processing):
-            state.isProcessing = processing
+            state.serviceLogs.append(contentsOf: services.sorted { $0.date > $1.date })
         case .isLoading(let loading):
             state.isLoading = loading
         }

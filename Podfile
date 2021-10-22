@@ -26,6 +26,11 @@ def pods
   pod 'Kingfisher', '~> 6'
 
   pod 'CocoaLumberjack/Swift', '~> 3.7.2'
+  
+  pod 'PanModal', '~> 1.2.7'
+  
+  #임시
+  pod 'UITextView+Placeholder', '~> 1.4.0'
 end
 
 target 'TARAS-Dev' do

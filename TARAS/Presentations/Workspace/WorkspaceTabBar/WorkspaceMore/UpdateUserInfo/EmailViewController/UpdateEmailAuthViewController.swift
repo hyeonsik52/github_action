@@ -51,12 +51,7 @@ class UpdateEmailAuthViewController: BaseNavigatableViewController, View {
         }
     }
     
-    override func bind() {
-        self.backButton.rx.tap
-        .subscribe(onNext: { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        })
-        .disposed(by: self.disposeBag)
+    func bind(reactor: UpdateEmailAuthViewReactor) {
         
         RxKeyboard.instance.visibleHeight
             .filter { $0 > 0 }
@@ -66,9 +61,6 @@ class UpdateEmailAuthViewController: BaseNavigatableViewController, View {
                 }
             })
             .disposed(by: self.disposeBag)
-    }
-    
-    func bind(reactor: UpdateEmailAuthViewReactor) {
         
         Observable<Int>
             .interval(.seconds(1), scheduler: MainScheduler.instance)
@@ -115,7 +107,7 @@ class UpdateEmailAuthViewController: BaseNavigatableViewController, View {
         
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
     }
 }

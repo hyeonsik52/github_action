@@ -1,25 +1,25 @@
 //
 //  Stop.swift
-//  TARAS-2.0
+//  TARAS-Dev
 //
-//  Created by nexmond on 2021/01/12.
+//  Created by nexmond on 2021/08/09.
 //
 
-//import Foundation
-//
-///// 정차지 정보
-//struct Stop {
-//    /// 정차지 인덱스
-//    let idx: Int
-//    /// 정차지 이름
-//    let name: String
-//}
-//
-//extension Stop {
-//    
-//    init?(result: StopFragment?) {
-//        guard let result = result else { return nil }
-//        self.idx = result.stopIdx
-//        self.name = result.name
-//    }
-//}
+import Foundation
+
+struct Stop: Identifiable {
+    
+    ///정차지 아이디
+    let id: String
+    ///정차지 이름
+    let name: String
+}
+
+extension Stop: FragmentModel {
+    
+    init(_ fragment: StopFragment) {
+        
+        self.id = fragment.id
+        self.name = fragment.name
+    }
+}

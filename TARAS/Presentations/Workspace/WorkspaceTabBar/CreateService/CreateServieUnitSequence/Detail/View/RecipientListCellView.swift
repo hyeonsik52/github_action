@@ -29,14 +29,8 @@ class RecipientListCellView: UIView, ReactorKit.View {
     }
 
     let nameLabel = UILabel().then {
-        $0.font = .medium.16
-        $0.textColor = .black
-    }
-
-    let groupNameLabel = UILabel().then {
-        $0.text = "-"
-        $0.font = .medium.12
-        $0.textColor = .grayA0A0A0
+        $0.font = .medium[16]
+        $0.textColor = .black0F0F0F
     }
 
     init() {
@@ -58,10 +52,6 @@ class RecipientListCellView: UIView, ReactorKit.View {
         reactor.state.map { $0.name }
             .filterNil()
             .bind(to: self.nameLabel.rx.text)
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.groupName }
-            .bind(to: self.groupNameLabel.rx.text)
             .disposed(by: self.disposeBag)
     }
 
@@ -87,7 +77,6 @@ class RecipientListCellView: UIView, ReactorKit.View {
         }
 
         stackView.addArrangedSubview(self.nameLabel)
-        stackView.addArrangedSubview(self.groupNameLabel)
     }
 }
 

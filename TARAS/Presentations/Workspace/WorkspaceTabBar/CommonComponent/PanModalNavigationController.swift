@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//import PanModal
+import PanModal
 
 class PanModalNavigationController: UINavigationController {
     

@@ -1,0 +1,11 @@
+#mutation refreshSession($input: RefreshSessionInput!) {
+#    refreshSessionMutation(input: $input) {
+#        ... on RefreshSessionError {
+#            errorCode
+#        }
+#        ... on LoginPayload {
+#            accessToken
+#            refreshToken
+#        }
+#    }
+#}

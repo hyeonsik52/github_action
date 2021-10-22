@@ -29,7 +29,7 @@ class WorkspaceInfoViewController: BaseNavigatableViewController, View {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.cornerRadius = 10
-        $0.backgroundColor = .LIGHT_GRAY_F5F5F5
+        $0.backgroundColor = .lightGrayF5F5F5
     }
 
     private let stopInfoButton = UIButton()
@@ -128,15 +128,15 @@ class WorkspaceInfoViewController: BaseNavigatableViewController, View {
             .bind(to: self.swsInfoView.rx.workspace)
             .disposed(by: self.disposeBag)
 
-        reactor.state.compactMap { $0.workspace?.envMaps.first?.imageUrl }
-            .bind(to: self.stopInfoImageView.rx.image)
-            .disposed(by: self.disposeBag)
+//        reactor.state.compactMap { $0.workspace?.envMaps.first?.imageUrl }
+//            .bind(to: self.stopInfoImageView.rx.image)
+//            .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
             .queueing(2)
             .map { $0[0] == nil && $0[1] == true }
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLoading }

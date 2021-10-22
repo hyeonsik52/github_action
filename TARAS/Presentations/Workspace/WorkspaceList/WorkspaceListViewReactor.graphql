@@ -1,0 +1,34 @@
+
+query allMyWorkspaces {
+	signedUser {
+		joinedWorkspaces {
+			edges {
+				node {
+					... WorkspaceFragment
+				}
+			}
+		}
+	}
+}
+
+mutation leaveWorkspace($workspaceId: String) {
+	leaveWorkspace(workspaceId: $workspaceId)
+}
+
+fragment WorkspaceFragment on WorkspaceNode {
+	id
+	name
+	code
+	createdAt
+	isRequiredToAcceptToJoin
+	isRequiredUserEmailToJoin
+	isRequiredUserPhoneNumberToJoin
+	members {
+		totalCount
+		edges {
+			node {
+				id
+			}
+		}
+	}
+}

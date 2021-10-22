@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: SRPDetailInfoCellView {
-    var info: Binder<(String?,Bool,String?,Bool)> {
+    var info: Binder<(String?,Bool)> {
         return Binder(base) { base, info in
-            base.bind(text: info.0, fixedProfile: info.1, profileImageUrl: info.2, usingArrow: info.3)
+            base.bind(text: info.0, usingArrow: info.1)
         }
     }
 }

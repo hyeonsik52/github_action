@@ -29,16 +29,12 @@ class CSURecipientViewController: BaseNavigatableViewController, ReactorKit.View
 
     private var userButton = SRPSegmentButton(title: "회원")
 
-    private var groupButton = SRPSegmentButton(title: "그룹")
-
     private var innerPageViewController = UIPageViewController(
         transitionStyle: .scroll,
         navigationOrientation: .horizontal
     )
 
     private var recipientUserViewController: RecipientUserViewController!
-
-    private var recipientGroupViewController: RecipientGroupViewController!
 
 
     // MARK: - Life cycles
@@ -66,7 +62,6 @@ class CSURecipientViewController: BaseNavigatableViewController, ReactorKit.View
         }
 
         stackView.addArrangedSubview(self.userButton)
-        stackView.addArrangedSubview(self.groupButton)
 
         self.view.addSubview(self.innerPageViewController.view)
         self.innerPageViewController.view.snp.makeConstraints {
@@ -75,64 +70,20 @@ class CSURecipientViewController: BaseNavigatableViewController, ReactorKit.View
         }
     }
 
-    override func bind() {
-        self.backButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }).disposed(by: self.disposeBag)
-
-        self.closeButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.navigationController?.dismiss(animated: true, completion: nil)
-            }).disposed(by: self.disposeBag)
-    }
-
 
     // MARK: - ReactorKit
 
     func bind(reactor: CSURecipientViewReactor) {
-        self.setSegmentButtons(on: .user)
         
-        self.userButton.rx.tap
+        self.closeButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.navigationController?.dismiss(animated: true, completion: nil)
+            }).disposed(by: self.disposeBag)
+        
+        self.rx.viewDidLoad
             .subscribe(onNext: { [weak self] in
-                self?.setSegmentButtons(on: .user)
                 self?.setUsersPage(reactor)
             }).disposed(by: self.disposeBag)
-
-        self.groupButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.setSegmentButtons(on: .group)
-                self?.setGroupsPage(reactor)
-            }).disposed(by: self.disposeBag)
-
-        self.rx.viewDidLoad.map { _ in Reactor.Action.setInitialPage }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-
-        /// recipientType 의 값에 따라 pageViewController 초기 설정을 분기합니다.
-        /// - nil 일 경우: '회원' 화면 세팅
-        /// - .user 일 경우: '회원' 화면 및 버튼 세팅
-        /// - .group 일 경우: '그룹' 화면 및 버튼 세팅
-        reactor.state.map { $0.recipientType }
-            .subscribe(onNext: { [weak self] recipientType in
-                guard let self = self else { return }
-                self.setSegmentButtons(on: recipientType)
-
-                switch recipientType {
-                case nil: self.setUsersPage(reactor)
-                case .user: self.setUsersPage(reactor)
-                case .group: self.setGroupsPage(reactor)
-                default: break
-                }
-            }).disposed(by: self.disposeBag)
-    }
-
-    private func setSegmentButtons(on: ServiceUnitRecipientType?) {
-        if let type = on {
-            let isUserButtonOn = (type == .user)
-            self.userButton.isSelected = isUserButtonOn ? true : false
-            self.groupButton.isSelected = isUserButtonOn ? false : true
-        }
     }
 
     private func setUsersPage(_ reactor: CSURecipientViewReactor) {
@@ -152,37 +103,13 @@ class CSURecipientViewController: BaseNavigatableViewController, ReactorKit.View
             animated: false
         )
     }
-
-    private func setGroupsPage(_ reactor: CSURecipientViewReactor) {
-        var viewController = self.recipientGroupViewController
-
-        if viewController == nil {
-            viewController = RecipientGroupViewController().then {
-                $0.reactor = reactor.reactorForRecipientGroup()
-                $0.recipientDelegate = self
-            }
-            self.recipientGroupViewController = viewController
-        }
-
-        self.innerPageViewController.setViewControllers(
-            [viewController!],
-            direction: .forward,
-            animated: false
-        )
-    }
 }
 
 
 extension CSURecipientViewController: CSURecipientDelegate {
 
     func didRecipientsSelected(_ serviceUnit: CreateServiceUnitModel) {
-        if let csuDelegate = self.csuDelegate {
-            csuDelegate.didUpdate(serviceUnit)
-            self.navigationController?.dismiss(animated: true, completion: nil)
-        } else {
-            let viewController = CSUFreightsViewController()
-            viewController.reactor = self.reactor?.reactorForFreight(serviceUnit)
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+        self.csuDelegate?.didUpdate(serviceUnit)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

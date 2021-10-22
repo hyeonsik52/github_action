@@ -12,8 +12,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-protocol CreateServiceCellDelegate: class {
-    func didBypassButtonTap(index: Int)
+protocol CreateServiceCellDelegate: AnyObject {
     func didDeleteButtonTap(index: Int)
 }
 
@@ -26,21 +25,11 @@ final class CreateServiceCell: BaseTableViewCell, ReactorKit.View {
     override func initial() {
         self.setupConstraints()
         
-        self.cellView.bypassEditButton.addTarget(
-            self,
-            action: #selector(didBypassButtonTap(_:)),
-            for: .touchUpInside
-        )
-        
         self.cellView.deleteButton.addTarget(
             self,
             action: #selector(didDeleteButtonTap(_:)),
             for: .touchUpInside
         )
-    }
-
-    @objc func didBypassButtonTap(_ sender: UIButton) {
-        self.createServiceCellDelegate?.didBypassButtonTap(index: sender.tag)
     }
 
     @objc func didDeleteButtonTap(_ sender: UIButton) {
@@ -63,7 +52,6 @@ final class CreateServiceCell: BaseTableViewCell, ReactorKit.View {
     
     func setIndex(row: Int) {
         self.cellView.deleteButton.tag = row
-        self.cellView.bypassEditButton.tag = row
         self.cellView.targetInfoView.numberLabel.text = "\(row + 1)"
     }
 }

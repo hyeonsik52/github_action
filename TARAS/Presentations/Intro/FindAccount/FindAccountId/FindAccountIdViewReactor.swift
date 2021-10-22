@@ -63,24 +63,25 @@ class FindAccountIdViewReactor: Reactor {
             return .just(.updateIsValid(true))
         case .checkRegister(let id):
             
-            let mutation = UserIdDuplicatedCheckMutation(input: .init(userId: id))
-
-            return .concat([
-                .just(.updateIsRegister(nil)),
-                .just(.updateIsProcessing(true)),
-
-                self.provider.networkManager.perform(mutation)
-                    .flatMap { payload -> Observable<Mutation> in
-                        let isDuplicated = !payload.userIdDuplicateCheckMutation.result.isTrue
-                        if isDuplicated {
-                            return .just(.updateIsRegister(true))
-                        }else{
-                            return .just(.updateError(.account(.idNotExist)))
-                        }
-                    }.catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-
-                .just(.updateIsProcessing(false))
-            ])
+//            let mutation = UserIdDuplicatedCheckMutation(input: .init(userId: id))
+//
+//            return .concat([
+//                .just(.updateIsRegister(nil)),
+//                .just(.updateIsProcessing(true)),
+//
+//                self.provider.networkManager.perform(mutation)
+//                    .flatMap { payload -> Observable<Mutation> in
+//                        let isDuplicated = !payload.userIdDuplicateCheckMutation.result.isTrue
+//                        if isDuplicated {
+//                            return .just(.updateIsRegister(true))
+//                        }else{
+//                            return .just(.updateError(.account(.idNotExist)))
+//                        }
+//                    }.catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
+//
+//                .just(.updateIsProcessing(false))
+//            ])
+            return .empty()
         }
     }
 

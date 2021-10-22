@@ -25,7 +25,7 @@ class SignUpTextFieldView: UIView {
     }
     
     let textField = UITextField().then {
-        $0.font = .bold.18
+        $0.font = .bold[18]
         $0.textColor = .black
         $0.clearButtonMode = .whileEditing
         $0.autocapitalizationType = .none
@@ -33,13 +33,13 @@ class SignUpTextFieldView: UIView {
     }
     
     let innerButton = SRPButton("").then {
-        $0.titleLabel?.font = .bold.14
+        $0.titleLabel?.font = .bold[14]
         $0.isEnabled = false
     }
     
     lazy var remainTimeLabel = UILabel().then {
-        $0.font = .bold.14
-        $0.textColor = .redF80003
+        $0.font = .bold[14]
+        $0.textColor = .redEB4D39
         $0.textAlignment = .center
     }
     
@@ -109,7 +109,7 @@ class SignUpTextFieldView: UIView {
         // viewType.email
         if self.viewType != .emailAuth {
             let label = UILabel().then {
-                $0.font = .bold.14
+                $0.font = .bold[14]
                 $0.text = self.innerButton.titleLabel?.text
             }
             
@@ -137,7 +137,7 @@ class SignUpTextFieldView: UIView {
     func innerButtonLayoutIfNeeded() {
         
         let label = UILabel().then {
-            $0.font = .bold.14
+            $0.font = .bold[14]
             $0.text = self.innerButton.titleLabel?.text
         }
         label.sizeToFit()

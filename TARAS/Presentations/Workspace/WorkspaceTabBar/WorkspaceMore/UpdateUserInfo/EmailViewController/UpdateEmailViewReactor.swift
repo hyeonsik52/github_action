@@ -34,16 +34,16 @@ class UpdateEmailViewReactor: Reactor {
     }
     
     let provider: ManagerProviderType
-    let swsIdx: Int
+    let workspaceId: String
     let placeholder: String
     var email: String = ""
     var expireDate: Date?
     
     let initialState: State
     
-    init(provider: ManagerProviderType, swsIdx: Int, placeholder: String) {
+    init(provider: ManagerProviderType, workspaceId: String, placeholder: String) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.placeholder = placeholder
         
         self.initialState = State(
@@ -61,37 +61,37 @@ class UpdateEmailViewReactor: Reactor {
             
             
         case .confirmEmail:
-            guard self.email.matches(Regex.email) else {
+            guard InputPolicy.email.match(self.email) else {
                 return .just(.updateErrorMessage(Text.SUEVR_1))
             }
             
-            let emailAuthInput = CreateEmailAuthCodeInput(checkExist: "false", email: self.email)
+//            let emailAuthInput = CreateEmailAuthCodeInput(checkExist: "false", email: self.email)
             
             return .concat([
                 .just(.updateLoading(true)),
 
-                self.provider.networkManager
-                    .perform(CreateEmailAuthCodeMutation(input: emailAuthInput))
-                    .map { $0.createEmailAuthCodeMutation }
-                    .flatMap { data -> Observable<Mutation> in
-                        if let payload = data.asCreateEmailAuthCodePayload,
-                            payload.email == self.email
-                        {
-                            let calendar = Calendar.current
-                            let expireDate = calendar.date(
-                                byAdding: .second,
-                                value: payload.expiresIn,
-                                to: Date()
-                            )
-                            self.expireDate = expireDate ?? Date()
-                            
-                            return .just(.updateIsEmailConfirmed(true))
-                        }
-                        // 현재 asCreateEmailAuthCodeError 에 정의된 errorCode 중 해당 사항 없음
-                        return .just(.updateErrorMessage("고객센터로 문의해주세요."))
-                    }.catchErrorJustReturn(
-                            .updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)")
-                    ),
+//                self.provider.networkManager
+//                    .perform(CreateEmailAuthCodeMutation(input: emailAuthInput))
+//                    .map { $0.createEmailAuthCodeMutation }
+//                    .flatMap { data -> Observable<Mutation> in
+//                        if let payload = data.asCreateEmailAuthCodePayload,
+//                            payload.email == self.email
+//                        {
+//                            let calendar = Calendar.current
+//                            let expireDate = calendar.date(
+//                                byAdding: .second,
+//                                value: payload.expiresIn,
+//                                to: Date()
+//                            )
+//                            self.expireDate = expireDate ?? Date()
+//
+//                            return .just(.updateIsEmailConfirmed(true))
+//                        }
+//                        // 현재 asCreateEmailAuthCodeError 에 정의된 errorCode 중 해당 사항 없음
+//                        return .just(.updateErrorMessage("고객센터로 문의해주세요."))
+//                    }.catchErrorJustReturn(
+//                            .updateErrorMessage("네트워크 상태가 원활하지 않습니다. (잠시 후에 다시 시도해 주세요.)")
+//                    ),
 
                 .just(.updateLoading(false))
             ])
@@ -116,11 +116,11 @@ class UpdateEmailViewReactor: Reactor {
     }
     
     func reactorForEmailAuth() -> UpdateEmailAuthViewReactor {
-        let myUserIdx = self.provider.userManager.userTB.userIdx.value ?? 0
+        let myUserId = self.provider.userManager.userTB.id ?? ""
         return UpdateEmailAuthViewReactor(
             provider: self.provider,
-            swsIdx: self.swsIdx,
-            userIdx: myUserIdx,
+            workspaceId: self.workspaceId,
+            userId: myUserId,
             expireDate: self.expireDate ?? Date(),
             email: self.email
         )

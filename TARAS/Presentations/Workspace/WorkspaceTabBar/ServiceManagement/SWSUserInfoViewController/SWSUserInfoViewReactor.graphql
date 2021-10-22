@@ -1,0 +1,45 @@
+#query userById($workspaceId: String, $userId: String) {
+query userById($workspaceId: String) {
+  signedUser {
+	joinedWorkspaces(id: $workspaceId) {
+	  edges {
+		node {
+#		  members(id: $userId) {
+		  members {
+			edges {
+			  node {
+				  ... MemberFragment
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
+}
+
+query usersByWorkspaceId($workspaceId: String) {
+  signedUser {
+	joinedWorkspaces(id: $workspaceId) {
+	  edges {
+		node {
+		  members {
+			edges {
+			  node {
+				  ... MemberFragment
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
+}
+
+fragment MemberFragment on MemberNode {
+	id
+	username
+	displayName
+	email
+	phoneNumber
+}

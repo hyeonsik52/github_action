@@ -1,0 +1,9 @@
+query searchWorkspaceByCode($code: String) {
+	linkedWorkspaces(code: $code) {
+		edges {
+			node {
+				... WorkspaceFragment
+			}
+		}
+	}
+}

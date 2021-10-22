@@ -44,8 +44,6 @@ enum CommonError {
     case networkNotConnect
     /// 입력 형식 불만족
     case invalidInputFormat(AccountInputType)
-    /// 타입 오류
-//    case type(TypeErrorFragment)
 }
 extension CommonError {
 
@@ -55,14 +53,6 @@ extension CommonError {
             return "네트워크 연결이 불안정합니다. 잠시 후 다시 시도해 주세요."
         case .invalidInputFormat(let inputType):
             return "\(inputType.rawValue) 형식이 올바르지 않습니다."
-//        case .type(let error):
-//            return """
-//            ◦ 오류코드: \(error.typeErrorCode.rawValue)
-//            ◦ \(error.key): \(error.value ?? "-")
-//            │
-//            ◦ 내용:
-//            \(error.description ?? "-")
-//            """
         }
     }
 }
@@ -128,35 +118,35 @@ extension WorkspaceError {
 
 /// 서비스 오류 유형
 enum ServiceLogError: Error {
-    /// 경로 계획 실패
-    case pathPlanningFailure
-    /// 로봇 주행 실패
-    case robotDrivingFailure
-    /// 기기 오류
-    case robotError
-    /// 비상 정지
+    ///타임아웃
+    case timeout
+    ///로봇오류
+    case byRobot
+    ///서버오류
+    case byServer
+    ///비상정지
     case emergencyStop
-    /// 연결 끊김
-    case disconnected
-    /// 알 수 없음
+    ///관리자 취소
+    case canceledByManager
+    ///기타
     case unknown
 }
 extension ServiceLogError {
 
     var description: String {
         switch self {
-        case .pathPlanningFailure:
-            return "경로 생성에 실패하였습니다."
-        case .robotDrivingFailure:
-            return "로봇이 주행할 수 없는 환경입니다."
-        case .robotError:
-            return "로봇에 오류가 발생하였습니다."
+        case .timeout:
+            return "대기시간 초과로 서비스가 취소되었습니다."
+        case .byRobot:
+            return "기기 오류로 서비스가 취소되었습니다."
+        case .byServer:
+            return "서버 오류로 서비스가 취소되었습니다."
         case .emergencyStop:
-            return "비상 정지 버튼이 활성화되었습니다."
-        case .disconnected:
-            return "로봇의 연결이 끊어졌습니다."
+            return "비상정지로 서비스가 취소되었습니다."
+        case .canceledByManager:
+            return "관리자가 서비스를 취소하였습니다."
         case .unknown:
-            return "알 수 없는 오류가 발생했습니다."
+            return "알 수 없는 오류로 서비스가 취소되었습니다."
         }
     }
 
@@ -177,58 +167,3 @@ extension ServiceLogError {
 //        }
 //    }
 }
-
-//extension TypeErrorFragment {
-//
-//    var message: String {
-//
-//        let info: String = {
-//            switch self.typeErrorCode {
-//            case .required:
-//                return "필수 값, \(self.key)(이)가 누락되었습니다."
-//            case .invalidInteger,
-//                 .invalidPosInteger,
-//                 .invalidNegInteger,
-//                 .invalidNonNegInteger,
-//                 .invalidFloat,
-//                 .invalidString,
-//                 .invalidBoolean,
-//                 .invalidBinary,
-//                 .invalidDatetime,
-//                 .invalidEnum,
-//                 .invalidList:
-//                return "잘못된 \(self.key)입니다."
-//            case .tooSmallInteger,
-//                 .tooSmallFloat:
-//                guard let value = self.value else {
-//                    return "\(self.key)(이)가 너무 작습니다."
-//                }
-//                return "\(self.key), '\(value)'(은)는 너무 작습니다."
-//            case .tooBigInteger,
-//                 .tooBigFloat:
-//                guard let value = self.value else {
-//                    return "\(self.key)(이)가 너무 큽니다."
-//                }
-//                return "\(self.key), '\(value)'(은)는 너무 큽니다."
-//            case .tooShortString:
-//                guard let value = self.value else {
-//                    return "\(self.key)(이)가 너무 짧습니다."
-//                }
-//                return "\(self.key), '\(value)'(은)는 너무 짧습니다."
-//            case .tooLongString:
-//                guard let value = self.value else {
-//                    return "\(self.key)(이)가 너무 깁니다."
-//                }
-//                return "\(self.key), '\(value)'(은)는 너무 깁니다."
-//            case .__unknown(let value):
-//                return "알 수 없는 오류입니다. (\(value))"
-//            }
-//        }()
-//
-//        return """
-//            \(info)
-//
-//            참고: \(self.description ?? "-")
-//            """
-//    }
-//}

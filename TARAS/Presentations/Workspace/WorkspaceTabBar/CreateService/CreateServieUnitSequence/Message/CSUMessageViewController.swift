@@ -59,26 +59,11 @@ class CSUMessageViewController: BaseNavigatableViewController, ReactorKit.View {
         self.navigationItem.setLeftBarButton(self.closeButton, animated: true)
     }
 
-    override func bind() {
-        self.closeButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.navigationController?.dismiss(animated: true, completion: nil)
-        }).disposed(by: self.disposeBag)
-        
-        RxKeyboard.instance.visibleHeight
-            .filter { $0 > 0 }
-            .drive(onNext: { [messageInputView] visibleHeight in
-                messageInputView.snp.updateConstraints {
-                    $0.bottom.equalToSuperview().offset(-visibleHeight)
-                }
-            }).disposed(by: self.disposeBag)
-    }
-
 
     // MARK: - ReactorKit
 
     func bind(reactor: CSUMessageViewReactor) {
-        self.messageInputView.textView.text = reactor.serviceUnitModel.serviceUnit.info.message ?? ""
+        self.messageInputView.textView.text = reactor.serviceUnitModel.serviceUnit.message ?? ""
         
         self.messageInputView.textView.rx.text.orEmpty
             .map { Reactor.Action.setMessage($0) }
@@ -88,10 +73,18 @@ class CSUMessageViewController: BaseNavigatableViewController, ReactorKit.View {
         self.messageInputView.confirmButton.rx.tap
             .map { _ in self.messageInputView.textView.text }
             .subscribe(onNext: { [weak self] message in
-                reactor.serviceUnitModel.serviceUnit.info.message = message
+                reactor.serviceUnitModel.serviceUnit.message = message
                 
                 self?.csuDelegate?.didUpdate(reactor.serviceUnitModel)
                 self?.navigationController?.dismiss(animated: true, completion: nil)
+            }).disposed(by: self.disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .filter { $0 > 0 }
+            .drive(onNext: { [messageInputView] visibleHeight in
+                messageInputView.snp.updateConstraints {
+                    $0.bottom.equalToSuperview().offset(-visibleHeight)
+                }
             }).disposed(by: self.disposeBag)
     }
 }

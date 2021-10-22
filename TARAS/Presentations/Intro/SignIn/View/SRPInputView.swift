@@ -31,8 +31,8 @@ final class SRPInputView: UIView {
 
     /// 지시사항 라벨 (ex. 가입 시 등록한 이메일 주소를 입력해주세요.)
     let descriptionLabel = UILabel().then {
-        $0.font = .medium.16
-        $0.textColor = .black
+        $0.font = .medium[16]
+        $0.textColor = .black0F0F0F
         $0.numberOfLines = 2
         $0.textAlignment = .center
     }
@@ -40,14 +40,14 @@ final class SRPInputView: UIView {
     /// - 남은 시간을 표출 (ex. "09:52")
     /// - viewType이 .authCodeView 일 때만 표출
     let remainsLabel = UILabel().then {
-        $0.font = .bold.14
-        $0.textColor = .redED5B37
+        $0.font = .bold[14]
+        $0.textColor = .redEB4D39
         $0.textAlignment = .center
     }
 
     let errorMessageLabel = UILabel().then {
-        $0.font = .bold.14
-        $0.textColor = .redED5B37
+        $0.font = .bold[14]
+        $0.textColor = .redEB4D39
         $0.numberOfLines = 2
         $0.textAlignment = .center
     }

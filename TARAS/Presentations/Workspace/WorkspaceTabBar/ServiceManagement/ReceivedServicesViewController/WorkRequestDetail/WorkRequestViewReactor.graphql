@@ -1,0 +1,16 @@
+#mutation startServiceUnitMutation($input: StartServiceUnitInput!) {
+#    startServiceUnitMutation(input: $input) {
+#        ... on StartServiceUnitError {
+#            errorCode
+#        }
+#        ... on StartServiceUnitPayload {
+#            result
+#        }
+#    }
+#}
+
+mutation completeServiceUnit($serviceId: String, $serviceStep: Int) {
+	completeServiceUnit(serviceId: $serviceId, serviceStep: $serviceStep) {
+		ok
+	}
+}

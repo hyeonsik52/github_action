@@ -99,7 +99,7 @@ class SignUpIdViewReactor: Reactor {
             state.isProcessing = isProcessing
         case .updateError(let error):
             let message = error?.description
-            state.message = (message == nil ? nil: (message!, .redF80003))
+            state.message = (message == nil ? nil: (message!, .redEB4D39))
         }
         return state
     }

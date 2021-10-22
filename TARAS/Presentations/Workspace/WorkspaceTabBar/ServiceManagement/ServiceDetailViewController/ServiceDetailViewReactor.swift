@@ -14,19 +14,6 @@ class ServiceDetailViewReactor: Reactor {
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
     let disposeBag = DisposeBag()
     
-    enum Mode {
-        case none
-        
-        /// 서비스 준비중 상태에서 사용 (서비스 요청 탭)
-        case preparing
-        
-        /// 서비스 진행 상태 ('작업요청서 > 목적지' 에서만 사용)
-        case processing
-        
-        /// 서비스 진행중~완료 상태에서 사용 (내 서비스 탭)
-        case preview
-    }
-    
     enum Action {
         case loadService(refresh: Bool)
         case cancelRequest
@@ -35,7 +22,7 @@ class ServiceDetailViewReactor: Reactor {
     }
     
     enum Mutation {
-        case loadedService(ServiceModel)
+        case loadedService(Service)
         case requestCanceled(Bool)
         case servceDeleted(Bool)
         case isLoading(Bool?) //초기 상태 nil, 로딩 시작 true, 로딩 종료 false/ nil에서 true가 된 경우일 때만 스켈레톤 뷰 출력
@@ -44,7 +31,7 @@ class ServiceDetailViewReactor: Reactor {
     }
     
     struct State {
-        var serviceModel: ServiceModel?
+        var serviceModel: Service?
         var requestCanceled: Bool?
         var serviceDeleted: Bool?
         var isLoading: Bool?
@@ -64,25 +51,22 @@ class ServiceDetailViewReactor: Reactor {
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
-    let serviceIdx: Int
-    let mode: Mode
-    let pushInfo: NotificationInfomation?
+    let workspaceId: String
+    let serviceId: String
+    let pushInfo: NotificationInfo?
     
     init(
-        mode: Mode,
         provider: ManagerProviderType,
-        swsIdx: Int,
-        serviceIdx: Int,
-        pushInfo: NotificationInfomation? = nil
+        workspaceId: String,
+        serviceId: String,
+        pushInfo: NotificationInfo? = nil
     ) {
-        self.mode = mode
         self.provider = provider
-        self.swsIdx = swsIdx
-        self.serviceIdx = serviceIdx
+        self.workspaceId = workspaceId
+        self.serviceId = serviceId
         self.pushInfo = pushInfo
 
-        self.provider.subscriptionManager.service(by: self.serviceIdx, swsIdx: self.swsIdx)
+        self.provider.subscriptionManager.service(by: self.serviceId)
              .subscribe(onNext: { [weak self] result in
                  self?.action.onNext(.loadService(refresh: true))
              })
@@ -92,37 +76,37 @@ class ServiceDetailViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .loadService(let refresh):
-            let query = ServiceByServiceIdxQuery(swsIdx: self.swsIdx, serviceIdx: self.serviceIdx)
+            let query = ServiceQuery(serviceId: self.serviceId)
             let request = (refresh ? self.provider.networkManager.fetch(query): self.provider.networkManager.fetch(query))
             return .concat([
                 .just(.isLoading(true)),
                 
                 request
-                    .compactMap { $0.serviceByServiceIdx.asService }
-                    .map { ServiceModel($0, with: self.provider.serviceManager) }
+                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment }
+                    .compactMap { self.provider.serviceManager.convert(service: $0) }
                     .map { Mutation.loadedService($0) },
                 
                 .just(.isLoading(false))
             ])
         case .cancelRequest:
-            let input = CancelServiceInput(serviceIdx: self.serviceIdx)
+//            let input = CancelServiceInput(serviceIdx: self.serviceIdx)
             return .concat([
                 .just(.isProcessing(true)),
                 
-                self.provider.networkManager.perform(CancelServiceMutationMutation(input: input))
-                .map { $0.cancelServiceMutation.asCancelServicePayload?.result == "1" }
-                .map { Mutation.requestCanceled($0) },
+//                self.provider.networkManager.perform(CancelServiceMutationMutation(input: input))
+//                .map { $0.cancelServiceMutation.asCancelServicePayload?.result == "1" }
+//                .map { Mutation.requestCanceled($0) },
                 
                 .just(.isProcessing(false))
             ])
         case .deleteService:
-            let input = HideServiceInput(serviceIdx: self.serviceIdx)
+//            let input = HideServiceInput(serviceIdx: self.serviceIdx)
             return .concat([
                 .just(.isProcessing(true)),
                 
-                self.provider.networkManager.perform(HideServiceMutationMutation(input: input))
-                .map { $0.hideServiceMutation.asHideServicePayload?.result == "1" }
-                .map { Mutation.servceDeleted($0) },
+//                self.provider.networkManager.perform(HideServiceMutationMutation(input: input))
+//                .map { $0.hideServiceMutation.asHideServicePayload?.result == "1" }
+//                .map { Mutation.servceDeleted($0) },
                 
                 .just(.isProcessing(false))
             ])
@@ -163,14 +147,14 @@ class ServiceDetailViewReactor: Reactor {
     }
     
     func reactorForBasicInfo() -> ServiceBasicInfoViewReactor {
-        return ServiceBasicInfoViewReactor(provider: self.provider, swsIdx: self.swsIdx, serviceIdx: self.serviceIdx)
+        return ServiceBasicInfoViewReactor(provider: self.provider, workspaceId: self.workspaceId, serviceId: self.serviceId)
     }
     
     func reactorForDetailLog() -> ServiceDetailLogViewReactor {
-        return ServiceDetailLogViewReactor(provider: self.provider, swsIdx: self.swsIdx, serviceIdx: self.serviceIdx)
+        return ServiceDetailLogViewReactor(provider: self.provider, workspaceId: self.workspaceId, serviceId: self.serviceId)
     }
     
-    func reactorForWorkRequest(with serviceUnitIdx: Int) -> WorkRequestViewReactor {
-        return WorkRequestViewReactor(provider: self.provider, swsIdx: self.swsIdx, serviceIdx: self.serviceIdx, serviceUnitIdx: serviceUnitIdx)
+    func reactorForWorkRequest(with serviceUnitId: String) -> WorkRequestViewReactor {
+        return WorkRequestViewReactor(provider: self.provider, workspaceId: self.workspaceId, serviceId: self.serviceId, serviceUnitId: serviceUnitId)
     }
 }

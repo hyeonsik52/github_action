@@ -36,37 +36,31 @@ class UpdateNameViewReactor: Reactor {
     let initialState: State
     
     let provider : ManagerProviderType
-    let swsIdx: Int
+    let workspaceId: String
     
-    init(provider: ManagerProviderType, swsIdx: Int, placeholder: String) {
+    init(provider: ManagerProviderType, workspaceId: String, placeholder: String) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.initialState = State(result: .success(placeholder), isProcessing: false)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .update(let name):
-            //temp
-            return .empty()
-//            guard 1...20 ~= name.count else { return .just(.updated(.failure(.etc(Text.UNVR_1))))}
-//            let myUserIdx = self.provider.userManager.userTB.userIdx
-//            let input = UpdateUserSWSInfoInput(name: name, swsIdx: self.swsIdx, userIdx: myUserIdx.value)
-//            return .concat([
-//                .just(.setProcessing(true)),
-//                self.provider.networkManager
-//                    .perform(UpdateUserSwsInfoMutationMutation(input: input))
-//                    .map { $0.updateUserSwsInfoMutation }
-//                    .map { data -> Info? in
-//                        if let updatedName = data.asUserSwsInfo?.name {
-//                            return .success(updatedName)
-//                        }else if let error = data.asUpdateUserSwsInfoError {
-//                            return .failure(.etc(error.errorCode.rawValue))
-//                        }
-//                        return nil
-//                }.map { Mutation.updated($0) },
-//                .just(.setProcessing(false))
-//            ])
+            guard 1...20 ~= name.count else { return .just(.updated(.failure(.etc(Text.UNVR_1))))}
+            guard let myUserId = self.provider.userManager.userTB.ID else { return .just(.updated(.failure(.etc("사용자 정보가 없습니다.")))) }
+            let input = UpdateUserMutationInput(username: myUserId, displayName: name)
+            return .concat([
+                .just(.setProcessing(true)),
+                self.provider.networkManager
+                    .perform(UpdateUserInfoMutation(input: input))
+                    .map { $0.updateUser?.fragments.userFragment }
+                    .map { data -> Info? in
+                        guard let user = data else { return .failure(.etc("이름을 변경하지 못했습니다.")) }
+                        return .success(user.displayName)
+                }.map { Mutation.updated($0) },
+                .just(.setProcessing(false))
+            ])
         }
     }
     

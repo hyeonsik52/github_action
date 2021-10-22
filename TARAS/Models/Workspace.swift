@@ -5,80 +5,40 @@
 //  Created by nexmond on 2021/01/12.
 //
 
-//import Foundation
-//
-///// 워크스페이스 정보
-//struct Workspace {
-//    /// 워크스페이스 인덱스
-//    let idx: Int
-//    /// 워크스페이스 코드
-//    let code: String
-//    /// 워크스페이스 이름
-//    let name: String
-//    /// 대표 사진
-//    let image: String?
-//    /// 생성일자
-//    let createAt: Date
-//    /// 사용자의 가입 상태
-//    let myMemberStatus: WorkspaceMemberStatus
-//    /// 가입 신청중인 요청 인덱스
-//    let joinRequestIdx: Int?
-//}
-//
-///// 워크스페이스 가입 유형
-//enum WorkspaceMemberStatus {
-//    /// 회원 아님
-//    case notMember
-//    /// 회원
-//    case member
-//    /// 회원가입 요청 심사 중
-//    case requestingToJoin
-//}
-//
-//extension WorkspaceMemberStatus {
-//    
-//    init(raw: SWSMemberStatus) {
-//        switch raw {
-//        case .member:
-//            self = .member
-//        case .requestingToJoin:
-//            self = .requestingToJoin
-//        default:
-//            self = .notMember
-//        }
-//    }
-//}
-//
-//extension Workspace {
-//    
-//    init(result: WorkspaceFragment) {
-//        
-//        self.idx = result.swsIdx
-//        self.code = result.code
-//        self.name = result.name
-//        self.image = result.profileImageUrl
-//        
-//        let dateFormatter = ISO8601DateFormatter()
-//        self.createAt = dateFormatter.date(from: result.createAt) ?? Date()
-//        
-//        self.myMemberStatus = WorkspaceMemberStatus(raw: result.myMemberStatus)
-//        
-//        self.joinRequestIdx = result.myJoinRequest?.asSwsJoinRequest?.swsJoinRequestIdx
-//    }
-//}
+import Foundation
 
+/// 워크스페이스 가입 유형
+enum WorkspaceMemberStatus {
+    /// 회원 아님
+    case notMember
+    /// 회원
+    case member
+    /// 회원가입 요청 심사 중
+    case requestingToJoin
+}
+
+/// 워크스페이스 정보
 struct Workspace: Identifiable {
     
-    var id: String
-    var name: String
+    ///워크스페이스 아이디
+    let id: String
+    ///워크스페이스 이름
+    let name: String
+    ///워크스페이스 생성일
+    let createdAt: Date
+    
+    ///가입 승인 필요 여부
+    let isRequiredToAcceptToJoin: Bool
+    ///가입 조건으로 이메일 필수 여부
+    let isRequiredUserEmailToJoin: Bool
+    ///가입 조건으로 전화번호 필수 여부
+    let isRequiredUserPhoneNumberToJoin: Bool
+    
+    ///내 회원 상태
+    var myMemberStatus: WorkspaceMemberStatus = .notMember
+    
+    var memberCount: Int
     var code: String?
-    var isAllowedToSearch: Bool
-    var isRequiredToAcceptToJoin: Bool
-    var isRequiredUserEmailToJoin: Bool
-    var isRequiredUserPhoneNumberToJoin: Bool
-    var members: [User]?
-    var stationGroups: [StationGroup]
-    var stations: [Station]
 }
 
 extension Workspace: FragmentModel {
@@ -87,37 +47,26 @@ extension Workspace: FragmentModel {
         
         self.id = fragment.id
         self.name = fragment.name
-        self.code = fragment.code
-        self.isAllowedToSearch = fragment.isAllowedToSearch
-        self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
-        self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
-        self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
-        self.members = fragment.members.edges
-            .compactMap(\.?.node?.fragments.userForWorkspaceFragment)
-            .map(User.init)
-        self.stationGroups = fragment.stationGroups?.edges
-            .compactMap(\.?.node?.fragments.stationGroupFragment)
-            .map(StationGroup.init) ?? []
-        self.stations = fragment.stations?.edges
-            .compactMap(\.?.node?.fragments.stationFragment)
-            .map(Station.init) ?? []
-    }
-    
-    init(alt fragment: WorkspaceForUserFragment) {
         
-        self.id = fragment.id
-        self.name = fragment.name
-        self.code = fragment.code
-        self.isAllowedToSearch = fragment.isAllowedToSearch
+        if let createdAt = fragment.createdAt,
+           let date = ISO8601DateFormatter().date(from: createdAt) {
+            self.createdAt = date
+        } else {
+            self.createdAt = Date()
+        }
+        
         self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
         self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
         self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
-        self.isAllowedToSearch = fragment.isAllowedToSearch
-        self.stationGroups = fragment.stationGroups?.edges
-            .compactMap(\.?.node?.fragments.stationGroupFragment)
-            .map(StationGroup.init) ?? []
-        self.stations = fragment.stations?.edges
-            .compactMap(\.?.node?.fragments.stationFragment)
-            .map(Station.init) ?? []
+        
+        self.memberCount = fragment.members?.totalCount ?? 0
+        self.code = fragment.code
+        
+        //TODO
+        //가입 상태 확인 필요
+        let memberIds = fragment.members?.edges.compactMap(\.?.node?.id) ?? []
+        let myId = "" //식별 아이디
+        let isMemberMe = memberIds.contains(myId)
+        self.myMemberStatus = (isMemberMe ? .member: .notMember)
     }
 }

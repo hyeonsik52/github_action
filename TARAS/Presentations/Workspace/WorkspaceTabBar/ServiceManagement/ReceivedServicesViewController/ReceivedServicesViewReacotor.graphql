@@ -1,0 +1,14 @@
+ query services($workspaceId: String, $before: String, $last: Int) {
+   hiGlovisServices(workspaceId: $workspaceId, before: $before, last: $last) {
+     pageInfo {
+       startCursor
+       hasPreviousPage
+     }
+     edges {
+       cursor
+       node {
+         ... ServiceFragment
+       }
+     }
+   }
+ }

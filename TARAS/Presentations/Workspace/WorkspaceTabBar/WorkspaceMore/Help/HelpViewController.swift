@@ -27,8 +27,8 @@ class HelpViewController: BaseNavigatableViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         
-        self.webView.addSubview(self.activityIndicator)
-        self.activityIndicator.snp.makeConstraints {
+        self.webView.addSubview(self.activityIndicatorView)
+        self.activityIndicatorView.snp.makeConstraints {
             $0.size.equalTo(76)
             $0.center.equalToSuperview()
         }
@@ -48,12 +48,6 @@ class HelpViewController: BaseNavigatableViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    override func bind() {
-        self.backButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
-        }).disposed(by: self.disposeBag)
-    }
-    
     func request(url: String) {
         self.webView.load(URLRequest(url: URL(string: url)!))
     }
@@ -62,10 +56,10 @@ class HelpViewController: BaseNavigatableViewController {
 extension HelpViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        self.activityIndicator.startAnimating()
+        self.activityIndicatorView.startAnimating()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.activityIndicator.stopAnimating()
+        self.activityIndicatorView.stopAnimating()
     }
 }

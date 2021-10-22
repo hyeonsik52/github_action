@@ -15,7 +15,7 @@ class WorkspaceStopDetailViewController: BaseNavigatableViewController {
 
     private let imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.backgroundColor = .LIGHT_GRAY_F5F5F5
+        $0.backgroundColor = .lightGrayF5F5F5
     }
     
     private var imageUrl: String?
@@ -23,7 +23,7 @@ class WorkspaceStopDetailViewController: BaseNavigatableViewController {
     convenience init(_ workspace: Workspace) {
         self.init()
         
-        self.imageUrl = workspace.envMaps.first?.imageUrl
+        self.imageUrl = nil
     }
     
     override init() {
@@ -32,6 +32,12 @@ class WorkspaceStopDetailViewController: BaseNavigatableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.imageView.setImage(strUrl: self.imageUrl)
     }
     
     override func setupConstraints() {
@@ -49,16 +55,5 @@ class WorkspaceStopDetailViewController: BaseNavigatableViewController {
         self.title = "정차지 정보"
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    override func bind() {
-        super.bind()
-        
-        self.imageView.setImage(strUrl: self.imageUrl)
-        
-        self.backButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            }).disposed(by: self.disposeBag)
     }
 }

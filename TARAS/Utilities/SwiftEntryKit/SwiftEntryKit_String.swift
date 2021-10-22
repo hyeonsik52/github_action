@@ -19,7 +19,7 @@ extension String: SwiftEntryKitViewBridge {
                 with: .init(
                     text: self,
                     style: .init(
-                        font: .bold.15,
+                        font: .bold[15],
                         color: .white,
                         alignment: .center,
                         numberOfLines: 0

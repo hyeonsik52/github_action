@@ -1,18 +1,6 @@
 
 mutation signUp($input: CreateUserMutationInput!) {
-    createUser(input: $input) {
-        id
-        lastLogin
-        dateJoined
-        username
-        displayName
-        email
-        phoneNumber
-        joinedWorkspaces
-        errors {
-            field
-            messages
-        }
-        clientMutationId
-    }
+  createUser(input: $input) {
+	  id
+  }
 }

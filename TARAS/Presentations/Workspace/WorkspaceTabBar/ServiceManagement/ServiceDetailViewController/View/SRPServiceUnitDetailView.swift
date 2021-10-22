@@ -13,8 +13,8 @@ import Then
 class SRPServiceUnitDetailView: UIView {
 
     private let textLabel = UILabel().then {
-        $0.font = .medium.16
-        $0.textColor = .black
+        $0.font = .medium[16]
+        $0.textColor = .black0F0F0F
     }
     
     override init(frame: CGRect) {
@@ -28,7 +28,7 @@ class SRPServiceUnitDetailView: UIView {
     
     private func setupConstraints() {
         
-        self.backgroundColor = .LIGHT_GRAY_F6F6F6
+        self.backgroundColor = .grayF6F6F6
         self.clipsToBounds = true
         self.cornerRadius = 8
         

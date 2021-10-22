@@ -21,7 +21,7 @@ class SignUpGuideView: UIView {
         self.titleView = LargeTitleView(title)
         self.screenGuideLabel = UILabel().then {
             $0.textColor = .black
-            $0.font = .medium.16
+            $0.font = .medium[16]
             $0.numberOfLines = 0
             $0.text = guideText
         }

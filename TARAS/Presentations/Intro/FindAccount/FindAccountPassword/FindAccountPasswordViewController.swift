@@ -123,7 +123,7 @@ class FindAccountPasswordViewController: BaseNavigatableViewController, ReactorK
             .filter { $0 == true }
             .subscribe(onNext: { [weak self] _ in
                 Text.ResetCompleted.sek.showToast()
-                self?.navigationController?.popToViewController(SettingViewController.self, animated: true)
+                self?.navigationController?.popToViewController(DefaultMyInfoViewController.self, animated: true)
             }).disposed(by: self.disposeBag)
     }
     

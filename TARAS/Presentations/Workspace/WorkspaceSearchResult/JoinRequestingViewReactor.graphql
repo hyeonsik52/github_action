@@ -1,0 +1,19 @@
+query workspaceById($workspaceId: String) {
+	signedUser {
+		joinedWorkspaces(id: $workspaceId) {
+			edges {
+				node {
+					... WorkspaceFragment
+				}
+			}
+		}
+	}
+}
+
+mutation requestToJoinWorkspace($workspaceId: String) {
+  requestToJoinWorkspace(workspaceId: $workspaceId)
+}
+
+mutation cancelToJoinWorkspace($workspaceId: String) {
+  cancelToJoinWorkspace(workspaceId: $workspaceId)
+}

@@ -10,21 +10,6 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-struct CreateServiceTargetInfoModel {
-
-    enum CreateServiceTargetType {
-        case none
-        case user
-        case group
-        case stop
-    }
-
-    var idx: Int
-    var name: String?
-    var groupName: String?
-    var targetType: CreateServiceTargetType
-}
-
 class CreateServiceCellReactor: Reactor {
 
     typealias Action = NoAction
@@ -35,7 +20,7 @@ class CreateServiceCellReactor: Reactor {
     
     let provider: ManagerProviderType
     
-    let swsIdx: Int
+    let workspaceId: String
     
     var serviceUnitModel: CreateServiceUnitModel
     
@@ -43,11 +28,11 @@ class CreateServiceCellReactor: Reactor {
 
     init(
         provider: ManagerProviderType,
-        swsIdx: Int,
+        workspaceId: String,
         serviceUnitModel: CreateServiceUnitModel
     ) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.serviceUnitModel = serviceUnitModel
     }
 }

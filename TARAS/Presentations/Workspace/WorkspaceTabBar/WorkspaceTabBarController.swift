@@ -81,6 +81,6 @@ class WorkspaceTabBarController: UITabBarController, View {
     }
     
     fileprivate func setupAppearance() {
-        self.tabBar.tintColor = .black
+        self.tabBar.tintColor = .black0F0F0F
     }
 }

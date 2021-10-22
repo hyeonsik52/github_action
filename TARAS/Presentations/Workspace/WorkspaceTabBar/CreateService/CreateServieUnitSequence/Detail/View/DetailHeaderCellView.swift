@@ -16,27 +16,15 @@ class DetailHeaderCellView: UIView, ReactorKit.View {
     
     var disposeBag = DisposeBag()
     
-    let profileImageView = UIImageView().then {
-        $0.image = UIImage(named: "common-workspacePlaceholder-happy")
-        $0.cornerRadius = 20
-        $0.clipsToBounds = true
-    }
-    
     let nameLabel = UILabel().then {
         $0.text = "-에게 요청"
-        $0.font = .bold.18
-        $0.textColor = .black
+        $0.font = .bold[18]
+        $0.textColor = .black0F0F0F
     }
     
     let arrowImageView = UIImageView(image: UIImage(named: "service-arrow-down"))
     
     let recipientChangeButton = UIButton()
-    
-    let groupNameLabel = UILabel().then {
-        $0.text = "-"
-        $0.font = .bold.14
-        $0.textColor = .grayA0A0A0
-    }
     
     init() {
         super.init(frame: .zero)
@@ -51,23 +39,10 @@ class DetailHeaderCellView: UIView, ReactorKit.View {
     func bind(reactor: DetailHeaderCellViewReactor) {
         
         let state = reactor.initialState
-        
-        if state.type == .recipient {
-            self.nameLabel.text = state.name + "에게 요청"
-            self.groupNameLabel.text = state.groupName
-        } else {
-            self.nameLabel.text = state.name
-            self.groupNameLabel.text = nil
-        }
+        self.nameLabel.text = state.name
     }
     
     func setupConstraints() {
-        self.addSubview(self.profileImageView)
-        self.profileImageView.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 40, height: 40))
-            $0.top.equalToSuperview().offset(16)
-            $0.leading.equalToSuperview().offset(26)
-        }
         
         let nameAndButtonStackView = UIStackView().then {
             $0.axis = .horizontal
@@ -101,12 +76,11 @@ class DetailHeaderCellView: UIView, ReactorKit.View {
         
         self.addSubview(stackView)
         stackView.snp.makeConstraints {
-            $0.leading.equalTo(self.profileImageView.snp.trailing).offset(6)
-            $0.centerY.equalTo(self.profileImageView)
+            $0.leading.equalToSuperview().offset(26)
+            $0.centerY.equalToSuperview()
             $0.trailing.lessThanOrEqualToSuperview().offset(-24)
         }
         
         stackView.addArrangedSubview(nameAndButtonStackView)
-        stackView.addArrangedSubview(self.groupNameLabel)
     }
 }

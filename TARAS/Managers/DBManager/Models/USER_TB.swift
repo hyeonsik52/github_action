@@ -9,11 +9,11 @@ import RealmSwift
 
 class USER_TB: BaseObject {
     
-    /// 유저 인덱스
-    let idx = RealmProperty<Int?>()
+    /// 유저 아이디
+    @objc dynamic var id: String? = nil
     
     /// 아이디
-    @objc dynamic var id: String? = nil
+    @objc dynamic var ID: String? = nil
     
     /// 이름
     @objc dynamic var name: String? = nil
@@ -34,7 +34,7 @@ class USER_TB: BaseObject {
     @objc dynamic var clientInfo: String? = nil
     
     /// 마지막으로 접속한 워크스페이스의 유니크 아이디
-    let lastWorkspaceIdx = RealmProperty<Int?>()
+    @objc dynamic var lastWorkspaceId: String? = nil
     
     /// 최초 로그인 시, workspaceListVC 에 진입했을 때 workspaceSearchVC 프레젠트 여부를 결정하는 플래그
     @objc dynamic var isInitialOpen: Bool = true

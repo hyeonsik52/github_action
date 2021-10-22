@@ -14,12 +14,12 @@ protocol UserManagerType: AnyObject {
     
     var userTB: USER_TB { get }
     var hasTokens: Bool { get }
-//    func reAuthenticate(_ accessToken: String, _ completion: @escaping(Error?) -> Void)
+    func reAuthenticate(_ accessToken: String, _ completion: @escaping(Error?) -> Void)
     func updateClientInfo()
     func updateTokens(access: String, refresh: String)
-//    func updateUserInfo(_ user: UserFragment)
+    func updateUserInfo(_ user: UserFragment)
     func initializeUserTB()
-    func initializeLastWorkspaceIdx(_ workspaceIdx: Int)
+    func initializeLastWorkspaceId(_ workspaceId: String)
     func account() -> Account
     func authPayload() -> [String: String]
 }
@@ -56,13 +56,13 @@ class UserManager: BaseManager, UserManagerType {
 }
 
 
-//// MARK: - Token
-//
-//extension UserManager {
-//
-//    /// access token 갱신
-//    func reAuthenticate(_ accessToken: String, _ completion: @escaping(Error?) -> Void) {
-//
+// MARK: - Token
+
+extension UserManager {
+
+    /// access token 갱신
+    func reAuthenticate(_ accessToken: String, _ completion: @escaping(Error?) -> Void) {
+    
 //        guard let clientInfo = self.userTB.clientInfo,
 //              let refreshToken = self.userTB.refreshToken else { return }
 //
@@ -110,9 +110,14 @@ class UserManager: BaseManager, UserManagerType {
 //                completion(error)
 //                self?.isReAuthenticating = false
 //            }).disposed(by: self.disposeBag)
-//    }
-//}
-
+    
+        //TODO: 재로그인 처리?
+        //현재는 갱신 방법이 없어서 무조건 실패
+        
+        let error = NSError(domain: "", code: 401, userInfo: nil)
+        completion(error)
+    }
+}
 
 extension UserManager {
 
@@ -137,42 +142,35 @@ extension UserManager {
         }
     }
 
-//    func updateUserInfo(_ user: UserFragment) {
-//        // https://twinny.slack.com/archives/GSV3EBWBY/p1596724402141900
-//        // [전화번호 형식 공지]
-//        // API 호출 하실 때, 모든 전화번호는 국제 번호 형식 (82~) 으로 전송해 주셔야 합니다.
-//
-//        // 서버 요청 시: createPhoneNumberAuthCodeMutation, checkPhoneNumberAuthCodeMutation 에서 nationalize 처리
-//        // 서버 응답 시: UserManager 의 updateUserInfo(_ user:) 에서 denationalize 처리
-////        let denationalizedPhoneNumber = user.phoneNumber?.denationalizePhoneNumber
-//
-//        self.userTB.update {
-//            $0.idx.value ??= user.userIdx
-//            $0.id ??= user.userId
-//            $0.email ??= user.email
-//            $0.name ??= user.name
-//            $0.phoneNumber ??= user.phoneNumber
-//        }
-//    }
+    func updateUserInfo(_ user: UserFragment) {
+
+        self.userTB.update {
+            $0.id ??= user.id
+            $0.ID ??= user.username
+            $0.name ??= user.displayName
+            $0.email ??= user.email
+            $0.phoneNumber ??= user.phoneNumber
+        }
+    }
     
     func initializeUserTB() {
         userTB.update {
-            $0.idx.value = nil
             $0.id = nil
+            $0.ID = nil
             $0.name = nil
             $0.email = nil
             $0.phoneNumber = nil
-            $0.lastWorkspaceIdx.value = nil
+            $0.lastWorkspaceId = nil
             $0.accessToken = nil
             $0.refreshToken = nil
         }
     }
     
-    func initializeLastWorkspaceIdx(_ workspaceIdx: Int) {
-        if let lastWorkspaceIdx = self.userTB.lastWorkspaceIdx.value,
-           lastWorkspaceIdx == workspaceIdx {
+    func initializeLastWorkspaceId(_ workspaceId: String) {
+        if let lastWorkspaceId = self.userTB.lastWorkspaceId,
+           lastWorkspaceId == workspaceId {
             self.provider.userManager.userTB.update {
-                $0.lastWorkspaceIdx.value = nil
+                $0.lastWorkspaceId = nil
             }
         }
     }
@@ -180,8 +178,8 @@ extension UserManager {
     func account() -> Account {
         let info = self.userTB
         return Account(
-            idx: info.idx.value ?? -1,
             id: info.id,
+            ID: info.ID,
             name: info.name,
             email: info.email,
             phoneNumber: info.phoneNumber

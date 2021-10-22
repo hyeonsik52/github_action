@@ -25,22 +25,22 @@ class WorkspaceSearchResultView: UIView {
     
     let nameLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.textColor = .black
-        $0.font = .bold.22
+        $0.textColor = .black0F0F0F
+        $0.font = .bold[22]
         $0.numberOfLines = 0
     }
     
     let createdAtLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.textColor = .grayA0A0A0
-        $0.font = .bold.14
+        $0.textColor = .gray9A9A9A
+        $0.font = .bold[14]
         $0.numberOfLines = 0
     }
     
     let memberCountLabel = UILabel().then {
         $0.textColor = .purple4A3C9F
-        $0.backgroundColor = .LIGHT_PUPLE_EBEAF4
-        $0.font = .bold.13
+        $0.backgroundColor = .lightPurpleEBEAF4
+        $0.font = .bold[13]
         $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.layer.cornerRadius = 10
@@ -48,8 +48,8 @@ class WorkspaceSearchResultView: UIView {
     }
     
     let guideLabel = UILabel().then {
-        $0.textColor = .black
-        $0.font = .medium.16
+        $0.textColor = .black0F0F0F
+        $0.font = .medium[16]
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
@@ -116,33 +116,33 @@ class WorkspaceSearchResultView: UIView {
         }
     }
     
-    func setupView(with info: WorkspaceListCellModel) {
-        self.nameLabel.text = info.name
-        // info.createAt: '2020-05-11T15:13:57+09:00' 형태의 String
-        // ISO8601DateFormatter를 통해 Date 타입으로 변환 후, Formatter 로 String 재 변환
-        let dateFormatter = ISO8601DateFormatter()
-        let date = dateFormatter.date(from: info.creatAt ?? "")
-        self.createdAtLabel.text = Formatter.YYMMDD.string(from: date ?? Date()) + " 생성"
-        self.memberCountLabel.text = "회원 \(info.memberCount ?? 0)명"
-        self.enterButton.setBackgroundColor(color: .purple4A3C9F, forState: .normal)
-        
-        if let profileImageURL = info.profileImageURL, let url = URL(string: profileImageURL) {
-            self.profileImageView.kf.setImage(with: url)
-        }
-        
-        switch info.joinState {
-        case .new, .none:
-            self.guideLabel.text = Text.WSSRV_1
-            self.enterButton.setTitle(Text.WSSRV_3, for: .normal)
-            
-        case .joined:
-            self.guideLabel.text = Text.WSSRV_2
-            self.enterButton.setTitle(Text.WSSRV_4, for: .normal)
-            
-        case .requested:
-            self.guideLabel.text = Text.WSSRV_6
-            self.enterButton.setBackgroundColor(color: .grayE6E6E6, forState: .normal)
-            self.enterButton.setTitle(Text.WSSRV_5, for: .normal)
-        }
+    func setupView(with info: Workspace) {
+//        self.nameLabel.text = info.name
+//        // info.createAt: '2020-05-11T15:13:57+09:00' 형태의 String
+//        // ISO8601DateFormatter를 통해 Date 타입으로 변환 후, Formatter 로 String 재 변환
+//        let dateFormatter = ISO8601DateFormatter()
+//        let date = dateFormatter.date(from: info.creatAt ?? "")
+//        self.createdAtLabel.text = Formatter.YYMMDD.string(from: date ?? Date()) + " 생성"
+//        self.memberCountLabel.text = "회원 \(info.memberCount ?? 0)명"
+//        self.enterButton.setBackgroundColor(color: .purple4A3C9F, forState: .normal)
+//
+//        if let profileImageURL = info.profileImageURL, let url = URL(string: profileImageURL) {
+//            self.profileImageView.kf.setImage(with: url)
+//        }
+//
+//        switch info.joinState {
+//        case .new, .none:
+//            self.guideLabel.text = Text.WSSRV_1
+//            self.enterButton.setTitle(Text.WSSRV_3, for: .normal)
+//
+//        case .joined:
+//            self.guideLabel.text = Text.WSSRV_2
+//            self.enterButton.setTitle(Text.WSSRV_4, for: .normal)
+//
+//        case .requested:
+//            self.guideLabel.text = Text.WSSRV_6
+//            self.enterButton.setBackgroundColor(color: .lightGrayDDDDDD, forState: .normal)
+//            self.enterButton.setTitle(Text.WSSRV_5, for: .normal)
+//        }
     }
 }

@@ -29,7 +29,7 @@ final class WorkspaceSearchViewReactor: Reactor {
         var code: String?
         var errorMessage: String?
         var isLoading: Bool
-        var workspaceInfo: WorkspaceListCellModel?
+        var workspaceInfo: Workspace?
     }
     
     let provider: ManagerProviderType
@@ -114,11 +114,10 @@ final class WorkspaceSearchViewReactor: Reactor {
     }
 
     func reactorForResult() -> WorkspaceSearchResultViewReactor? {
-        guard let info = self.currentState.workspaceInfo else { return nil }
-        
+        guard let code = self.currentState.workspaceInfo?.code else { return nil }
         return WorkspaceSearchResultViewReactor(
             provider: self.provider,
-            workspaceListCellModel: info
+            workspaceCode: code
         )
     }
 }

@@ -65,9 +65,6 @@ class ServiceDetailLogViewController: BaseNavigatableViewController, View {
                 self?.navigationController?.popViewController(animated: true)
             }).disposed(by: self.disposeBag)
         
-        self.tableView.rx.setDelegate(self)
-            .disposed(by: self.disposeBag)
-        
         self.tableView.rx.modelSelected(ServiceLogCellReactor.self)
             .subscribe(onNext: { reactor in
                 print(reactor)
@@ -81,19 +78,14 @@ class ServiceDetailLogViewController: BaseNavigatableViewController, View {
         
         //State
         reactor.state
-            .map { $0.serviceLogs.map { ServiceLogCellReactor (model: $0, provider: reactor.provider, swsIdx: reactor.swsIdx) } }
+            .map { $0.serviceLogs.map { ServiceLogCellReactor (model: $0, provider: reactor.provider, workspaceId: reactor.workspaceId) } }
             .map { [ServiceLogSection(header: "", items: $0)] }
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.isProcessing }
-            .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
-            .disposed(by: self.disposeBag)
-        
         reactor.state.map { $0.isLoading }
             .filter { $0 == false }
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoading in
                 if self?.tableView.refreshControl?.isRefreshing ?? false {
                     self?.tableView.refreshControl?.endRefreshing()
@@ -105,21 +97,7 @@ class ServiceDetailLogViewController: BaseNavigatableViewController, View {
             .distinctUntilChanged()
             .queueing(2)
             .map { $0[0] == nil && $0[1] == true }
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
-    }
-}
-
-extension ServiceDetailLogViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastIndex = self.dataSource[0].items.count-1
-        if indexPath.row >= lastIndex {
-            self.reactor?.action.onNext(.loadMore(indexPath.row))
-        }
     }
 }

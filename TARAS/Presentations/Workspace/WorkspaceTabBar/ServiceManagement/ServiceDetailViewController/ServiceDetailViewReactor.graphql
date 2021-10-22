@@ -1,0 +1,27 @@
+query service($serviceId: String) {
+	hiGlovisServiceByOrderId(orderId: $serviceId) {
+		... ServiceFragment
+	}
+}
+
+#mutation cancelServiceMutation($input: CancelServiceInput!) {
+#    cancelServiceMutation(input: $input) {
+#        ... on CancelServiceError {
+#            errorCode
+#        }
+#        ... on CancelServicePayload {
+#            result
+#        }
+#    }
+#}
+
+#mutation hideServiceMutation($input: HideServiceInput!) {
+#    hideServiceMutation(input: $input) {
+#        ... on HideServiceError {
+#            errorCode
+#        }
+#        ... on HideServicePayload {
+#            result
+#        }
+#    }
+#}

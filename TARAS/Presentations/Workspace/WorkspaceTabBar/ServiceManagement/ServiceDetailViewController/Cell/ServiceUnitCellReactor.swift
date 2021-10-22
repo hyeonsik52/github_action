@@ -13,13 +13,12 @@ class ServiceUnitCellReactor: Reactor {
     typealias Action = NoAction
     
     struct State {
-        var mode: ServiceDetailViewReactor.Mode
         var serviceSet: ServiceUnitModelSet
     }
     
     var initialState: State
     
-    init(mode: ServiceDetailViewReactor.Mode, serviceSet: ServiceUnitModelSet) {
-        self.initialState = State(mode: mode, serviceSet: serviceSet)
+    init(serviceSet: ServiceUnitModelSet) {
+        self.initialState = State(serviceSet: serviceSet)
     }
 }

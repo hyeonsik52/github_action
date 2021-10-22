@@ -53,34 +53,6 @@ class UpdateEmailViewController: BaseNavigatableViewController, View {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationItem.setLeftBarButton(self.backButton, animated: true)
     }
-
-    override func bind() {
-        // '뒤로가기' 버튼 액션
-        self.backButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.navigationController?.popViewController(animated: true)
-        }).disposed(by: self.disposeBag)
-        
-        // 리턴키 교체
-        self.emailInputView.textView.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
-            guard let self = self else { return }
-            self.emailInputView.textView.returnKeyType = text.count < 1 ? .default : .done
-            self.emailInputView.textView.reloadInputViews()
-        }).disposed(by: self.disposeBag)
-        
-        // '확인' 버튼 enable
-        self.emailInputView.textView.rx.text.orEmpty
-            .map { $0.count > 0 }
-            .bind(to: self.emailInputView.confirmButton.rx.isEnabled)
-            .disposed(by: self.disposeBag)
-        
-        RxKeyboard.instance.visibleHeight
-            .drive(onNext: { [emailInputView] keyboardVisibleHeight in
-                emailInputView.snp.updateConstraints {
-                    $0.bottom.equalToSuperview().offset(-keyboardVisibleHeight)
-                }
-            }).disposed(by: self.disposeBag)
-    }
     
     
     // MARK: - ReactorKit
@@ -114,12 +86,33 @@ class UpdateEmailViewController: BaseNavigatableViewController, View {
         
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: self.activityIndicator.rx.isAnimating)
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.errorMessage }
             .bind(to: self.emailInputView.errorMessageLabel.rx.text)
             .disposed(by: self.disposeBag)
+        
+        
+        // 리턴키 교체
+        self.emailInputView.textView.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.emailInputView.textView.returnKeyType = text.count < 1 ? .default : .done
+            self.emailInputView.textView.reloadInputViews()
+        }).disposed(by: self.disposeBag)
+        
+        // '확인' 버튼 enable
+        self.emailInputView.textView.rx.text.orEmpty
+            .map { $0.count > 0 }
+            .bind(to: self.emailInputView.confirmButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [emailInputView] keyboardVisibleHeight in
+                emailInputView.snp.updateConstraints {
+                    $0.bottom.equalToSuperview().offset(-keyboardVisibleHeight)
+                }
+            }).disposed(by: self.disposeBag)
     }
 }
 

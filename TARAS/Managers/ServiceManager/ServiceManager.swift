@@ -8,18 +8,18 @@
 import UIKit
 
 protocol ServiceManagerType: AnyObject {
-//    func convert(service: ServiceFragment) -> Service?
-//    func convert(log: ServiceLogFragment) -> ServiceLog?
+    func convert(service: ServiceFragment) -> Service?
+    func convert(log json: [String: Any]) -> ServiceLog?
 }
 
 class ServiceManager: BaseManager, ServiceManagerType {
 
     private let dateFormatter = ISO8601DateFormatter()
     
-//    func convert(service: ServiceFragment) -> Service? {
-//        guard let createAt = self.dateFormatter.date(from: service.createAt) else {
-//            return nil
-//        }
+    func convert(service: ServiceFragment) -> Service? {
+        guard let createdAt = self.dateFormatter.date(from: service.createdAt) else {
+            return nil
+        }
 //
 //        let tempTemplate = ServiceTemplate(idx: -1, code: "coffee", name: "커피 주문")
 //        let robot = Robot(result: service.assignedRobot?.asRwsRobot?.fragments.robotFragment)
@@ -36,7 +36,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                let attributed = NSMutableAttributedString(
 //                    string: "'\(processing.stop.name)'\(rear)",
 //                    attributes: [
-//                        .font: UIFont.medium.14,
+//                        .font: UIFont.medium[14],
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -60,12 +60,10 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //            serviceUnits: serviceUnits,
 //            progressDescription: progressDescription
 //        )
-//    }
-//
-//    func convert(log: ServiceLogFragment) -> ServiceLog? {
-//        guard let type = ServiceLogState(raw: log),
-//              let date = self.dateFormatter.date(from: log.createAt)
-//        else { return nil }
+        return nil
+    }
+
+    func convert(log json: [String: Any]) -> ServiceLog? {
 //
 //        let content: NSAttributedString = {
 //            switch type {
@@ -74,7 +72,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                let attributed = NSMutableAttributedString(
 //                    string: "\(userName)님이 서비스를 생성하였습니다.",
 //                    attributes: [
-//                        .font: UIFont.medium.16,
+//                        .font: UIFont.medium[16],
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -88,7 +86,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: "로봇이 배정되었습니다. 서비스가 시작되었습니다.",
 //                    attributes: [
-//                        .font: UIFont.medium.16,
+//                        .font: UIFont.medium[16],
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -98,7 +96,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                let attributed = NSMutableAttributedString(
 //                    string: "로봇이 \(stopName)에 도착하였습니다.",
 //                    attributes: [
-//                        .font: UIFont.medium.16,
+//                        .font: UIFont.medium[16],
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -115,7 +113,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                    return .init(
 //                        string: "로봇이 상하차 작업을 완료하였습니다.",
 //                        attributes: [
-//                            .font: UIFont.medium.16,
+//                            .font: UIFont.medium[16],
 //                            .foregroundColor: UIColor.black
 //                        ]
 //                    )
@@ -124,7 +122,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                    let attributed = NSMutableAttributedString(
 //                        string: "\(userName)님이 작업을 완료하였습니다.",
 //                        attributes: [
-//                            .font: UIFont.medium.16,
+//                            .font: UIFont.medium[16],
 //                            .foregroundColor: UIColor.black
 //                        ]
 //                    )
@@ -139,7 +137,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: "서비스가 완료되었습니다.",
 //                    attributes: [
-//                        .font: UIFont.medium.16,
+//                        .font: UIFont.medium[16],
 //                        .foregroundColor: UIColor.black
 //                    ]
 //                )
@@ -147,7 +145,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: "관리자에 의해 서비스가 중단되었습니다.",
 //                    attributes: [
-//                        .font: UIFont.medium.16,
+//                        .font: UIFont.medium[16],
 //                        .foregroundColor: .redEc5C4A
 //                    ]
 //                )
@@ -155,7 +153,7 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //                return .init(
 //                    string: error.description,
 //                    attributes: [
-//                        .font: UIFont.medium.16,
+//                        .font: UIFont.medium[16],
 //                        .foregroundColor: .redEc5C4A
 //                    ]
 //                )
@@ -168,13 +166,14 @@ class ServiceManager: BaseManager, ServiceManagerType {
 //            date: date,
 //            content: content
 //        )
-//    }
+        return nil
+    }
 }
 
 extension ServiceManagerType {
     
-//    var dummyServices: [Service] {
-//
+    var dummyServices: [Service] {
+
 //        let template = ServiceTemplate(idx: -1, code: "coffee", name: "커피 주문")
 //        let serviceId = "20210131"
 //        let date = Date()
@@ -369,15 +368,15 @@ extension ServiceManagerType {
 //            serviceUnits: serviceUnits(first: .canceled, second: .canceled, firstIsMe: false),
 //            progressDescription: nil
 //        )
-//
-//        return [
+
+        return [
 //            robotAssigning, waiting, waitingToMove, moving, arrived, working, completed,
 //            robotAssigning2, waiting2, waitingToMove2, moving2, arrived2, working2, completed2,
 //            terminated
-//        ]
-//    }
-//
-//    var dummyLogs: [ServiceLog] {
-//        return []
-//    }
+        ]
+    }
+
+    var dummyLogs: [ServiceLog] {
+        return []
+    }
 }

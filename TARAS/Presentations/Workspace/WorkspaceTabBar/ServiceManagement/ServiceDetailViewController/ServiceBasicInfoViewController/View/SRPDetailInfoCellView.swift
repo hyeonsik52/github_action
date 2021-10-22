@@ -15,20 +15,13 @@ import RxSwift
 class SRPDetailInfoCellView: UIView {
 
     private let titleLabel = UILabel().then {
-        $0.font = .bold.16
-        $0.textColor = .black
-        $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
-    }
-    private let profileImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
-        $0.clipsToBounds = true
-        $0.cornerRadius = 18
-        $0.isHidden = true
+        $0.font = .bold[16]
+        $0.textColor = .black0F0F0F
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
     private let contentLabel = UILabel().then {
-        $0.font = .bold.16
-        $0.textColor = .black
+        $0.font = .bold[16]
+        $0.textColor = .black0F0F0F
     }
     private let arrowImageView = UIImageView().then {
         $0.contentMode = .center
@@ -77,12 +70,6 @@ class SRPDetailInfoCellView: UIView {
             $0.trailing.equalToSuperview().offset(-22)
         }
         
-        stackView.addArrangedSubview(self.profileImageView)
-        self.profileImageView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.width.height.equalTo(36)
-        }
-        
         stackView.addArrangedSubview(self.contentLabel)
         self.contentLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
@@ -111,8 +98,6 @@ class SRPDetailInfoCellView: UIView {
     
     func bind(
         text: String? = nil,
-        fixedProfile: Bool = false,
-        profileImageUrl: String? = nil,
         usingArrow: Bool = false
     ) {
         if let text = text {
@@ -120,15 +105,6 @@ class SRPDetailInfoCellView: UIView {
             self.contentLabel.text = text
         }else{
             self.contentLabel.isHidden = true
-        }
-
-        self.profileImageView.setImage(strUrl: profileImageUrl)
-        if fixedProfile {
-            self.profileImageView.isHidden = false
-        }else if profileImageUrl != nil {
-            self.profileImageView.isHidden = false
-        }else{
-            self.profileImageView.isHidden = true
         }
         
         self.arrowImageView.isHidden = !usingArrow

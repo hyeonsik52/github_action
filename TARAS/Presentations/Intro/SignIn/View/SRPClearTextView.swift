@@ -33,7 +33,7 @@ final class SRPClearTextView: UITextView {
         super.init(frame: frame, textContainer: textContainer)
         
         self.delegate = self
-        self.font = .bold.30
+        self.font = .bold[30]
         self.textColor = .purple4A3C9F
         self.textAlignment = .center
         
@@ -89,7 +89,7 @@ extension SRPClearTextView: UITextViewDelegate {
             // 마지막 character 의 range 의 시작 부분 origin.x 에
             // 마지막 character 의 width 를 더하여 구한다.
             let lastString = textView.text[textView.text.count - 1]
-            let lastStringWidth = lastString.size(withAttributes: [.font: UIFont.bold.30]).width
+            let lastStringWidth = lastString.size(withAttributes: [.font: UIFont.bold[30]]).width
             
             self.clearButton.isHidden = (textView.text.count == 0)
 

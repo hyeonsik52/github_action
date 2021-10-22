@@ -10,35 +10,28 @@ import ReactorKit
 
 class PagingReceivedServicesViewReactor: Reactor {
     
-    enum SectionType {
-        case processing
-        case completed
-    }
-    
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     let disposeBag = DisposeBag()
     
     enum Action {
         case refresh
-        case moreCompleted(Int)  //last item
-        case notification(Result<ServiceBySwsIdxSubscriptionSubscription.Data, Error>)
-        case hiddenNotification(Result<HiddenServiceSubscriptionSubscription.Data, Error>)
+        case more(Int)  //last item
+        case notification(Result<ServicesByWorkspaceIdSubscription.Data, Error>)
+//        case hiddenNotification(Result<HiddenServiceSubscriptionSubscription.Data, Error>)
     }
     
     enum Mutation {
-        case refreshProcessing([ServiceCellReactor])
-        case refreshCompleted([ServiceCellReactor])
-        case moreCompleted([ServiceCellReactor])
+        case refresh([ServiceCellReactor])
+        case more([ServiceCellReactor])
         ///필터링에 의해 추가 로드가 되지 않은 경우 다시 시도 플래그
         case notFoundCompleted
         
-        case addService(SectionType, [ServiceCellReactor])
-        case updateService(SectionType, ServiceCellReactor)
-        case deleteService(SectionType, Int) //serviceIdx
+        case addService([ServiceCellReactor])
+        case updateService(ServiceCellReactor)
+        case deleteService(String) //serviceId
         
         ///초기 상태 nil, 로딩 시작 true, 로딩 종료 false/ nil에서 true가 된 경우일 때만 스켈레톤 뷰 출력
-        case processingIsLoading(Bool?)
-        case completedIsLoading(Bool?)
+        case isLoading(Bool?)
         
         ///추가 로딩
         case isProcessing(Bool?)
@@ -46,10 +39,9 @@ class PagingReceivedServicesViewReactor: Reactor {
     
     struct State {
         var sections: [ServiceModelSection]
-        var processingIsLoading: Bool?
-        var completedIsLoading: Bool?
+        var isLoading: Bool?
         var isProcessing: Bool?
-        var retryMoreCompleted: Bool
+        var retryMore: Bool
     }
     
     var initialState: State {
@@ -59,21 +51,19 @@ class PagingReceivedServicesViewReactor: Reactor {
 //            .map { ServiceCellReactor(mode: .managementReceived, service: $0) }
         
         let sections: [ServiceModelSection] = [
-            .init(header: "진행 중 서비스", items: []),
-            .init(header: "완료된 서비스", items: [])
+            .init(header: "", items: [])
         ]
         
         return State(
             sections: sections,
-            processingIsLoading: nil,
-            completedIsLoading: nil,
+            isLoading: nil,
             isProcessing: nil,
-            retryMoreCompleted: false
+            retryMore: false
         )
     }
     
     let provider : ManagerProviderType
-    let swsIdx: Int
+    let workspaceId: String
     
     private let countPerLoading = 5
     
@@ -84,25 +74,25 @@ class PagingReceivedServicesViewReactor: Reactor {
     
     private let refDate = Date()
     
-    init(provider: ManagerProviderType, swsIdx: Int) {
+    init(provider: ManagerProviderType, workspaceId: String) {
         self.provider = provider
-        self.swsIdx = swsIdx
+        self.workspaceId = workspaceId
         self.bind()
     }
     
     private func bind() {
         
-        self.provider.subscriptionManager.service(by: self.swsIdx)
+        self.provider.subscriptionManager.services(by: self.workspaceId)
             .subscribe(onNext: { [weak self] result in
                 self?.action.onNext(.notification(result))
             })
             .disposed(by: self.disposeBag)
         
-        self.provider.subscriptionManager.hiddenService()
-            .subscribe(onNext: { [weak self] result in
-                self?.action.onNext(.hiddenNotification(result))
-            })
-            .disposed(by: self.disposeBag)
+//        self.provider.subscriptionManager.hiddenService()
+//            .subscribe(onNext: { [weak self] result in
+//                self?.action.onNext(.hiddenNotification(result))
+//            })
+//            .disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -110,15 +100,12 @@ class PagingReceivedServicesViewReactor: Reactor {
         switch action {
         case .refresh:
             return .concat([
-                .just(.processingIsLoading(true)),
-                .just(.completedIsLoading(true)),
-                self.refresh(.processing),
-                .just(.processingIsLoading(false)),
-                self.refresh(.completed),
-                .just(.completedIsLoading(false))
+                .just(.isLoading(true)),
+                self.refresh(),
+                .just(.isLoading(false))
             ])
-        case .moreCompleted(let item):
-            guard self.currentState.completedIsLoading == false else { return .empty() }
+        case .more(let item):
+            guard self.currentState.isLoading == false else { return .empty() }
             
             if item > self.lastItem {
                 self.lastItem = item
@@ -131,40 +118,36 @@ class PagingReceivedServicesViewReactor: Reactor {
             
             return .concat([
                 .just(.isProcessing(true)),
-                self.moreCompleted(item),
+                self.more(item),
                 .just(.isProcessing(false))
             ])
         case .notification(let result):
             return self.subscription(result)
-        case .hiddenNotification(let result):
-            return self.subscription(result)
+//        case .hiddenNotification(let result):
+//            return self.subscription(result)
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .refreshProcessing(let services):
+        case .refresh(let services):
             state.sections[0].items = services
-        case .refreshCompleted(let services):
-            state.sections[1].items = services
-        case .moreCompleted(let services):
-            state.sections[1].items.append(contentsOf: services)
-            state.sections[1].items.sort(by: { self.sort(.completed, $0, $1) })
-        case let .addService(type, services):
-            state = self.addServices(type, state: state, data: services)
-        case let .updateService(type, service):
-            state = self.updateServices(type, state: state, data: service)
-        case let .deleteService(type, serviceIdx):
-            state = self.deleteServices(type, state: state, serviceIdx: serviceIdx)
-        case .processingIsLoading(let isLoading):
-            state.processingIsLoading = isLoading
-        case .completedIsLoading(let isLoading):
-            state.completedIsLoading = isLoading
+        case .more(let services):
+            state.sections[0].items.append(contentsOf: services)
+            state.sections[0].items.sort(by: { self.sort($0, $1) })
+        case let .addService(services):
+            state = self.addServices(state: state, data: services)
+        case let .updateService(service):
+            state = self.updateServices(state: state, data: service)
+        case let .deleteService(serviceId):
+            state = self.deleteServices(state: state, serviceId: serviceId)
+        case .isLoading(let isLoading):
+            state.isLoading = isLoading
         case .isProcessing(let isProcessing):
             state.isProcessing = isProcessing
         case .notFoundCompleted:
-            state.retryMoreCompleted = !state.retryMoreCompleted
+            state.retryMore = !state.retryMore
         }
         return state
     }
@@ -172,259 +155,195 @@ class PagingReceivedServicesViewReactor: Reactor {
 
 extension PagingReceivedServicesViewReactor {
         
-    private func refresh(_ type: SectionType) -> Observable<Mutation> {
+    private func refresh() -> Observable<Mutation> {
         
-        let query = ReceivedServicesConnectionQuery(swsIdx: self.swsIdx, phase: nil, response: .accept, status: nil, before: nil)
-        switch type {
-        case .processing:
-            query.status = [.moving, .stop, .working, .pause]
-            //진행 중 서비스를 모두 가져옴
-            query.last = 2147483647
-        case .completed:
-            query.status = [.completed, .canceledOnReady, .canceledOnWorking, .error]
-            //완료된 서비스는 페이징을 위해 제한된 개수만 가져옴
-            query.last = self.countPerLoading
-        }
-        
+        let query = ServicesQuery(
+            workspaceId: self.workspaceId,
+//            phase: nil,
+            before: nil,
+            last: 2147483647
+        )
         return self.provider.networkManager.fetch(query)
             .do(onNext: { [weak self] data in
-                if case .completed = type {
-                    let pageInfo = data.receivedServicesConnection.pageInfo
-                    self?.startCursor = pageInfo.startCursor
-                    self?.hasPreviousPage = (pageInfo.hasPreviousPage == "1")
-                    self?.lastItem = -1
-                }
+                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
+                self?.startCursor = pageInfo.startCursor
+                self?.hasPreviousPage = pageInfo.hasPreviousPage
+                self?.lastItem = -1
             })
-            .map { self.convert(type, data: $0) }
-            .map {
-                switch type {
-                case .processing:
-                    return .refreshProcessing($0)
-                case .completed:
-                    return .refreshCompleted($0)
-                }
-        }
+            .map { self.convert($0) }
+            .map { .refresh($0) }
     }
     
-    private func moreCompleted(_ item: Int) -> Observable<Mutation> {
+    private func more(_ item: Int) -> Observable<Mutation> {
         
-        let query = ReceivedServicesConnectionQuery(
-            swsIdx: self.swsIdx,
-            phase: nil,
-            response: .accept,
-            status: [.completed, .canceledOnReady, .canceledOnWorking, .error],
+        let query = ServicesQuery(
+            workspaceId: self.workspaceId,
+//            phase: nil,
             before: self.startCursor,
             last: self.countPerLoading
         )
         
         return self.provider.networkManager.fetch(query)
             .do(onNext: { [weak self] data in
-                let pageInfo = data.receivedServicesConnection.pageInfo
+                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
                 self?.startCursor = pageInfo.startCursor
-                self?.hasPreviousPage = (pageInfo.hasPreviousPage == "1")
+                self?.hasPreviousPage = pageInfo.hasPreviousPage
             })
-            .map { self.convert(.completed, data: $0) }
-            .map { [weak self] in
-                if $0.isEmpty {
-                    self?.lastItem -= 1
-                    return .notFoundCompleted
-                }else{
-                    return .moreCompleted($0)
-                }
-            }
+            .map { self.convert($0) }
+            .map { .more($0) }
     }
         
-    private func subscription(_ result: Result<ServiceBySwsIdxSubscriptionSubscription.Data, Error>) -> Observable<Mutation> {
-        switch result {
-        case .success(let data):
-        let subscription = data.serviceBySwsIdxSubscription
-        if let created = subscription?.asServiceCreated?.item {
-            
-            var mutations = [Mutation]()
-            
-            let processing = self.convert(.processing, data: created)
-            
-                for item in processing {
-                    let itemServiceIdx = item.currentState.service.serviceIdx
-                    
-                    if self.currentState.sections[0].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
-                        //이미 존재하면 업데이트
-                        mutations.append(.updateService(.processing, item))
-                    }else{
-                        //같은 항목이 없다면 추가
-                        mutations.append(.addService(.processing, [item]))
-                    }
-                }
-            
-            return (mutations.isEmpty ? .empty(): .concat(mutations.map {.just($0)}))
-            
-        }else if let updated = subscription?.asServiceUpdated?.item {
-            
-            var mutations = [Mutation]()
-            
-            let processing = self.convert(.processing, data: updated)
-            let completed = self.convert(.completed, data: updated)
-            
-            //갱신된 서비스 인덱스가 필터링 된 진행 중 목록에 있다면 추가 또는 업데이트
-            if processing.isEmpty {
-                //없다면 목록에서 삭제
-                mutations.append(.deleteService(.processing, updated.serviceIdx))
-            }else{
-                for item in processing {
-                    let itemServiceIdx = item.currentState.service.serviceIdx
-                    
-                    if self.currentState.sections[0].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
-                        //이미 존재하면 업데이트
-                        mutations.append(.updateService(.processing, item))
-                    }else{
-                        //같은 항목이 없다면 추가
-                        mutations.append(.addService(.processing, [item]))
-                    }
-                }
-            }
-            
-            //갱신된 서비스 인덱스가 필터링 된 수락된 목록에 있다면 추가 또는 업데이트
-            if completed.isEmpty {
-                //없다면 목록에서 삭제
-                mutations.append(.deleteService(.completed, updated.serviceIdx))
-            }else{
-                for item in completed {
-                    let itemServiceIdx = item.currentState.service.serviceIdx
-                    
-                    if self.currentState.sections[1].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
-                        //이미 존재하면 업데이트
-                        mutations.append(.updateService(.completed, item))
-                    }else{
-                        //같은 항목이 없다면 추가
-                        mutations.append(.addService(.completed, [item]))
-                    }
-                }
-            }
-            
-            return (mutations.isEmpty ? .empty(): .from(mutations))
-            
-        }else if let deleted = subscription?.asServiceDeleted {
-            return .from([
-                .deleteService(.processing, deleted.serviceIdx),
-                .deleteService(.completed, deleted.serviceIdx)
-            ])
-        }
-        case .failure(let error):
-            print(error.localizedDescription)
-        }
+    private func subscription(_ result: Result<ServicesByWorkspaceIdSubscription.Data, Error>) -> Observable<Mutation> {
+//        switch result {
+//        case .success(let data):
+//        let subscription = data.serviceBySwsIdxSubscription
+//        if let created = subscription?.asServiceCreated?.item {
+//
+//            var mutations = [Mutation]()
+//
+//            let processing = self.convert(.processing, data: created)
+//
+//                for item in processing {
+//                    let itemServiceIdx = item.currentState.service.serviceIdx
+//
+//                    if self.currentState.sections[0].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
+//                        //이미 존재하면 업데이트
+//                        mutations.append(.updateService(.processing, item))
+//                    }else{
+//                        //같은 항목이 없다면 추가
+//                        mutations.append(.addService(.processing, [item]))
+//                    }
+//                }
+//
+//            return (mutations.isEmpty ? .empty(): .concat(mutations.map {.just($0)}))
+//
+//        }else if let updated = subscription?.asServiceUpdated?.item {
+//
+//            var mutations = [Mutation]()
+//
+//            let processing = self.convert(.processing, data: updated)
+//            let completed = self.convert(.completed, data: updated)
+//
+//            //갱신된 서비스 인덱스가 필터링 된 진행 중 목록에 있다면 추가 또는 업데이트
+//            if processing.isEmpty {
+//                //없다면 목록에서 삭제
+//                mutations.append(.deleteService(.processing, updated.serviceIdx))
+//            }else{
+//                for item in processing {
+//                    let itemServiceIdx = item.currentState.service.serviceIdx
+//
+//                    if self.currentState.sections[0].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
+//                        //이미 존재하면 업데이트
+//                        mutations.append(.updateService(.processing, item))
+//                    }else{
+//                        //같은 항목이 없다면 추가
+//                        mutations.append(.addService(.processing, [item]))
+//                    }
+//                }
+//            }
+//
+//            //갱신된 서비스 인덱스가 필터링 된 수락된 목록에 있다면 추가 또는 업데이트
+//            if completed.isEmpty {
+//                //없다면 목록에서 삭제
+//                mutations.append(.deleteService(.completed, updated.serviceIdx))
+//            }else{
+//                for item in completed {
+//                    let itemServiceIdx = item.currentState.service.serviceIdx
+//
+//                    if self.currentState.sections[1].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
+//                        //이미 존재하면 업데이트
+//                        mutations.append(.updateService(.completed, item))
+//                    }else{
+//                        //같은 항목이 없다면 추가
+//                        mutations.append(.addService(.completed, [item]))
+//                    }
+//                }
+//            }
+//
+//            return (mutations.isEmpty ? .empty(): .from(mutations))
+//
+//        }else if let deleted = subscription?.asServiceDeleted {
+//            return .from([
+//                .deleteService(.processing, deleted.serviceIdx),
+//                .deleteService(.completed, deleted.serviceIdx)
+//            ])
+//        }
+//        case .failure(let error):
+//            print(error.localizedDescription)
+//        }
         return .empty()
     }
     
-    private func subscription(_ result: Result<HiddenServiceSubscriptionSubscription.Data, Error>) -> Observable<Mutation> {
-        switch result {
-        case .success(let data):
-            let subscription = data.hiddenServiceSubscription
-            if let service = subscription?.asService {
-                return .from([
-                    .deleteService(.processing, service.serviceIdx),
-                    .deleteService(.completed, service.serviceIdx)
-                ])
-            }
-        case .failure(let error):
-            print(error.localizedDescription)
-        }
-        return .empty()
-    }
+//    private func subscription(_ result: Result<HiddenServiceSubscriptionSubscription.Data, Error>) -> Observable<Mutation> {
+//        switch result {
+//        case .success(let data):
+//            let subscription = data.hiddenServiceSubscription
+//            if let service = subscription?.asService {
+//                return .from([
+//                    .deleteService(.processing, service.serviceIdx),
+//                    .deleteService(.completed, service.serviceIdx)
+//                ])
+//            }
+//        case .failure(let error):
+//            print(error.localizedDescription)
+//        }
+//        return .empty()
+//    }
 }
 
 extension PagingReceivedServicesViewReactor {
     
-    private func convert(_ type: SectionType, data: ReceivedServicesConnectionQuery.Data) -> [ServiceCellReactor] {
-        
-        let services = data.receivedServicesConnection.edges.compactMap { $0.node }
-            .map{ ServiceModel($0, with: self.provider.serviceManager) }
-        
-        return self.convert(type, data: services)
+    private func convert(_ data: ServicesQuery.Data) -> [ServiceCellReactor] {
+        guard let services = data.hiGlovisServices?.edges
+            .compactMap(\.?.node?.fragments.serviceFragment)
+                .compactMap(self.provider.serviceManager.convert) else { return [] }
+        return self.convert(services)
     }
     
-    private func convert(_ type: SectionType, data: ServiceType) -> [ServiceCellReactor] {
-        
-        let service = ServiceModel(data, with: self.provider.serviceManager)
-        
-        return self.convert(type, data: [service])
+    private func convert(_ data: ServiceFragment) -> [ServiceCellReactor] {
+        guard let service = self.provider.serviceManager.convert(service: data) else { return [] }
+        return self.convert([service])
     }
     
-    private func convert(_ type: SectionType, data: [ServiceModel]) -> [ServiceCellReactor] {
+    private func convert(_ data: [Service]) -> [ServiceCellReactor] {
         return data
-            //pause 상태가 포함되기 때문에 이전상태를 비교해서 준비중 상태를 제외한다
-            .filter { !$0.isPreparing }
-            .filter {
-                switch type {
-                case .processing:
-                    return $0.isProcessing
-                case .completed:
-                    return $0.isCompleted
-                }
-            }
-            .filter {
-                //포함된 단위서비스 중 하나라도 내가 수신자에 포함되고, 개인 거절하지 않은 경우
-                $0.serviceUnitList.map { $0.amIRecipient && !$0.amIRejector }.reduce(false, {$0 || $1})
-            }
             .map{
                 ServiceCellReactor(
                     mode: .managementReceived,
                     service: $0
                 )
             }
-            .sorted { [weak self] in self?.sort(type, $0, $1) ?? false }
+            .sorted { [weak self] in self?.sort($0, $1) ?? false }
     }
     
-    private func sort(_ type: SectionType, _ lhs: ServiceCellReactor, _ rhs: ServiceCellReactor) -> Bool {
-        switch type {
-        case .processing:
-            return lhs.currentState.service.beginAt ?? self.refDate > rhs.currentState.service.beginAt ?? self.refDate
-        case .completed:
-            return lhs.currentState.service.endAt ?? self.refDate > rhs.currentState.service.endAt ?? self.refDate
-        }
+    private func sort(_ lhs: ServiceCellReactor, _ rhs: ServiceCellReactor) -> Bool {
+        return lhs.currentState.service.createdAt > rhs.currentState.service.createdAt
     }
 }
 
 extension PagingReceivedServicesViewReactor {
     
-    private func addServices(_ type: SectionType, state: State, data: [ServiceCellReactor]) -> State {
+    private func addServices(state: State, data: [ServiceCellReactor]) -> State {
         var state = state
         for reactor in data {
-            switch type {
-            case .processing:
-                state.sections[0].items.insert(reactor, at: 0)
-                state.sections[0].items.sort(by: { self.sort(type, $0, $1) })
-            case .completed:
-                state.sections[1].items.insert(reactor, at: 0)
-                state.sections[1].items.sort(by: { self.sort(type, $0, $1) })
-            }
+            state.sections[0].items.insert(reactor, at: 0)
+            state.sections[0].items.sort(by: { self.sort($0, $1) })
         }
         return state
     }
     
-    private func updateServices(_ type: SectionType, state: State, data: ServiceCellReactor) -> State {
+    private func updateServices(state: State, data: ServiceCellReactor) -> State {
         var state = state
-        let serviceIdx = data.currentState.service.serviceIdx
-        switch type {
-        case .processing:
-            if let index = state.sections[0].items.firstIndex(where: { $0.currentState.service.serviceIdx == serviceIdx }) {
-                state.sections[0].items[index] = data
-            }
-        case .completed:
-            if let index = state.sections[1].items.firstIndex(where: { $0.currentState.service.serviceIdx == serviceIdx }) {
-                state.sections[1].items[index] = data
-            }
+        let serviceId = data.currentState.service.id
+        if let index = state.sections[0].items.firstIndex(where: { $0.currentState.service.id == serviceId }) {
+            state.sections[0].items[index] = data
         }
         return state
     }
     
-    private func deleteServices(_ type: SectionType, state: State, serviceIdx: Int) -> State {
+    private func deleteServices(state: State, serviceId: String) -> State {
         var state = state
-        switch type {
-        case .processing:
-            state.sections[0].items.removeAll { $0.currentState.service.serviceIdx == serviceIdx }
-        case .completed:
-            state.sections[1].items.removeAll { $0.currentState.service.serviceIdx == serviceIdx }
-        }
+        state.sections[0].items.removeAll { $0.currentState.service.id == serviceId }
         return state
     }
 }
