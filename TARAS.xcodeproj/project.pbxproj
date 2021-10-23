@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		ED508CC5272276110029AF7B /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC4272276110029AF7B /* VersionCheck.swift */; };
-		ED508CC727227CC90029AF7B /* UIApplication+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC627227CC80029AF7B /* UIApplication+Info.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -312,7 +311,6 @@
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		ED508CC4272276110029AF7B /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
-		ED508CC627227CC80029AF7B /* UIApplication+Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Info.swift"; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -851,7 +849,6 @@
 		ED6B461526B7E7CC00C2FA6D /* Cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				ED508CC627227CC80029AF7B /* UIApplication+Info.swift */,
 				ED6B461626B7E7CC00C2FA6D /* UIView.swift */,
 				ED6B461726B7E7CC00C2FA6D /* UIColor.swift */,
 				ED6B461826B7E7CC00C2FA6D /* UIRefreshControl.swift */,
@@ -2039,7 +2036,6 @@
 				EDC11A6726D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift in Sources */,
 				EDC11A6B26D3A39D0020AB09 /* ServiceManagementViewReactor.swift in Sources */,
 				ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */,
-				ED508CC727227CC90029AF7B /* UIApplication+Info.swift in Sources */,
 				EDC11A3426D3A39D0020AB09 /* WorkspaceListCellReactor.swift in Sources */,
 				ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */,
 				EDC11ADA26D3A39E0020AB09 /* CSURecipientDelegate.swift in Sources */,
@@ -2373,7 +2369,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_SERVER_ENDPOINT = "https://dev-api.taras.twinny.io/graphql";
+				TRS_SERVER_ENDPOINT = "http://graass-dev.twinny-tarp.com:8000/graphql";
 			};
 			name = Debug;
 		};
@@ -2401,7 +2397,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "TARAS/Resources/TARAS-Dev-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_SERVER_ENDPOINT = "https://dev-api.taras.twinny.io/graphql";
+				TRS_SERVER_ENDPOINT = "http://graass-dev.twinny-tarp.com:8000/graphql";
 			};
 			name = Release;
 		};

@@ -28,12 +28,12 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>dev-api.taras.twinny.io</key>
+			<key>graass-dev.twinny-tarp.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-				<key>NSExceptionRequiresForwardSecrecy</key>
 				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
 				<key>NSIncludesSubdomains</key>
 				<false/>
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
