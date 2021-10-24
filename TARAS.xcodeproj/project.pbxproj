@@ -2369,7 +2369,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_SERVER_ENDPOINT = "http://graass-dev.twinny-tarp.com:8000/graphql";
+				TRS_SERVER_ENDPOINT = "dev-api.taras.twinny.io";
 			};
 			name = Debug;
 		};
@@ -2397,7 +2397,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "TARAS/Resources/TARAS-Dev-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_SERVER_ENDPOINT = "http://graass-dev.twinny-tarp.com:8000/graphql";
+				TRS_SERVER_ENDPOINT = "dev-api.taras.twinny.io";
 			};
 			name = Release;
 		};

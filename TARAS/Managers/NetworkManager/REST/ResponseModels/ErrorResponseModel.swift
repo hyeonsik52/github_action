@@ -15,7 +15,7 @@ struct ErrorResponseModel: RestAPIResponse {
     }
     
     let error: String
-    let errorDescription: String
+    let errorDescription: String?
 }
 
 extension ErrorResponseModel {

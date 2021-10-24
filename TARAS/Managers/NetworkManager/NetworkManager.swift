@@ -11,6 +11,7 @@ import FirebaseFirestore
 import Foundation
 import Alamofire
 import RxAlamofire
+import RxReachability
 
 typealias InterceptorsBlock = (_ store: ApolloStore, _ client: URLSessionClient, _ provider: ManagerProviderType) -> [ApolloInterceptor]
 
@@ -31,7 +32,7 @@ protocol NetworkManagerType: AnyObject {
 
 class NetworkManager: BaseManager, NetworkManagerType {
     
-    private static let endpointURL = Info.serverEndpoint
+    private static let endpointURL = "\(Info.serverEndpoint)/graphql/"
     
     /// A web socket transport to use for subscriptions
     private(set) var webSocketTransport: WebSocketTransport!
@@ -132,7 +133,7 @@ extension NetworkManager {
             return Disposables.create {
                 cancellable?.cancel()
             }
-        }
+        }.retryOnConnect(timeout: .seconds(10))
     }
     
     func perform<T: GraphQLMutation>(_ mutation: T) -> Observable<T.Data> {
@@ -192,7 +193,7 @@ extension NetworkManager {
             return Disposables.create {
                 cancellable?.cancel()
             }
-        }
+        }.retryOnConnect(timeout: .seconds(10))
     }
     
     ///로그인 직후, 세션 갱신 후에 호출되어 웹소켓을 연결 정보를 업데이트 한다.
@@ -205,8 +206,8 @@ extension NetworkManager {
     
     //Temp
     func tempVersionCheck() -> Observable<Error?> {
-        let thisVersionCode = Int(UIApplication.buildNumber ?? "1") ?? 1
-//            let thisVersionName = UIApplication.version ?? "0.0.1"
+        let thisVersionCode = Int(Info.appBuild) ?? 1
+//            let thisVersionName = Info.appVersion ?? "0.0.1"
         return .create { observer in
             Firestore.firestore().collection("version")
                 .document("ap-ios").getDocument { snapshot, error in
@@ -244,7 +245,7 @@ extension NetworkManager {
                     }
                 }
             return Disposables.create()
-        }
+        }.retryOnConnect(timeout: .seconds(10))
     }
 }
 
@@ -265,15 +266,15 @@ extension NetworkManager: WebSocketTransportDelegate {
 
 struct RestError: Error {
     var code: String
-    var description: String
+    var description: String?
 }
 
 extension NetworkManager {
     
     func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>> {
         var parameters = api.parameters
-        parameters["client_id"] = "5xUj00F1dgLNkDkOMuXcaH2tEMtTyhyCu7DxQ3jG"
-        parameters["client_secret"] = "Q3IukgHRXdY8w1QzlTCaxkbQdrCHiGtdYYSQNnSJQ01fuNvXyeeN8cO8jpPwhLpt362EQAcIZSMaCFEsldMwAronfZt8wPNMv2jeHS6yo5fXw4o9XJLfgGWzZIFWkOQ9"
+        parameters["client_id"] = "u6AKnbrrgqTdm3BmeRib2ezlaZX2HSyjnR2mvtPv"
+        parameters["client_secret"] = "VGBSHlITm1d4OqR9HePgEnwceZrA1vhQQeSiMO8hNGuUcEMnhXIqFsAQprg0FLBesns88efgRI514wcoCshVrHkWA6AdEWSRYYXaFNhRkVhjnAdLdhPmmQzJ2ovUWTD3"
         Log.request("\(api) \(parameters)")
         return Session.default.rx
             .request(
@@ -290,16 +291,16 @@ extension NetworkManager {
                     return .success(responseModel)
                 } catch let error {
                     if let errorModel = try? JSONDecoder().decode(ErrorResponseModel.self, from: $0.1) {
-                        Log.err("\(errorModel)")
+                        Log.error("\(errorModel)")
                         return .failure(errorModel.toRestError)
                     } else {
-                        Log.fail("JSON serialization error \(error.localizedDescription)")
+                        Log.fail("JSON serialization error: \(error.localizedDescription)")
                         return .failure(.init(
                             code: "JSON serialization error",
                             description: error.localizedDescription
                         ))
                     }
                 }
-            }
+            }.retryOnConnect(timeout: .seconds(10))
     }
 }

@@ -21,7 +21,7 @@ enum RestAPIType<T: RestAPIResponse> {
                 return "auth/revoke_token/"
             }
         }()
-        return URL(string: "http://graass-dev.twinny-tarp.com:8000/")!.appendingPathComponent(path)
+        return URL(string: Info.serverEndpoint)!.appendingPathComponent(path)
     }
     
     var parameters: [String: Any] {

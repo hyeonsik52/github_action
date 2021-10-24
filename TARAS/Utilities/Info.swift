@@ -19,7 +19,7 @@ enum Info {
     }
     
     static var serverEndpoint: String {
-        return self["ServerEndpoint"]!
+        return "https://" + self["ServerEndpoint"]!
     }
     
     static var appVersion: String {
