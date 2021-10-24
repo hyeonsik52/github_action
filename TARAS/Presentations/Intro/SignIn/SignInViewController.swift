@@ -61,21 +61,42 @@ class SignInViewController: BaseNavigatableViewController, ReactorKit.View {
             .map { Reactor.Action.signIn(id: $0, password: $1) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
-
-        // 아이디 · 비밀번호 찾기
-        signInView.forgotAccountButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.signInView.idTextFieldView.textField.resignFirstResponder()
-                self?.signInView.passwordTextFieldView.textField.resignFirstResponder()
-                self?.forgotAccountAlert(idHandler: { [weak self] in
-                    let viewController = FindAccountEmailViewController()
-                    viewController.reactor = reactor.reactorForFindAccountId()
-                    self?.navigationController?.pushViewController(viewController, animated: true)
-                }, passwordHandler: { [weak self] in
-                    let viewController = FindAccountIdViewController()
-                    viewController.reactor = reactor.reactorForFindPassword()
-                    self?.navigationController?.pushViewController(viewController, animated: true)
-                })
+        
+        
+        self.signInView.findAccountButton.rx.tap
+            .flatMapLatest {
+                UIAlertController.show(
+                    .actionSheet,
+                    title: "아이디 찾기",
+                    items: [
+                        "전화번호로 아이디 찾기",
+                        "이메일로 아이디 찾기"
+                    ]
+                )
+            }.subscribe(onNext: { [weak self] selected, _ in
+                if selected == 0 {
+                    //아이디-전화번호
+                } else {
+                    //아이디-이메일
+                }
+            }).disposed(by: self.disposeBag)
+        
+        self.signInView.resetPasswordButton.rx.tap
+            .flatMapLatest {
+                UIAlertController.show(
+                    .actionSheet,
+                    title: "비밀번호 재설정",
+                    items: [
+                        "전화번호로 비밀번호 재설정",
+                        "이메일로 비밀번호 재설정"
+                    ]
+                )
+            }.subscribe(onNext: { [weak self] selected, _ in
+                if selected == 0 {
+                    //비밀번호-전화번호
+                } else {
+                    //비밀번호-이메일
+                }
             }).disposed(by: self.disposeBag)
 
         // 회원가입
