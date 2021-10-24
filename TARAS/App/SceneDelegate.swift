@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var disposeBag = DisposeBag()
 
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        appDelegate.window = window
         window?.windowScene = windowScene
         
         let reactor = LaunchScreenViewReactor(provider: appDelegate.provider)

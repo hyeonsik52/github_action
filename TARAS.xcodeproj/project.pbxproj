@@ -17,6 +17,7 @@
 		ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
 		ED508CDA272298D40029AF7B /* LogoutRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */; };
 		ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */; };
+		ED508CDE272561130029AF7B /* UIAppilcation+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CDD272561130029AF7B /* UIAppilcation+Top.swift */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
 		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
@@ -320,6 +321,7 @@
 		ED508CD1272298D40029AF7B /* RestAPIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIRequest.swift; sourceTree = "<group>"; };
 		ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutRequestModel.swift; sourceTree = "<group>"; };
 		ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+dictionary.swift"; sourceTree = "<group>"; };
+		ED508CDD272561130029AF7B /* UIAppilcation+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAppilcation+Top.swift"; sourceTree = "<group>"; };
 		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
 		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		ED52730C26C255FC0077CD9D /* LargeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 				ED6B462126B7E7CC00C2FA6D /* UITextView.swift */,
 				ED68E1B926D4867C003D6442 /* UITableView.swift */,
 				ED6B462226B7E7CC00C2FA6D /* UINavigationController.swift */,
+				ED508CDD272561130029AF7B /* UIAppilcation+Top.swift */,
 			);
 			path = Cocoa;
 			sourceTree = "<group>";
@@ -1980,6 +1983,7 @@
 				ED6B465C26B7E7CC00C2FA6D /* Results_BaseObject.swift in Sources */,
 				EDC11AAA26D3A39D0020AB09 /* CreateServiceCellView.swift in Sources */,
 				ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */,
+				ED508CDE272561130029AF7B /* UIAppilcation+Top.swift in Sources */,
 				ED6B468426B7E8B500C2FA6D /* SubscriptionManager.swift in Sources */,
 				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
 				ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */,
