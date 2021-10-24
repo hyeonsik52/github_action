@@ -8,7 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		ED508CC5272276110029AF7B /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC4272276110029AF7B /* VersionCheck.swift */; };
-		ED508CC727227CC90029AF7B /* UIApplication+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC627227CC80029AF7B /* UIApplication+Info.swift */; };
+		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
+		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
+		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
+		ED508CD6272298D40029AF7B /* LogoutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */; };
+		ED508CD7272298D40029AF7B /* ErrorResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */; };
+		ED508CD8272298D40029AF7B /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD0272298D40029AF7B /* LoginRequestModel.swift */; };
+		ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
+		ED508CDA272298D40029AF7B /* LogoutRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */; };
+		ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */; };
+		ED508CDE272561130029AF7B /* UIAppilcation+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CDD272561130029AF7B /* UIAppilcation+Top.swift */; };
 		ED52732526C255FC0077CD9D /* GostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730A26C255FC0077CD9D /* GostButton.swift */; };
 		ED52732626C255FC0077CD9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730B26C255FC0077CD9D /* SignInView.swift */; };
 		ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52730C26C255FC0077CD9D /* LargeTitleView.swift */; };
@@ -303,7 +312,16 @@
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		ED508CC4272276110029AF7B /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
-		ED508CC627227CC80029AF7B /* UIApplication+Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Info.swift"; sourceTree = "<group>"; };
+		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
+		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
+		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
+		ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutResponseModel.swift; sourceTree = "<group>"; };
+		ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponseModel.swift; sourceTree = "<group>"; };
+		ED508CD0272298D40029AF7B /* LoginRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
+		ED508CD1272298D40029AF7B /* RestAPIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIRequest.swift; sourceTree = "<group>"; };
+		ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutRequestModel.swift; sourceTree = "<group>"; };
+		ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+dictionary.swift"; sourceTree = "<group>"; };
+		ED508CDD272561130029AF7B /* UIAppilcation+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAppilcation+Top.swift"; sourceTree = "<group>"; };
 		ED52730A26C255FC0077CD9D /* GostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GostButton.swift; sourceTree = "<group>"; };
 		ED52730B26C255FC0077CD9D /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		ED52730C26C255FC0077CD9D /* LargeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
@@ -633,6 +651,37 @@
 			path = VersionCheck;
 			sourceTree = "<group>";
 		};
+		ED508CC8272298D40029AF7B /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CC9272298D40029AF7B /* RestAPIType.swift */,
+				ED508CCA272298D40029AF7B /* ResponseModels */,
+				ED508CCF272298D40029AF7B /* RequestModels */,
+			);
+			path = REST;
+			sourceTree = "<group>";
+		};
+		ED508CCA272298D40029AF7B /* ResponseModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CCB272298D40029AF7B /* RestAPIResponse.swift */,
+				ED508CCC272298D40029AF7B /* LoginResponseModel.swift */,
+				ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */,
+				ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */,
+			);
+			path = ResponseModels;
+			sourceTree = "<group>";
+		};
+		ED508CCF272298D40029AF7B /* RequestModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CD0272298D40029AF7B /* LoginRequestModel.swift */,
+				ED508CD1272298D40029AF7B /* RestAPIRequest.swift */,
+				ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */,
+			);
+			path = RequestModels;
+			sourceTree = "<group>";
+		};
 		ED52730726C255FC0077CD9D /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +837,7 @@
 				ED6B462626B7E7CC00C2FA6D /* String.swift */,
 				ED6B462726B7E7CC00C2FA6D /* Optional.swift */,
 				ED6B463326B7E7CC00C2FA6D /* TimeInterval.swift */,
+				ED508CDB27229B950029AF7B /* Encodable+dictionary.swift */,
 				ED6B461526B7E7CC00C2FA6D /* Cocoa */,
 				ED6B462826B7E7CC00C2FA6D /* Rx */,
 				ED6B462426B7E7CC00C2FA6D /* GraphQL */,
@@ -801,7 +851,6 @@
 		ED6B461526B7E7CC00C2FA6D /* Cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				ED508CC627227CC80029AF7B /* UIApplication+Info.swift */,
 				ED6B461626B7E7CC00C2FA6D /* UIView.swift */,
 				ED6B461726B7E7CC00C2FA6D /* UIColor.swift */,
 				ED6B461826B7E7CC00C2FA6D /* UIRefreshControl.swift */,
@@ -815,6 +864,7 @@
 				ED6B462126B7E7CC00C2FA6D /* UITextView.swift */,
 				ED68E1B926D4867C003D6442 /* UITableView.swift */,
 				ED6B462226B7E7CC00C2FA6D /* UINavigationController.swift */,
+				ED508CDD272561130029AF7B /* UIAppilcation+Top.swift */,
 			);
 			path = Cocoa;
 			sourceTree = "<group>";
@@ -880,10 +930,11 @@
 		ED6B466026B7E8B500C2FA6D /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
 				ED508CC3272275F70029AF7B /* VersionCheck */,
 				ED68E1BF26D49CB4003D6442 /* Enum */,
-				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
 				ED6B466126B7E8B500C2FA6D /* Interceptors */,
+				ED508CC8272298D40029AF7B /* REST */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -1901,6 +1952,7 @@
 				EDC11B0726D3AE4E0020AB09 /* BaseTableViewCell.swift in Sources */,
 				ED7A0E762721539400AD6678 /* ResetPasswordViewController.swift in Sources */,
 				EDC11A6126D3A39D0020AB09 /* WorkRequestTargetView.swift in Sources */,
+				ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */,
 				EDC11A8426D3A39D0020AB09 /* UpdateNameViewController.swift in Sources */,
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
@@ -1931,9 +1983,11 @@
 				ED6B465C26B7E7CC00C2FA6D /* Results_BaseObject.swift in Sources */,
 				EDC11AAA26D3A39D0020AB09 /* CreateServiceCellView.swift in Sources */,
 				ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */,
+				ED508CDE272561130029AF7B /* UIAppilcation+Top.swift in Sources */,
 				ED6B468426B7E8B500C2FA6D /* SubscriptionManager.swift in Sources */,
 				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
 				ED6B460826B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift in Sources */,
+				ED508CDA272298D40029AF7B /* LogoutRequestModel.swift in Sources */,
 				EDC11A5526D3A39D0020AB09 /* WorkRequestViewController.swift in Sources */,
 				EDC11A3526D3A39D0020AB09 /* WorkspaceListPlaceholderView.swift in Sources */,
 				EDC11AF926D3A39E0020AB09 /* WorkspaceHeaderView.swift in Sources */,
@@ -1986,8 +2040,8 @@
 				EDC11A6726D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift in Sources */,
 				EDC11A6B26D3A39D0020AB09 /* ServiceManagementViewReactor.swift in Sources */,
 				ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */,
-				ED508CC727227CC90029AF7B /* UIApplication+Info.swift in Sources */,
 				EDC11A3426D3A39D0020AB09 /* WorkspaceListCellReactor.swift in Sources */,
+				ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */,
 				EDC11ADA26D3A39E0020AB09 /* CSURecipientDelegate.swift in Sources */,
 				EDC11A4426D3A39D0020AB09 /* ServiceDetailNumberProfileView.swift in Sources */,
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
@@ -2006,6 +2060,7 @@
 				EDC11A9226D3A39D0020AB09 /* SettingProfileCellView.swift in Sources */,
 				EDC11A9F26D3A39D0020AB09 /* HelpViewController.swift in Sources */,
 				ED52732526C255FC0077CD9D /* GostButton.swift in Sources */,
+				ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */,
 				ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */,
 				EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
@@ -2025,12 +2080,14 @@
 				EDC11A6826D3A39D0020AB09 /* SWSUserInfoViewReactor.swift in Sources */,
 				EDC11B0226D3A39E0020AB09 /* WorkspaceSearchResultView.swift in Sources */,
 				EDC11ABA26D3A39D0020AB09 /* TargetStopCell.swift in Sources */,
+				ED508CD7272298D40029AF7B /* ErrorResponseModel.swift in Sources */,
 				ED6B464426B7E7CC00C2FA6D /* UIViewController.swift in Sources */,
 				ED6B464126B7E7CC00C2FA6D /* UIDevice.swift in Sources */,
 				ED6B464626B7E7CC00C2FA6D /* UIImageView.swift in Sources */,
 				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
 				EDC118E326D3A24A0020AB09 /* FindAccountEmailView.swift in Sources */,
 				EDC11A4126D3A39D0020AB09 /* ServiceUnitManagementCollectionViewCell.swift in Sources */,
+				ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */,
 				EDC118DE26D3A24A0020AB09 /* FindAccountIdViewController.swift in Sources */,
 				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */,
@@ -2046,6 +2103,7 @@
 				EDC11AC226D3A39D0020AB09 /* CSUTargetDelegate.swift in Sources */,
 				EDC11AE926D3A39E0020AB09 /* MessageView.swift in Sources */,
 				EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */,
+				ED508CD6272298D40029AF7B /* LogoutResponseModel.swift in Sources */,
 				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
 				EDC11A3626D3A39D0020AB09 /* WorkspaceListCell.swift in Sources */,
 				ED7A0E682721328600AD6678 /* SPRSegmentButton.swift in Sources */,
@@ -2056,6 +2114,8 @@
 				EDC11AFD26D3A39E0020AB09 /* ServiceStateCollectionReusableView.swift in Sources */,
 				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
+				ED508CD8272298D40029AF7B /* LoginRequestModel.swift in Sources */,
+				ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */,
 				ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */,
 				ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */,
 				EDC11A6A26D3A39D0020AB09 /* ServiceManagementViewController.swift in Sources */,
@@ -2313,7 +2373,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_SERVER_ENDPOINT = "https://dev-api.taras.twinny.io/graphql";
+				TRS_SERVER_ENDPOINT = "dev-api.taras.twinny.io";
 			};
 			name = Debug;
 		};
@@ -2341,7 +2401,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "TARAS/Resources/TARAS-Dev-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TRS_SERVER_ENDPOINT = "https://dev-api.taras.twinny.io/graphql";
+				TRS_SERVER_ENDPOINT = "dev-api.taras.twinny.io";
 			};
 			name = Release;
 		};

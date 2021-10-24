@@ -50,7 +50,7 @@ extension CommonError {
     var description: String {
         switch self {
         case .networkNotConnect:
-            return "네트워크 연결이 불안정합니다. 잠시 후 다시 시도해 주세요."
+            return "서버와 통신이 원활하지 않습니다."
         case .invalidInputFormat(let inputType):
             return "\(inputType.rawValue) 형식이 올바르지 않습니다."
         }
@@ -87,7 +87,7 @@ extension AccountError {
         case .idNotExist:
             return "존재하지 않는 아이디입니다."
         case .idPasswordNotMatch:
-            return "아이디, 비밀번호를 확인해 주세요."
+            return "아이디 또는 비밀번호가 일치하지 않습니다."
         case .unregisteredEmail:
             return "등록되어 있지 않은 이메일입니다."
         case .authNumberNotMatch:

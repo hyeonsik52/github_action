@@ -56,75 +56,55 @@ class SignInViewReactor: Reactor {
         case let .signIn(id, password):
             
             // 로그인 시도 전, 아이디와 비밀번호 포맷 검사
-            guard InputPolicy.id.match(id) else {
+            guard InputPolicy.id.matchFormat(id) else {
                 return .just(.updateError(.common(.invalidInputFormat(.id))))
             }
-            guard InputPolicy.password.match(password) else {
+            guard InputPolicy.password.matchFormat(password) else {
                 return .just(.updateError(.common(.invalidInputFormat(.password))))
             }
             guard let clientInfo = self.provider.userManager.userTB.clientInfo else {
                 return .empty()
             }
             
-//            let input = LoginInput(
-//                clientInfo: clientInfo,
-//                clientType: "ios",
-//                password: password,
-//                userId: id
-//            )
-//
-//            return .concat([
-//                .just(.updateIsProcessing(true)),
-//
-//                self.provider.networkManager.perform(SignInMutation(input: input))
-//                    .map { $0.loginMutation }
-//                    .flatMapLatest { [weak self] data -> Observable<Mutation> in
-//                        guard let self = self else { return .empty() }
-//
-//                        // 🟢 로그인 성공
-//                        if let payload = data.asLoginPayload
-//                        {
-//                            // 1. 토큰 업데이트
-//                            self.provider.userManager.updateTokens(
-//                                access: payload.accessToken,
-//                                refresh: payload.refreshToken
-//                            )
-//
-//                            // 2. 웹소켓 정보 업데이트
-//                            self.provider.networkManager.updateWebSocketTransportConnectingPayload()
-//
-//                            return .concat([
-//                                // 3. fcm 토큰 업로드
-//                                self.uploadFcmToken(),
-//                                // 4. 유저 정보 불러오기
-//                                self.loadUserInfo()
-//                            ])
-//                        }
-//                        // ❌ 로그인 실패
-//                        else if let error = data.asLoginError
-//                        {
-//                            let error: TRSError? = {
-//                                switch error.errorCode {
-//                                case .invalidPassword:
-//                                    return .account(.idPasswordNotMatch)
-//                                case .invalidUserId:
-//                                    return .account(.idNotExist)
-//                                default:
-//                                    return .etc(error.errorCode.rawValue)
-//                                }
-//                            }()
-//                            return .concat([
-//                                .just(.updateError(error)),
-//                                .just(.resetPassword)
-//                            ])
-//                        }
-//                        return .empty()
-//                    }
-//                    .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-//
-//                .just(.updateIsProcessing(false))
-//            ])
-            return .empty()
+            let request: RestAPIType<LoginResponseModel> = .login(input: .init(
+                grantType: "password",
+                username: id,
+                password: password
+            ))
+            
+            return .concat([
+                .just(.updateIsProcessing(true)),
+                
+                self.provider.networkManager.postByRest(request)
+                    .flatMapLatest { [weak self] result -> Observable<Mutation> in
+                        guard let self = self else { return .empty() }
+                        
+                        switch result {
+                        case .success(let payload):
+                            
+                            // 1. 토큰 업데이트
+                            self.provider.userManager.updateTokens(
+                                access: payload.accessToken,
+                                refresh: payload.refreshToken
+                            )
+                            
+                            // 2. 웹소켓 정보 업데이트
+                            self.provider.networkManager.updateWebSocketTransportConnectingPayload()
+                            
+                            return .concat([
+                                // 3. FCM 토큰 업로드
+                                self.uploadFcmToken(),
+                                // 4. 유저 정보 불러오기
+                                self.loadUserInfo()
+                            ])
+                        case .failure(let error):
+                            
+                            return .just(.updateError(.account(.idPasswordNotMatch)))
+                        }
+                    }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+
+                .just(.updateIsProcessing(false))
+            ])
         }
     }
 
@@ -170,21 +150,22 @@ class SignInViewReactor: Reactor {
 
 extension SignInViewReactor {
     
-//    func loadUserInfo() -> Observable<Mutation> {
-//        return self.provider.networkManager.fetch(MyUserInfoQuery())
-//            .map { $0.myUserInfo }
-//            .flatMapLatest { [weak self] data -> Observable<Mutation> in
-//                guard let self = self,
-//                      let user = data.asUser?.fragments.userFragment else {
-//                    return .empty()
-//                }
-//                self.provider.userManager.updateUserInfo(user)
-//                return .just(.updateIsSignIn(true))
-//            }
-//            .catchErrorJustReturn(.updateError(.common(.networkNotConnect)))
-//    }
-//
-//    func uploadFcmToken() -> Observable<Mutation> {
+    func loadUserInfo() -> Observable<Mutation> {
+        return self.provider.networkManager.fetch(MyUserInfoQuery())
+            .map { $0.signedUser?.fragments.userFragment }
+            .flatMapLatest { [weak self] data -> Observable<Mutation> in
+                guard let self = self else { return .empty() }
+                
+                if let user = data {
+                    self.provider.userManager.updateUserInfo(user)
+                    return .just(.updateIsSignIn(true))
+                } else {
+                    return .just(.updateError(.etc("존재하지 않는 유저입니다.")))
+                }
+            }.catchAndReturn(.updateError(.common(.networkNotConnect)))
+    }
+
+    func uploadFcmToken() -> Observable<Mutation> {
 //        guard let token = Messaging.messaging().fcmToken, let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString else {
 //            return .empty()
 //        }
@@ -215,5 +196,6 @@ extension SignInViewReactor {
 //                return .empty()
 //            }
 //            .catchErrorJustReturn(.updateError(.common(.networkNotConnect)))
-//    }
+        return .empty()
+    }
 }

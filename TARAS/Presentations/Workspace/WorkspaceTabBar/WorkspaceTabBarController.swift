@@ -45,8 +45,8 @@ class WorkspaceTabBarController: UITabBarController, View {
         let workspaceHomeNavigationController = UINavigationController(rootViewController: workspaceHomeViewController)
         workspaceHomeNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab1,
-            image: UIImage(named: "tab-service-off"),
-            selectedImage: UIImage(named: "tab-service-on")
+            image: UIImage(named: "tabCreateOff"),
+            selectedImage: UIImage(named: "tabCreateOn")
         )
         
         
@@ -57,8 +57,8 @@ class WorkspaceTabBarController: UITabBarController, View {
         let serviceManagementNavigationController = UINavigationController(rootViewController: serviceManagementViewController)
         serviceManagementNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab2,
-            image: UIImage(named: "tab-myService-off"),
-            selectedImage: UIImage(named: "tab-myService-on")
+            image: UIImage(named: "tab-service-off"),
+            selectedImage: UIImage(named: "tab-service-on")
         )
         
         //더보기

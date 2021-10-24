@@ -75,7 +75,7 @@ extension SwiftEntryKitViewWrapper where Base == String {
         attributes.displayDuration = 1
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .init(color))
-        attributes.statusBar = .light
+        attributes.statusBar = .inferred
 
         self.show(with: attributes)
     }

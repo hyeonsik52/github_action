@@ -92,25 +92,21 @@ extension AppDelegate {
     
     func checkUpdate() {
         
-        guard let topViewController = self.window?.topViewController() else { return }
-        
         self.provider.networkManager.tempVersionCheck()
             .filterNil()
             .flatMapLatest { error -> Observable<Int> in
                 let errorUserInfo = (error as NSError).userInfo
                 let title = errorUserInfo[NSLocalizedFailureErrorKey] as? String
                 let message = errorUserInfo[NSLocalizedDescriptionKey] as? String
-                if title == title {
-                    let actionTitle = errorUserInfo[NSLocalizedRecoverySuggestionErrorKey] as? String
-                    return UIAlertController.present(
-                        in: topViewController,
+                if let title = title {
+                    let actionTitle = (errorUserInfo[NSLocalizedRecoverySuggestionErrorKey] as? String) ?? "확인"
+                    return UIAlertController.show(
+                        .alert,
                         title: title,
                         message: message,
-                        style: .alert,
-                        actions: [
-                            .init(title: actionTitle, style: .default)
-                        ]
-                    )
+                        items: [actionTitle],
+                        usingCancel: false
+                    ).map(\.0)
                 } else {
                     Log.error(message ?? "error message empty")
                     return .just(-1)

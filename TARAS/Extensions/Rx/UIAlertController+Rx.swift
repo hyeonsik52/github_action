@@ -48,4 +48,34 @@ extension UIAlertController {
             return Disposables.create { alertController.dismiss(animated: true, completion: nil) }
         }
     }
+    
+    static func show(
+        _ style: Style = .alert,
+        title: String? = nil,
+        message: String? = nil,
+        items: [String],
+        usingCancel: Bool = true
+    ) -> Observable<(Int, String)> {
+        return .create { observer in
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+            items.enumerated().forEach { (offset, item) in
+                alertController.addAction(.init(title: item, style: .default) { _ in
+                    observer.onNext((offset, item))
+                    observer.onCompleted()
+                })
+            }
+            if usingCancel {
+                alertController.addAction(.init(title: "취소", style: .cancel))
+            }
+            
+            if let viewController = UIApplication.topViewController {
+                viewController.present(alertController, animated: true, completion: nil)
+            }
+            
+            return Disposables.create {
+                alertController.dismiss(animated: true)
+            }
+        }
+    }
 }

@@ -15,6 +15,9 @@ class SignInView: UIView {
         static let SIVC_1 = "로그인"
         static let SIVC_2 = "아이디"
         static let SIVC_3 = "비밀번호"
+        static let finedAccount = "아이디 찾기"
+        static let resetPassword = "비밀번호 재설정"
+        static let signUp = "회원가입"
     }
     
     /// 라지 네비바 형태의 view
@@ -46,10 +49,11 @@ class SignInView: UIView {
     }
     
     /// '계정찾기' 버튼
-    let forgotAccountButton = GostButton("아이디 · 비밀번호 찾기")
+    let findAccountButton = GostButton(Text.finedAccount)
+    let resetPasswordButton = GostButton(Text.resetPassword)
     
     /// '회원가입' 버튼
-    let signUpButton = GostButton("회원가입하기")
+    let signUpButton = GostButton(Text.signUp)
     
     
     // MARK: - Init
@@ -104,16 +108,23 @@ class SignInView: UIView {
             $0.height.equalTo(60)
         }
         
-        self.addSubview(self.forgotAccountButton)
-        self.forgotAccountButton.snp.makeConstraints {
+        self.addSubview(self.findAccountButton)
+        self.findAccountButton.snp.makeConstraints {
             $0.top.equalTo(self.signInButton.snp.bottom).offset(12)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(40)
+        }
+        
+        self.addSubview(self.resetPasswordButton)
+        self.resetPasswordButton.snp.makeConstraints {
+            $0.top.equalTo(self.findAccountButton.snp.bottom)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40)
         }
         
         self.addSubview(self.signUpButton)
         self.signUpButton.snp.makeConstraints {
-            $0.top.equalTo(self.forgotAccountButton.snp.bottom)
+            $0.top.equalTo(self.resetPasswordButton.snp.bottom)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40)
         }
