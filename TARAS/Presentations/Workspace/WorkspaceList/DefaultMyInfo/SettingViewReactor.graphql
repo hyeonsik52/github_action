@@ -7,19 +7,9 @@
 #	}
 #}
 
-#mutation resign {
-#	resignMutation {
-#		... on TypeError {
-#            ... TypeErrorFragment
-#		}
-#		... on ResignError {
-#			resignErrorCode: errorCode
-#		}
-#		... on ResignPayload {
-#			result
-#		}
-#	}
-#}
+mutation withdraw {
+  withdrawUser
+}
 
 mutation updateUserInfo($input: UpdateUserMutationInput!) {
 	updateUser(input: $input) {
