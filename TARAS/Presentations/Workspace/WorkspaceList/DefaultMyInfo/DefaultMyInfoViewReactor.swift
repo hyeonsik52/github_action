@@ -155,42 +155,24 @@ class DefaultMyInfoViewReactor: Reactor {
     }
     
     private func resign() -> Observable<Mutation> {
-        
-//        let mutation = ResignMutation()
-//
-//        return .concat([
-//            .just(.updateError(nil)),
-//            .just(.updateIsResign(nil)),
-//            .just(.updateIsProcessing(true)),
-//
-//            self.provider.networkManager.perform(mutation)
-//                .map { $0.resignMutation }
-//                .flatMapLatest { result -> Observable<Mutation> in
-//                    if let typeError = result.asTypeError?.fragments.typeErrorFragment {
-//                        return .just(.updateError(.common(.type(typeError))))
-//                    }else if let error = result.asResignError {
-//                        let error: TRSError? = {
-//                            switch error.resignErrorCode {
-//                            case .userNotExist:
-//                                return .etc("존재하지 않는 유저입니다.")
-//                            case .unavailableToResign:
-//                                return .etc("완료되지 않은 서비스가 있어 탈퇴할 수 없습니다.")
-//                            default:
-//                                return .etc(error.resignErrorCode.rawValue)
-//                            }
-//                        }()
-//                        return .just(.updateError(error))
-//                    }else if let payload = result.asResignPayload, payload.result.isTrue {
-//                        self.provider.userManager.initializeUserTB()
-//                        return .just(.updateIsResign(true))
-//                    }
-//                    return .empty()
-//                }
-//                .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-//
-//            .just(.updateIsProcessing(false))
-//        ])
-        return .empty()
+        return .concat([
+            .just(.updateError(nil)),
+            .just(.updateIsResign(nil)),
+            .just(.updateIsProcessing(true)),
+
+            self.provider.networkManager.perform(WithdrawMutation())
+                .map(\.withdrawUser)
+                .flatMapLatest { result -> Observable<Mutation> in
+                    if result == true {
+                        self.provider.userManager.initializeUserTB()
+                        return .just(.updateIsResign(true))
+                    } else {
+                        return .just(.updateError(.etc("존재하지 않는 유저입니다.")))
+                    }
+                }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+
+            .just(.updateIsProcessing(false))
+        ])
     }
     
     func reactorForResetPassword() -> ResetPasswordViewReactor {
