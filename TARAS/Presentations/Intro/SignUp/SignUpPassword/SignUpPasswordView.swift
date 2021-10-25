@@ -16,10 +16,9 @@ class SignUpPasswordView: UIView {
     
     enum Text {
         static let SUPVC_1 = "비밀번호 설정"
-        static let SUPVC_2 = "사용하실 비밀번호를 입력해주세요."
-        static let SUPVC_3 = "비밀번호를 입력해주세요."
-        static let SUPVC_4 = "한번 더 비밀번호를 입력해주세요."
-        static let SUPVC_5 = "비밀번호는 8~32자로 설정해 주세요."
+        static let SUPVC_2 = "비밀번호를 입력해주세요."
+        static let SUPVC_3 = "비밀번호"
+        static let SUPVC_4 = "비밀번호 확인"
     }
     
     let password = PublishRelay<String>()
@@ -49,14 +48,6 @@ class SignUpPasswordView: UIView {
         $0.textField.isSecureTextEntry = true
         $0.textField.returnKeyType = .done
         $0.textField.autocapitalizationType = .none
-    }
-    
-    /// "비밀번호는 8~32자로 설정해 주세요." 라벨
-    private let inputGuideLabel = UILabel().then {
-        $0.text = Text.SUPVC_5
-        $0.textColor = .gray9A9A9A
-        $0.font = .medium[14]
-        $0.numberOfLines = 0
     }
     
     /// 에러 메시지 라벨
@@ -108,14 +99,9 @@ class SignUpPasswordView: UIView {
             $0.top.equalTo(self.passwordTextFieldView.snp.bottom).offset(14)
             $0.leading.trailing.equalTo(self.passwordTextFieldView)
         }
-        self.addSubview(self.inputGuideLabel)
-        self.inputGuideLabel.snp.makeConstraints {
-            $0.top.equalTo(self.passwordConfirmTextFieldView.snp.bottom).offset(14)
-            $0.leading.trailing.equalTo(self.passwordConfirmTextFieldView)
-        }
         self.addSubview(self.errorMessageLabel)
         self.errorMessageLabel.snp.makeConstraints {
-            $0.top.equalTo(self.inputGuideLabel.snp.bottom).offset(14)
+            $0.top.equalTo(self.passwordConfirmTextFieldView.snp.bottom).offset(14)
             $0.leading.trailing.equalTo(self.passwordTextFieldView)
             $0.bottom.equalToSuperview()
         }

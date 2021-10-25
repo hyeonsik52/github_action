@@ -94,7 +94,7 @@ class SignUpIdViewReactor: Reactor {
             state.message = nil
         case .updateIsAvailable(let isAvailable):
             state.isAvailable = isAvailable
-//            state.message = (Text.SUIVR_1, .green00B300)
+            state.message = (Text.SUIVR_1, .green00B300)
         case .updateIsProcessing(let isProcessing):
             state.isProcessing = isProcessing
         case .updateError(let error):

@@ -55,13 +55,29 @@ extension UIAlertController {
         message: String? = nil,
         items: [String],
         usingCancel: Bool = true
-    ) -> Observable<(Int, String)> {
+    ) -> Observable<(Int, String?)> {
+        return self.show(
+            style,
+            title: title,
+            message: message,
+            items: items.map { AlertAction(title: $0, style: .default) },
+            usingCancel: usingCancel
+        )
+    }
+    
+    static func show(
+        _ style: Style = .alert,
+        title: String? = nil,
+        message: String? = nil,
+        items: [AlertAction],
+        usingCancel: Bool = true
+    ) -> Observable<(Int, String?)> {
         return .create { observer in
             
             let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
             items.enumerated().forEach { (offset, item) in
-                alertController.addAction(.init(title: item, style: .default) { _ in
-                    observer.onNext((offset, item))
+                alertController.addAction(.init(title: item.title, style: item.style) { _ in
+                    observer.onNext((offset, item.title))
                     observer.onCompleted()
                 })
             }

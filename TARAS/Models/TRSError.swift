@@ -83,7 +83,7 @@ extension AccountError {
         case .idExisted:
             return "이미 사용 중인 아이디입니다."
         case .passwordNotMatch:
-            return "동일한 비밀번호를 입력해 주세요."
+            return "비밀번호가 일치하지 않습니다."
         case .idNotExist:
             return "존재하지 않는 아이디입니다."
         case .idPasswordNotMatch:
