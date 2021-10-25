@@ -34,6 +34,7 @@ class SignUpTextFieldView: UIView {
     
     let innerButton = SRPButton("").then {
         $0.titleLabel?.font = .bold[14]
+        $0.cornerRadius = 4
         $0.isEnabled = false
     }
     
