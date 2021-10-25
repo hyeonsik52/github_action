@@ -19,7 +19,9 @@ class ConfirmInputView: UIView {
         $0.returnKeyType = .done
     }
     
-    let confirmButton = SRPButton("")
+    let confirmButton = SRPButton("").then {
+        $0.cornerRadius = 4
+    }
     
     weak var delegate: UITextFieldDelegate?
     

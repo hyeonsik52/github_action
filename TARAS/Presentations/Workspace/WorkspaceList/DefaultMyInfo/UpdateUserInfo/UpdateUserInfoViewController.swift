@@ -16,7 +16,7 @@ import RxDataSources
 class UpdateUserInfoViewController: BaseNavigatableViewController, ReactorKit.View {
     
     enum Text {
-        static let UUIVC_1 = "확인"
+        static let UUIVC_1 = "수정"
         static let UpdatedRear = "변경 완료"
     }
     
