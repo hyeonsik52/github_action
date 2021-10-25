@@ -121,14 +121,18 @@ class DefaultMyInfoViewReactor: Reactor {
     }
     
     private func logout() -> Observable<Mutation> {
-        guard let uuid = UIDevice.current.identifierForVendor?.uuidString else { return .empty() }
+//        guard let uuid = UIDevice.current.identifierForVendor?.uuidString else { return .empty() }
 //        let input = DeleteFcmRegistrationIdInput(clientType: "ios", deviceUniqueKey: uuid)
+        guard let token = self.provider.userManager.userTB.accessToken else { return .empty() }
+        
+        let request: RestAPIType<LogoutResponseModel> = .logout(input: .init(
+            token: token
+        ))
         
         func goSignIn() -> Observable<Mutation> {
             self.provider.userManager.initializeUserTB()
             return .just(.updateIsLogout(true))
         }
-
 //        return self.provider.networkManager.perform(DeleteFcmTokenMutation(input: input))
 //            .map { $0.deleteFcmRegistrationIdMutation }
 //            .flatMap { [weak self] _ -> Observable<Mutation> in
@@ -143,9 +147,11 @@ class DefaultMyInfoViewReactor: Reactor {
 //                return goSignIn()
 //            })
         
-        //TODO: rest로 로그아웃 처리
-        
-        return .empty()
+        return self.provider.networkManager.postByRest(request)
+            .flatMap {_ in goSignIn() }
+            .catch { error -> Observable<Mutation> in
+                return goSignIn()
+            }
     }
     
     private func resign() -> Observable<Mutation> {
