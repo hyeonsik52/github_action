@@ -134,7 +134,7 @@ extension NetworkManager {
             return Disposables.create {
                 cancellable?.cancel()
             }
-        }.retryOnConnect(timeout: .seconds(10))
+        }.retryOnConnect(timeout: .seconds(5))
     }
     
     func perform<T: GraphQLMutation>(_ mutation: T) -> Observable<T.Data> {
@@ -249,7 +249,7 @@ extension NetworkManager {
                     }
                 }
             return Disposables.create()
-        }.retryOnConnect(timeout: .seconds(10))
+        }
     }
     
     func tempUpdateCheck() -> Observable<Error?> {
@@ -319,6 +319,6 @@ extension NetworkManager {
                         ))
                     }
                 }
-            }.retryOnConnect(timeout: .seconds(10))
+            }
     }
 }
