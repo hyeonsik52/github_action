@@ -92,7 +92,7 @@ extension AppDelegate {
     
     func checkUpdate() {
         
-        self.provider.networkManager.tempVersionCheck()
+        self.provider.networkManager.tempUpdateCheck()
             .filterNil()
             .flatMapLatest { error -> Observable<Int> in
                 let errorUserInfo = (error as NSError).userInfo

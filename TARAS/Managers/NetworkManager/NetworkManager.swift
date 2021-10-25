@@ -27,7 +27,8 @@ protocol NetworkManagerType: AnyObject {
     
     func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>>
     
-    func tempVersionCheck() -> Observable<Error?>
+    func tempUpdateCheck() -> Observable<Error?>
+    func tempVersionCheck() -> Observable<VersionCheck?>
 }
 
 class NetworkManager: BaseManager, NetworkManagerType {
@@ -205,9 +206,7 @@ extension NetworkManager {
     }
     
     //Temp
-    func tempVersionCheck() -> Observable<Error?> {
-        let thisVersionCode = Int(Info.appBuild) ?? 1
-//            let thisVersionName = Info.appVersion ?? "0.0.1"
+    func tempVersion() -> Observable<Result<VersionCheck, Error>> {
         return .create { observer in
             Firestore.firestore().collection("version")
                 .document("ap-ios").getDocument { snapshot, error in
@@ -223,8 +222,10 @@ extension NetworkManager {
                             let data = try JSONSerialization.data(withJSONObject: json)
                             let model = try JSONDecoder().decode(VersionCheck.self, from: data)
                             
+                            let thisVersionCode = Int(Info.appBuild) ?? 1
                             if thisVersionCode >= model.minVersionCode {
-                                observer.onNext(nil)
+                                observer.onNext(.success(model))
+                                observer.onCompleted()
                             } else {
                                 let error = NSError(
                                     domain: "TARAS",
@@ -235,17 +236,34 @@ extension NetworkManager {
                                         NSLocalizedRecoverySuggestionErrorKey: "업데이트"
                                     ]
                                 )
-                                observer.onNext(error)
+                                observer.onNext(.failure(error))
+                                observer.onCompleted()
                             }
                         } catch {
-                            observer.onNext(error)
+                            observer.onNext(.failure(error))
+                            observer.onCompleted()
                         }
                     } else {
-                        observer.onNext(error)
+                        observer.onNext(.failure(error))
+                        observer.onCompleted()
                     }
                 }
             return Disposables.create()
         }.retryOnConnect(timeout: .seconds(10))
+    }
+    
+    func tempUpdateCheck() -> Observable<Error?> {
+        return self.tempVersion().map {
+            if case .failure(let error) = $0 {
+                return error
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    func tempVersionCheck() -> Observable<VersionCheck?> {
+        return self.tempVersion().map { try? $0.get() }
     }
 }
 

@@ -38,11 +38,13 @@ class UpdateUserInfoViewReactor: Reactor {
     )
     
     let provider: ManagerProviderType
+    let userID: String
     let inputType: AccountInputType
     let prevValue: String?
     
-    init(provider: ManagerProviderType, inputType: AccountInputType, prevValue: String? = nil) {
+    init(provider: ManagerProviderType, userID: String, inputType: AccountInputType, prevValue: String? = nil) {
         self.provider = provider
+        self.userID = userID
         self.inputType = inputType
         self.prevValue = prevValue
     }
@@ -98,58 +100,45 @@ class UpdateUserInfoViewReactor: Reactor {
     
     private func update(_ text: String) -> Observable<Mutation> {
         
-//        let input: UpdateUserMutationInput = {
-//            switch self.inputType {
-//            case .name:
-//                return .init(name: text)
-//            case .email:
-//                return .init(email: text)
-//            case .phoneNumber:
-//                return .init(phoneNumber: text)
-//            default:
-//                return .init()
-//            }
-//        }()
-//
-//        UpdateUserInfoMutation(input: <#T##UpdateUserMutationInput#>)
-//
-//        let mutation = UpdateUserInfoMutation(input: input)
-//
-//        if self.inputType == .email,
-//           !self.inputType.policy.matchFormat(text) {
-//            return .concat([
-//                .just(.updateError(nil)),
-//                .just(.updateError(.common(.invalidInputFormat(self.inputType))))
-//            ])
-//        }
-//
-//        return .concat([
-//            .just(.updateIsUpdated(nil)),
-//            .just(.updateIsProcessing(true)),
-//
-//            self.provider.networkManager.perform(mutation)
-//                .map { $0.updateUserInfoMutation }
-//                .flatMapLatest { result -> Observable<Mutation> in
-//                    if let typeError = result.asTypeError?.fragments.typeErrorFragment {
-//                        return .just(.updateError(.common(.type(typeError))))
-//                    }else if let error = result.asUpdateUserInfoError {
-//                        let error: TRSError? = {
-//                            switch error.userErrorCode {
-//                            default:
-//                                return .etc(error.userErrorCode.rawValue)
-//                            }
-//                        }()
-//                        return .just(.updateError(error))
-//                    }else if let payload = result.asUser?.fragments.userFragment {
-//                        self.provider.userManager.updateUserInfo(payload)
-//                        return .just(.updateIsUpdated(true))
-//                    }
-//                    return .empty()
-//                }
-//                .catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-//
-//            .just(.updateIsProcessing(false))
-//        ])
-        return .empty()
+        let input: UpdateUserMutationInput = {
+            switch self.inputType {
+            case .name:
+                return .init(username: self.userID, displayName: text)
+            case .email:
+                return .init(username: self.userID, email: text)
+            case .phoneNumber:
+                return .init(username: self.userID, phoneNumber: text)
+            default:
+                return .init(username: self.userID)
+            }
+        }()
+
+        let mutation = UpdateUserInfoMutation(input: input)
+
+        if self.inputType == .email,
+           !self.inputType.policy.matchFormat(text) {
+            return .concat([
+                .just(.updateError(nil)),
+                .just(.updateError(.common(.invalidInputFormat(self.inputType))))
+            ])
+        }
+
+        return .concat([
+            .just(.updateIsUpdated(nil)),
+            .just(.updateIsProcessing(true)),
+
+            self.provider.networkManager.perform(mutation)
+                .map { $0.updateUser?.fragments.userFragment }
+                .flatMapLatest { result -> Observable<Mutation> in
+                    if let userFragment = result {
+                        self.provider.userManager.updateUserInfo(userFragment)
+                        return .just(.updateIsUpdated(true))
+                    } else {
+                        return .just(.updateError(.etc("업데이트하지 못했습니다.")))
+                    }
+                }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+
+            .just(.updateIsProcessing(false))
+        ])
     }
 }

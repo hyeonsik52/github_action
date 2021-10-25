@@ -60,7 +60,7 @@ extension LaunchScreenViewReactor {
             self.provider.userManager.updateClientInfo()
             
             // 2. 최소 버전 확인
-            return self.provider.networkManager.tempVersionCheck()
+            return self.provider.networkManager.tempUpdateCheck()
                 .map { $0 == nil }
                 .flatMapLatest { isValid -> Observable<Mutation> in
                     if isValid {

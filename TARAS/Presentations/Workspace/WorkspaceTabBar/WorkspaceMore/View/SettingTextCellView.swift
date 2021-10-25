@@ -19,13 +19,17 @@ class SettingTextCellView: UIView {
         $0.textColor = .black0F0F0F
     }
     
+    private let descriptionLabel = UILabel().then {
+        $0.font = .regular[14]
+    }
+    
     private let detailLabel = UILabel().then {
         $0.font = .bold[16]
         $0.textColor = .black0F0F0F
         $0.textAlignment = .right
     }
     
-    private let arrowImageView = UIImageView().then {
+    let arrowImageView = UIImageView().then {
         $0.image = UIImage(named: "setting-detail")
         $0.contentMode = .center
     }
@@ -71,6 +75,7 @@ class SettingTextCellView: UIView {
             $0.centerY.equalToSuperview()
         }
         
+        stackView.addArrangedSubview(self.descriptionLabel)
         stackView.addArrangedSubview(self.detailLabel)
         stackView.addArrangedSubview(self.arrowImageView)
         
@@ -91,8 +96,13 @@ class SettingTextCellView: UIView {
             .disposed(by: self.disposeBag)
     }
     
-    func bind(_ title: String?) {
+    func bind(_ title: String?, _ description: (String, UIColor)?) {
         
+        self.detailLabel.isHidden = (title?.isEmpty ?? true)
         self.detailLabel.text = title
+        
+        self.descriptionLabel.isHidden = (description?.0.isEmpty ?? true)
+        self.descriptionLabel.textColor = description?.1 ?? .black0F0F0F
+        self.descriptionLabel.text = description?.0
     }
 }
