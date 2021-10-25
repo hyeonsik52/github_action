@@ -28,6 +28,7 @@ protocol NetworkManagerType: AnyObject {
     func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>>
     
     func tempUpdateCheck() -> Observable<Error?>
+    func tempVersionCheck() -> Observable<VersionCheck?>
 }
 
 class NetworkManager: BaseManager, NetworkManagerType {
@@ -259,6 +260,10 @@ extension NetworkManager {
                 return nil
             }
         }
+    }
+    
+    func tempVersionCheck() -> Observable<VersionCheck?> {
+        return self.tempVersion().map { try? $0.get() }
     }
 }
 

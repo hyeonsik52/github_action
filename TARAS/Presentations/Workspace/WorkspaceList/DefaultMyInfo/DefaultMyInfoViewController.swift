@@ -19,12 +19,7 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
     }
     
     enum Text {
-        static let SVC_1 = "내 설정"
-        static let SVC_2 = "아이디"
-        static let SVC_3 = "비밀번호 재설정"
-        static let SVC_4 = "이름"
-        static let SVC_5 = "이메일"
-        static let SVC_6 = "전화번호"
+        static let SVC_1 = "설정"
         static let SVC_7 = "로그아웃"
         static let SVC_8 = "\n로그아웃 하시겠습니까?"
         static let SVC_9 = "회원 탈퇴"
@@ -52,14 +47,14 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
         $0.clipsToBounds = true
     }
     
-    private let idHeaderView = SettingCellView(title: Text.SVC_2, .header)
-    private let resetPasswordView = SettingCellView(
-        title: Text.SVC_3,
-        .disclosure(image: #imageLiteral(resourceName: "tab-myService-on"))
-    )
-    private let nameView = SettingCellView(title: Text.SVC_4, .editable(buttonTitle: Text.SVC_12))
-    private let emailView = SettingCellView(title: Text.SVC_5, .editable(buttonTitle: Text.SVC_12))
-    private let phoneNumberView = SettingCellView(title: Text.SVC_6, .editable(buttonTitle: Text.SVC_12))
+    private let myInfoHeader = SettingScrollViewHeader(title: "내 정보")
+    private let idCellView = SettingTextCellView(title: "아이디", isArrowHidden: true)
+    private let nameCellView = SettingTextCellView(title: "이름")
+    private let emailCellView = SettingTextCellView(title: "이메일")
+    private let phoneNumberCellView = SettingTextCellView(title: "전화번호")
+
+    private let appInfoHeader = SettingScrollViewHeader(title: "앱 정보")
+    private let versionCellView = SettingTextCellView(title: "버전")
     
     private let signOutButton = SRPButton(
         Text.SVC_7,
@@ -118,22 +113,29 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
         }
         self.scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.edges.width.equalToSuperview()
+            $0.edges.equalToSuperview()
+            $0.width.equalToSuperview()
         }
-        
-        func addContent(_ view: UIView, height: CGFloat = 98) {
+
+        func addContent(_ view: UIView, height: CGFloat = 48) {
             contentView.addArrangedSubview(view)
             view.snp.makeConstraints {
-                $0.leading.trailing.equalToSuperview()
+                $0.leading.trailing.equalTo(contentView)
                 $0.height.equalTo(height)
             }
         }
-        
-        addContent(self.idHeaderView)
-        addContent(self.resetPasswordView, height: 54)
-        addContent(self.nameView)
-        addContent(self.emailView)
-        addContent(self.phoneNumberView)
+
+        addContent(self.myInfoHeader, height: 71)
+        addContent(self.idCellView)
+        addContent(self.nameCellView)
+        addContent(self.emailCellView)
+        addContent(self.phoneNumberCellView)
+
+        addContent(self.appInfoHeader, height: 71)
+        addContent(self.versionCellView)
+
+        //footer
+        addContent(UIView(), height: 26)
                 
         
         let line = UIView().then {
@@ -168,33 +170,27 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.resetPasswordView.cellButton.rx.throttleTap
-            .subscribe(onNext: { [weak self] in
-                let viewController = ResetPasswordViewController()
-                viewController.reactor = reactor.reactorForResetPassword()
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
-        
-        self.nameView.button.rx.throttleTap
+        self.nameCellView.didSelect
             .subscribe(onNext: { [weak self] in
                 let viewController = UpdateUserInfoViewController()
                 viewController.reactor = reactor.reactorForUpdateUserInfo(.name)
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
         
-        self.emailView.button.rx.throttleTap
-            .subscribe(onNext: { [weak self] in
-                let viewController = UpdateUserInfoViewController()
-                viewController.reactor = reactor.reactorForUpdateUserInfo(.email)
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
-        
-        self.phoneNumberView.button.rx.throttleTap
-            .subscribe(onNext: { [weak self] in
-                let viewController = UpdateUserInfoViewController()
-                viewController.reactor = reactor.reactorForUpdateUserInfo(.phoneNumber)
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
+        //인증 관련 기능 작업 전 까지 임시로 주석처리
+//        self.emailCellView.didSelect
+//            .subscribe(onNext: { [weak self] in
+//                let viewController = UpdateUserInfoViewController()
+//                viewController.reactor = reactor.reactorForUpdateUserInfo(.email)
+//                self?.navigationController?.pushViewController(viewController, animated: true)
+//            }).disposed(by: self.disposeBag)
+//
+//        self.phoneNumberCellView.didSelect
+//            .subscribe(onNext: { [weak self] in
+//                let viewController = UpdateUserInfoViewController()
+//                viewController.reactor = reactor.reactorForUpdateUserInfo(.phoneNumber)
+//                self?.navigationController?.pushViewController(viewController, animated: true)
+//            }).disposed(by: self.disposeBag)
         
         self.signOutButton.rx.throttleTap
             .subscribe(onNext: { [weak self] in
@@ -209,17 +205,28 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
         
         // State
         let account = reactor.state.map { $0.account }.share()
-        account.map { $0?.id ?? "-" }
-            .bind(to: self.idHeaderView.contentLabel.rx.text)
+        account.map { ($0?.ID, nil) }
+            .bind(to: self.idCellView.rx.detail)
             .disposed(by: self.disposeBag)
-        account.map { $0?.name ?? "-" }
-            .bind(to: self.nameView.contentLabel.rx.text)
+        account.map { ($0?.name, nil) }
+            .bind(to: self.nameCellView.rx.detail)
             .disposed(by: self.disposeBag)
-        account.map { $0?.email ?? "-" }
-            .bind(to: self.emailView.contentLabel.rx.text)
+        account.map { ($0?.email, ("인증이 필요합니다.", .redEB4D39)) }
+            .bind(to: self.emailCellView.rx.detail)
             .disposed(by: self.disposeBag)
-        account.map { $0?.phoneNumber ?? "-" }
-            .bind(to: self.phoneNumberView.contentLabel.rx.text)
+        account.map { ($0?.phoneNumber, ("인증이 필요합니다.", .redEB4D39)) }
+            .bind(to: self.phoneNumberCellView.rx.detail)
+            .disposed(by: self.disposeBag)
+        
+        let version = reactor.state.compactMap(\.version).share()
+        version.map {
+                let color: UIColor = ($0.isThisLatest ? .gray888888: .redEB4D39)
+                let description = ($0.isThisLatest ? "최신 버전입니다.": "새로운 버전이 있습니다.")
+                return ($0.currentVersion, (description, color))
+            }.bind(to: self.versionCellView.rx.detail)
+            .disposed(by: self.disposeBag)
+        version.map(\.isThisLatest)
+            .bind(to: self.versionCellView.arrowImageView.rx.isHidden)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLogout == true || $0.isResign == true }
@@ -309,7 +316,7 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
     private func setupDebugging() {
         
         let longPressRecognizer = UILongPressGestureRecognizer()
-        self.idHeaderView.addGestureRecognizer(longPressRecognizer)
+        self.myInfoHeader.addGestureRecognizer(longPressRecognizer)
         
         longPressRecognizer.rx.event
             .flatMapLatest {_ in Log.extract() }

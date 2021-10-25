@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: SettingTextCellView {
-    var detail: Binder<String?> {
-        return Binder(base) { base, text in
-            base.bind(text)
+    var detail: Binder<(String?, (String, UIColor)?)> {
+        return Binder(base) { base, info in
+            base.bind(info.0, info.1)
         }
     }
 }

@@ -9,6 +9,8 @@ import ReactorKit
 
 class DefaultMyInfoViewReactor: Reactor {
     
+    typealias Version = (currentVersion: String, isThisLatest: Bool)
+    
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     
     enum Action: Equatable {
@@ -19,6 +21,7 @@ class DefaultMyInfoViewReactor: Reactor {
     
     enum Mutation {
         case updateAccount(Account?)
+        case updateVersion(Version?)
         case updateIsLogout(Bool?)
         case updateIsResign(Bool?)
         case updateIsLoading(Bool?)
@@ -28,6 +31,7 @@ class DefaultMyInfoViewReactor: Reactor {
     
     struct State {
         var account: Account?
+        var version: Version?
         var isLogout: Bool?
         var isResign: Bool?
         var isLoading: Bool?
@@ -37,6 +41,7 @@ class DefaultMyInfoViewReactor: Reactor {
     
     let initialState: State = .init(
         account: nil,
+        version: nil,
         isLogout: nil,
         isResign: nil,
         isLoading: nil,
@@ -66,6 +71,8 @@ class DefaultMyInfoViewReactor: Reactor {
         switch mutation {
         case .updateAccount(let account):
             state.account = account
+        case .updateVersion(let version):
+            state.version = version
         case .updateIsLogout(let isLogout):
             state.isLogout = isLogout
         case .updateIsResign(let isResign):
@@ -95,6 +102,19 @@ class DefaultMyInfoViewReactor: Reactor {
                     }
                 }
                 .catchAndReturn(.updateError(.common(.networkNotConnect))),
+            
+            self.provider.networkManager
+                .tempVersionCheck()
+                .map {
+                    let thisVersionName = "V\(Info.appVersion)"
+                    guard let versionCheck = $0 else {
+                        return .updateVersion((thisVersionName, true))
+                    }
+                    let thisVersionCode = Int(Info.appBuild) ?? 1
+                    let isThisLatest = (thisVersionCode >= versionCheck.currentVersionCode)
+                    let version = (thisVersionName, isThisLatest)
+                    return .updateVersion(version)
+                },
             
             .just(.updateIsLoading(false))
         ])
@@ -171,9 +191,9 @@ class DefaultMyInfoViewReactor: Reactor {
         return ResetPasswordViewReactor(provider: self.provider)
     }
     
-    func reactorForUpdateUserInfo(_ inputType: AccountInputType) -> UpdateUserInfoViewReactor {
+    func reactorForUpdateUserInfo(_ inputType: AccountInputType) -> UpdateUserInfoViewReactor? {
+        guard let account = self.currentState.account else { return nil }
         let prevValue: String? = {
-            guard let account = self.currentState.account else { return nil }
             switch inputType {
             case .id: return account.id
             case .password: return account.password
@@ -182,7 +202,12 @@ class DefaultMyInfoViewReactor: Reactor {
             case .phoneNumber: return account.phoneNumber
             }
         }()
-        return UpdateUserInfoViewReactor(provider: self.provider, inputType: inputType, prevValue: prevValue)
+        return UpdateUserInfoViewReactor(
+            provider: self.provider,
+            userID: account.ID,
+            inputType: inputType,
+            prevValue: prevValue
+        )
     }
 }
 
