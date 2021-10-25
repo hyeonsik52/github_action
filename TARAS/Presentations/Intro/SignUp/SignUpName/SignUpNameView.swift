@@ -15,9 +15,9 @@ import RxSwift
 class SignUpNameView: UIView {
     
     enum Text {
-        static let SUPVC_1 = "회원가입"
+        static let SUPVC_1 = "이름 설정"
         static let SUPVC_2 = "이름을 입력해주세요."
-        static let SUPVC_3 = "이름을 입력해주세요."
+        static let SUPVC_3 = "이름"
     }
     
     let name = PublishRelay<String>()
@@ -37,6 +37,13 @@ class SignUpNameView: UIView {
         $0.textField.delegate = self
         $0.textField.returnKeyType = .done
         $0.textField.autocapitalizationType = .none
+    }
+    
+    /// 에러 메시지 라벨
+    let errorMessageLabel = UILabel().then {
+        $0.textColor = .redEB4D39
+        $0.font = .bold[14]
+        $0.numberOfLines = 0
     }
     
     
@@ -70,6 +77,11 @@ class SignUpNameView: UIView {
             $0.top.equalTo(self.guideView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
+        }
+        self.addSubview(self.errorMessageLabel)
+        self.errorMessageLabel.snp.makeConstraints {
+            $0.top.equalTo(self.nameTextFieldView.snp.bottom).offset(14)
+            $0.leading.trailing.equalTo(self.nameTextFieldView)
             $0.bottom.equalToSuperview()
         }
     }
