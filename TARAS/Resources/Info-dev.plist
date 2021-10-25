@@ -28,12 +28,12 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>$(TRS_DB_VERSION)</key>
+			<key>graass-dev.twinny-tarp.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-				<key>NSExceptionRequiresForwardSecrecy</key>
 				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
 				<key>NSIncludesSubdomains</key>
 				<false/>
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
@@ -43,6 +43,10 @@
 	</dict>
 	<key>ServerEndpoint</key>
 	<string>$(TRS_SERVER_ENDPOINT)</string>
+	<key>ServerRestClientId</key>
+	<string>$(TRS_SERVER_REST_CLIENT_ID)</string>
+	<key>ServerRestClientSecret</key>
+	<string>$(TRS_SERVER_REST_CLIENT_SECRET)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

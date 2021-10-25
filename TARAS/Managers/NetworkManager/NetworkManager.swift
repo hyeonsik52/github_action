@@ -291,8 +291,8 @@ extension NetworkManager {
     
     func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>> {
         var parameters = api.parameters
-        parameters["client_id"] = "u6AKnbrrgqTdm3BmeRib2ezlaZX2HSyjnR2mvtPv"
-        parameters["client_secret"] = "VGBSHlITm1d4OqR9HePgEnwceZrA1vhQQeSiMO8hNGuUcEMnhXIqFsAQprg0FLBesns88efgRI514wcoCshVrHkWA6AdEWSRYYXaFNhRkVhjnAdLdhPmmQzJ2ovUWTD3"
+        parameters["client_id"] = Info.serverRestClientId
+        parameters["client_secret"] = Info.serverRestClientSecret
         Log.request("\(api) \(parameters)")
         return Session.default.rx
             .request(
