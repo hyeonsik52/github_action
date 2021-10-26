@@ -1256,7 +1256,7 @@ public final class SearchWorkspaceByCodeQuery: GraphQLQuery {
   public let operationDefinition: String =
     """
     query searchWorkspaceByCode($code: String) {
-      linkedWorkspaces(code: $code) {
+      linkedWorkspaces(code: $code, isActive: true, isAllowedToSearch: true) {
         __typename
         edges {
           __typename
@@ -1292,7 +1292,7 @@ public final class SearchWorkspaceByCodeQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("linkedWorkspaces", arguments: ["code": GraphQLVariable("code")], type: .object(LinkedWorkspace.selections)),
+        GraphQLField("linkedWorkspaces", arguments: ["code": GraphQLVariable("code"), "isActive": true, "isAllowedToSearch": true], type: .object(LinkedWorkspace.selections)),
       ]
     }
 
