@@ -1,10 +1,17 @@
 
 query allMyWorkspaces {
 	signedUser {
-		joinedWorkspaces {
+		joinedWorkspaces(isActive: true) {
 			edges {
 				node {
 					... WorkspaceFragment
+				}
+			}
+		}
+		awaitingToJoinWorkspaces {
+			edges {
+				node {
+					... OnlyWorkspaceFragment
 				}
 			}
 		}
@@ -31,4 +38,15 @@ fragment WorkspaceFragment on WorkspaceNode {
 			}
 		}
 	}
+}
+
+fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {
+	id
+	name
+	code
+	createdAt
+	isRequiredToAcceptToJoin
+	isRequiredUserEmailToJoin
+	isRequiredUserPhoneNumberToJoin
+	totalMemberCount
 }

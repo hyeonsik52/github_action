@@ -28,12 +28,15 @@ final class WorkspaceListCell: BaseTableViewCell, ReactorKit.View {
     private let separatorLabel = UILabel().then {
         $0.textColor = .gray9A9A9A
         $0.font = .regular[12]
+        $0.text = "ㆍ"
     }
     
     let createdAtLabel = UILabel().then {
         $0.textColor = .gray9A9A9A
         $0.font = .regular[12]
     }
+    
+    let disclosureImageView = UIImageView(image: UIImage(named: "enterRight"))
     
     
     // MARK: - Init
@@ -68,33 +71,40 @@ final class WorkspaceListCell: BaseTableViewCell, ReactorKit.View {
     
     private func setupConstraints() {
         
-        self.addSubview(self.titleLabel)
+        self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(17)
             $0.leading.equalToSuperview().offset(22)
-            $0.trailing.equalToSuperview().offset(-22)
+            $0.trailing.equalToSuperview().offset(-54)
         }
         
-        self.addSubview(self.memberCountLabel)
+        self.contentView.addSubview(self.memberCountLabel)
         self.memberCountLabel.snp.makeConstraints {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(2)
             $0.leading.equalTo(self.titleLabel)
             $0.bottom.equalToSuperview().offset(-16)
         }
         
-        self.addSubview(self.separatorLabel)
+        self.contentView.addSubview(self.separatorLabel)
         self.separatorLabel.snp.makeConstraints {
             $0.top.equalTo(self.memberCountLabel)
             $0.leading.equalTo(self.memberCountLabel.snp.trailing)
             $0.bottom.equalTo(self.memberCountLabel)
         }
         
-        self.addSubview(self.createdAtLabel)
+        self.contentView.addSubview(self.createdAtLabel)
         self.createdAtLabel.snp.makeConstraints {
             $0.top.equalTo(self.memberCountLabel)
             $0.leading.equalTo(self.separatorLabel.snp.trailing)
             $0.trailing.lessThanOrEqualToSuperview()
             $0.bottom.equalTo(self.memberCountLabel)
+        }
+        
+        self.contentView.addSubview(self.disclosureImageView)
+        self.disclosureImageView.snp.makeConstraints {
+            $0.width.height.equalTo(16)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.centerY.equalToSuperview()
         }
     }
 }

@@ -35,10 +35,10 @@ struct Workspace: Identifiable {
     let isRequiredUserPhoneNumberToJoin: Bool
     
     ///내 회원 상태
-    var myMemberStatus: WorkspaceMemberStatus = .notMember
+    var myMemberStatus: WorkspaceMemberStatus
     
-    var memberCount: Int
-    var code: String?
+    let memberCount: Int
+    let code: String?
 }
 
 extension Workspace: FragmentModel {
@@ -59,14 +59,31 @@ extension Workspace: FragmentModel {
         self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
         self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
         
+        //외부에서 회원이 아님을 확인 후 재설정 필요
+        self.myMemberStatus = .member
+        
         self.memberCount = fragment.members?.totalCount ?? 0
         self.code = fragment.code
+    }
+    
+    init(only fragment: OnlyWorkspaceFragment) {
         
-        //TODO
-        //가입 상태 확인 필요
-        let memberIds = fragment.members?.edges.compactMap(\.?.node?.id) ?? []
-        let myId = "" //식별 아이디
-        let isMemberMe = memberIds.contains(myId)
-        self.myMemberStatus = (isMemberMe ? .member: .notMember)
+        self.id = fragment.id
+        self.name = fragment.name
+        
+        if let date = ISO8601DateFormatter().date(from: fragment.createdAt) {
+            self.createdAt = date
+        } else {
+            self.createdAt = Date()
+        }
+        
+        self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
+        self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
+        self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
+        
+        self.myMemberStatus = .requestingToJoin
+        
+        self.memberCount = fragment.totalMemberCount ?? 0
+        self.code = fragment.code
     }
 }

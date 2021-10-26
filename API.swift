@@ -817,13 +817,23 @@ public final class AllMyWorkspacesQuery: GraphQLQuery {
     query allMyWorkspaces {
       signedUser {
         __typename
-        joinedWorkspaces {
+        joinedWorkspaces(isActive: true) {
           __typename
           edges {
             __typename
             node {
               __typename
               ...WorkspaceFragment
+            }
+          }
+        }
+        awaitingToJoinWorkspaces {
+          __typename
+          edges {
+            __typename
+            node {
+              __typename
+              ...OnlyWorkspaceFragment
             }
           }
         }
@@ -836,6 +846,7 @@ public final class AllMyWorkspacesQuery: GraphQLQuery {
   public var queryDocument: String {
     var document: String = operationDefinition
     document.append("\n" + WorkspaceFragment.fragmentDefinition)
+    document.append("\n" + OnlyWorkspaceFragment.fragmentDefinition)
     return document
   }
 
@@ -876,7 +887,8 @@ public final class AllMyWorkspacesQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("joinedWorkspaces", type: .object(JoinedWorkspace.selections)),
+          GraphQLField("joinedWorkspaces", arguments: ["isActive": true], type: .object(JoinedWorkspace.selections)),
+          GraphQLField("awaitingToJoinWorkspaces", type: .object(AwaitingToJoinWorkspace.selections)),
         ]
       }
 
@@ -886,8 +898,8 @@ public final class AllMyWorkspacesQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(joinedWorkspaces: JoinedWorkspace? = nil) {
-        self.init(unsafeResultMap: ["__typename": "UserNode", "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }])
+      public init(joinedWorkspaces: JoinedWorkspace? = nil, awaitingToJoinWorkspaces: AwaitingToJoinWorkspace? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserNode", "joinedWorkspaces": joinedWorkspaces.flatMap { (value: JoinedWorkspace) -> ResultMap in value.resultMap }, "awaitingToJoinWorkspaces": awaitingToJoinWorkspaces.flatMap { (value: AwaitingToJoinWorkspace) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -905,6 +917,15 @@ public final class AllMyWorkspacesQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue?.resultMap, forKey: "joinedWorkspaces")
+        }
+      }
+
+      public var awaitingToJoinWorkspaces: AwaitingToJoinWorkspace? {
+        get {
+          return (resultMap["awaitingToJoinWorkspaces"] as? ResultMap).flatMap { AwaitingToJoinWorkspace(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "awaitingToJoinWorkspaces")
         }
       }
 
@@ -1030,6 +1051,142 @@ public final class AllMyWorkspacesQuery: GraphQLQuery {
               public var workspaceFragment: WorkspaceFragment {
                 get {
                   return WorkspaceFragment(unsafeResultMap: resultMap)
+                }
+                set {
+                  resultMap += newValue.resultMap
+                }
+              }
+            }
+          }
+        }
+      }
+
+      public struct AwaitingToJoinWorkspace: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["OnlyWorkspaceNodeConnection"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(edges: [Edge?]) {
+          self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// Contains the nodes in this connection.
+        public var edges: [Edge?] {
+          get {
+            return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+          }
+        }
+
+        public struct Edge: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["OnlyWorkspaceNodeEdge"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("node", type: .object(Node.selections)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(node: Node? = nil) {
+            self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The item at the end of the edge
+          public var node: Node? {
+            get {
+              return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "node")
+            }
+          }
+
+          public struct Node: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["OnlyWorkspaceNode"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLFragmentSpread(OnlyWorkspaceFragment.self),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(id: GraphQLID, name: String, code: String? = nil, createdAt: String, isRequiredToAcceptToJoin: Bool, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
+              self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "isRequiredToAcceptToJoin": isRequiredToAcceptToJoin, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var fragments: Fragments {
+              get {
+                return Fragments(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+
+            public struct Fragments {
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public var onlyWorkspaceFragment: OnlyWorkspaceFragment {
+                get {
+                  return OnlyWorkspaceFragment(unsafeResultMap: resultMap)
                 }
                 set {
                   resultMap += newValue.resultMap
@@ -3599,6 +3756,131 @@ public struct WorkspaceFragment: GraphQLFragment {
           }
         }
       }
+    }
+  }
+}
+
+public struct OnlyWorkspaceFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {
+      __typename
+      id
+      name
+      code
+      createdAt
+      isRequiredToAcceptToJoin
+      isRequiredUserEmailToJoin
+      isRequiredUserPhoneNumberToJoin
+      totalMemberCount
+    }
+    """
+
+  public static let possibleTypes: [String] = ["OnlyWorkspaceNode"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("code", type: .scalar(String.self)),
+      GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
+      GraphQLField("isRequiredToAcceptToJoin", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("isRequiredUserEmailToJoin", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("isRequiredUserPhoneNumberToJoin", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("totalMemberCount", type: .scalar(Int.self)),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: GraphQLID, name: String, code: String? = nil, createdAt: String, isRequiredToAcceptToJoin: Bool, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
+    self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "isRequiredToAcceptToJoin": isRequiredToAcceptToJoin, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: GraphQLID {
+    get {
+      return resultMap["id"]! as! GraphQLID
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var name: String {
+    get {
+      return resultMap["name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var code: String? {
+    get {
+      return resultMap["code"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "code")
+    }
+  }
+
+  public var createdAt: String {
+    get {
+      return resultMap["createdAt"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "createdAt")
+    }
+  }
+
+  public var isRequiredToAcceptToJoin: Bool {
+    get {
+      return resultMap["isRequiredToAcceptToJoin"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "isRequiredToAcceptToJoin")
+    }
+  }
+
+  public var isRequiredUserEmailToJoin: Bool {
+    get {
+      return resultMap["isRequiredUserEmailToJoin"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "isRequiredUserEmailToJoin")
+    }
+  }
+
+  public var isRequiredUserPhoneNumberToJoin: Bool {
+    get {
+      return resultMap["isRequiredUserPhoneNumberToJoin"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "isRequiredUserPhoneNumberToJoin")
+    }
+  }
+
+  public var totalMemberCount: Int? {
+    get {
+      return resultMap["totalMemberCount"] as? Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "totalMemberCount")
     }
   }
 }

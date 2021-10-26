@@ -14,6 +14,11 @@ import FirebaseMessaging
 
 final class WorkspaceListViewReactor: Reactor {
     
+    enum Text {
+        static let joinRequesting = "가입 신청 중"
+        static let joined = "내 워크스페이스"
+    }
+    
     enum EntranceType {
         /// 로그인 화면에서 들어온 경우
         case signIn
@@ -55,7 +60,7 @@ final class WorkspaceListViewReactor: Reactor {
         
         self.initialState = .init(
             isPlaceholderHidden: true,
-            sections: [WorkspaceListSection(header: "", items: [])],
+            sections: [],
             entranceType: .none
         )
     }
@@ -63,35 +68,32 @@ final class WorkspaceListViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .refresh:
-//            return .zip(
-//                self.provider.workspaceManager.workspacesRequested(),
-//                self.provider.workspaceManager.workspacesJoined()
-//            ){ requested, joined in
-//                let requestedItems = requested
-//                    .map { WorkspaceListCellModel.init(requested: $0) }
-//                    .map(WorkspaceListCellReactor.init)
-//                let requestedSection = WorkspaceListSection(header: "가입 신청 중", items: requestedItems)
-//
-//                let joinedItems = joined
-//                    .map { WorkspaceListCellModel.init(joined: $0) }
-//                    .map(WorkspaceListCellReactor.init)
-//                let joinedSection = WorkspaceListSection(header: "내 워크스페이스", items: joinedItems)
-//
-//                if requestedItems.count == 0 && joinedItems.count == 0 {
-//                    return .setSection([])
-//                }
-//
-//                if requestedItems.count != 0 && joinedItems.count == 0 {
-//                    return .setSection([requestedSection])
-//                }
-//
-//                if requestedItems.count == 0 && joinedItems.count != 0 {
-//                    return .setSection([joinedSection])
-//                }
-//
-//                return .setSection([requestedSection, joinedSection])
-//            }
-            return .empty()
+            return self.provider.networkManager.fetch(AllMyWorkspacesQuery())
+                .compactMap { $0.signedUser }
+                .map { result -> Mutation in
+                    
+                    let joinRequestingWorkspaces = result.awaitingToJoinWorkspaces?.edges
+                        .compactMap(\.?.node?.fragments.onlyWorkspaceFragment)
+                        .map(Workspace.init)
+                        .map(WorkspaceListCellReactor.init) ?? []
+                    
+                    let joinedWorkspaces = result.joinedWorkspaces?.edges
+                        .compactMap(\.?.node?.fragments.workspaceFragment)
+                        .map(Workspace.init)
+                        .map(WorkspaceListCellReactor.init) ?? []
+                    
+                    var sections = [WorkspaceListSection]()
+                    
+                    if !joinRequestingWorkspaces.isEmpty {
+                        sections.append(.init(header: Text.joinRequesting, items: joinedWorkspaces))
+                    }
+                    if !joinedWorkspaces.isEmpty {
+                        sections.append(.init(header: Text.joined, items: joinedWorkspaces))
+                    }
+                    
+                    return .setSection(sections)
+                }
+            
         case .updateFCMToken:
 //            Messaging.messaging().token { token, error in
 //                if let token = token,
