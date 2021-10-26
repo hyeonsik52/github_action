@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import SnapKit
+import Then
 import ReactorKit
 import RxSwift
 import RxKeyboard
@@ -18,35 +19,42 @@ import RxKeyboard
 class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.View {
 
     enum Text {
-        static let WSSVC_1 = "워크스페이스"
-        static let WSSVC_2 = "워크스페이스 코드를 입력해주세요."
-        static let WSSVC_3 = "확인"
-    }
-
-    lazy var workspaceSearchView = SRPInputView(description: Text.WSSVC_2).then {
-        $0.textView.keyboardType = .asciiCapable
-        $0.textView.autocapitalizationType = .none
-        $0.textView.srpClearTextViewDelegate = self
+        static let WSSVC_1 = "워크스페이스 가입"
+        static let WSSVC_2 = "워크스페이스 코드"
+        static let WSSVC_3 = "워크스페이스 코드를 입력해주세요."
+        static let WSSVC_4 = "검색"
     }
     
-    // MARK: - Init
-
-    init(reactor: WorkspaceSearchViewReactor) {
-        super.init()
-        self.reactor = reactor
+    lazy var textFieldView = SignTextFieldView(Text.WSSVC_2).then {
+        $0.textField.autocapitalizationType = .none
+        $0.textField.keyboardType = AccountInputType.name.keyboardType
+        $0.textField.delegate = self
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    let descriptionLabel = UILabel().then {
+        $0.font = .medium[16]
+        $0.textColor = .black0F0F0F
+        $0.numberOfLines = 0
+        $0.text = Text.WSSVC_3
     }
-
+    
+    let errorMessageLabel = UILabel().then {
+        $0.font = .bold[14]
+        $0.textColor = .redEB4D39
+        $0.numberOfLines = 0
+    }
+    
+    let searchButton = SRPButton(Text.WSSVC_4).then {
+        $0.isEnabled = false
+        $0.layer.cornerRadius = 4
+    }
 
     // MARK: - Life Cycles
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.workspaceSearchView.textView.becomeFirstResponder()
+        self.textFieldView.textField.becomeFirstResponder()
     }
 
     override func setupNaviBar() {
@@ -58,36 +66,66 @@ class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.V
 
     override func setupConstraints() {
         super.setupConstraints()
-
-        self.view.addSubview(self.workspaceSearchView)
-        self.workspaceSearchView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(38)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+        
+        self.view.addSubview(self.textFieldView)
+        self.textFieldView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(38)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.equalTo(60)
+        }
+        
+        self.view.addSubview(self.descriptionLabel)
+        self.descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(self.textFieldView.snp.bottom).offset(12)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+        }
+        
+        self.view.addSubview(self.errorMessageLabel)
+        self.errorMessageLabel.snp.makeConstraints {
+            $0.top.equalTo(self.descriptionLabel.snp.bottom).offset(12)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+        }
+        
+        self.view.addSubview(self.searchButton)
+        self.searchButton.snp.makeConstraints {
+            $0.height.equalTo(60)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-12)
         }
     }
 
     // MARK: - ReactorKit
 
     func bind(reactor: WorkspaceSearchViewReactor) {
+        
         self.rx.viewDidAppear
             .map { _ in Reactor.Action.updateIsInitialOpen }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
 
-        self.workspaceSearchView.textView.rx.text.orEmpty
+        self.textFieldView.textField.rx.text.orEmpty
             .distinctUntilChanged()
             .map(Reactor.Action.updateCode)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
 
-        self.workspaceSearchView.confirmButton.rx.tap
+        self.searchButton.rx.tap
             .map { Reactor.Action.confirmCode }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
 
+        reactor.state.map { $0.code ?? "" }
+        .distinctUntilChanged()
+        .map { InputPolicy.workspaceCode.matchRange($0) }
+        .bind(to: self.searchButton.rx.isEnabled)
+        .disposed(by: self.disposeBag)
+        
         reactor.state.map { $0.errorMessage }
-            .bind(to: self.workspaceSearchView.errorMessageLabel.rx.text)
+            .bind(to: self.errorMessageLabel.rx.text)
             .disposed(by: self.disposeBag)
 
         reactor.state.map { $0.isLoading }
@@ -101,50 +139,26 @@ class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.V
                 let viewController = WorkspaceSearchResultViewController()
                 viewController.reactor = reactor
                 self?.navigationController?.pushViewController(viewController, animated: true)
-            }, onError: { [weak self] error in
-                self?.workspaceSearchView.errorMessageLabel.text = "error"
             }).disposed(by: self.disposeBag)
+    }
+    
+    override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {
+        super.updatedKeyboard(withoutBottomSafeInset: height)
         
-        let codeText = self.workspaceSearchView.textView.rx.text.orEmpty
-
-        // 코드 입력 소문자 강제
-        codeText
-            .map { $0.lowercased() }
-            .bind(to: workspaceSearchView.textView.rx.text)
-            .disposed(by: self.disposeBag)
-
-        // 리턴키 교체
-        codeText
-            .subscribe(onNext: { [weak self] text in
-                guard let self = self else { return }
-                self.workspaceSearchView.textView.returnKeyType = text.count < 5 ? .default : .done
-                self.workspaceSearchView.textView.reloadInputViews()
-            }).disposed(by: self.disposeBag)
-        
-        RxKeyboard.instance.visibleHeight
-            .filter { $0 > 0 }
-            .drive(onNext: { [workspaceSearchView] visibleHeight in
-                workspaceSearchView.snp.updateConstraints {
-                    $0.bottom.equalToSuperview().offset(-(visibleHeight + 12))
-                }
-            }).disposed(by: self.disposeBag)
+        let margin = height+12
+        self.searchButton.snp.updateConstraints {
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-margin)
+        }
     }
 }
 
-
-extension WorkspaceSearchViewController: SRPClearTextViewDelegate {
+extension WorkspaceSearchViewController: UITextFieldDelegate {
     
-    func textView(
-        _ textView: UITextView,
-        shouldChangeTextIn range: NSRange,
-        replacementText text: String
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
     ) -> Bool {
-        if text == "\n" {
-            if textView.returnKeyType == .done {
-                self.workspaceSearchView.confirmButton.sendActions(for: .touchUpInside)
-            }
-            return false
-        }
-        return true
+        return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: .workspaceCode)
     }
 }
