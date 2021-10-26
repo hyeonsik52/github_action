@@ -58,7 +58,11 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
         
         self.resultView.enterButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                //가입 상태에 따른 요청
+                guard let workspace = reactor.currentState.workspace,
+                      workspace.myMemberStatus == .member else { return }
+                let viewController = WorkspaceTabBarController()
+                viewController.reactor = reactor.reactorForSWSHome(workspaceId: workspace.id)
+                self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
 
         reactor.state.map { $0.isLoading }
