@@ -150,7 +150,8 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
             .map(reactor.reactorForSearch)
             .subscribe(onNext: { [weak self] reactor in
                 guard let self = self else { return }
-                let viewController = WorkspaceSearchViewController(reactor: reactor)
+                let viewController = WorkspaceSearchViewController()
+                viewController.reactor = reactor
                 self.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
         
@@ -172,8 +173,8 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
                     {
                         // todo: 수동 FCM Token 업데이트 reactor 처리
                         reactor.action.onNext(.updateFCMToken)
-                        let nextReactor = reactor.reactorForSearch()
-                        let viewController = WorkspaceSearchViewController(reactor: nextReactor)
+                        let viewController = WorkspaceSearchViewController()
+                        viewController.reactor = reactor.reactorForSearch()
                         self.navigationController?.pushViewController(viewController, animated: true)
                     }
 

@@ -75,11 +75,13 @@ final class WorkspaceListViewReactor: Reactor {
                     let joinRequestingWorkspaces = result.awaitingToJoinWorkspaces?.edges
                         .compactMap(\.?.node?.fragments.onlyWorkspaceFragment)
                         .map(Workspace.init)
+                        .sorted(by: { $0.name < $1.name })
                         .map(WorkspaceListCellReactor.init) ?? []
                     
                     let joinedWorkspaces = result.joinedWorkspaces?.edges
                         .compactMap(\.?.node?.fragments.workspaceFragment)
                         .map(Workspace.init)
+                        .sorted(by: { $0.name < $1.name })
                         .map(WorkspaceListCellReactor.init) ?? []
                     
                     var sections = [WorkspaceListSection]()

@@ -224,8 +224,6 @@
 		EDC11A8026D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196E26D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift */; };
 		EDC11A8126D3A39D0020AB09 /* WorkspaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196F26D3A39D0020AB09 /* WorkspaceInfoView.swift */; };
 		EDC11A8226D3A39D0020AB09 /* WorkspaceStopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197126D3A39D0020AB09 /* WorkspaceStopDetailViewController.swift */; };
-		EDC11A8326D3A39D0020AB09 /* UpdateNameViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197426D3A39D0020AB09 /* UpdateNameViewReactor.swift */; };
-		EDC11A8426D3A39D0020AB09 /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197526D3A39D0020AB09 /* UpdateNameViewController.swift */; };
 		EDC11A8526D3A39D0020AB09 /* UpdateEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197726D3A39D0020AB09 /* UpdateEmailViewReactor.swift */; };
 		EDC11A8626D3A39D0020AB09 /* UpdateEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197826D3A39D0020AB09 /* UpdateEmailViewController.swift */; };
 		EDC11A8726D3A39D0020AB09 /* UpdateEmailAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197926D3A39D0020AB09 /* UpdateEmailAuthViewController.swift */; };
@@ -529,8 +527,6 @@
 		EDC1196E26D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceInfoView_Reactive.swift; sourceTree = "<group>"; };
 		EDC1196F26D3A39D0020AB09 /* WorkspaceInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceInfoView.swift; sourceTree = "<group>"; };
 		EDC1197126D3A39D0020AB09 /* WorkspaceStopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceStopDetailViewController.swift; sourceTree = "<group>"; };
-		EDC1197426D3A39D0020AB09 /* UpdateNameViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNameViewReactor.swift; sourceTree = "<group>"; };
-		EDC1197526D3A39D0020AB09 /* UpdateNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
 		EDC1197726D3A39D0020AB09 /* UpdateEmailViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateEmailViewReactor.swift; sourceTree = "<group>"; };
 		EDC1197826D3A39D0020AB09 /* UpdateEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateEmailViewController.swift; sourceTree = "<group>"; };
 		EDC1197926D3A39D0020AB09 /* UpdateEmailAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateEmailAuthViewController.swift; sourceTree = "<group>"; };
@@ -1469,20 +1465,10 @@
 			isa = PBXGroup;
 			children = (
 				ED7A0E7A272160B400AD6678 /* Views */,
-				EDC1197326D3A39D0020AB09 /* NameViewController */,
 				EDC1197626D3A39D0020AB09 /* EmailViewController */,
 				EDC1197B26D3A39D0020AB09 /* PhoneNumberViewController */,
 			);
 			path = UpdateUserInfo;
-			sourceTree = "<group>";
-		};
-		EDC1197326D3A39D0020AB09 /* NameViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1197426D3A39D0020AB09 /* UpdateNameViewReactor.swift */,
-				EDC1197526D3A39D0020AB09 /* UpdateNameViewController.swift */,
-			);
-			path = NameViewController;
 			sourceTree = "<group>";
 		};
 		EDC1197626D3A39D0020AB09 /* EmailViewController */ = {
@@ -1953,7 +1939,6 @@
 				ED7A0E762721539400AD6678 /* ResetPasswordViewController.swift in Sources */,
 				EDC11A6126D3A39D0020AB09 /* WorkRequestTargetView.swift in Sources */,
 				ED508CDC27229B950029AF7B /* Encodable+dictionary.swift in Sources */,
-				EDC11A8426D3A39D0020AB09 /* UpdateNameViewController.swift in Sources */,
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
 				ED52732926C255FC0077CD9D /* SRPButton.swift in Sources */,
@@ -2099,7 +2084,6 @@
 				ED6B464326B7E7CC00C2FA6D /* UIButton.swift in Sources */,
 				EDC11AD026D3A39D0020AB09 /* RecipientUserCell.swift in Sources */,
 				EDC11A4326D3A39D0020AB09 /* ServiceUnitManagementHeader.swift in Sources */,
-				EDC11A8326D3A39D0020AB09 /* UpdateNameViewReactor.swift in Sources */,
 				EDC11AC226D3A39D0020AB09 /* CSUTargetDelegate.swift in Sources */,
 				EDC11AE926D3A39E0020AB09 /* MessageView.swift in Sources */,
 				EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */,
