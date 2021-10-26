@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import SnapKit
+import Then
 import Apollo
 import RxSwift
 import ReactorKit
@@ -32,12 +33,6 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
-
-        self.resultView.memberCountLabel.sizeToFit()
-        let width = self.resultView.memberCountLabel.frame.width + 44
-        self.resultView.memberCountLabel.snp.updateConstraints {
-            $0.width.equalTo(width)
-        }
     }
 
     override func setupNaviBar() {
@@ -50,11 +45,12 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
     // MARK: - ReactorKit
 
     func bind(reactor: WorkspaceSearchResultViewReactor) {
+        
         self.rx.viewDidLoad
             .map { _ in Reactor.Action.refresh }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
-
+        
         self.resultView.enterButton.rx.tap
             .map { _ in Reactor.Action.requestJoin }
             .bind(to: reactor.action)
@@ -72,7 +68,7 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
         
         reactor.state.compactMap { $0.workspace }
             .subscribe(onNext: { [weak self] workspace in
-                //가입 상태에 따른 상태 표시
+                self?.resultView.setupView(with: workspace)
             }).disposed(by: self.disposeBag)
     }
 }

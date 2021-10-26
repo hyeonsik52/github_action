@@ -87,7 +87,7 @@ final class WorkspaceListViewReactor: Reactor {
                     var sections = [WorkspaceListSection]()
                     
                     if !joinRequestingWorkspaces.isEmpty {
-                        sections.append(.init(header: Text.joinRequesting, items: joinedWorkspaces))
+                        sections.append(.init(header: Text.joinRequesting, items: joinRequestingWorkspaces))
                     }
                     if !joinedWorkspaces.isEmpty {
                         sections.append(.init(header: Text.joined, items: joinedWorkspaces))

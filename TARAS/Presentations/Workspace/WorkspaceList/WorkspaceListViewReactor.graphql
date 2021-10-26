@@ -35,6 +35,7 @@ fragment WorkspaceFragment on WorkspaceNode {
 		edges {
 			node {
 				id
+				role
 			}
 		}
 	}
