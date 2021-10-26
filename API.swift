@@ -132,6 +132,56 @@ public struct UpdateUserMutationInput: GraphQLMapConvertible {
   }
 }
 
+public enum UserRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case awaitingToJoin
+  case member
+  case manager
+  case administrator
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "AWAITING_TO_JOIN": self = .awaitingToJoin
+      case "MEMBER": self = .member
+      case "MANAGER": self = .manager
+      case "ADMINISTRATOR": self = .administrator
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .awaitingToJoin: return "AWAITING_TO_JOIN"
+      case .member: return "MEMBER"
+      case .manager: return "MANAGER"
+      case .administrator: return "ADMINISTRATOR"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: UserRole, rhs: UserRole) -> Bool {
+    switch (lhs, rhs) {
+      case (.awaitingToJoin, .awaitingToJoin): return true
+      case (.member, .member): return true
+      case (.manager, .manager): return true
+      case (.administrator, .administrator): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [UserRole] {
+    return [
+      .awaitingToJoin,
+      .member,
+      .manager,
+      .administrator,
+    ]
+  }
+}
+
 public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -3517,6 +3567,7 @@ public struct WorkspaceFragment: GraphQLFragment {
           node {
             __typename
             id
+            role
           }
         }
       }
@@ -3725,6 +3776,7 @@ public struct WorkspaceFragment: GraphQLFragment {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("role", type: .scalar(UserRole.self)),
           ]
         }
 
@@ -3734,8 +3786,8 @@ public struct WorkspaceFragment: GraphQLFragment {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID) {
-          self.init(unsafeResultMap: ["__typename": "MemberNode", "id": id])
+        public init(id: GraphQLID, role: UserRole? = nil) {
+          self.init(unsafeResultMap: ["__typename": "MemberNode", "id": id, "role": role])
         }
 
         public var __typename: String {
@@ -3753,6 +3805,15 @@ public struct WorkspaceFragment: GraphQLFragment {
           }
           set {
             resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var role: UserRole? {
+          get {
+            return resultMap["role"] as? UserRole
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "role")
           }
         }
       }
