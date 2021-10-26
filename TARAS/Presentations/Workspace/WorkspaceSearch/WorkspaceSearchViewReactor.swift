@@ -22,7 +22,8 @@ final class WorkspaceSearchViewReactor: Reactor {
     enum Mutation {
         case setCode(String)
         case setLoading(Bool)
-//        case setResult(Result<WorkspaceInfoByCode, Error>)
+        case setError(String?)
+        case setResult(Workspace)
     }
     
     struct State {
@@ -56,12 +57,19 @@ final class WorkspaceSearchViewReactor: Reactor {
                     return .empty()
             }
 
+            let query = SearchWorkspaceByCodeQuery(code: code)
             return .concat([
+                .just(.setError(nil)),
                 .just(.setLoading(true)),
                 
-//                self.provider.workspaceManager
-//                    .serchWorkspace(by: code)
-//                    .map { Mutation.setResult($0) },
+                self.provider.networkManager.fetch(query)
+                    .flatMapLatest { data -> Observable<Mutation> in
+                        guard let edge = data.linkedWorkspaces?.edges.first,
+                              let fragment = edge?.node?.fragments.workspaceFragment else {
+                                  return .just(.setError("입력한 코드와 일치하는 워크스페이스가 없습니다."))
+                              }
+                        return .just(.setResult(.init(fragment)))
+                    },
                 
                 .just(.setLoading(false))
             ])
@@ -83,34 +91,18 @@ final class WorkspaceSearchViewReactor: Reactor {
         case let .setCode(code):
             state.code = code
             state.errorMessage = nil
-            return state
             
         case let .setLoading(isLoading):
             state.isLoading = isLoading
             state.workspaceInfo = nil
-            return state
             
-//        case let .setResult(result):
-//            switch result {
-//            case let .success(workspaceInfo):
-//                let model = WorkspaceListCellModel(infoByCode: workspaceInfo)
-//
-//                state.errorMessage = nil
-//                state.workspaceInfo = model
-//                return state
-//
-//            case let .failure(error):
-//                if let _ = error as? SWSErrorCode {
-//                    state.errorMessage = "존재하지 않는 워크스페이스 코드입니다."
-//                    state.workspaceInfo = nil
-//                    return state
-//                }
-//
-//                state.errorMessage = "네트워크/서버 연결이 원할하지 않습니다. 잠시 후 다시 시도해주세요."
-//                state.workspaceInfo = nil
-//                return state
-//            }
+        case let .setError(message):
+            state.errorMessage = message
+            
+        case let .setResult(result):
+            state.workspaceInfo = result
         }
+        return state
     }
 
     func reactorForResult() -> WorkspaceSearchResultViewReactor? {
