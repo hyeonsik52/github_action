@@ -19,23 +19,20 @@ final class WorkspaceSearchResultViewReactor: Reactor {
 
     enum Action {
         case refresh
-        case requestJoin
-        case cancelRequest
+        case request
     }
     
     enum Mutation {
         case setWorkspace(Workspace)
         case setLoading(Bool)
-        case setJoinResult(Bool?)
-        case setCancelResult(Bool?)
+        case setResult(Bool?)
         case setError(String?)
     }
     
     struct State {
         var workspace: Workspace?
         var isLoading: Bool
-        var requestResult: Bool?
-        var cancelResult: Bool?
+        var result: Bool?
         var errorMessage: String?
     }
     
@@ -51,14 +48,13 @@ final class WorkspaceSearchResultViewReactor: Reactor {
         self.initialState = State(
             workspace: nil,
             isLoading: false,
-            requestResult: false,
-            cancelResult: false,
+            result: nil,
             errorMessage: nil
         )
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-        
+        let userId = self.provider.userManager.userTB.id
         switch action {
         case .refresh:
             return .concat([
@@ -90,16 +86,24 @@ final class WorkspaceSearchResultViewReactor: Reactor {
                 .just(.setLoading(false))
             ])
             
-        case .requestJoin:
+        case .request:
             guard let worksapceId = self.currentState.workspace?.id else { return .empty() }
+            let currentStatus = self.currentState.workspace?.myMemberStatus ?? .notMember
+            guard currentStatus != .member else { return .empty() }
+            let call: Observable<Mutation> = {
+                switch currentStatus {
+                case .notMember:
+                    return self.provider.networkManager
+                        .perform(RequestToJoinWorkspaceMutation(workspaceId: worksapceId))
+                        .compactMap(\.requestToJoinWorkspace)
+                        .map { .setResult($0) }
+                default:
+                    return .empty()
+                }
+            }()
             return .concat([
+                .just(.setResult(nil)),
                 .just(.setLoading(true)),
-                self.provider.networkManager
-                    .perform(RequestToJoinWorkspaceMutation(workspaceId: worksapceId))
-                    .compactMap(\.requestToJoinWorkspace)
-                    .map { .setJoinResult($0) },
-                .just(.setLoading(false))
-            ])
         case .cancelRequest:
             guard let worksapceId = self.currentState.workspace?.id else { return .empty() }
             return .concat([
@@ -108,6 +112,7 @@ final class WorkspaceSearchResultViewReactor: Reactor {
                     .perform(CancelToJoinWorkspaceMutation(workspaceId: worksapceId))
                     .compactMap(\.cancelToJoinWorkspace)
                     .map { .setCancelResult($0) },
+                call,
                 .just(.setLoading(false))
             ])
         }
@@ -118,16 +123,15 @@ final class WorkspaceSearchResultViewReactor: Reactor {
         switch mutation {
         case let .setWorkspace(workspace):
             state.workspace = workspace
+            state.result = nil
             
         case let .setLoading(isLoading):
             state.isLoading = isLoading
             
-        case let .setJoinResult(result):
-            state.requestResult = result
-            state.errorMessage = (result == true ? nil: "")
-            
         case let .setCancelResult(result):
             state.cancelResult = result
+        case let .setResult(result):
+            state.result = result
             state.errorMessage = (result == true ? nil: "")
             
         case let .setError(message):
