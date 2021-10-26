@@ -19,20 +19,24 @@ import RxDataSources
 class WorkspaceListViewController: BaseViewController, ReactorKit.View {
     
     enum Text {
-        static let WSLVC_1 = "내 워크스페이스"
-        static let WSLVC_2 = "가입 신청 중"
+        static let WSLVC_1 = "워크스페이스"
     }
     
     let refreshControl = UIRefreshControl()
     
-    lazy var settingBarButton = UIBarButtonItem(
-        title: "내 설정",
+    let settingBarButton = UIBarButtonItem(
+        image: UIImage(named: "setting")?.withRenderingMode(.alwaysOriginal),
         style: .plain,
-        target: self,
+        target: nil,
         action: nil
     )
     
-    let joinWorkspaceButton = SRPButton("+ 워크스페이스 신청")
+    let joinWorkspaceBarButton = UIBarButtonItem(
+        image: UIImage(named: "naviAdd")?.withRenderingMode(.alwaysOriginal),
+        style: .plain,
+        target: nil,
+        action: nil
+    )
     
     lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.addSubview(self.refreshControl)
@@ -64,14 +68,6 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
         self.tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        self.view.addSubview(self.joinWorkspaceButton)
-        self.joinWorkspaceButton.snp.makeConstraints {
-            $0.height.equalTo(60)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-16)
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,7 +80,8 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
         self.title = Text.WSLVC_1
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        self.navigationItem.setRightBarButton(self.settingBarButton, animated: true)
+        self.navigationItem.setLeftBarButton(self.settingBarButton, animated: true)
+        self.navigationItem.setRightBarButton(self.joinWorkspaceBarButton, animated: true)
     }
     
     override func viewWillLayoutSubviews() {
@@ -149,7 +146,7 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
             })
             .disposed(by: self.disposeBag)
                 
-        self.joinWorkspaceButton.rx.tap
+        self.joinWorkspaceBarButton.rx.tap
             .map(reactor.reactorForSearch)
             .subscribe(onNext: { [weak self] reactor in
                 guard let self = self else { return }

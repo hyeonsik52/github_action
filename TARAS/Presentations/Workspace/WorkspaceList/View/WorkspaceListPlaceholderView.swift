@@ -13,7 +13,7 @@ class WorkspaceListPlaceholderView: UIView {
     let imageView = UIImageView(image: UIImage(named: "common-workspacePlaceholder-unhappy"))
     
     let label = UILabel().then {
-        $0.text = "가입한 워크스페이스가 없습니다.\n'+' 버튼을 눌러 가입해주세요."
+        $0.text = "가입한 워크스페이스가 없습니다."
         $0.textColor = .gray9A9A9A
         $0.numberOfLines = 2
         $0.textAlignment = .center
