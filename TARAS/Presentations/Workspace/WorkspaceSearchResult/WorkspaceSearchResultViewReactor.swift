@@ -67,7 +67,26 @@ final class WorkspaceSearchResultViewReactor: Reactor {
                     .fetch(SearchWorkspaceByCodeQuery(code: self.workspaceCode))
                     .compactMap(\.linkedWorkspaces?.edges.first)
                     .compactMap(\.?.node?.fragments.workspaceFragment)
-                    .map { .setWorkspace(.init($0)) },
+                    .map { fragment -> Mutation in
+                        
+                        let meAsMember = fragment.members?.edges.compactMap(\.?.node).first { $0.id == userId }
+                        let isMeJoined = (meAsMember != nil)
+                        let myJoinRole = meAsMember?.role ?? .member
+                        
+                        var workspace = Workspace(fragment)
+                        
+                        if isMeJoined {
+                            if myJoinRole == .awaitingToJoin {
+                                workspace.myMemberStatus = .requestingToJoin
+                            } else {
+                                workspace.myMemberStatus = .member
+                            }
+                        } else {
+                            workspace.myMemberStatus = .notMember
+                        }
+                        
+                        return .setWorkspace(workspace)
+                    },
                 .just(.setLoading(false))
             ])
             
