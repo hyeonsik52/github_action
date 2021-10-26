@@ -62,7 +62,8 @@ extension Workspace: FragmentModel {
         //외부에서 회원이 아님을 확인 후 재설정 필요
         self.myMemberStatus = .member
         
-        self.memberCount = fragment.members?.totalCount ?? 0
+        let members = fragment.members?.edges.compactMap(\.?.node).filter { $0.role != .awaitingToJoin } ?? []
+        self.memberCount = members.count
         self.code = fragment.code
     }
     
