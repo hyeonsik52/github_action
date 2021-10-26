@@ -97,6 +97,11 @@ final class WorkspaceSearchResultViewReactor: Reactor {
                         .perform(RequestToJoinWorkspaceMutation(workspaceId: worksapceId))
                         .compactMap(\.requestToJoinWorkspace)
                         .map { .setResult($0) }
+                case .requestingToJoin:
+                    return self.provider.networkManager
+                        .perform(CancelToJoinWorkspaceMutation(workspaceId: worksapceId))
+                        .compactMap(\.cancelToJoinWorkspace)
+                        .map { .setResult($0) }
                 default:
                     return .empty()
                 }
@@ -104,14 +109,6 @@ final class WorkspaceSearchResultViewReactor: Reactor {
             return .concat([
                 .just(.setResult(nil)),
                 .just(.setLoading(true)),
-        case .cancelRequest:
-            guard let worksapceId = self.currentState.workspace?.id else { return .empty() }
-            return .concat([
-                .just(.setLoading(true)),
-                self.provider.networkManager
-                    .perform(CancelToJoinWorkspaceMutation(workspaceId: worksapceId))
-                    .compactMap(\.cancelToJoinWorkspace)
-                    .map { .setCancelResult($0) },
                 call,
                 .just(.setLoading(false))
             ])
@@ -128,8 +125,6 @@ final class WorkspaceSearchResultViewReactor: Reactor {
         case let .setLoading(isLoading):
             state.isLoading = isLoading
             
-        case let .setCancelResult(result):
-            state.cancelResult = result
         case let .setResult(result):
             state.result = result
             state.errorMessage = (result == true ? nil: "")
