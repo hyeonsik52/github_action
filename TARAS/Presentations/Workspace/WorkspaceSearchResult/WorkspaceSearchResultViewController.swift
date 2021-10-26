@@ -52,7 +52,7 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
             .disposed(by: self.disposeBag)
         
         self.resultView.enterButton.rx.tap
-            .map { _ in Reactor.Action.requestJoin }
+            .map { Reactor.Action.request }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -70,5 +70,12 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
             .subscribe(onNext: { [weak self] workspace in
                 self?.resultView.setupView(with: workspace)
             }).disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.result)
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .map {_ in Reactor.Action.refresh }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
     }
 }
