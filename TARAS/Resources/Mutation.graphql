@@ -1,254 +1,78 @@
 
-#mutation updateFCMToken($input: UpdateFcmRegistrationIdInput!) {
-#    updateFcmRegistrationIdMutation(input: $input) {
-#        ... on UpdateFcmRegistrationIdPayload {
-#            result
-#        }
-#
-#        ... on UpdateFcmRegistrationIdError {
-#            errorCode
-#        }
-#    }
-#}
-#
-#mutation deleteFCMToken($input: DeleteFcmRegistrationIdInput!) {
-#    deleteFcmRegistrationIdMutation(input: $input) {
-#        ... on DeleteFcmRegistrationIdPayload {
-#            result
-#        }
-#
-#        ... on DeleteFcmRegistrationIdError {
-#            errorCode
-#        }
-#    }
-#}
-
-#mutation refreshSession($input: RefreshSessionInput!) {
-#    refreshSessionMutation(input: $input) {
-#        ... on RefreshSessionError {
-#            errorCode
-#        }
-#        ... on LoginPayload {
-#            accessToken
-#            refreshToken
-#        }
-#    }
-#}
-
-#mutation userIDDuplicatedCheck($input: UserIdDuplicateCheckInput!) {
-#    userIdDuplicateCheckMutation(input: $input) {
-#        ... on UserDuplicateCheckPayload {
-#            result
-#        }
-#    }
-#}
-
-mutation signUp($input: CreateUserMutationInput!) {
-  createUser(input: $input) {
-      id
-  }
+mutation registerFcm($input: RegisterFcmMutationInput!) {
+    registerFcm(input: $input)
 }
 
-#mutation userEmailDuplicateCheck($input: UserEmailDuplicateCheckInput!) {
-#    userEmailDuplicateCheckMutation(input: $input) {
-#        ... on UserDuplicateCheckPayload {
-#            result
-#        }
-#    }
-#}
-#mutation createEmailAuthCode($input: CreateEmailAuthCodeInput!) {
-#    createEmailAuthCodeMutation(input: $input) {
-#        ... on TypeError {
-#            ... TypeErrorFragment
-#        }
-#        ... on CreateEmailAuthCodeError {
-#            authErrorCode: errorCode
-#        }
-#        ... on CreateEmailAuthCodePayload {
-#            expiresIn
-#        }
-#    }
-#}
-#
-#mutation checkEmailAuthCode($input: CheckEmailAuthCodeInput!) {
-#    checkEmailAuthCodeMutation(input: $input) {
-#        ... on TypeError {
-#            ... TypeErrorFragment
-#        }
-#        ... on CheckEmailAuthCodeError {
-#            authErrorCode: errorCode
-#        }
-#        ... on CheckEmailAuthCodePayload {
-#            emailToken
-#        }
-#    }
-#}
+mutation unregisterFcm($input: UnregisterFcmMutationInput!) {
+    unregisterFcm(input: $input)
+}
 
-#mutation findUserIdListByEmail($input: FindUserIdByEmailInput!) {
-#    findUserIdListByEmailMutation(input: $input) {
-#        ... on TypeError {
-#            ... TypeErrorFragment
-#        }
-#        ... on FindUserIdError {
-#            findErrorCode: errorCode
-#        }
-#        ... on FindUserIdListPayload {
-#            userIdList
-#        }
-#    }
-#}
-#
-#mutation findUserIdByEmail($input: FindUserIdByEmailInput!) {
-#    findUserIdByEmailMutation(input: $input) {
-#        ... on FindUserIdError {
-#            errorCode
-#        }
-#
-#        ... on FindUserIdPayload {
-#            userId
-#        }
-#    }
-#}
-#
-#mutation findUserIdByPhoneNumber($input: FindUserIdByPhoneNumberInput!) {
-#    findUserIdByPhoneNumberMutation(input: $input) {
-#        ... on FindUserIdError {
-#            errorCode
-#        }
-#
-#        ... on FindUserIdPayload {
-#            userId
-#        }
-#    }
-#}
+mutation requestJoinWorkspace($id: String!) {
+    requestToJoinWorkspace(workspaceId: $id)
+}
 
-#mutation resetUserPasswordByEmail($input: ResetUserPasswordByEmailInput!) {
-#    resetUserPasswordByEmailMutation(input: $input) {
-#        ... on TypeError {
-#            ... TypeErrorFragment
-#        }
-#        ... on ResetUserPasswordError {
-#            findErrorCode: errorCode
-#        }
-#        ... on ResetUserPasswordPayload {
-#            result
-#        }
-#    }
-#}
-#
-#
-#mutation resetUserPasswordByPhoneNumber($input: ResetUserPasswordByPhoneNumberInput!) {
-#    resetUserPasswordByPhoneNumberMutation(input: $input) {
-#        ... on ResetUserPasswordError {
-#            errorCode
-#        }
-#
-#        ... on ResetUserPasswordPayload {
-#            result
-#        }
-#    }
-#}
-#
-#mutation createPhoneNumberAuthCode($input: CreatePhoneNumberAuthCodeInput!) {
-#    createPhoneNumberAuthCodeMutation(input: $input) {
-#        ... on CreatePhoneNumberAuthCodeError {
-#            errorCode
-#        }
-#
-#        ... on CreatePhoneNumberAuthCodePayload {
-#            expiresIn
-#            phoneNumber
-#        }
-#    }
-#}
-#
-#mutation checkPhoneNumberAuthCode($input: CheckPhoneNumberAuthCodeInput!) {
-#    checkPhoneNumberAuthCodeMutation(input: $input) {
-#        ... on CheckPhoneNumberAuthCodePayload {
-#            phoneNumber
-#            phoneNumberToken
-#        }
-#
-#        ... on CheckPhoneNumberAuthCodeError {
-#            errorCode
-#        }
-#    }
-#}
+mutation cancelJoinWorkspace($id: String!) {
+    cancelToJoinWorkspace(workspaceId: $id)
+}
+
+mutation requestAuth($input: RequestVerificationNumberMutationInput!) {
+    requestVerificationNumber(input: $input) {
+        id
+        verificationNumber
+        expires
+        user {
+            id
+        }
+    }
+}
+
+mutation checkAuth($input: CheckVerificationNumberMutationInput!) {
+    checkVerificationNumber(input: $input) {
+        id
+        isExpired
+        scope
+        token
+        user {
+            id
+        }
+    }
+}
+
+mutation resetPassword($input: ResetPasswordMutationInput!) {
+    resetPassword(input: $input)
+}
+
+mutation releaseAccount($token: String!) {
+  releaseAccount(token: $token)
+}
+
+mutation signUp($input: CreateUserWithTokenMutationInput!) {
+    createUserWithToken(input: $input) {
+        ... UserFragment
+    }
+}
+
+mutation validateUsername($id: String!) {
+    validateUsername(username: $id)
+}
 
 mutation withdraw {
-  withdrawUser
+    withdrawUser
 }
 
-mutation updateUserInfo($input: UpdateUserMutationInput!) {
+mutation updateUser($input: UpdateUserMutationInput!) {
     updateUser(input: $input) {
         ... UserFragment
     }
 }
 
-#mutation createAuthCode($input: CreateAuthCodeInput!) {
-#    createAuthCodeMutation(input: $input) {
-#        ... on TypeError {
-#            ... TypeErrorFragment
-#        }
-#        ... on CreateAuthCodeError {
-#            authErrorCode: errorCode
-#        }
-#        ... on CreateAuthCodePayload {
-#            authCode
-#        }
-#    }
-#}
-#
-#mutation resetUserPasswordByAuthCode($input: ResetUserPasswordByAuthCodeInput!) {
-#    resetUserPasswordByAuthCodeMutation(input: $input) {
-#        ... on TypeError {
-#            ... TypeErrorFragment
-#        }
-#        ... on ResetUserPasswordError {
-#            authErrorCode: errorCode
-#        }
-#        ... on ResetUserPasswordPayload {
-#            result
-#        }
-#    }
-#}
-
-mutation leaveWorkspace($workspaceId: String) {
-    leaveWorkspace(workspaceId: $workspaceId)
+mutation updateUserEmail($token: String!) {
+    updateUserEmail(token: $token)
 }
 
-#mutation cancelServiceMutation($input: CancelServiceInput!) {
-#    cancelServiceMutation(input: $input) {
-#        ... on CancelServiceError {
-#            errorCode
-#        }
-#        ... on CancelServicePayload {
-#            result
-#        }
-#    }
-#}
-
-#mutation hideServiceMutation($input: HideServiceInput!) {
-#    hideServiceMutation(input: $input) {
-#        ... on HideServiceError {
-#            errorCode
-#        }
-#        ... on HideServicePayload {
-#            result
-#        }
-#    }
-#}
-
-#mutation startServiceUnitMutation($input: StartServiceUnitInput!) {
-#    startServiceUnitMutation(input: $input) {
-#        ... on StartServiceUnitError {
-#            errorCode
-#        }
-#        ... on StartServiceUnitPayload {
-#            result
-#        }
-#    }
-#}
+mutation leaveWorkspace($id: String!) {
+    leaveWorkspace(workspaceId: $id)
+}
 
 mutation completeServiceUnit($serviceId: String, $serviceStep: Int) {
     completeServiceUnit(serviceId: $serviceId, serviceStep: $serviceStep) {
@@ -256,38 +80,8 @@ mutation completeServiceUnit($serviceId: String, $serviceStep: Int) {
     }
 }
 
-#mutation createService($input: CreateServiceInput!) {
-#    createServiceMutation(input: $input) {
-#        ... on TypeError {
-#            ... TypeErrorFragment
-#        }
-#        ... on CreateServiceError {
-#            presetErrorCode: errorCode
-#        }
-#        ... on Service {
-#            serviceIdx
-#        }
-#    }
-#}
-#
-#mutation createServiceWithPreset($input: CreateServiceWithPresetInput) {
-#    createServiceWithPresetMutation(input: $input) {
-#        ... on TypeError {
-#            typeErrorCode: errorCode
-#        }
-#        ... on CreateServiceWithPresetError {
-#            presetErrorCode: errorCode
-#        }
-#        ... on Service {
-#            serviceIdx
-#        }
-#    }
-#}
-
-mutation requestToJoinWorkspace($workspaceId: String) {
-  requestToJoinWorkspace(workspaceId: $workspaceId)
-}
-
-mutation cancelToJoinWorkspace($workspaceId: String) {
-  cancelToJoinWorkspace(workspaceId: $workspaceId)
+mutation createService($input: CreateServiceWithServiceTemplateInput!) {
+    createServiceWithServiceTemplate(createServiceInput: $input) {
+        ... ServiceFragment
+    }
 }

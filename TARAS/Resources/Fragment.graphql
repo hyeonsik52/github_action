@@ -7,23 +7,24 @@ fragment UserFragment on UserNode {
     phoneNumber
 }
 
-fragment WorkspaceFragment on WorkspaceNode {
+fragment MemberFragment on MemberNode {
+    id
+    username
+    displayName
+    email
+    phoneNumber
+    role
+}
+
+fragment RobotFragment on RobotNode {
     id
     name
-    code
-    createdAt
-    isRequiredToAcceptToJoin
-    isRequiredUserEmailToJoin
-    isRequiredUserPhoneNumberToJoin
-    members {
-        totalCount
-        edges {
-            node {
-                id
-                role
-            }
-        }
-    }
+}
+
+fragment StopFragment on StationGroupNode {
+    id
+    name
+    isStop
 }
 
 fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {
@@ -31,21 +32,35 @@ fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {
     name
     code
     createdAt
-    isRequiredToAcceptToJoin
     isRequiredUserEmailToJoin
     isRequiredUserPhoneNumberToJoin
     totalMemberCount
 }
 
-fragment MemberFragment on MemberNode {
+fragment WorkspaceFragment on WorkspaceNode {
     id
-    username
-    displayName
-    email
-    phoneNumber
+    name
+    code
+    createdAt
+    members(roles: [MEMBER, MANAGER, ADMINISTRATOR]) {
+        totalCount
+    }
 }
 
-fragment ServiceFragment on HiGlovisServiceNode {
+fragment ServiceUnitFragment on ServiceUnitNode {
+    id
+    index
+    state
+    message
+    stop {
+        ... StopFragment
+    }
+    receivers {
+        ... UserFragment
+    }
+}
+
+fragment ServiceFragment on ServiceNode {
     id
     phase
     type
@@ -58,38 +73,14 @@ fragment ServiceFragment on HiGlovisServiceNode {
         ... RobotFragment
     }
     currentServiceUnitStep
-    currentServiceUnit {
-        ... ServiceUnitFragment
-    }
     serviceUnits {
         ... ServiceUnitFragment
     }
+    totalMovingDistance
 }
 
-fragment ServiceUnitFragment on ServiceUnitNode {
-    id
-    state
-    stop {
-        ... StopFragment
-    }
-    data
-}
-
-fragment StopFragment on StationGroupNode {
-    id
-    name
-    isStop
-}
-
-fragment RobotFragment on RobotNode {
-    id
-    name
-    lockKey
-    extensions {
-        #      ... on DoorLockExtensionType {
-        id
-        #        deviceName
-        #        doorOpenState
-        #      }
-    }
+fragment VersionFragment on ClientVersionNode {
+    minVersionCode
+    currentVersionCode
+    currentVersionName
 }

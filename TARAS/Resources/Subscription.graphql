@@ -1,96 +1,15 @@
 
-subscription servicesByWorkspaceId($workspaceId: String) {
-    subscribeHiGlovisServices(workspaceId: $workspaceId) {
-        edges {
-            node {
-                ... ServiceFragment
-            }
-        }
-    }
-}
-
-subscription serviceByServiceId($serviceId: ID) {
-    subscribeHiGlovisServiceByServiceId(serviceId: $serviceId) {
+subscription serviceById($id: ID!) {
+    subscribeServiceByServiceId(serviceId: $id) {
         ... ServiceFragment
     }
 }
 
-#subscription serviceLog($serviceIdx: Int!) {
-#  serviceLogByServiceIdxSubscription(serviceIdx: $serviceIdx) {
-#    ... on ServiceLogCreated {
-#      item {
-#        ... ServiceLogFragment
-#      }
-#    }
-#  }
-#}
-
-# 로그는 timestamps에서 파싱
-#[{
-#  # 서비스 생성
-#    "type":"service_started",
-#    "success": true,
-#    "unit_index": 0,
-#    "time": "1234-56-78T12:34:56Z"
-#},
-#{
-#  # 로봇 배정
-#    "type":"robot_assigned",
-#    "success": true,
-#    "unit_index": 0,
-#    "time": "1234-56-78T12:34:56Z"
-#},
-#{
-#  # 로봇 카페로 이동
-#    "type":"robot_departed",
-#    "success": true,
-#    "unit_index": 1,
-#    "time": "1234-56-78T12:34:56Z"
-#},
-#{
-#  # 로봇 카페 도착
-#    "type":"robot_arrived",
-#    "success": true,
-#    "unit_index": 1,
-#    "time": "1234-56-78T12:34:56Z"
-#},
-#{
-#  # 로봇 목적지로 이동
-#    "type":"robot_departed",
-#    "success": true,
-#    "unit_index": 2,
-#    "time": "1234-56-78T12:34:56Z"
-#},
-#{
-#  # (로봇 수령 대기)로봇 목적지 도착
-#    "type":"robot_arrived",
-#    "success": true,
-#    "unit_index": 2,
-#    "time": "1234-56-78T12:34:56Z"
-#},
-#{
-#  # (수령 완료) 작업 완료
-#    "type":"job_done",
-#    "success": true,
-#    "unit_index": 2,
-#    "time": "1234-56-78T12:34:56Z"
-#},
-#{
-#  # 서비스 취소
-#  "type": "service_canceled",
-#  "canceler": "username"
-#  "success": true,
-#  "unit_index": 2,
-#  "time" : "1234-56-78T12:34:56Z"
-#}]
-
-#subscription hiddenServiceSubscription {
-#    hiddenServiceSubscription {
-#        ... on ServiceError {
-#            errorCode
-#        }
-#        ... on Service {
-#            serviceIdx
-#        }
-#    }
-#}
+subscription serviceByWorkspaceId($id: ID!) {
+    subscribeServiceChangeset(workspaceId: $id, phases: [Initialization, Executing, Done]) {
+        eventType
+        service {
+            ... ServiceFragment
+        }
+    }
+}

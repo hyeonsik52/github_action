@@ -1,13 +1,27 @@
 
-query myUserInfo {
-    signedUser {
-        ... UserFragment
+query checkSession {
+    isVaildAccessToken
+}
+
+query findUser($token: String) {
+    findUser(token: $token) {
+        username
     }
 }
 
-query allMyWorkspaces {
+query workspaceByCode($code: String!) {
+    workspaces(code: $code) {
+        edges {
+            node {
+                ... OnlyWorkspaceFragment
+            }
+        }
+    }
+}
+
+query myWorkspaces {
     signedUser {
-        joinedWorkspaces(isActive: true) {
+        joinedWorkspaces {
             edges {
                 node {
                     ... WorkspaceFragment
@@ -24,132 +38,9 @@ query allMyWorkspaces {
     }
 }
 
-query service($serviceId: String) {
-    hiGlovisServiceByOrderId(orderId: $serviceId) {
-        ... ServiceFragment
-    }
-}
-
-#query serviceLogByServiceIdx($swsIdx: Int!, $serviceIdx: Int!, $before: String, $last: Int) {
-#    serviceLogsByServiceIdxConnection(swsIdx: $swsIdx, serviceIdx: $serviceIdx, before: $before, last: $last) {
-#        pageInfo {
-#            startCursor
-#            hasPreviousPage
-#        }
-#        edges {
-#            cursor
-#            node {
-#                ... ServiceLogFragment
-#            }
-#        }
-#    }
-#}
-
-query services($workspaceId: String, $before: String, $last: Int) {
-  hiGlovisServices(workspaceId: $workspaceId, before: $before, last: $last) {
-    pageInfo {
-      startCursor
-      hasPreviousPage
-    }
-    edges {
-      cursor
-      node {
-        ... ServiceFragment
-      }
-    }
-  }
-}
-
-#query userById($workspaceId: String, $userId: String) {
-query userById($workspaceId: String) {
-  signedUser {
-    joinedWorkspaces(id: $workspaceId) {
-      edges {
-        node {
-#          members(id: $userId) {
-          members {
-            edges {
-              node {
-                  ... MemberFragment
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-query usersByWorkspaceId($workspaceId: String) {
-  signedUser {
-    joinedWorkspaces(id: $workspaceId) {
-      edges {
-        node {
-          members {
-            edges {
-              node {
-                  ... MemberFragment
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-#query presetServices($swsIdx: Int!) {
-#    presetServicesConnection(swsIdx: $swsIdx) {
-#        edges {
-#            node {
-#                presetServiceIdx
-#                mode
-#                name
-#                presetServiceUnits {
-#                    freights {
-#                        name
-#                        quantity
-#                        type
-#                    }
-#                    isBypass
-#                    isStopFixed
-#                    recipients {
-#                        targetIdx
-#                        targetType
-#                    }
-#                    stop {
-#                        stopIdx
-#                        name
-#                    }
-#                    stopType
-#                    targetType
-#                }
-#            }
-#        }
-#    }
-#}
-
-query stopsByWorkspaceId($workspaceId: String) {
-  signedUser {
-    joinedWorkspaces(id: $workspaceId) {
-      edges {
-        node {
-          stationGroups {
-            edges {
-              node {
-                  ... StopFragment
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-query workspaceById($workspaceId: String) {
+query workspaceById($id: String!) {
     signedUser {
-        joinedWorkspaces(id: $workspaceId) {
+        joinedWorkspaces(id: $id) {
             edges {
                 node {
                     ... WorkspaceFragment
@@ -159,11 +50,116 @@ query workspaceById($workspaceId: String) {
     }
 }
 
-query searchWorkspaceByCode($code: String) {
-    linkedWorkspaces(code: $code, isActive: true, isAllowedToSearch: true) {
+query service($workspaceId: String!, $serviceId: String!) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    services(id:$serviceId) {
+                        edges {
+                            node {
+                                ... ServiceFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query services($workspaceId: String!, $after: String, $first:Int, $type: String, $phase: String, $phases: [String], $states: [String], $startedAt: DateTime, $endedAt: DateTime) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    services(after: $after, first: $first, type: $type, phase: $phase, phases: $phases, states: $states, startedAt: $startedAt, endedAt: $endedAt) {
+                        pageInfo {
+                            endCursor
+                            hasNextPage
+                        }
+                        edges {
+                            node {
+                                ... ServiceFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query myUserInfo {
+    signedUser {
+        ... UserFragment
+    }
+}
+
+query stopList($workspaceId: String!) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    stationGroups(isStop: true) {
+                        edges {
+                            node {
+                                ... StopFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query userList($workspaceId: String!) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    members(roles:[MEMBER, MANAGER, ADMINISTRATOR]) {
+                        edges {
+                            node {
+                                ... MemberFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query clientVersion {
+    clientVersion(clientType: IOS_AP) {
+        ... VersionFragment
+    }
+}
+
+#템플릿 검색 용도
+query serviceTemplates {
+    serviceTemplates {
         edges {
             node {
-                ... WorkspaceFragment
+                id
+                name
+            }
+        }
+    }
+}
+
+#진행중인 서비스 개수
+query servicesInProgress($workspaceId: String) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    services(phases: ["Initialization", "Executing"]) {
+                        totalCount
+                    }
+                }
             }
         }
     }
