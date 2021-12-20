@@ -1,6 +1,0 @@
-
-mutation signUp($input: CreateUserMutationInput!) {
-  createUser(input: $input) {
-	  id
-  }
-}

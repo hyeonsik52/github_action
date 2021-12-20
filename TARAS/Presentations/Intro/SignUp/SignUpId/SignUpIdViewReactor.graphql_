@@ -1,7 +1,0 @@
-#mutation userIDDuplicatedCheck($input: UserIdDuplicateCheckInput!) {
-#	userIdDuplicateCheckMutation(input: $input) {
-#		... on UserDuplicateCheckPayload {
-#			result
-#		}
-#	}
-#}

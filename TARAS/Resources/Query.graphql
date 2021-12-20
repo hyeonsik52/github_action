@@ -1,0 +1,170 @@
+
+query myUserInfo {
+    signedUser {
+        ... UserFragment
+    }
+}
+
+query allMyWorkspaces {
+    signedUser {
+        joinedWorkspaces(isActive: true) {
+            edges {
+                node {
+                    ... WorkspaceFragment
+                }
+            }
+        }
+        awaitingToJoinWorkspaces {
+            edges {
+                node {
+                    ... OnlyWorkspaceFragment
+                }
+            }
+        }
+    }
+}
+
+query service($serviceId: String) {
+    hiGlovisServiceByOrderId(orderId: $serviceId) {
+        ... ServiceFragment
+    }
+}
+
+#query serviceLogByServiceIdx($swsIdx: Int!, $serviceIdx: Int!, $before: String, $last: Int) {
+#    serviceLogsByServiceIdxConnection(swsIdx: $swsIdx, serviceIdx: $serviceIdx, before: $before, last: $last) {
+#        pageInfo {
+#            startCursor
+#            hasPreviousPage
+#        }
+#        edges {
+#            cursor
+#            node {
+#                ... ServiceLogFragment
+#            }
+#        }
+#    }
+#}
+
+query services($workspaceId: String, $before: String, $last: Int) {
+  hiGlovisServices(workspaceId: $workspaceId, before: $before, last: $last) {
+    pageInfo {
+      startCursor
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+        ... ServiceFragment
+      }
+    }
+  }
+}
+
+#query userById($workspaceId: String, $userId: String) {
+query userById($workspaceId: String) {
+  signedUser {
+    joinedWorkspaces(id: $workspaceId) {
+      edges {
+        node {
+#          members(id: $userId) {
+          members {
+            edges {
+              node {
+                  ... MemberFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query usersByWorkspaceId($workspaceId: String) {
+  signedUser {
+    joinedWorkspaces(id: $workspaceId) {
+      edges {
+        node {
+          members {
+            edges {
+              node {
+                  ... MemberFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#query presetServices($swsIdx: Int!) {
+#    presetServicesConnection(swsIdx: $swsIdx) {
+#        edges {
+#            node {
+#                presetServiceIdx
+#                mode
+#                name
+#                presetServiceUnits {
+#                    freights {
+#                        name
+#                        quantity
+#                        type
+#                    }
+#                    isBypass
+#                    isStopFixed
+#                    recipients {
+#                        targetIdx
+#                        targetType
+#                    }
+#                    stop {
+#                        stopIdx
+#                        name
+#                    }
+#                    stopType
+#                    targetType
+#                }
+#            }
+#        }
+#    }
+#}
+
+query stopsByWorkspaceId($workspaceId: String) {
+  signedUser {
+    joinedWorkspaces(id: $workspaceId) {
+      edges {
+        node {
+          stationGroups {
+            edges {
+              node {
+                  ... StopFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query workspaceById($workspaceId: String) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    ... WorkspaceFragment
+                }
+            }
+        }
+    }
+}
+
+query searchWorkspaceByCode($code: String) {
+    linkedWorkspaces(code: $code, isActive: true, isAllowedToSearch: true) {
+        edges {
+            node {
+                ... WorkspaceFragment
+            }
+        }
+    }
+}

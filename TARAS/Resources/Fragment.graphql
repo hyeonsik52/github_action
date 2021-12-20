@@ -1,0 +1,95 @@
+
+fragment UserFragment on UserNode {
+    id
+    username
+    displayName
+    email
+    phoneNumber
+}
+
+fragment WorkspaceFragment on WorkspaceNode {
+    id
+    name
+    code
+    createdAt
+    isRequiredToAcceptToJoin
+    isRequiredUserEmailToJoin
+    isRequiredUserPhoneNumberToJoin
+    members {
+        totalCount
+        edges {
+            node {
+                id
+                role
+            }
+        }
+    }
+}
+
+fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {
+    id
+    name
+    code
+    createdAt
+    isRequiredToAcceptToJoin
+    isRequiredUserEmailToJoin
+    isRequiredUserPhoneNumberToJoin
+    totalMemberCount
+}
+
+fragment MemberFragment on MemberNode {
+    id
+    username
+    displayName
+    email
+    phoneNumber
+}
+
+fragment ServiceFragment on HiGlovisServiceNode {
+    id
+    phase
+    type
+    state
+    timestamps
+    serviceNumber
+    createdAt
+    creator
+    robot {
+        ... RobotFragment
+    }
+    currentServiceUnitStep
+    currentServiceUnit {
+        ... ServiceUnitFragment
+    }
+    serviceUnits {
+        ... ServiceUnitFragment
+    }
+}
+
+fragment ServiceUnitFragment on ServiceUnitNode {
+    id
+    state
+    stop {
+        ... StopFragment
+    }
+    data
+}
+
+fragment StopFragment on StationGroupNode {
+    id
+    name
+    isStop
+}
+
+fragment RobotFragment on RobotNode {
+    id
+    name
+    lockKey
+    extensions {
+        #      ... on DoorLockExtensionType {
+        id
+        #        deviceName
+        #        doorOpenState
+        #      }
+    }
+}
