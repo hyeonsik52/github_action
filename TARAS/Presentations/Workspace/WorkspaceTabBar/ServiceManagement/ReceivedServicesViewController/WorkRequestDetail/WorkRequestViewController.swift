@@ -209,7 +209,7 @@ class WorkRequestViewController: BaseNavigatableViewController, View {
         self.workTargetView.didSelect
             .subscribe(onNext: { [weak self] notDetermined in
                 
-                    if let acceptor = reactor.currentState.serviceUnit?.receivers.first as? User {
+                    if let acceptor = reactor.currentState.serviceUnit?.receiver {
                         
                         let viewController = SWSUserInfoViewController()
                         viewController.reactor = reactor.reactorForSwsUserInfo(userId: acceptor.id)
@@ -229,7 +229,7 @@ class WorkRequestViewController: BaseNavigatableViewController, View {
         
         self.detailLabel.text = serviceUnit.detail
         
-        let receivers = serviceUnit.receivers.map { $0.displayName }.joined(separator: ", ")
+        let receivers = serviceUnit.receiver.displayName//.map { $0.displayName }.joined(separator: ", ")
         self.workTargetView.bind(content: receivers, profileImageUrl: nil)
     }
 }

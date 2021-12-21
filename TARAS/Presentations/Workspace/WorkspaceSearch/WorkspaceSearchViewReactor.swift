@@ -57,18 +57,18 @@ final class WorkspaceSearchViewReactor: Reactor {
                     return .empty()
             }
 
-            let query = SearchWorkspaceByCodeQuery(code: code)
+            let query = WorkspaceByCodeQuery(code: code)
             return .concat([
                 .just(.setError(nil)),
                 .just(.setLoading(true)),
                 
                 self.provider.networkManager.fetch(query)
                     .flatMapLatest { data -> Observable<Mutation> in
-                        guard let edge = data.linkedWorkspaces?.edges.first,
-                              let fragment = edge?.node?.fragments.workspaceFragment else {
+                        guard let edge = data.workspaces?.edges.first,
+                              let fragment = edge?.node?.fragments.onlyWorkspaceFragment else {
                                   return .just(.setError("입력한 코드와 일치하는 워크스페이스가 없습니다."))
                               }
-                        return .just(.setResult(.init(fragment)))
+                        return .just(.setResult(.init(only: fragment)))
                     },
                 
                 .just(.setLoading(false))

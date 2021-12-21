@@ -7,42 +7,6 @@
 
 import Foundation
 
-/// 서비스 로그 유형
-enum ServiceLogState {
-    /// 서비스 생성됨
-    case created
-    /// 로봇 배정됨
-    case robotAssigned
-    /// 정차지 도착
-    case arrived
-    /// 작업 완료
-    case workComplete
-    /// 서비스 완료
-    case complete
-    /// 서비스 취소
-    case canceled(ServiceLogError)
-}
-
-extension ServiceLogState {
-    
-    init?(raw: String) {
-        switch raw {
-        case "service_started":
-            self = .created
-        case "robot_assigned":
-            self = .robotAssigned
-        case "robot_arrived":
-            self = .robotAssigned
-        case "job_done":
-            self = .workComplete
-        case "service_canceled":
-            self = .canceled(.unknown)
-        default:
-            return nil
-        }
-    }
-}
-
 /// 서비스 로그 정보
 struct ServiceLog {
     /// 발생 일시
@@ -53,20 +17,73 @@ struct ServiceLog {
 
 extension ServiceLog {
     
-    init(json: [String: Any]) {
+    init?(json: [String: Any], with serviceUnits: [ServiceUnit], creator: User) {
+        guard let date = json["time"] as? String else { return nil }
         
-        if let time = json["time"] as? String,
-           let date = ISO8601DateFormatter().date(from: time) {
-            self.date = date
-        } else {
-            self.date = Date()
-        }
+        //*현재 날짜이면, 로그 기록 날짜가 ISO형식이 아닌 것.
+        self.date = date.toDate() ?? Date()
         
-        if let typeString = json["type"] as? String,
-           let type = ServiceLogState(raw: typeString) {
-            self.type = type
+        if let typeString = json["type"] as? String {
+            switch typeString {
+            case "service_created":
+                self.type = .created(creator: creator.displayName)
+            case "robot_assigned":
+                self.type = .robotAssigned
+            case "robot_departed":
+                if let unitIndex = json["unit_index"] as? Int,
+                   let destination = serviceUnits.first(where: { $0.orderWithinService == unitIndex })?.stop.name {
+                    self.type = .robotDeparted(destination: destination)
+                } else {
+                    self.type = .robotDeparted(destination: "알 수 없는 위치")
+                }
+            case "robot_arrived":
+                if let unitIndex = json["unit_index"] as? Int,
+                   let destination = serviceUnits.first(where: { $0.orderWithinService == unitIndex })?.stop.name {
+                    self.type = .robotArrived(serviceUnitIdx: unitIndex, destination: destination)
+                } else {
+                    self.type = .robotArrived(serviceUnitIdx: 0, destination: "알 수 없는 위치")
+                }
+            case "service_finished":
+                self.type = .finished
+            case "service_canceled":
+                let canceler = (json["canceler"] as? String) ?? "관리자"
+                self.type = .canceled(manager: canceler)
+            case "service_failed":
+                if let descriptionString = json["description"] as? String {
+                    switch descriptionString {
+                    case "timeout":
+                        self.type = .failed(.timeout)
+                    case "emergency":
+                        self.type = .failed(.emergency)
+                    case "robot":
+                        self.type = .failed(.robot)
+                    case "server":
+                        self.type = .failed(.server)
+                    default:
+                        self.type = .failed(.unknown)
+                    }
+                } else {
+                    self.type = .failed(.unknown)
+                }
+            default:
+                //새로 추가되거나 분류되지 않은 유형이면 코드로 표시
+                self.type = .unclassified(typeString)
+            }
         } else {
-            self.type = .created
+            //로그 유형이 없으면 무시
+            return nil
         }
+    }
+}
+
+extension ServiceLog: Hashable {
+    
+    static func ==(lhs: ServiceLog, rhs: ServiceLog) -> Bool {
+        return (lhs.hashValue == rhs.hashValue)
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.date)
+        hasher.combine(self.type.message)
     }
 }

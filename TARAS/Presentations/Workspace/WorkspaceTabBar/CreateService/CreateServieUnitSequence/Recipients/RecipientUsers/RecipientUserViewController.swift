@@ -102,7 +102,7 @@ class RecipientUserViewController: BaseNavigatableViewController, ReactorKit.Vie
             .disposed(by: self.disposeBag)
 
         self.collectionView.rx.modelSelected(RecipientUserCollectionViewCellReactor.self)
-            .map { Reactor.Action.didSelectCollectionViewCell($0.initialState.id) }
+            .map { Reactor.Action.didSelectCollectionViewCell($0.initialState.ID) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
 

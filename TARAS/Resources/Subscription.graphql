@@ -1,0 +1,15 @@
+
+subscription serviceById($id: ID!) {
+    subscribeServiceByServiceId(serviceId: $id) {
+        ... ServiceFragment
+    }
+}
+
+subscription serviceByWorkspaceId($id: ID!, $accessToken: String!) {
+    subscribeServiceChangeset(workspaceId: $id, phases: [Initialization, Executing, Done], accessToken: $accessToken) {
+        eventType
+        service {
+            ... ServiceFragment
+        }
+    }
+}

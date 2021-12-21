@@ -113,7 +113,7 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
         }
         
         self.tableView.rx.modelSelected(WorkspaceListCellReactor.self)
-            .filter { $0.currentState.myMemberStatus == .requestingToJoin }
+            .filter { $0.currentState.myMemberState == .requestingToJoin }
             .map { reactor.reactorForResult($0) }
             .subscribe(onNext: { [weak self] reactor in
                 guard let self = self else { return }
@@ -123,7 +123,7 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
             }).disposed(by: self.disposeBag)
         
         self.tableView.rx.modelSelected(WorkspaceListCellReactor.self)
-            .filter { $0.currentState.myMemberStatus == .member }
+            .filter { $0.currentState.myMemberState == .member }
             .map { reactor.reactorForSWSHome(workspaceId: $0.initialState.id) }
             .subscribe(onNext: { [weak self] reactor in
                 guard let self = self else { return }

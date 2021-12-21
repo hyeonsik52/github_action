@@ -57,20 +57,20 @@ class RecipientUserViewReactor: Reactor {
             return .concat([
                 .just(.setLoading(true)),
 
-                self.provider.networkManager
-                    .fetch(UsersByWorkspaceIdQuery(workspaceId: self.workspaceId))
-                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.compactMap { $0?.node }.first }
-                    .compactMap { $0.members?.edges.compactMap { $0?.node } }
-                    .compactMap { $0.map { $0.fragments.memberFragment } }
-                    .flatMap { members -> Observable<Mutation> in
-                        let items = members
-                            .compactMap { RecipientCellModel(user: $0) }
-                            .sorted { $0.name.koreanCompare($1.name) }
-                            .map(RecipientUserCellReactor.init)
-
-                        let section = RecipientUserSection(items: items)
-                        return .just(.updateTableViewSection(section))
-                },
+//                self.provider.networkManager
+//                    .fetch(UsersByWorkspaceIdQuery(workspaceId: self.workspaceId))
+//                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.compactMap { $0?.node }.first }
+//                    .compactMap { $0.members?.edges.compactMap { $0?.node } }
+//                    .compactMap { $0.map { $0.fragments.memberFragment } }
+//                    .flatMap { members -> Observable<Mutation> in
+//                        let items = members
+//                            .compactMap { RecipientCellModel(user: $0) }
+//                            .sorted { $0.name.koreanCompare($1.name) }
+//                            .map(RecipientUserCellReactor.init)
+//
+//                        let section = RecipientUserSection(items: items)
+//                        return .just(.updateTableViewSection(section))
+//                },
 
                 .just(.setLoading(false))
             ])
@@ -148,11 +148,14 @@ class RecipientUserViewReactor: Reactor {
 //        // targetType 디폴트 값으로 초기화 (작업 위치를 장소이름으로 표기 할 때는 stop)
 //        serviceUnitModel.serviceUnit.info.targetType = .stop
         
-        serviceUnitModel.serviceUnit.recipients = self.currentState.collectionViewSection.first?.items
-            .map { $0.initialState }
-            .filter { $0.isSelected }
-            .map { .init(id: $0.id, userName: $0.ID, displayName: $0.name, email: nil, phonenumber: nil) } ?? []
+//        serviceUnitModel.serviceUnit.recipients = self.currentState.collectionViewSection.first?.items
+//            .map { $0.initialState }
+//            .filter { $0.isSelected }
+//            .map { .init(id: $0.ID, userName: $0.id, displayName: $0.name, email: nil, phonenumber: nil) } ?? []
+//
+//        return serviceUnitModel
         
-        return serviceUnitModel
+        //temp
+        return .init(targetId: "temp", serviceUnitTargetName: "temp")
     }
 }

@@ -130,7 +130,7 @@ class WorkspaceSearchResultView: UIView {
         self.createdAtLabel.text = "\(info.createdAt.toString("yy.MM.dd")) 생성"
         self.memberCountLabel.text = "회원 \(info.memberCount)명"
         
-        switch info.myMemberStatus {
+        switch info.myMemberState {
         case .notMember:
             self.guideLabel.text = Text.WSSRV_1
             self.enterButton.setTitle(Text.WSSRV_3, for: .normal)

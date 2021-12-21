@@ -65,12 +65,13 @@ class WorkRequestViewReactor: Reactor {
         self.workspaceId = workspaceId
         self.serviceId = serviceId
         self.serviceUnitId = serviceUnitId
-
-        self.provider.subscriptionManager.service(by: self.serviceId)
-            .subscribe(onNext: { [weak self] result in
-                self?.action.onNext(.refresh)
-            })
-            .disposed(by: self.disposeBag)
+        
+        //temp
+//        self.provider.subscriptionManager.service(by: self.serviceId)
+//            .subscribe(onNext: { [weak self] result in
+//                self?.action.onNext(.refresh)
+//            })
+//            .disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -79,12 +80,13 @@ class WorkRequestViewReactor: Reactor {
             return .concat([
                 .just(.isLoading(true)),
                 
-                self.provider.networkManager
-                    .fetch(ServiceQuery(serviceId: self.serviceId))
-                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment }
-                    .compactMap { self.provider.serviceManager.convert(service: $0) }
-                    .map { ($0, $0.serviceUnits.first{$0.id == self.serviceUnitId}) }
-                    .map(Mutation.loaded),
+                //temp
+//                self.provider.networkManager
+//                    .fetch(ServiceQuery(serviceId: self.serviceId))
+//                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment }
+//                    .compactMap { self.provider.serviceManager.convert(service: $0) }
+//                    .map { ($0, $0.serviceUnits.first{$0.id == self.serviceUnitId}) }
+//                    .map(Mutation.loaded),
                 
                 self.provider.networkManager
                     .fetch(MyUserInfoQuery())

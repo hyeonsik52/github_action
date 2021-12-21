@@ -1,9 +1,0 @@
-query searchWorkspaceByCode($code: String) {
-	linkedWorkspaces(code: $code, isActive: true, isAllowedToSearch: true) {
-		edges {
-			node {
-				... WorkspaceFragment
-			}
-		}
-	}
-}

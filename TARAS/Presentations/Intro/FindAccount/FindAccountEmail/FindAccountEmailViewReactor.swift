@@ -203,9 +203,10 @@ class FindAccountEmailViewReactor: Reactor {
             return .just(.updateRemainTime(interval))
             
         case .findId(let email):
-            guard let authToken = self.accountInfo.authToken else {
-                return .just(.updateError(.account(.authNumberNotMatch)))
-            }
+            //temp
+//            guard let authToken = self.accountInfo.authToken else {
+//                return .just(.updateError(.account(.authNumberNotMatch)))
+//            }
             
 //            let input = FindUserIdByEmailInput(email: email, emailToken: authToken)
 //            let mutation = FindUserIdListByEmailMutation(input: input)
@@ -269,7 +270,7 @@ class FindAccountEmailViewReactor: Reactor {
             state.isAvailable = isAvailable
             state.errorMessage = nil
         case .updateIsAuthComplete(let emailToken):
-            self.accountInfo.authToken = emailToken
+//            self.accountInfo.authToken = emailToken
             state.isAuthComplete = (emailToken != nil)
             state.errorMessage = nil
             state.isRequested = false

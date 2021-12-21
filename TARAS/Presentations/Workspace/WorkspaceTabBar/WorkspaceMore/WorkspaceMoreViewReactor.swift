@@ -75,7 +75,7 @@ class WorkspaceMoreViewReactor: Reactor {
             .just(.updateError(nil)),
 
             self.provider.networkManager
-                .fetch(WorkspaceByIdQuery(workspaceId: self.workspaceId))
+                .fetch(WorkspaceByIdQuery(id: self.workspaceId))
                 .compactMap(\.signedUser?.joinedWorkspaces?.edges.first)
                 .flatMapLatest { joinedWorkspace -> Observable<Mutation> in
                     if let fragment = joinedWorkspace?.node?.fragments.workspaceFragment {
@@ -93,7 +93,7 @@ class WorkspaceMoreViewReactor: Reactor {
             .just(.updateIsProcessing(true)),
             
             self.provider.networkManager
-                .perform(LeaveWorkspaceMutation(workspaceId: self.workspaceId))
+                .perform(LeaveWorkspaceMutation(id: self.workspaceId))
                 .map { $0.leaveWorkspace ?? false }
                 .flatMap { result -> Observable<Mutation> in
                     if result == true {

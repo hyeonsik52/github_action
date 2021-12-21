@@ -60,25 +60,21 @@ final class WorkspaceSearchResultViewReactor: Reactor {
             return .concat([
                 .just(.setLoading(true)),
                 self.provider.networkManager
-                    .fetch(SearchWorkspaceByCodeQuery(code: self.workspaceCode))
-                    .compactMap(\.linkedWorkspaces?.edges.first)
-                    .compactMap(\.?.node?.fragments.workspaceFragment)
+                    .fetch(WorkspaceByCodeQuery(code: self.workspaceCode))
+                    .compactMap(\.workspaces?.edges.first)
+                    .compactMap(\.?.node?.fragments.onlyWorkspaceFragment)
                     .map { fragment -> Mutation in
                         
-                        let meAsMember = fragment.members?.edges.compactMap(\.?.node).first { $0.id == userId }
-                        let isMeJoined = (meAsMember != nil)
-                        let myJoinRole = meAsMember?.role ?? .member
+                        var workspace = Workspace(only: fragment)
                         
-                        var workspace = Workspace(fragment)
-                        
-                        if isMeJoined {
-                            if myJoinRole == .awaitingToJoin {
-                                workspace.myMemberStatus = .requestingToJoin
+                        if let role = fragment.role {
+                            if role == .awaitingToJoin {
+                                workspace.myMemberState = .requestingToJoin
                             } else {
-                                workspace.myMemberStatus = .member
+                                workspace.myMemberState = .member
                             }
                         } else {
-                            workspace.myMemberStatus = .notMember
+                            workspace.myMemberState = .notMember
                         }
                         
                         return .setWorkspace(workspace)
@@ -88,18 +84,18 @@ final class WorkspaceSearchResultViewReactor: Reactor {
             
         case .request:
             guard let worksapceId = self.currentState.workspace?.id else { return .empty() }
-            let currentStatus = self.currentState.workspace?.myMemberStatus ?? .notMember
+            let currentStatus = self.currentState.workspace?.myMemberState ?? .notMember
             guard currentStatus != .member else { return .empty() }
             let call: Observable<Mutation> = {
                 switch currentStatus {
                 case .notMember:
                     return self.provider.networkManager
-                        .perform(RequestToJoinWorkspaceMutation(workspaceId: worksapceId))
+                        .perform(RequestJoinWorkspaceMutation(id: worksapceId))
                         .compactMap(\.requestToJoinWorkspace)
                         .map { .setResult($0) }
                 case .requestingToJoin:
                     return self.provider.networkManager
-                        .perform(CancelToJoinWorkspaceMutation(workspaceId: worksapceId))
+                        .perform(CancelJoinWorkspaceMutation(id: worksapceId))
                         .compactMap(\.cancelToJoinWorkspace)
                         .map { .setResult($0) }
                 default:

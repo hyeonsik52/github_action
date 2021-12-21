@@ -91,7 +91,7 @@ class SWSUserInfoViewController: BaseNavigatableViewController, View {
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.userName, true) }
+            .map { ($0.username, true) }
             .bind(to: self.idView.rx.info)
             .disposed(by: self.disposeBag)
         

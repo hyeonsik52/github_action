@@ -83,45 +83,48 @@ class SignUpNameViewReactor: Reactor {
     }
     
     private func signUp(_ name: String) -> Observable<Mutation> {
-        guard let clientInfo = self.provider.userManager.userTB.clientInfo else {
-            return .empty()
-        }
-        
-        let input = CreateUserMutationInput(
-            username: self.accountInfo.id,
-            password: self.accountInfo.password,
-            displayName: name
-        )
-        
-        return self.signUp(input: input)
+        //temp
+        return .empty()
+//        guard let clientInfo = self.provider.userManager.userTB.clientInfo else {
+//            return .empty()
+//        }
+//
+//        let input = CreateUserMutationInput(
+//            username: self.accountInfo.id,
+//            password: self.accountInfo.password,
+//            displayName: name
+//        )
+//
+//        return self.signUp(input: input)
     }
-        
-    private func signUp(input: CreateUserMutationInput) -> Observable<Mutation> {
-
-        let mutation = SignUpMutation(input: input)
-
-        let prevIsValid = self.currentState.isValid
-        return .concat([
-            .just(.updateIsValid(false)),
-            .just(.updateIsProcessing(true)),
-
-            self.provider.networkManager.perform(mutation)
-                .map { $0.createUser }
-                .flatMap { result -> Observable<Mutation> in
-                    if let _ = result?.id {
-                        return .just(.updateIsSignUp(true))
-                    } else {
-                        return .concat([
-                            .just(.updateIsValid(prevIsValid)),
-                            .just(.updateError(.etc("가입하지 못했습니다.")))
-                        ])
-                    }
-                }
-                .catchAndReturn(.updateError(.common(.networkNotConnect))),
-
-            .just(.updateIsProcessing(false))
-        ])
-    }
+    
+    //temp
+//    private func signUp(input: CreateUserMutationInput) -> Observable<Mutation> {
+//
+//        let mutation = SignUpMutation(input: input)
+//
+//        let prevIsValid = self.currentState.isValid
+//        return .concat([
+//            .just(.updateIsValid(false)),
+//            .just(.updateIsProcessing(true)),
+//
+//            self.provider.networkManager.perform(mutation)
+//                .map { $0.createUser }
+//                .flatMap { result -> Observable<Mutation> in
+//                    if let _ = result?.id {
+//                        return .just(.updateIsSignUp(true))
+//                    } else {
+//                        return .concat([
+//                            .just(.updateIsValid(prevIsValid)),
+//                            .just(.updateError(.etc("가입하지 못했습니다.")))
+//                        ])
+//                    }
+//                }
+//                .catchAndReturn(.updateError(.common(.networkNotConnect))),
+//
+//            .just(.updateIsProcessing(false))
+//        ])
+//    }
         
     private func login(_ withAuth: Bool) -> Observable<Mutation> {
         

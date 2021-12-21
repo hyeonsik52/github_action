@@ -1,0 +1,87 @@
+
+fragment UserFragment on UserNode {
+    id
+    username
+    displayName
+    email
+    phoneNumber
+}
+
+fragment MemberFragment on MemberNode {
+    id
+    username
+    displayName
+    email
+    phoneNumber
+    role
+}
+
+fragment RobotFragment on RobotNode {
+    id
+    name
+}
+
+fragment StopFragment on StationGroupNode {
+    id
+    name
+    isStop
+}
+
+fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {
+    id
+    name
+    code
+    createdAt
+    role
+    isRequiredUserEmailToJoin
+    isRequiredUserPhoneNumberToJoin
+    totalMemberCount
+}
+
+fragment WorkspaceFragment on WorkspaceNode {
+    id
+    name
+    code
+    createdAt
+    members(roles: [MEMBER, MANAGER, ADMINISTRATOR]) {
+        totalCount
+    }
+}
+
+fragment ServiceUnitFragment on ServiceUnitNode {
+    id
+    index
+    state
+    message
+    stop {
+        ... StopFragment
+    }
+    receivers {
+        ... UserFragment
+    }
+}
+
+fragment ServiceFragment on ServiceNode {
+    id
+    phase
+    type
+    state
+    timestamps
+    serviceNumber
+    createdAt
+    creator
+    robot {
+        ... RobotFragment
+    }
+    currentServiceUnitStep
+    serviceUnits {
+        ... ServiceUnitFragment
+    }
+    totalMovingDistance
+}
+
+fragment VersionFragment on ClientVersionNode {
+    minVersionCode
+    currentVersionCode
+    currentVersionName
+}

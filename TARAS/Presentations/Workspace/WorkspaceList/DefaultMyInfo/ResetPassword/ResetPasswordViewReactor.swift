@@ -102,7 +102,8 @@ class ResetPasswordViewReactor: Reactor {
             state.errorMessage = nil
             state.isAuthComplete = nil
         case .updateIsAuthing(let isAuthing):
-            self.accountInfo.authToken = isAuthing
+            //temp
+//            self.accountInfo.authToken = isAuthing
             state.isAuthComplete = (isAuthing != nil)
         case .updateIsProcessing(let isProcessing):
             state.isProcessing = isProcessing

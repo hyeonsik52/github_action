@@ -145,8 +145,8 @@ extension UserManager {
     func updateUserInfo(_ user: UserFragment) {
 
         self.userTB.update {
-            $0.id ??= user.id
-            $0.ID ??= user.username
+            $0.ID ??= user.id
+            $0.id ??= user.username
             $0.name ??= user.displayName
             $0.email ??= user.email
             $0.phoneNumber ??= user.phoneNumber
@@ -178,8 +178,8 @@ extension UserManager {
     func account() -> Account {
         let info = self.userTB
         return Account(
-            id: info.id,
             ID: info.ID,
+            id: info.id,
             name: info.name,
             email: info.email,
             phoneNumber: info.phoneNumber

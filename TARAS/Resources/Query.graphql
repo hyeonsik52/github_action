@@ -1,0 +1,166 @@
+
+query checkSession {
+    isVaildAccessToken
+}
+
+query findUser($token: String) {
+    findUser(token: $token) {
+        username
+    }
+}
+
+query workspaceByCode($code: String!) {
+    workspaces(code: $code) {
+        edges {
+            node {
+                ... OnlyWorkspaceFragment
+            }
+        }
+    }
+}
+
+query myWorkspaces {
+    signedUser {
+        joinedWorkspaces {
+            edges {
+                node {
+                    ... WorkspaceFragment
+                }
+            }
+        }
+        awaitingToJoinWorkspaces {
+            edges {
+                node {
+                    ... OnlyWorkspaceFragment
+                }
+            }
+        }
+    }
+}
+
+query workspaceById($id: String!) {
+    signedUser {
+        joinedWorkspaces(id: $id) {
+            edges {
+                node {
+                    ... WorkspaceFragment
+                }
+            }
+        }
+    }
+}
+
+query service($workspaceId: String!, $serviceId: String!) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    services(id:$serviceId) {
+                        edges {
+                            node {
+                                ... ServiceFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query services($workspaceId: String!, $after: String, $first:Int, $type: String, $phase: String, $phases: [String], $states: [String], $startedAt: DateTime, $endedAt: DateTime) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    services(after: $after, first: $first, type: $type, phase: $phase, phases: $phases, states: $states, startedAt: $startedAt, endedAt: $endedAt) {
+                        pageInfo {
+                            endCursor
+                            hasNextPage
+                        }
+                        edges {
+                            node {
+                                ... ServiceFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query myUserInfo {
+    signedUser {
+        ... UserFragment
+    }
+}
+
+query stopList($workspaceId: String!) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    stationGroups(isStop: true) {
+                        edges {
+                            node {
+                                ... StopFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query userList($workspaceId: String!) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    members(roles:[MEMBER, MANAGER, ADMINISTRATOR]) {
+                        edges {
+                            node {
+                                ... MemberFragment
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query clientVersion {
+    clientVersion(clientType: IOS_AP) {
+        ... VersionFragment
+    }
+}
+
+#템플릿 검색 용도
+query serviceTemplates {
+    serviceTemplates {
+        edges {
+            node {
+                id
+                name
+            }
+        }
+    }
+}
+
+#진행중인 서비스 개수
+query servicesInProgress($workspaceId: String) {
+    signedUser {
+        joinedWorkspaces(id: $workspaceId) {
+            edges {
+                node {
+                    services(phases: ["Initialization", "Executing"]) {
+                        totalCount
+                    }
+                }
+            }
+        }
+    }
+}

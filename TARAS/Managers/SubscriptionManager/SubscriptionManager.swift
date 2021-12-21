@@ -40,17 +40,27 @@ extension SubscriptionManager: SubscriptionManagerType {
 extension SubscriptionManagerType {
     
     /// 내가 수신한 서비스 변화(생성, 수정, 삭제) 구독
-    public func services(by workspaceId: String) -> Observable<Result<ServicesByWorkspaceIdSubscription.Data, Error>> {
-        return self.subscribe(ServicesByWorkspaceIdSubscription(workspaceId: workspaceId))
+    public func services(by workspaceId: String) -> Observable<ServiceByWorkspaceIdSubscription.Data.SubscribeServiceChangeset> {
+        //temp: 서버가 느려지는 현상이 있어, 임시 비활성
+        return .empty()
+//        return self.subscribe(ServiceByWorkspaceIdSubscription(id: workspaceId))
+//            .compactMap { result in
+//                switch result {
+//                case .success(let data):
+//                    if let changeSet = data.subscribeServiceChangeset {
+//                        return changeSet
+//                    } else {
+//                        Log.err("serviceSubscription error: not fount changeset")
+//                    }
+//                case .failure(let error):
+//                    Log.err("serviceSubscription error: \(error.localizedDescription)")
+//                }
+//                return nil
+//            }
     }
 
     /// 특정 서비스 구독 (진행중 서비스 상세 화면)
-    public func service(by serviceId: String) -> Observable<Result<ServiceByServiceIdSubscription.Data, Error>> {
-        return self.subscribe(ServiceByServiceIdSubscription(serviceId: serviceId))
+    public func serviceBy(serviceId: String) -> Observable<Result<ServiceByIdSubscription.Data, Error>> {
+        return self.subscribe(ServiceByIdSubscription(id: serviceId))
     }
-
-//    /// 특정 서비스의 서비스 로그(생성,수정,삭제) 구독 (로그 화면)
-//    public func serviceLog(_ serviceIdx: Int) -> Observable<Result<ServiceLogSubscription.Data, Error>> {
-//        return self.subscribe(ServiceLogSubscription(serviceIdx: serviceIdx))
-//    }
 }

@@ -192,7 +192,7 @@ class DefaultMyInfoViewReactor: Reactor {
         }()
         return UpdateUserInfoViewReactor(
             provider: self.provider,
-            userID: account.ID,
+            userID: account.id,
             inputType: inputType,
             prevValue: prevValue
         )

@@ -10,10 +10,10 @@ import RealmSwift
 class USER_TB: BaseObject {
     
     /// 유저 아이디
-    @objc dynamic var id: String? = nil
+    @objc dynamic var ID: String? = nil
     
     /// 아이디
-    @objc dynamic var ID: String? = nil
+    @objc dynamic var id: String? = nil
     
     /// 이름
     @objc dynamic var name: String? = nil

@@ -59,7 +59,7 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
         self.resultView.enterButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let workspace = reactor.currentState.workspace,
-                      workspace.myMemberStatus == .member else { return }
+                      workspace.myMemberState == .member else { return }
                 let viewController = WorkspaceTabBarController()
                 viewController.reactor = reactor.reactorForSWSHome(workspaceId: workspace.id)
                 self?.navigationController?.pushViewController(viewController, animated: true)

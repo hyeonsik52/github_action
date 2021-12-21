@@ -7,16 +7,6 @@
 
 import Foundation
 
-/// 워크스페이스 가입 유형
-enum WorkspaceMemberStatus {
-    /// 회원 아님
-    case notMember
-    /// 회원
-    case member
-    /// 회원가입 요청 심사 중
-    case requestingToJoin
-}
-
 /// 워크스페이스 정보
 struct Workspace: Identifiable {
     
@@ -26,65 +16,77 @@ struct Workspace: Identifiable {
     let name: String
     ///워크스페이스 생성일
     let createdAt: Date
-    
-    ///가입 승인 필요 여부
-    let isRequiredToAcceptToJoin: Bool
-    ///가입 조건으로 이메일 필수 여부
-    let isRequiredUserEmailToJoin: Bool
-    ///가입 조건으로 전화번호 필수 여부
-    let isRequiredUserPhoneNumberToJoin: Bool
-    
-    ///내 회원 상태
-    var myMemberStatus: WorkspaceMemberStatus
-    
+    ///워크스페이스 회원 수
     let memberCount: Int
-    let code: String?
+    
+    ///가입 조건으로 이메일 필수 여부
+    let isRequiredUserEmailToJoin: Bool?
+    ///가입 조건으로 전화번호 필수 여부
+    let isRequiredUserPhoneNumberToJoin: Bool?
+    
+    ///워크스페이스에서의 내 회원 상태
+    var myMemberState: WorkspaceMemberState
+    
+    ///워크스페이스 코드
+    let code: String
 }
 
 extension Workspace: FragmentModel {
     
     init(_ fragment: WorkspaceFragment) {
-        
+
         self.id = fragment.id
         self.name = fragment.name
+        self.createdAt = fragment.createdAt?.toDate() ?? Date()
+        self.memberCount = fragment.members?.totalCount ?? 0
         
-        if let createdAt = fragment.createdAt,
-           let date = ISO8601DateFormatter().date(from: createdAt) {
-            self.createdAt = date
+        self.myMemberState = .member
+        
+        self.isRequiredUserEmailToJoin = nil
+        self.isRequiredUserPhoneNumberToJoin = nil
+        
+        self.code = fragment.code ?? ""
+    }
+
+    init(only fragment: OnlyWorkspaceFragment) {
+
+        self.id = fragment.id
+        self.name = fragment.name
+        self.createdAt = fragment.createdAt
+        self.memberCount = fragment.totalMemberCount ?? 0
+        
+        if let role = fragment.role {
+            switch role {
+            case .awaitingToJoin:
+                self.myMemberState = .requestingToJoin
+            case .member, .manager, .administrator:
+                self.myMemberState = .member
+            default:
+                self.myMemberState = .notMember
+            }
         } else {
-            self.createdAt = Date()
+            self.myMemberState = .notMember
         }
         
-        self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
         self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
         self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
         
-        //외부에서 회원이 아님을 확인 후 재설정 필요
-        self.myMemberStatus = .member
-        
-        let members = fragment.members?.edges.compactMap(\.?.node).filter { $0.role != .awaitingToJoin } ?? []
-        self.memberCount = members.count
-        self.code = fragment.code
+        self.code = fragment.code ?? ""
     }
     
-    init(only fragment: OnlyWorkspaceFragment) {
+    init(option fragment: WorkspaceFragment?) {
         
-        self.id = fragment.id
-        self.name = fragment.name
+        self.id = fragment?.id ?? Self.unknownId
+        self.name = fragment?.name ?? "알 수 없는 워크스페이스"
         
-        if let date = ISO8601DateFormatter().date(from: fragment.createdAt) {
-            self.createdAt = date
-        } else {
-            self.createdAt = Date()
-        }
+        self.createdAt = fragment?.createdAt?.toDate() ?? Date()
+        self.memberCount = fragment?.members?.totalCount ?? 0
         
-        self.isRequiredToAcceptToJoin = fragment.isRequiredToAcceptToJoin
-        self.isRequiredUserEmailToJoin = fragment.isRequiredUserEmailToJoin
-        self.isRequiredUserPhoneNumberToJoin = fragment.isRequiredUserPhoneNumberToJoin
+        self.myMemberState = .member
         
-        self.myMemberStatus = .requestingToJoin
+        self.isRequiredUserEmailToJoin = nil
+        self.isRequiredUserPhoneNumberToJoin = nil
         
-        self.memberCount = fragment.totalMemberCount ?? 0
-        self.code = fragment.code
+        self.code = fragment?.code ?? ""
     }
 }

@@ -112,8 +112,9 @@ class UpdateUserInfoViewReactor: Reactor {
                 return .init(username: self.userID)
             }
         }()
-
-        let mutation = UpdateUserInfoMutation(input: input)
+        
+        //temp
+//        let mutation = UpdateUserInfoMutation(input: input)
 
         if self.inputType == .email,
            !self.inputType.policy.matchFormat(text) {
@@ -126,17 +127,18 @@ class UpdateUserInfoViewReactor: Reactor {
         return .concat([
             .just(.updateIsUpdated(nil)),
             .just(.updateIsProcessing(true)),
-
-            self.provider.networkManager.perform(mutation)
-                .map { $0.updateUser?.fragments.userFragment }
-                .flatMapLatest { result -> Observable<Mutation> in
-                    if let userFragment = result {
-                        self.provider.userManager.updateUserInfo(userFragment)
-                        return .just(.updateIsUpdated(true))
-                    } else {
-                        return .just(.updateError(.etc("업데이트하지 못했습니다.")))
-                    }
-                }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+            
+            //temp
+//            self.provider.networkManager.perform(mutation)
+//                .map { $0.updateUser?.fragments.userFragment }
+//                .flatMapLatest { result -> Observable<Mutation> in
+//                    if let userFragment = result {
+//                        self.provider.userManager.updateUserInfo(userFragment)
+//                        return .just(.updateIsUpdated(true))
+//                    } else {
+//                        return .just(.updateError(.etc("업데이트하지 못했습니다.")))
+//                    }
+//                }.catchAndReturn(.updateError(.common(.networkNotConnect))),
 
             .just(.updateIsProcessing(false))
         ])

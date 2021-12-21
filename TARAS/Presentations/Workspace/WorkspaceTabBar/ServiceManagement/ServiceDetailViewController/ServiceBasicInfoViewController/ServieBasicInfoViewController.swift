@@ -112,17 +112,19 @@ class ServiceBasicInfoViewController: BaseNavigatableViewController, View {
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.createdAt.overDescription, false) }
+            .map { ($0.requestedAt.overDescription, false) }
             .bind(to: self.serviceRequestAtView.rx.info)
             .disposed(by: self.disposeBag)
         
+        //temp
         service
-            .map { ($0.createdAt.overDescription, false) }
+            .map { ($0.requestedAt.overDescription, false) }
             .bind(to: self.serviceBeginAtView.rx.info)
             .disposed(by: self.disposeBag)
         
+        //temp
         service
-            .map { ($0.createdAt.overDescription, false) }
+            .map { ($0.requestedAt.overDescription, false) }
             .bind(to: self.serviceEndAtView.rx.info)
             .disposed(by: self.disposeBag)
         

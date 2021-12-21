@@ -1,0 +1,87 @@
+
+mutation registerFcm($input: RegisterFcmMutationInput!) {
+    registerFcm(input: $input)
+}
+
+mutation unregisterFcm($input: UnregisterFcmMutationInput!) {
+    unregisterFcm(input: $input)
+}
+
+mutation requestJoinWorkspace($id: String!) {
+    requestToJoinWorkspace(workspaceId: $id)
+}
+
+mutation cancelJoinWorkspace($id: String!) {
+    cancelToJoinWorkspace(workspaceId: $id)
+}
+
+mutation requestAuth($input: RequestVerificationNumberMutationInput!) {
+    requestVerificationNumber(input: $input) {
+        id
+        verificationNumber
+        expires
+        user {
+            id
+        }
+    }
+}
+
+mutation checkAuth($input: CheckVerificationNumberMutationInput!) {
+    checkVerificationNumber(input: $input) {
+        id
+        isExpired
+        scope
+        token
+        user {
+            id
+        }
+    }
+}
+
+mutation resetPassword($input: ResetPasswordMutationInput!) {
+    resetPassword(input: $input)
+}
+
+mutation releaseAccount($token: String!) {
+  releaseAccount(token: $token)
+}
+
+mutation signUp($input: CreateUserWithTokenMutationInput!) {
+    createUserWithToken(input: $input) {
+        ... UserFragment
+    }
+}
+
+mutation validateUsername($id: String!) {
+    validateUsername(username: $id)
+}
+
+mutation withdraw {
+    withdrawUser
+}
+
+mutation updateUser($input: UpdateUserMutationInput!) {
+    updateUser(input: $input) {
+        ... UserFragment
+    }
+}
+
+mutation updateUserEmail($token: String!) {
+    updateUserEmail(token: $token)
+}
+
+mutation leaveWorkspace($id: String!) {
+    leaveWorkspace(workspaceId: $id)
+}
+
+mutation completeServiceUnit($serviceId: String, $serviceStep: Int) {
+    completeServiceUnit(serviceId: $serviceId, serviceStep: $serviceStep) {
+        ok
+    }
+}
+
+mutation createService($input: CreateServiceWithServiceTemplateInput!) {
+    createServiceWithServiceTemplate(createServiceInput: $input) {
+        ... ServiceFragment
+    }
+}

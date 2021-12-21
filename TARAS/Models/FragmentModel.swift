@@ -10,4 +10,5 @@ import Apollo
 protocol FragmentModel {
     associatedtype T: GraphQLFragment
     init(_ fragment: T)
+    init(option fragment: T?)
 }

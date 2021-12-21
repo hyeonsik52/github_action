@@ -48,17 +48,17 @@ class UpdatePhoneNumberViewReactor: Reactor {
         switch action {
         case .update(let phoneNumber):
             guard InputPolicy.phoneNumber.match(phoneNumber) else { return .just(.updated(.failure(.etc(Text.UPNVR_1))))}
-            guard let myUserId = self.provider.userManager.userTB.ID else { return .just(.updated(.failure(.etc("사용자 정보가 없습니다.")))) }
+            guard let myUserId = self.provider.userManager.userTB.id else { return .just(.updated(.failure(.etc("사용자 정보가 없습니다.")))) }
             let input = UpdateUserMutationInput(username: myUserId, phoneNumber: phoneNumber)
             return .concat([
                 .just(.setProcessing(true)),
-                self.provider.networkManager
-                    .perform(UpdateUserInfoMutation(input: input))
-                    .map { $0.updateUser?.fragments.userFragment }
-                    .map { data -> Info? in
-                        guard let phonenumber = data?.phoneNumber else { return .failure(.etc("전화번호를 변경하지 못했습니다.")) }
-                        return .success(phonenumber)
-                }.map { Mutation.updated($0) },
+//                self.provider.networkManager
+//                    .perform(UpdateUserInfoMutation(input: input))
+//                    .map { $0.updateUser?.fragments.userFragment }
+//                    .map { data -> Info? in
+//                        guard let phonenumber = data?.phoneNumber else { return .failure(.etc("전화번호를 변경하지 못했습니다.")) }
+//                        return .success(phonenumber)
+//                }.map { Mutation.updated($0) },
                 .just(.setProcessing(false))
             ])
         }

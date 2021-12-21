@@ -205,7 +205,7 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
         
         // State
         let account = reactor.state.map { $0.account }.share()
-        account.map { ($0?.ID, nil) }
+        account.map { ($0?.id, nil) }
             .bind(to: self.idCellView.rx.detail)
             .disposed(by: self.disposeBag)
         account.map { ($0?.name, nil) }
