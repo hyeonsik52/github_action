@@ -12,15 +12,15 @@ import Apollo
 
 struct RecipientCellModel {
     
-    var id: String
     var ID: String
-    var name: String
+    var id: String?
+    var name: String?
     var isSelected: Bool
     
     init?(user: MemberFragment, isSelected: Bool = false) {
         
-        self.id = user.id
-        self.ID = user.username
+        self.ID = user.id
+        self.id = user.username
         self.name = user.displayName
         self.isSelected = isSelected
     }

@@ -48,7 +48,7 @@ class UpdatePhoneNumberViewReactor: Reactor {
         switch action {
         case .update(let phoneNumber):
             guard InputPolicy.phoneNumber.match(phoneNumber) else { return .just(.updated(.failure(.etc(Text.UPNVR_1))))}
-            guard let myUserId = self.provider.userManager.userTB.ID else { return .just(.updated(.failure(.etc("사용자 정보가 없습니다.")))) }
+            guard let myUserId = self.provider.userManager.userTB.id else { return .just(.updated(.failure(.etc("사용자 정보가 없습니다.")))) }
             let input = UpdateUserMutationInput(username: myUserId, phoneNumber: phoneNumber)
             return .concat([
                 .just(.setProcessing(true)),
