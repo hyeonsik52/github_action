@@ -25,7 +25,7 @@ struct Workspace: Identifiable {
     let isRequiredUserPhoneNumberToJoin: Bool?
     
     ///워크스페이스에서의 내 회원 상태
-    let myMemberState: WorkspaceMemberState
+    var myMemberState: WorkspaceMemberState
     
     ///워크스페이스 코드
     let code: String
@@ -52,7 +52,7 @@ extension Workspace: FragmentModel {
 
         self.id = fragment.id
         self.name = fragment.name
-        self.createdAt = fragment.createdAt.toDate() ?? Date()
+        self.createdAt = fragment.createdAt
         self.memberCount = fragment.totalMemberCount ?? 0
         
         if let role = fragment.role {

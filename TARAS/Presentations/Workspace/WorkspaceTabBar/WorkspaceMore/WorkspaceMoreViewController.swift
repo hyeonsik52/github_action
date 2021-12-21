@@ -121,9 +121,9 @@ class WorkspaceMoreViewController: BaseNavigatableViewController, ReactorKit.Vie
 
 extension WorkspaceMoreViewController: JoinRequestViewDelegate {
     
-    func buttonDidTap(_ workspaceId: String,_ memberStatus: WorkspaceMemberStatus) {
+    func buttonDidTap(_ workspaceId: String,_ memberState: WorkspaceMemberState) {
         guard let reactor = self.reactor else { return }
-        switch memberStatus {
+        switch memberState {
         case .member:
 
             let actions: [UIAlertController.AlertAction] = [

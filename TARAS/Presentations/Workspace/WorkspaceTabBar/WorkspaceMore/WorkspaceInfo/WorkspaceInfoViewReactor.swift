@@ -45,7 +45,7 @@ class WorkspaceInfoViewReactor: Reactor {
                 .just(.setLoading(true)),
                 
                 self.provider.networkManager
-                    .fetch(WorkspaceByIdQuery(workspaceId: self.workspaceId))
+                    .fetch(WorkspaceByIdQuery(id: self.workspaceId))
                     .compactMap(\.signedUser?.joinedWorkspaces?.edges.first)
                     .compactMap(\.?.node?.fragments.workspaceFragment)
                     .map{ Mutation.loadedSwsInfo(.init($0)) },

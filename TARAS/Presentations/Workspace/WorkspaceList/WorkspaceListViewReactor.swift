@@ -68,7 +68,7 @@ final class WorkspaceListViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .refresh:
-            return self.provider.networkManager.fetch(AllMyWorkspacesQuery())
+            return self.provider.networkManager.fetch(MyWorkspacesQuery())
                 .compactMap { $0.signedUser }
                 .map { result -> Mutation in
                     
@@ -158,7 +158,7 @@ final class WorkspaceListViewReactor: Reactor {
     func reactorForResult(
         _ workspaceListCellReactor: WorkspaceListCellReactor
     ) -> WorkspaceSearchResultViewReactor? {
-        guard let workspaceCode = workspaceListCellReactor.currentState.code else { return nil }
+        let workspaceCode = workspaceListCellReactor.currentState.code
         return WorkspaceSearchResultViewReactor(
             provider: self.provider,
             workspaceCode: workspaceCode

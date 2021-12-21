@@ -69,7 +69,7 @@ class WorkspaceHomeReactor: Reactor {
             
         case .loadWorkspaceInfo:
             return self.provider.networkManager
-                .fetch(WorkspaceByIdQuery(workspaceId: self.workspaceId))
+                .fetch(WorkspaceByIdQuery(id: self.workspaceId))
                 .compactMap(\.signedUser?.joinedWorkspaces?.edges.first)
                 .compactMap(\.?.node?.fragments.workspaceFragment)
                 .map{ Mutation.loadedWorkspaceInfo(.init($0)) }
