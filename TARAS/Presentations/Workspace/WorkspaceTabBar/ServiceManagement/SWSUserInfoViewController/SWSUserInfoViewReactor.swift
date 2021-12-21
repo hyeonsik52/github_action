@@ -47,11 +47,11 @@ class SWSUserInfoViewReactor: Reactor {
             return .concat([
                 .just(.isLoading(true)),
                 
-                self.provider.networkManager.fetch(UserByIdQuery(workspaceId: self.workspaceId))
-                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.compactMap { $0?.node }.first }
-                    .compactMap { $0.members?.edges.compactMap { $0?.node }.first }
-                    .compactMap { $0.fragments.memberFragment }
-                    .map { .loadedUserInfo(.init(member: $0)) },
+//                self.provider.networkManager.fetch(UserByIdQuery(workspaceId: self.workspaceId))
+//                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.compactMap { $0?.node }.first }
+//                    .compactMap { $0.members?.edges.compactMap { $0?.node }.first }
+//                    .compactMap { $0.fragments.memberFragment }
+//                    .map { .loadedUserInfo(.init(member: $0)) },
                 
                 .just(.isLoading(false))
             ])

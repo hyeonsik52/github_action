@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 
 protocol JoinRequestViewDelegate: AnyObject {
-    func buttonDidTap(_ workspaceId: String, _ memberStatus: WorkspaceMemberStatus)
+    func buttonDidTap(_ workspaceId: String, _ memberStatus: WorkspaceMemberState)
 }
 
 class JoinRequestView: UIView {
@@ -125,10 +125,10 @@ class JoinRequestView: UIView {
         self.nameLabel.text = workspace.name
         
         self.dateLabel.text = workspace.createdAt.toString(Text.JRV_5)
-        self.joinedWorkspaceLabel.isHidden = (self.entryType! == .joined || workspace.myMemberStatus != .member)
+        self.joinedWorkspaceLabel.isHidden = (self.entryType! == .joined || workspace.myMemberState != .member)
         
         let buttonTitle: String = {
-            switch workspace.myMemberStatus {
+            switch workspace.myMemberState {
             case .member:
                 switch self.entryType! {
                 case .joinRequest:
@@ -141,7 +141,7 @@ class JoinRequestView: UIView {
             }
         }()
         
-        let isNotMember = (workspace.myMemberStatus == .notMember)
+        let isNotMember = (workspace.myMemberState == .notMember)
         let grayAppearance = SRPButton.Appearance(
             font: .bold[14],
             titleColors: [.normal(.black)],
@@ -155,7 +155,7 @@ class JoinRequestView: UIView {
         self.disposeBag = DisposeBag()
         self.button.rx.throttleTap
             .subscribe(onNext: { [weak self] in
-                self?.delegate?.buttonDidTap(workspace.id, workspace.myMemberStatus)
+                self?.delegate?.buttonDidTap(workspace.id, workspace.myMemberState)
             }).disposed(by: self.disposeBag)
     }
 }

@@ -52,13 +52,13 @@ class UpdatePhoneNumberViewReactor: Reactor {
             let input = UpdateUserMutationInput(username: myUserId, phoneNumber: phoneNumber)
             return .concat([
                 .just(.setProcessing(true)),
-                self.provider.networkManager
-                    .perform(UpdateUserInfoMutation(input: input))
-                    .map { $0.updateUser?.fragments.userFragment }
-                    .map { data -> Info? in
-                        guard let phonenumber = data?.phoneNumber else { return .failure(.etc("전화번호를 변경하지 못했습니다.")) }
-                        return .success(phonenumber)
-                }.map { Mutation.updated($0) },
+//                self.provider.networkManager
+//                    .perform(UpdateUserInfoMutation(input: input))
+//                    .map { $0.updateUser?.fragments.userFragment }
+//                    .map { data -> Info? in
+//                        guard let phonenumber = data?.phoneNumber else { return .failure(.etc("전화번호를 변경하지 못했습니다.")) }
+//                        return .success(phonenumber)
+//                }.map { Mutation.updated($0) },
                 .just(.setProcessing(false))
             ])
         }

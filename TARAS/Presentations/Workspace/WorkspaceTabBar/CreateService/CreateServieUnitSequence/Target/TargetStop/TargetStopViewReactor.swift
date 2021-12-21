@@ -47,23 +47,25 @@ class TargetStopViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         
         func loadSection() -> Observable<Mutation> {
-            return self.provider.networkManager
-                .fetch(StopsByWorkspaceIdQuery(workspaceId: self.workspaceId))
-                .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first }
-                .compactMap(\.?.node?.stationGroups?.edges)
-                .flatMap { [weak self] edges -> Observable<Mutation> in
-
-                    let serviceUnitInfo = self?.serviceUnitModel?.serviceUnit
-                    let stopId = serviceUnitInfo?.targetId
-
-                    let items = edges.compactMap(\.?.node?.fragments.stopFragment)
-                        .compactMap { TargetStopCellModel(stop: $0, selectedTargetStopId: stopId) }
-                        .sorted(by: { $0.name < $1.name })
-                        .map(TargetStopCellReactor.init)
-
-                    let section = TargetStopSection(items: items)
-                    return .just(.setSections([section]))
-            }
+            //temp
+//            return self.provider.networkManager
+//                .fetch(StopListQuery(workspaceId: self.workspaceId))
+//                .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first }
+//                .compactMap(\.?.node?.stationGroups?.edges)
+//                .flatMap { [weak self] edges -> Observable<Mutation> in
+//
+//                    let serviceUnitInfo = self?.serviceUnitModel?.serviceUnit
+//                    let stopId = serviceUnitInfo?.targetId
+//
+//                    let items = edges.compactMap(\.?.node?.fragments.stopFragment)
+//                        .compactMap { TargetStopCellModel(stop: $0, selectedTargetStopId: stopId) }
+//                        .sorted(by: { $0.name < $1.name })
+//                        .map(TargetStopCellReactor.init)
+//
+//                    let section = TargetStopSection(items: items)
+//                    return .just(.setSections([section]))
+//            }
+            return .empty()
         }
         
         switch action {

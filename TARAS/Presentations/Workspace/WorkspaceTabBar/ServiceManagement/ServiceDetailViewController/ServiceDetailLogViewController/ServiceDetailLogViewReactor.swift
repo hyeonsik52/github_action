@@ -48,13 +48,14 @@ class ServiceDetailLogViewReactor: Reactor {
         case .refresh:
             return .concat([
                 .just(.isLoading(true)),
-                self.provider.networkManager.fetch(ServiceQuery(serviceId: self.serviceId))
-                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment.timestamps }
-                    .compactMap { $0.data(using: .utf8) }
-                    .compactMap { try? JSONSerialization.jsonObject(with: $0, options: .allowFragments) }
-                    .compactMap { $0 as? [String: Any] }
-                    .compactMap { self.provider.serviceManager.convert(log: $0) }
-                    .map { .refreshServiceLogs([$0]) },
+                //temp
+//                self.provider.networkManager.fetch(ServiceQuery(serviceId: self.serviceId))
+//                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment.timestamps }
+//                    .compactMap { $0.data(using: .utf8) }
+//                    .compactMap { try? JSONSerialization.jsonObject(with: $0, options: .allowFragments) }
+//                    .compactMap { $0 as? [String: Any] }
+//                    .compactMap { self.provider.serviceManager.convert(log: $0) }
+//                    .map { .refreshServiceLogs([$0]) },
                 .just(.isLoading(false))
             ])
         }

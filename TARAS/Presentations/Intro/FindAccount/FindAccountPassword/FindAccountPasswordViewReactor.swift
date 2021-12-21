@@ -84,15 +84,16 @@ class FindAccountPasswordViewReactor: Reactor {
             }
             return .just(.updateIsValid(true))
         case .resetPassword(let password):
-            guard let authToken = self.accountInfo.authToken else {
-                return .just(.updateError(.account(.authNumberNotMatch)))
-            }
-            switch self.initialState.type {
-            case .findAccount:
-                return self.resetPasswordByEmail(password, authToken: authToken)
-            case .setting:
-                return self.resetPasswordByAuth(password, authToken: authToken)
-            }
+//            guard let authToken = self.accountInfo.authToken else {
+//                return .just(.updateError(.account(.authNumberNotMatch)))
+//            }
+//            switch self.initialState.type {
+//            case .findAccount:
+//                return self.resetPasswordByEmail(password, authToken: authToken)
+//            case .setting:
+//                return self.resetPasswordByAuth(password, authToken: authToken)
+//            }
+            return .empty()
         }
     }
 

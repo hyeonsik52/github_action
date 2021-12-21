@@ -16,8 +16,8 @@ class PagingReceivedServicesViewReactor: Reactor {
     enum Action {
         case refresh
         case more(Int)  //last item
-        case notification(Result<ServicesByWorkspaceIdSubscription.Data, Error>)
-//        case hiddenNotification(Result<HiddenServiceSubscriptionSubscription.Data, Error>)
+        //temp
+//        case notification(Result<ServicesByWorkspaceIdSubscription.Data, Error>)
     }
     
     enum Mutation {
@@ -26,9 +26,10 @@ class PagingReceivedServicesViewReactor: Reactor {
         ///필터링에 의해 추가 로드가 되지 않은 경우 다시 시도 플래그
         case notFoundCompleted
         
-        case addService([ServiceCellReactor])
-        case updateService(ServiceCellReactor)
-        case deleteService(String) //serviceId
+        //temp
+//        case addService([ServiceCellReactor])
+//        case updateService(ServiceCellReactor)
+//        case deleteService(String) //serviceId
         
         ///초기 상태 nil, 로딩 시작 true, 로딩 종료 false/ nil에서 true가 된 경우일 때만 스켈레톤 뷰 출력
         case isLoading(Bool?)
@@ -82,15 +83,10 @@ class PagingReceivedServicesViewReactor: Reactor {
     
     private func bind() {
         
-        self.provider.subscriptionManager.services(by: self.workspaceId)
-            .subscribe(onNext: { [weak self] result in
-                self?.action.onNext(.notification(result))
-            })
-            .disposed(by: self.disposeBag)
-        
-//        self.provider.subscriptionManager.hiddenService()
+        //temp
+//        self.provider.subscriptionManager.services(by: self.workspaceId)
 //            .subscribe(onNext: { [weak self] result in
-//                self?.action.onNext(.hiddenNotification(result))
+//                self?.action.onNext(.notification(result))
 //            })
 //            .disposed(by: self.disposeBag)
     }
@@ -121,8 +117,9 @@ class PagingReceivedServicesViewReactor: Reactor {
                 self.more(item),
                 .just(.isProcessing(false))
             ])
-        case .notification(let result):
-            return self.subscription(result)
+            //temp
+//        case .notification(let result):
+//            return self.subscription(result)
 //        case .hiddenNotification(let result):
 //            return self.subscription(result)
         }
@@ -135,13 +132,14 @@ class PagingReceivedServicesViewReactor: Reactor {
             state.sections[0].items = services
         case .more(let services):
             state.sections[0].items.append(contentsOf: services)
-            state.sections[0].items.sort(by: { self.sort($0, $1) })
-        case let .addService(services):
-            state = self.addServices(state: state, data: services)
-        case let .updateService(service):
-            state = self.updateServices(state: state, data: service)
-        case let .deleteService(serviceId):
-            state = self.deleteServices(state: state, serviceId: serviceId)
+            //temp
+//            state.sections[0].items.sort(by: { self.sort($0, $1) })
+//        case let .addService(services):
+//            state = self.addServices(state: state, data: services)
+//        case let .updateService(service):
+//            state = self.updateServices(state: state, data: service)
+//        case let .deleteService(serviceId):
+//            state = self.deleteServices(state: state, serviceId: serviceId)
         case .isLoading(let isLoading):
             state.isLoading = isLoading
         case .isProcessing(let isProcessing):
@@ -157,43 +155,48 @@ extension PagingReceivedServicesViewReactor {
         
     private func refresh() -> Observable<Mutation> {
         
-        let query = ServicesQuery(
-            workspaceId: self.workspaceId,
-//            phase: nil,
-            before: nil,
-            last: 2147483647
-        )
-        return self.provider.networkManager.fetch(query)
-            .do(onNext: { [weak self] data in
-                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
-                self?.startCursor = pageInfo.startCursor
-                self?.hasPreviousPage = pageInfo.hasPreviousPage
-                self?.lastItem = -1
-            })
-            .map { self.convert($0) }
-            .map { .refresh($0) }
+        //temp
+//        let query = ServicesQuery(
+//            workspaceId: self.workspaceId,
+////            phase: nil,
+//            before: nil,
+//            last: 2147483647
+//        )
+//        return self.provider.networkManager.fetch(query)
+//            .do(onNext: { [weak self] data in
+//                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
+//                self?.startCursor = pageInfo.startCursor
+//                self?.hasPreviousPage = pageInfo.hasPreviousPage
+//                self?.lastItem = -1
+//            })
+//            .map { self.convert($0) }
+//            .map { .refresh($0) }
+        return .empty()
     }
     
     private func more(_ item: Int) -> Observable<Mutation> {
         
-        let query = ServicesQuery(
-            workspaceId: self.workspaceId,
-//            phase: nil,
-            before: self.startCursor,
-            last: self.countPerLoading
-        )
-        
-        return self.provider.networkManager.fetch(query)
-            .do(onNext: { [weak self] data in
-                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
-                self?.startCursor = pageInfo.startCursor
-                self?.hasPreviousPage = pageInfo.hasPreviousPage
-            })
-            .map { self.convert($0) }
-            .map { .more($0) }
+        //temp
+//        let query = ServicesQuery(
+//            workspaceId: self.workspaceId,
+////            phase: nil,
+//            before: self.startCursor,
+//            last: self.countPerLoading
+//        )
+//
+//        return self.provider.networkManager.fetch(query)
+//            .do(onNext: { [weak self] data in
+//                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
+//                self?.startCursor = pageInfo.startCursor
+//                self?.hasPreviousPage = pageInfo.hasPreviousPage
+//            })
+//            .map { self.convert($0) }
+//            .map { .more($0) }
+        return .empty()
     }
-        
-    private func subscription(_ result: Result<ServicesByWorkspaceIdSubscription.Data, Error>) -> Observable<Mutation> {
+    
+    //temp
+//    private func subscription(_ result: Result<ServicesByWorkspaceIdSubscription.Data, Error>) -> Observable<Mutation> {
 //        switch result {
 //        case .success(let data):
 //        let subscription = data.serviceBySwsIdxSubscription
@@ -271,79 +274,65 @@ extension PagingReceivedServicesViewReactor {
 //        case .failure(let error):
 //            print(error.localizedDescription)
 //        }
-        return .empty()
-    }
-    
-//    private func subscription(_ result: Result<HiddenServiceSubscriptionSubscription.Data, Error>) -> Observable<Mutation> {
-//        switch result {
-//        case .success(let data):
-//            let subscription = data.hiddenServiceSubscription
-//            if let service = subscription?.asService {
-//                return .from([
-//                    .deleteService(.processing, service.serviceIdx),
-//                    .deleteService(.completed, service.serviceIdx)
-//                ])
-//            }
-//        case .failure(let error):
-//            print(error.localizedDescription)
-//        }
 //        return .empty()
 //    }
 }
 
-extension PagingReceivedServicesViewReactor {
+//temp
+//extension PagingReceivedServicesViewReactor {
     
-    private func convert(_ data: ServicesQuery.Data) -> [ServiceCellReactor] {
-        guard let services = data.hiGlovisServices?.edges
-            .compactMap(\.?.node?.fragments.serviceFragment)
-                .compactMap(self.provider.serviceManager.convert) else { return [] }
-        return self.convert(services)
-    }
-    
-    private func convert(_ data: ServiceFragment) -> [ServiceCellReactor] {
-        guard let service = self.provider.serviceManager.convert(service: data) else { return [] }
-        return self.convert([service])
-    }
-    
-    private func convert(_ data: [Service]) -> [ServiceCellReactor] {
-        return data
-            .map{
-                ServiceCellReactor(
-                    mode: .managementReceived,
-                    service: $0
-                )
-            }
-            .sorted { [weak self] in self?.sort($0, $1) ?? false }
-    }
-    
-    private func sort(_ lhs: ServiceCellReactor, _ rhs: ServiceCellReactor) -> Bool {
-        return lhs.currentState.service.createdAt > rhs.currentState.service.createdAt
-    }
-}
+    //temp
+//    private func convert(_ data: ServicesQuery.Data) -> [ServiceCellReactor] {
+//        guard let services = data.hiGlovisServices?.edges
+//            .compactMap(\.?.node?.fragments.serviceFragment)
+//                .compactMap(self.provider.serviceManager.convert) else { return [] }
+//        return self.convert(services)
+//    }
+//
+//    private func convert(_ data: ServiceFragment) -> [ServiceCellReactor] {
+//        guard let service = self.provider.serviceManager.convert(service: data) else { return [] }
+//        return self.convert([service])
+//    }
+//
+//    private func convert(_ data: [Service]) -> [ServiceCellReactor] {
+//        return data
+//            .map{
+//                ServiceCellReactor(
+//                    mode: .managementReceived,
+//                    service: $0
+//                )
+//            }
+//            .sorted { [weak self] in self?.sort($0, $1) ?? false }
+//    }
+//
+//    private func sort(_ lhs: ServiceCellReactor, _ rhs: ServiceCellReactor) -> Bool {
+//        return lhs.currentState.service.createdAt > rhs.currentState.service.createdAt
+//    }
+//}
 
-extension PagingReceivedServicesViewReactor {
-    
-    private func addServices(state: State, data: [ServiceCellReactor]) -> State {
-        var state = state
-        for reactor in data {
-            state.sections[0].items.insert(reactor, at: 0)
-            state.sections[0].items.sort(by: { self.sort($0, $1) })
-        }
-        return state
-    }
-    
-    private func updateServices(state: State, data: ServiceCellReactor) -> State {
-        var state = state
-        let serviceId = data.currentState.service.id
-        if let index = state.sections[0].items.firstIndex(where: { $0.currentState.service.id == serviceId }) {
-            state.sections[0].items[index] = data
-        }
-        return state
-    }
-    
-    private func deleteServices(state: State, serviceId: String) -> State {
-        var state = state
-        state.sections[0].items.removeAll { $0.currentState.service.id == serviceId }
-        return state
-    }
-}
+//extension PagingReceivedServicesViewReactor {
+//
+//    private func addServices(state: State, data: [ServiceCellReactor]) -> State {
+//        var state = state
+//        for reactor in data {
+//            state.sections[0].items.insert(reactor, at: 0)
+//            state.sections[0].items.sort(by: { self.sort($0, $1) })
+//        }
+//        return state
+//    }
+//
+//    private func updateServices(state: State, data: ServiceCellReactor) -> State {
+//        var state = state
+//        let serviceId = data.currentState.service.id
+//        if let index = state.sections[0].items.firstIndex(where: { $0.currentState.service.id == serviceId }) {
+//            state.sections[0].items[index] = data
+//        }
+//        return state
+//    }
+//
+//    private func deleteServices(state: State, serviceId: String) -> State {
+//        var state = state
+//        state.sections[0].items.removeAll { $0.currentState.service.id == serviceId }
+//        return state
+//    }
+//}

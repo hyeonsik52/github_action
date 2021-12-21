@@ -49,11 +49,13 @@ class ServiceBasicInfoViewReactor: Reactor {
             return .concat([
                 .just(.setLoading(true)),
                 
-                self.provider.networkManager
-                    .fetch(ServiceQuery(serviceId: self.serviceId))
-                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment }
-                    .map { self.provider.serviceManager.convert(service: $0) }
-                    .map { Mutation.loadedService($0) },
+                //temp
+//                self.provider.networkManager
+//                    .fetch(ServiceQuery(workspaceId: self.workspaceId, serviceId: self.serviceId))
+//                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.services }
+//                    .compactMap { $0?.edges.first??.node?.fragments.serviceFragment }
+//                    .map { self.provider.serviceManager.convert(service: $0) }
+//                    .map { Mutation.loadedService($0) },
                 
                 .just(.setLoading(false))
             ])

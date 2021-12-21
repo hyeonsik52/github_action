@@ -65,26 +65,29 @@ class ServiceDetailViewReactor: Reactor {
         self.workspaceId = workspaceId
         self.serviceId = serviceId
         self.pushInfo = pushInfo
-
-        self.provider.subscriptionManager.service(by: self.serviceId)
-             .subscribe(onNext: { [weak self] result in
-                 self?.action.onNext(.loadService(refresh: true))
-             })
-             .disposed(by: self.disposeBag)
+        
+        //temp
+//        self.provider.subscriptionManager.service(by: self.serviceId)
+//             .subscribe(onNext: { [weak self] result in
+//                 self?.action.onNext(.loadService(refresh: true))
+//             })
+//             .disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .loadService(let refresh):
-            let query = ServiceQuery(serviceId: self.serviceId)
-            let request = (refresh ? self.provider.networkManager.fetch(query): self.provider.networkManager.fetch(query))
+            //temp
+//            let query = ServiceQuery(serviceId: self.serviceId)
+//            let request = (refresh ? self.provider.networkManager.fetch(query): self.provider.networkManager.fetch(query))
             return .concat([
                 .just(.isLoading(true)),
                 
-                request
-                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment }
-                    .compactMap { self.provider.serviceManager.convert(service: $0) }
-                    .map { Mutation.loadedService($0) },
+                //temp
+//                request
+//                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment }
+//                    .compactMap { self.provider.serviceManager.convert(service: $0) }
+//                    .map { Mutation.loadedService($0) },
                 
                 .just(.isLoading(false))
             ])
