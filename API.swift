@@ -371,7 +371,7 @@ public struct CreateUserWithTokenMutationInput: GraphQLMapConvertible {
   ///   - phoneNumber
   ///   - remark
   ///   - token
-  public init(username: String, password: String, displayName: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, remark: Swift.Optional<String?> = nil, token: String) {
+  public init(username: String, password: String, displayName: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, remark: Swift.Optional<JSONString?> = nil, token: String) {
     graphQLMap = ["username": username, "password": password, "displayName": displayName, "phoneNumber": phoneNumber, "remark": remark, "token": token]
   }
 
@@ -411,9 +411,9 @@ public struct CreateUserWithTokenMutationInput: GraphQLMapConvertible {
     }
   }
 
-  public var remark: Swift.Optional<String?> {
+  public var remark: Swift.Optional<JSONString?> {
     get {
-      return graphQLMap["remark"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      return graphQLMap["remark"] as? Swift.Optional<JSONString?> ?? Swift.Optional<JSONString?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "remark")
@@ -495,7 +495,7 @@ public struct CreateServiceWithServiceTemplateInput: GraphQLMapConvertible {
   /// - Parameters:
   ///   - serviceTemplateId
   ///   - input
-  public init(serviceTemplateId: GraphQLID, input: Swift.Optional<String?> = nil) {
+  public init(serviceTemplateId: GraphQLID, input: Swift.Optional<GenericScalar?> = nil) {
     graphQLMap = ["serviceTemplateId": serviceTemplateId, "input": input]
   }
 
@@ -508,9 +508,9 @@ public struct CreateServiceWithServiceTemplateInput: GraphQLMapConvertible {
     }
   }
 
-  public var input: Swift.Optional<String?> {
+  public var input: Swift.Optional<GenericScalar?> {
     get {
-      return graphQLMap["input"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      return graphQLMap["input"] as? Swift.Optional<GenericScalar?> ?? Swift.Optional<GenericScalar?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "input")
@@ -888,7 +888,7 @@ public final class RequestAuthMutation: GraphQLMutation {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .nonNull(.scalar(String.self))),
           GraphQLField("verificationNumber", type: .scalar(String.self)),
-          GraphQLField("expires", type: .nonNull(.scalar(String.self))),
+          GraphQLField("expires", type: .nonNull(.scalar(DateTime.self))),
           GraphQLField("user", type: .object(User.selections)),
         ]
       }
@@ -899,7 +899,7 @@ public final class RequestAuthMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: String, verificationNumber: String? = nil, expires: String, user: User? = nil) {
+      public init(id: String, verificationNumber: String? = nil, expires: DateTime, user: User? = nil) {
         self.init(unsafeResultMap: ["__typename": "AuthenticationRequestType", "id": id, "verificationNumber": verificationNumber, "expires": expires, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
       }
 
@@ -930,9 +930,9 @@ public final class RequestAuthMutation: GraphQLMutation {
         }
       }
 
-      public var expires: String {
+      public var expires: DateTime {
         get {
-          return resultMap["expires"]! as! String
+          return resultMap["expires"]! as! DateTime
         }
         set {
           resultMap.updateValue(newValue, forKey: "expires")
@@ -2223,8 +2223,8 @@ public final class WorkspaceByCodeQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(id: GraphQLID, name: String, code: String? = nil, createdAt: String, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
+          public init(id: GraphQLID, name: String, code: String? = nil, createdAt: DateTime, role: UserRole? = nil, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
+            self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "role": role, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
           }
 
           public var __typename: String {
@@ -2615,8 +2615,8 @@ public final class MyWorkspacesQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(id: GraphQLID, name: String, code: String? = nil, createdAt: String, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
-              self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
+            public init(id: GraphQLID, name: String, code: String? = nil, createdAt: DateTime, role: UserRole? = nil, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
+              self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "role": role, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
             }
 
             public var __typename: String {
@@ -3341,10 +3341,10 @@ public final class ServicesQuery: GraphQLQuery {
   public var phase: String?
   public var phases: [String?]?
   public var states: [String?]?
-  public var startedAt: String?
-  public var endedAt: String?
+  public var startedAt: DateTime?
+  public var endedAt: DateTime?
 
-  public init(workspaceId: String, after: String? = nil, first: Int? = nil, type: String? = nil, phase: String? = nil, phases: [String?]? = nil, states: [String?]? = nil, startedAt: String? = nil, endedAt: String? = nil) {
+  public init(workspaceId: String, after: String? = nil, first: Int? = nil, type: String? = nil, phase: String? = nil, phases: [String?]? = nil, states: [String?]? = nil, startedAt: DateTime? = nil, endedAt: DateTime? = nil) {
     self.workspaceId = workspaceId
     self.after = after
     self.first = first
@@ -5279,10 +5279,11 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription serviceByWorkspaceId($id: ID!) {
+    subscription serviceByWorkspaceId($id: ID!, $accessToken: String!) {
       subscribeServiceChangeset(
         workspaceId: $id
         phases: [Initialization, Executing, Done]
+        accessToken: $accessToken
       ) {
         __typename
         eventType
@@ -5307,13 +5308,15 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
   }
 
   public var id: GraphQLID
+  public var accessToken: String
 
-  public init(id: GraphQLID) {
+  public init(id: GraphQLID, accessToken: String) {
     self.id = id
+    self.accessToken = accessToken
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id]
+    return ["id": id, "accessToken": accessToken]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -5321,7 +5324,7 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("subscribeServiceChangeset", arguments: ["workspaceId": GraphQLVariable("id"), "phases": ["Initialization", "Executing", "Done"]], type: .object(SubscribeServiceChangeset.selections)),
+        GraphQLField("subscribeServiceChangeset", arguments: ["workspaceId": GraphQLVariable("id"), "phases": ["Initialization", "Executing", "Done"], "accessToken": GraphQLVariable("accessToken")], type: .object(SubscribeServiceChangeset.selections)),
       ]
     }
 
@@ -5784,6 +5787,7 @@ public struct OnlyWorkspaceFragment: GraphQLFragment {
       name
       code
       createdAt
+      role
       isRequiredUserEmailToJoin
       isRequiredUserPhoneNumberToJoin
       totalMemberCount
@@ -5798,7 +5802,8 @@ public struct OnlyWorkspaceFragment: GraphQLFragment {
       GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
       GraphQLField("name", type: .nonNull(.scalar(String.self))),
       GraphQLField("code", type: .scalar(String.self)),
-      GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
+      GraphQLField("createdAt", type: .nonNull(.scalar(DateTime.self))),
+      GraphQLField("role", type: .scalar(UserRole.self)),
       GraphQLField("isRequiredUserEmailToJoin", type: .nonNull(.scalar(Bool.self))),
       GraphQLField("isRequiredUserPhoneNumberToJoin", type: .nonNull(.scalar(Bool.self))),
       GraphQLField("totalMemberCount", type: .scalar(Int.self)),
@@ -5811,8 +5816,8 @@ public struct OnlyWorkspaceFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, name: String, code: String? = nil, createdAt: String, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
-    self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
+  public init(id: GraphQLID, name: String, code: String? = nil, createdAt: DateTime, role: UserRole? = nil, isRequiredUserEmailToJoin: Bool, isRequiredUserPhoneNumberToJoin: Bool, totalMemberCount: Int? = nil) {
+    self.init(unsafeResultMap: ["__typename": "OnlyWorkspaceNode", "id": id, "name": name, "code": code, "createdAt": createdAt, "role": role, "isRequiredUserEmailToJoin": isRequiredUserEmailToJoin, "isRequiredUserPhoneNumberToJoin": isRequiredUserPhoneNumberToJoin, "totalMemberCount": totalMemberCount])
   }
 
   public var __typename: String {
@@ -5851,12 +5856,21 @@ public struct OnlyWorkspaceFragment: GraphQLFragment {
     }
   }
 
-  public var createdAt: String {
+  public var createdAt: DateTime {
     get {
-      return resultMap["createdAt"]! as! String
+      return resultMap["createdAt"]! as! DateTime
     }
     set {
       resultMap.updateValue(newValue, forKey: "createdAt")
+    }
+  }
+
+  public var role: UserRole? {
+    get {
+      return resultMap["role"] as? UserRole
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "role")
     }
   }
 
@@ -6279,10 +6293,10 @@ public struct ServiceFragment: GraphQLFragment {
       GraphQLField("phase", type: .scalar(String.self)),
       GraphQLField("type", type: .scalar(String.self)),
       GraphQLField("state", type: .scalar(String.self)),
-      GraphQLField("timestamps", type: .scalar(String.self)),
+      GraphQLField("timestamps", type: .scalar(GenericScalar.self)),
       GraphQLField("serviceNumber", type: .scalar(String.self)),
-      GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
-      GraphQLField("creator", type: .scalar(String.self)),
+      GraphQLField("createdAt", type: .nonNull(.scalar(DateTime.self))),
+      GraphQLField("creator", type: .scalar(GenericScalar.self)),
       GraphQLField("robot", type: .object(Robot.selections)),
       GraphQLField("currentServiceUnitStep", type: .scalar(Int.self)),
       GraphQLField("serviceUnits", type: .list(.object(ServiceUnit.selections))),
@@ -6296,7 +6310,7 @@ public struct ServiceFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, phase: String? = nil, type: String? = nil, state: String? = nil, timestamps: String? = nil, serviceNumber: String? = nil, createdAt: String, creator: String? = nil, robot: Robot? = nil, currentServiceUnitStep: Int? = nil, serviceUnits: [ServiceUnit?]? = nil, totalMovingDistance: Double? = nil) {
+  public init(id: GraphQLID, phase: String? = nil, type: String? = nil, state: String? = nil, timestamps: GenericScalar? = nil, serviceNumber: String? = nil, createdAt: DateTime, creator: GenericScalar? = nil, robot: Robot? = nil, currentServiceUnitStep: Int? = nil, serviceUnits: [ServiceUnit?]? = nil, totalMovingDistance: Double? = nil) {
     self.init(unsafeResultMap: ["__typename": "ServiceNode", "id": id, "phase": phase, "type": type, "state": state, "timestamps": timestamps, "serviceNumber": serviceNumber, "createdAt": createdAt, "creator": creator, "robot": robot.flatMap { (value: Robot) -> ResultMap in value.resultMap }, "currentServiceUnitStep": currentServiceUnitStep, "serviceUnits": serviceUnits.flatMap { (value: [ServiceUnit?]) -> [ResultMap?] in value.map { (value: ServiceUnit?) -> ResultMap? in value.flatMap { (value: ServiceUnit) -> ResultMap in value.resultMap } } }, "totalMovingDistance": totalMovingDistance])
   }
 
@@ -6345,9 +6359,9 @@ public struct ServiceFragment: GraphQLFragment {
     }
   }
 
-  public var timestamps: String? {
+  public var timestamps: GenericScalar? {
     get {
-      return resultMap["timestamps"] as? String
+      return resultMap["timestamps"] as? GenericScalar
     }
     set {
       resultMap.updateValue(newValue, forKey: "timestamps")
@@ -6363,18 +6377,18 @@ public struct ServiceFragment: GraphQLFragment {
     }
   }
 
-  public var createdAt: String {
+  public var createdAt: DateTime {
     get {
-      return resultMap["createdAt"]! as! String
+      return resultMap["createdAt"]! as! DateTime
     }
     set {
       resultMap.updateValue(newValue, forKey: "createdAt")
     }
   }
 
-  public var creator: String? {
+  public var creator: GenericScalar? {
     get {
-      return resultMap["creator"] as? String
+      return resultMap["creator"] as? GenericScalar
     }
     set {
       resultMap.updateValue(newValue, forKey: "creator")

@@ -130,6 +130,16 @@
 		ED7BCE1827713CDB0074BFFA /* Query.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1727713CDB0074BFFA /* Query.graphql */; };
 		ED7BCE1A27713CED0074BFFA /* Mutation.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1927713CED0074BFFA /* Mutation.graphql */; };
 		ED7BCE1C27713CFE0074BFFA /* Subscription.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1B27713CFE0074BFFA /* Subscription.graphql */; };
+		ED7BCE1E277160080074BFFA /* AccountInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE1D277160080074BFFA /* AccountInputType.swift */; };
+		ED7BCE20277160200074BFFA /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE1F277160200074BFFA /* Identifiable.swift */; };
+		ED7BCE22277161970074BFFA /* WorkspaceMemberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE21277161970074BFFA /* WorkspaceMemberState.swift */; };
+		ED7BCE2427716AD60074BFFA /* ServiceLogState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2327716AD60074BFFA /* ServiceLogState.swift */; };
+		ED7BCE2627716B060074BFFA /* ServiceLogSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2527716B060074BFFA /* ServiceLogSet.swift */; };
+		ED7BCE2827716B1B0074BFFA /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2727716B1B0074BFFA /* ServiceState.swift */; };
+		ED7BCE2A27716BFF0074BFFA /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2927716BFF0074BFFA /* ServiceType.swift */; };
+		ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2B27716C0E0074BFFA /* ServicePhase.swift */; };
+		ED7BCE2E27716C490074BFFA /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2D27716C490074BFFA /* Version.swift */; };
+		ED7BCE302771712C0074BFFA /* GenericScalar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -416,6 +426,16 @@
 		ED7BCE1727713CDB0074BFFA /* Query.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Query.graphql; sourceTree = "<group>"; };
 		ED7BCE1927713CED0074BFFA /* Mutation.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mutation.graphql; sourceTree = "<group>"; };
 		ED7BCE1B27713CFE0074BFFA /* Subscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Subscription.graphql; sourceTree = "<group>"; };
+		ED7BCE1D277160080074BFFA /* AccountInputType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInputType.swift; sourceTree = "<group>"; };
+		ED7BCE1F277160200074BFFA /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		ED7BCE21277161970074BFFA /* WorkspaceMemberState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceMemberState.swift; sourceTree = "<group>"; };
+		ED7BCE2327716AD60074BFFA /* ServiceLogState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLogState.swift; sourceTree = "<group>"; };
+		ED7BCE2527716B060074BFFA /* ServiceLogSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLogSet.swift; sourceTree = "<group>"; };
+		ED7BCE2727716B1B0074BFFA /* ServiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceState.swift; sourceTree = "<group>"; };
+		ED7BCE2927716BFF0074BFFA /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		ED7BCE2B27716C0E0074BFFA /* ServicePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicePhase.swift; sourceTree = "<group>"; };
+		ED7BCE2D27716C490074BFFA /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericScalar.swift; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -773,6 +793,7 @@
 				EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */,
 				EDA1FA2626C14B9A00E8C39B /* schema.json */,
 				EDA1FA2826C14B9F00E8C39B /* API.swift */,
+				ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */,
 				ED7A0E6127212A8D00AD6678 /* TARAS-Dev-Bridging-Header.h */,
 				ED7BCE1527713CCD0074BFFA /* Fragment.graphql */,
 				ED7BCE1727713CDB0074BFFA /* Query.graphql */,
@@ -978,17 +999,26 @@
 		ED6B469326B7E9CE00C2FA6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ED6B469426B7E9CE00C2FA6D /* TRSError.swift */,
-				ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */,
-				ED6B469626B7E9CE00C2FA6D /* Service.swift */,
-				ED6B469726B7E9CE00C2FA6D /* Workspace.swift */,
-				EDA1FA2E26C152E000E8C39B /* Stop.swift */,
-				EDA1FA3026C1564700E8C39B /* User.swift */,
-				ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */,
-				ED6B469B26B7E9CE00C2FA6D /* Account.swift */,
-				ED6B469C26B7E9CE00C2FA6D /* Robot.swift */,
+				ED7BCE1F277160200074BFFA /* Identifiable.swift */,
 				ED6B469D26B7E9CE00C2FA6D /* InputPolicy.swift */,
 				EDA1FA3226C1590100E8C39B /* FragmentModel.swift */,
+				ED7BCE1D277160080074BFFA /* AccountInputType.swift */,
+				ED6B469B26B7E9CE00C2FA6D /* Account.swift */,
+				EDA1FA3026C1564700E8C39B /* User.swift */,
+				ED6B469C26B7E9CE00C2FA6D /* Robot.swift */,
+				EDA1FA2E26C152E000E8C39B /* Stop.swift */,
+				ED7BCE21277161970074BFFA /* WorkspaceMemberState.swift */,
+				ED6B469726B7E9CE00C2FA6D /* Workspace.swift */,
+				ED6B469526B7E9CE00C2FA6D /* ServiceUnit.swift */,
+				ED7BCE2327716AD60074BFFA /* ServiceLogState.swift */,
+				ED6B469A26B7E9CE00C2FA6D /* ServiceLog.swift */,
+				ED7BCE2527716B060074BFFA /* ServiceLogSet.swift */,
+				ED7BCE2727716B1B0074BFFA /* ServiceState.swift */,
+				ED7BCE2927716BFF0074BFFA /* ServiceType.swift */,
+				ED7BCE2B27716C0E0074BFFA /* ServicePhase.swift */,
+				ED6B469626B7E9CE00C2FA6D /* Service.swift */,
+				ED7BCE2D27716C490074BFFA /* Version.swift */,
+				ED6B469426B7E9CE00C2FA6D /* TRSError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1842,7 +1872,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift --passthroughCustomScalars\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1916,8 +1946,10 @@
 				ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */,
 				EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */,
 				EDC11A7326D3A39D0020AB09 /* ServiceModelSection.swift in Sources */,
+				ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */,
 				EDC11AB826D3A39D0020AB09 /* TargetStopSection.swift in Sources */,
 				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
+				ED7BCE2827716B1B0074BFFA /* ServiceState.swift in Sources */,
 				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
 				EDC11AF826D3A39E0020AB09 /* WorkspaceHomeViewController.swift in Sources */,
 				EDC11A7426D3A39D0020AB09 /* ServiceCellReactor.swift in Sources */,
@@ -1952,6 +1984,7 @@
 				ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */,
 				ED6B464B26B7E7CC00C2FA6D /* GraphQLOperation.swift in Sources */,
 				EDC11A2E26D3A39D0020AB09 /* DefaultMyInfoViewReactor.swift in Sources */,
+				ED7BCE2A27716BFF0074BFFA /* ServiceType.swift in Sources */,
 				EDC11AEB26D3A39E0020AB09 /* CreateServiceViewReactor.swift in Sources */,
 				ED6B467F26B7E8B500C2FA6D /* ErrorInterceptor.swift in Sources */,
 				EDC11A6726D3A39D0020AB09 /* PagingReceivedServicesViewReactor.swift in Sources */,
@@ -2001,6 +2034,7 @@
 				ED6B464426B7E7CC00C2FA6D /* UIViewController.swift in Sources */,
 				ED6B464126B7E7CC00C2FA6D /* UIDevice.swift in Sources */,
 				ED6B464626B7E7CC00C2FA6D /* UIImageView.swift in Sources */,
+				ED7BCE302771712C0074BFFA /* GenericScalar.swift in Sources */,
 				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
 				EDC118E326D3A24A0020AB09 /* FindAccountEmailView.swift in Sources */,
 				EDC11A4126D3A39D0020AB09 /* ServiceUnitManagementCollectionViewCell.swift in Sources */,
@@ -2072,6 +2106,8 @@
 				ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */,
 				EDC11A4E26D3A39D0020AB09 /* ServiceDetailViewReactor.swift in Sources */,
 				EDC11A7126D3A39D0020AB09 /* ServiceModelContainerSection.swift in Sources */,
+				ED7BCE20277160200074BFFA /* Identifiable.swift in Sources */,
+				ED7BCE2627716B060074BFFA /* ServiceLogSet.swift in Sources */,
 				EDC11AFA26D3A39E0020AB09 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED7A0E752721539400AD6678 /* ResetPasswordView.swift in Sources */,
 				ED7A0E602721242600AD6678 /* ServiceUnitModelSet.swift in Sources */,
@@ -2090,10 +2126,12 @@
 				ED6B463E26B7E7CC00C2FA6D /* UIColor.swift in Sources */,
 				EDC11AFC26D3A39E0020AB09 /* WorkspaceSelectView_Reactive.swift in Sources */,
 				EDC11A3226D3A39D0020AB09 /* WorkspaceListSection.swift in Sources */,
+				ED7BCE2E27716C490074BFFA /* Version.swift in Sources */,
 				EDC11A5426D3A39D0020AB09 /* WorkRequestViewReactor.swift in Sources */,
 				ED6B463D26B7E7CC00C2FA6D /* UIView.swift in Sources */,
 				ED6B46A026B7E9CE00C2FA6D /* Service.swift in Sources */,
 				ED6B460526B7DFF700C2FA6D /* SwiftEntryKit_String.swift in Sources */,
+				ED7BCE2427716AD60074BFFA /* ServiceLogState.swift in Sources */,
 				ED6B469026B7E8B500C2FA6D /* TEST_TB.swift in Sources */,
 				ED6B465B26B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift in Sources */,
 				ED7A0E7E2721610200AD6678 /* JoinRequestView.swift in Sources */,
@@ -2113,6 +2151,7 @@
 				ED6B465A26B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift in Sources */,
 				EDC11A9326D3A39D0020AB09 /* SettingTextCellView.swift in Sources */,
 				ED6B46A126B7E9CE00C2FA6D /* Workspace.swift in Sources */,
+				ED7BCE22277161970074BFFA /* WorkspaceMemberState.swift in Sources */,
 				EDC118DD26D3A24A0020AB09 /* FindAccountIdResultViewController.swift in Sources */,
 				EDC11A4F26D3A39D0020AB09 /* ReceivedServicesViewController.swift in Sources */,
 				ED6B464E26B7E7CC00C2FA6D /* UILabel+Rx.swift in Sources */,
@@ -2120,6 +2159,7 @@
 				EDC11AA926D3A39D0020AB09 /* TargetInfoView.swift in Sources */,
 				ED6B463C26B7E7CC00C2FA6D /* Int.swift in Sources */,
 				ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */,
+				ED7BCE1E277160080074BFFA /* AccountInputType.swift in Sources */,
 				EDC11AD326D3A39D0020AB09 /* CSURecipientViewReactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

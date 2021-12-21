@@ -32,6 +32,7 @@ fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {
     name
     code
     createdAt
+    role
     isRequiredUserEmailToJoin
     isRequiredUserPhoneNumberToJoin
     totalMemberCount

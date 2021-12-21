@@ -8,7 +8,7 @@
 import Foundation
 
 /// 로봇 정보
-struct Robot {
+struct Robot: Identifiable {
     
     /// 로봇 아이디
     let id: String
@@ -17,10 +17,24 @@ struct Robot {
 }
 
 extension Robot: FragmentModel {
-    
+
     init(_ fragment: RobotFragment) {
-        
+
         self.id = fragment.id
         self.name = fragment.name
+    }
+    
+    init(option fragment: RobotFragment?) {
+        
+        self.id = fragment?.id ?? Self.unknownId
+        self.name = fragment?.name ?? "알 수 없는 로봇"
+    }
+}
+
+extension Robot: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+        hasher.combine(self.name)
     }
 }
