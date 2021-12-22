@@ -11,7 +11,6 @@ import UserNotifications
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
-import FirebaseFirestore
 
 import RxSwift
 import RxReachability
@@ -51,8 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         self.regiserForRemoteNotifications(application)
         
-        let _ = Firestore.firestore()
-        
         // RxSwift Resource count
         #if DEBUG
         _ = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
@@ -78,7 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try? reachability.startNotifier()
         }
         
-        self.applicationWillEnterForeground(application)
+        if #available(iOS 13, *) {} else {
+            self.applicationWillEnterForeground(application)
+        }
         
         return true
     }
@@ -92,7 +91,7 @@ extension AppDelegate {
     
     func checkUpdate() {
         
-        self.provider.networkManager.tempUpdateCheck()
+        self.provider.networkManager.clientUpdateCheck()
             .filterNil()
             .flatMapLatest { error -> Observable<Int> in
                 let errorUserInfo = (error as NSError).userInfo

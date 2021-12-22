@@ -104,15 +104,13 @@ class DefaultMyInfoViewReactor: Reactor {
                 .catchAndReturn(.updateError(.common(.networkNotConnect))),
             
             self.provider.networkManager
-                .tempVersionCheck()
+                .clientVersionCheck()
                 .map {
-                    let thisVersionName = "V\(Info.appVersion)"
+                    let thisVersionName = Info.appVersion
                     guard let versionCheck = $0 else {
                         return .updateVersion((thisVersionName, true))
                     }
-                    let thisVersionCode = Int(Info.appBuild) ?? 1
-                    let isThisLatest = (thisVersionCode >= versionCheck.currentVersionCode)
-                    let version = (thisVersionName, isThisLatest)
+                    let version = (thisVersionName, versionCheck.isLatest)
                     return .updateVersion(version)
                 },
             

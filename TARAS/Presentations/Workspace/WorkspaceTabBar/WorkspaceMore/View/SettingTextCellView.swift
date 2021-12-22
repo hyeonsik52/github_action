@@ -17,6 +17,7 @@ class SettingTextCellView: UIView {
     private var titleLabel = UILabel().then {
         $0.font = .bold[16]
         $0.textColor = .black0F0F0F
+        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
     private let descriptionLabel = UILabel().then {
