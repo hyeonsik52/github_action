@@ -75,7 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try? reachability.startNotifier()
         }
         
-        self.applicationWillEnterForeground(application)
+        if #available(iOS 13, *) {} else {
+            self.applicationWillEnterForeground(application)
+        }
         
         return true
     }
