@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED508CC5272276110029AF7B /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC4272276110029AF7B /* VersionCheck.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -302,7 +301,6 @@
 		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
-		ED508CC4272276110029AF7B /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -625,14 +623,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		ED508CC3272275F70029AF7B /* VersionCheck */ = {
-			isa = PBXGroup;
-			children = (
-				ED508CC4272276110029AF7B /* VersionCheck.swift */,
-			);
-			path = VersionCheck;
-			sourceTree = "<group>";
-		};
 		ED508CC8272298D40029AF7B /* REST */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,7 +904,6 @@
 			isa = PBXGroup;
 			children = (
 				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
-				ED508CC3272275F70029AF7B /* VersionCheck */,
 				ED68E1BF26D49CB4003D6442 /* Enum */,
 				ED6B466126B7E8B500C2FA6D /* Interceptors */,
 				ED508CC8272298D40029AF7B /* REST */,
@@ -1972,7 +1961,6 @@
 				EDC11A9426D3A39D0020AB09 /* SettingScrollViewHeader.swift in Sources */,
 				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
 				EDC11A9826D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift in Sources */,
-				ED508CC5272276110029AF7B /* VersionCheck.swift in Sources */,
 				EDC118DB26D3A24A0020AB09 /* FindAccountIdResultViewReactor.swift in Sources */,
 				EDC11B0026D3A39E0020AB09 /* WorkspaceHomeReactor.swift in Sources */,
 				EDC11A8B26D3A39D0020AB09 /* WorkspaceMoreViewController.swift in Sources */,
