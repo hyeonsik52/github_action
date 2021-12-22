@@ -211,10 +211,10 @@ class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.Vie
         account.map { ($0?.name, nil) }
             .bind(to: self.nameCellView.rx.detail)
             .disposed(by: self.disposeBag)
-        account.map { ($0?.email, ("인증이 필요합니다.", .redEB4D39)) }
+        account.map { ($0?.email, $0?.email == nil ? ("인증이 필요합니다.", .redEB4D39): nil) }
             .bind(to: self.emailCellView.rx.detail)
             .disposed(by: self.disposeBag)
-        account.map { ($0?.phoneNumber, ("인증이 필요합니다.", .redEB4D39)) }
+        account.map { ($0?.phoneNumber, $0?.phoneNumber == nil ? ("인증이 필요합니다.", .redEB4D39): nil) }
             .bind(to: self.phoneNumberCellView.rx.detail)
             .disposed(by: self.disposeBag)
         

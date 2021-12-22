@@ -26,8 +26,8 @@ protocol NetworkManagerType: AnyObject {
     
     func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>>
     
-    func tempUpdateCheck() -> Observable<Error?>
-    func tempVersionCheck() -> Observable<VersionCheck?>
+    func clientUpdateCheck() -> Observable<Error?>
+    func clientVersionCheck() -> Observable<Version?>
 }
 
 class NetworkManager: BaseManager, NetworkManagerType {
@@ -204,55 +204,42 @@ extension NetworkManager {
         self.webSocketTransport.updateConnectingPayload(authPayload)
     }
     
-    //Temp
-    func tempVersion() -> Observable<Result<VersionCheck, Error>> {
-        return .create { observer in
-            Firestore.firestore().collection("version")
-                .document("ap-ios").getDocument { snapshot, error in
-                    let error = NSError(
-                        domain: "TARAS",
-                        code: -99,
-                        userInfo: [
-                            NSLocalizedDescriptionKey: "버전 정보를 가져오지 못햇습니다."
-                        ]
-                    )
-                    if let json = snapshot?.data() {
-                        do {
-                            let data = try JSONSerialization.data(withJSONObject: json)
-                            let model = try JSONDecoder().decode(VersionCheck.self, from: data)
-                            
-                            let thisVersionCode = Int(Info.appBuild) ?? 1
-                            if thisVersionCode >= model.minVersionCode {
-                                observer.onNext(.success(model))
-                                observer.onCompleted()
-                            } else {
-                                let error = NSError(
-                                    domain: "TARAS",
-                                    code: -99,
-                                    userInfo: [
-                                        NSLocalizedFailureErrorKey: "업데이트",
-                                        NSLocalizedDescriptionKey: "안정적인 앱 사용을 위해\n업데이트를 진행해주세요.",
-                                        NSLocalizedRecoverySuggestionErrorKey: "업데이트"
-                                    ]
-                                )
-                                observer.onNext(.failure(error))
-                                observer.onCompleted()
-                            }
-                        } catch {
-                            observer.onNext(.failure(error))
-                            observer.onCompleted()
-                        }
+    func clientVersion() -> Observable<Result<Version, Error>> {
+        return self.fetch(ClientVersionQuery())
+            .map { payload in
+                let error = NSError(
+                    domain: "TARAS",
+                    code: -99,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "버전 정보를 가져오지 못햇습니다."
+                    ]
+                )
+                if let fragment = payload.clientVersion?.fragments.versionFragment {
+                    let model = Version(fragment)
+                    if model.mustUpdate {
+                        let error = NSError(
+                            domain: "TARAS",
+                            code: -99,
+                            userInfo: [
+                                NSLocalizedFailureErrorKey: "업데이트",
+                                NSLocalizedDescriptionKey: "안정적인 앱 사용을 위해\n업데이트를 진행해주세요.",
+                                NSLocalizedRecoverySuggestionErrorKey: "업데이트"
+                            ]
+                        )
+                        return .failure(error)
                     } else {
-                        observer.onNext(.failure(error))
-                        observer.onCompleted()
+                        return .success(model)
                     }
+                } else {
+                    return .failure(error)
                 }
-            return Disposables.create()
-        }
+            }.catch { error in
+                return .just(.failure(error))
+            }.observe(on: MainScheduler.instance)
     }
     
-    func tempUpdateCheck() -> Observable<Error?> {
-        return self.tempVersion().map {
+    func clientUpdateCheck() -> Observable<Error?> {
+        return self.clientVersion().map {
             if case .failure(let error) = $0 {
                 return error
             } else {
@@ -261,8 +248,8 @@ extension NetworkManager {
         }
     }
     
-    func tempVersionCheck() -> Observable<VersionCheck?> {
-        return self.tempVersion().map { try? $0.get() }
+    func clientVersionCheck() -> Observable<Version?> {
+        return self.clientVersion().map { try? $0.get() }
     }
 }
 

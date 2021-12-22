@@ -38,16 +38,18 @@ extension Version: FragmentModel {
 extension Version {
     
     static var thisAppVersion: Self {
-        let currentBuildNumber = Int(Bundle.main.infoDictionary![kCFBundleVersionKey as String] as! String)!
-        let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         return .init(
             minimumBuildNumber: 1,
-            currentBuildNumber: currentBuildNumber,
-            currentVersion: currentVersion
+            currentBuildNumber: Int(Info.appBuild) ?? 1,
+            currentVersion: Info.appVersion
         )
     }
     
     var isLatest: Bool {
         return (Self.thisAppVersion.currentBuildNumber >= self.currentBuildNumber)
+    }
+    
+    var mustUpdate: Bool {
+        return (Self.thisAppVersion.currentBuildNumber < self.minimumBuildNumber)
     }
 }
