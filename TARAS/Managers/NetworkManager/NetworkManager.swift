@@ -7,7 +7,6 @@
 
 import Apollo
 import RxSwift
-import FirebaseFirestore
 import Foundation
 import Alamofire
 import RxAlamofire

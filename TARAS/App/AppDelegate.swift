@@ -11,7 +11,6 @@ import UserNotifications
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
-import FirebaseFirestore
 
 import RxSwift
 import RxReachability
@@ -50,8 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         self.regiserForRemoteNotifications(application)
-        
-        let _ = Firestore.firestore()
         
         // RxSwift Resource count
         #if DEBUG

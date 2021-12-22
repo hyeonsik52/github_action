@@ -32,8 +32,6 @@ def pods
   
   #임시
   pod 'UITextView+Placeholder', '~> 1.4.0'
-  
-  pod 'Firebase/Firestore'
 end
 
 target 'TARAS-Dev' do
