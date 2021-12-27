@@ -361,18 +361,18 @@ public struct ResetPasswordMutationInput: GraphQLMapConvertible {
   }
 }
 
-public struct CreateUserWithTokenMutationInput: GraphQLMapConvertible {
+public struct CreateUserMutationInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
   ///   - username
   ///   - password
   ///   - displayName
+  ///   - email
   ///   - phoneNumber
   ///   - remark
-  ///   - token
-  public init(username: String, password: String, displayName: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, remark: Swift.Optional<JSONString?> = nil, token: String) {
-    graphQLMap = ["username": username, "password": password, "displayName": displayName, "phoneNumber": phoneNumber, "remark": remark, "token": token]
+  public init(username: String, password: String, displayName: Swift.Optional<String?> = nil, email: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, remark: Swift.Optional<JSONString?> = nil) {
+    graphQLMap = ["username": username, "password": password, "displayName": displayName, "email": email, "phoneNumber": phoneNumber, "remark": remark]
   }
 
   public var username: String {
@@ -402,6 +402,15 @@ public struct CreateUserWithTokenMutationInput: GraphQLMapConvertible {
     }
   }
 
+  public var email: Swift.Optional<String?> {
+    get {
+      return graphQLMap["email"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "email")
+    }
+  }
+
   public var phoneNumber: Swift.Optional<String?> {
     get {
       return graphQLMap["phoneNumber"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
@@ -417,15 +426,6 @@ public struct CreateUserWithTokenMutationInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "remark")
-    }
-  }
-
-  public var token: String {
-    get {
-      return graphQLMap["token"] as! String
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "token")
     }
   }
 }
@@ -1278,8 +1278,8 @@ public final class SignUpMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    mutation signUp($input: CreateUserWithTokenMutationInput!) {
-      createUserWithToken(input: $input) {
+    mutation signUp($input: CreateUserMutationInput!) {
+      createUser(input: $input) {
         __typename
         ...UserFragment
       }
@@ -1294,9 +1294,9 @@ public final class SignUpMutation: GraphQLMutation {
     return document
   }
 
-  public var input: CreateUserWithTokenMutationInput
+  public var input: CreateUserMutationInput
 
-  public init(input: CreateUserWithTokenMutationInput) {
+  public init(input: CreateUserMutationInput) {
     self.input = input
   }
 
@@ -1309,7 +1309,7 @@ public final class SignUpMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("createUserWithToken", arguments: ["input": GraphQLVariable("input")], type: .object(CreateUserWithToken.selections)),
+        GraphQLField("createUser", arguments: ["input": GraphQLVariable("input")], type: .object(CreateUser.selections)),
       ]
     }
 
@@ -1319,21 +1319,21 @@ public final class SignUpMutation: GraphQLMutation {
       self.resultMap = unsafeResultMap
     }
 
-    public init(createUserWithToken: CreateUserWithToken? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "createUserWithToken": createUserWithToken.flatMap { (value: CreateUserWithToken) -> ResultMap in value.resultMap }])
+    public init(createUser: CreateUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createUser": createUser.flatMap { (value: CreateUser) -> ResultMap in value.resultMap }])
     }
 
     /// CreateUser creates new user without any previleges
-    public var createUserWithToken: CreateUserWithToken? {
+    public var createUser: CreateUser? {
       get {
-        return (resultMap["createUserWithToken"] as? ResultMap).flatMap { CreateUserWithToken(unsafeResultMap: $0) }
+        return (resultMap["createUser"] as? ResultMap).flatMap { CreateUser(unsafeResultMap: $0) }
       }
       set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "createUserWithToken")
+        resultMap.updateValue(newValue?.resultMap, forKey: "createUser")
       }
     }
 
-    public struct CreateUserWithToken: GraphQLSelectionSet {
+    public struct CreateUser: GraphQLSelectionSet {
       public static let possibleTypes: [String] = ["UserNode"]
 
       public static var selections: [GraphQLSelection] {

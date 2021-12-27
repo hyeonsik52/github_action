@@ -46,8 +46,8 @@ mutation releaseAccount($token: String!) {
   releaseAccount(token: $token)
 }
 
-mutation signUp($input: CreateUserWithTokenMutationInput!) {
-    createUserWithToken(input: $input) {
+mutation signUp($input: CreateUserMutationInput!) {
+    createUser(input: $input) {
         ... UserFragment
     }
 }
