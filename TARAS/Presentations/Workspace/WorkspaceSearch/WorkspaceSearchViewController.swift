@@ -19,8 +19,8 @@ import RxKeyboard
 class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.View {
 
     enum Text {
-        static let WSSVC_1 = "워크스페이스 검색"
-        static let WSSVC_2 = "워크스페이스 코드 입력"
+        static let WSSVC_1 = "워크스페이스 가입"
+        static let WSSVC_2 = "워크스페이스 코드"
         static let WSSVC_3 = "워크스페이스 코드를 입력해주세요."
         static let WSSVC_4 = "검색"
     }
@@ -46,7 +46,6 @@ class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.V
     
     let searchButton = SRPButton(Text.WSSVC_4).then {
         $0.isEnabled = false
-        $0.layer.cornerRadius = 4
     }
 
     // MARK: - Life Cycles
