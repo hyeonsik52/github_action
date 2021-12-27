@@ -87,7 +87,7 @@ class ReceivedServicesViewController: BaseViewController, View {
         
         reactor.state.map { $0.retryMore }
             .distinctUntilChanged()
-            .map { [weak self] _ in self?.collectionView.numberOfItems(inSection: 1) ?? 0 }
+            .map { [weak self] _ in self?.collectionView.numberOfItems(inSection: 0) ?? 0 }
             .map { Reactor.Action.more($0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
@@ -119,8 +119,8 @@ class ReceivedServicesViewController: BaseViewController, View {
 extension ReceivedServicesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let lastIndex = self.dataSource[1].items.count-1
-        if indexPath.section == 1, indexPath.item >= lastIndex {
+        let lastIndex = self.dataSource[0].items.count-1
+        if indexPath.section == 0, indexPath.item >= lastIndex {
             self.reactor?.action.onNext(.more(indexPath.item))
         }
     }
