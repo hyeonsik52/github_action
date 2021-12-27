@@ -158,20 +158,28 @@ class DefaultMyInfoViewReactor: Reactor {
     }
     
     private func resign() -> Observable<Mutation> {
+        guard let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString else {
+            return .empty()
+        }
         return .concat([
             .just(.updateError(nil)),
             .just(.updateIsResign(nil)),
             .just(.updateIsProcessing(true)),
-
-            self.provider.networkManager.perform(WithdrawMutation())
-                .map(\.withdrawUser)
-                .flatMapLatest { result -> Observable<Mutation> in
-                    if result == true {
-                        self.provider.userManager.initializeUserTB()
-                        return .just(.updateIsResign(true))
-                    } else {
-                        return .just(.updateError(.etc("존재하지 않는 유저입니다.")))
-                    }
+            
+            self.getFCMToken().filterNil()
+                .flatMapLatest { token -> Observable<Mutation> in
+                    let mutation = UnregisterFcmMutation(input: .init(
+                        deviceUniqueKey: deviceUniqueKey,
+                        clientType: "ios",
+                        fcmToken: token
+                    ))
+                    return self.provider.networkManager.perform(mutation)
+                        .flatMapLatest { payload -> Observable<Mutation> in
+                            return self.provider.networkManager.perform(WithdrawMutation())
+                                .map { $0.withdrawUser ?? false }
+                                .do(onNext: { [weak self] _ in self?.provider.userManager.initializeUserTB() })
+                                .map { .updateIsResign($0) }
+                        }
                 }.catchAndReturn(.updateError(.common(.networkNotConnect))),
 
             .just(.updateIsProcessing(false))
