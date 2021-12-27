@@ -62,26 +62,22 @@ class SignUpIdViewReactor: Reactor {
                 return .just(.updateError(.common(.invalidInputFormat(.id))))
             }
             
-            //Temp
-            return .just(.updateIsAvailable(true))
-            
-//            let mutation = UserIdDuplicatedCheckMutation(input: .init(userId: id))
-//
-//            return .concat([
-//                .just(.updateIsProcessing(true)),
-//
-//                self.provider.networkManager.perform(mutation)
-//                    .flatMap { payload -> Observable<Mutation> in
-//                        let isDuplicated = !payload.userIdDuplicateCheckMutation.result.isTrue
-//                        if isDuplicated {
-//                            return .just(.updateError(.account(.idExisted)))
-//                        }else{
-//                            return .just(.updateIsAvailable(true))
-//                        }
-//                    }.catchErrorJustReturn(.updateError(.common(.networkNotConnect))),
-//
-//                .just(.updateIsProcessing(false))
-//            ])
+            let mutation = ValidateUsernameMutation(id: id)
+            return .concat([
+                .just(.updateIsProcessing(true)),
+                
+                self.provider.networkManager.perform(mutation)
+                    .map { [weak self] payload in
+                        if payload.validateUsername == true {
+                            self?.accountInfo.id = id
+                            return .updateIsAvailable(true)
+                        } else {
+                            return .updateError(.account(.idExisted))
+                        }
+                    }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+                
+                .just(.updateIsProcessing(false))
+            ])
         }
     }
     
