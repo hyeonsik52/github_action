@@ -98,15 +98,9 @@ extension String {
             dateFormatter.dateFormat = format
             return dateFormatter.date(from: self)
         } else {
-//            let formatter = ISO8601DateFormatter()
-//            formatter.formatOptions =  [.withInternetDateTime, .withFractionalSeconds]
-//            return ISO8601DateFormatter().date(from: self)
-            let dateFormatter = DateFormatter()
-            let locale = Locale(identifier: Locale.preferredLanguages[0])
-            dateFormatter.locale = locale
-            dateFormatter.timeZone = .current
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
-            return dateFormatter.date(from: self)
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions =  [.withInternetDateTime, .withFractionalSeconds]
+            return formatter.date(from: self)
         }
     }
 }
