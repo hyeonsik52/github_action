@@ -34,17 +34,17 @@ class WorkspaceTabBarController: UITabBarController, View {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //네비 스택에 쌓인 특정 뷰컨트롤러 제거
-        self.navigationController?.viewControllers.forEach {
-            if $0 is WorkspaceSearchViewController ||
-                $0 is WorkspaceSearchResultViewController {
-                $0.removeFromParent()
-            }
-        }
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        //네비 스택에 쌓인 특정 뷰컨트롤러 제거
+//        self.navigationController?.viewControllers.forEach {
+//            if $0 is WorkspaceSearchViewController ||
+//                $0 is WorkspaceSearchResultViewController {
+//                $0.removeFromParent()
+//            }
+//        }
+//    }
     
     func bind(reactor: WorkspaceTabBarControllerReactor) {
         

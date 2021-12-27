@@ -63,6 +63,9 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
                 let viewController = WorkspaceTabBarController()
                 viewController.reactor = reactor.reactorForSWSHome(workspaceId: workspace.id)
                 self?.navigationController?.pushViewController(viewController, animated: true)
+                self?.navigationController?.viewControllers.removeAll(where: {
+                    $0.isKind(of: WorkspaceSearchViewController.self) || $0.isKind(of: WorkspaceSearchResultViewController.self)
+                })
             }).disposed(by: self.disposeBag)
 
         reactor.state.map { $0.isLoading }
