@@ -38,7 +38,7 @@ class SRPButton: UIButton {
         var font: UIFont = .bold[15]
         var titleColors: [StateColor] = [.normal(.white), .disabled(.grayA5A5A5)]
         var backgroundColors: [StateColor] = [.normal(.purple4A3C9F), .disabled(.grayE6E6E6)]
-        var cornerRadius: CGFloat = 8
+        var cornerRadius: CGFloat = 4
         
         static let instance = Appearance()
     }
