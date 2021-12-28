@@ -81,7 +81,8 @@ class WorkspaceHomeViewController: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        viewDidLoad.map { Reactor.Action.loadMyInfo }
+        self.rx.viewWillAppear
+            .map {_ in Reactor.Action.loadMyInfo }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
