@@ -20,7 +20,7 @@ class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.V
 
     enum Text {
         static let WSSVC_1 = "워크스페이스 가입"
-        static let WSSVC_2 = "워크스페이스 코드"
+        static let WSSVC_2 = "워크스페이스 코드 입력"
         static let WSSVC_3 = "워크스페이스 코드를 입력해주세요."
         static let WSSVC_4 = "검색"
     }
