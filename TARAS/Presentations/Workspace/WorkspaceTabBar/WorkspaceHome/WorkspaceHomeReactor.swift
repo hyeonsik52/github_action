@@ -18,7 +18,6 @@ class WorkspaceHomeReactor: Reactor {
     enum Action {
         case loadMyInfo
         case loadWorkspaceInfo
-        case updateLastWorkspaceId
         case judgeIsFromPush
     }
     
@@ -72,14 +71,11 @@ class WorkspaceHomeReactor: Reactor {
                 .fetch(WorkspaceByIdQuery(id: self.workspaceId))
                 .compactMap(\.signedUser?.joinedWorkspaces?.edges.first)
                 .compactMap(\.?.node?.fragments.workspaceFragment)
-                .map{ Mutation.loadedWorkspaceInfo(.init($0)) }
-            
-        case .updateLastWorkspaceId:
-            let userTB = self.provider.userManager.userTB
-            userTB.update {
-                $0.lastWorkspaceId ??= self.workspaceId
-            }
-            return .empty()
+                .do { [weak self] workspace in
+                    self?.provider.userManager.userTB.update {
+                        $0.lastWorkspaceId ??= workspace.id
+                    }
+                }.map { .loadedWorkspaceInfo(.init($0)) }
             
         case .judgeIsFromPush:
             let isFromPush = (self.pushInfo != nil)

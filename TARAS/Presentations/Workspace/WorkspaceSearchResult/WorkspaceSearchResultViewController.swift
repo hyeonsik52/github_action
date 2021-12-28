@@ -63,6 +63,9 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
                 let viewController = WorkspaceTabBarController()
                 viewController.reactor = reactor.reactorForSWSHome(workspaceId: workspace.id)
                 self?.navigationController?.pushViewController(viewController, animated: true)
+                self?.navigationController?.viewControllers.removeAll(where: {
+                    $0.isKind(of: WorkspaceSearchViewController.self) || $0.isKind(of: WorkspaceSearchResultViewController.self)
+                })
             }).disposed(by: self.disposeBag)
 
         reactor.state.map { $0.isLoading }
@@ -78,6 +81,15 @@ class WorkspaceSearchResultViewController: BaseNavigatableViewController, Reacto
         reactor.state.map(\.result)
             .distinctUntilChanged()
             .filter { $0 == true }
+            .do {_ in
+                switch reactor.currentState.workspace?.myMemberState {
+                case .requestingToJoin:
+                    "가입 신청을 취소하였습니다.".sek.showToast()
+                case .notMember:
+                    "가입 신청을 완료하였습니다.".sek.showToast()
+                default: break
+                }
+            }
             .map {_ in Reactor.Action.refresh }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)

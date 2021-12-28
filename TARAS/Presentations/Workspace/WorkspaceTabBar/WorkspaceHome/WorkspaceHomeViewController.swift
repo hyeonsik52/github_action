@@ -85,13 +85,12 @@ class WorkspaceHomeViewController: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        viewDidLoad.map { Reactor.Action.updateLastWorkspaceId }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
         self.workspaceView.didSelect
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                self.reactor?.provider.userManager.userTB.update {
+                    $0.lastWorkspaceId = nil
+                }
                 self.tabBarController?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: self.disposeBag)

@@ -14,9 +14,9 @@ class WorkspaceTabBarController: UITabBarController, View {
     var disposeBag = DisposeBag()
     
     enum Text {
-        static let tab1 = "서비스 요청"
-        static let tab2 = "내 서비스"
-        static let tab3 = "더보기"
+        static let tab1 = "요청"
+        static let tab2 = "목록"
+        static let tab3 = "정보"
     }
     
     init() {
@@ -34,18 +34,6 @@ class WorkspaceTabBarController: UITabBarController, View {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //네비 스택에 쌓인 특정 뷰컨트롤러 제거
-        self.navigationController?.viewControllers.forEach {
-            if $0 is WorkspaceSearchViewController ||
-                $0 is WorkspaceSearchResultViewController {
-                $0.removeFromParent()
-            }
-        }
-    }
-    
     func bind(reactor: WorkspaceTabBarControllerReactor) {
         
         self.setupAppearance()
@@ -54,7 +42,7 @@ class WorkspaceTabBarController: UITabBarController, View {
         let workspaceHomeViewController = WorkspaceHomeViewController()
         workspaceHomeViewController.reactor = reactor.reactorForWorkspaceHome()
         
-        let workspaceHomeNavigationController = UINavigationController(rootViewController: workspaceHomeViewController)
+        let workspaceHomeNavigationController = BaseNavigationController(rootViewController: workspaceHomeViewController)
         workspaceHomeNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab1,
             image: UIImage(named: "tabCreateOff"),
@@ -66,18 +54,18 @@ class WorkspaceTabBarController: UITabBarController, View {
         let serviceManagementViewController = ServiceManagementViewController()
         serviceManagementViewController.reactor = reactor.reactorForMyServices()
         
-        let serviceManagementNavigationController = UINavigationController(rootViewController: serviceManagementViewController)
+        let serviceManagementNavigationController = BaseNavigationController(rootViewController: serviceManagementViewController)
         serviceManagementNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab2,
-            image: UIImage(named: "tab-service-off"),
-            selectedImage: UIImage(named: "tab-service-on")
+            image: UIImage(named: "tabMyserviceOff"),
+            selectedImage: UIImage(named: "tabMyserviceOn")
         )
         
         //더보기
         let workspaceMoreViewController = WorkspaceMoreViewController()
         workspaceMoreViewController.reactor = reactor.reactorForMore()
         
-        let receivedServicesNavigationController = UINavigationController(rootViewController: workspaceMoreViewController)
+        let receivedServicesNavigationController = BaseNavigationController(rootViewController: workspaceMoreViewController)
         receivedServicesNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab3,
             image: UIImage(named: "tab-more-off"),

@@ -93,6 +93,11 @@ final class WorkspaceSearchResultViewReactor: Reactor {
                         .perform(RequestJoinWorkspaceMutation(id: worksapceId))
                         .compactMap(\.requestToJoinWorkspace)
                         .map { .setResult($0) }
+                        .catch { error in
+                            let message = TRSError.common(.networkNotConnect).description
+                            return .just(.setError(message))
+                            //TODO: 이메일, 전화번호, 이메일+전화번호 필수 여부에 따라 오류 표출
+                        }
                 case .requestingToJoin:
                     return self.provider.networkManager
                         .perform(CancelJoinWorkspaceMutation(id: worksapceId))

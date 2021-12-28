@@ -70,15 +70,17 @@ class WorkspaceSearchResultView: UIView {
     // MARK: - Constaraints
     
     func setupContraints() {
-        self.addSubview(self.profileImageView)
-        self.profileImageView.snp.makeConstraints {
-            $0.top.centerX.equalToSuperview()
-            $0.size.equalTo(86)
-        }
+        
+//        self.addSubview(self.profileImageView)
+//        self.profileImageView.snp.makeConstraints {
+//            $0.top.centerX.equalToSuperview()
+//            $0.size.equalTo(86)
+//        }
         
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.profileImageView.snp.bottom).offset(40)
+//            $0.top.equalTo(self.profileImageView.snp.bottom).offset(40)
+            $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
         }
