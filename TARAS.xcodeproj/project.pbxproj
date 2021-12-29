@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */; };
+		ED06C6FF277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */; };
+		ED06C701277C490500F9D0A5 /* ServiceTemplateListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -301,6 +304,9 @@
 		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
+		ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplate.swift; sourceTree = "<group>"; };
+		ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCellReactor.swift; sourceTree = "<group>"; };
+		ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateListSection.swift; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -621,6 +627,15 @@
 				D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		ED06C6FB277C28A800F9D0A5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */,
+				ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		ED508CC8272298D40029AF7B /* REST */ = {
@@ -1008,6 +1023,7 @@
 				ED6B469626B7E9CE00C2FA6D /* Service.swift */,
 				ED7BCE2D27716C490074BFFA /* Version.swift */,
 				ED6B469426B7E9CE00C2FA6D /* TRSError.swift */,
+				ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1652,6 +1668,7 @@
 			isa = PBXGroup;
 			children = (
 				EDC11A0F26D3A39D0020AB09 /* View */,
+				ED06C6FB277C28A800F9D0A5 /* Cells */,
 				EDC11A0E26D3A39D0020AB09 /* WorkspaceHomeViewController.swift */,
 				EDC11A1726D3A39D0020AB09 /* WorkspaceHomeReactor.swift */,
 			);
@@ -1934,6 +1951,7 @@
 				EDC118E626D3A24A0020AB09 /* FindAccountPasswordView.swift in Sources */,
 				ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */,
 				EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */,
+				ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */,
 				EDC11A7326D3A39D0020AB09 /* ServiceModelSection.swift in Sources */,
 				ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */,
 				EDC11AB826D3A39D0020AB09 /* TargetStopSection.swift in Sources */,
@@ -1981,6 +1999,7 @@
 				EDC11A3426D3A39D0020AB09 /* WorkspaceListCellReactor.swift in Sources */,
 				ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */,
 				EDC11ADA26D3A39E0020AB09 /* CSURecipientDelegate.swift in Sources */,
+				ED06C6FF277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift in Sources */,
 				EDC11A4426D3A39D0020AB09 /* ServiceDetailNumberProfileView.swift in Sources */,
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
 				EDC11AA626D3A39D0020AB09 /* CreateServiceCellModel.swift in Sources */,
@@ -2089,6 +2108,7 @@
 				ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */,
 				ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */,
 				EDC11A9726D3A39D0020AB09 /* SettingWorkspaceInfoView.swift in Sources */,
+				ED06C701277C490500F9D0A5 /* ServiceTemplateListSection.swift in Sources */,
 				EDC11AB626D3A39D0020AB09 /* TargetStopViewController.swift in Sources */,
 				EDC11A3726D3A39D0020AB09 /* WorkspaceListViewController.swift in Sources */,
 				ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */,
