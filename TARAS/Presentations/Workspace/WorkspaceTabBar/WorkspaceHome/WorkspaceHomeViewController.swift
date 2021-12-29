@@ -19,16 +19,51 @@ class WorkspaceHomeViewController: BaseViewController, View {
     private var workspaceView = WorkspaceSelectView()
     private var headerView = WorkspaceHeaderView()
     
-    private var tableView = UITableView(frame: .zero, style: .grouped).then{
-        
-        $0.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        
+    private let flowLayout = UICollectionViewFlowLayout().then {
+        let width = UIScreen.main.bounds.width - 16 * 2
+        $0.minimumLineSpacing = 12
+        $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+    }
+    private lazy var collectionView = UICollectionView.init(
+        frame: .zero,
+        collectionViewLayout: self.flowLayout
+    ).then {
+        $0.alwaysBounceVertical = true
+        $0.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 12, right: 16)
         $0.backgroundColor = .clear
         
-        $0.separatorStyle = .none
-        $0.sectionFooterHeight = .leastNonzeroMagnitude
-        
         $0.refreshControl = UIRefreshControl()
+        
+        $0.register(ServiceTemplateCell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
+    private lazy var dataSource = RxCollectionViewSectionedReloadDataSource<ServiceTemplateListSection>(
+        configureCell: { dataSource, collectionView, indexPath, reactor -> UICollectionViewCell in
+            
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "cell",
+                for: indexPath) as! ServiceTemplateCell
+            cell.reactor = reactor
+            
+            return cell
+        }
+    )
+    
+    let backgroundView = UILabel().then {
+        $0.numberOfLines = 0
+        $0.font = .regular[16]
+        $0.textColor = .gray444444
+        $0.textAlignment = .center
+        $0.attributedText = .init(
+            string: "생성 가능한 서비스 템플릿이 없습니다.\n관리자에게 문의해주세요.",
+            attributes: [
+                .paragraphStyle: NSMutableParagraphStyle().then {
+                    $0.minimumLineHeight = 24
+                    $0.alignment = .center
+                }
+            ]
+        )
+        $0.isHidden = true
     }
     
     override func setupConstraints() {
@@ -55,8 +90,8 @@ class WorkspaceHomeViewController: BaseViewController, View {
             make.leading.trailing.equalToSuperview()
         }
         
-        self.view.addSubview(self.tableView)
-        self.tableView.snp.makeConstraints { make in
+        self.view.addSubview(self.collectionView)
+        self.collectionView.snp.makeConstraints { make in
             make.top.equalTo(self.headerView.snp.bottom)
             make.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
@@ -71,20 +106,17 @@ class WorkspaceHomeViewController: BaseViewController, View {
     func bind(reactor: WorkspaceHomeReactor) {
         
         //Action
-        let viewDidLoad = self.rx.viewDidLoad.single()
-        
-        viewDidLoad.map { Reactor.Action.judgeIsFromPush }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        viewDidLoad.map { Reactor.Action.loadWorkspaceInfo }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
         self.rx.viewWillAppear
-            .map {_ in Reactor.Action.loadMyInfo }
+            .map {_ in Reactor.Action.refreshInfo }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+        Observable.merge(
+            self.rx.viewDidLoad.map{},
+            self.collectionView.refreshControl!.rx.controlEvent(.valueChanged).asObservable()
+        ).map { Reactor.Action.loadTemplates }
+        .bind(to: reactor.action)
+        .disposed(by: self.disposeBag)
         
         self.workspaceView.didSelect
             .subscribe(onNext: { [weak self] _ in
@@ -105,27 +137,17 @@ class WorkspaceHomeViewController: BaseViewController, View {
             .bind(to: self.headerView.rx.user)
             .disposed(by: self.disposeBag)
         
+        reactor.state.map(\.templates)
+            .map { [ServiceTemplateListSection(header: "", items: $0.map(ServiceTemplateCellReactor.init))] }
+            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
+        
         reactor.state.map { $0.isLoading }
             .filter { $0 == false }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoading in
-                self?.tableView.refreshControl?.endRefreshing()
+                self?.collectionView.refreshControl?.endRefreshing()
             })
             .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.isProcessing ?? false }
-            .bind(to: self.activityIndicatorView.rx.isAnimating)
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.isFromPush }
-            .filter { $0 == true }
-            .subscribe(onNext: { [weak self] _ in
-                guard let type = reactor.pushInfo?.notificationType else { return }
-                switch type {
-                case .serviceStarted, .serviceEnded, .waitingWorkCompleted, .default:
-                    //TODO: 상세 화면으로 연결
-                    print()
-                }
-            }).disposed(by: self.disposeBag)
     }
 }

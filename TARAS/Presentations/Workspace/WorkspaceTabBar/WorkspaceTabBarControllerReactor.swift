@@ -32,8 +32,7 @@ class WorkspaceTabBarControllerReactor: Reactor {
     func reactorForWorkspaceHome() -> WorkspaceHomeReactor {
         return WorkspaceHomeReactor(
             provider: self.provider,
-            workspaceId: self.workspaceId,
-            pushInfo: self.pushInfo
+            workspaceId: self.workspaceId
         )
     }
     

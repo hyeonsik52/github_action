@@ -16,70 +16,72 @@ class WorkspaceHomeReactor: Reactor {
     let disposeBag = DisposeBag()
     
     enum Action {
-        case loadMyInfo
-        case loadWorkspaceInfo
-        case judgeIsFromPush
+        case refreshInfo
+        case loadTemplates
     }
     
     enum Mutation {
         case loadedMyInfo(User?)
         case loadedWorkspaceInfo(Workspace?)
-        case isLoading(Bool?) //초기 상태 nil, 로딩 시작 true, 로딩 종료 false/ nil에서 true가 된 경우일 때만 스켈레톤 뷰 출력
-        case isProcessing(Bool?) //추가 로딩
-        case updateIsFromPush(Bool)
+        case loadTemplates([ServiceTemplate])
+        case isLoading(Bool)
     }
     
     struct State {
         var myUserInfo: User?
         var worspace: Workspace?
-        var isLoading: Bool?
-        var isProcessing: Bool?
-        var isFromPush: Bool
+        var templates: [ServiceTemplate]
+        var isLoading: Bool
     }
     
     var initialState: State {
         return State(
             myUserInfo: nil,
             worspace: nil,
-            isLoading: nil,
-            isProcessing: nil,
-            isFromPush: false
+            templates: [],
+            isLoading: false
         )
     }
     
     let provider : ManagerProviderType
     let workspaceId: String
-    let pushInfo: NotificationInfo?
     
-    init(provider: ManagerProviderType, workspaceId: String, pushInfo: NotificationInfo? = nil) {
+    init(provider: ManagerProviderType, workspaceId: String) {
         self.provider = provider
         self.workspaceId = workspaceId
-        self.pushInfo = pushInfo
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-        
         switch action {
-        case .loadMyInfo:
-            return self.provider.networkManager
-                .fetch(MyUserInfoQuery())
-                .compactMap(\.signedUser?.fragments.userFragment)
-                .map{ Mutation.loadedMyInfo(.init($0)) }
-            
-        case .loadWorkspaceInfo:
-            return self.provider.networkManager
-                .fetch(WorkspaceByIdQuery(id: self.workspaceId))
-                .compactMap(\.signedUser?.joinedWorkspaces?.edges.first)
-                .compactMap(\.?.node?.fragments.workspaceFragment)
-                .do { [weak self] workspace in
-                    self?.provider.userManager.userTB.update {
-                        $0.lastWorkspaceId ??= workspace.id
-                    }
-                }.map { .loadedWorkspaceInfo(.init($0)) }
-            
-        case .judgeIsFromPush:
-            let isFromPush = (self.pushInfo != nil)
-            return .just(.updateIsFromPush(isFromPush))
+        case .refreshInfo:
+            return .concat([
+                self.provider.networkManager
+                    .fetch(MyUserInfoQuery())
+                    .compactMap(\.signedUser?.fragments.userFragment)
+                    .map{ Mutation.loadedMyInfo(.init($0)) },
+                self.provider.networkManager
+                    .fetch(WorkspaceByIdQuery(id: self.workspaceId))
+                    .compactMap(\.signedUser?.joinedWorkspaces?.edges.first)
+                    .compactMap(\.?.node?.fragments.workspaceFragment)
+                    .do { [weak self] workspace in
+                        self?.provider.userManager.userTB.update {
+                            $0.lastWorkspaceId ??= workspace.id
+                        }
+                    }.map { .loadedWorkspaceInfo(.init($0)) }
+            ])
+        case .loadTemplates:
+            return .concat([
+                .just(.isLoading(true)),
+                
+                self.provider.networkManager
+                    .fetch(ServiceTemplatesQuery(workspaceId: self.workspaceId))
+                    .compactMap { $0.serviceTemplates?.edges.compactMap(\.?.node) }
+                    .compactMap { $0.compactMap { $0.fragments.serviceTemplateFragment } }
+                    .map { $0.map(ServiceTemplate.init) }
+                    .map { .loadTemplates($0) },
+                
+                .just(.isLoading(false))
+            ])
         }
     }
     
@@ -87,25 +89,19 @@ class WorkspaceHomeReactor: Reactor {
         var state = state
         switch mutation {
         case let .loadedMyInfo(info):
-            state.isFromPush = false
             state.myUserInfo = info
-            
         case let .loadedWorkspaceInfo(workspace):
-            state.isFromPush = false
             state.worspace = workspace
-            
+        case let .loadTemplates(templates):
+            state.templates = templates
         case .isLoading(let loading):
-            state.isFromPush = false
             state.isLoading = loading
-            
-        case .isProcessing(let isProcessing):
-            state.isProcessing = isProcessing
-            
-        case let .updateIsFromPush(isFromPush):
-            state.isFromPush = isFromPush
         }
         return state
     }
+}
+
+extension WorkspaceHomeReactor {
     
     func reactorForCreateService() -> CreateServiceViewReactor {
         return CreateServiceViewReactor(provider: self.provider, workspaceId: self.workspaceId)
