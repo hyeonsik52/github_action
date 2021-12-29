@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */; };
 		ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */; };
 		ED06C6FF277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */; };
 		ED06C701277C490500F9D0A5 /* ServiceTemplateListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */; };
@@ -304,6 +305,7 @@
 		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
+		ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCell.swift; sourceTree = "<group>"; };
 		ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplate.swift; sourceTree = "<group>"; };
 		ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCellReactor.swift; sourceTree = "<group>"; };
 		ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateListSection.swift; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 		ED06C6FB277C28A800F9D0A5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */,
 				ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */,
 				ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */,
 			);
@@ -2050,6 +2053,7 @@
 				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */,
 				ED6B464726B7E7CC00C2FA6D /* UIFont.swift in Sources */,
+				ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */,
 				EDC11A4D26D3A39D0020AB09 /* ServiceDetailLogViewController.swift in Sources */,
 				ED7A0E812721673900AD6678 /* ConfirmInputView.swift in Sources */,
 				EDC11ABB26D3A39D0020AB09 /* TargetStopCellReactor.swift in Sources */,
