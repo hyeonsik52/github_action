@@ -138,13 +138,11 @@ query clientVersion {
     }
 }
 
-#템플릿 검색 용도
-query serviceTemplates {
-    serviceTemplates {
+query serviceTemplates($workspaceId: ID) {
+    serviceTemplates(workspaceId: $workspaceId) {
         edges {
             node {
-                id
-                name
+				... ServiceTemplateFragment
             }
         }
     }

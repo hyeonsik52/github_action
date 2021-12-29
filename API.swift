@@ -4715,15 +4715,14 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query serviceTemplates {
-      serviceTemplates {
+    query serviceTemplates($workspaceId: ID) {
+      serviceTemplates(workspaceId: $workspaceId) {
         __typename
         edges {
           __typename
           node {
             __typename
-            id
-            name
+            ...ServiceTemplateFragment
           }
         }
       }
@@ -4732,7 +4731,20 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
 
   public let operationName: String = "serviceTemplates"
 
-  public init() {
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ServiceTemplateFragment.fragmentDefinition)
+    return document
+  }
+
+  public var workspaceId: GraphQLID?
+
+  public init(workspaceId: GraphQLID? = nil) {
+    self.workspaceId = workspaceId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["workspaceId": workspaceId]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -4740,7 +4752,7 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("serviceTemplates", type: .object(ServiceTemplate.selections)),
+        GraphQLField("serviceTemplates", arguments: ["workspaceId": GraphQLVariable("workspaceId")], type: .object(ServiceTemplate.selections)),
       ]
     }
 
@@ -4847,8 +4859,7 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-              GraphQLField("name", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(ServiceTemplateFragment.self),
             ]
           }
 
@@ -4858,8 +4869,8 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(id: GraphQLID, name: String) {
-            self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id, "name": name])
+          public init(id: GraphQLID, name: String, serviceType: String, description: String? = nil, arguments: GenericScalar? = nil, types: GenericScalar? = nil, isCompiled: Bool) {
+            self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id, "name": name, "serviceType": serviceType, "description": description, "arguments": arguments, "types": types, "isCompiled": isCompiled])
           }
 
           public var __typename: String {
@@ -4871,21 +4882,29 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
             }
           }
 
-          public var id: GraphQLID {
+          public var fragments: Fragments {
             get {
-              return resultMap["id"]! as! GraphQLID
+              return Fragments(unsafeResultMap: resultMap)
             }
             set {
-              resultMap.updateValue(newValue, forKey: "id")
+              resultMap += newValue.resultMap
             }
           }
 
-          public var name: String {
-            get {
-              return resultMap["name"]! as! String
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
             }
-            set {
-              resultMap.updateValue(newValue, forKey: "name")
+
+            public var serviceTemplateFragment: ServiceTemplateFragment {
+              get {
+                return ServiceTemplateFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
             }
           }
         }
@@ -6606,6 +6625,120 @@ public struct VersionFragment: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "currentVersionName")
+    }
+  }
+}
+
+public struct ServiceTemplateFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ServiceTemplateFragment on ServiceTemplateNode {
+      __typename
+      id
+      name
+      serviceType
+      description
+      arguments
+      types
+      isCompiled
+    }
+    """
+
+  public static let possibleTypes: [String] = ["ServiceTemplateNode"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("serviceType", type: .nonNull(.scalar(String.self))),
+      GraphQLField("description", type: .scalar(String.self)),
+      GraphQLField("arguments", type: .scalar(GenericScalar.self)),
+      GraphQLField("types", type: .scalar(GenericScalar.self)),
+      GraphQLField("isCompiled", type: .nonNull(.scalar(Bool.self))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: GraphQLID, name: String, serviceType: String, description: String? = nil, arguments: GenericScalar? = nil, types: GenericScalar? = nil, isCompiled: Bool) {
+    self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id, "name": name, "serviceType": serviceType, "description": description, "arguments": arguments, "types": types, "isCompiled": isCompiled])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: GraphQLID {
+    get {
+      return resultMap["id"]! as! GraphQLID
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var name: String {
+    get {
+      return resultMap["name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var serviceType: String {
+    get {
+      return resultMap["serviceType"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "serviceType")
+    }
+  }
+
+  public var description: String? {
+    get {
+      return resultMap["description"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "description")
+    }
+  }
+
+  public var arguments: GenericScalar? {
+    get {
+      return resultMap["arguments"] as? GenericScalar
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "arguments")
+    }
+  }
+
+  public var types: GenericScalar? {
+    get {
+      return resultMap["types"] as? GenericScalar
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "types")
+    }
+  }
+
+  public var isCompiled: Bool {
+    get {
+      return resultMap["isCompiled"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "isCompiled")
     }
   }
 }
