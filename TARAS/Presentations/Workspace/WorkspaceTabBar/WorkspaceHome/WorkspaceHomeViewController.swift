@@ -96,18 +96,6 @@ class WorkspaceHomeViewController: BaseViewController, View {
             })
             .disposed(by: self.disposeBag)
         
-        self.headerView.didSelect
-            .map(reactor.reactorForCreateService)
-            .subscribe(onNext: { [weak self] reactor in
-                guard let self = self else { return }
-                let viewController = CreateServiceViewController()
-                viewController.reactor = reactor
-                let navigationController = UINavigationController(rootViewController: viewController)
-                navigationController.modalPresentationStyle = .fullScreen
-                self.present(navigationController, animated: true, completion: nil)
-            })
-            .disposed(by: self.disposeBag)
-        
         //State
         reactor.state.compactMap { $0.worspace }
             .bind(to: self.workspaceView.rx.workspace)
