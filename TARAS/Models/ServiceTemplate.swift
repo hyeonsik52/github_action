@@ -18,6 +18,16 @@ enum ServiceTemplateType {
             self = .general(.init(rawValue: string))
         }
     }
+    
+    var isGeneral: Bool {
+        guard case .general = self else { return false }
+        return true
+    }
+    
+    var isShortcut: Bool {
+        guard case .shortcut = self else { return false }
+        return true
+    }
 }
 
 /// 서비스 템플릿
