@@ -29,7 +29,7 @@ class WorkspaceHomeViewController: BaseViewController, View {
         collectionViewLayout: self.flowLayout
     ).then {
         $0.alwaysBounceVertical = true
-        $0.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 12, right: 16)
+        $0.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         $0.backgroundColor = .clear
         
         $0.refreshControl = UIRefreshControl()
@@ -66,6 +66,38 @@ class WorkspaceHomeViewController: BaseViewController, View {
         $0.isHidden = true
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(_:)))
+        longPressGesture.delaysTouchesBegan = true
+        self.collectionView.addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began,
+              let collectionView = gesture.view as? UICollectionView
+        else { return }
+
+        let location = gesture.location(in: collectionView)
+        if let indexPath = collectionView.indexPathForItem(at: location) {
+            let template = self.dataSource[indexPath].initialState
+            if template.type.isShortcut {
+                UIAlertController.show(
+                    .alert,
+                    title: nil,
+                    message: "간편 생성 삭제",
+                    items: [UIAlertController.AlertAction(title: "삭제", style: .destructive)],
+                    usingCancel: true
+                ).flatMapLatest { ($0.0 == 0 ? Observable.just(template): .empty()) }
+                .subscribe(onNext: { [weak self] template in
+                    //서비스 템플릿 삭제
+                    print("D", template.name)
+                }).disposed(by: self.disposeBag)
+            }
+        }
+    }
+    
     override func setupConstraints() {
         super.setupConstraints()
         
@@ -86,7 +118,7 @@ class WorkspaceHomeViewController: BaseViewController, View {
         self.view.addSubview(self.headerView)
         self.headerView.snp.makeConstraints { make in
             make.top.equalTo(topContainer.snp.bottom)
-            make.height.equalTo(104)
+            make.height.equalTo(88)
             make.leading.trailing.equalToSuperview()
         }
         
@@ -127,6 +159,28 @@ class WorkspaceHomeViewController: BaseViewController, View {
                 self.tabBarController?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: self.disposeBag)
+        
+        let modelSelected = self.collectionView.rx.modelSelected(ServiceTemplateCellReactor.self).map(\.initialState).share()
+        
+        modelSelected.filter(\.type.isShortcut)
+            .flatMapLatest { template -> Observable<ServiceTemplate> in
+                return UIAlertController.show(
+                    .alert,
+                    title: nil,
+                    message: "'\(template.name)' 서비스를 바로 생성하시겠습니까?",
+                    items: ["생성하기"],
+                    usingCancel: true
+                ).flatMapLatest { ($0.0 == 0 ? Observable.just(template): .empty()) }
+            }.subscribe(onNext: { [weak self] template in
+                //서비스 템플릿 전달
+                print("S", template.name)
+            }).disposed(by: self.disposeBag)
+
+        modelSelected.filter(\.type.isGeneral)
+            .subscribe(onNext: { [weak self] template in
+                //서비스 템플릿 전달
+                print("G", template.name)
+            }).disposed(by: self.disposeBag)
         
         //State
         reactor.state.compactMap { $0.worspace }
