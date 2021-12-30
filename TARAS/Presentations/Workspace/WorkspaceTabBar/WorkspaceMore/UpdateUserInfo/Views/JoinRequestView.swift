@@ -79,16 +79,9 @@ class JoinRequestView: UIView {
     
     private func setupConstraints() {
         
-        self.addSubview(self.thumbnailImageView)
-        self.thumbnailImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(60)
-            $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(110)
-        }
-        
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.thumbnailImageView.snp.bottom).offset(20)
+            $0.top.equalToSuperview().offset(150)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
         }
@@ -109,7 +102,7 @@ class JoinRequestView: UIView {
         
         self.addSubview(self.button)
         self.button.snp.makeConstraints {
-            $0.top.equalTo(stackView.snp.bottom).offset(22)
+            $0.top.equalTo(stackView.snp.bottom).offset(60)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(164)
             $0.height.equalTo(46)
