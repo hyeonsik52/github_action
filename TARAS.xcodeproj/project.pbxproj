@@ -129,8 +129,6 @@
 		ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467026B7E8B500C2FA6D /* BaseManager.swift */; };
 		ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467126B7E8B500C2FA6D /* ManagerProvider.swift */; };
 		ED6B468B26B7E8B500C2FA6D /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467326B7E8B500C2FA6D /* UserManager.swift */; };
-		ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467626B7E8B500C2FA6D /* TypeUnification.swift */; };
-		ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467726B7E8B500C2FA6D /* ServiceManager.swift */; };
 		ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467926B7E8B500C2FA6D /* RealmManager.swift */; };
 		ED6B469026B7E8B500C2FA6D /* TEST_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467B26B7E8B500C2FA6D /* TEST_TB.swift */; };
 		ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467C26B7E8B500C2FA6D /* USER_TB.swift */; };
@@ -413,8 +411,6 @@
 		ED6B467026B7E8B500C2FA6D /* BaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
 		ED6B467126B7E8B500C2FA6D /* ManagerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerProvider.swift; sourceTree = "<group>"; };
 		ED6B467326B7E8B500C2FA6D /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		ED6B467626B7E8B500C2FA6D /* TypeUnification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeUnification.swift; sourceTree = "<group>"; };
-		ED6B467726B7E8B500C2FA6D /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		ED6B467926B7E8B500C2FA6D /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		ED6B467B26B7E8B500C2FA6D /* TEST_TB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TEST_TB.swift; sourceTree = "<group>"; };
 		ED6B467C26B7E8B500C2FA6D /* USER_TB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USER_TB.swift; sourceTree = "<group>"; };
@@ -1019,8 +1015,6 @@
 		ED6B467526B7E8B500C2FA6D /* ServiceManager */ = {
 			isa = PBXGroup;
 			children = (
-				ED6B467626B7E8B500C2FA6D /* TypeUnification.swift */,
-				ED6B467726B7E8B500C2FA6D /* ServiceManager.swift */,
 			);
 			path = ServiceManager;
 			sourceTree = "<group>";
@@ -1803,7 +1797,6 @@
 				ED6B469E26B7E9CE00C2FA6D /* TRSError.swift in Sources */,
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
 				ED52732926C255FC0077CD9D /* SRPButton.swift in Sources */,
-				ED6B468E26B7E8B500C2FA6D /* ServiceManager.swift in Sources */,
 				ED06C757277DBD2D00F9D0A5 /* ServiceCreationSelectReceiverViewReactor.swift in Sources */,
 				ED06C74F277DBD2D00F9D0A5 /* ServiceCreationSummaryViewController.swift in Sources */,
 				EDC11A7226D3A39D0020AB09 /* ServiceContainerCellReactor.swift in Sources */,
@@ -1914,7 +1907,6 @@
 				EDC11A9F26D3A39D0020AB09 /* HelpViewController.swift in Sources */,
 				ED52732526C255FC0077CD9D /* GostButton.swift in Sources */,
 				ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */,
-				ED6B468D26B7E8B500C2FA6D /* TypeUnification.swift in Sources */,
 				EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
 				ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */,
