@@ -178,8 +178,12 @@ class WorkspaceHomeViewController: BaseViewController, View {
 
         modelSelected.filter(\.type.isGeneral)
             .subscribe(onNext: { [weak self] template in
-                //서비스 템플릿 전달
-                print("G", template.name)
+                self?.navigationPush(
+                    type: ServiceCreationViewController.self,
+                    reactor: reactor.reactorForServiceCreation(with: template),
+                    animated: true,
+                    bottomBarHidden: true
+                )
             }).disposed(by: self.disposeBag)
         
         //State

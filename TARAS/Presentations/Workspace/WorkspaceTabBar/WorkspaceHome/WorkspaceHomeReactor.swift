@@ -103,7 +103,7 @@ class WorkspaceHomeReactor: Reactor {
 
 extension WorkspaceHomeReactor {
     
-//    func reactorForCreateService() -> CreateServiceViewReactor {
-//        return CreateServiceViewReactor(provider: self.provider, workspaceId: self.workspaceId)
-//    }
+    func reactorForServiceCreation(with template: ServiceTemplate) -> ServiceCreationViewReactor {
+        return .init(provider: self.provider, workspaceId: self.workspaceId, template: template)
+    }
 }
