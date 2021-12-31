@@ -13,6 +13,7 @@
 		ED06C701277C490500F9D0A5 /* ServiceTemplateListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */; };
 		ED06C75E277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75D277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift */; };
 		ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */; };
+		ED06C762277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C761277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -269,6 +270,7 @@
 		ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateListSection.swift; sourceTree = "<group>"; };
 		ED06C75D277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PushAndPop.swift"; sourceTree = "<group>"; };
 		ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Search.swift"; sourceTree = "<group>"; };
+		ED06C761277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwitfEntryKit_String+Rx.swift"; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 			children = (
 				ED6B45FC26B7DFF700C2FA6D /* SwiftEntryKit_Show.swift */,
 				ED6B45FD26B7DFF700C2FA6D /* SwiftEntryKit_String.swift */,
+				ED06C761277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift */,
 				ED6B45FE26B7DFF700C2FA6D /* SwiftEntryKit.swift */,
 				ED6B45FF26B7DFF700C2FA6D /* SwiftEntryKit_View.swift */,
 				ED6B460026B7DFF700C2FA6D /* SwiftEntryKit_ViewController.swift */,
@@ -1685,6 +1688,7 @@
 				ED6B464226B7E7CC00C2FA6D /* UITextField.swift in Sources */,
 				EDC11A5F26D3A39D0020AB09 /* WorkRequestTopView.swift in Sources */,
 				ED6B465D26B7E7CC00C2FA6D /* Sequence_BaseObject.swift in Sources */,
+				ED06C762277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift in Sources */,
 				EDC11A4026D3A39D0020AB09 /* ServiceDetailViewController.swift in Sources */,
 				EDC11A8926D3A39D0020AB09 /* UpdatePhoneNumberViewController.swift in Sources */,
 				EDC11A6926D3A39D0020AB09 /* SWSUserInfoViewController.swift in Sources */,
