@@ -12,7 +12,7 @@ import SnapKit
 import Then
 import WebKit
 
-class HelpViewController: BaseNavigatableViewController {
+class HelpViewController: BaseNavigationViewController {
     
     lazy var webView = WKWebView().then {
         $0.navigationDelegate = self

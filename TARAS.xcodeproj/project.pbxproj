@@ -11,6 +11,8 @@
 		ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */; };
 		ED06C6FF277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */; };
 		ED06C701277C490500F9D0A5 /* ServiceTemplateListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */; };
+		ED06C75E277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75D277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift */; };
+		ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -44,7 +46,7 @@
 		ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */; };
 		ED68E1C126D49CBF003D6442 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1C026D49CBF003D6442 /* NetworkError.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
-		ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */; };
+		ED6B45F626B7DF7D00C2FA6D /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F226B7DF7D00C2FA6D /* BaseNavigationViewController.swift */; };
 		ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
 		ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F426B7DF7D00C2FA6D /* Position.swift */; };
 		ED6B460326B7DFF700C2FA6D /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FA26B7DFF700C2FA6D /* Log.swift */; };
@@ -265,6 +267,8 @@
 		ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplate.swift; sourceTree = "<group>"; };
 		ED06C6FE277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCellReactor.swift; sourceTree = "<group>"; };
 		ED06C700277C490500F9D0A5 /* ServiceTemplateListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateListSection.swift; sourceTree = "<group>"; };
+		ED06C75D277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PushAndPop.swift"; sourceTree = "<group>"; };
+		ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Search.swift"; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -298,7 +302,7 @@
 		ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPInputView.swift; sourceTree = "<group>"; };
 		ED68E1C026D49CBF003D6442 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigatableViewController.swift; sourceTree = "<group>"; };
+		ED6B45F226B7DF7D00C2FA6D /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		ED6B45F426B7DF7D00C2FA6D /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		ED6B45FA26B7DFF700C2FA6D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -671,7 +675,7 @@
 			isa = PBXGroup;
 			children = (
 				ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */,
-				ED6B45F226B7DF7D00C2FA6D /* BaseNavigatableViewController.swift */,
+				ED6B45F226B7DF7D00C2FA6D /* BaseNavigationViewController.swift */,
 				ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */,
 				EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */,
 				ED6B45F426B7DF7D00C2FA6D /* Position.swift */,
@@ -746,6 +750,8 @@
 				ED6B462426B7E7CC00C2FA6D /* GraphQL */,
 				ED6B463426B7E7CC00C2FA6D /* Realm */,
 				ED6B465E26B7E86700C2FA6D /* CocoaLumberjack */,
+				ED06C75D277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift */,
+				ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */,
 			);
 			name = Extensions;
 			path = TARAS/Extensions;
@@ -1685,7 +1691,7 @@
 				EDC11A7626D3A39D0020AB09 /* PanModalNavigationController.swift in Sources */,
 				ED7A0E792721539400AD6678 /* UpdateUserInfoViewController.swift in Sources */,
 				ED6B465C26B7E7CC00C2FA6D /* Results_BaseObject.swift in Sources */,
-				ED6B45F626B7DF7D00C2FA6D /* BaseNavigatableViewController.swift in Sources */,
+				ED6B45F626B7DF7D00C2FA6D /* BaseNavigationViewController.swift in Sources */,
 				ED508CDE272561130029AF7B /* UIAppilcation+Top.swift in Sources */,
 				ED6B468426B7E8B500C2FA6D /* SubscriptionManager.swift in Sources */,
 				ED6B464926B7E7CC00C2FA6D /* UINavigationController.swift in Sources */,
@@ -1714,6 +1720,7 @@
 				EDC11A7026D3A39D0020AB09 /* ServiceUnitSection.swift in Sources */,
 				EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */,
 				ED52732626C255FC0077CD9D /* SignInView.swift in Sources */,
+				ED06C75E277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift in Sources */,
 				EDC11A5C26D3A39D0020AB09 /* WorkRequestSectionTitleView.swift in Sources */,
 				ED6B463B26B7E7CC00C2FA6D /* CocoaLumberjack.swift in Sources */,
 				ED6B468726B7E8B500C2FA6D /* NotificationInfo.swift in Sources */,
@@ -1846,6 +1853,7 @@
 				ED7BCE2627716B060074BFFA /* ServiceLogSet.swift in Sources */,
 				EDC11AFA26D3A39E0020AB09 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED7A0E752721539400AD6678 /* ResetPasswordView.swift in Sources */,
+				ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */,
 				ED7A0E602721242600AD6678 /* ServiceUnitModelSet.swift in Sources */,
 				EDC118DC26D3A24A0020AB09 /* FindAccountIdResultView.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,

@@ -52,7 +52,8 @@ class FindAccountPasswordCompleteViewController: BaseViewController {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
-    func bind() {
+    override func bind() {
+        super.bind()
         
         self.nextButton.rx.tap
             .subscribe(onNext: { [weak self] in

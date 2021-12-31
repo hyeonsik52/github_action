@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
 import SnapKit
+import Then
+import RxSwift
 import RxKeyboard
 
 class BaseViewController: UIViewController {
@@ -20,6 +21,9 @@ class BaseViewController: UIViewController {
     
     let activityIndicatorView = UIActivityIndicatorView(style: Constants.indicatorStyle)
     private(set) var activityIndicatorPosition: Position = .init()
+    
+    private(set) var isEndEditingWhenBackgroundTapped: Bool = true
+    private(set) var isEndEditingWhenWillDisappear: Bool = true
     
     lazy private(set) var className: String = {
         return type(of: self).description().components(separatedBy: ".").last ?? ""
@@ -62,6 +66,16 @@ class BaseViewController: UIViewController {
             horizontal.equalTo(self.view.safeAreaLayoutGuide).offset(pos.offset.x)
         }
         
+        self.bind()
+        
+        if self.isEndEditingWhenBackgroundTapped,
+           let scrollView: UIScrollView = self.view.recursiveSearch() {
+            scrollView.rx.touchesBegan
+                .subscribe(onNext: { [weak self] _ in
+                    self?.view.endEditing(true)
+                }).disposed(by: self.disposeBag)
+        }
+        
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] height in
                 guard let self = self else { return }
@@ -72,6 +86,10 @@ class BaseViewController: UIViewController {
     
 
     func setupConstraints() {
+        // override point
+    }
+    
+    func bind() {
         // override point
     }
 
@@ -94,7 +112,9 @@ class BaseViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)        
-        self.view.endEditing(true)
+        super.viewWillDisappear(animated)
+        if self.isEndEditingWhenWillDisappear {
+            self.view.endEditing(true)
+        }
     }
 }

@@ -14,7 +14,7 @@ import RxCocoa
 import ReactorKit
 import RxKeyboard
 
-class UpdateEmailViewController: BaseNavigatableViewController, View {
+class UpdateEmailViewController: BaseNavigationViewController, View {
     
     enum Text {
         static let SU_ID_VC_1 = "이메일 입력"

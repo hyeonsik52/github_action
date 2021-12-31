@@ -13,10 +13,10 @@ import ReactorKit
 import RxSwift
 import RxKeyboard
 
-// 네비 루트가 아닌 푸시로 써야 할 경우는 BaseNavigatableViewController 를 상속 할 것
-// BaseNavigatableViewController 에 self.backButton 이 정의되어 있음
+// 네비 루트가 아닌 푸시로 써야 할 경우는 BaseNavigationViewController 를 상속 할 것
+// BaseNavigationViewController 에 self.backButton 이 정의되어 있음
 
-class WorkspaceSearchViewController: BaseNavigatableViewController, ReactorKit.View {
+class WorkspaceSearchViewController: BaseNavigationViewController, ReactorKit.View {
 
     enum Text {
         static let WSSVC_1 = "워크스페이스 가입"

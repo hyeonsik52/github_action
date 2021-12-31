@@ -13,7 +13,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-class ServiceBasicInfoViewController: BaseNavigatableViewController, View {
+class ServiceBasicInfoViewController: BaseNavigationViewController, View {
 
     private let scrollView = UIScrollView().then {
         $0.contentInset.top = 14

@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class FindAccountPasswordViewController: BaseNavigatableViewController, ReactorKit.View {
+class FindAccountPasswordViewController: BaseNavigationViewController, ReactorKit.View {
     
     enum Text {
         static let FAPVC_1 = "다음"

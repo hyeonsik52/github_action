@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class SignUpNameViewController: BaseNavigatableViewController, ReactorKit.View {
+class SignUpNameViewController: BaseNavigationViewController, ReactorKit.View {
 
     enum Text {
         static let SUNVC_1 = "회원가입 완료"

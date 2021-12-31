@@ -12,11 +12,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-class DefaultMyInfoViewController: BaseNavigatableViewController, ReactorKit.View {
-    
-    override var bottomVisibleWhenPopped: Bool {
-        return true
-    }
+class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View {
     
     enum Text {
         static let SVC_1 = "설정"

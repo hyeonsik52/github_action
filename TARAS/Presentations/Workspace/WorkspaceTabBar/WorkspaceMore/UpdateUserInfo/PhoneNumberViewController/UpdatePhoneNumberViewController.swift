@@ -14,7 +14,7 @@ import RxCocoa
 import ReactorKit
 import RxKeyboard
 
-class UpdatePhoneNumberViewController: BaseNavigatableViewController, View {
+class UpdatePhoneNumberViewController: BaseNavigationViewController, View {
     
     enum Text {
         static let UPN_VC_1 = "전화번호 변경"

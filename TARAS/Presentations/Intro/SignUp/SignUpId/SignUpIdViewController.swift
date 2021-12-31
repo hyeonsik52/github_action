@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class SignUpIdViewController: BaseNavigatableViewController, ReactorKit.View {
+class SignUpIdViewController: BaseNavigationViewController, ReactorKit.View {
 
     enum Text {
         static let SUVC_1 = "다음"

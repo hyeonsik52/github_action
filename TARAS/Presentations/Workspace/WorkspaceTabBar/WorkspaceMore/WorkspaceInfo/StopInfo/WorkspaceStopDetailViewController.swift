@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import Kingfisher
 
-class WorkspaceStopDetailViewController: BaseNavigatableViewController {
+class WorkspaceStopDetailViewController: BaseNavigationViewController {
 
     private let imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
