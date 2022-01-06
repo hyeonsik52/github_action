@@ -19,7 +19,7 @@ enum Info {
     }
     
     static var serverEndpoint: String {
-        return "http://" + self["ServerEndpoint"]! + ":8000"
+        return "https://" + self["ServerEndpoint"]!
     }
     
     static var serverRestClientId: String {
