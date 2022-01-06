@@ -12,7 +12,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-class WorkspaceMoreViewController: BaseNavigatableViewController, ReactorKit.View {
+class WorkspaceMoreViewController: BaseNavigationViewController, ReactorKit.View {
     
     enum Text {
         static let Title = "정보"

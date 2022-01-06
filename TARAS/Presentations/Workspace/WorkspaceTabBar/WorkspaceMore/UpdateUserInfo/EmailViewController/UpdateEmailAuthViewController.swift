@@ -14,7 +14,7 @@ import RxCocoa
 import ReactorKit
 import RxKeyboard
 
-class UpdateEmailAuthViewController: BaseNavigatableViewController, View {
+class UpdateEmailAuthViewController: BaseNavigationViewController, View {
     
     enum Text {
         static let UEA_VC_1 = "인증번호 입력"

@@ -9,8 +9,6 @@
 import UIKit
 import SnapKit
 import Then
-import RxCocoa
-import RxSwift
 
 class WorkspaceHeaderView: UIView {
 
@@ -22,10 +20,6 @@ class WorkspaceHeaderView: UIView {
         $0.textColor = .black0F0F0F
         $0.text = " "
     }
-    
-    let didSelect = PublishRelay<Void>()
-    
-    private let disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +37,7 @@ class WorkspaceHeaderView: UIView {
         self.addSubview(container)
         container.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(22)
+            make.leading.equalToSuperview().offset(20)
         }
         
         container.addSubview(self.userNameLabel)
@@ -65,27 +59,6 @@ class WorkspaceHeaderView: UIView {
             make.leading.bottom.equalToSuperview()
             make.trailing.lessThanOrEqualToSuperview()
         }
-        
-        let addButton = UIButton().then{
-            $0.backgroundColor = .purple4A3C9F
-            $0.setImage(UIImage(named: "sws-create"), for: .normal)
-            $0.clipsToBounds = true
-            $0.layer.cornerRadius = 20
-            $0.contentMode = .center
-        }
-        self.addSubview(addButton)
-        addButton.snp.makeConstraints { make in
-            make.width.height.equalTo(64)
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(container.snp.trailing).offset(22)
-            make.trailing.equalToSuperview().offset(-22)
-        }
-        
-        addButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.didSelect.accept(())
-            })
-            .disposed(by: self.disposeBag)
     }
     
     func bind(_ user: User) {

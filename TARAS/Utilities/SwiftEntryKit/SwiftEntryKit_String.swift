@@ -34,7 +34,7 @@ extension String: SwiftEntryKitViewBridge {
 
 extension SwiftEntryKitViewWrapper where Base == String {
 
-    func showToast(_ completion: (() -> Void)? = nil) {
+    func showToast(color: UIColor = .purple4A3C9F, _ completion: (() -> Void)? = nil) {
         
         var attributes: EKAttributes = .topFloat
         attributes.hapticFeedbackType = .none

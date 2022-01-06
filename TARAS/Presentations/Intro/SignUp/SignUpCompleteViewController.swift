@@ -11,7 +11,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-class SignUpCompleteViewController: BaseNavigatableViewController {
+class SignUpCompleteViewController: BaseNavigationViewController {
 
     enum Text {
         static let title = "회원가입이 완료되었습니다."

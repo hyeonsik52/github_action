@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class FindAccountEmailViewController: BaseNavigatableViewController, ReactorKit.View {
+class FindAccountEmailViewController: BaseNavigationViewController, ReactorKit.View {
 
     enum Text {
         static let FAEVC_1 = "확인"

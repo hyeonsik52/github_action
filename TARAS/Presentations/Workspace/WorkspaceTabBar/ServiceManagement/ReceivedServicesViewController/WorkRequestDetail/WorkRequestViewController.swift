@@ -14,7 +14,7 @@ import RxSwift
 import RxCocoa
 import PanModal
 
-class WorkRequestViewController: BaseNavigatableViewController, View {
+class WorkRequestViewController: BaseNavigationViewController, View {
     
     private let scrollView = UIScrollView().then {
         $0.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)

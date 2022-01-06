@@ -15,18 +15,11 @@ import Kingfisher
 
 class WorkspaceSelectView: UIView {
 
-    private var profileImageView = UIImageView().then{
-        $0.contentMode = .scaleAspectFill
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 12
-        $0.setImage(strUrl: nil)
-    }
     private var nameLabel = UILabel().then{
         $0.font = .bold[14]
         $0.textColor = .black0F0F0F
     }
     
-//    private var swsInfo: SWSInfoType!
     let didSelect = PublishRelay<Void>()
     
     private let disposeBag = DisposeBag()
@@ -52,18 +45,11 @@ class WorkspaceSelectView: UIView {
             make.centerY.leading.equalToSuperview()
             make.width.height.equalTo(24)
         }
-        
-        self.addSubview(self.profileImageView)
-        self.profileImageView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalTo(arrowImageView.snp.trailing).offset(1)
-            make.width.height.equalTo(24)
-        }
 
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(self.profileImageView.snp.trailing).offset(10)
+            make.leading.equalTo(arrowImageView.snp.trailing)
             make.trailing.equalToSuperview().offset(-10)
         }
 
@@ -83,6 +69,5 @@ class WorkspaceSelectView: UIView {
     func bind(_ workspace: Workspace) {
         
         self.nameLabel.text = workspace.name
-//        self.profileImageView.setImage(strUrl: workspace.profileImageURL)
     }
 }

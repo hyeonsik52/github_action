@@ -13,7 +13,7 @@ import RxSwift
 import ReactorKit
 
 /// 로그인 화면
-class SignInViewController: BaseNavigatableViewController, ReactorKit.View {
+class SignInViewController: BaseNavigationViewController, ReactorKit.View {
     
     override var activityIndicatorPosition: Position {
         return .init(anchor: .init(vertical: .top), offset: .init(x: 0, y: 40))

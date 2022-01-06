@@ -83,4 +83,13 @@ public extension Reactive where Base: UIViewController {
     }
 }
 
+public extension Reactive where Base: UIResponder {
+    
+    var touchesBegan: ControlEvent<(Set<UITouch>, UIEvent?)> {
+        let source = self.methodInvoked(#selector(Base.touchesBegan))
+            .map { ($0.first as? Set<UITouch> ?? [], $0.last as? UIEvent) }
+        return ControlEvent(events: source)
+    }
+}
+
 #endif

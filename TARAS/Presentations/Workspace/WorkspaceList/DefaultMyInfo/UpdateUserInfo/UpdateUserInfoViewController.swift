@@ -13,7 +13,11 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class UpdateUserInfoViewController: BaseNavigatableViewController, ReactorKit.View {
+class UpdateUserInfoViewController: BaseNavigationViewController, ReactorKit.View {
+    
+    override var navigationPopWithBottomBarHidden: Bool {
+        return true
+    }
     
     enum Text {
         static let UUIVC_1 = "수정"

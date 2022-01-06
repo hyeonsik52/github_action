@@ -46,7 +46,7 @@ extension Service: FragmentModel {
         self.id = fragment.id
         
         if let type = fragment.type {
-            self.type = .init(type: type)
+            self.type = .init(rawValue: type) ?? .general
         } else {
             self.type = .general
         }
@@ -115,7 +115,7 @@ extension Service: FragmentModel {
         self.id = fragment?.id ?? Self.unknownId
         
         if let type = fragment?.type {
-            self.type = .init(type: type)
+            self.type = .init(rawValue: type) ?? .general
         } else {
             self.type = .general
         }

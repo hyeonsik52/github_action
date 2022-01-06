@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class FindAccountIdViewController: BaseNavigatableViewController, ReactorKit.View {
+class FindAccountIdViewController: BaseNavigationViewController, ReactorKit.View {
 
     enum Text {
         static let FAIVC_1 = "다음"

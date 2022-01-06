@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class ResetPasswordViewController: BaseNavigatableViewController, ReactorKit.View {
+class ResetPasswordViewController: BaseNavigationViewController, ReactorKit.View {
 
     enum Text {
         static let RPVC_1 = "다음"
