@@ -7,29 +7,6 @@
 
 import Foundation
 
-enum ServiceTemplateType {
-    case general(ServiceType?)
-    case shortcut
-    
-    init(string: String) {
-        if string.isEmpty {
-            self = .shortcut
-        } else {
-            self = .general(.init(rawValue: string))
-        }
-    }
-    
-    var isGeneral: Bool {
-        guard case .general = self else { return false }
-        return true
-    }
-    
-    var isShortcut: Bool {
-        guard case .shortcut = self else { return false }
-        return true
-    }
-}
-
 /// 서비스 템플릿
 struct ServiceTemplate: Identifiable {
     /// 서비스 템플릿 아이디

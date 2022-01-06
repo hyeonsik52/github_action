@@ -41,6 +41,7 @@
 		ED06C75E277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75D277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift */; };
 		ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */; };
 		ED06C762277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C761277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift */; };
+		ED06C767277EFE7B00F9D0A5 /* ServiceTemplateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C766277EFE7B00F9D0A5 /* ServiceTemplateType.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -323,6 +324,7 @@
 		ED06C75D277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PushAndPop.swift"; sourceTree = "<group>"; };
 		ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Search.swift"; sourceTree = "<group>"; };
 		ED06C761277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwitfEntryKit_String+Rx.swift"; sourceTree = "<group>"; };
+		ED06C766277EFE7B00F9D0A5 /* ServiceTemplateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateType.swift; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -1061,6 +1063,7 @@
 				ED6B469626B7E9CE00C2FA6D /* Service.swift */,
 				ED7BCE2D27716C490074BFFA /* Version.swift */,
 				ED6B469426B7E9CE00C2FA6D /* TRSError.swift */,
+				ED06C766277EFE7B00F9D0A5 /* ServiceTemplateType.swift */,
 				ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */,
 			);
 			path = Models;
@@ -1907,6 +1910,7 @@
 				EDC11A9F26D3A39D0020AB09 /* HelpViewController.swift in Sources */,
 				ED52732526C255FC0077CD9D /* GostButton.swift in Sources */,
 				ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */,
+				ED06C767277EFE7B00F9D0A5 /* ServiceTemplateType.swift in Sources */,
 				EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
 				ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */,
