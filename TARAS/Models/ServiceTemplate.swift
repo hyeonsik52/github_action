@@ -47,3 +47,10 @@ extension ServiceTemplate: FragmentModel {
         self.isCompiled = fragment?.isCompiled ?? false
     }
 }
+
+extension ServiceTemplate {
+    
+    var serviceBuilder: ServiceBuilder {
+        return .init(self)
+    }
+}

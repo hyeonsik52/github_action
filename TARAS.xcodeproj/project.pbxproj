@@ -42,6 +42,17 @@
 		ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */; };
 		ED06C762277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C761277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift */; };
 		ED06C767277EFE7B00F9D0A5 /* ServiceTemplateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C766277EFE7B00F9D0A5 /* ServiceTemplateType.swift */; };
+		ED06C7692786889E00F9D0A5 /* ServiceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C7682786889E00F9D0A5 /* ServiceBuilder.swift */; };
+		ED06C76B278688B100F9D0A5 /* STParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C76A278688B100F9D0A5 /* STParser.swift */; };
+		ED06C76D278688C100F9D0A5 /* STProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C76C278688C100F9D0A5 /* STProcess.swift */; };
+		ED06C76F278688D400F9D0A5 /* STArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C76E278688D400F9D0A5 /* STArgument.swift */; };
+		ED06C771278688E900F9D0A5 /* STSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C770278688E900F9D0A5 /* STSource.swift */; };
+		ED06C773278688F500F9D0A5 /* STNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C772278688F500F9D0A5 /* STNode.swift */; };
+		ED06C7752786891700F9D0A5 /* STAUIComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C7742786891700F9D0A5 /* STAUIComponent.swift */; };
+		ED06C7772786892600F9D0A5 /* STUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C7762786892600F9D0A5 /* STUI.swift */; };
+		ED06C7792786893200F9D0A5 /* STFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C7782786893200F9D0A5 /* STFlow.swift */; };
+		ED06C77B2786893D00F9D0A5 /* STFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77A2786893D00F9D0A5 /* STFlows.swift */; };
+		ED06C77D2786894300F9D0A5 /* STView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77C2786894300F9D0A5 /* STView.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -325,6 +336,17 @@
 		ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Search.swift"; sourceTree = "<group>"; };
 		ED06C761277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwitfEntryKit_String+Rx.swift"; sourceTree = "<group>"; };
 		ED06C766277EFE7B00F9D0A5 /* ServiceTemplateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateType.swift; sourceTree = "<group>"; };
+		ED06C7682786889E00F9D0A5 /* ServiceBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceBuilder.swift; path = TARAS/Models/ServiceBuilder.swift; sourceTree = SOURCE_ROOT; };
+		ED06C76A278688B100F9D0A5 /* STParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STParser.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STParser.swift; sourceTree = SOURCE_ROOT; };
+		ED06C76C278688C100F9D0A5 /* STProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STProcess.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STProcess.swift; sourceTree = SOURCE_ROOT; };
+		ED06C76E278688D400F9D0A5 /* STArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STArgument.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STArgument.swift; sourceTree = SOURCE_ROOT; };
+		ED06C770278688E900F9D0A5 /* STSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STSource.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STSource.swift; sourceTree = SOURCE_ROOT; };
+		ED06C772278688F500F9D0A5 /* STNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STNode.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STNode.swift; sourceTree = SOURCE_ROOT; };
+		ED06C7742786891700F9D0A5 /* STAUIComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STAUIComponent.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STAUIComponent.swift; sourceTree = SOURCE_ROOT; };
+		ED06C7762786892600F9D0A5 /* STUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STUI.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STUI.swift; sourceTree = SOURCE_ROOT; };
+		ED06C7782786893200F9D0A5 /* STFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlow.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlow.swift; sourceTree = SOURCE_ROOT; };
+		ED06C77A2786893D00F9D0A5 /* STFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlows.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlows.swift; sourceTree = SOURCE_ROOT; };
+		ED06C77C2786894300F9D0A5 /* STView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STView.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STView.swift; sourceTree = SOURCE_ROOT; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -677,6 +699,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		ED06C77E278689D100F9D0A5 /* ServiceTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				ED06C76A278688B100F9D0A5 /* STParser.swift */,
+				ED06C76C278688C100F9D0A5 /* STProcess.swift */,
+				ED06C76E278688D400F9D0A5 /* STArgument.swift */,
+				ED06C770278688E900F9D0A5 /* STSource.swift */,
+				ED06C772278688F500F9D0A5 /* STNode.swift */,
+				ED06C7742786891700F9D0A5 /* STAUIComponent.swift */,
+				ED06C7762786892600F9D0A5 /* STUI.swift */,
+				ED06C7782786893200F9D0A5 /* STFlow.swift */,
+				ED06C77A2786893D00F9D0A5 /* STFlows.swift */,
+				ED06C77C2786894300F9D0A5 /* STView.swift */,
+			);
+			path = ServiceTemplate;
+			sourceTree = "<group>";
+		};
 		ED508CC8272298D40029AF7B /* REST */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1056,8 @@
 		ED6B467526B7E8B500C2FA6D /* ServiceManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED06C7682786889E00F9D0A5 /* ServiceBuilder.swift */,
+				ED06C77E278689D100F9D0A5 /* ServiceTemplate */,
 			);
 			path = ServiceManager;
 			sourceTree = "<group>";
@@ -1783,13 +1824,16 @@
 			files = (
 				ED6B468326B7E8B500C2FA6D /* NetworkManager.swift in Sources */,
 				EDC118E226D3A24A0020AB09 /* FindAccountEmailViewReactor.swift in Sources */,
+				ED06C77B2786893D00F9D0A5 /* STFlows.swift in Sources */,
 				EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */,
 				ED06C749277DBD2D00F9D0A5 /* ServiceUnitCreationModelSection.swift in Sources */,
 				ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */,
 				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
+				ED06C7792786893200F9D0A5 /* STFlow.swift in Sources */,
 				EDC11A8A26D3A39D0020AB09 /* UpdatePhoneNumberViewReactor.swift in Sources */,
 				EDC11A7E26D3A39D0020AB09 /* WorkspaceInfoViewController.swift in Sources */,
 				ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */,
+				ED06C771278688E900F9D0A5 /* STSource.swift in Sources */,
 				ED6B463F26B7E7CC00C2FA6D /* UIRefreshControl.swift in Sources */,
 				EDC11B0726D3AE4E0020AB09 /* BaseTableViewCell.swift in Sources */,
 				ED7A0E762721539400AD6678 /* ResetPasswordViewController.swift in Sources */,
@@ -1810,12 +1854,15 @@
 				ED52737126C3A03C0077CD9D /* SignUpIdViewController.swift in Sources */,
 				EDC11A3B26D3A39D0020AB09 /* MyServiceCollectionViewCell.swift in Sources */,
 				ED6B460626B7DFF700C2FA6D /* SwiftEntryKit.swift in Sources */,
+				ED06C7692786889E00F9D0A5 /* ServiceBuilder.swift in Sources */,
 				ED6B465026B7E7CC00C2FA6D /* Reactor.swift in Sources */,
+				ED06C7752786891700F9D0A5 /* STAUIComponent.swift in Sources */,
 				EDC11AFE26D3A39E0020AB09 /* WorkspaceSelectView.swift in Sources */,
 				ED6B468626B7E8B500C2FA6D /* PushManager.swift in Sources */,
 				EDC11A8026D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift in Sources */,
 				ED6B46B426B8025500C2FA6D /* Info.swift in Sources */,
 				ED6B464226B7E7CC00C2FA6D /* UITextField.swift in Sources */,
+				ED06C77D2786894300F9D0A5 /* STView.swift in Sources */,
 				EDC11A5F26D3A39D0020AB09 /* WorkRequestTopView.swift in Sources */,
 				ED6B465D26B7E7CC00C2FA6D /* Sequence_BaseObject.swift in Sources */,
 				ED06C762277E9CF100F9D0A5 /* SwitfEntryKit_String+Rx.swift in Sources */,
@@ -1862,6 +1909,7 @@
 				ED06C758277DBD2D00F9D0A5 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
 				ED06C75E277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift in Sources */,
 				EDC11A5C26D3A39D0020AB09 /* WorkRequestSectionTitleView.swift in Sources */,
+				ED06C773278688F500F9D0A5 /* STNode.swift in Sources */,
 				ED6B463B26B7E7CC00C2FA6D /* CocoaLumberjack.swift in Sources */,
 				ED6B468726B7E8B500C2FA6D /* NotificationInfo.swift in Sources */,
 				EDC11AFF26D3A39E0020AB09 /* WorkspaceShortcutView.swift in Sources */,
@@ -1952,9 +2000,11 @@
 				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
 				EDC11A3626D3A39D0020AB09 /* WorkspaceListCell.swift in Sources */,
 				ED7A0E682721328600AD6678 /* SPRSegmentButton.swift in Sources */,
+				ED06C7772786892600F9D0A5 /* STUI.swift in Sources */,
 				ED52737526C3A03C0077CD9D /* SignUpNameView.swift in Sources */,
 				EDC11A4726D3A39D0020AB09 /* SRPStateView.swift in Sources */,
 				EDC11A3A26D3A39D0020AB09 /* ServiceManagementViewController_Delegate.swift in Sources */,
+				ED06C76D278688C100F9D0A5 /* STProcess.swift in Sources */,
 				EDC11AFD26D3A39E0020AB09 /* ServiceStateCollectionReusableView.swift in Sources */,
 				ED06C743277DBD2D00F9D0A5 /* ServiceCreationSelectStopViewController+Rx.swift in Sources */,
 				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
@@ -1977,6 +2027,7 @@
 				EDA1FA3126C1564700E8C39B /* User.swift in Sources */,
 				EDC11A7926D3A39D0020AB09 /* WorkspaceTabBarController.swift in Sources */,
 				EDC11A9126D3A39D0020AB09 /* SettingProfileCellView_Reactive.swift in Sources */,
+				ED06C76F278688D400F9D0A5 /* STArgument.swift in Sources */,
 				EDC11A3026D3A39D0020AB09 /* WorkspaceListViewController_TableView.swift in Sources */,
 				ED6B468026B7E8B500C2FA6D /* BaseInterceptor.swift in Sources */,
 				ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */,
@@ -2033,6 +2084,7 @@
 				EDC11B0326D3A39E0020AB09 /* WorkspaceSearchResultViewReactor.swift in Sources */,
 				ED06C745277DBD2D00F9D0A5 /* ServiceCreationSelectStopViewReactor.swift in Sources */,
 				ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */,
+				ED06C76B278688B100F9D0A5 /* STParser.swift in Sources */,
 				EDC118E026D3A24A0020AB09 /* FindAccountIdView.swift in Sources */,
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,
 				ED6B464C26B7E7CC00C2FA6D /* String.swift in Sources */,
