@@ -13,12 +13,12 @@ class ServiceCreationDetailViewReactor: Reactor {
     typealias ServiceUnit = ServiceUnitCreationModel
     
     enum Action {
-        case setPicture(String?)
+//        case setPicture(String?)
         case confirm(String?)
     }
     
     enum Mutation {
-        case updatePicture(String?)
+//        case updatePicture(String?)
         case updateConfirm(Bool?)
     }
     
@@ -53,12 +53,12 @@ class ServiceCreationDetailViewReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .setPicture(let fileName):
-            if fileName == nil, let existed = self.serviceUnit.attachmentId {
-//                Caching.instance.delete(fileName: existed)
-            }
-            self.serviceUnit.attachmentId = fileName
-            return .just(.updatePicture(fileName))
+//        case .setPicture(let fileName):
+//            if fileName == nil, let existed = self.serviceUnit.attachmentId {
+////                Caching.instance.delete(fileName: existed)
+//            }
+//            self.serviceUnit.attachmentId = fileName
+//            return .just(.updatePicture(fileName))
         case .confirm(let detail):
             let isEmpty = detail?.isEmpty ?? true
             self.serviceUnit.detail = (isEmpty ? nil: detail)
@@ -72,8 +72,8 @@ class ServiceCreationDetailViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .updatePicture(let fileName):
-            state.picture = fileName
+//        case .updatePicture(let fileName):
+//            state.picture = fileName
         case .updateConfirm(let isConfirmed):
             state.isConfirmed = isConfirmed
         }

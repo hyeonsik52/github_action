@@ -14,11 +14,11 @@ struct ServiceUnitCreationModel: Identifiable {
     
     //required
     var stop: ServiceUnitTargetModel! = nil
-    var receiver: ServiceUnitTargetModel! = nil
+    var receivers: [ServiceUnitTargetModel] = []
     
     //optional
-    var attachmentId: String? = nil
     var detail: String? = nil
+    var isWait: Bool = false
 }
 
 extension ServiceUnitCreationModel: Hashable {
@@ -26,8 +26,8 @@ extension ServiceUnitCreationModel: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
         hasher.combine(self.stop)
-        hasher.combine(self.receiver)
-        hasher.combine(self.attachmentId)
+        hasher.combine(self.receivers)
         hasher.combine(self.detail)
+        hasher.combine(self.isWait)
     }
 }

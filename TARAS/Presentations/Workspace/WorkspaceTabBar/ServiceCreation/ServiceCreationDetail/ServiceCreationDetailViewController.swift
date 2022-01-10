@@ -158,11 +158,11 @@ class ServiceCreationDetailViewController: BaseNavigationViewController, View {
 //            .map(Reactor.Action.setPicture)
 //            .bind(to: reactor.action)
 //            .disposed(by: self.disposeBag)
-        
-        self.removeButton.rx.tap
-            .map { .setPicture(nil) }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
+//        
+//        self.removeButton.rx.tap
+//            .map { .setPicture(nil) }
+//            .bind(to: reactor.action)
+//            .disposed(by: self.disposeBag)
         
         self.confirmButton.rx.tap
             .withLatestFrom(self.detailTextView.rx.text)

@@ -12,6 +12,7 @@ protocol ManagerProviderType: AnyObject {
     var pushManager: PushManagerType { get }
     var networkManager: NetworkManagerType { get }
     var subscriptionManager: SubscriptionManagerType { get }
+    var notificationManager: NotificationManagerType { get }
 }
 
 final class ManagerProvider: ManagerProviderType {
@@ -19,4 +20,5 @@ final class ManagerProvider: ManagerProviderType {
     lazy var pushManager: PushManagerType = PushManager(provider: self)
     lazy var networkManager: NetworkManagerType = NetworkManager(provider: self)
     lazy var subscriptionManager: SubscriptionManagerType = SubscriptionManager(provider: self)
+    lazy var notificationManager: NotificationManagerType = NotificationManager(provider: self)
 }

@@ -290,6 +290,9 @@
 		EDC11B0426D3A39E0020AB09 /* WorkspaceSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1E26D3A39D0020AB09 /* WorkspaceSearchViewController.swift */; };
 		EDC11B0526D3A39E0020AB09 /* WorkspaceSearchViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1F26D3A39D0020AB09 /* WorkspaceSearchViewReactor.swift */; };
 		EDC11B0726D3AE4E0020AB09 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */; };
+		EDC6CAEF278BD05E004C5881 /* NotificationManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAEC278BD05E004C5881 /* NotificationManagerType.swift */; };
+		EDC6CAF0278BD05E004C5881 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAED278BD05E004C5881 /* NotificationManager.swift */; };
+		EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -585,6 +588,9 @@
 		EDC11A1E26D3A39D0020AB09 /* WorkspaceSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchViewController.swift; sourceTree = "<group>"; };
 		EDC11A1F26D3A39D0020AB09 /* WorkspaceSearchViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchViewReactor.swift; sourceTree = "<group>"; };
 		EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		EDC6CAEC278BD05E004C5881 /* NotificationManagerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManagerType.swift; sourceTree = "<group>"; };
+		EDC6CAED278BD05E004C5881 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationManager+Rx.swift"; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -992,6 +998,7 @@
 				ED6B467226B7E8B500C2FA6D /* UserManager */,
 				ED6B467526B7E8B500C2FA6D /* ServiceManager */,
 				ED6B467826B7E8B500C2FA6D /* DBManager */,
+				EDC6CAEB278BD05E004C5881 /* NotificationManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1650,6 +1657,16 @@
 			path = WorkspaceSearch;
 			sourceTree = "<group>";
 		};
+		EDC6CAEB278BD05E004C5881 /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				EDC6CAEC278BD05E004C5881 /* NotificationManagerType.swift */,
+				EDC6CAED278BD05E004C5881 /* NotificationManager.swift */,
+				EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */,
+			);
+			path = NotificationManager;
+			sourceTree = "<group>";
+		};
 		EDF0C38D26B405F60061552F = {
 			isa = PBXGroup;
 			children = (
@@ -1904,6 +1921,7 @@
 				ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */,
 				EDC11A7026D3A39D0020AB09 /* ServiceUnitSection.swift in Sources */,
 				ED06C739277DBD2D00F9D0A5 /* SimpleReactor.swift in Sources */,
+				EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */,
 				EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */,
 				ED52732626C255FC0077CD9D /* SignInView.swift in Sources */,
 				ED06C758277DBD2D00F9D0A5 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
@@ -1914,6 +1932,7 @@
 				ED6B468726B7E8B500C2FA6D /* NotificationInfo.swift in Sources */,
 				EDC11AFF26D3A39E0020AB09 /* WorkspaceShortcutView.swift in Sources */,
 				EDC11A8226D3A39D0020AB09 /* WorkspaceStopDetailViewController.swift in Sources */,
+				EDC6CAEF278BD05E004C5881 /* NotificationManagerType.swift in Sources */,
 				ED06C744277DBD2D00F9D0A5 /* ServiceCreationSelectStopViewController.swift in Sources */,
 				EDC118E126D3A24A0020AB09 /* FindAccountEmailViewController.swift in Sources */,
 				ED6B469226B7E8B500C2FA6D /* BaseObject.swift in Sources */,
@@ -1952,6 +1971,7 @@
 				ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */,
 				EDC11A7A26D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				EDC11A3C26D3A39D0020AB09 /* SRPDetailInfoCellView.swift in Sources */,
+				EDC6CAF0278BD05E004C5881 /* NotificationManager.swift in Sources */,
 				EDC11B0126D3A39E0020AB09 /* WorkspaceSearchResultViewController.swift in Sources */,
 				ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */,
 				EDC11A9226D3A39D0020AB09 /* SettingProfileCellView.swift in Sources */,

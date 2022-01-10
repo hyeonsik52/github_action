@@ -33,7 +33,7 @@ class ServiceCreationSummaryViewReactor: Reactor {
     
     enum Action {
         case updateStop(Stop)
-        case updateReceiver(User)
+        case updateReceivers([User])
         case updateDetail(ServiceUnit)
         case confirm
     }
@@ -77,16 +77,15 @@ class ServiceCreationSummaryViewReactor: Reactor {
         switch action {
         case .updateStop(let stop):
             return .just(.updateServiceUnit({ $0.stop = stop }))
-        case .updateReceiver(let receiver):
-            return .just(.updateServiceUnit({ $0.receiver = receiver }))
+        case .updateReceivers(let receivers):
+            return .just(.updateServiceUnit({ $0.receivers = receivers }))
         case .updateDetail(let serviceUnit):
             return .just(.updateServiceUnit({ $0 = serviceUnit }))
         case .confirm:
             return .concat([
                 .just(.updateConfirm(nil)),
-                .just(.updateServiceUnit({ [weak self] _ in
-//                    self?.provider.notificationManager
-//                        .post(AddOrUpdateServiceUnit($0))
+                .just(.updateServiceUnit({ [weak self] in
+                    self?.provider.notificationManager.post(AddOrUpdateServiceUnit($0))
                 })),
                 .just(.updateConfirm(true))
             ])

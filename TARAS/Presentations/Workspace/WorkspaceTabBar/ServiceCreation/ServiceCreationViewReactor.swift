@@ -68,17 +68,17 @@ class ServiceCreationViewReactor: Reactor {
     
     private func observe() {
         
-//        self.provider.notificationManager
-//            .observe(to: AddOrUpdateServiceUnit.self)
-//            .map(Action.addOrUpdate)
-//            .bind(to: self.action)
-//            .disposed(by: self.disposeBag)
-//
-//        self.provider.notificationManager
-//            .observe(to: RemoveServiceUnit.self)
-//            .map(Action.remove)
-//            .bind(to: self.action)
-//            .disposed(by: self.disposeBag)
+        self.provider.notificationManager
+            .observe(to: AddOrUpdateServiceUnit.self)
+            .map(Action.addOrUpdate)
+            .bind(to: self.action)
+            .disposed(by: self.disposeBag)
+
+        self.provider.notificationManager
+            .observe(to: RemoveServiceUnit.self)
+            .map(Action.remove)
+            .bind(to: self.action)
+            .disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -125,11 +125,11 @@ class ServiceCreationViewReactor: Reactor {
                                             "name": $0.stop.name,
                                             "message": $0.detail ?? "",
                                             "is_waited": true,
-                                            "receivers": [
-                                                [
-                                                    "ID": $0.receiver.id
+                                            "receivers": $0.receivers.map {
+                                                return [
+                                                    "ID": $0.id
                                                 ]
-                                            ]
+                                            }
                                         ]
                                     }
                                 ]
@@ -196,8 +196,8 @@ class ServiceCreationViewReactor: Reactor {
 
 extension ServiceCreationViewReactor {
     
-    func reactorForCell(_ serviceUnit: ServiceUnitCreationModel) -> ServiceCreationCellReactor {
-        return .init(provider: self.provider, model: serviceUnit)
+    func reactorForCell(_ serviceUnit: ServiceUnitCreationModel, destinationType: ServiceCreationCellReactor.DestinationType) -> ServiceCreationCellReactor {
+        return .init(provider: self.provider, model: serviceUnit, destinationType: destinationType)
     }
     
     func reactorForSelectStop(

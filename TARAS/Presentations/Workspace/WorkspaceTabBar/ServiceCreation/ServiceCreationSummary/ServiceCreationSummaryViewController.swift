@@ -294,7 +294,7 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .map { reactor.reactorForSelectReceiver(mode: .update) }
             .flatMapLatest { [weak self] reactor in
                 return ServiceCreationSelectReceiverViewController.select(on: self, reactor: reactor)
-            }.map(Reactor.Action.updateReceiver)
+            }.map(Reactor.Action.updateReceivers)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -313,7 +313,7 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .bind(to: self.stopLabel.rx.text)
             .disposed(by: self.disposeBag)
         
-        serviceUnit.map(\.receiver?.name)
+        serviceUnit.map { $0.receivers.map(\.name).joined(separator: ", ") }
             .bind(to: self.receiverLabel.rx.text)
             .disposed(by: self.disposeBag)
         

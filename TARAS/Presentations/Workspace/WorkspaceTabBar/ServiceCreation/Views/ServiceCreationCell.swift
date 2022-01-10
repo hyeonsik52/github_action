@@ -16,40 +16,47 @@ class ServiceCreationCell: UICollectionViewCell, View {
     private let titleLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .darkGray303030
+        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
-    let removeImageView = UIImageView(image: .init(named: "iconBkEx16"))
-    let removeButton = UIButton()
-    
-    private let detailLabel = UILabel().then {
+    private let subTitleLabel = UILabel().then {
         $0.font = .regular[14]
         $0.textColor = .gray666666
-        $0.lineBreakMode = .byTruncatingTail
     }
     
+    private let destinationLabel = UILabel().then {
+        $0.font = .medium[18]
+        $0.textColor = .purple4A3C9F
+        $0.textAlignment = .center
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 24
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.lightGrayDDDDDD.cgColor
+        $0.backgroundColor = .grayF6F6F6
+    }
+    
+    private let removeImageView = UIImageView().then {
+        $0.image = .init(named: "navi-close")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = .grayA2A2A2
+    }
+    let removeButton = UIButton()
+    
+    private let detailContainer = UIView()
+    private let detailLabel = UILabel().then {
+        $0.font = .regular[14]
+        $0.textColor = .darkGray303030
+        $0.textAlignment = .right
+        $0.numberOfLines = 0
+    }
+    
+    private let receiversContainer = UIView()
     private let receiversLabel = UILabel().then {
-        $0.font = .regular[12]
-        $0.textColor = .grayA0A0A0
+        $0.font = .regular[14]
+        $0.textColor = .darkGray303030
         $0.textAlignment = .right
     }
     
     var disposeBag = DisposeBag()
-    
-    private let detailIcon = NSTextAttachment().then {
-        let icon = UIImage(named: "iconGyMessage16")!
-        var iconBounds = CGRect(origin: .zero, size: icon.size)
-        iconBounds.origin.y = (UIFont.regular[14].capHeight - icon.size.height).rounded() / 2
-        $0.bounds = iconBounds
-        $0.image = icon
-    }
-    
-    private let receiversIcon = NSTextAttachment().then {
-        let icon = UIImage(named: "iconGySend16")!
-        var iconBounds = CGRect(origin: .zero, size: icon.size)
-        iconBounds.origin.y = (UIFont.regular[12].capHeight - icon.size.height).rounded() / 2
-        $0.bounds = iconBounds
-        $0.image = icon
-    }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -66,7 +73,7 @@ class ServiceCreationCell: UICollectionViewCell, View {
             $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
             
             $0.clipsToBounds = true
-            $0.layer.cornerRadius = 12
+            $0.layer.cornerRadius = 4
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor.lightGrayDDDDDD.cgColor
             
@@ -95,11 +102,17 @@ class ServiceCreationCell: UICollectionViewCell, View {
                 $0.top.leading.bottom.equalToSuperview()
             }
             
+            topContainer.addSubview(self.subTitleLabel)
+            self.subTitleLabel.snp.makeConstraints {
+                $0.top.bottom.equalToSuperview()
+                $0.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
+            }
+            
             topContainer.addSubview(self.removeImageView)
             self.removeImageView.snp.makeConstraints {
                 $0.top.trailing.equalToSuperview()
-                $0.size.equalTo(16)
-                $0.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
+                $0.size.equalTo(12)
+                $0.leading.equalTo(self.subTitleLabel.snp.trailing).offset(8)
             }
             
             $0.addSubview(self.removeButton)
@@ -108,34 +121,68 @@ class ServiceCreationCell: UICollectionViewCell, View {
                 $0.size.equalTo(32)
             }
             
-            stackView.addArrangedSubview(self.detailLabel)
-            stackView.addArrangedSubview(self.receiversLabel)
+            stackView.addArrangedSubview(self.destinationLabel)
+            self.destinationLabel.snp.makeConstraints {
+                $0.height.equalTo(48)
+            }
+            
+            
+            stackView.addArrangedSubview(self.receiversContainer)
+            
+            let receiversTitle = UILabel().then {
+                $0.font = .regular[14]
+                $0.textColor = .gray888888
+                $0.text = "수신자"
+                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+            }
+            self.receiversContainer.addSubview(receiversTitle)
+            receiversTitle.snp.makeConstraints {
+                $0.top.leading.bottom.equalToSuperview()
+            }
+            
+            self.receiversContainer.addSubview(self.receiversLabel)
+            self.receiversLabel.snp.makeConstraints {
+                $0.top.bottom.trailing.equalToSuperview()
+                $0.leading.equalTo(receiversTitle.snp.trailing).offset(8)
+            }
+            
+            
+            stackView.addArrangedSubview(self.detailContainer)
+            
+            let detailTitle = UILabel().then {
+                $0.font = .regular[14]
+                $0.textColor = .gray888888
+                $0.text = "요청사항"
+                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+            }
+            self.detailContainer.addSubview(detailTitle)
+            detailTitle.snp.makeConstraints {
+                $0.top.leading.equalToSuperview()
+                $0.bottom.lessThanOrEqualToSuperview()
+            }
+            
+            self.detailContainer.addSubview(self.detailLabel)
+            self.detailLabel.snp.makeConstraints {
+                $0.top.bottom.trailing.equalToSuperview()
+                $0.leading.equalTo(detailTitle.snp.trailing).offset(8)
+            }
         }
     }
     
     func bind(reactor: ServiceCreationCellReactor) {
         let serviceUnit = reactor.initialState
         
-        self.titleLabel.text = serviceUnit.stop.name
+        self.titleLabel.text = reactor.destinationType.description
+        self.subTitleLabel.text = (serviceUnit.isWait ? "작업 대기 ON": nil)
         
-        self.detailLabel.isHidden = (serviceUnit.detail == nil)
-        if let detail = serviceUnit.detail {
-            let componeted = detail.components(separatedBy: .newlines)
-            let isLineMultiple = (componeted.count > 1)
-            let attributedText = NSMutableAttributedString(attachment: self.detailIcon)
-            if isLineMultiple {
-                let truncatedFirstLine = "\(componeted[0])..."
-                attributedText.append(.init(string: " \(truncatedFirstLine)"))
-            } else {
-                attributedText.append(.init(string: " \(detail)"))
-            }
-            self.detailLabel.attributedText = attributedText
-        }
+        self.destinationLabel.text = serviceUnit.stop.name
         
-        let attributedText = NSMutableAttributedString(attachment: self.receiversIcon)
-        let receiverName = serviceUnit.receiver?.name ?? "알 수 없는 사용자"
-        attributedText.append(.init(string: " \(receiverName)"))
-        self.receiversLabel.attributedText = attributedText
+        let receiverNames = serviceUnit.receivers.map(\.name).joined(separator: ", ")
+        self.receiversContainer.isHidden = receiverNames.isEmpty
+        self.receiversLabel.text = receiverNames
+        
+        self.detailContainer.isHidden = (serviceUnit.detail == nil)
+        self.detailLabel.text = serviceUnit.detail
         
         self.disposeBag = DisposeBag()
         self.removeButton.rx.tap

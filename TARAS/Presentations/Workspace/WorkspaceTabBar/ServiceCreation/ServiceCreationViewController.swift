@@ -20,8 +20,8 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         let width = UIScreen.main.bounds.width - 16 * 2
-        $0.minimumLineSpacing = 8
-        $0.sectionInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        $0.minimumLineSpacing = 12
+        $0.sectionInset = UIEdgeInsets(top: 8, left: 16, bottom: 12, right: 16)
         $0.estimatedItemSize = .init(width: width, height: 92)
         $0.itemSize = UICollectionViewFlowLayout.automaticSize
         $0.headerReferenceSize = .init(width: width, height: 48)
@@ -34,7 +34,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         collectionViewLayout: self.flowLayout
     ).then {
         $0.alwaysBounceVertical = true
-        $0.contentInset.bottom = 88
+        $0.contentInset.bottom = 96
         $0.backgroundColor = .white
         
         $0.register(ServiceCreationCell.self, forCellWithReuseIdentifier: "cell")
@@ -198,10 +198,26 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         //State
         let serviceUnits = reactor.state.map(\.serviceUnits).share()
         
-        serviceUnits.map { $0.map { reactor.reactorForCell($0) } }
-            .map { [.init(header: "\($0.count)개의 정차지", items: $0)] }
-            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)
+        serviceUnits.map { serviceUnits in
+            var cellReactors = [ServiceCreationCellReactor]()
+            for serviceUnit in serviceUnits {
+                let destinationType: ServiceCreationCellReactor.DestinationType = {
+                    if serviceUnits.last == serviceUnit {
+                        return .destination
+                    } else if serviceUnits.first == serviceUnit {
+                        return .startingPoint
+                    } else if let index = serviceUnits.firstIndex(of: serviceUnit) {
+                        return .wayPoint(index)
+                    }
+                    return .destination
+                }()
+                let cellReactor = reactor.reactorForCell(serviceUnit, destinationType: destinationType)
+                cellReactors.append(cellReactor)
+            }
+            return cellReactors
+        }.map { [.init(header: "\($0.count)개의 정차지", items: $0)] }
+        .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+        .disposed(by: self.disposeBag)
         
         serviceUnits.queueing(2)
             .map { ($0[0].count, $0[1].count) }
