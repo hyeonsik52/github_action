@@ -43,7 +43,7 @@ class RxCollectionViewDragAndDropSectionedReloadDataSource<Section: SectionModel
     ) -> UIDragPreviewParameters? {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return nil }
         return .init().then {
-            $0.visiblePath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 12)
+            $0.visiblePath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 4)
             $0.backgroundColor = .white
         }
     }
@@ -66,7 +66,7 @@ class RxCollectionViewDragAndDropSectionedReloadDataSource<Section: SectionModel
     ) -> UIDragPreviewParameters? {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return nil }
         return .init().then {
-            $0.visiblePath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 12)
+            $0.visiblePath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 4)
             $0.backgroundColor = .white
         }
     }

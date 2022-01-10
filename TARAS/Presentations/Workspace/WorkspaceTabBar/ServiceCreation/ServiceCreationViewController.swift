@@ -20,8 +20,8 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         let width = UIScreen.main.bounds.width - 16 * 2
-        $0.minimumLineSpacing = 8
-        $0.sectionInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        $0.minimumLineSpacing = 12
+        $0.sectionInset = UIEdgeInsets(top: 8, left: 16, bottom: 12, right: 16)
         $0.estimatedItemSize = .init(width: width, height: 92)
         $0.itemSize = UICollectionViewFlowLayout.automaticSize
         $0.headerReferenceSize = .init(width: width, height: 48)
@@ -34,7 +34,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         collectionViewLayout: self.flowLayout
     ).then {
         $0.alwaysBounceVertical = true
-        $0.contentInset.bottom = 88
+        $0.contentInset.bottom = 96
         $0.backgroundColor = .white
         
         $0.register(ServiceCreationCell.self, forCellWithReuseIdentifier: "cell")
