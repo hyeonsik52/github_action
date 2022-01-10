@@ -85,8 +85,8 @@ class ServiceCreationSummaryViewReactor: Reactor {
             return .concat([
                 .just(.updateConfirm(nil)),
                 .just(.updateServiceUnit({ [weak self] _ in
-//                    self?.provider.notificationManager
-//                        .post(AddOrUpdateServiceUnit($0))
+                    self?.provider.notificationManager
+                        .post(AddOrUpdateServiceUnit($0))
                 })),
                 .just(.updateConfirm(true))
             ])

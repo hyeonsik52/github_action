@@ -25,11 +25,11 @@ class ServiceCreationCellReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .remove:
-//            self.provider.notificationManager
-//                .post(RemoveServiceUnit(self.initialState))
+            self.provider.notificationManager
+                .post(RemoveServiceUnit(self.initialState))
             return .empty()
         }
     }
 }
 
-//final class RemoveServiceUnit: Notification<ServiceUnitCreationModel> {}
+final class RemoveServiceUnit: Notification<ServiceUnitCreationModel> {}

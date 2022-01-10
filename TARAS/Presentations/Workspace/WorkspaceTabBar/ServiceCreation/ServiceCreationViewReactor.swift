@@ -68,17 +68,17 @@ class ServiceCreationViewReactor: Reactor {
     
     private func observe() {
         
-//        self.provider.notificationManager
-//            .observe(to: AddOrUpdateServiceUnit.self)
-//            .map(Action.addOrUpdate)
-//            .bind(to: self.action)
-//            .disposed(by: self.disposeBag)
-//
-//        self.provider.notificationManager
-//            .observe(to: RemoveServiceUnit.self)
-//            .map(Action.remove)
-//            .bind(to: self.action)
-//            .disposed(by: self.disposeBag)
+        self.provider.notificationManager
+            .observe(to: AddOrUpdateServiceUnit.self)
+            .map(Action.addOrUpdate)
+            .bind(to: self.action)
+            .disposed(by: self.disposeBag)
+
+        self.provider.notificationManager
+            .observe(to: RemoveServiceUnit.self)
+            .map(Action.remove)
+            .bind(to: self.action)
+            .disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
