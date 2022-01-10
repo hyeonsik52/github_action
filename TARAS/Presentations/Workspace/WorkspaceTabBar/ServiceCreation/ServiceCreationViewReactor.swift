@@ -196,8 +196,8 @@ class ServiceCreationViewReactor: Reactor {
 
 extension ServiceCreationViewReactor {
     
-    func reactorForCell(_ serviceUnit: ServiceUnitCreationModel) -> ServiceCreationCellReactor {
-        return .init(provider: self.provider, model: serviceUnit)
+    func reactorForCell(_ serviceUnit: ServiceUnitCreationModel, destinationType: ServiceCreationCellReactor.DestinationType) -> ServiceCreationCellReactor {
+        return .init(provider: self.provider, model: serviceUnit, destinationType: destinationType)
     }
     
     func reactorForSelectStop(

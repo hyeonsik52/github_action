@@ -172,26 +172,12 @@ class ServiceCreationCell: UICollectionViewCell, View {
     func bind(reactor: ServiceCreationCellReactor) {
         let serviceUnit = reactor.initialState
         
-        self.titleLabel.text = serviceUnit.stop.name
+        self.titleLabel.text = reactor.destinationType.description
         
-        self.detailLabel.isHidden = (serviceUnit.detail == nil)
-        if let detail = serviceUnit.detail {
-            let componeted = detail.components(separatedBy: .newlines)
-            let isLineMultiple = (componeted.count > 1)
-            let attributedText = NSMutableAttributedString(attachment: self.detailIcon)
-            if isLineMultiple {
-                let truncatedFirstLine = "\(componeted[0])..."
-                attributedText.append(.init(string: " \(truncatedFirstLine)"))
-            } else {
-                attributedText.append(.init(string: " \(detail)"))
-            }
-            self.detailLabel.attributedText = attributedText
-        }
+        self.destinationLabel.text = serviceUnit.stop.name
         
-        let attributedText = NSMutableAttributedString(attachment: self.receiversIcon)
-        let receiverName = serviceUnit.receiver?.name ?? "알 수 없는 사용자"
-        attributedText.append(.init(string: " \(receiverName)"))
-        self.receiversLabel.attributedText = attributedText
+        self.detailContainer.isHidden = (serviceUnit.detail == nil)
+        self.detailLabel.text = serviceUnit.detail
         
         self.disposeBag = DisposeBag()
         self.removeButton.rx.tap

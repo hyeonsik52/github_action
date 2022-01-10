@@ -198,10 +198,26 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         //State
         let serviceUnits = reactor.state.map(\.serviceUnits).share()
         
-        serviceUnits.map { $0.map { reactor.reactorForCell($0) } }
-            .map { [.init(header: "\($0.count)개의 정차지", items: $0)] }
-            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)
+        serviceUnits.map { serviceUnits in
+            var cellReactors = [ServiceCreationCellReactor]()
+            for serviceUnit in serviceUnits {
+                let destinationType: ServiceCreationCellReactor.DestinationType = {
+                    if serviceUnits.last == serviceUnit {
+                        return .destination
+                    } else if serviceUnits.first == serviceUnit {
+                        return .startingPoint
+                    } else if let index = serviceUnits.firstIndex(of: serviceUnit) {
+                        return .wayPoint(index)
+                    }
+                    return .destination
+                }()
+                let cellReactor = reactor.reactorForCell(serviceUnit, destinationType: destinationType)
+                cellReactors.append(cellReactor)
+            }
+            return cellReactors
+        }.map { [.init(header: "\($0.count)개의 정차지", items: $0)] }
+        .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+        .disposed(by: self.disposeBag)
         
         serviceUnits.queueing(2)
             .map { ($0[0].count, $0[1].count) }
