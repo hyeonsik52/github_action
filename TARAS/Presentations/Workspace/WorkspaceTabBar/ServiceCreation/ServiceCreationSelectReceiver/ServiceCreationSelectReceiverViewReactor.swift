@@ -64,28 +64,9 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
         
         switch action {
         case .refresh:
-            let myUserID = self.provider.userManager.userTB.ID
             return .concat([
                 .just(.updateLoading(true)),
-                
-                self.provider.networkManager.fetch(UserListQuery(workspaceId: self.workspaceId))
-                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.members }
-                    .map { $0.edges.compactMap { $0?.node?.fragments.memberFragment } }
-                    .map {
-                        $0.compactMap { payload -> User? in
-                            guard let name = payload.displayName else { return nil }
-                            let isMe = (payload.id == myUserID)
-                            let displayName = (isMe ? "\(name)(나)": name)
-                            var user = User(id: payload.id, name: displayName)
-                            user.isSelected = self.serviceUnit.receivers.contains(user)
-                            return user
-                        }.sorted { lhs, rhs in
-                            let islhsMe = (lhs.id == myUserID ? 0: 1)
-                            let isrhsMe = (rhs.id == myUserID ? 0: 1)
-                            return islhsMe < isrhsMe
-                        }
-                    }.map { .reloadUsers($0) },
-                
+                self.refresh(),
                 .just(.updateLoading(false))
             ])
         case .select(let model):
@@ -111,6 +92,37 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
             state.users = update(state.users)
         }
         return state
+    }
+}
+
+extension ServiceCreationSelectReceiverViewReactor {
+    
+    func refresh() -> Observable<Mutation> {
+        
+        if self.templateProcess.peek(with: "receivers.ID")?.toArgument?.from == .user {
+            
+            let myUserID = self.provider.userManager.userTB.ID
+            
+            return self.provider.networkManager.fetch(UserListQuery(workspaceId: self.workspaceId))
+                .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.members }
+                .map { $0.edges.compactMap { $0?.node?.fragments.memberFragment } }
+                .map {
+                    $0.compactMap { payload -> User? in
+                        guard let name = payload.displayName else { return nil }
+                        let isMe = (payload.id == myUserID)
+                        let displayName = (isMe ? "\(name)(나)": name)
+                        var user = User(id: payload.id, name: displayName)
+                        user.isSelected = self.serviceUnit.receivers.contains(user)
+                        return user
+                    }.sorted { lhs, rhs in
+                        let islhsMe = (lhs.id == myUserID ? 0: 1)
+                        let isrhsMe = (rhs.id == myUserID ? 0: 1)
+                        return islhsMe < isrhsMe
+                    }
+                }.map { .reloadUsers($0) }
+        }
+        
+        return .just(.reloadUsers([]))
     }
 }
 
