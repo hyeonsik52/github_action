@@ -125,11 +125,11 @@ class ServiceCreationViewReactor: Reactor {
                                             "name": $0.stop.name,
                                             "message": $0.detail ?? "",
                                             "is_waited": true,
-                                            "receivers": [
-                                                [
-                                                    "ID": $0.receiver.id
+                                            "receivers": $0.receivers.map {
+                                                return [
+                                                    "ID": $0.id
                                                 ]
-                                            ]
+                                            }
                                         ]
                                     }
                                 ]

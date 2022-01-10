@@ -173,8 +173,13 @@ class ServiceCreationCell: UICollectionViewCell, View {
         let serviceUnit = reactor.initialState
         
         self.titleLabel.text = reactor.destinationType.description
+        self.subTitleLabel.text = (serviceUnit.isWait ? "작업 대기 ON": nil)
         
         self.destinationLabel.text = serviceUnit.stop.name
+        
+        let receiverNames = serviceUnit.receivers.map(\.name).joined(separator: ", ")
+        self.receiversContainer.isHidden = receiverNames.isEmpty
+        self.receiversLabel.text = receiverNames
         
         self.detailContainer.isHidden = (serviceUnit.detail == nil)
         self.detailLabel.text = serviceUnit.detail

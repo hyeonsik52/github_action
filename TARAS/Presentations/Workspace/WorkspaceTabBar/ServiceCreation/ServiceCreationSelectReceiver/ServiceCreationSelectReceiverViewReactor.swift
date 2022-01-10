@@ -73,7 +73,7 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
                             let isMe = (payload.id == myUserID)
                             let displayName = (isMe ? "\(name)(나)": name)
                             var user = User(id: payload.id, name: displayName)
-                            user.isSelected = (user == self.serviceUnit.receiver)
+                            user.isSelected = self.serviceUnit.receivers.contains(user)
                             return user
                         }.sorted { lhs, rhs in
                             let islhsMe = (lhs.id == myUserID ? 0: 1)
@@ -88,12 +88,9 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
             return .just(.updateUser({ users in
                 var users = users
                 if let newSelectIndex = users.firstIndex(where: { $0 == model }) {
-                    if let prevSelectIndex = users.firstIndex(where: { $0 == self.serviceUnit.receiver }) {
-                        users[prevSelectIndex].isSelected = false
-                    }
-                    users[newSelectIndex].isSelected = true
+                    users[newSelectIndex].isSelected = !users[newSelectIndex].isSelected
                 }
-                self.serviceUnit.receiver = model
+                self.serviceUnit.receivers = users.filter(\.isSelected)
                 return users
             }))
         }
