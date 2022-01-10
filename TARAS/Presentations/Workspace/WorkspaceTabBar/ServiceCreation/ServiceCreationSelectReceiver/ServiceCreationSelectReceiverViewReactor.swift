@@ -42,18 +42,22 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
     private var serviceUnit: ServiceUnit
     let mode: ServiceCreationEditMode
     
+    let templateProcess: STProcess
+    
     private let disposeBag = DisposeBag()
     
     init(
         provider: ManagerProviderType,
         workspaceId: String,
         serviceUnit: ServiceUnit,
-        mode: ServiceCreationEditMode
+        mode: ServiceCreationEditMode,
+        process: STProcess
     ) {
         self.provider = provider
         self.workspaceId = workspaceId
         self.serviceUnit = serviceUnit
         self.mode = mode
+        self.templateProcess = process
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -117,7 +121,8 @@ extension ServiceCreationSelectReceiverViewReactor {
             provider: self.provider,
             workspaceId: self.workspaceId,
             serviceUnit: self.serviceUnit,
-            mode: mode
+            mode: mode,
+            process: self.templateProcess
         )
     }
 }

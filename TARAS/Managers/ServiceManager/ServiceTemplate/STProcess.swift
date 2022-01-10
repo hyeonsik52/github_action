@@ -67,20 +67,20 @@ class STProcess {
     
     ///현재 셀렉터에 키를 추가하여 해당하는 값을 반환한다. 값이 없으면 키가 추가되지 않는다.
     @discardableResult
-    func appendKey(_ key: String, _ func: String = #function) -> STNode? {
-        guard let value = self.peek(with: key) else {
+    func appendKey(by selector: String, _ func: String = #function) -> STNode? {
+        guard let value = self.peek(with: selector) else {
             Log.debug(`func`, "키가 유효하지 않습니다.")
             return nil
         }
-        self.keys.append(key)
+        self.keys.append(contentsOf: selector.components(separatedBy: "."))
         return value
     }
     
     ///현재 셀렉터에 키를 더한 셀랙터에 해당하는 값을 반환한다.
-    func peek(with key: String? = nil, _ func: String = #function) -> STNode? {
+    func peek(with selector: String? = nil, _ func: String = #function) -> STNode? {
         var keys = self.keys
-        if let key = key {
-            keys.append(key)
+        if let selector = selector {
+            keys.append(contentsOf: selector.components(separatedBy: "."))
         }
         let value = self.value(keys: keys)
         if value == nil {

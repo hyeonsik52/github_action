@@ -104,6 +104,6 @@ class WorkspaceHomeReactor: Reactor {
 extension WorkspaceHomeReactor {
     
     func reactorForServiceCreation(with template: ServiceTemplate) -> ServiceCreationViewReactor {
-        return .init(provider: self.provider, workspaceId: self.workspaceId, template: template)
+        return .init(provider: self.provider, workspaceId: self.workspaceId, process: .init(template: template))
     }
 }

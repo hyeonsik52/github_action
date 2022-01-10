@@ -52,13 +52,16 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     let mode: ServiceCreationEditMode
     let entry: Entry
     
+    let templateProcess: STProcess
+    
     private let disposeBag = DisposeBag()
     
     init(
         provider: ManagerProviderType,
         workspaceId: String,
         mode: ServiceCreationEditMode,
-        entry: Entry
+        entry: Entry,
+        process: STProcess
     ) {
         self.provider = provider
         self.workspaceId = workspaceId
@@ -69,6 +72,7 @@ class ServiceCreationSelectStopViewReactor: Reactor {
         }
         self.mode = mode
         self.entry = entry
+        self.templateProcess = process
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -131,13 +135,16 @@ extension ServiceCreationSelectStopViewReactor {
 extension ServiceCreationSelectStopViewReactor {
     
     func reactorForSelectReceivers(
-        mode: ServiceCreationEditMode
+        mode: ServiceCreationEditMode,
+        stop: Stop
     ) -> ServiceCreationSelectReceiverViewReactor {
+        self.serviceUnit.stop = stop
         return .init(
             provider: self.provider,
             workspaceId: self.workspaceId,
             serviceUnit: self.serviceUnit,
-            mode: mode
+            mode: mode,
+            process: self.templateProcess
         )
     }
 }

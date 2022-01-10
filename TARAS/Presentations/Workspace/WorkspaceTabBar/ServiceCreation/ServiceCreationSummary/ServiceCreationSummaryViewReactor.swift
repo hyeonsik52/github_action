@@ -54,17 +54,21 @@ class ServiceCreationSummaryViewReactor: Reactor {
     private let workspaceId: String
     let mode: ServiceCreationEditMode
     
+    let templateProcess: STProcess
+    
     private let disposeBag = DisposeBag()
     
     init(
         provider: ManagerProviderType,
         workspaceId: String,
         serviceUnit: ServiceUnit,
-        mode: ServiceCreationEditMode
+        mode: ServiceCreationEditMode,
+        process: STProcess
     ) {
         self.provider = provider
         self.workspaceId = workspaceId
         self.mode = mode
+        self.templateProcess = process
         
         self.initialState = .init(
             serviceUnit: serviceUnit,
@@ -111,7 +115,8 @@ extension ServiceCreationSummaryViewReactor {
             provider: self.provider,
             workspaceId: self.workspaceId,
             mode: mode,
-            entry: .general(self.currentState.serviceUnit)
+            entry: .general(self.currentState.serviceUnit),
+            process: self.templateProcess
         )
     }
     
@@ -120,7 +125,8 @@ extension ServiceCreationSummaryViewReactor {
             provider: self.provider,
             workspaceId: self.workspaceId,
             serviceUnit: self.currentState.serviceUnit,
-            mode: mode
+            mode: mode,
+            process: self.templateProcess
         )
     }
     
@@ -129,7 +135,8 @@ extension ServiceCreationSummaryViewReactor {
             provider: self.provider,
             workspaceId: self.workspaceId,
             serviceUnit: self.currentState.serviceUnit,
-            mode: mode
+            mode: mode,
+            process: self.templateProcess
         )
     }
 }
