@@ -12,9 +12,11 @@ class ServiceUnitTargetCellReactor: Reactor {
     
     let initialState: ServiceUnitTargetModel
     let selectionType: ServiceUnitTargetSelectionType
+    let isEnabled: Bool
     
-    init(model: ServiceUnitTargetModel, selectionType: ServiceUnitTargetSelectionType) {
+    init(model: ServiceUnitTargetModel, selectionType: ServiceUnitTargetSelectionType, isEnabled: Bool = true) {
         self.selectionType = selectionType
         self.initialState = model
+        self.isEnabled = isEnabled
     }
 }

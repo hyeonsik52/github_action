@@ -66,6 +66,7 @@ class ServiceUnitTargetCell: UITableViewCell, View {
         let target = reactor.initialState
         
         self.titleLabel.text = target.name
+        self.titleLabel.alpha = (reactor.isEnabled ? 1.0: 0.3)
         
         switch type {
         case .radio:
