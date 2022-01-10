@@ -17,7 +17,6 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
     
     private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.alwaysBounceVertical = true
-        $0.contentInset.bottom = 88
         $0.separatorStyle = .none
         $0.rowHeight = 48
         
@@ -34,14 +33,11 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         }
     )
     
-    let confirmButton = SRPButton("선택 완료").then {
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 24
-    }
-    
     override var navigationPopWithBottomBarHidden: Bool {
         return true
     }
+    
+    var selected = PublishRelay<ServiceUnitTargetModel>()
     
     override func setupConstraints() {
         super.setupConstraints()
@@ -50,20 +46,12 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         self.tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        self.view.addSubview(self.confirmButton)
-        self.confirmButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-24)
-            $0.height.equalTo(48)
-        }
     }
     
     override func setupNaviBar() {
         super.setupNaviBar()
         
-        self.title = "서비스 요청"
+        self.title = "정차지 선택"
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -83,37 +71,42 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
             .disposed(by: self.disposeBag)
         
         self.tableView.rx.modelSelected(ServiceUnitTargetCellReactor.self)
-            .map(\.initialState)
-            .map(Reactor.Action.select)
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        if reactor.mode == .create {
-            self.confirmButton.rx.tap
-                .subscribe(onNext: { [weak self] in
-                    switch reactor.entry{
+            .subscribe(onNext: { [weak self] cellReactor in
+                guard cellReactor.isEnabled else { return }
+                let stop = cellReactor.initialState
+                if reactor.mode == .create {
+                    switch reactor.entry {
                     case .general:
-                        self?.navigationPush(
-                            type: ServiceCreationSelectReceiverViewController.self,
-                            reactor: reactor.reactorForSelectReceivers(mode: .create),
-                            animated: true,
-                            bottomBarHidden: true
-                        )
+                        if reactor.templateProcess.peek("receivers") != nil {
+                            self?.navigationPush(
+                                type: ServiceCreationSelectReceiverViewController.self,
+                                reactor: reactor.reactorForSelectReceivers(mode: .create, stop: stop),
+                                animated: true,
+                                bottomBarHidden: true
+                            )
+                        } else if reactor.templateProcess.peek(with: "message") != nil {
+                            //상세 설정
+                            print("detail")
+                        } else {
+                            //돌아감
+                            print("empty")
+                        }
                     }
-                }).disposed(by: self.disposeBag)
-        }
+                }
+                self?.selected.accept(stop)
+            }).disposed(by: self.disposeBag)
         
         //State
         reactor.state.map(\.stops)
-            .map { $0.map { .init(model: $0, selectionType: .check) } }
+            .map { $0.map { .init(model: $0, selectionType: .check, isEnabled: !$0.name.hasPrefix("LS")) } }
             .map { [.init(header: "", items: $0)] }
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
-        reactor.state.map(\.isLoading)
-            .distinctUntilChanged()
-            .bind(to: self.activityIndicatorView.rx.isAnimating)
-            .disposed(by: self.disposeBag)
+//        reactor.state.map(\.isLoading)
+//            .distinctUntilChanged()
+//            .bind(to: self.activityIndicatorView.rx.isAnimating)
+//            .disposed(by: self.disposeBag)
         
         reactor.state.map(\.isLoading)
             .distinctUntilChanged()
@@ -127,9 +120,5 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                     }
                 }
             }).disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.stops.filter(\.isSelected).count > 0 }
-        .bind(to: self.confirmButton.rx.isEnabled)
-        .disposed(by: self.disposeBag)
     }
 }

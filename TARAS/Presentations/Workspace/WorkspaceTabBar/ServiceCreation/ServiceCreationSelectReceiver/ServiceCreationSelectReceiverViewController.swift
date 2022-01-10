@@ -63,7 +63,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
     override func setupNaviBar() {
         super.setupNaviBar()
         
-        self.title = "서비스 요청"
+        self.title = "수신자 선택"
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -108,10 +108,10 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
             .bind(to: self.tableView.rx.items(dataSource: self.tableViewDataSource))
             .disposed(by: self.disposeBag)
         
-        reactor.state.map(\.isLoading)
-            .distinctUntilChanged()
-            .bind(to: self.activityIndicatorView.rx.isAnimating)
-            .disposed(by: self.disposeBag)
+//        reactor.state.map(\.isLoading)
+//            .distinctUntilChanged()
+//            .bind(to: self.activityIndicatorView.rx.isAnimating)
+//            .disposed(by: self.disposeBag)
         
         reactor.state.map(\.isLoading)
             .distinctUntilChanged()
@@ -126,8 +126,14 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
                 }
             }).disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.users.filter(\.isSelected).count > 0 }
+        let selectedUsers = reactor.state.map { $0.users.filter(\.isSelected) }.share()
+        
+        selectedUsers.map { !$0.isEmpty }
         .bind(to: self.confirmButton.rx.isEnabled)
+        .disposed(by: self.disposeBag)
+        
+        selectedUsers.map { "\($0.count)명 선택" }
+        .bind(to: self.confirmButton.rx.title())
         .disposed(by: self.disposeBag)
     }
 }

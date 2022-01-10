@@ -22,16 +22,12 @@ extension View where Self: ServiceCreationSelectStopViewController {
             let disappear = viewController.rx.viewDidDisappear
                 .map {_ in () }
                 .subscribe(onNext: observer.onCompleted)
-            let confirm = viewController.confirmButton.rx.tap
-                .subscribe(onNext: {
-                    if let selectedStop = reactor.currentState.stops.first(where: { $0.isSelected }) {
-                        observer.onNext(selectedStop)
-                        viewController.navigationPop(animated: true)
-                        observer.onCompleted()
-                    } else {
-                        viewController.navigationPop(animated: true)
-                        observer.onCompleted()
-                    }
+            
+            let confirm = viewController.selected
+                .subscribe(onNext: { stop in
+                    observer.onNext(stop)
+                    viewController.navigationPop(animated: true)
+                    observer.onCompleted()
                 })
             
             return Disposables.create(disappear, confirm)

@@ -53,15 +53,16 @@ class ServiceCreationViewReactor: Reactor {
     
     private let provider: ManagerProviderType
     private let workspaceId: String
-    private let template: ServiceTemplate
+    
+    let templateProcess: STProcess
     
     private let disposeBag = DisposeBag()
     
-    init(provider: ManagerProviderType, workspaceId: String, template: ServiceTemplate) {
+    init(provider: ManagerProviderType, workspaceId: String, process: STProcess) {
         
         self.provider = provider
         self.workspaceId = workspaceId
-        self.template = template
+        self.templateProcess = process
         
         self.observe()
     }
@@ -208,7 +209,8 @@ extension ServiceCreationViewReactor {
             provider: self.provider,
             workspaceId: self.workspaceId,
             mode: mode,
-            entry: .general(serviceUnit)
+            entry: .general(serviceUnit),
+            process: self.templateProcess
         )
     }
     
@@ -220,7 +222,8 @@ extension ServiceCreationViewReactor {
             provider: self.provider,
             workspaceId: self.workspaceId,
             serviceUnit: serviceUnit,
-            mode: mode
+            mode: mode,
+            process: self.templateProcess
         )
     }
 }

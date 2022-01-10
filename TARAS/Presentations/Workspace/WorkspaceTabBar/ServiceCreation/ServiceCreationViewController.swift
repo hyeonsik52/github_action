@@ -86,13 +86,15 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
                 
                 footer.button.rx.tap
                     .subscribe(onNext: { [weak self] in
-                        guard let reactor = self?.reactor?.reactorForSelectStop(mode: .create) else { return }
-                        self?.navigationPush(
-                            type: ServiceCreationSelectStopViewController.self,
-                            reactor: reactor,
-                            animated: true,
-                            bottomBarHidden: true
-                        )
+                        guard let reactor = self?.reactor else { return }
+                        if reactor.templateProcess.clearKey().appendKey(by: "destinations") != nil {
+                            self?.navigationPush(
+                                type: ServiceCreationSelectStopViewController.self,
+                                reactor: reactor.reactorForSelectStop(mode: .create),
+                                animated: true,
+                                bottomBarHidden: true
+                            )
+                        }
                     }).disposed(by: self.reusableDisposeBag)
                 
                 return footer

@@ -27,13 +27,13 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     
     enum Action {
         case refresh
-        case select(model: Stop)
+//        case select(model: Stop)
     }
     
     enum Mutation {
         case reloadStops([Stop])
         case updateLoading(Bool)
-        case updateStop(StopUpdateClosure)
+//        case updateStop(StopUpdateClosure)
     }
     
     struct State {
@@ -52,13 +52,16 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     let mode: ServiceCreationEditMode
     let entry: Entry
     
+    let templateProcess: STProcess
+    
     private let disposeBag = DisposeBag()
     
     init(
         provider: ManagerProviderType,
         workspaceId: String,
         mode: ServiceCreationEditMode,
-        entry: Entry
+        entry: Entry,
+        process: STProcess
     ) {
         self.provider = provider
         self.workspaceId = workspaceId
@@ -69,6 +72,7 @@ class ServiceCreationSelectStopViewReactor: Reactor {
         }
         self.mode = mode
         self.entry = entry
+        self.templateProcess = process
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -79,18 +83,18 @@ class ServiceCreationSelectStopViewReactor: Reactor {
                 self.refresh(),
                 .just(.updateLoading(false))
             ])
-        case .select(let model):
-            return .just(.updateStop({ stops in
-                var stops = stops
-                if let newSelectIndex = stops.firstIndex(where: { $0 == model }) {
-                    if let prevSelectIndex = stops.firstIndex(where: { $0 == self.serviceUnit.stop }) {
-                        stops[prevSelectIndex].isSelected = false
-                    }
-                    stops[newSelectIndex].isSelected = true
-                }
-                self.serviceUnit.stop = model
-                return stops
-            }))
+//        case .select(let model):
+//            return .just(.updateStop({ stops in
+//                var stops = stops
+//                if let newSelectIndex = stops.firstIndex(where: { $0 == model }) {
+//                    if let prevSelectIndex = stops.firstIndex(where: { $0 == self.serviceUnit.stop }) {
+//                        stops[prevSelectIndex].isSelected = false
+//                    }
+//                    stops[newSelectIndex].isSelected = true
+//                }
+//                self.serviceUnit.stop = model
+//                return stops
+//            }))
         }
     }
     
@@ -101,8 +105,8 @@ class ServiceCreationSelectStopViewReactor: Reactor {
             state.stops = stops
         case .updateLoading(let isLoading):
             state.isLoading = isLoading
-        case .updateStop(let update):
-            state.stops = update(state.stops)
+//        case .updateStop(let update):
+//            state.stops = update(state.stops)
         }
         return state
     }
@@ -111,33 +115,41 @@ class ServiceCreationSelectStopViewReactor: Reactor {
 extension ServiceCreationSelectStopViewReactor {
     
     func refresh() -> Observable<Mutation> {
+        
         if case .general = self.entry {
-            return self.provider.networkManager.fetch(StopListQuery(workspaceId: self.workspaceId))
-                .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.stationGroups }
-                .map { $0.edges.compactMap { $0?.node?.fragments.stopFragment } }
-                .map {
-                    $0.compactMap { payload -> Stop? in
-                        var stop = Stop(id: payload.id, name: payload.name)
-                        stop.isSelected = (stop == self.serviceUnit.stop)
-                        return stop
-                    }
-                }.map { .reloadStops($0) }
-        } else {
-            return .just(.reloadStops([]))
+            
+            if self.templateProcess.peek(with: "ID")?.toArgument?.from == .stationGroup {
+                
+                return self.provider.networkManager.fetch(StopListQuery(workspaceId: self.workspaceId))
+                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.stationGroups }
+                    .map { $0.edges.compactMap { $0?.node?.fragments.stopFragment } }
+                    .map {
+                        $0.compactMap { payload -> Stop? in
+                            var stop = Stop(id: payload.id, name: payload.name)
+                            stop.isSelected = (stop == self.serviceUnit.stop)
+                            return stop
+                        }
+                    }.map { .reloadStops($0) }
+            }
         }
+        
+        return .just(.reloadStops([]))
     }
 }
 
 extension ServiceCreationSelectStopViewReactor {
     
     func reactorForSelectReceivers(
-        mode: ServiceCreationEditMode
+        mode: ServiceCreationEditMode,
+        stop: Stop
     ) -> ServiceCreationSelectReceiverViewReactor {
+        self.serviceUnit.stop = stop
         return .init(
             provider: self.provider,
             workspaceId: self.workspaceId,
             serviceUnit: self.serviceUnit,
-            mode: mode
+            mode: mode,
+            process: self.templateProcess
         )
     }
 }
