@@ -77,7 +77,7 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                 if reactor.mode == .create {
                     switch reactor.entry {
                     case .general:
-                        if reactor.templateProcess.peek("receivers") != nil {
+                        if reactor.templateProcess.peek(with: "receivers") != nil {
                             self?.navigationPush(
                                 type: ServiceCreationSelectReceiverViewController.self,
                                 reactor: reactor.reactorForSelectReceivers(mode: .create, stop: stop),
@@ -85,11 +85,14 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                                 bottomBarHidden: true
                             )
                         } else if reactor.templateProcess.peek(with: "message") != nil {
-                            //상세 설정
-                            print("detail")
+                            self?.navigationPush(
+                                type: ServiceCreationSummaryViewController.self,
+                                reactor: reactor.reactorForSummary(mode: .create, stop: stop),
+                                animated: true,
+                                bottomBarHidden: true
+                            )
                         } else {
-                            //돌아감
-                            print("empty")
+                            reactor.action.onNext(.confirm(with: stop))
                         }
                     }
                 }
@@ -98,8 +101,15 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         
         //State
         reactor.state.map(\.stops)
-            .map { $0.map { .init(model: $0, selectionType: .check, isEnabled: !$0.name.hasPrefix("LS")) } }
-            .map { [.init(header: "", items: $0)] }
+            .map {
+                let isGeneralLoading = reactor.templateProcess.isServiceTypeLS
+                return $0.map { .init(
+                    model: $0,
+                    selectionType: .check,
+                    isEnabled: !$0.name.hasPrefix("LS") || isGeneralLoading,
+                    isIconVisibled: false
+                )}
+            }.map { [.init(header: "", items: $0)] }
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
@@ -119,6 +129,17 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                         }
                     }
                 }
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.isConfirmed)
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .subscribe(onNext: { [weak self] _ in
+                self?.navigationPop(
+                    to: ServiceCreationViewController.self,
+                    animated: true,
+                    bottomBarHidden: true
+                )
             }).disposed(by: self.disposeBag)
     }
 }

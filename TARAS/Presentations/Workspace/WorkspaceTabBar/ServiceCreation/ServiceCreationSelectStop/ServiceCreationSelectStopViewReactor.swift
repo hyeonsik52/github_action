@@ -28,17 +28,20 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     enum Action {
         case refresh
 //        case select(model: Stop)
+        case confirm(with: Stop)
     }
     
     enum Mutation {
         case reloadStops([Stop])
         case updateLoading(Bool)
 //        case updateStop(StopUpdateClosure)
+        case updateConfirm(Bool?)
     }
     
     struct State {
         var stops: [Stop]
         var isLoading: Bool
+        var isConfirmed: Bool?
     }
     
     var initialState: State = .init(
@@ -95,6 +98,13 @@ class ServiceCreationSelectStopViewReactor: Reactor {
 //                self.serviceUnit.stop = model
 //                return stops
 //            }))
+        case .confirm(let stop):
+            self.serviceUnit.stop = stop
+            self.provider.notificationManager.post(AddOrUpdateServiceUnit(self.serviceUnit))
+            return .concat([
+                .just(.updateConfirm(nil)),
+                .just(.updateConfirm(true))
+            ])
         }
     }
     
@@ -107,6 +117,8 @@ class ServiceCreationSelectStopViewReactor: Reactor {
             state.isLoading = isLoading
 //        case .updateStop(let update):
 //            state.stops = update(state.stops)
+        case .updateConfirm(let isConfirmed):
+            state.isConfirmed = isConfirmed
         }
         return state
     }
@@ -143,6 +155,20 @@ extension ServiceCreationSelectStopViewReactor {
         mode: ServiceCreationEditMode,
         stop: Stop
     ) -> ServiceCreationSelectReceiverViewReactor {
+        self.serviceUnit.stop = stop
+        return .init(
+            provider: self.provider,
+            workspaceId: self.workspaceId,
+            serviceUnit: self.serviceUnit,
+            mode: mode,
+            process: self.templateProcess
+        )
+    }
+    
+    func reactorForSummary(
+        mode: ServiceCreationEditMode,
+        stop: Stop
+    ) -> ServiceCreationSummaryViewReactor {
         self.serviceUnit.stop = stop
         return .init(
             provider: self.provider,

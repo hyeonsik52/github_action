@@ -13,10 +13,17 @@ class ServiceUnitTargetCellReactor: Reactor {
     let initialState: ServiceUnitTargetModel
     let selectionType: ServiceUnitTargetSelectionType
     let isEnabled: Bool
+    let isIconVisibled: Bool
     
-    init(model: ServiceUnitTargetModel, selectionType: ServiceUnitTargetSelectionType, isEnabled: Bool = true) {
+    init(
+        model: ServiceUnitTargetModel,
+        selectionType: ServiceUnitTargetSelectionType,
+        isEnabled: Bool = true,
+        isIconVisibled: Bool = true
+    ) {
         self.selectionType = selectionType
         self.initialState = model
         self.isEnabled = isEnabled
+        self.isIconVisibled = isIconVisibled
     }
 }

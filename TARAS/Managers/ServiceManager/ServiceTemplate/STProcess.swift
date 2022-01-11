@@ -77,11 +77,9 @@ class STProcess {
     }
     
     ///현재 셀렉터에 키를 더한 셀랙터에 해당하는 값을 반환한다.
-    func peek(with selector: String? = nil, _ func: String = #function) -> STNode? {
+    func peek(with selector: String, _ func: String = #function) -> STNode? {
         var keys = self.keys
-        if let selector = selector {
-            keys.append(contentsOf: selector.components(separatedBy: "."))
-        }
+        keys.append(contentsOf: selector.components(separatedBy: "."))
         let value = self.value(keys: keys)
         if value == nil {
             let path = keys.joined(separator: ".")
@@ -96,5 +94,13 @@ class STProcess {
         Log.debug(`func`, "키를 초기화합니다. [\(self.keys.joined(separator: "."))] -> []")
         self.keys.removeAll()
         return self
+    }
+}
+
+extension STProcess {
+    
+    var isServiceTypeLS: Bool {
+        guard case .general(let serviceType) = self.template.type else { return false }
+        return (serviceType == .loading)
     }
 }

@@ -293,6 +293,7 @@
 		EDC6CAEF278BD05E004C5881 /* NotificationManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAEC278BD05E004C5881 /* NotificationManagerType.swift */; };
 		EDC6CAF0278BD05E004C5881 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAED278BD05E004C5881 /* NotificationManager.swift */; };
 		EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */; };
+		EDC6CAF3278D4570004C5881 /* ServiceUnitTargetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF2278D4570004C5881 /* ServiceUnitTargetHeader.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -591,6 +592,7 @@
 		EDC6CAEC278BD05E004C5881 /* NotificationManagerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManagerType.swift; sourceTree = "<group>"; };
 		EDC6CAED278BD05E004C5881 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationManager+Rx.swift"; sourceTree = "<group>"; };
+		EDC6CAF2278D4570004C5881 /* ServiceUnitTargetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUnitTargetHeader.swift; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 				ED06C71F277DBD2C00F9D0A5 /* ServiceCreationCellReactor.swift */,
 				ED06C720277DBD2C00F9D0A5 /* ServiceCreationFooter.swift */,
 				ED06C703277DBD2C00F9D0A5 /* ServiceUnitTargetCell.swift */,
+				EDC6CAF2278D4570004C5881 /* ServiceUnitTargetHeader.swift */,
 				ED06C704277DBD2C00F9D0A5 /* SimpleDataSourcesSection.swift */,
 				ED06C705277DBD2C00F9D0A5 /* SimpleReactor.swift */,
 				ED06C706277DBD2C00F9D0A5 /* ServiceUnitTargetCellReactor.swift */,
@@ -1984,6 +1987,7 @@
 				ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */,
 				ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */,
 				ED7A0E7C272160C300AD6678 /* WorkspaceTitleView.swift in Sources */,
+				EDC6CAF3278D4570004C5881 /* ServiceUnitTargetHeader.swift in Sources */,
 				ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */,
 				ED6B46AD26B7EA4000C2FA6D /* LaunchScreenViewController.swift in Sources */,
 				EDC11A8826D3A39D0020AB09 /* UpdateEmailAuthViewReactor.swift in Sources */,
