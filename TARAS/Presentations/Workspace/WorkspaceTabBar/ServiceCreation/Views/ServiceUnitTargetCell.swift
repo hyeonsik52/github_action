@@ -18,13 +18,14 @@ class ServiceUnitTargetCell: UITableViewCell, View {
         $0.textColor = .darkGray303030
     }
     
-    private let selectedCheckImage = UIImage(named: "iconCheckBoxSel2")
-    private let selectedRadioImage = UIImage(named: "iconRadio24Sel2")
-    private let defaultImage = UIImage()
+    private let selectedCheckImage = UIImage(named: "recipient-checkbox-on")
+//    private let selectedRadioImage = UIImage(named: "iconRadio24Sel2")
+    private let defaultImage = UIImage(named: "recipient-checkbox-off")
     
     private lazy var selectButton = UIButton().then {
         $0.contentMode = .center
         $0.setImage(self.defaultImage, for: .normal)
+        $0.setImage(self.selectedCheckImage, for: .selected)
         $0.isUserInteractionEnabled = false
     }
     
@@ -62,19 +63,20 @@ class ServiceUnitTargetCell: UITableViewCell, View {
     }
     
     func bind(reactor: ServiceUnitTargetCellReactor) {
-        let type = reactor.selectionType
+//        let type = reactor.selectionType
         let target = reactor.initialState
         
         self.titleLabel.text = target.name
         self.titleLabel.alpha = (reactor.isEnabled ? 1.0: 0.3)
         
-        switch type {
-        case .radio:
-            self.selectButton.setImage(self.selectedRadioImage, for: .selected)
-        case .check:
-            self.selectButton.setImage(self.selectedCheckImage, for: .selected)
-        }
+//        switch type {
+//        case .radio:
+//            self.selectButton.setImage(self.selectedRadioImage, for: .selected)
+//        case .check:
+//            self.selectButton.setImage(self.selectedCheckImage, for: .selected)
+//        }
         
+        self.selectButton.isHidden = !reactor.isEnabled || !reactor.isIconVisibled
         self.selectButton.isSelected = target.isSelected
     }
 }
