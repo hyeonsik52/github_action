@@ -15,15 +15,22 @@ import RxDataSources
 
 class ServiceCreationSelectReceiverViewController: BaseNavigationViewController, View {
     
-    private let tableView = UITableView(frame: .zero, style: .plain).then {
+    private let tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.alwaysBounceVertical = true
         $0.contentInset.bottom = 88
         $0.separatorStyle = .none
         $0.rowHeight = 48
+        $0.sectionHeaderHeight = 44
+        
+        
+        $0.tableFooterView = UIView(frame: .init(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
+        $0.tableHeaderView = UIView(frame: .init(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
         
         $0.register(ServiceUnitTargetCell.self, forCellReuseIdentifier: "cell")
+        $0.register(ServiceUnitTargetHeader.self, forHeaderFooterViewReuseIdentifier: "header")
         
         $0.refreshControl = UIRefreshControl()
+        $0.backgroundColor = .white
     }
     
     private let tableViewDataSource = RxTableViewSectionedReloadDataSource<ServiceUnitTargetModelSection>(
@@ -34,10 +41,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         }
     )
     
-    let confirmButton = SRPButton("선택 완료").then {
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 24
-    }
+    let confirmButton = SRPButton("0명 선택")
     
     override var navigationPopWithBottomBarHidden: Bool {
         return true
@@ -56,7 +60,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-24)
-            $0.height.equalTo(48)
+            $0.height.equalTo(60)
         }
     }
     
@@ -101,10 +105,20 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
                 }).disposed(by: self.disposeBag)
         }
         
+        self.tableView.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
         //State
         reactor.state.map(\.users)
-            .map { $0.map { .init(model: $0, selectionType: .check) } }
-            .map { [.init(header: "", items: $0)] }
+            .map { $0.map { ServiceUnitTargetCellReactor(model: $0, selectionType: .check) } }
+            .map {
+                let selected = $0.filter { $0.initialState.isSelected }
+                let notSelected = $0.filter { !$0.initialState.isSelected }
+                return [
+                    .init(header: "선택된 유저", items: selected),
+                    .init(header: "유저 목록", items: notSelected)
+                ]
+            }
             .bind(to: self.tableView.rx.items(dataSource: self.tableViewDataSource))
             .disposed(by: self.disposeBag)
         
@@ -135,5 +149,18 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         selectedUsers.map { "\($0.count)명 선택" }
         .bind(to: self.confirmButton.rx.title())
         .disposed(by: self.disposeBag)
+    }
+}
+
+extension ServiceCreationSelectReceiverViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ServiceUnitTargetHeader
+        headerView.bind(self.tableViewDataSource[section].header)
+        return headerView
     }
 }
