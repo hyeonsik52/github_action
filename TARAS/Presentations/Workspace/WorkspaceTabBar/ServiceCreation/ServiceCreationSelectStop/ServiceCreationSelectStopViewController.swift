@@ -98,8 +98,15 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         
         //State
         reactor.state.map(\.stops)
-            .map { $0.map { .init(model: $0, selectionType: .check, isEnabled: !$0.name.hasPrefix("LS")) } }
-            .map { [.init(header: "", items: $0)] }
+            .map {
+                let isGeneralLoading = reactor.templateProcess.isServiceTypeLS
+                return $0.map { .init(
+                    model: $0,
+                    selectionType: .check,
+                    isEnabled: !$0.name.hasPrefix("LS") || isGeneralLoading,
+                    isIconVisibled: false
+                )}
+            }.map { [.init(header: "", items: $0)] }
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         

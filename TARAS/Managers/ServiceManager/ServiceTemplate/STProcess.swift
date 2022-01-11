@@ -96,3 +96,11 @@ class STProcess {
         return self
     }
 }
+
+extension STProcess {
+    
+    var isServiceTypeLS: Bool {
+        guard case .general(let serviceType) = self.template.type else { return false }
+        return (serviceType == .loading)
+    }
+}
