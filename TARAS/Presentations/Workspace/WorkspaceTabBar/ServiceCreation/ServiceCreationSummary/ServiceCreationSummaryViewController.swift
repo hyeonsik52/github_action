@@ -349,11 +349,21 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.detailSelectButton.rx.tap
-            .map { reactor.reactorForDetail(mode: .update) }
-            .flatMapLatest { [weak self] reactor in
-                return ServiceCreationDetailViewController.update(on: self, reactor: reactor)
-            }.map(Reactor.Action.updateDetail)
+        Observable.merge(
+            self.detailTextView.rx.didBeginEditing.asObservable(),
+            self.detailTextView.rx.text.map {_ in () }
+        ).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let textView = self.detailTextView
+            if let selectedRange = textView.selectedTextRange {
+                let cursorRect = textView.caretRect(for: selectedRange.start)
+                let rect = textView.convert(cursorRect, to: self.scrollView)
+                self.scrollView.scrollRectToVisible(rect, animated: true)
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.detailTextView.rx.text
+            .map(Reactor.Action.updateDetail)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
