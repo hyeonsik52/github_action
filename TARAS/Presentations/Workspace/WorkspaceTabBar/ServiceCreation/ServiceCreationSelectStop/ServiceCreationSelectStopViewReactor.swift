@@ -100,6 +100,7 @@ class ServiceCreationSelectStopViewReactor: Reactor {
 //            }))
         case .confirm(let stop):
             self.serviceUnit.stop = stop
+            self.serviceUnit.updateStopState(with: self.templateProcess)
             self.provider.notificationManager.post(AddOrUpdateServiceUnit(self.serviceUnit))
             return .concat([
                 .just(.updateConfirm(nil)),
@@ -130,7 +131,7 @@ extension ServiceCreationSelectStopViewReactor {
         
         if case .general = self.entry {
             
-            if self.templateProcess.peek(with: "ID")?.toArgument?.from == .stationGroup {
+            if self.templateProcess.peek(with: "ID")?.asArgument?.from == .stationGroup {
                 
                 return self.provider.networkManager.fetch(StopListQuery(workspaceId: self.workspaceId))
                     .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.stationGroups }
@@ -156,6 +157,7 @@ extension ServiceCreationSelectStopViewReactor {
         stop: Stop
     ) -> ServiceCreationSelectReceiverViewReactor {
         self.serviceUnit.stop = stop
+        self.serviceUnit.updateStopState(with: self.templateProcess)
         return .init(
             provider: self.provider,
             workspaceId: self.workspaceId,
@@ -170,6 +172,7 @@ extension ServiceCreationSelectStopViewReactor {
         stop: Stop
     ) -> ServiceCreationSummaryViewReactor {
         self.serviceUnit.stop = stop
+        self.serviceUnit.updateStopState(with: self.templateProcess)
         return .init(
             provider: self.provider,
             workspaceId: self.workspaceId,

@@ -296,6 +296,14 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         self.detailTextView.text = reactor.initialState.serviceUnit.detail
         self.confirmButton.setTitle("\(reactor.mode.text)하기", for: .normal)
         
+        if let stopState = reactor.initialState.serviceUnit.stopState {
+            if stopState.isWaitable {
+                self.workWaitingSwitch.isOn = stopState.isWaitValue ?? false
+            } else if stopState.isLoadable {
+                self.loadingTypeSwitch.isOn = stopState.isLoadingValue ?? false
+            }
+        }
+        
         //Action
         self.confirmButton.rx.tap
             .map { Reactor.Action.confirm }
@@ -307,6 +315,20 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .flatMapLatest { [weak self] reactor in
                 return ServiceCreationSelectStopViewController.select(on: self, reactor: reactor)
             }.map(Reactor.Action.updateStop)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.workWaitingSwitch.rx.isOn
+            .skip(until: self.rx.viewDidAppear)
+            .map { .isWait($0) }
+            .map(Reactor.Action.updateStopState)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.loadingTypeSwitch.rx.isOn
+            .skip(until: self.rx.viewDidAppear)
+            .map { .isLoading($0) }
+            .map(Reactor.Action.updateStopState)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -336,6 +358,13 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         serviceUnit.map { $0.receivers.map(\.name).joined(separator: ", ") }
             .bind(to: self.receiverLabel.rx.text)
             .disposed(by: self.disposeBag)
+        serviceUnit.map { !($0.stopState?.isWaitable == true) }
+        .bind(to: self.workWaitingSwitchContainer.rx.isHidden)
+        .disposed(by: self.disposeBag)
+        
+        serviceUnit.map { !($0.stopState?.isLoadable == true) }
+        .bind(to: self.loadingTypeSwitchContainer.rx.isHidden)
+        .disposed(by: self.disposeBag)
         
         serviceUnit.map(\.detail)
             .bind(to: self.detailTextView.rx.text)

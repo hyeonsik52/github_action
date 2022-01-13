@@ -33,6 +33,7 @@ class ServiceCreationSummaryViewReactor: Reactor {
     
     enum Action {
         case updateStop(Stop)
+        case updateStopState(ServiceUnitCreationModel.StopState)
         case updateReceivers([User])
         case updateDetail(ServiceUnit)
         case confirm
@@ -80,7 +81,13 @@ class ServiceCreationSummaryViewReactor: Reactor {
         
         switch action {
         case .updateStop(let stop):
-            return .just(.updateServiceUnit({ $0.stop = stop }))
+            return .just(.updateServiceUnit({ [weak self] in
+                $0.stop = stop
+                guard let process = self?.templateProcess else { return }
+                $0.updateStopState(with: process)
+            }))
+        case .updateStopState(let state):
+            return .just(.updateServiceUnit({ $0.stopState = state }))
         case .updateReceivers(let receivers):
             return .just(.updateServiceUnit({ $0.receivers = receivers }))
         case .updateDetail(let serviceUnit):
