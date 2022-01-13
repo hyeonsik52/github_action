@@ -57,9 +57,9 @@ class STProcess {
         }
         if result == nil {
             let availableKeys = availabledResult?.subNodes?.map(\.key).joined(separator: ", ") ?? ""
-            let availableKeysMessage = "유효한 값\(availableKeys.isEmpty ? "이 없습니다.": "을 얻으려면 [\(availableKeys)] 중 하나를 사용하십시오.")"
+            let availableKeysMessage = "유효한 값\(availableKeys.isEmpty ? "이 없습니다.": "을 얻으려면 다음 중 하나를 사용하십시오. [\(availableKeys)]")"
             let validPath = validKeys.joined(separator: ".")
-            let validPathMessage = "유효한 경로\(validKeys.isEmpty ? "가 아닙니다.": "는 \(validPath)이며,")"
+            let validPathMessage = "유효한 경로\(validKeys.isEmpty ? "가 아닙니다.": "는 '\(validPath)'이며,")"
             Log.debug("\(validPathMessage) \(availableKeysMessage)")
         }
         return result
@@ -91,6 +91,7 @@ class STProcess {
     ///쌓인 키들을 초기화한다.
     @discardableResult
     func clearKey(_ func: String = #function) -> Self {
+        guard !self.keys.isEmpty else { return self }
         Log.debug(`func`, "키를 초기화합니다. [\(self.keys.joined(separator: "."))] -> []")
         self.keys.removeAll()
         return self
