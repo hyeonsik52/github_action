@@ -34,7 +34,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         collectionViewLayout: self.flowLayout
     ).then {
         $0.alwaysBounceVertical = true
-        $0.contentInset.bottom = 96
+        $0.contentInset.bottom = 108
         $0.backgroundColor = .white
         
         $0.register(ServiceCreationCell.self, forCellWithReuseIdentifier: "cell")
