@@ -99,7 +99,7 @@ extension ServiceCreationSelectReceiverViewReactor {
     
     func refresh() -> Observable<Mutation> {
         
-        if self.templateProcess.peek(with: "receivers.ID")?.toArgument?.from == .user {
+        if self.templateProcess.peek(with: "receivers.ID")?.asArgument?.from == .user {
             
             let myUserID = self.provider.userManager.userTB.ID
             
@@ -128,7 +128,17 @@ extension ServiceCreationSelectReceiverViewReactor {
 
 extension ServiceCreationSelectReceiverViewReactor {
     
-    func reactorForDetail(mode: ServiceCreationEditMode) -> ServiceCreationDetailViewReactor {
+//    func reactorForDetail(mode: ServiceCreationEditMode) -> ServiceCreationDetailViewReactor {
+//        return .init(
+//            provider: self.provider,
+//            workspaceId: self.workspaceId,
+//            serviceUnit: self.serviceUnit,
+//            mode: mode,
+//            process: self.templateProcess
+//        )
+//    }
+    
+    func reactorForSummary(mode: ServiceCreationEditMode) -> ServiceCreationSummaryViewReactor {
         return .init(
             provider: self.provider,
             workspaceId: self.workspaceId,
