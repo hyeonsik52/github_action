@@ -195,13 +195,15 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         self.collectionView.rx.modelSelected(ServiceCreationCellReactor.self)
             .map(\.initialState)
             .map { reactor.reactorForSummary($0, mode: .update) }
-            .subscribe(onNext: { [weak self] reactor in
-                self?.navigationPush(
-                    type: ServiceCreationSummaryViewController.self,
-                    reactor: reactor,
-                    animated: true,
-                    bottomBarHidden: true
-                )
+            .subscribe(onNext: { [weak self] cellReactor in
+                if reactor.templateProcess.peek(with: "message") != nil {
+                    self?.navigationPush(
+                        type: ServiceCreationSummaryViewController.self,
+                        reactor: cellReactor,
+                        animated: true,
+                        bottomBarHidden: true
+                    )
+                }
             }).disposed(by: self.disposeBag)
         
         //State
