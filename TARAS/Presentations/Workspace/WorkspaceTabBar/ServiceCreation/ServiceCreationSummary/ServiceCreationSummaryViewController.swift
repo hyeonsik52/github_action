@@ -253,6 +253,15 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
+    override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {
+        super.updatedKeyboard(withoutBottomSafeInset: height)
+        let padding = (height == 0 ? -24: -(height+8))
+        self.confirmButton.snp.updateConstraints {
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(padding)
+        }
+        self.scrollView.contentInset.bottom = 60 - padding
+    }
+    
     override func bind() {
         super.bind()
         
