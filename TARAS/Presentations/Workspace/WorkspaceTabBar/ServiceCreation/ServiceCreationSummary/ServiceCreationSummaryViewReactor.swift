@@ -15,7 +15,7 @@ enum ServiceCreationEditMode {
     var text: String {
         switch self {
         case .create:
-            return "생성"
+            return "추가"
         case .update:
             return "수정"
         }

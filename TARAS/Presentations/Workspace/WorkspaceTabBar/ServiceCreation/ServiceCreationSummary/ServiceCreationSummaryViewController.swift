@@ -302,8 +302,10 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
     
     func bind(reactor: ServiceCreationSummaryViewReactor) {
         
+        let title = "정차지 \(reactor.mode.text)"
+        self.title = title
+        self.confirmButton.setTitle(title, for: .normal)
         self.detailTextView.text = reactor.initialState.serviceUnit.detail
-        self.confirmButton.setTitle("\(reactor.mode.text)하기", for: .normal)
         
         if let stopState = reactor.initialState.serviceUnit.stopState {
             if stopState.isWaitable {
