@@ -34,8 +34,8 @@ class ServiceCreationSummaryViewReactor: Reactor {
     enum Action {
         case updateStop(Stop)
         case updateStopState(ServiceUnitCreationModel.StopState)
+        case updateDetail(String?)
         case updateReceivers([User])
-        case updateDetail(ServiceUnit)
         case confirm
     }
     
@@ -88,14 +88,16 @@ class ServiceCreationSummaryViewReactor: Reactor {
             }))
         case .updateStopState(let state):
             return .just(.updateServiceUnit({ $0.stopState = state }))
+        case .updateDetail(let detail):
+            let isEmpty = detail?.isEmpty ?? true
+            return .just(.updateServiceUnit({ $0.detail = (isEmpty ? nil: detail) }))
         case .updateReceivers(let receivers):
             return .just(.updateServiceUnit({ $0.receivers = receivers }))
-        case .updateDetail(let serviceUnit):
-            return .just(.updateServiceUnit({ $0 = serviceUnit }))
         case .confirm:
             return .concat([
                 .just(.updateConfirm(nil)),
                 .just(.updateServiceUnit({ [weak self] in
+                    $0.detail = $0.detail?.trimmingCharacters(in: .whitespacesAndNewlines)
                     self?.provider.notificationManager.post(AddOrUpdateServiceUnit($0))
                 })),
                 .just(.updateConfirm(true))
