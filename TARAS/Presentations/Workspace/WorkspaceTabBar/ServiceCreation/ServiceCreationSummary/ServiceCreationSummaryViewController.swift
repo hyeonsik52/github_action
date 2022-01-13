@@ -349,15 +349,12 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .disposed(by: self.disposeBag)
         
         //State
-        let serviceUnit = reactor.state.map(\.serviceUnit).share(replay: 1)
+        let serviceUnit = reactor.state.map(\.serviceUnit).share()
         
         serviceUnit.map(\.stop?.name)
             .bind(to: self.stopLabel.rx.text)
             .disposed(by: self.disposeBag)
         
-        serviceUnit.map { $0.receivers.map(\.name).joined(separator: ", ") }
-            .bind(to: self.receiverLabel.rx.text)
-            .disposed(by: self.disposeBag)
         serviceUnit.map { !($0.stopState?.isWaitable == true) }
         .bind(to: self.workWaitingSwitchContainer.rx.isHidden)
         .disposed(by: self.disposeBag)
@@ -368,6 +365,25 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         
         serviceUnit.map(\.detail)
             .bind(to: self.detailTextView.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        let receivers = serviceUnit.map(\.receivers).share()
+        
+        receivers.map {
+            let paragraph = NSMutableParagraphStyle().then {
+                $0.lineSpacing = 8
+                $0.alignment = .right
+            }
+            let attributedString = NSMutableAttributedString(
+                string: $0.map(\.name).joined(separator: "\n"),
+                attributes: [.paragraphStyle: paragraph]
+            )
+            return attributedString
+        }.bind(to: self.receiverLabel.rx.attributedText)
+            .disposed(by: self.disposeBag)
+        
+        receivers.map(\.isEmpty)
+            .bind(to: self.receiverListContainer.rx.isHidden)
             .disposed(by: self.disposeBag)
         
 //        serviceUnit.map(\.attachmentId)
