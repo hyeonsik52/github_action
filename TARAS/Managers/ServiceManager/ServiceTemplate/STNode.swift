@@ -36,8 +36,15 @@ extension JSON: STNode {
 
 extension STNode {
     
-    ///노드를 매개변수 컨테이너로 변환한다.
-    var toArgument: STArgument? {
-        return self as? STArgument
+    func `as`<T>() -> T? {
+        return self as? T
     }
+    
+    ///노드를 매개변수 컨테이너로서 가져온다
+    var asArgument: STArgument? { self.as() }
+    
+    var asString: String? { self.as() }
+    var asBool: Bool? { self.as() }
+    var asInt: Int? { self.as() }
+    var asJSON: JSON? { self.as() }
 }

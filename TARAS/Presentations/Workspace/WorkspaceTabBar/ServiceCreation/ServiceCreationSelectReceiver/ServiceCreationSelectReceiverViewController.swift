@@ -94,10 +94,10 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         
         if reactor.mode == .create {
             self.confirmButton.rx.tap
-                .map { reactor.reactorForDetail(mode: .create) }
+                .map { reactor.reactorForSummary(mode: .create) }
                 .subscribe(onNext: { [weak self] reactor in
                     self?.navigationPush(
-                        type: ServiceCreationDetailViewController.self,
+                        type: ServiceCreationSummaryViewController.self,
                         reactor: reactor,
                         animated: true,
                         bottomBarHidden: true

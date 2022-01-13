@@ -12,6 +12,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import UITextView_Placeholder
 
 class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
     
@@ -24,42 +25,51 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         $0.contentInset.top = 12
         $0.contentInset.bottom = 88
         $0.alwaysBounceVertical = true
+        $0.keyboardDismissMode = .onDrag
     }
     
     private let stopLabel = UILabel().then {
-        $0.font = .regular[16]
+        $0.font = .medium[16]
         $0.textColor = .darkGray303030
+        $0.textAlignment = .right
     }
     private let stopSelectButton = UIButton()
     
-    private let receiverLabel = UILabel().then {
-        $0.font = .regular[16]
-        $0.textColor = .darkGray303030
+    private let workWaitingSwitchContainer = UIView().then {
+        $0.isHidden = true
     }
-    private let receiverSelectButton = UIButton()
+    private let workWaitingSwitch = UISwitch().then {
+        $0.onTintColor = .purple4A3C9F
+    }
     
-    private let imageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
-        $0.backgroundColor = .lightGrayF1F1F1
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 8
+    private var loadingTypeSwitchContainer = UIView().then {
+        $0.isHidden = true
+    }
+    private let loadingTypeSwitch = UISwitch().then {
+        $0.onTintColor = .purple4A3C9F
     }
     
     private let detailTextView = UITextView().then {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 4
-        $0.layer.borderColor = UIColor.grayC9C9C9.cgColor
-        $0.layer.borderWidth = 1
-        $0.textContainerInset = .init(top: 9, left: 5, bottom: 9, right: 5)
-        $0.textColor = .gray666666
+        $0.backgroundColor = .lightGrayF0F0F0
+        $0.textContainerInset = .init(top: 17, left: 13, bottom: 17, right: 13)
+        $0.font = .regular[16]
+        $0.placeholder = "요청사항을 입력해주세요"
     }
     
-    private let detailSelectButton = UIButton()
-    
-    private let confirmButton = SRPButton("생성하기").then {
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 24
+    private var receiverListContainer = UIView().then {
+        $0.isHidden = true
     }
+    private let receiverLabel = UILabel().then {
+        $0.font = .regular[16]
+        $0.textColor = .darkGray303030
+        $0.numberOfLines = 0
+        $0.textAlignment = .right
+    }
+    private let receiverSelectButton = UIButton()
+    
+    private let confirmButton = SRPButton("정차지 추가")
     
     override var navigationPopWithBottomBarHidden: Bool {
         return true
@@ -70,15 +80,12 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         let contentView = UIStackView().then {
             $0.axis = .vertical
-            $0.spacing = 24
+            $0.spacing = 8
         }
         self.scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
@@ -88,130 +95,144 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         
         func addSectionView(
             title: String,
-            imageName: String,
-            addContentView: (_ container: UIView, _ sectionView: UIView) -> Void
+            container: UIView? = nil,
+            addContentView: (_ container: UIView, _ titleView: UIView, _ sectionView: UIView) -> Void
         ) {
-            let sectionContainer = UIView()
+            let sectionContainer = container ?? UIView()
             contentView.addArrangedSubview(sectionContainer)
             
             let sectionView = UIView()
             sectionContainer.addSubview(sectionView)
             sectionView.snp.makeConstraints {
                 $0.top.leading.trailing.equalToSuperview()
-                $0.height.equalTo(42)
-            }
-            
-            let icon = UIImageView(image: UIImage(named: imageName))
-            sectionView.addSubview(icon)
-            icon.snp.makeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(16)
-                $0.size.equalTo(24)
+                $0.height.equalTo(40)
             }
             
             let label = UILabel().then {
-                $0.font = .medium[20]
+                $0.font = .regular[16]
                 $0.textColor = .gray666666
                 $0.text = title
+                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
             }
             sectionView.addSubview(label)
             label.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.leading.equalTo(icon.snp.trailing).offset(4)
-                $0.trailing.equalToSuperview().offset(-16)
+                $0.leading.equalToSuperview().offset(16)
             }
             
-            addContentView(sectionContainer, sectionView)
+            addContentView(sectionContainer, label, sectionView)
         }
         
-        addSectionView(title: "위치", imageName: "iconEtcMapMarker") { container, sectionView in
+        addSectionView(title: "정차지") { container, titleView, sectionView in
             
-            let sectionContentView = UIView()
-            container.addSubview(sectionContentView)
-            sectionContentView.snp.makeConstraints {
-                $0.top.equalTo(sectionView.snp.bottom)
-                $0.leading.trailing.bottom.equalToSuperview()
-                $0.height.equalTo(48)
+            sectionView.snp.makeConstraints {
+                $0.bottom.equalToSuperview()
             }
             
-            sectionContentView.addSubview(self.stopLabel)
+            sectionView.addSubview(self.stopLabel)
             self.stopLabel.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(48)
+                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
             }
             
-            let arrowImageView = UIImageView(image: .init(named: "iconBkChevronRight16"))
-            sectionContentView.addSubview(arrowImageView)
+            let arrowImageView = UIImageView(image: .init(named: "enterRightSmall")).then {
+                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+            }
+            sectionView.addSubview(arrowImageView)
             arrowImageView.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.leading.equalTo(self.stopLabel.snp.trailing).offset(8)
-                $0.trailing.equalToSuperview().offset(-24)
-                $0.size.equalTo(16)
+                $0.leading.equalTo(self.stopLabel.snp.trailing).offset(4)
+                $0.trailing.equalToSuperview().offset(-16)
+                $0.size.equalTo(12)
             }
             
-            sectionContentView.addSubview(self.stopSelectButton)
+            sectionView.addSubview(self.stopSelectButton)
             self.stopSelectButton.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+                $0.top.bottom.equalToSuperview()
+                $0.leading.equalTo(self.stopLabel)
+                $0.trailing.equalTo(arrowImageView)
             }
         }
         
-        addSectionView(title: "작업자", imageName: "iconGySend") { container, sectionView in
+        addSectionView(
+            title: ServiceUnitCreationModel.StopState.waitableTitle,
+            container: self.workWaitingSwitchContainer
+        ) { container, titleView, sectionView in
             
-            let sectionContentView = UIView()
-            container.addSubview(sectionContentView)
-            sectionContentView.snp.makeConstraints {
-                $0.top.equalTo(sectionView.snp.bottom)
-                $0.leading.trailing.bottom.equalToSuperview()
-                $0.height.equalTo(48)
+            sectionView.snp.makeConstraints {
+                $0.bottom.equalToSuperview()
             }
             
-            sectionContentView.addSubview(self.receiverLabel)
-            self.receiverLabel.snp.makeConstraints {
+            sectionView.addSubview(self.workWaitingSwitch)
+            self.workWaitingSwitch.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(48)
-            }
-            
-            let arrowImageView = UIImageView(image: .init(named: "iconBkChevronRight16"))
-            sectionContentView.addSubview(arrowImageView)
-            arrowImageView.snp.makeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.leading.equalTo(self.receiverLabel.snp.trailing).offset(8)
-                $0.trailing.equalToSuperview().offset(-24)
-                $0.size.equalTo(16)
-            }
-            
-            sectionContentView.addSubview(self.receiverSelectButton)
-            self.receiverSelectButton.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
+                $0.trailing.equalToSuperview().offset(-16)
             }
         }
         
-        addSectionView(title: "요청사항", imageName: "iconGyMessage") { container, sectionView in
+        addSectionView(
+            title: ServiceUnitCreationModel.StopState.loadableTitle,
+            container: self.loadingTypeSwitchContainer
+        ) { container, titleView, sectionView in
             
-            let contentStackView = UIStackView().then {
-                $0.axis = .horizontal
-                $0.distribution = .fill
-                $0.spacing = 8
+            sectionView.snp.makeConstraints {
+                $0.bottom.equalToSuperview()
             }
-            container.addSubview(contentStackView)
-            contentStackView.snp.makeConstraints {
+            
+            sectionView.addSubview(self.loadingTypeSwitch)
+            self.loadingTypeSwitch.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
+                $0.trailing.equalToSuperview().offset(-16)
+            }
+        }
+
+        addSectionView(title: "요청사항") { container, titleView, sectionView in
+
+            container.addSubview(self.detailTextView)
+            self.detailTextView.snp.makeConstraints {
                 $0.top.equalTo(sectionView.snp.bottom)
                 $0.leading.equalToSuperview().offset(16)
                 $0.trailing.equalToSuperview().offset(-16)
                 $0.bottom.equalToSuperview()
-                $0.height.equalTo(96)
+                $0.height.equalTo(self.detailTextView.snp.width).multipliedBy(0.6)
+            }
+        }
+        
+        addSectionView(
+            title: "수신자",
+            container: self.receiverListContainer
+        ) { container, titleView, sectionView in
+            
+            sectionView.snp.makeConstraints {
+                $0.bottom.equalToSuperview().priority(.low)
             }
             
-            contentStackView.addArrangedSubview(self.imageView)
-            self.imageView.snp.makeConstraints {
-                $0.width.equalTo(96)
+            container.addSubview(self.receiverLabel)
+            self.receiverLabel.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(10)
+                $0.centerY.equalToSuperview()
+                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
+                $0.bottom.lessThanOrEqualToSuperview()
             }
             
-            contentStackView.addArrangedSubview(self.detailTextView)
+            let arrowImageView = UIImageView(image: .init(named: "enterRightSmall")).then {
+                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+            }
+            container.addSubview(arrowImageView)
+            arrowImageView.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(14)
+                $0.leading.equalTo(self.receiverLabel.snp.trailing).offset(4)
+                $0.trailing.equalToSuperview().offset(-16)
+                $0.size.equalTo(12)
+            }
             
-            container.addSubview(self.detailSelectButton)
-            self.detailSelectButton.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+            container.addSubview(self.receiverSelectButton)
+            self.receiverSelectButton.snp.makeConstraints {
+                $0.top.bottom.equalToSuperview()
+                $0.leading.equalTo(self.receiverLabel)
+                $0.trailing.equalTo(arrowImageView)
             }
         }
         
@@ -219,18 +240,26 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         self.confirmButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-24)
-            $0.height.equalTo(48)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-16)
+            $0.height.equalTo(60)
         }
     }
     
     override func setupNaviBar() {
         super.setupNaviBar()
         
-        self.title = "서비스 요청"
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {
+        super.updatedKeyboard(withoutBottomSafeInset: height)
+        let padding = (height == 0 ? -24: -(height+8))
+        self.confirmButton.snp.updateConstraints {
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(padding)
+        }
+        self.scrollView.contentInset.bottom = 60 - padding
     }
     
     override func bind() {
@@ -247,7 +276,7 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
                     //flatMapLatest로 리팩토링 필요!
                     UIAlertController.present(
                         in: self,
-                        title: "목적지 생성을 취소하시겠습니까?",
+                        title: "정차지 추가를 취소하시겠습니까?",
                         style: .alert,
                         actions: [
                             .init(title: "아니오", style: .default),
@@ -273,8 +302,18 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
     
     func bind(reactor: ServiceCreationSummaryViewReactor) {
         
+        let title = "정차지 \(reactor.mode.text)"
+        self.title = title
+        self.confirmButton.setTitle(title, for: .normal)
         self.detailTextView.text = reactor.initialState.serviceUnit.detail
-        self.confirmButton.setTitle("\(reactor.mode.text)하기", for: .normal)
+        
+        if let stopState = reactor.initialState.serviceUnit.stopState {
+            if stopState.isWaitable {
+                self.workWaitingSwitch.isOn = stopState.isWaitValue ?? false
+            } else if stopState.isLoadable {
+                self.loadingTypeSwitch.isOn = stopState.isLoadingValue ?? false
+            }
+        }
         
         //Action
         self.confirmButton.rx.tap
@@ -290,6 +329,20 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
+        self.workWaitingSwitch.rx.isOn
+            .skip(until: self.rx.viewDidAppear)
+            .map { .isWait($0) }
+            .map(Reactor.Action.updateStopState)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.loadingTypeSwitch.rx.isOn
+            .skip(until: self.rx.viewDidAppear)
+            .map { .isLoading($0) }
+            .map(Reactor.Action.updateStopState)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
         self.receiverSelectButton.rx.tap
             .map { reactor.reactorForSelectReceiver(mode: .update) }
             .flatMapLatest { [weak self] reactor in
@@ -298,27 +351,60 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.detailSelectButton.rx.tap
-            .map { reactor.reactorForDetail(mode: .update) }
-            .flatMapLatest { [weak self] reactor in
-                return ServiceCreationDetailViewController.update(on: self, reactor: reactor)
-            }.map(Reactor.Action.updateDetail)
+        Observable.merge(
+            self.detailTextView.rx.didBeginEditing.asObservable(),
+            self.detailTextView.rx.text.map {_ in () }
+        ).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let textView = self.detailTextView
+            if let selectedRange = textView.selectedTextRange {
+                let cursorRect = textView.caretRect(for: selectedRange.start)
+                let rect = textView.convert(cursorRect, to: self.scrollView)
+                self.scrollView.scrollRectToVisible(rect, animated: true)
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.detailTextView.rx.text
+            .map(Reactor.Action.updateDetail)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         //State
-        let serviceUnit = reactor.state.map(\.serviceUnit).share(replay: 1)
+        let serviceUnit = reactor.state.map(\.serviceUnit).share()
         
         serviceUnit.map(\.stop?.name)
             .bind(to: self.stopLabel.rx.text)
             .disposed(by: self.disposeBag)
         
-        serviceUnit.map { $0.receivers.map(\.name).joined(separator: ", ") }
-            .bind(to: self.receiverLabel.rx.text)
-            .disposed(by: self.disposeBag)
+        serviceUnit.map { !($0.stopState?.isWaitable == true) }
+        .bind(to: self.workWaitingSwitchContainer.rx.isHidden)
+        .disposed(by: self.disposeBag)
+        
+        serviceUnit.map { !($0.stopState?.isLoadable == true) }
+        .bind(to: self.loadingTypeSwitchContainer.rx.isHidden)
+        .disposed(by: self.disposeBag)
         
         serviceUnit.map(\.detail)
             .bind(to: self.detailTextView.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        let receivers = serviceUnit.map(\.receivers).share()
+        
+        receivers.map {
+            let paragraph = NSMutableParagraphStyle().then {
+                $0.lineSpacing = 8
+                $0.alignment = .right
+            }
+            let attributedString = NSMutableAttributedString(
+                string: $0.map(\.name).joined(separator: "\n"),
+                attributes: [.paragraphStyle: paragraph]
+            )
+            return attributedString
+        }.bind(to: self.receiverLabel.rx.attributedText)
+            .disposed(by: self.disposeBag)
+        
+        receivers.map(\.isEmpty)
+            .bind(to: self.receiverListContainer.rx.isHidden)
             .disposed(by: self.disposeBag)
         
 //        serviceUnit.map(\.attachmentId)

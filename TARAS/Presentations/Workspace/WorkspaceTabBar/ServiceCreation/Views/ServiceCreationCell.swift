@@ -14,18 +14,18 @@ import RxSwift
 class ServiceCreationCell: UICollectionViewCell, View {
     
     private let titleLabel = UILabel().then {
-        $0.font = .medium[16]
+        $0.font = .semibold[16]
         $0.textColor = .darkGray303030
         $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
     private let subTitleLabel = UILabel().then {
         $0.font = .regular[14]
-        $0.textColor = .gray666666
+        $0.textColor = .grayA5A5A5
     }
     
     private let destinationLabel = UILabel().then {
-        $0.font = .medium[18]
+        $0.font = .bold[20]
         $0.textColor = .purple4A3C9F
         $0.textAlignment = .center
         $0.clipsToBounds = true
@@ -112,7 +112,7 @@ class ServiceCreationCell: UICollectionViewCell, View {
             self.removeImageView.snp.makeConstraints {
                 $0.top.trailing.equalToSuperview()
                 $0.size.equalTo(12)
-                $0.leading.equalTo(self.subTitleLabel.snp.trailing).offset(8)
+                $0.leading.greaterThanOrEqualTo(self.subTitleLabel.snp.trailing).offset(8)
             }
             
             $0.addSubview(self.removeButton)
@@ -173,7 +173,7 @@ class ServiceCreationCell: UICollectionViewCell, View {
         let serviceUnit = reactor.initialState
         
         self.titleLabel.text = reactor.destinationType.description
-        self.subTitleLabel.text = (serviceUnit.isWait ? "작업 대기 ON": nil)
+        self.subTitleLabel.text = (serviceUnit.stopState?.isWaitValue == true ? "작업대기": nil)
         
         self.destinationLabel.text = serviceUnit.stop.name
         

@@ -34,7 +34,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         collectionViewLayout: self.flowLayout
     ).then {
         $0.alwaysBounceVertical = true
-        $0.contentInset.bottom = 96
+        $0.contentInset.bottom = 108
         $0.backgroundColor = .white
         
         $0.register(ServiceCreationCell.self, forCellWithReuseIdentifier: "cell")
@@ -151,24 +151,31 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         self.backButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                //flatMapLatest로 리팩토링 필요!
-                UIAlertController.present(
-                    in: self,
-                    title: "서비스 생성을 취소하시겠습니까?",
-                    style: .alert,
-                    actions: [
-                        .init(title: "아니오", style: .default),
-                        .init(title: "예", style: .destructive)
-                    ]).subscribe(onNext: { [weak self] selectedIndex in
-                        guard let self = self else { return }
-                        if selectedIndex == 1 {
-//                            self.reactor?.action.onNext(.clearCache)
-                            self.navigationPop(
-                                animated: true,
-                                bottomBarHidden: self.navigationPopWithBottomBarHidden
-                            )
-                        }
-                    }).disposed(by: self.disposeBag)
+                if self.dataSource.sectionModels.first?.items.isEmpty == true {
+                    self.navigationPop(
+                        animated: true,
+                        bottomBarHidden: self.navigationPopWithBottomBarHidden
+                    )
+                } else {
+                    //flatMapLatest로 리팩토링 필요!
+                    UIAlertController.present(
+                        in: self,
+                        title: "서비스 생성을 취소하시겠습니까?",
+                        style: .alert,
+                        actions: [
+                            .init(title: "아니오", style: .default),
+                            .init(title: "예", style: .destructive)
+                        ]).subscribe(onNext: { [weak self] selectedIndex in
+                            guard let self = self else { return }
+                            if selectedIndex == 1 {
+    //                            self.reactor?.action.onNext(.clearCache)
+                                self.navigationPop(
+                                    animated: true,
+                                    bottomBarHidden: self.navigationPopWithBottomBarHidden
+                                )
+                            }
+                        }).disposed(by: self.disposeBag)
+                }
             }).disposed(by: self.backButtonDisposeBag)
     }
     
@@ -188,13 +195,15 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         self.collectionView.rx.modelSelected(ServiceCreationCellReactor.self)
             .map(\.initialState)
             .map { reactor.reactorForSummary($0, mode: .update) }
-            .subscribe(onNext: { [weak self] reactor in
-                self?.navigationPush(
-                    type: ServiceCreationSummaryViewController.self,
-                    reactor: reactor,
-                    animated: true,
-                    bottomBarHidden: true
-                )
+            .subscribe(onNext: { [weak self] cellReactor in
+                if reactor.templateProcess.peek(with: "message") != nil {
+                    self?.navigationPush(
+                        type: ServiceCreationSummaryViewController.self,
+                        reactor: cellReactor,
+                        animated: true,
+                        bottomBarHidden: true
+                    )
+                }
             }).disposed(by: self.disposeBag)
         
         //State
