@@ -27,7 +27,7 @@ class ServiceCreationViewReactor: Reactor {
         case addOrUpdate(ServiceUnit)
         case move(Int, Int)
         case remove(ServiceUnit)
-        case request
+        case request(repeat: Int?)
     }
     
     enum Mutation {
@@ -107,7 +107,7 @@ class ServiceCreationViewReactor: Reactor {
                 serviceUnits.removeAll { $0 == serviceUnit }
                 return serviceUnits
             }))
-        case .request:
+        case .request(let repeatCount):
             return .concat([
                 .just(.updateErrorMessage(nil)),
                 .just(.updateRequestSuccess(nil)),
@@ -118,7 +118,8 @@ class ServiceCreationViewReactor: Reactor {
                     .flatMapLatest { results -> Observable<Mutation> in
                         if let validTemplate = results.first(where: { $0.name == "글로비스 일반배송" }) {
                             
-                            let jsonValue: [String: Any] = [
+                            //TODO: STProcess에서 필수 키 가져와서 구성하기
+                            var jsonValue: [String: Any] = [
                                 "arguments": [
                                     "destinations": self.currentState.serviceUnits.map {
                                         [
@@ -135,6 +136,10 @@ class ServiceCreationViewReactor: Reactor {
                                     }
                                 ]
                             ]
+                            
+                            if let repeatCount = repeatCount {
+                                jsonValue["repeat_count"] = repeatCount
+                            }
                             
                             let json = try! GenericScalar(jsonValue: jsonValue)
                             
