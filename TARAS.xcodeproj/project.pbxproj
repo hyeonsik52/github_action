@@ -294,6 +294,8 @@
 		EDC6CAF0278BD05E004C5881 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAED278BD05E004C5881 /* NotificationManager.swift */; };
 		EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */; };
 		EDC6CAF3278D4570004C5881 /* ServiceUnitTargetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF2278D4570004C5881 /* ServiceUnitTargetHeader.swift */; };
+		EDC6CAF627901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF527901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift */; };
+		EDC6CAF8279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF7279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -593,6 +595,8 @@
 		EDC6CAED278BD05E004C5881 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationManager+Rx.swift"; sourceTree = "<group>"; };
 		EDC6CAF2278D4570004C5881 /* ServiceUnitTargetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUnitTargetHeader.swift; sourceTree = "<group>"; };
+		EDC6CAF527901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationRepeatCountViewController.swift; sourceTree = "<group>"; };
+		EDC6CAF7279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceCreationRepeatCountViewController+Rx.swift"; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1603,6 +1607,7 @@
 				ED06C72F277DBD2D00F9D0A5 /* ServiceCreationSelectReceiver */,
 				ED06C724277DBD2C00F9D0A5 /* ServiceCreationDetail */,
 				ED06C721277DBD2C00F9D0A5 /* ServiceCreationSummary */,
+				EDC6CAF427901C42004C5881 /* ServiceCreationRepeatCount */,
 				ED06C733277DBD2D00F9D0A5 /* Models */,
 				ED06C702277DBD2C00F9D0A5 /* Views */,
 			);
@@ -1668,6 +1673,15 @@
 				EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */,
 			);
 			path = NotificationManager;
+			sourceTree = "<group>";
+		};
+		EDC6CAF427901C42004C5881 /* ServiceCreationRepeatCount */ = {
+			isa = PBXGroup;
+			children = (
+				EDC6CAF527901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift */,
+				EDC6CAF7279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift */,
+			);
+			path = ServiceCreationRepeatCount;
 			sourceTree = "<group>";
 		};
 		EDF0C38D26B405F60061552F = {
@@ -1876,6 +1890,7 @@
 				ED6B460626B7DFF700C2FA6D /* SwiftEntryKit.swift in Sources */,
 				ED06C7692786889E00F9D0A5 /* ServiceBuilder.swift in Sources */,
 				ED6B465026B7E7CC00C2FA6D /* Reactor.swift in Sources */,
+				EDC6CAF8279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift in Sources */,
 				ED06C7752786891700F9D0A5 /* STAUIComponent.swift in Sources */,
 				EDC11AFE26D3A39E0020AB09 /* WorkspaceSelectView.swift in Sources */,
 				ED6B468626B7E8B500C2FA6D /* PushManager.swift in Sources */,
@@ -2110,6 +2125,7 @@
 				ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */,
 				ED06C76B278688B100F9D0A5 /* STParser.swift in Sources */,
 				EDC118E026D3A24A0020AB09 /* FindAccountIdView.swift in Sources */,
+				EDC6CAF627901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift in Sources */,
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,
 				ED6B464C26B7E7CC00C2FA6D /* String.swift in Sources */,
 				ED6B468B26B7E8B500C2FA6D /* UserManager.swift in Sources */,
