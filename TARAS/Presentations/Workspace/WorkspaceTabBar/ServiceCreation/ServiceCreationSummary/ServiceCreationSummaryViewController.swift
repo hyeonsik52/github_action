@@ -48,6 +48,11 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
     private let loadingTypeSwitch = UISwitch().then {
         $0.onTintColor = .purple4A3C9F
     }
+    private let loadingTypeSwitchStateLabel = UILabel().then {
+        $0.font = .regular[16]
+        $0.textColor = .grayA0A0A0
+        $0.textAlignment = .right
+    }
     
     private let detailTextView = UITextView().then {
         $0.clipsToBounds = true
@@ -180,10 +185,16 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
                 $0.bottom.equalToSuperview()
             }
             
+            sectionView.addSubview(self.loadingTypeSwitchStateLabel)
+            self.loadingTypeSwitchStateLabel.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
+            }
+            
             sectionView.addSubview(self.loadingTypeSwitch)
             self.loadingTypeSwitch.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
+                $0.leading.equalTo(self.loadingTypeSwitchStateLabel.snp.trailing).offset(8)
                 $0.trailing.equalToSuperview().offset(-16)
             }
         }
@@ -367,6 +378,11 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         self.detailTextView.rx.text
             .map(Reactor.Action.updateDetail)
             .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.loadingTypeSwitch.rx.isOn
+            .map { $0 ? "상차": "하차" }
+            .bind(to: self.loadingTypeSwitchStateLabel.rx.text)
             .disposed(by: self.disposeBag)
         
         //State
