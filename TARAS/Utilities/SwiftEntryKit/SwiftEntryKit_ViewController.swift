@@ -16,7 +16,7 @@ protocol SwiftEntryKitViewControllerExtension: SwiftEntryKitExtension {
 struct SwiftEntryKitViewControllerWrapper<Base>: SwiftEntryKitViewControllerExtension {
     
     var afterViewController: () -> UIViewController?
-    var entryName: String?
+    var entryName: String? = UUID().uuidString
     
     init(closure: @escaping () -> UIViewController?) {
         self.afterViewController = closure
