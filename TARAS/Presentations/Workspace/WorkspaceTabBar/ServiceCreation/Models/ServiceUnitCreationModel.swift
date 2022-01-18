@@ -104,3 +104,36 @@ extension ServiceUnitCreationModel {
         }
     }
 }
+
+protocol ServiceTemplateSerialization {
+    
+    func toJSON(scheme: STArgument) -> [String: Any]
+}
+
+extension ServiceUnitCreationModel: ServiceTemplateSerialization {
+    
+    func toJSON(scheme: STArgument) -> [String : Any] {
+        var args = [String: Any]()
+        scheme.subArguments?.forEach { arg in
+            let key = arg.key
+            if arg.asArgument?.required == true {
+                args[key] = {
+                    switch key {
+                    case "ID": return self.stop.id
+                    case "name": return self.stop.name
+                    case "message": return self.detail ?? ""
+                    case "loading_command": return (self.stopState?.isLoadingValue ?? true) ? "LOAD": "UNLOAD"
+                    case "is_waited": return self.stopState?.isWaitValue ?? true
+                    case "receivers":
+                        guard let receiverScheme = scheme.subArguments?
+                                .first(where: { $0.key == "receivers" })?
+                                .asArgument else { return "" }
+                        return self.receivers.map { $0.toJSON(scheme: receiverScheme) }
+                    default: return ""
+                    }
+                }()
+            }
+        }
+        return args
+    }
+}

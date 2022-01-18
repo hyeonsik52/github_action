@@ -33,20 +33,24 @@ class ResponseLoggingInterceptor: ApolloInterceptor {
         chain: RequestChain,
         request: HTTPRequest<Operation>,
         response: HTTPResponse<Operation>?,
-        completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void) {
-        
-        defer {
-            // Even if we can't log, we still want to keep going.
-            chain.proceedAsync(request: request,
-                               response: response,
-                               completion: completion)
-        }
-        
+        completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void
+    ) {
         guard let receivedResponse = response else {
             chain.handleErrorAsync(ResponseLoggingError.notYetReceived,
                                    request: request,
                                    response: response,
                                    completion: completion)
+            return
+        }
+        
+        if let json = try? JSONSerialization.jsonObject(with: receivedResponse.rawData, options: .fragmentsAllowed) as? [String: Any],
+           let errors = json["errors"] as? [[String: Any]] {
+            chain.handleErrorAsync(
+                MultipleError(graphQLErrors: errors.map(GraphQLError.init)),
+                request: request,
+                response: response,
+                completion: completion
+            )
             return
         }
         
@@ -58,5 +62,10 @@ class ResponseLoggingInterceptor: ApolloInterceptor {
         } else {
             Log.error("Could not convert data to string!")
         }
+        
+        // Even if we can't log, we still want to keep going.
+        chain.proceedAsync(request: request,
+                           response: response,
+                           completion: completion)
     }
 }

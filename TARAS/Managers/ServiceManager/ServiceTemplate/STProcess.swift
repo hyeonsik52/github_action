@@ -104,4 +104,12 @@ extension STProcess {
         guard case .general(let serviceType) = self.template.type else { return false }
         return (serviceType == .loading)
     }
+    
+    var serviceBuilder: ServiceBuilder {
+        return .init(self.template)
+    }
+    
+    var templateId: String {
+        return self.template.id
+    }
 }

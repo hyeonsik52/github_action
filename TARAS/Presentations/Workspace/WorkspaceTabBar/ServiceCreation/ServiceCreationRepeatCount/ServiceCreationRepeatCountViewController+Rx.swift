@@ -11,11 +11,14 @@ import RxSwift
 
 extension ServiceCreationRepeatCountViewController {
     
+    static let ViewID = "ServiceCreationRepeatCountViewController"
+    
     static func count(value: Int) -> Observable<Int> {
         return .create { observer in
             
             let viewController = ServiceCreationRepeatCountViewController(value: value)
-            let wrapper = viewController.sek
+            var wrapper = viewController.sek
+            wrapper.entryName = self.ViewID
             wrapper.showBottomSheet()
             
             let disappear = viewController.rx.viewDidDisappear

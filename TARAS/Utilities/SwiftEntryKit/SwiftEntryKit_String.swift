@@ -39,7 +39,7 @@ extension SwiftEntryKitViewWrapper where Base == String {
         var attributes: EKAttributes = .topFloat
         attributes.hapticFeedbackType = .none
         attributes.screenBackground = .clear
-        attributes.entryBackground = .color(color: EKColor.init(red: 0, green: 0, blue: 0).with(alpha: 0.5))
+        attributes.entryBackground = .color(color: .init(color))
         attributes.screenInteraction = .forward
         attributes.entryInteraction = .dismiss
         attributes.roundCorners = .all(radius: 4)
@@ -51,7 +51,7 @@ extension SwiftEntryKitViewWrapper where Base == String {
                 translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.8, duration: 0.3)
             )
         )
-        attributes.positionConstraints.verticalOffset = 24
+        attributes.positionConstraints.verticalOffset = 8
         
         attributes.positionConstraints.size = .init(
             width: EKAttributes.PositionConstraints.Edge.ratio(value: 1),

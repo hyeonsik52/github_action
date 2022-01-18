@@ -13,9 +13,6 @@ class ServiceCreationViewReactor: Reactor {
     enum Text {
         static let errorNetworkConnection = "서버와의 통신이 원활하지 않습니다."
         static let errorRequestFailed = "서비스 생성에 실패했습니다."
-        static let errorLoadFailed = "파일을 가져오지 못했습니다. 사진을 다시 설정해주세요."
-        static let errorUploadFailedBySize = "사진 용량이 초과되었습니다.(최대 사진 용량 20MB)"
-        static let errorUploadFailed = "사진 첨부에 실패했습니다."
     }
     
     typealias ServiceUnit = ServiceUnitCreationModel
@@ -108,56 +105,31 @@ class ServiceCreationViewReactor: Reactor {
                 return serviceUnits
             }))
         case .request(let repeatCount):
+            let builder = self.templateProcess.serviceBuilder
+            
+            let jsonValue = builder.generateServiceTemplateInputJsonValue(
+                with: self.currentState.serviceUnits,
+                repeatCount: repeatCount
+            )
+            let json = try! GenericScalar(jsonValue: jsonValue)
+            
+            let input = CreateServiceWithServiceTemplateInput(
+                serviceTemplateId: self.templateProcess.templateId,
+                input: json
+            )
+            
             return .concat([
                 .just(.updateErrorMessage(nil)),
                 .just(.updateRequestSuccess(nil)),
                 .just(.updateProcessing(true)),
                 
-                self.provider.networkManager.fetch(ServiceTemplatesQuery())
-                    .compactMap { $0.serviceTemplates?.edges.compactMap { $0?.node?.fragments.serviceTemplateFragment } }
-                    .flatMapLatest { results -> Observable<Mutation> in
-                        if let validTemplate = results.first(where: { $0.name == "글로비스 일반배송" }) {
-                            
-                            //TODO: STProcess에서 필수 키 가져와서 구성하기
-                            var jsonValue: [String: Any] = [
-                                "arguments": [
-                                    "destinations": self.currentState.serviceUnits.map {
-                                        [
-                                            "ID": $0.stop.id,
-                                            "name": $0.stop.name,
-                                            "message": $0.detail ?? "",
-                                            "is_waited": true,
-                                            "receivers": $0.receivers.map {
-                                                return [
-                                                    "ID": $0.id
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            ]
-                            
-                            if let repeatCount = repeatCount {
-                                jsonValue["repeat_count"] = repeatCount
-                            }
-                            
-                            let json = try! GenericScalar(jsonValue: jsonValue)
-                            
-                            let input = CreateServiceWithServiceTemplateInput(
-                                serviceTemplateId: validTemplate.id,
-                                input: json
-                            )
-                            return self.provider.networkManager.perform(CreateServiceMutation(input: input))
-                                .map { $0.createServiceWithServiceTemplate?.fragments.serviceFragment }
-                                .map {
-                                    if let _ = $0 {
-                                        return .updateRequestSuccess(true)
-                                    } else {
-                                        return .updateErrorMessage(Text.errorRequestFailed)
-                                    }
-                                }
+                self.provider.networkManager.perform(CreateServiceMutation(input: input))
+                    .map { $0.createServiceWithServiceTemplate?.fragments.serviceFragment }
+                    .map {
+                        if let _ = $0 {
+                            return .updateRequestSuccess(true)
                         } else {
-                            return .just(.updateErrorMessage(Text.errorRequestFailed))
+                            return .updateErrorMessage(Text.errorRequestFailed)
                         }
                     }.catch { error in
                         guard let multipleError = error as? MultipleError,
@@ -165,16 +137,8 @@ class ServiceCreationViewReactor: Reactor {
                             return .just(.updateErrorMessage(Text.errorNetworkConnection))
                         }
                         for error in errors {
-                            guard let message = error.message else { continue }
-                            if message.hasPrefix("uploaded file url not found") {
-                                return .just(.updateErrorMessage(Text.errorUploadFailed))
-                            } else if message.hasPrefix("failed file upload") {
-                                return .just(.updateErrorMessage(Text.errorUploadFailed))
-                            } else if message.hasPrefix("cached file not found") {
-                                return .just(.updateErrorMessage(Text.errorLoadFailed))
-                            } else if message.contains("File is too big") {
-                                return .just(.updateErrorMessage(Text.errorUploadFailedBySize))
-                            }
+                            guard let message = error.message, !message.isEmpty else { continue }
+                            return .just(.updateErrorMessage(message))
                         }
                         return .just(.updateErrorMessage(Text.errorRequestFailed))
                     },

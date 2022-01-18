@@ -11,6 +11,7 @@ import Then
 import ReactorKit
 import RxSwift
 import RxCocoa
+import SwiftEntryKit
 
 class ServiceCreationViewController: BaseNavigationViewController, View {
     
@@ -287,6 +288,8 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
             .distinctUntilChanged()
             .filter { $0 == true }
             .subscribe(onNext: { [weak self] _ in
+                let entryName = ServiceCreationRepeatCountViewController.ViewID
+                SwiftEntryKit.dismiss(.specific(entryName: entryName))
                 self?.navigationPop(animated: true, bottomBarHidden: false)
             }).disposed(by: self.disposeBag)
         
