@@ -31,10 +31,10 @@ protocol SwiftEntryKitViewBridge {
 extension SwiftEntryKitViewExtension {
     
     func show(with attributes: EKAttributes) {
+        guard let view = self.afterView() else { return }
+        var attributes = attributes
+        attributes.name = self.entryName
         DispatchQueue.main.async {
-            guard let view = self.afterView() else { return }
-            var attributes = attributes
-            attributes.name = view.hash.description
             SwiftEntryKit.display(entry: view, using: attributes)
         }
     }

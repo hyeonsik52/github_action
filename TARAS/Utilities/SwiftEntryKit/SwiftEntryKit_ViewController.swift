@@ -16,7 +16,7 @@ protocol SwiftEntryKitViewControllerExtension: SwiftEntryKitExtension {
 struct SwiftEntryKitViewControllerWrapper<Base>: SwiftEntryKitViewControllerExtension {
     
     var afterViewController: () -> UIViewController?
-    var entryName: String? = UUID().uuidString
+    var entryName: String?
     
     init(closure: @escaping () -> UIViewController?) {
         self.afterViewController = closure
@@ -31,10 +31,10 @@ protocol SwiftEntryKitViewControllerBridge {
 extension SwiftEntryKitViewControllerExtension {
     
     func show(with attributes: EKAttributes) {
+        guard let viewController = self.afterViewController() else { return }
+        var attributes = attributes
+        attributes.name = self.entryName
         DispatchQueue.main.async {
-            guard let viewController = self.afterViewController() else { return }
-            var attributes = attributes
-            attributes.name = viewController.hash.description
             SwiftEntryKit.display(entry: viewController, using: attributes)
         }
     }
