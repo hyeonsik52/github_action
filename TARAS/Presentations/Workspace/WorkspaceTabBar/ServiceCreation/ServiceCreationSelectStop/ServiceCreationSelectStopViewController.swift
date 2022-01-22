@@ -72,12 +72,18 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         
         //Action
         self.rx.viewDidLoad
-            .map { Reactor.Action.refresh }
+            .map { Reactor.Action.refresh(term: nil) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         self.tableView.refreshControl?.rx.controlEvent(.valueChanged)
-            .map { Reactor.Action.refresh }
+            .withLatestFrom(self.searchView.searchTerm)
+            .map(Reactor.Action.refresh)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.searchView.searchTerm
+            .map(Reactor.Action.refresh)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
