@@ -22,6 +22,8 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         $0.separatorStyle = .none
         $0.rowHeight = 48
         
+        $0.keyboardDismissMode = .onDrag
+        
         $0.register(ServiceUnitTargetCell.self, forCellReuseIdentifier: "cell")
         
         $0.refreshControl = UIRefreshControl()
