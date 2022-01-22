@@ -26,7 +26,7 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     
     enum Action {
-        case refresh
+        case refresh(term: String?)
 //        case select(model: Stop)
         case confirm(with: Stop)
     }
@@ -80,10 +80,10 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .refresh:
+        case .refresh(let term):
             return .concat([
                 .just(.updateLoading(true)),
-                self.refresh(),
+                self.refresh(term: term),
                 .just(.updateLoading(false))
             ])
 //        case .select(let model):
@@ -127,8 +127,9 @@ class ServiceCreationSelectStopViewReactor: Reactor {
 
 extension ServiceCreationSelectStopViewReactor {
     
-    func refresh() -> Observable<Mutation> {
+    func refresh(term: String?) -> Observable<Mutation> {
         
+        //TODO: 검색어에 따라 실시간 검색
         if case .general = self.entry {
             
             if self.templateProcess.peek(with: "ID")?.asArgument?.from == .stationGroup {
@@ -138,6 +139,10 @@ extension ServiceCreationSelectStopViewReactor {
                     .map { $0.edges.compactMap { $0?.node?.fragments.stopFragment } }
                     .map {
                         $0.compactMap { payload -> Stop? in
+                            //temp 검색어 임시 필터링 처리
+                            guard term?.isEmpty ?? true || (term != nil && payload.name.contains(term!)) else {
+                                return nil
+                            }
                             var stop = Stop(id: payload.id, name: payload.name)
                             stop.isSelected = (stop == self.serviceUnit.stop)
                             return stop

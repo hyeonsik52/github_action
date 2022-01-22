@@ -15,10 +15,14 @@ import RxDataSources
 
 class ServiceCreationSelectStopViewController: BaseNavigationViewController, View {
     
+    private let searchView = TRSSearchView(placeholder: "장소명(초성) 검색")
+    
     private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.alwaysBounceVertical = true
         $0.separatorStyle = .none
         $0.rowHeight = 48
+        
+        $0.keyboardDismissMode = .onDrag
         
         $0.register(ServiceUnitTargetCell.self, forCellReuseIdentifier: "cell")
         
@@ -42,9 +46,16 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
     override func setupConstraints() {
         super.setupConstraints()
         
+        self.view.addSubview(self.searchView)
+        self.searchView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(self.searchView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -61,12 +72,18 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         
         //Action
         self.rx.viewDidLoad
-            .map { Reactor.Action.refresh }
+            .map { Reactor.Action.refresh(term: nil) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         self.tableView.refreshControl?.rx.controlEvent(.valueChanged)
-            .map { Reactor.Action.refresh }
+            .withLatestFrom(self.searchView.searchTerm)
+            .map(Reactor.Action.refresh)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.searchView.searchTerm
+            .map(Reactor.Action.refresh)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
