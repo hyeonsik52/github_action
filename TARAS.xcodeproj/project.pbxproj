@@ -296,6 +296,7 @@
 		EDC6CAF3278D4570004C5881 /* ServiceUnitTargetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF2278D4570004C5881 /* ServiceUnitTargetHeader.swift */; };
 		EDC6CAF627901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF527901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift */; };
 		EDC6CAF8279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF7279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift */; };
+		EDC6CAFA27969E79004C5881 /* TRSSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAF927969E79004C5881 /* TRSSearchView.swift */; };
 		EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39926B405F60061552F /* AppDelegate.swift */; };
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -597,6 +598,7 @@
 		EDC6CAF2278D4570004C5881 /* ServiceUnitTargetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUnitTargetHeader.swift; sourceTree = "<group>"; };
 		EDC6CAF527901CBF004C5881 /* ServiceCreationRepeatCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationRepeatCountViewController.swift; sourceTree = "<group>"; };
 		EDC6CAF7279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceCreationRepeatCountViewController+Rx.swift"; sourceTree = "<group>"; };
+		EDC6CAF927969E79004C5881 /* TRSSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSSearchView.swift; sourceTree = "<group>"; };
 		EDF0C39626B405F60061552F /* TARAS-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TARAS-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF0C39926B405F60061552F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDF0C39B26B405F60061552F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 				ED06C705277DBD2C00F9D0A5 /* SimpleReactor.swift */,
 				ED06C706277DBD2C00F9D0A5 /* ServiceUnitTargetCellReactor.swift */,
 				ED06C707277DBD2C00F9D0A5 /* SimpleCellReactor.swift */,
+				EDC6CAF927969E79004C5881 /* TRSSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2086,6 +2089,7 @@
 				ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */,
 				ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */,
 				EDC11A9726D3A39D0020AB09 /* SettingWorkspaceInfoView.swift in Sources */,
+				EDC6CAFA27969E79004C5881 /* TRSSearchView.swift in Sources */,
 				ED06C701277C490500F9D0A5 /* ServiceTemplateListSection.swift in Sources */,
 				EDC11A3726D3A39D0020AB09 /* WorkspaceListViewController.swift in Sources */,
 				ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */,
