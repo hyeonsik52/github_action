@@ -37,7 +37,7 @@ class WorkRequestRobotView: UIView {
         
         let container = UIView().then {
             $0.clipsToBounds = true
-            $0.cornerRadius = 8
+            $0.layer.cornerRadius = 8
             $0.backgroundColor = .grayF8F8F8
         }
         self.addSubview(container)

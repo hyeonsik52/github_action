@@ -15,7 +15,7 @@ class WorkRequestTopView: UIView {
     private let profileImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.cornerRadius = 20
+        $0.layer.cornerRadius = 20
         $0.backgroundColor = .grayF6F6F6
     }
     
@@ -25,7 +25,7 @@ class WorkRequestTopView: UIView {
         $0.font = .bold[12]
         $0.textColor = .white
         $0.clipsToBounds = true
-        $0.cornerRadius = 10
+        $0.layer.cornerRadius = 10
         $0.backgroundColor = .skyblue85AEFF
         $0.textAlignment = .center
     }

@@ -55,7 +55,7 @@ class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View
             backgroundColors: [.normal(.white)]
         )
     ).then {
-        $0.outlineWidth = 1
+        $0.layer.borderWidth = 1
         $0.outlineColor = .grayF6F6F6
     }
     

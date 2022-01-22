@@ -14,7 +14,7 @@ class SRPStateView: UIView {
 
     private let container = UIView().then {
         $0.clipsToBounds = true
-        $0.cornerRadius = 6
+        $0.layer.cornerRadius = 6
     }
     
     private let label = UILabel().then {

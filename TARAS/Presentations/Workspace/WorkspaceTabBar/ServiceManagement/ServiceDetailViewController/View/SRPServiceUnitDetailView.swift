@@ -30,7 +30,7 @@ class SRPServiceUnitDetailView: UIView {
         
         self.backgroundColor = .grayF6F6F6
         self.clipsToBounds = true
-        self.cornerRadius = 8
+        self.layer.cornerRadius = 8
         
         self.addSubview(self.textLabel)
         self.textLabel.snp.makeConstraints {

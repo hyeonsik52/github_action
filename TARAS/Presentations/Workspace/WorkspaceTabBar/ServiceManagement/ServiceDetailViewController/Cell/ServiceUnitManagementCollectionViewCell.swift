@@ -42,7 +42,7 @@ class ServiceUnitManagementCollectionViewCell: UICollectionViewCell, View {
     private func setupConstraints() {
         
         self.contentView.clipsToBounds = true
-        self.contentView.cornerRadius = 8
+        self.contentView.layer.cornerRadius = 8
         self.contentView.backgroundColor = .white
         
         self.contentView.translatesAutoresizingMaskIntoConstraints = false

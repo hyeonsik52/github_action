@@ -22,7 +22,7 @@ class SettingProfileCellView: UIView {
     private let profileImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.cornerRadius = 18
+        $0.layer.cornerRadius = 18
         $0.image = UIImage(named: "common-workspacePlaceholder-happy")
     }
     
