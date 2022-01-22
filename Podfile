@@ -30,8 +30,8 @@ def pods
   
   pod 'PanModal', '~> 1.2.7'
   
-  #임시
   pod 'UITextView+Placeholder', '~> 1.4.0'
+  pod 'TagListView', '~> 1.0'
 end
 
 target 'TARAS-Dev' do
