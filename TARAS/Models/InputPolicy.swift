@@ -90,4 +90,8 @@ extension InputPolicy {
     
     /// 최소 1자 이상
     static let min1 = InputPolicy(range: 1...Int.max, format: "^.+$")
+    
+    /// 정차지 또는 수신자 검색
+    /// 최대 입력 글자 수: 100
+    static let search = InputPolicy(range: 1...100, format: "^.+$")
 }
