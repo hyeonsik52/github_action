@@ -9,12 +9,20 @@ import UIKit
 
 extension UIView {
     
-    func recursiveSearch<T: UIView>() -> T? {
+    func recursiveSearch<T: UIView>(where closure: ((UIView) -> Bool)? = nil) -> T? {
         let subviews = self.subviews
         for subview in subviews {
             if let casted = subview as? T {
-                return casted
-            } else if let searched: T = subview.recursiveSearch() {
+                if let closure = closure {
+                    if closure(casted) {
+                        return casted
+                    } else if let searched: T = subview.recursiveSearch(where: closure) {
+                        return searched
+                    }
+                } else {
+                    return casted
+                }
+            } else if let searched: T = subview.recursiveSearch(where: closure) {
                 return searched
             }
         }

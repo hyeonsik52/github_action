@@ -81,6 +81,7 @@
 		ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */; };
 		ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */; };
 		ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
+		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */; };
 		ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */; };
@@ -382,6 +383,7 @@
 		ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewReactor.swift; sourceTree = "<group>"; };
 		ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
+		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPClearTextView.swift; sourceTree = "<group>"; };
 		ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPInputView.swift; sourceTree = "<group>"; };
@@ -854,6 +856,7 @@
 				ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */,
 				EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */,
 				ED6B45F426B7DF7D00C2FA6D /* Position.swift */,
+				ED633E30279F936300585AB0 /* KeyboardExtension.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1959,6 +1962,7 @@
 				ED6B469226B7E8B500C2FA6D /* BaseObject.swift in Sources */,
 				EDC11A4A26D3A39D0020AB09 /* ServiceLogSection.swift in Sources */,
 				EDC11A9426D3A39D0020AB09 /* SettingScrollViewHeader.swift in Sources */,
+				ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */,
 				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
 				EDC11A9826D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift in Sources */,
 				EDC118DB26D3A24A0020AB09 /* FindAccountIdResultViewReactor.swift in Sources */,
