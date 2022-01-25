@@ -15,11 +15,9 @@ class ServiceUnitTargetCell: UITableViewCell, View {
     
     private let titleLabel = UILabel().then {
         $0.font = .regular[16]
-        $0.textColor = .darkGray303030
     }
     
     private let selectedCheckImage = UIImage(named: "recipient-checkbox-on")
-//    private let selectedRadioImage = UIImage(named: "iconRadio24Sel2")
     private let defaultImage = UIImage(named: "recipient-checkbox-off")
     
     private lazy var selectButton = UIButton().then {
@@ -43,12 +41,26 @@ class ServiceUnitTargetCell: UITableViewCell, View {
     private func setupConstraints() {
         
         self.selectionStyle = .none
+        
+        let highlightView = UIView().then {
+            $0.backgroundColor = .init(hex: "#6750A41F")
+            $0.clipsToBounds = true
+            $0.layer.cornerRadius = 8
+            $0.isHidden = true
+        }
+        self.addSubview(highlightView)
+        highlightView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(4)
+            $0.trailing.equalToSuperview().offset(-4)
+        }
+        self.backgroundView = highlightView
+        
         self.contentView.do {
-                        
             $0.addSubview(self.titleLabel)
             self.titleLabel.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(16)
+                $0.leading.equalToSuperview().offset(24)
                 $0.height.equalTo(24)
             }
             
@@ -56,25 +68,35 @@ class ServiceUnitTargetCell: UITableViewCell, View {
             self.selectButton.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
-                $0.trailing.equalToSuperview().offset(-16)
+                $0.trailing.equalToSuperview().offset(-26)
                 $0.size.equalTo(20)
             }
         }
     }
     
     func bind(reactor: ServiceUnitTargetCellReactor) {
-//        let type = reactor.selectionType
         let target = reactor.initialState
         
-        self.titleLabel.text = target.name
-        self.titleLabel.alpha = (reactor.isEnabled ? 1.0: 0.3)
+        let isHighlighted = !reactor.highlightRanges.isEmpty
+        self.titleLabel.textColor = (isHighlighted ? .gray787579: .black1C1B1F)
         
-//        switch type {
-//        case .radio:
-//            self.selectButton.setImage(self.selectedRadioImage, for: .selected)
-//        case .check:
-//            self.selectButton.setImage(self.selectedCheckImage, for: .selected)
-//        }
+        if isHighlighted {
+            let attributedText = NSMutableAttributedString(string: target.name)
+            reactor.highlightRanges.forEach {
+                attributedText.addAttributes(
+                    [
+                        .font: UIFont.medium[16],
+                        .foregroundColor: UIColor.black1C1B1F
+                    ],
+                    range: $0
+                )
+            }
+            self.titleLabel.attributedText = attributedText
+        } else {
+            self.titleLabel.text = target.name
+        }
+        
+        self.titleLabel.alpha = (reactor.isEnabled ? 1.0: 0.3)
         
         self.selectButton.isHidden = !reactor.isEnabled || !reactor.isIconVisibled
         self.selectButton.isSelected = target.isSelected

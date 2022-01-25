@@ -119,15 +119,7 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         
         //State
         reactor.state.map(\.stops)
-            .map {
-                let isGeneralLoading = reactor.templateProcess.isServiceTypeLS
-                return $0.map { .init(
-                    model: $0,
-                    selectionType: .check,
-                    isEnabled: !$0.name.hasPrefix("LS") || isGeneralLoading,
-                    isIconVisibled: false
-                )}
-            }.map { [.init(header: "", items: $0)] }
+            .map { [.init(header: "", items: $0)] }
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
@@ -135,6 +127,9 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
 //            .distinctUntilChanged()
 //            .bind(to: self.activityIndicatorView.rx.isAnimating)
 //            .disposed(by: self.disposeBag)
+        
+        self.tableView.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
         
         reactor.state.map(\.isLoading)
             .distinctUntilChanged()
@@ -159,5 +154,17 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                     bottomBarHidden: true
                 )
             }).disposed(by: self.disposeBag)
+    }
+}
+
+extension ServiceCreationSelectStopViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        guard self.dataSource[indexPath].isEnabled else { return }
+        tableView.cellForRow(at: indexPath)?.backgroundView?.isHidden = false
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.backgroundView?.isHidden = true
     }
 }
