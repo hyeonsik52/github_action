@@ -15,11 +15,9 @@ class ServiceUnitTargetCell: UITableViewCell, View {
     
     private let titleLabel = UILabel().then {
         $0.font = .regular[16]
-        $0.textColor = .black1C1B1F
     }
     
     private let selectedCheckImage = UIImage(named: "recipient-checkbox-on")
-//    private let selectedRadioImage = UIImage(named: "iconRadio24Sel2")
     private let defaultImage = UIImage(named: "recipient-checkbox-off")
     
     private lazy var selectButton = UIButton().then {
@@ -77,18 +75,28 @@ class ServiceUnitTargetCell: UITableViewCell, View {
     }
     
     func bind(reactor: ServiceUnitTargetCellReactor) {
-//        let type = reactor.selectionType
         let target = reactor.initialState
         
-        self.titleLabel.text = target.name
-        self.titleLabel.alpha = (reactor.isEnabled ? 1.0: 0.3)
+        let isHighlighted = !reactor.highlightRanges.isEmpty
+        self.titleLabel.textColor = (isHighlighted ? .gray787579: .black1C1B1F)
         
-//        switch type {
-//        case .radio:
-//            self.selectButton.setImage(self.selectedRadioImage, for: .selected)
-//        case .check:
-//            self.selectButton.setImage(self.selectedCheckImage, for: .selected)
-//        }
+        if isHighlighted {
+            let attributedText = NSMutableAttributedString(string: target.name)
+            reactor.highlightRanges.forEach {
+                attributedText.addAttributes(
+                    [
+                        .font: UIFont.medium[16],
+                        .foregroundColor: UIColor.black1C1B1F
+                    ],
+                    range: $0
+                )
+            }
+            self.titleLabel.attributedText = attributedText
+        } else {
+            self.titleLabel.text = target.name
+        }
+        
+        self.titleLabel.alpha = (reactor.isEnabled ? 1.0: 0.3)
         
         self.selectButton.isHidden = !reactor.isEnabled || !reactor.isIconVisibled
         self.selectButton.isSelected = target.isSelected
