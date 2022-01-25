@@ -302,6 +302,7 @@
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
 		EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
+		EDFC63C7279C0E1E006613CA /* TRSRecentSearchTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */; };
 		EDFC63C9279E8EEB006613CA /* TRSTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */; };
 		EDFC63CB279E9793006613CA /* SimpleDefualts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63CA279E9793006613CA /* SimpleDefualts.swift */; };
 		EDFC63CF279EAEC5006613CA /* TRSTagListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63CE279EAEC5006613CA /* TRSTagListViewCell.swift */; };
@@ -612,6 +613,7 @@
 		EDF0C3A526B405F70061552F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDF0C3A726B405F70061552F /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TARAS-Dev.entitlements"; sourceTree = "<group>"; };
+		EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSRecentSearchTermsView.swift; sourceTree = "<group>"; };
 		EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListView.swift; sourceTree = "<group>"; };
 		EDFC63CA279E9793006613CA /* SimpleDefualts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDefualts.swift; sourceTree = "<group>"; };
 		EDFC63CE279EAEC5006613CA /* TRSTagListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListViewCell.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				ED06C706277DBD2C00F9D0A5 /* ServiceUnitTargetCellReactor.swift */,
 				ED06C707277DBD2C00F9D0A5 /* SimpleCellReactor.swift */,
 				EDC6CAF927969E79004C5881 /* TRSSearchView.swift */,
+				EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */,
 				EDFC63CD279EAEAC006613CA /* TRSTagListView */,
 			);
 			path = Views;
@@ -1948,6 +1951,7 @@
 				EDC11AF926D3A39E0020AB09 /* WorkspaceHeaderView.swift in Sources */,
 				EDFC63CB279E9793006613CA /* SimpleDefualts.swift in Sources */,
 				EDC11A3E26D3A39D0020AB09 /* ServieBasicInfoViewController.swift in Sources */,
+				EDFC63C7279C0E1E006613CA /* TRSRecentSearchTermsView.swift in Sources */,
 				ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */,
 				EDC11A8526D3A39D0020AB09 /* UpdateEmailViewReactor.swift in Sources */,
 				EDC118E626D3A24A0020AB09 /* FindAccountPasswordView.swift in Sources */,
