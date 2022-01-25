@@ -83,6 +83,7 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
             .disposed(by: self.disposeBag)
         
         self.searchView.searchTerm
+            .throttle(.microseconds(500), scheduler: MainScheduler.instance)
             .map(Reactor.Action.refresh)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
