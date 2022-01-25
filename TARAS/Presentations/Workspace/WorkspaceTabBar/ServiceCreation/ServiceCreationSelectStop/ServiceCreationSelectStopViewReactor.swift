@@ -18,6 +18,7 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     typealias ServiceUnit = ServiceUnitCreationModel
     typealias Stop = ServiceUnitTargetModel
     typealias StopUpdateClosure = ([Stop]) -> [Stop]
+    typealias StopReactor = ServiceUnitTargetCellReactor
     
     enum Entry {
         case general(ServiceUnit)
@@ -32,14 +33,14 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     }
     
     enum Mutation {
-        case reloadStops([Stop])
+        case reloadStops([StopReactor])
         case updateLoading(Bool)
 //        case updateStop(StopUpdateClosure)
         case updateConfirm(Bool?)
     }
     
     struct State {
-        var stops: [Stop]
+        var stops: [StopReactor]
         var isLoading: Bool
         var isConfirmed: Bool?
     }
@@ -147,6 +148,15 @@ extension ServiceCreationSelectStopViewReactor {
                             stop.isSelected = (stop == self.serviceUnit.stop)
                             return stop
                         }
+                    }.map {
+                        let isGeneralLoading = self.templateProcess.isServiceTypeLS
+                        return $0.map { .init(
+                            model: $0,
+                            selectionType: .check,
+                            isEnabled: !$0.name.hasPrefix("LS") || isGeneralLoading,
+                            isIconVisibled: false,
+                            highlightRanges: (term == nil ? []: $0.name.ranges(of: term!))
+                        )}
                     }.map { .reloadStops($0) }
             }
         }
