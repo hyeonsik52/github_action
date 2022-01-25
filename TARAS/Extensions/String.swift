@@ -104,3 +104,18 @@ extension String {
         }
     }
 }
+
+extension String {
+    
+    func ranges(of substring: String, options: CompareOptions = [], locale: Locale? = nil) -> [NSRange] {
+        var results = [NSRange]()
+        var ranges = [Range<Index>]()
+        while let range = range(of: substring, options: options, range: (ranges.last?.upperBound ?? startIndex)..<endIndex, locale: locale) {
+            ranges.append(range)
+            let location = distance(from: startIndex, to: range.lowerBound)
+            let length = distance(from: range.lowerBound, to: range.upperBound)
+            results.append(NSMakeRange(location, length))
+        }
+        return results
+    }
+}
