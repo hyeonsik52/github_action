@@ -10,15 +10,6 @@ import UIKit
 
 @IBDesignable extension UIView {
 
-    @IBInspectable var cornerRadius: CGFloat {
-        set {
-            layer.cornerRadius = newValue
-        }
-        get {
-            return layer.cornerRadius
-        }
-    }
-
     @IBInspectable var shadowOffset: CGPoint {
         set {
             layer.shadowOffset = CGSize(width: newValue.x, height: newValue.y)
@@ -104,7 +95,7 @@ extension UIView {
         self.layer.mask = mask
         
         //테두리가 있다면 패스를 따라서 라인을 추가한다
-        if self.outlineWidth > 0, self.cornerRadius == 0 {
+        if self.outlineWidth > 0, self.layer.cornerRadius == 0 {
             
             //동기
             objc_sync_enter(self);

@@ -30,7 +30,6 @@ def pods
   
   pod 'PanModal', '~> 1.2.7'
   
-  #임시
   pod 'UITextView+Placeholder', '~> 1.4.0'
 end
 

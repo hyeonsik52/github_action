@@ -15,7 +15,7 @@ class WorkspaceInfoView: UIView {
     private let profileImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.cornerRadius = 14
+        $0.layer.cornerRadius = 14
         $0.image = UIImage(named: "common-workspacePlaceholder-happy")
     }
     
@@ -70,7 +70,7 @@ class WorkspaceInfoView: UIView {
         
         let memberCountContainer = UIView().then {
             $0.clipsToBounds = true
-            $0.cornerRadius = 10
+            $0.layer.cornerRadius = 10
             $0.backgroundColor = .lightPurpleEBEAF4
         }
         self.addSubview(memberCountContainer)

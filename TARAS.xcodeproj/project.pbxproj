@@ -81,6 +81,7 @@
 		ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */; };
 		ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */; };
 		ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
+		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */; };
 		ED68E1BE26D49B8B003D6442 /* SRPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */; };
@@ -301,6 +302,11 @@
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
 		EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
+		EDFC63C7279C0E1E006613CA /* TRSRecentSearchTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */; };
+		EDFC63C9279E8EEB006613CA /* TRSTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */; };
+		EDFC63CB279E9793006613CA /* SimpleDefualts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63CA279E9793006613CA /* SimpleDefualts.swift */; };
+		EDFC63CF279EAEC5006613CA /* TRSTagListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63CE279EAEC5006613CA /* TRSTagListViewCell.swift */; };
+		EDFC63D1279EB2FA006613CA /* TRSTagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63D0279EB2FA006613CA /* TRSTagListViewModel.swift */; };
 		FA3FCE30536CE7CEE5FA0BFF /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */; };
 /* End PBXBuildFile section */
 
@@ -382,6 +388,7 @@
 		ED52736326C3A03C0077CD9D /* SignUpPasswordViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewReactor.swift; sourceTree = "<group>"; };
 		ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
+		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPClearTextView.swift; sourceTree = "<group>"; };
 		ED68E1BC26D49B8B003D6442 /* SRPInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPInputView.swift; sourceTree = "<group>"; };
@@ -606,6 +613,11 @@
 		EDF0C3A526B405F70061552F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDF0C3A726B405F70061552F /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TARAS-Dev.entitlements"; sourceTree = "<group>"; };
+		EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSRecentSearchTermsView.swift; sourceTree = "<group>"; };
+		EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListView.swift; sourceTree = "<group>"; };
+		EDFC63CA279E9793006613CA /* SimpleDefualts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDefualts.swift; sourceTree = "<group>"; };
+		EDFC63CE279EAEC5006613CA /* TRSTagListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListViewCell.swift; sourceTree = "<group>"; };
+		EDFC63D0279EB2FA006613CA /* TRSTagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -661,6 +673,8 @@
 				ED06C706277DBD2C00F9D0A5 /* ServiceUnitTargetCellReactor.swift */,
 				ED06C707277DBD2C00F9D0A5 /* SimpleCellReactor.swift */,
 				EDC6CAF927969E79004C5881 /* TRSSearchView.swift */,
+				EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */,
+				EDFC63CD279EAEAC006613CA /* TRSTagListView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -854,6 +868,7 @@
 				ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */,
 				EDC11B0626D3AE4E0020AB09 /* BaseTableViewCell.swift */,
 				ED6B45F426B7DF7D00C2FA6D /* Position.swift */,
+				ED633E30279F936300585AB0 /* KeyboardExtension.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -866,6 +881,7 @@
 				ED6B45FA26B7DFF700C2FA6D /* Log.swift */,
 				ED6B46B326B8025500C2FA6D /* Info.swift */,
 				ED6B45FB26B7DFF700C2FA6D /* SwiftEntryKit */,
+				EDFC63CA279E9793006613CA /* SimpleDefualts.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1720,6 +1736,16 @@
 			path = TARAS;
 			sourceTree = "<group>";
 		};
+		EDFC63CD279EAEAC006613CA /* TRSTagListView */ = {
+			isa = PBXGroup;
+			children = (
+				EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */,
+				EDFC63CE279EAEC5006613CA /* TRSTagListViewCell.swift */,
+				EDFC63D0279EB2FA006613CA /* TRSTagListViewModel.swift */,
+			);
+			path = TRSTagListView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1864,10 +1890,12 @@
 				ED06C77B2786893D00F9D0A5 /* STFlows.swift in Sources */,
 				EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */,
 				ED06C749277DBD2D00F9D0A5 /* ServiceUnitCreationModelSection.swift in Sources */,
+				EDFC63CF279EAEC5006613CA /* TRSTagListViewCell.swift in Sources */,
 				ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */,
 				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
 				ED06C7792786893200F9D0A5 /* STFlow.swift in Sources */,
 				EDC11A8A26D3A39D0020AB09 /* UpdatePhoneNumberViewReactor.swift in Sources */,
+				EDFC63D1279EB2FA006613CA /* TRSTagListViewModel.swift in Sources */,
 				EDC11A7E26D3A39D0020AB09 /* WorkspaceInfoViewController.swift in Sources */,
 				ED6B468A26B7E8B500C2FA6D /* ManagerProvider.swift in Sources */,
 				ED06C771278688E900F9D0A5 /* STSource.swift in Sources */,
@@ -1921,7 +1949,9 @@
 				EDC11A5526D3A39D0020AB09 /* WorkRequestViewController.swift in Sources */,
 				EDC11A3526D3A39D0020AB09 /* WorkspaceListPlaceholderView.swift in Sources */,
 				EDC11AF926D3A39E0020AB09 /* WorkspaceHeaderView.swift in Sources */,
+				EDFC63CB279E9793006613CA /* SimpleDefualts.swift in Sources */,
 				EDC11A3E26D3A39D0020AB09 /* ServieBasicInfoViewController.swift in Sources */,
+				EDFC63C7279C0E1E006613CA /* TRSRecentSearchTermsView.swift in Sources */,
 				ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */,
 				EDC11A8526D3A39D0020AB09 /* UpdateEmailViewReactor.swift in Sources */,
 				EDC118E626D3A24A0020AB09 /* FindAccountPasswordView.swift in Sources */,
@@ -1959,6 +1989,7 @@
 				ED6B469226B7E8B500C2FA6D /* BaseObject.swift in Sources */,
 				EDC11A4A26D3A39D0020AB09 /* ServiceLogSection.swift in Sources */,
 				EDC11A9426D3A39D0020AB09 /* SettingScrollViewHeader.swift in Sources */,
+				ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */,
 				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
 				EDC11A9826D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift in Sources */,
 				EDC118DB26D3A24A0020AB09 /* FindAccountIdResultViewReactor.swift in Sources */,
@@ -2141,6 +2172,7 @@
 				EDC11A4F26D3A39D0020AB09 /* ReceivedServicesViewController.swift in Sources */,
 				ED6B464E26B7E7CC00C2FA6D /* UILabel+Rx.swift in Sources */,
 				ED6B468226B7E8B500C2FA6D /* NetworkInterceptorProvider.swift in Sources */,
+				EDFC63C9279E8EEB006613CA /* TRSTagListView.swift in Sources */,
 				ED06C74B277DBD2D00F9D0A5 /* ServiceCreationCell.swift in Sources */,
 				ED6B463C26B7E7CC00C2FA6D /* Int.swift in Sources */,
 				ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */,

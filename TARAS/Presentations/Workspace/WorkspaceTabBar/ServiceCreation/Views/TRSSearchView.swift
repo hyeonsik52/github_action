@@ -10,6 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import TagListView
 
 class TRSSearchView: UIView {
     
@@ -29,8 +30,20 @@ class TRSSearchView: UIView {
         $0.spacing = 12
     }
     
-    private let textField = UITextField().then {
+    private let inputContainer = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+        $0.spacing = 8
+        $0.clipsToBounds = true
+        $0.backgroundColor = .lightGrayF5F5F5
+        $0.layer.cornerRadius = 8
+    }
+    
+    private lazy var textField = UITextField().then {
         $0.clearButtonMode = .never
+        $0.enablesReturnKeyAutomatically = true
+        $0.returnKeyType = .search
+        $0.delegate = self
     }
     
     private let clearButton = UIButton().then {
@@ -46,19 +59,24 @@ class TRSSearchView: UIView {
         $0.isHidden = true
     }
     
-    //temp
-    private let recentKeywordsView = UIView().then {
+    private lazy var recentKeywordsView = TRSRecentSearchTermsView().then {
+        $0.tagListView.tagListDelegate = self
         $0.isHidden = true
     }
     
     let searchTerm = PublishRelay<String?>()
+    var usingRecentSearchTerms: Bool = true
     
     private let disposeBag = DisposeBag()
     
-    init(placeholder: String = Text.placeholderDefault) {
+    init(
+        placeholder: String = Text.placeholderDefault,
+        usingRecentSearchTerms: Bool = true
+    ) {
         super.init(frame: .zero)
         
         self.textField.placeholder = placeholder
+        self.usingRecentSearchTerms = usingRecentSearchTerms
         
         self.setupConstraints()
         self.bind()
@@ -68,14 +86,17 @@ class TRSSearchView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //터치 이벤트 제한 용도임. 삭제 금지
+    }
+    
     private func setupConstraints() {
         
         self.addSubview(self.contentView)
         self.contentView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-12)
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
         }
         
         let searchArea = UIView()
@@ -91,22 +112,16 @@ class TRSSearchView: UIView {
         }
         searchArea.addSubview(searchContainer)
         searchContainer.snp.makeConstraints {
-            $0.centerY.leading.trailing.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(36)
         }
         
-        let inputContainer = UIStackView().then {
-            $0.axis = .horizontal
-            $0.distribution = .fill
-            $0.spacing = 8
-            $0.clipsToBounds = true
-            $0.backgroundColor = .lightGrayF5F5F5
-            $0.layer.cornerRadius = 8
-        }
-        searchContainer.addArrangedSubview(inputContainer)
+        searchContainer.addArrangedSubview(self.inputContainer)
         
         let leftPadding = UIView()
-        inputContainer.addArrangedSubview(leftPadding)
+        self.inputContainer.addArrangedSubview(leftPadding)
         leftPadding.snp.makeConstraints {
             $0.width.equalTo(4)
         }
@@ -114,20 +129,20 @@ class TRSSearchView: UIView {
         let iconImageView = UIImageView(image: Image.search).then {
             $0.contentMode = .center
         }
-        inputContainer.addArrangedSubview(iconImageView)
+        self.inputContainer.addArrangedSubview(iconImageView)
         iconImageView.snp.makeConstraints {
             $0.width.equalTo(24)
         }
         
-        inputContainer.addArrangedSubview(self.textField)
+        self.inputContainer.addArrangedSubview(self.textField)
         
-        inputContainer.addArrangedSubview(self.clearButton)
+        self.inputContainer.addArrangedSubview(self.clearButton)
         self.clearButton.snp.makeConstraints {
             $0.width.equalTo(24)
         }
         
         let rightPadding = UIView()
-        inputContainer.addArrangedSubview(rightPadding)
+        self.inputContainer.addArrangedSubview(rightPadding)
         rightPadding.snp.makeConstraints {
             $0.width.equalTo(4)
         }
@@ -137,9 +152,11 @@ class TRSSearchView: UIView {
             $0.width.equalTo(48)
         }
         
-        contentView.addArrangedSubview(self.recentKeywordsView)
-        self.recentKeywordsView.snp.makeConstraints {
-            $0.height.equalTo(76)
+        if self.usingRecentSearchTerms {
+            self.contentView.addArrangedSubview(self.recentKeywordsView)
+            self.recentKeywordsView.snp.makeConstraints {
+                $0.height.equalTo(76)
+            }
         }
     }
     
@@ -167,6 +184,27 @@ class TRSSearchView: UIView {
             .subscribe(onNext: { [weak self] text in
                 self?.updateUI()
             }).disposed(by: self.disposeBag)
+        
+        self.textField.rx.controlEvent(.editingDidEndOnExit)
+            .subscribe(onNext: { [weak self] in
+                guard let term = self?.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+                SimpleDefualts.shared.saveRecentSearchTerms(term)
+                if self?.usingRecentSearchTerms == true {
+                    self?.recentKeywordsView.update()
+                }
+                self?.updateUI()
+            }).disposed(by: self.disposeBag)
+        
+        if self.usingRecentSearchTerms {
+            self.recentKeywordsView.deleteAllButton.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    SimpleDefualts.shared.removeRecentSearchTermsAll()
+                    if self?.usingRecentSearchTerms == true {
+                        self?.recentKeywordsView.update()
+                    }
+                    self?.updateUI()
+                }).disposed(by: self.disposeBag)
+        }
     }
     
     private func updateUI() {
@@ -176,22 +214,54 @@ class TRSSearchView: UIView {
         
         let isClearHidden = isEmpty
         let isCnacelHidden = (!isKeyboardActive && isEmpty)
-        let isRecentHidden = !(isKeyboardActive && isEmpty)
+        let isRecentHidden = SimpleDefualts.shared.isRecentSearchTermsEmpty || !(isKeyboardActive && isEmpty)
+        
+        self.clearButton.isHidden = isClearHidden
+        self.inputContainer.layoutIfNeeded()
         
         UIView.animate(
             withDuration: 0.25,
             delay: 0,
             animations: {
-                self.clearButton.isHidden = isClearHidden
                 self.cancelButton.isHidden = isCnacelHidden
-                self.recentKeywordsView.isHidden = isRecentHidden
+                if self.usingRecentSearchTerms {
+                    self.recentKeywordsView.isHidden = isRecentHidden
+                }
                 self.contentView.layoutIfNeeded()
             },
             completion: { success in
-                self.clearButton.isHidden = isClearHidden
                 self.cancelButton.isHidden = isCnacelHidden
-                self.recentKeywordsView.isHidden = isRecentHidden
+                if self.usingRecentSearchTerms {
+                    self.recentKeywordsView.isHidden = isRecentHidden
+                }
             }
         )
+    }
+}
+
+extension TRSSearchView: TRSTagListViewDelegate {
+    
+    func tagListView(_ tagListView: TRSTagListView, didSelect model: TRSTagListViewModel) {
+        self.textField.text = model.string
+        SimpleDefualts.shared.saveRecentSearchTerms(model.string)
+        self.recentKeywordsView.update()
+        self.updateUI()
+    }
+    
+    func tagListView(_ tagListView: TRSTagListView, didRemove model: TRSTagListViewModel) {
+        SimpleDefualts.shared.removeRecentSearchTerms(model.string)
+        self.recentKeywordsView.update()
+        self.updateUI()
+    }
+}
+
+extension TRSSearchView: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: .search)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return (textField.text?.trimmingCharacters(in: .whitespacesAndNewlines).count ?? 0) > 0
     }
 }

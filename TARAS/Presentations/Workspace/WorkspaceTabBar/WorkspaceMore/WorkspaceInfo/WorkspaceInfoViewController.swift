@@ -28,7 +28,7 @@ class WorkspaceInfoViewController: BaseNavigationViewController, View {
     private let stopInfoImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.cornerRadius = 10
+        $0.layer.cornerRadius = 10
         $0.backgroundColor = .lightGrayF5F5F5
     }
 

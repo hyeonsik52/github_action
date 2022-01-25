@@ -68,8 +68,12 @@ class BaseViewController: UIViewController {
         
         self.bind()
         
+        let allow: (UIView) -> Bool = {
+            ($0 as? KeyboardExtension)?.isKeyboardHideWhenTouch == true
+        }
+        
         if self.isEndEditingWhenBackgroundTapped,
-           let scrollView: UIScrollView = self.view.recursiveSearch() {
+           let scrollView: UIScrollView = self.view.recursiveSearch(where: allow) {
             scrollView.rx.touchesBegan
                 .subscribe(onNext: { [weak self] _ in
                     self?.view.endEditing(true)
