@@ -303,6 +303,7 @@
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
 		EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
 		EDFC63C9279E8EEB006613CA /* TRSTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */; };
+		EDFC63CB279E9793006613CA /* SimpleDefualts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63CA279E9793006613CA /* SimpleDefualts.swift */; };
 		EDFC63CF279EAEC5006613CA /* TRSTagListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63CE279EAEC5006613CA /* TRSTagListViewCell.swift */; };
 		EDFC63D1279EB2FA006613CA /* TRSTagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63D0279EB2FA006613CA /* TRSTagListViewModel.swift */; };
 		FA3FCE30536CE7CEE5FA0BFF /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE6787D8599D2785DAB6212 /* Pods_TARAS_Dev.framework */; };
@@ -612,6 +613,7 @@
 		EDF0C3A726B405F70061552F /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TARAS-Dev.entitlements"; sourceTree = "<group>"; };
 		EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListView.swift; sourceTree = "<group>"; };
+		EDFC63CA279E9793006613CA /* SimpleDefualts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDefualts.swift; sourceTree = "<group>"; };
 		EDFC63CE279EAEC5006613CA /* TRSTagListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListViewCell.swift; sourceTree = "<group>"; };
 		EDFC63D0279EB2FA006613CA /* TRSTagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -876,6 +878,7 @@
 				ED6B45FA26B7DFF700C2FA6D /* Log.swift */,
 				ED6B46B326B8025500C2FA6D /* Info.swift */,
 				ED6B45FB26B7DFF700C2FA6D /* SwiftEntryKit */,
+				EDFC63CA279E9793006613CA /* SimpleDefualts.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1943,6 +1946,7 @@
 				EDC11A5526D3A39D0020AB09 /* WorkRequestViewController.swift in Sources */,
 				EDC11A3526D3A39D0020AB09 /* WorkspaceListPlaceholderView.swift in Sources */,
 				EDC11AF926D3A39E0020AB09 /* WorkspaceHeaderView.swift in Sources */,
+				EDFC63CB279E9793006613CA /* SimpleDefualts.swift in Sources */,
 				EDC11A3E26D3A39D0020AB09 /* ServieBasicInfoViewController.swift in Sources */,
 				ED6B469F26B7E9CE00C2FA6D /* ServiceUnit.swift in Sources */,
 				EDC11A8526D3A39D0020AB09 /* UpdateEmailViewReactor.swift in Sources */,
