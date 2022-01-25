@@ -15,7 +15,7 @@ class ServiceUnitTargetCell: UITableViewCell, View {
     
     private let titleLabel = UILabel().then {
         $0.font = .regular[16]
-        $0.textColor = .darkGray303030
+        $0.textColor = .black1C1B1F
     }
     
     private let selectedCheckImage = UIImage(named: "recipient-checkbox-on")
@@ -43,12 +43,26 @@ class ServiceUnitTargetCell: UITableViewCell, View {
     private func setupConstraints() {
         
         self.selectionStyle = .none
+        
+        let highlightView = UIView().then {
+            $0.backgroundColor = .init(hex: "#6750A41F")
+            $0.clipsToBounds = true
+            $0.layer.cornerRadius = 8
+            $0.isHidden = true
+        }
+        self.addSubview(highlightView)
+        highlightView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(4)
+            $0.trailing.equalToSuperview().offset(-4)
+        }
+        self.backgroundView = highlightView
+        
         self.contentView.do {
-                        
             $0.addSubview(self.titleLabel)
             self.titleLabel.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(16)
+                $0.leading.equalToSuperview().offset(24)
                 $0.height.equalTo(24)
             }
             
@@ -56,7 +70,7 @@ class ServiceUnitTargetCell: UITableViewCell, View {
             self.selectButton.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
-                $0.trailing.equalToSuperview().offset(-16)
+                $0.trailing.equalToSuperview().offset(-26)
                 $0.size.equalTo(20)
             }
         }

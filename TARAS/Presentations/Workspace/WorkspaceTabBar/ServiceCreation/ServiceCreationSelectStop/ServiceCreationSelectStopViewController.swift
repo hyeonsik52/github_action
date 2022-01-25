@@ -136,6 +136,9 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
 //            .bind(to: self.activityIndicatorView.rx.isAnimating)
 //            .disposed(by: self.disposeBag)
         
+        self.tableView.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
         reactor.state.map(\.isLoading)
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
@@ -159,5 +162,17 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                     bottomBarHidden: true
                 )
             }).disposed(by: self.disposeBag)
+    }
+}
+
+extension ServiceCreationSelectStopViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        guard self.dataSource[indexPath].isEnabled else { return }
+        tableView.cellForRow(at: indexPath)?.backgroundView?.isHidden = false
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.backgroundView?.isHidden = true
     }
 }
