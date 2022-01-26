@@ -39,6 +39,8 @@ class TRSSearchView: UIView {
     }
     
     private lazy var textField = UITextField().then {
+        $0.font = .light[16]
+        $0.textColor = .black1C1B1F
         $0.clearButtonMode = .never
         $0.enablesReturnKeyAutomatically = true
         $0.returnKeyType = .search
@@ -63,7 +65,7 @@ class TRSSearchView: UIView {
         $0.isHidden = true
     }
     
-    let searchTerm = PublishRelay<String?>()
+    let searchTerm = BehaviorRelay<String?>(value: nil)
     var usingRecentSearchTerms: Bool = true
     
     private let disposeBag = DisposeBag()
@@ -74,7 +76,13 @@ class TRSSearchView: UIView {
     ) {
         super.init(frame: .zero)
         
-        self.textField.placeholder = placeholder
+        self.textField.attributedPlaceholder = .init(
+            string: placeholder,
+            attributes: [
+                .font: UIFont.light[16],
+                .foregroundColor: UIColor.gray787579
+            ]
+        )
         self.usingRecentSearchTerms = usingRecentSearchTerms
         
         self.setupConstraints()
@@ -93,8 +101,7 @@ class TRSSearchView: UIView {
         
         self.addSubview(self.contentView)
         self.contentView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(8)
-            $0.leading.trailing.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-12)
         }
         

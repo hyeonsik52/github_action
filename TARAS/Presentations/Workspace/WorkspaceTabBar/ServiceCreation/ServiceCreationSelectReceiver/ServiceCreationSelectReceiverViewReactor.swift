@@ -12,27 +12,30 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
     
     typealias ServiceUnit = ServiceUnitCreationModel
     typealias User = ServiceUnitTargetModel
-    typealias UserUpdateClosure = ([User]) -> [User]
+    typealias UserReactorUpdateClosure = ([UserReactor]) -> [UserReactor]
+    typealias UserReactor = ServiceUnitTargetCellReactor
     
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     
     enum Action {
-        case refresh
+        case refresh(term: String?)
         case select(model: User)
     }
     
     enum Mutation {
-        case reloadUsers([User])
+        case reloadUsers([UserReactor])
         case updateLoading(Bool)
-        case updateUser(UserUpdateClosure)
+        case updateUser(UserReactorUpdateClosure)
     }
     
     struct State {
-        var users: [User]
+        var selectedUsers: [User]
+        var users: [UserReactor]
         var isLoading: Bool
     }
     
     var initialState: State = .init(
+        selectedUsers: [],
         users: [],
         isLoading: false
     )
@@ -63,20 +66,29 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         
         switch action {
-        case .refresh:
+        case .refresh(let term):
             return .concat([
                 .just(.updateLoading(true)),
-                self.refresh(),
+                self.refresh(term: term),
                 .just(.updateLoading(false))
             ])
         case .select(let model):
-            return .just(.updateUser({ users in
-                var users = users
+            return .just(.updateUser({ reactors in
+                var users = reactors.map(\.initialState)
+                let newState = !model.isSelected
                 if let newSelectIndex = users.firstIndex(where: { $0 == model }) {
-                    users[newSelectIndex].isSelected = !users[newSelectIndex].isSelected
+                    users[newSelectIndex].isSelected = newState
                 }
-                self.serviceUnit.receivers = users.filter(\.isSelected)
-                return users
+                self.serviceUnit.receivers.removeAll { $0 == model }
+                if newState {
+                    self.serviceUnit.receivers.append(model)
+                }
+                return reactors.enumerated().map { .init(
+                    model: users[$0.offset],
+                    selectionType: $0.element.selectionType,
+                    highlightRanges: $0.element.highlightRanges,
+                    isSeparated: $0.element.isSeparated
+                ) }
             }))
         }
     }
@@ -86,10 +98,12 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
         switch mutation {
         case .reloadUsers(let users):
             state.users = users
+            state.selectedUsers = self.serviceUnit.receivers
         case .updateLoading(let isLoading):
             state.isLoading = isLoading
         case .updateUser(let update):
             state.users = update(state.users)
+            state.selectedUsers = self.serviceUnit.receivers
         }
         return state
     }
@@ -97,8 +111,9 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
 
 extension ServiceCreationSelectReceiverViewReactor {
     
-    func refresh() -> Observable<Mutation> {
+    func refresh(term: String?) -> Observable<Mutation> {
         
+        //TODO: 검색어에 따라 실시간 검색
         if self.templateProcess.peek(with: "receivers.ID")?.asArgument?.from == .user {
             
             let myUserID = self.provider.userManager.userTB.ID
@@ -107,16 +122,25 @@ extension ServiceCreationSelectReceiverViewReactor {
                 .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.members }
                 .map { $0.edges.compactMap { $0?.node?.fragments.memberFragment } }
                 .map {
-                    $0.compactMap { payload -> User? in
+                    $0.compactMap { payload -> UserReactor? in
+                        //temp 검색어 임시 필터링 처리
                         guard let name = payload.displayName else { return nil }
+                        guard term?.isEmpty ?? true || (term != nil && name.contains(term!)) else {
+                            return nil
+                        }
                         let isMe = (payload.id == myUserID)
                         let displayName = (isMe ? "\(name)(나)": name)
                         var user = User(id: payload.id, name: displayName)
                         user.isSelected = self.serviceUnit.receivers.contains(user)
-                        return user
+                        return .init(
+                            model: user,
+                            selectionType: .check,
+                            highlightRanges: (term == nil ? []: name.ranges(of: term!)),
+                            isSeparated: isMe
+                        )
                     }.sorted { lhs, rhs in
-                        let islhsMe = (lhs.id == myUserID ? 0: 1)
-                        let isrhsMe = (rhs.id == myUserID ? 0: 1)
+                        let islhsMe = (lhs.initialState.id == myUserID ? 0: 1)
+                        let isrhsMe = (rhs.initialState.id == myUserID ? 0: 1)
                         return islhsMe < isrhsMe
                     }
                 }.map { .reloadUsers($0) }
@@ -127,16 +151,6 @@ extension ServiceCreationSelectReceiverViewReactor {
 }
 
 extension ServiceCreationSelectReceiverViewReactor {
-    
-//    func reactorForDetail(mode: ServiceCreationEditMode) -> ServiceCreationDetailViewReactor {
-//        return .init(
-//            provider: self.provider,
-//            workspaceId: self.workspaceId,
-//            serviceUnit: self.serviceUnit,
-//            mode: mode,
-//            process: self.templateProcess
-//        )
-//    }
     
     func reactorForSummary(mode: ServiceCreationEditMode) -> ServiceCreationSummaryViewReactor {
         return .init(

@@ -17,8 +17,8 @@ class ServiceUnitTargetCell: UITableViewCell, View {
         $0.font = .regular[16]
     }
     
-    private let selectedCheckImage = UIImage(named: "recipient-checkbox-on")
-    private let defaultImage = UIImage(named: "recipient-checkbox-off")
+    private let selectedCheckImage = UIImage(named: "checkbox-on")
+    private let defaultImage = UIImage(named: "checkbox-off")
     
     private lazy var selectButton = UIButton().then {
         $0.contentMode = .center
@@ -38,9 +38,16 @@ class ServiceUnitTargetCell: UITableViewCell, View {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.backgroundView?.isHidden = true
+    }
+    
     private func setupConstraints() {
         
         self.selectionStyle = .none
+        self.contentView.clipsToBounds = true
         
         let highlightView = UIView().then {
             $0.backgroundColor = .init(hex: "#6750A41F")
@@ -49,28 +56,46 @@ class ServiceUnitTargetCell: UITableViewCell, View {
             $0.isHidden = true
         }
         self.addSubview(highlightView)
-        highlightView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(4)
-            $0.trailing.equalToSuperview().offset(-4)
-        }
         self.backgroundView = highlightView
         
-        self.contentView.do {
-            $0.addSubview(self.titleLabel)
-            self.titleLabel.snp.makeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(24)
-                $0.height.equalTo(24)
-            }
-            
-            $0.addSubview(self.selectButton)
-            self.selectButton.snp.makeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
-                $0.trailing.equalToSuperview().offset(-26)
-                $0.size.equalTo(20)
-            }
+        let container = UIView()
+        
+        self.contentView.addSubview(container)
+        container.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(48)
+        }
+        
+        container.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(24)
+            $0.height.equalTo(24)
+        }
+        
+        container.addSubview(self.selectButton)
+        self.selectButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
+            $0.trailing.equalToSuperview().offset(-24)
+            $0.size.equalTo(24)
+        }
+                    
+        let separator = UIView().then {
+            $0.backgroundColor = .lightGrayF4EFF4
+        }
+        self.contentView.addSubview(separator)
+        separator.snp.makeConstraints {
+            $0.top.equalTo(container.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.equalTo(1)
+        }
+        
+        highlightView.snp.makeConstraints {
+            $0.top.bottom.equalTo(container)
+            $0.leading.equalToSuperview().offset(4)
+            $0.trailing.equalToSuperview().offset(-4)
         }
     }
     
