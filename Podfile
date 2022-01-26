@@ -37,6 +37,14 @@ target 'TARAS-Dev' do
   pods
 end
 
+target 'TARAS-QA' do
+  pods
+end
+
+target 'TARAS' do
+  pods
+end
+
 #target '{테스트 타겟 이름}' do
 #  pods
 #  pod 'RxBlocking', '~> 6'
