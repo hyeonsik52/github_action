@@ -53,7 +53,10 @@
 		ED06C7792786893200F9D0A5 /* STFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C7782786893200F9D0A5 /* STFlow.swift */; };
 		ED06C77B2786893D00F9D0A5 /* STFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77A2786893D00F9D0A5 /* STFlows.swift */; };
 		ED06C77D2786894300F9D0A5 /* STView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77C2786894300F9D0A5 /* STView.swift */; };
+		ED416CA627A0CE310043A7A4 /* TRSPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED416CA527A0CE310043A7A4 /* TRSPlaceholderView.swift */; };
 		ED416CAA27A0DB9F0043A7A4 /* TRSTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED416CA927A0DB9F0043A7A4 /* TRSTag.swift */; };
+		ED416CAC27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED416CAB27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift */; };
+		ED416CAE27A1153D0043A7A4 /* TRSListPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED416CAD27A1153D0043A7A4 /* TRSListPlaceholderView.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -361,7 +364,10 @@
 		ED06C7782786893200F9D0A5 /* STFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlow.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlow.swift; sourceTree = SOURCE_ROOT; };
 		ED06C77A2786893D00F9D0A5 /* STFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlows.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlows.swift; sourceTree = SOURCE_ROOT; };
 		ED06C77C2786894300F9D0A5 /* STView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STView.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STView.swift; sourceTree = SOURCE_ROOT; };
+		ED416CA527A0CE310043A7A4 /* TRSPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSPlaceholderView.swift; sourceTree = "<group>"; };
 		ED416CA927A0DB9F0043A7A4 /* TRSTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTag.swift; sourceTree = "<group>"; };
+		ED416CAB27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSNetworDisconnectedPlaceholderView.swift; sourceTree = "<group>"; };
+		ED416CAD27A1153D0043A7A4 /* TRSListPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSListPlaceholderView.swift; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -676,6 +682,9 @@
 				ED06C707277DBD2C00F9D0A5 /* SimpleCellReactor.swift */,
 				EDC6CAF927969E79004C5881 /* TRSSearchView.swift */,
 				EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */,
+				ED416CA527A0CE310043A7A4 /* TRSPlaceholderView.swift */,
+				ED416CAB27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift */,
+				ED416CAD27A1153D0043A7A4 /* TRSListPlaceholderView.swift */,
 				EDFC63CD279EAEAC006613CA /* TRSTagListView */,
 			);
 			path = Views;
@@ -1923,6 +1932,7 @@
 				EDC11A3B26D3A39D0020AB09 /* MyServiceCollectionViewCell.swift in Sources */,
 				ED6B460626B7DFF700C2FA6D /* SwiftEntryKit.swift in Sources */,
 				ED06C7692786889E00F9D0A5 /* ServiceBuilder.swift in Sources */,
+				ED416CAC27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift in Sources */,
 				ED6B465026B7E7CC00C2FA6D /* Reactor.swift in Sources */,
 				EDC6CAF8279140D4004C5881 /* ServiceCreationRepeatCountViewController+Rx.swift in Sources */,
 				ED06C7752786891700F9D0A5 /* STAUIComponent.swift in Sources */,
@@ -2121,6 +2131,7 @@
 				ED6B469126B7E8B500C2FA6D /* USER_TB.swift in Sources */,
 				ED6B464826B7E7CC00C2FA6D /* UITextView.swift in Sources */,
 				ED52732B26C255FC0077CD9D /* SignInViewReactor.swift in Sources */,
+				ED416CAE27A1153D0043A7A4 /* TRSListPlaceholderView.swift in Sources */,
 				ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */,
 				EDC11A9726D3A39D0020AB09 /* SettingWorkspaceInfoView.swift in Sources */,
 				EDC6CAFA27969E79004C5881 /* TRSSearchView.swift in Sources */,
@@ -2170,6 +2181,7 @@
 				ED6B468B26B7E8B500C2FA6D /* UserManager.swift in Sources */,
 				ED6B465A26B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift in Sources */,
 				EDC11A9326D3A39D0020AB09 /* SettingTextCellView.swift in Sources */,
+				ED416CA627A0CE310043A7A4 /* TRSPlaceholderView.swift in Sources */,
 				ED6B46A126B7E9CE00C2FA6D /* Workspace.swift in Sources */,
 				ED7BCE22277161970074BFFA /* WorkspaceMemberState.swift in Sources */,
 				EDC118DD26D3A24A0020AB09 /* FindAccountIdResultViewController.swift in Sources */,
