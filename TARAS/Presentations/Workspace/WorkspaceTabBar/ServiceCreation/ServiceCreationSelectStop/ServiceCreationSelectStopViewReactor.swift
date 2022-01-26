@@ -137,20 +137,15 @@ extension ServiceCreationSelectStopViewReactor {
     
     func refresh(term: String?) -> Observable<Mutation> {
         
-        //TODO: 검색어에 따라 실시간 검색
         if case .general = self.entry {
             
             if self.templateProcess.peek(with: "ID")?.asArgument?.from == .stationGroup {
                 
-                return self.provider.networkManager.fetch(StopListQuery(workspaceId: self.workspaceId))
+                return self.provider.networkManager.fetch(StopListQuery(workspaceId: self.workspaceId, name: term))
                     .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.stationGroups }
                     .map { $0.edges.compactMap { $0?.node?.fragments.stopFragment } }
                     .map {
                         $0.compactMap { payload -> Stop? in
-                            //temp 검색어 임시 필터링 처리
-                            guard term?.isEmpty ?? true || (term != nil && payload.name.contains(term!)) else {
-                                return nil
-                            }
                             var stop = Stop(id: payload.id, name: payload.name)
                             stop.isSelected = (stop == self.serviceUnit.stop)
                             return stop
@@ -171,7 +166,7 @@ extension ServiceCreationSelectStopViewReactor {
                         ])
                     }.catch { error in
                         guard let multipleError = error as? MultipleError,
-                              let errors = multipleError.graphQLErrors
+                              let _ = multipleError.graphQLErrors
                         else {
                             return .concat([
                                 .just(.reloadStops([])),

@@ -3858,7 +3858,7 @@ public final class StopListQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query stopList($workspaceId: String!) {
+    query stopList($workspaceId: String!, $name: String) {
       signedUser {
         __typename
         joinedWorkspaces(id: $workspaceId) {
@@ -3867,7 +3867,7 @@ public final class StopListQuery: GraphQLQuery {
             __typename
             node {
               __typename
-              stationGroups(isStop: true) {
+              stationGroups(isStop: true, name: $name) {
                 __typename
                 edges {
                   __typename
@@ -3893,13 +3893,15 @@ public final class StopListQuery: GraphQLQuery {
   }
 
   public var workspaceId: String
+  public var name: String?
 
-  public init(workspaceId: String) {
+  public init(workspaceId: String, name: String? = nil) {
     self.workspaceId = workspaceId
+    self.name = name
   }
 
   public var variables: GraphQLMap? {
-    return ["workspaceId": workspaceId]
+    return ["workspaceId": workspaceId, "name": name]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -4054,7 +4056,7 @@ public final class StopListQuery: GraphQLQuery {
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("stationGroups", arguments: ["isStop": true], type: .object(StationGroup.selections)),
+                GraphQLField("stationGroups", arguments: ["isStop": true, "name": GraphQLVariable("name")], type: .object(StationGroup.selections)),
               ]
             }
 
@@ -4232,7 +4234,7 @@ public final class UserListQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query userList($workspaceId: String!) {
+    query userList($workspaceId: String!, $displayName: String) {
       signedUser {
         __typename
         joinedWorkspaces(id: $workspaceId) {
@@ -4241,7 +4243,7 @@ public final class UserListQuery: GraphQLQuery {
             __typename
             node {
               __typename
-              members(roles: [MEMBER, MANAGER, ADMINISTRATOR]) {
+              members(roles: [MEMBER, MANAGER, ADMINISTRATOR], displayName: $displayName) {
                 __typename
                 edges {
                   __typename
@@ -4267,13 +4269,15 @@ public final class UserListQuery: GraphQLQuery {
   }
 
   public var workspaceId: String
+  public var displayName: String?
 
-  public init(workspaceId: String) {
+  public init(workspaceId: String, displayName: String? = nil) {
     self.workspaceId = workspaceId
+    self.displayName = displayName
   }
 
   public var variables: GraphQLMap? {
-    return ["workspaceId": workspaceId]
+    return ["workspaceId": workspaceId, "displayName": displayName]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -4428,7 +4432,7 @@ public final class UserListQuery: GraphQLQuery {
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("members", arguments: ["roles": ["MEMBER", "MANAGER", "ADMINISTRATOR"]], type: .object(Member.selections)),
+                GraphQLField("members", arguments: ["roles": ["MEMBER", "MANAGER", "ADMINISTRATOR"], "displayName": GraphQLVariable("displayName")], type: .object(Member.selections)),
               ]
             }
 

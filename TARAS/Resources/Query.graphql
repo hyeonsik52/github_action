@@ -96,12 +96,12 @@ query myUserInfo {
     }
 }
 
-query stopList($workspaceId: String!) {
+query stopList($workspaceId: String!, $name: String) {
     signedUser {
         joinedWorkspaces(id: $workspaceId) {
             edges {
                 node {
-                    stationGroups(isStop: true) {
+                    stationGroups(isStop: true, name: $name) {
                         edges {
                             node {
                                 ... StopFragment
@@ -114,12 +114,12 @@ query stopList($workspaceId: String!) {
     }
 }
 
-query userList($workspaceId: String!) {
+query userList($workspaceId: String!, $displayName: String) {
     signedUser {
         joinedWorkspaces(id: $workspaceId) {
             edges {
                 node {
-                    members(roles:[MEMBER, MANAGER, ADMINISTRATOR]) {
+                    members(roles:[MEMBER, MANAGER, ADMINISTRATOR], displayName: $displayName) {
                         edges {
                             node {
                                 ... MemberFragment
