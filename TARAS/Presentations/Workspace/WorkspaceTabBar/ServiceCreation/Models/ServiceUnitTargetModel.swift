@@ -22,6 +22,9 @@ struct ServiceUnitTargetModel: Identifiable {
             return (self.selectedAt != nil)
         }
     }
+    
+    //TODO: 개선 필요
+    var isLoadingStop: Bool = false
 }
 
 extension ServiceUnitTargetModel: Hashable {

@@ -25,6 +25,7 @@ fragment StopFragment on StationGroupNode {
     id
     name
     isStop
+	remark
 }
 
 fragment OnlyWorkspaceFragment on OnlyWorkspaceNode {

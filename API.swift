@@ -4182,8 +4182,8 @@ public final class StopListQuery: GraphQLQuery {
                     self.resultMap = unsafeResultMap
                   }
 
-                  public init(id: GraphQLID, name: String, isStop: Bool) {
-                    self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop])
+                  public init(id: GraphQLID, name: String, isStop: Bool, remark: JSONString) {
+                    self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop, "remark": remark])
                   }
 
                   public var __typename: String {
@@ -5739,6 +5739,7 @@ public struct StopFragment: GraphQLFragment {
       id
       name
       isStop
+      remark
     }
     """
 
@@ -5750,6 +5751,7 @@ public struct StopFragment: GraphQLFragment {
       GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
       GraphQLField("name", type: .nonNull(.scalar(String.self))),
       GraphQLField("isStop", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("remark", type: .nonNull(.scalar(JSONString.self))),
     ]
   }
 
@@ -5759,8 +5761,8 @@ public struct StopFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, name: String, isStop: Bool) {
-    self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop])
+  public init(id: GraphQLID, name: String, isStop: Bool, remark: JSONString) {
+    self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop, "remark": remark])
   }
 
   public var __typename: String {
@@ -5796,6 +5798,15 @@ public struct StopFragment: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "isStop")
+    }
+  }
+
+  public var remark: JSONString {
+    get {
+      return resultMap["remark"]! as! JSONString
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "remark")
     }
   }
 }
@@ -6183,8 +6194,8 @@ public struct ServiceUnitFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(id: GraphQLID, name: String, isStop: Bool) {
-      self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop])
+    public init(id: GraphQLID, name: String, isStop: Bool, remark: JSONString) {
+      self.init(unsafeResultMap: ["__typename": "StationGroupNode", "id": id, "name": name, "isStop": isStop, "remark": remark])
     }
 
     public var __typename: String {

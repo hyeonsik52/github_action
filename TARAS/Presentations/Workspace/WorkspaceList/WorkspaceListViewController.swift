@@ -166,28 +166,12 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
         reactor.state.map { $0.entranceType }
             .distinctUntilChanged()
             .subscribe(onNext: { entranceType in
-                switch entranceType {
-                case .signIn:
-                    if reactor.provider.userManager.userTB.isInitialOpen,
-                        reactor.currentState.sections.count == 0
-                    {
-                        // todo: 수동 FCM Token 업데이트 reactor 처리
-                        reactor.action.onNext(.updateFCMToken)
-                        let viewController = WorkspaceSearchViewController()
-                        viewController.reactor = reactor.reactorForSearch()
-                        self.navigationController?.pushViewController(viewController, animated: true)
-                    }
-
-                case .launch:
-                    if let lastWorkspaceId = reactor.provider.userManager.userTB.lastWorkspaceId
-                    {
-                        let nextReactor = reactor.reactorForSWSHome(workspaceId: lastWorkspaceId)
-                        let viewController = WorkspaceTabBarController()
-                        viewController.reactor = nextReactor
-                        self.navigationController?.pushViewController(viewController, animated: true)
-                    }
-
-                case .push, .none: return
+                if entranceType == .launch,
+                    let lastWorkspaceId = reactor.provider.userManager.userTB.lastWorkspaceId {
+                    let nextReactor = reactor.reactorForSWSHome(workspaceId: lastWorkspaceId)
+                    let viewController = WorkspaceTabBarController()
+                    viewController.reactor = nextReactor
+                    self.navigationController?.pushViewController(viewController, animated: true)
                 }
             }).disposed(by: self.disposeBag)
     }

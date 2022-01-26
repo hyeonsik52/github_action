@@ -86,7 +86,7 @@ extension ServiceUnitCreationModel {
         //템플릿에서 서비스 타입이 로딩인지 확인
         if process.isServiceTypeLS {
             let isNotLoading = process.peek(with: "loading_command")?.asArgument?.ui.asComponent(String.self)?.defaultValue == "UNLOAD"
-            if stop.name.hasPrefix("LS") {
+            if self.stop.isLoadingStop {
                 //로딩이고 정차지가 LS이면 상/하차 표시
                 self.stopState = .isLoading(!isNotLoading)
             } else {
