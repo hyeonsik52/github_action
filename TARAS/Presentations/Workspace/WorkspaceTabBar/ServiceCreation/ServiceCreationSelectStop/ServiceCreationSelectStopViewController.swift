@@ -162,7 +162,7 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] state in
                 var state = state
-                if state == .resultNotFound, self?.searchView.searchTerm.value == nil {
+                if state == .resultNotFound, self?.searchView.searchTerm.value?.isEmpty ?? true {
                     state = nil
                 }
                 self?.listPlaceholderView.update(state)

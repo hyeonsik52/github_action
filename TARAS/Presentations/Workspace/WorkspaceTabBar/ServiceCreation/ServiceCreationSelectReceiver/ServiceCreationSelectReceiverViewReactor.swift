@@ -120,21 +120,16 @@ extension ServiceCreationSelectReceiverViewReactor {
     
     func refresh(term: String?) -> Observable<Mutation> {
         
-        //TODO: 검색어에 따라 실시간 검색
         if self.templateProcess.peek(with: "receivers.ID")?.asArgument?.from == .user {
             
             let myUserID = self.provider.userManager.userTB.ID
             
-            return self.provider.networkManager.fetch(UserListQuery(workspaceId: self.workspaceId))
+            return self.provider.networkManager.fetch(UserListQuery(workspaceId: self.workspaceId, displayName: term))
                 .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.members }
                 .map { $0.edges.compactMap { $0?.node?.fragments.memberFragment } }
                 .map {
                     $0.compactMap { payload -> UserReactor? in
-                        //temp 검색어 임시 필터링 처리
                         guard let name = payload.displayName else { return nil }
-                        guard term?.isEmpty ?? true || (term != nil && name.contains(term!)) else {
-                            return nil
-                        }
                         let isMe = (payload.id == myUserID)
                         let displayName = (isMe ? "\(name)(나)": name)
                         var user = User(id: payload.id, name: displayName)
@@ -157,7 +152,7 @@ extension ServiceCreationSelectReceiverViewReactor {
                     ])
                 }.catch { error in
                     guard let multipleError = error as? MultipleError,
-                          let errors = multipleError.graphQLErrors
+                          let _ = multipleError.graphQLErrors
                     else {
                         return .concat([
                             .just(.reloadUsers([])),

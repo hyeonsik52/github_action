@@ -15,6 +15,7 @@ class SRPButton: UIButton {
         enum StateColor {
             case normal(UIColor)
             case disabled(UIColor)
+            case highlighted(UIColor)
             
             var state: UIControl.State {
                 switch self {
@@ -22,6 +23,8 @@ class SRPButton: UIButton {
                     return .normal
                 case .disabled:
                     return .disabled
+                case .highlighted:
+                    return .highlighted
                 }
             }
             
@@ -30,6 +33,8 @@ class SRPButton: UIButton {
                 case .normal(let color):
                     return color
                 case .disabled(let color):
+                    return color
+                case .highlighted(let color):
                     return color
                 }
             }
@@ -43,8 +48,8 @@ class SRPButton: UIButton {
         static let instance = Appearance()
         static let v2 = Appearance(
             font: .medium[14],
-            titleColors: [.normal(.white), .disabled(.lightGray989899)],
-            backgroundColors: [.normal(.purple6750A4), .disabled(.lightPurpleF7F2FA)],
+            titleColors: [.normal(.white), .disabled(.lightGray989899), .highlighted(.white)],
+            backgroundColors: [.normal(.purple6750A4), .disabled(.lightPurpleF7F2FA), .highlighted(.purple7965AF)],
             cornerRadius: 16
         )
     }
