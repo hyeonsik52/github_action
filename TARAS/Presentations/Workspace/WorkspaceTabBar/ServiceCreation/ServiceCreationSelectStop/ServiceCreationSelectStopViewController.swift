@@ -16,8 +16,9 @@ import RxDataSources
 class ServiceCreationSelectStopViewController: BaseNavigationViewController, View {
     
     private let searchView = TRSSearchView(placeholder: "장소명(초성) 검색")
+    private let listPlaceholderView = TRSListPlaceholderView()
     
-    private let tableView = UITableView(frame: .zero, style: .plain).then {
+    private lazy var tableView = UITableView(frame: .zero, style: .plain).then {
         $0.alwaysBounceVertical = true
         $0.separatorStyle = .none
         $0.rowHeight = 48
@@ -27,6 +28,7 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         $0.register(ServiceUnitTargetCell.self, forCellReuseIdentifier: "cell")
         
         $0.refreshControl = UIRefreshControl()
+        $0.backgroundView = self.listPlaceholderView
     }
     
     private let dataSource = RxTableViewSectionedReloadDataSource<ServiceUnitTargetModelSection>(
@@ -48,7 +50,7 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         
         self.view.addSubview(self.searchView)
         self.searchView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(8)
             $0.leading.trailing.equalToSuperview()
         }
         
@@ -71,11 +73,6 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
     func bind(reactor: ServiceCreationSelectStopViewReactor) {
         
         //Action
-        self.rx.viewDidLoad
-            .map { Reactor.Action.refresh(term: nil) }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
         self.tableView.refreshControl?.rx.controlEvent(.valueChanged)
             .withLatestFrom(self.searchView.searchTerm)
             .map(Reactor.Action.refresh)
@@ -117,6 +114,12 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                 self?.selected.accept(stop)
             }).disposed(by: self.disposeBag)
         
+        self.listPlaceholderView.disconnectedRetryButton.rx.tap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                reactor.action.onNext(.refresh(term: self?.searchView.searchTerm.value))
+            }).disposed(by: self.disposeBag)
+        
         //State
         reactor.state.map(\.stops)
             .map { [.init(header: "", items: $0)] }
@@ -153,6 +156,16 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                     animated: true,
                     bottomBarHidden: true
                 )
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.placeholderState)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] state in
+                var state = state
+                if state == .resultNotFound, self?.searchView.searchTerm.value == nil {
+                    state = nil
+                }
+                self?.listPlaceholderView.update(state)
             }).disposed(by: self.disposeBag)
     }
 }

@@ -37,12 +37,14 @@ class ServiceCreationSelectStopViewReactor: Reactor {
         case updateLoading(Bool)
 //        case updateStop(StopUpdateClosure)
         case updateConfirm(Bool?)
+        case updatePlaceholderState(PlaceholderStateType?)
     }
     
     struct State {
         var stops: [StopReactor]
         var isLoading: Bool
         var isConfirmed: Bool?
+        var placeholderState: PlaceholderStateType?
     }
     
     var initialState: State = .init(
@@ -121,6 +123,11 @@ class ServiceCreationSelectStopViewReactor: Reactor {
 //            state.stops = update(state.stops)
         case .updateConfirm(let isConfirmed):
             state.isConfirmed = isConfirmed
+        case .updatePlaceholderState(let placeholderState):
+            state.placeholderState = placeholderState
+        }
+        if state.placeholderState != .networkDisconnected {
+            state.placeholderState = (state.stops.isEmpty ? .resultNotFound: nil)
         }
         return state
     }
@@ -157,7 +164,22 @@ extension ServiceCreationSelectStopViewReactor {
                             isIconVisibled: false,
                             highlightRanges: (term == nil ? []: $0.name.ranges(of: term!))
                         )}
-                    }.map { .reloadStops($0) }
+                    }.flatMapLatest { stops -> Observable<Mutation> in
+                        return .concat([
+                            .just(.updatePlaceholderState(nil)),
+                            .just(.reloadStops(stops))
+                        ])
+                    }.catch { error in
+                        guard let multipleError = error as? MultipleError,
+                              let errors = multipleError.graphQLErrors
+                        else {
+                            return .concat([
+                                .just(.reloadStops([])),
+                                .just(.updatePlaceholderState(.networkDisconnected))
+                            ])
+                        }
+                        return .empty()
+                    }
             }
         }
         

@@ -27,8 +27,9 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         $0.isHidden = true
     }
     private let searchView = TRSSearchView(placeholder: "이름(초성) 검색", usingRecentSearchTerms: false)
+    private let listPlaceholderView = TRSListPlaceholderView()
     
-    private let tableView = UITableView(frame: .zero, style: .plain).then {
+    private lazy var tableView = UITableView(frame: .zero, style: .plain).then {
         $0.alwaysBounceVertical = true
         $0.separatorStyle = .none
         
@@ -37,6 +38,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         $0.register(ServiceUnitTargetCell.self, forCellReuseIdentifier: "cell")
         
         $0.refreshControl = UIRefreshControl()
+        $0.backgroundView = self.listPlaceholderView
     }
     
     private let tableViewDataSource = RxTableViewSectionedReloadDataSource<ServiceUnitTargetModelSection>(
@@ -104,11 +106,6 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
     func bind(reactor: ServiceCreationSelectReceiverViewReactor) {
         
         //Action
-//        self.rx.viewDidLoad
-//            .map { Reactor.Action.refresh(term: nil) }
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
-        
         self.tableView.refreshControl?.rx.controlEvent(.valueChanged)
             .withLatestFrom(self.searchView.searchTerm)
             .map(Reactor.Action.refresh)
@@ -142,6 +139,12 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         
         self.tableView.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
+        
+        self.listPlaceholderView.disconnectedRetryButton.rx.tap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                reactor.action.onNext(.refresh(term: self?.searchView.searchTerm.value))
+            }).disposed(by: self.disposeBag)
         
         //State
         reactor.state.map(\.users)
@@ -192,6 +195,16 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
                         self.selectedUserListView.isHidden = users.isEmpty
                     }
                 )
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.placeholderState)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] state in
+                var state = state
+                if state == .resultNotFound, self?.searchView.searchTerm.value == nil {
+                    state = nil
+                }
+                self?.listPlaceholderView.update(state)
             }).disposed(by: self.disposeBag)
     }
 }
