@@ -41,6 +41,12 @@ class SRPButton: UIButton {
         var cornerRadius: CGFloat = 4
         
         static let instance = Appearance()
+        static let v2 = Appearance(
+            font: .medium[14],
+            titleColors: [.normal(.white), .disabled(.lightGray989899)],
+            backgroundColors: [.normal(.purple6750A4), .disabled(.lightPurpleF7F2FA)],
+            cornerRadius: 16
+        )
     }
     
     init(_ title: String, appearance: Appearance = .instance) {
