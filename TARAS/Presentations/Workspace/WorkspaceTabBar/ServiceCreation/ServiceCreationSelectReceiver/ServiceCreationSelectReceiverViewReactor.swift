@@ -26,12 +26,14 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
         case reloadUsers([UserReactor])
         case updateLoading(Bool)
         case updateUser(UserReactorUpdateClosure)
+        case updatePlaceholderState(PlaceholderStateType?)
     }
     
     struct State {
         var selectedUsers: [User]
         var users: [UserReactor]
         var isLoading: Bool
+        var placeholderState: PlaceholderStateType?
     }
     
     var initialState: State = .init(
@@ -104,6 +106,11 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
         case .updateUser(let update):
             state.users = update(state.users)
             state.selectedUsers = self.serviceUnit.receivers
+        case .updatePlaceholderState(let placeholderState):
+            state.placeholderState = placeholderState
+        }
+        if state.placeholderState != .networkDisconnected {
+            state.placeholderState = (state.users.isEmpty ? .resultNotFound: nil)
         }
         return state
     }
@@ -143,7 +150,22 @@ extension ServiceCreationSelectReceiverViewReactor {
                         let isrhsMe = (rhs.initialState.id == myUserID ? 0: 1)
                         return islhsMe < isrhsMe
                     }
-                }.map { .reloadUsers($0) }
+                }.flatMapLatest { users -> Observable<Mutation> in
+                    return .concat([
+                        .just(.updatePlaceholderState(nil)),
+                        .just(.reloadUsers(users))
+                    ])
+                }.catch { error in
+                    guard let multipleError = error as? MultipleError,
+                          let errors = multipleError.graphQLErrors
+                    else {
+                        return .concat([
+                            .just(.reloadUsers([])),
+                            .just(.updatePlaceholderState(.networkDisconnected))
+                        ])
+                    }
+                    return .empty()
+                }
         }
         
         return .just(.reloadUsers([]))

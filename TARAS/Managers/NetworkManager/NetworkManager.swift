@@ -133,7 +133,7 @@ extension NetworkManager {
             return Disposables.create {
                 cancellable?.cancel()
             }
-        }.retryOnConnect(timeout: .seconds(5))
+        }
     }
     
     func perform<T: GraphQLMutation>(_ mutation: T) -> Observable<T.Data> {
@@ -193,7 +193,7 @@ extension NetworkManager {
             return Disposables.create {
                 cancellable?.cancel()
             }
-        }.retryOnConnect(timeout: .seconds(10))
+        }
     }
     
     ///로그인 직후, 세션 갱신 후에 호출되어 웹소켓을 연결 정보를 업데이트 한다.
