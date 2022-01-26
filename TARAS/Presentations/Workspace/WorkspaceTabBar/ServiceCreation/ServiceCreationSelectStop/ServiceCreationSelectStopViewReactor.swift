@@ -16,8 +16,8 @@ enum ServiceUnitTargetSelectionType {
 class ServiceCreationSelectStopViewReactor: Reactor {
     
     typealias ServiceUnit = ServiceUnitCreationModel
-    typealias Stop = ServiceUnitTargetModel
-    typealias StopUpdateClosure = ([Stop]) -> [Stop]
+    typealias StopModel = ServiceUnitTargetModel
+    typealias StopUpdateClosure = ([StopModel]) -> [StopModel]
     typealias StopReactor = ServiceUnitTargetCellReactor
     
     enum Entry {
@@ -28,8 +28,8 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     
     enum Action {
         case refresh(term: String?)
-//        case select(model: Stop)
-        case confirm(with: Stop)
+//        case select(model: StopModel)
+        case confirm(with: StopModel)
     }
     
     enum Mutation {
@@ -140,25 +140,24 @@ extension ServiceCreationSelectStopViewReactor {
         if case .general = self.entry {
             
             if self.templateProcess.peek(with: "ID")?.asArgument?.from == .stationGroup {
+                let isGeneralLoading = self.templateProcess.isServiceTypeLS
                 
                 return self.provider.networkManager.fetch(StopListQuery(workspaceId: self.workspaceId, name: term))
                     .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.stationGroups }
-                    .map { $0.edges.compactMap { $0?.node?.fragments.stopFragment } }
+                    .map { $0.edges.compactMap { $0?.node?.fragments.stopFragment }.map(Stop.init) }
                     .map {
-                        $0.compactMap { payload -> Stop? in
-                            var stop = Stop(id: payload.id, name: payload.name)
+                        return $0.map {
+                            var stop = StopModel(id: $0.id, name: $0.name)
                             stop.isSelected = (stop == self.serviceUnit.stop)
-                            return stop
+                            stop.isLoadingStop = $0.stopType.isLoading
+                            return .init(
+                                model: stop,
+                                selectionType: .check,
+                                isEnabled: !$0.stopType.isLoading || isGeneralLoading,
+                                isIconVisibled: false,
+                                highlightRanges: (term == nil ? []: $0.name.ranges(of: term!))
+                            )
                         }
-                    }.map {
-                        let isGeneralLoading = self.templateProcess.isServiceTypeLS
-                        return $0.map { .init(
-                            model: $0,
-                            selectionType: .check,
-                            isEnabled: !$0.name.hasPrefix("LS") || isGeneralLoading,
-                            isIconVisibled: false,
-                            highlightRanges: (term == nil ? []: $0.name.ranges(of: term!))
-                        )}
                     }.flatMapLatest { stops -> Observable<Mutation> in
                         return .concat([
                             .just(.updatePlaceholderState(nil)),
@@ -186,7 +185,7 @@ extension ServiceCreationSelectStopViewReactor {
     
     func reactorForSelectReceivers(
         mode: ServiceCreationEditMode,
-        stop: Stop
+        stop: StopModel
     ) -> ServiceCreationSelectReceiverViewReactor {
         self.serviceUnit.stop = stop
         self.serviceUnit.updateStopState(with: self.templateProcess)
@@ -201,7 +200,7 @@ extension ServiceCreationSelectStopViewReactor {
     
     func reactorForSummary(
         mode: ServiceCreationEditMode,
-        stop: Stop
+        stop: StopModel
     ) -> ServiceCreationSummaryViewReactor {
         self.serviceUnit.stop = stop
         self.serviceUnit.updateStopState(with: self.templateProcess)
