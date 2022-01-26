@@ -9,7 +9,18 @@ import Foundation
 
 struct TRSTagListViewModel: Hashable {
     
+    let id: String
     let string: String
+    
+    init(string: String, id: String? = nil) {
+        self.id = id ?? string
+        self.string = string
+    }
+    
+    init<T: TRSTag>(_ tag: T) {
+        self.id = tag.id
+        self.string = tag.string
+    }
     
     var title: String {
         if string.count > 10 {
@@ -20,14 +31,14 @@ struct TRSTagListViewModel: Hashable {
     }
     
     static func ==(lhs: Self, rhs: Self) -> Bool {
-        return lhs.string == rhs.string
+        return lhs.id == rhs.id
     }
     
     var hashValue: Int {
-        return self.string.hashValue
+        return self.id.hashValue
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.string)
+        hasher.combine(self.id)
     }
 }
