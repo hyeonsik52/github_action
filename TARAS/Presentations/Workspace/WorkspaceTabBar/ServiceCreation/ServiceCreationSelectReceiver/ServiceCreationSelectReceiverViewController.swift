@@ -15,22 +15,28 @@ import RxDataSources
 
 class ServiceCreationSelectReceiverViewController: BaseNavigationViewController, View {
     
-    private let tableView = UITableView(frame: .zero, style: .grouped).then {
+    private let topContainer = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fill
+        $0.spacing = 12
+    }
+    
+    private lazy var selectedUserListView = TRSTagListView().then {
+        $0.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        $0.tagListDelegate = self
+        $0.isHidden = true
+    }
+    private let searchView = TRSSearchView(placeholder: "이름(초성) 검색", usingRecentSearchTerms: false)
+    
+    private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.alwaysBounceVertical = true
-        $0.contentInset.bottom = 88
         $0.separatorStyle = .none
-        $0.rowHeight = 48
-        $0.sectionHeaderHeight = 44
         
-        
-        $0.tableFooterView = UIView(frame: .init(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
-        $0.tableHeaderView = UIView(frame: .init(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
+        $0.keyboardDismissMode = .onDrag
         
         $0.register(ServiceUnitTargetCell.self, forCellReuseIdentifier: "cell")
-        $0.register(ServiceUnitTargetHeader.self, forHeaderFooterViewReuseIdentifier: "header")
         
         $0.refreshControl = UIRefreshControl()
-        $0.backgroundColor = .white
     }
     
     private let tableViewDataSource = RxTableViewSectionedReloadDataSource<ServiceUnitTargetModelSection>(
@@ -41,7 +47,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         }
     )
     
-    let confirmButton = SRPButton("0명 선택")
+    let confirmButton = SRPButton("0명 선택", appearance: .v2)
     
     override var navigationPopWithBottomBarHidden: Bool {
         return true
@@ -50,17 +56,39 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
     override func setupConstraints() {
         super.setupConstraints()
         
-        self.view.addSubview(self.tableView)
-        self.tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        self.view.addSubview(self.topContainer)
+        self.topContainer.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(8)
+            $0.leading.trailing.equalToSuperview()
         }
         
-        self.view.addSubview(self.confirmButton)
+        self.topContainer.addArrangedSubview(self.selectedUserListView)
+        self.selectedUserListView.snp.makeConstraints {
+            $0.height.equalTo(28)
+        }
+        
+        self.topContainer.addArrangedSubview(self.searchView)
+        
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints {
+            $0.top.equalTo(self.topContainer.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        let bottomContainer = UIView()
+        self.view.addSubview(bottomContainer)
+        bottomContainer.snp.makeConstraints {
+            $0.top.equalTo(self.tableView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        bottomContainer.addSubview(self.confirmButton)
         self.confirmButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(4)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-24)
-            $0.height.equalTo(60)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            $0.height.equalTo(52)
         }
     }
     
@@ -76,13 +104,20 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
     func bind(reactor: ServiceCreationSelectReceiverViewReactor) {
         
         //Action
-        self.rx.viewDidLoad
-            .map { Reactor.Action.refresh }
+//        self.rx.viewDidLoad
+//            .map { Reactor.Action.refresh(term: nil) }
+//            .bind(to: reactor.action)
+//            .disposed(by: self.disposeBag)
+        
+        self.tableView.refreshControl?.rx.controlEvent(.valueChanged)
+            .withLatestFrom(self.searchView.searchTerm)
+            .map(Reactor.Action.refresh)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.tableView.refreshControl?.rx.controlEvent(.valueChanged)
-            .map { Reactor.Action.refresh }
+        self.searchView.searchTerm
+            .throttle(.microseconds(500), scheduler: MainScheduler.instance)
+            .map(Reactor.Action.refresh)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -110,15 +145,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         
         //State
         reactor.state.map(\.users)
-            .map { $0.map { ServiceUnitTargetCellReactor(model: $0, selectionType: .check) } }
-            .map {
-                let selected = $0.filter { $0.initialState.isSelected }
-                let notSelected = $0.filter { !$0.initialState.isSelected }
-                return [
-                    .init(header: "선택된 유저", items: selected),
-                    .init(header: "유저 목록", items: notSelected)
-                ]
-            }
+            .map { [.init(header: "", items: $0)] }
             .bind(to: self.tableView.rx.items(dataSource: self.tableViewDataSource))
             .disposed(by: self.disposeBag)
         
@@ -129,7 +156,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         
         reactor.state.map(\.isLoading)
             .distinctUntilChanged()
-            .observe(on: MainScheduler.asyncInstance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoading in
                 if !isLoading {
                     if self?.tableView.refreshControl?.isRefreshing == true {
@@ -140,7 +167,7 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
                 }
             }).disposed(by: self.disposeBag)
         
-        let selectedUsers = reactor.state.map { $0.users.filter(\.isSelected) }.share()
+        let selectedUsers = reactor.state.map(\.selectedUsers).share()
         
         selectedUsers.map { !$0.isEmpty }
         .bind(to: self.confirmButton.rx.isEnabled)
@@ -149,18 +176,57 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         selectedUsers.map { "\($0.count)명 선택" }
         .bind(to: self.confirmButton.rx.title())
         .disposed(by: self.disposeBag)
+        
+        selectedUsers
+            .subscribe(onNext: { [weak self] users in
+                guard let self = self else { return }
+                self.selectedUserListView.setTags(users)
+                UIView.animate(
+                    withDuration: 0.25,
+                    delay: 0,
+                    animations: {
+                        self.selectedUserListView.isHidden = users.isEmpty
+                        self.topContainer.layoutIfNeeded()
+                    },
+                    completion: { success in
+                        self.selectedUserListView.isHidden = users.isEmpty
+                    }
+                )
+            }).disposed(by: self.disposeBag)
     }
 }
 
 extension ServiceCreationSelectReceiverViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNonzeroMagnitude
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        guard self.tableViewDataSource[indexPath].isEnabled else { return }
+        tableView.cellForRow(at: indexPath)?.backgroundView?.isHidden = false
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ServiceUnitTargetHeader
-        headerView.bind(self.tableViewDataSource[section].header)
-        return headerView
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.backgroundView?.isHidden = true
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat = 48
+        if self.tableViewDataSource[indexPath].isSeparated {
+            height += 8 + 1 + 8
+        }
+        return height
+    }
+}
+
+extension ServiceCreationSelectReceiverViewController: TRSTagListViewDelegate {
+    
+    func tagListView(_ tagListView: TRSTagListView, didSelect model: TRSTagListViewModel) {
+        //...
+    }
+    
+    func tagListView(_ tagListView: TRSTagListView, didRemove model: TRSTagListViewModel) {
+        guard let reactor = self.reactor,
+              var model = reactor.currentState.selectedUsers.first(where: { $0.id == model.id })
+        else { return }
+        model.isSelected.toggle()
+        reactor.action.onNext(.select(model: model))
     }
 }

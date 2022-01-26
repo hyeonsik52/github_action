@@ -101,7 +101,7 @@ extension TRSTagListView: TRSTagListViewCellDelegate {
 
 extension TRSTagListView {
     
-    func setTags(_ tags: [String]) {
+    func setTags<T: TRSTag>(_ tags: [T]) {
     
         let current = self.tagList
         let new = tags.map(TRSTagListViewModel.init)

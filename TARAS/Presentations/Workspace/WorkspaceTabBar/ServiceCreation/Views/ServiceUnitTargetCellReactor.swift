@@ -15,18 +15,21 @@ class ServiceUnitTargetCellReactor: Reactor {
     let isEnabled: Bool
     let isIconVisibled: Bool
     let highlightRanges: [NSRange]
+    let isSeparated: Bool
     
     init(
         model: ServiceUnitTargetModel,
         selectionType: ServiceUnitTargetSelectionType,
         isEnabled: Bool = true,
         isIconVisibled: Bool = true,
-        highlightRanges: [NSRange] = []
+        highlightRanges: [NSRange] = [],
+        isSeparated: Bool = false
     ) {
         self.selectionType = selectionType
         self.initialState = model
         self.isEnabled = isEnabled
         self.isIconVisibled = isIconVisibled
         self.highlightRanges = highlightRanges
+        self.isSeparated = isSeparated
     }
 }

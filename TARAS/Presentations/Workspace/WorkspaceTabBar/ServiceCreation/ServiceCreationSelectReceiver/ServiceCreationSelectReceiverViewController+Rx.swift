@@ -24,7 +24,7 @@ extension View where Self: ServiceCreationSelectReceiverViewController {
                 .subscribe(onNext: observer.onCompleted)
             let confirm = viewController.confirmButton.rx.tap
                 .subscribe(onNext: {
-                    let selectedUsers = reactor.currentState.users.filter(\.isSelected)
+                    let selectedUsers = reactor.currentState.selectedUsers
                     observer.onNext(selectedUsers)
                     viewController.navigationPop(animated: true)
                     observer.onCompleted()

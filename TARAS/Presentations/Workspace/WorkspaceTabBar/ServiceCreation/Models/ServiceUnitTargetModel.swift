@@ -51,3 +51,8 @@ extension ServiceUnitTargetModel: ServiceTemplateSerialization {
         return args
     }
 }
+
+extension ServiceUnitTargetModel: TRSTag {
+    
+    var string: String { self.name }
+}

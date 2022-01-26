@@ -161,4 +161,8 @@ extension UIColor {
     static let grayE3E0E3 = UIColor(hex: "#E3E0E3")
     
     static let black1C1B1F = UIColor(hex: "#1C1B1F")
+    static let purple6750A4 = UIColor(hex: "#6750A4")
+    static let lightPurpleF7F2FA = UIColor(hex: "#F7F2FA")
+    static let lightGray989899 = UIColor(hex: "#989899")
+    static let lightGrayF4EFF4 = UIColor(hex: "#F4EFF4")
 }
