@@ -88,6 +88,12 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
         self.tableView.rx.modelSelected(ServiceUnitTargetCellReactor.self)
             .subscribe(onNext: { [weak self] cellReactor in
                 guard cellReactor.isEnabled else { return }
+                
+                if let term = self?.searchView.searchTerm.value {
+                    SimpleDefualts.shared.saveRecentSearchTerms(term)
+                    self?.searchView.updateUI(with: true)
+                }
+                
                 let stop = cellReactor.initialState
                 if reactor.mode == .create {
                     switch reactor.entry {

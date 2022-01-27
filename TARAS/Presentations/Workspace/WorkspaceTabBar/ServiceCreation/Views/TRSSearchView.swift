@@ -195,25 +195,24 @@ class TRSSearchView: UIView {
             .subscribe(onNext: { [weak self] in
                 guard let term = self?.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
                 SimpleDefualts.shared.saveRecentSearchTerms(term)
-                if self?.usingRecentSearchTerms == true {
-                    self?.recentKeywordsView.update()
-                }
-                self?.updateUI()
+                self?.updateUI(with: true)
             }).disposed(by: self.disposeBag)
         
         if self.usingRecentSearchTerms {
             self.recentKeywordsView.deleteAllButton.rx.tap
                 .subscribe(onNext: { [weak self] in
                     SimpleDefualts.shared.removeRecentSearchTermsAll()
-                    if self?.usingRecentSearchTerms == true {
-                        self?.recentKeywordsView.update()
-                    }
-                    self?.updateUI()
+                    self?.updateUI(with: true)
                 }).disposed(by: self.disposeBag)
         }
     }
     
-    private func updateUI() {
+    func updateUI(with recentSearchTerms: Bool = false) {
+        
+        if recentSearchTerms, self.usingRecentSearchTerms == true {
+            self.recentKeywordsView.update()
+        }
+        
         self.searchTerm.accept(self.textField.text)
         let isKeyboardActive = self.textField.isFirstResponder
         let isEmpty = self.textField.text?.isEmpty ?? true
@@ -250,14 +249,12 @@ extension TRSSearchView: TRSTagListViewDelegate {
     func tagListView(_ tagListView: TRSTagListView, didSelect model: TRSTagListViewModel) {
         self.textField.text = model.string
         SimpleDefualts.shared.saveRecentSearchTerms(model.string)
-        self.recentKeywordsView.update()
-        self.updateUI()
+        self.updateUI(with: true)
     }
     
     func tagListView(_ tagListView: TRSTagListView, didRemove model: TRSTagListViewModel) {
         SimpleDefualts.shared.removeRecentSearchTerms(model.string)
-        self.recentKeywordsView.update()
-        self.updateUI()
+        self.updateUI(with: true)
     }
 }
 
