@@ -36,7 +36,12 @@ class SimpleDefualts {
         objc_sync_enter(self); defer{ objc_sync_exit(self) }
         var new = self.loadRecentSearchTerms()
         new.removeAll { terms.contains($0) }
-        terms.forEach { new.insert($0, at: 0) }
+        terms.forEach {
+            let trimmed = $0.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmed.isEmpty {
+                new.insert(trimmed, at: 0)
+            }
+        }
         if new.count > 10 {
             new = Array(new[0..<10])
         }
