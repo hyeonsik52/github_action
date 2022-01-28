@@ -179,11 +179,7 @@ class TRSSearchView: UIView {
         
         self.cancelButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.textField.text = nil
-                if self?.textField.isFirstResponder == true {
-                    self?.endEditing(true)
-                }
-                self?.updateUI()
+                self?.endEditing()
             }).disposed(by: self.disposeBag)
         
         self.textField.rx.text.skip(1)
@@ -205,6 +201,14 @@ class TRSSearchView: UIView {
                     self?.updateUI(with: true)
                 }).disposed(by: self.disposeBag)
         }
+    }
+    
+    func endEditing() {
+        self.textField.text = nil
+        if self.textField.isFirstResponder == true {
+            self.endEditing(true)
+        }
+        self.updateUI(with: true)
     }
     
     func updateUI(with recentSearchTerms: Bool = false) {
