@@ -36,11 +36,10 @@ class WorkspaceTabBarControllerReactor: Reactor {
         )
     }
     
-    func reactorForMyServices() -> ServiceManagementViewReactor {
-        return ServiceManagementViewReactor(
+    func reactorForMyServices() -> PagingReceivedServicesViewReactor {
+        return .init(
             provider: self.provider,
-            workspaceId: self.workspaceId,
-            pushInfo: self.pushInfo
+            workspaceId: self.workspaceId
         )
     }
     

@@ -336,3 +336,10 @@ extension PagingReceivedServicesViewReactor {
 //        return state
 //    }
 //}
+
+extension PagingReceivedServicesViewReactor {
+    
+    func reactorForServiceDetail(serviceId: String) -> ServiceDetailViewReactor {
+        return ServiceDetailViewReactor(provider: self.provider, workspaceId: self.workspaceId, serviceId: serviceId)
+    }
+}

@@ -64,6 +64,13 @@ class ReceivedServicesViewController: BaseViewController, View {
         }
     }
     
+    override func setupNaviBar() {
+        super.setupNaviBar()
+        
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     func bind(reactor: PagingReceivedServicesViewReactor) {
         
         //State
@@ -102,10 +109,14 @@ class ReceivedServicesViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx.modelSelected(ServiceCellReactor.self)
-            .subscribe(onNext: { [weak self] reactor in
-                let service = reactor.currentState.service
-                let serviceUnit = reactor.currentState.serviceUnit
-//                self?.delegate?.didSelect(service, serviceUnit, true)
+            .subscribe(onNext: { [weak self] cellReactor in
+                let serviceId = cellReactor.currentState.service.id
+                self?.navigationPush(
+                    type: ServiceDetailViewController.self,
+                    reactor: reactor.reactorForServiceDetail(serviceId: serviceId),
+                    animated: true,
+                    bottomBarHidden: true
+                )
             })
             .disposed(by: self.disposeBag)
         
