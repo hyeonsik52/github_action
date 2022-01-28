@@ -16,7 +16,21 @@ import RxDataSources
 
 class ReceivedServicesViewController: BaseViewController, View {
     
+    enum Text {
+        static let title = "서비스 목록"
+    }
+    
     weak var delegate: ServiceCellDelegate?
+    
+    private let settingButton = UIButton().then {
+        let image = UIImage(named: "history")?.withRenderingMode(.alwaysOriginal)
+        $0.setImage(image, for: .normal)
+    }
+    private lazy var titleView = WorkspaceTitleView(
+        title: Text.title,
+        button: self.settingButton,
+        buttonWidth: 52
+    )
     
     private let flowLayout = UICollectionViewFlowLayout().then{
         let screenWidth = UIScreen.main.bounds.width
@@ -58,9 +72,19 @@ class ReceivedServicesViewController: BaseViewController, View {
     override func setupConstraints() {
         super.setupConstraints()
         
+        self.view.backgroundColor = .white
+        
+        self.view.addSubview(self.titleView)
+        self.titleView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(self.titleView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
