@@ -276,6 +276,13 @@ extension PagingReceivedServicesViewReactor {
 extension PagingReceivedServicesViewReactor {
     
     func reactorForServiceDetail(serviceId: String) -> ServiceDetailViewReactor {
-        return ServiceDetailViewReactor(provider: self.provider, workspaceId: self.workspaceId, serviceId: serviceId)
+        return .init(provider: self.provider, workspaceId: self.workspaceId, serviceId: serviceId)
+    }
+    
+    func reactorForServiceCell(service: Service) -> ServiceCellReactor {
+        let myUserID = self.provider.userManager.userTB.ID
+        let currentServiceUnit = service.serviceUnits.first { $0.orderWithinService == service.currentServiceUnitIdx }
+        let isMyTurn = currentServiceUnit?.receiver.id == myUserID
+        return .init(service: service, isMyTurn: isMyTurn)
     }
 }

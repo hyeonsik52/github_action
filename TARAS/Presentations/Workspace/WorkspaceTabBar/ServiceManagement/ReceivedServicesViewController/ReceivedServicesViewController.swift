@@ -32,42 +32,50 @@ class ReceivedServicesViewController: BaseViewController, View {
         buttonWidth: 52
     )
     
-    private let flowLayout = UICollectionViewFlowLayout().then{
-        let screenWidth = UIScreen.main.bounds.width
-        $0.minimumLineSpacing = 10
-        $0.itemSize = CGSize(width: screenWidth-22*2, height: 200)
-        $0.sectionInset = UIEdgeInsets(top: 0, left: 22, bottom: 10, right: 22)
-        $0.headerReferenceSize = CGSize(width: screenWidth, height: 44)
+    private let flowLayout = UICollectionViewFlowLayout().then {
+        let width = UIScreen.main.bounds.width - 16 * 2
+        $0.minimumLineSpacing = 12
+        $0.estimatedItemSize = .init(width: width, height: 100)
+        $0.sectionInset = .init(top: 8, left: 16, bottom: 24, right: 16)
     }
-    
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout).then{
+    private lazy var collectionView = UICollectionView.init(
+        frame: .zero,
+        collectionViewLayout: self.flowLayout
+    ).then {
+        $0.alwaysBounceVertical = true
+        $0.contentInset.top = 16
+        $0.verticalScrollIndicatorInsets.top = 16
         
-        $0.contentInset.top = 4
+        $0.backgroundColor = .white
         
-        $0.backgroundColor = .clear
-        
-        $0.register(MyServiceCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        $0.register(ServiceStateCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        $0.register(ServiceCell.self, forCellWithReuseIdentifier: "cell")
         
         $0.refreshControl = UIRefreshControl()
+        
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 20
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
-    private let dataSource = RxCollectionViewSectionedReloadDataSource<ServiceModelSection>(configureCell: { dataSource, collectionView, indexPath, reactor -> UICollectionViewCell in
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyServiceCollectionViewCell
-        cell.reactor = reactor
-        
-        return cell
-    }, configureSupplementaryView: { dataSource, collectionView, kind, indexPath -> UICollectionReusableView in
-        
-        let title = dataSource[indexPath.section].header
-        
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! ServiceStateCollectionReusableView
-        
-        header.bind(title)
-        
-        return header
-    })
+    private let dataSource = RxCollectionViewSectionedReloadDataSource<ServiceModelSection>(
+        configureCell: { dataSource, collectionView, indexPath, reactor -> UICollectionViewCell in
+            
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "cell",
+                for: indexPath) as! ServiceCell
+            cell.reactor = reactor
+            
+            return cell
+        }
+    )
+    
+    private let placeholderLabel = UILabel().then {
+        $0.numberOfLines = 0
+        $0.font = .regular[16]
+        $0.textColor = .darkGray303030
+        $0.textAlignment = .center
+        $0.text = "현재 진행 중인 서비스가 없습니다.\n서비스를 요청해보세요!"
+    }
     
     override func setupConstraints() {
         super.setupConstraints()
@@ -86,6 +94,13 @@ class ReceivedServicesViewController: BaseViewController, View {
             $0.top.equalTo(self.titleView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        self.view.addSubview(self.placeholderLabel)
+        self.placeholderLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+        }
     }
     
     override func setupNaviBar() {
@@ -98,15 +113,23 @@ class ReceivedServicesViewController: BaseViewController, View {
     func bind(reactor: PagingReceivedServicesViewReactor) {
         
         //State
-        reactor.state.map { $0.sections }
-        .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-        .disposed(by: self.disposeBag)
+        reactor.state.map(\.services)
+            .map { [.init(header: "", items: $0.map(reactor.reactorForServiceCell))] }
+            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.services)
+            .map { !$0.isEmpty }
+            .bind(to: self.placeholderLabel.rx.isHidden)
+            .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLoading ?? false }
             .filter { $0 == false }
             .subscribe(onNext: { [weak self] isLoading in
-                if self?.collectionView.refreshControl?.isRefreshing ?? false {
-                    self?.collectionView.refreshControl?.endRefreshing()
+                if self?.collectionView.refreshControl?.isRefreshing == true {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.collectionView.refreshControl?.endRefreshing()
+                    }
                 }
             })
             .disposed(by: self.disposeBag)
@@ -116,16 +139,27 @@ class ReceivedServicesViewController: BaseViewController, View {
             .bind(to: self.activityIndicatorView.rx.isAnimating)
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.retryMore }
+        reactor.state.map { $0.retryMoreFind }
             .distinctUntilChanged()
-            .map { [weak self] _ in self?.collectionView.numberOfItems(inSection: 0) ?? 0 }
-            .map { Reactor.Action.more($0) }
+            .map { [weak self] _ in
+                let lastSection = (self?.dataSource.sectionModels.count ?? 1) - 1
+                let lastIndex = self?.dataSource.sectionModels.last?.items.count ?? 0
+                return .init(item: lastIndex, section: lastSection)
+            }
+            .map { Reactor.Action.moreFind($0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         //Action
-        self.rx.viewDidLoad
-            .map { Reactor.Action.refresh }
+        //temp: 서버 느려짐 현상으로 임시 비활성
+//        self.rx.viewDidLoad
+//            .map { Reactor.Action.refresh(nil) }
+//            .bind(to: reactor.action)
+//            .disposed(by: self.disposeBag)
+        
+        //temp: 서버 느려짐 현상으로 임시 비활성
+        self.rx.viewWillAppear
+            .map {_ in Reactor.Action.refresh }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -133,16 +167,15 @@ class ReceivedServicesViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx.modelSelected(ServiceCellReactor.self)
-            .subscribe(onNext: { [weak self] cellReactor in
-                let serviceId = cellReactor.currentState.service.id
+            .map { reactor.reactorForServiceDetail(serviceId: $0.currentState.service.id) }
+            .subscribe(onNext: { [weak self] reactor in
                 self?.navigationPush(
                     type: ServiceDetailViewController.self,
-                    reactor: reactor.reactorForServiceDetail(serviceId: serviceId),
+                    reactor: reactor,
                     animated: true,
                     bottomBarHidden: true
                 )
-            })
-            .disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
         
         self.collectionView.refreshControl?.rx.controlEvent(.valueChanged)
             .map {_ in Reactor.Action.refresh }
@@ -154,9 +187,12 @@ class ReceivedServicesViewController: BaseViewController, View {
 extension ReceivedServicesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let lastIndex = self.dataSource[0].items.count-1
-        if indexPath.section == 0, indexPath.item >= lastIndex {
-            self.reactor?.action.onNext(.more(indexPath.item))
+        let lastSection = self.dataSource.sectionModels.count - 1
+        let lastIndex = (self.dataSource.sectionModels.last?.items.count ?? 1) - 1
+        if indexPath.section > lastSection {
+            self.reactor?.action.onNext(.moreFind(indexPath))
+        } else if indexPath.section == lastSection, indexPath.item >= lastIndex {
+            self.reactor?.action.onNext(.moreFind(indexPath))
         }
     }
 }
