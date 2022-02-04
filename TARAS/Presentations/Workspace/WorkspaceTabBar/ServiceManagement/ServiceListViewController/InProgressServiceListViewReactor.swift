@@ -1,5 +1,5 @@
 //
-//  PagingReceivedServicesViewReactor.swift
+//  InProgressServiceListViewReactor.swift
 //  ServiceRobotPlatform-iOS
 //
 //  Created by nexmond on 2020/09/19.
@@ -8,7 +8,7 @@
 
 import ReactorKit
 
-class PagingReceivedServicesViewReactor: Reactor {
+class InProgressServiceListViewReactor: Reactor {
     
     typealias Notification = ServiceByWorkspaceIdSubscription.Data.SubscribeServiceChangeset
     
@@ -137,7 +137,7 @@ class PagingReceivedServicesViewReactor: Reactor {
     }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension InProgressServiceListViewReactor {
 
     private func refresh() -> Observable<Mutation> {
         
@@ -214,7 +214,7 @@ extension PagingReceivedServicesViewReactor {
     }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension InProgressServiceListViewReactor {
 
     private func sort(_ lhs: Service, _ rhs: Service) -> Bool {
         return (lhs.phase.sortOrder, lhs.requestedAt) > (rhs.phase.sortOrder, rhs.requestedAt)
@@ -242,7 +242,7 @@ extension PagingReceivedServicesViewReactor {
 //    }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension InProgressServiceListViewReactor {
 
     private func addServices(state: State, data: Service) -> State {
         var state = state
@@ -273,7 +273,7 @@ extension PagingReceivedServicesViewReactor {
     }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension InProgressServiceListViewReactor {
     
     func reactorForServiceDetail(serviceId: String) -> ServiceDetailViewReactor {
         return .init(provider: self.provider, workspaceId: self.workspaceId, serviceId: serviceId)

@@ -36,7 +36,7 @@ class WorkspaceTabBarControllerReactor: Reactor {
         )
     }
     
-    func reactorForMyServices() -> PagingReceivedServicesViewReactor {
+    func reactorForMyServices() -> InProgressServiceListViewReactor {
         return .init(
             provider: self.provider,
             workspaceId: self.workspaceId

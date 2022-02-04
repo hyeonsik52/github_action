@@ -1,5 +1,5 @@
 //
-//  ReceivedServicesViewController.swift
+//  InProgressServiceListViewController.swift
 //  ServiceRobotPlatform-iOS
 //
 //  Created by nexmond on 2020/05/29.
@@ -14,7 +14,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class ReceivedServicesViewController: BaseViewController, View {
+class InProgressServiceListViewController: BaseViewController, View {
     
     enum Text {
         static let title = "서비스 목록"
@@ -110,7 +110,7 @@ class ReceivedServicesViewController: BaseViewController, View {
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    func bind(reactor: PagingReceivedServicesViewReactor) {
+    func bind(reactor: InProgressServiceListViewReactor) {
         
         //State
         reactor.state.map(\.services)
@@ -184,7 +184,7 @@ class ReceivedServicesViewController: BaseViewController, View {
     }
 }
 
-extension ReceivedServicesViewController: UICollectionViewDelegate {
+extension InProgressServiceListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let lastSection = self.dataSource.sectionModels.count - 1
