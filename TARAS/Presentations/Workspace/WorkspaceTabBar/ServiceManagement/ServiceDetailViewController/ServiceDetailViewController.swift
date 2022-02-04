@@ -14,17 +14,18 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-class ServiceDetailViewController: BaseViewController, View {
+class ServiceDetailViewController: BaseNavigationViewController, View {
     
-    private let backButton = UIButton().then {
-        $0.contentMode = .center
-        $0.setImage(UIImage(named: "navi-back"), for: .normal)
+    override var navigationPopGestureEnabled: Bool {
+        return false
     }
     
-    private let moreButton = UIButton().then {
-        $0.contentMode = .center
-        $0.setImage(UIImage(named: "service-more"), for: .normal)
-    }
+    private let moreButton = UIBarButtonItem(
+        image: UIImage(named: "service-more")?.withRenderingMode(.alwaysOriginal),
+        style: .plain,
+        target: nil,
+        action: nil
+    )
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -46,53 +47,21 @@ class ServiceDetailViewController: BaseViewController, View {
     
     // MARK: - Life Cycles
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-    
     override func setupNaviBar() {
         super.setupNaviBar()
         
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        
+        self.navigationItem.setRightBarButton(self.moreButton, animated: true)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         
-        self.view.backgroundColor = .grayF6F6F6
-        
-        let navigationBar = UIView()
-        self.view.addSubview(navigationBar)
-        navigationBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
-            $0.height.equalTo(44)
-        }
-        
-        navigationBar.addSubview(self.backButton)
-        self.backButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(8)
-            $0.top.bottom.equalToSuperview()
-            $0.width.equalTo(36)
-        }
-        
-        navigationBar.addSubview(self.moreButton)
-        self.moreButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-8)
-            $0.top.bottom.equalToSuperview()
-            $0.width.equalTo(36)
-        }
-        
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints {
-            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -109,12 +78,6 @@ class ServiceDetailViewController: BaseViewController, View {
         viewDidLoad
             .map { Reactor.Action.loadService(refresh: false) }
             .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        self.backButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.back()
-            })
             .disposed(by: self.disposeBag)
         
         //State
@@ -149,20 +112,10 @@ class ServiceDetailViewController: BaseViewController, View {
         
         reactor.state.map { $0.isLoading }
             .filter { $0 == false }
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoading in
                 self?.collectionView.refreshControl?.endRefreshing()
             })
             .disposed(by: self.disposeBag)
-    }
-}
-
-
-// MARK: - UIGestureRecognizerDelegate
-
-extension ServiceDetailViewController: UIGestureRecognizerDelegate {
-    
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return self.navigationController?.viewControllers.count ?? 0 > 1
     }
 }

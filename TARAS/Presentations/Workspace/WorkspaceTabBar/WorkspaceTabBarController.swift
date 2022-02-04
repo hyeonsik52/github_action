@@ -51,7 +51,7 @@ class WorkspaceTabBarController: UITabBarController, View {
         
         
         //내 서비스
-        let serviceManagementViewController = ServiceManagementViewController()
+        let serviceManagementViewController = ReceivedServicesViewController()
         serviceManagementViewController.reactor = reactor.reactorForMyServices()
         
         let serviceManagementNavigationController = BaseNavigationController(rootViewController: serviceManagementViewController)

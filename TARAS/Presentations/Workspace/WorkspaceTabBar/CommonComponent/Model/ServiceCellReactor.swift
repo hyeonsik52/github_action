@@ -12,38 +12,14 @@ import ReactorKit
 class ServiceCellReactor: Reactor {
     typealias Action = NoAction
     
-    enum SerciceCellVisibleMode {
-        case homeSended
-        case homeSendedDetail
-        case homeReceivedDetail
-        case managementReceived
-        case managementCreated
-    }
-    
     struct State {
         var service: Service
-        var serviceUnit: ServiceUnit?
-        var serviceUnitOffset: Int?
+        var isMyTurn: Bool
     }
     
     let initialState: State
     
-    let mode: SerciceCellVisibleMode
-    
-    init(mode: SerciceCellVisibleMode, service: Service, serviceUnit: ServiceUnit? = nil, serviceUnitOffset: Int? = nil) {
-        self.initialState = State(service: service, serviceUnit: serviceUnit, serviceUnitOffset: serviceUnitOffset)
-        self.mode = mode
-    }
-}
-
-extension ServiceCellReactor: Hashable {
-    
-    static func == (lhs: ServiceCellReactor, rhs: ServiceCellReactor) -> Bool {
-        return (lhs.currentState.serviceUnit?.id == rhs.currentState.serviceUnit?.id)
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.currentState.serviceUnit?.id)
-        hasher.combine(self.currentState.serviceUnitOffset)
+    init(service: Service, isMyTurn: Bool) {
+        self.initialState = .init(service: service, isMyTurn: isMyTurn)
     }
 }

@@ -42,6 +42,7 @@ class ServiceUnitTargetCell: UITableViewCell, View {
         super.prepareForReuse()
         
         self.backgroundView?.isHidden = true
+        self.titleLabel.attributedText = nil
     }
     
     private func setupConstraints() {

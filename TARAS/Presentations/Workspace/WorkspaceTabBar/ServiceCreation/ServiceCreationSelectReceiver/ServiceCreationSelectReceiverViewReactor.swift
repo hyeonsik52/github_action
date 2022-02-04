@@ -131,8 +131,7 @@ extension ServiceCreationSelectReceiverViewReactor {
                     $0.compactMap { payload -> UserReactor? in
                         guard let name = payload.displayName else { return nil }
                         let isMe = (payload.id == myUserID)
-                        let displayName = (isMe ? "\(name)(나)": name)
-                        var user = User(id: payload.id, name: displayName)
+                        var user = User(id: payload.id, name: name)
                         user.isSelected = self.serviceUnit.receivers.contains(user)
                         return .init(
                             model: user,

@@ -199,6 +199,38 @@ extension Service {
         }
         return nil
     }
+    
+    var stateDescription: String {
+        switch self.status {
+        case .finished:
+            return "서비스 완료"
+        case .canceled, .failed:
+            return "서비스 취소"
+        case .returning:
+            if self.serviceLogSet.isServiceCompleted {
+                return "서비스 완료"
+            } else {
+                return "서비스 취소"
+            }
+        default:
+            if self.currentServiceUnitIdx == 0 {
+                return "로봇 배정 중"
+            } else if self.currentServiceUnitIdx <= self.serviceUnits.count {
+                switch self.status {
+                case .waiting:
+                    return "출발 준비 중"
+                case .moving:
+                    return "이동 중"
+                case .arrived:
+                    return "정차지 도착"
+                default:
+                    return "(알수없음)"
+                }
+            } else {
+                return "(알수없음)"
+            }
+        }
+    }
 }
 
 extension Service: Hashable {

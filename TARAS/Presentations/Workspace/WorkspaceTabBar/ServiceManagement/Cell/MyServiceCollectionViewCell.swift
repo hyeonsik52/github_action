@@ -45,7 +45,7 @@ class MyServiceCollectionViewCell: UICollectionViewCell, ReactorKit.View {
 //        let currentOffset = item?.offset ?? 0
 //        let currentNode = item?.element.target ?? ServicePlace(UID: "unknowned", idx: -1, name: "알 수 없는 위치입니다.")
         
-        let isReceived = (reactor.mode == .managementReceived)
+//        let isReceived = (reactor.mode == .managementReceived)
         
 //        let targets: [ServiceNode] = {
 //            if isReceived {

@@ -179,11 +179,7 @@ class TRSSearchView: UIView {
         
         self.cancelButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.textField.text = nil
-                if self?.textField.isFirstResponder == true {
-                    self?.endEditing(true)
-                }
-                self?.updateUI()
+                self?.endEditing()
             }).disposed(by: self.disposeBag)
         
         self.textField.rx.text.skip(1)
@@ -193,7 +189,7 @@ class TRSSearchView: UIView {
         
         self.textField.rx.controlEvent(.editingDidEndOnExit)
             .subscribe(onNext: { [weak self] in
-                guard let term = self?.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+                guard let term = self?.textField.text else { return }
                 SimpleDefualts.shared.saveRecentSearchTerms(term)
                 self?.updateUI(with: true)
             }).disposed(by: self.disposeBag)
@@ -205,6 +201,14 @@ class TRSSearchView: UIView {
                     self?.updateUI(with: true)
                 }).disposed(by: self.disposeBag)
         }
+    }
+    
+    func endEditing() {
+        self.textField.text = nil
+        if self.textField.isFirstResponder == true {
+            self.endEditing(true)
+        }
+        self.updateUI(with: true)
     }
     
     func updateUI(with recentSearchTerms: Bool = false) {
@@ -262,9 +266,5 @@ extension TRSSearchView: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: .search)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return (textField.text?.trimmingCharacters(in: .whitespacesAndNewlines).count ?? 0) > 0
     }
 }

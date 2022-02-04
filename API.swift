@@ -3282,7 +3282,7 @@ public final class ServicesQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query services($workspaceId: String!, $after: String, $first: Int, $type: String, $phase: String, $phases: [String], $states: [String], $startedAt: DateTime, $endedAt: DateTime) {
+    query services($workspaceId: String!, $after: String, $first: Int, $phases: [String]) {
       signedUser {
         __typename
         joinedWorkspaces(id: $workspaceId) {
@@ -3291,16 +3291,7 @@ public final class ServicesQuery: GraphQLQuery {
             __typename
             node {
               __typename
-              services(
-                after: $after
-                first: $first
-                type: $type
-                phase: $phase
-                phases: $phases
-                states: $states
-                startedAt: $startedAt
-                endedAt: $endedAt
-              ) {
+              services(after: $after, first: $first, phases: $phases) {
                 __typename
                 pageInfo {
                   __typename
@@ -3337,27 +3328,17 @@ public final class ServicesQuery: GraphQLQuery {
   public var workspaceId: String
   public var after: String?
   public var first: Int?
-  public var type: String?
-  public var phase: String?
   public var phases: [String?]?
-  public var states: [String?]?
-  public var startedAt: DateTime?
-  public var endedAt: DateTime?
 
-  public init(workspaceId: String, after: String? = nil, first: Int? = nil, type: String? = nil, phase: String? = nil, phases: [String?]? = nil, states: [String?]? = nil, startedAt: DateTime? = nil, endedAt: DateTime? = nil) {
+  public init(workspaceId: String, after: String? = nil, first: Int? = nil, phases: [String?]? = nil) {
     self.workspaceId = workspaceId
     self.after = after
     self.first = first
-    self.type = type
-    self.phase = phase
     self.phases = phases
-    self.states = states
-    self.startedAt = startedAt
-    self.endedAt = endedAt
   }
 
   public var variables: GraphQLMap? {
-    return ["workspaceId": workspaceId, "after": after, "first": first, "type": type, "phase": phase, "phases": phases, "states": states, "startedAt": startedAt, "endedAt": endedAt]
+    return ["workspaceId": workspaceId, "after": after, "first": first, "phases": phases]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -3512,7 +3493,7 @@ public final class ServicesQuery: GraphQLQuery {
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("services", arguments: ["after": GraphQLVariable("after"), "first": GraphQLVariable("first"), "type": GraphQLVariable("type"), "phase": GraphQLVariable("phase"), "phases": GraphQLVariable("phases"), "states": GraphQLVariable("states"), "startedAt": GraphQLVariable("startedAt"), "endedAt": GraphQLVariable("endedAt")], type: .object(Service.selections)),
+                GraphQLField("services", arguments: ["after": GraphQLVariable("after"), "first": GraphQLVariable("first"), "phases": GraphQLVariable("phases")], type: .object(Service.selections)),
               ]
             }
 
