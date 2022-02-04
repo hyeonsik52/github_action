@@ -10,70 +10,56 @@ import ReactorKit
 
 class PagingReceivedServicesViewReactor: Reactor {
     
+    typealias Notification = ServiceByWorkspaceIdSubscription.Data.SubscribeServiceChangeset
+    
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     let disposeBag = DisposeBag()
     
     enum Action {
         case refresh
-        case more(Int)  //last item
-        //temp
-//        case notification(Result<ServicesByWorkspaceIdSubscription.Data, Error>)
+        case moreFind(IndexPath)  //last item
+        case notification(Notification)
     }
     
     enum Mutation {
-        case refresh([ServiceCellReactor])
-        case more([ServiceCellReactor])
+        case refresh([Service])
+        case more([Service])
         ///필터링에 의해 추가 로드가 되지 않은 경우 다시 시도 플래그
-        case notFoundCompleted
+        case notFoundMore
+
+        case addService(Service)
+        case updateService(Service)
+        case deleteService(String) //serviceId
         
-        //temp
-//        case addService([ServiceCellReactor])
-//        case updateService(ServiceCellReactor)
-//        case deleteService(String) //serviceId
-        
-        ///초기 상태 nil, 로딩 시작 true, 로딩 종료 false/ nil에서 true가 된 경우일 때만 스켈레톤 뷰 출력
         case isLoading(Bool?)
-        
-        ///추가 로딩
         case isProcessing(Bool?)
     }
     
     struct State {
-        var sections: [ServiceModelSection]
+        var services: [Service]
         var isLoading: Bool?
         var isProcessing: Bool?
-        var retryMore: Bool
+        var retryMoreFind: Bool
     }
     
     var initialState: State {
-        
-//        let dummyItems = self.provider.serviceManager
-//            .dummyServices(1, serviceUnitCount: 3)
-//            .map { ServiceCellReactor(mode: .managementReceived, service: $0) }
-        
-        let sections: [ServiceModelSection] = [
-            .init(header: "", items: [])
-        ]
-        
         return State(
-            sections: sections,
+            services: [],
             isLoading: nil,
             isProcessing: nil,
-            retryMore: false
+            retryMoreFind: false
         )
     }
     
     let provider : ManagerProviderType
     let workspaceId: String
     
-    private let countPerLoading = 5
-    
-    private var startCursor: String?
-    private var hasPreviousPage: Bool = true
-    
-    private var lastItem = -1
-    
-    private let refDate = Date()
+    private let countPerLoading = 12
+
+    private var endCursor: String?
+    private var hasNextPage: Bool = true
+
+    private var lastIndexPath = IndexPath(item: -1, section: 0)
     
     init(provider: ManagerProviderType, workspaceId: String) {
         self.provider = provider
@@ -83,12 +69,11 @@ class PagingReceivedServicesViewReactor: Reactor {
     
     private func bind() {
         
-        //temp
-//        self.provider.subscriptionManager.services(by: self.workspaceId)
+        //TODO: 화면에 표시되는 항목의 변경사항만 추적하여 업데이트하도록 개선
+//        self.provider.subscriptionManager.serviceBy(workspaceId: self.workspaceId)
 //            .subscribe(onNext: { [weak self] result in
 //                self?.action.onNext(.notification(result))
-//            })
-//            .disposed(by: self.disposeBag)
+//            }).disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -98,30 +83,29 @@ class PagingReceivedServicesViewReactor: Reactor {
             return .concat([
                 .just(.isLoading(true)),
                 self.refresh(),
-                .just(.isLoading(false))
+                .just(.isLoading(false)),
             ])
-        case .more(let item):
+        case .moreFind(let indexPath):
             guard self.currentState.isLoading == false else { return .empty() }
-            
-            if item > self.lastItem {
-                self.lastItem = item
-                if !self.hasPreviousPage {
+
+            if indexPath.section > self.lastIndexPath.section ||
+                (indexPath.section == self.lastIndexPath.section &&
+                indexPath.item > self.lastIndexPath.item) {
+                self.lastIndexPath = indexPath
+                if !self.hasNextPage {
                     return .empty()
                 }
             }else{
                 return .empty()
             }
-            
+
             return .concat([
                 .just(.isProcessing(true)),
-                self.more(item),
+                self.moreFind(indexPath),
                 .just(.isProcessing(false))
             ])
-            //temp
-//        case .notification(let result):
-//            return self.subscription(result)
-//        case .hiddenNotification(let result):
-//            return self.subscription(result)
+        case .notification(let result):
+            return self.subscription(result)
         }
     }
     
@@ -129,213 +113,165 @@ class PagingReceivedServicesViewReactor: Reactor {
         var state = state
         switch mutation {
         case .refresh(let services):
-            state.sections[0].items = services
+            state.services = services
         case .more(let services):
-            state.sections[0].items.append(contentsOf: services)
-            //temp
-//            state.sections[0].items.sort(by: { self.sort($0, $1) })
-//        case let .addService(services):
-//            state = self.addServices(state: state, data: services)
-//        case let .updateService(service):
-//            state = self.updateServices(state: state, data: service)
-//        case let .deleteService(serviceId):
-//            state = self.deleteServices(state: state, serviceId: serviceId)
-        case .isLoading(let isLoading):
-            state.isLoading = isLoading
+            state.services.append(contentsOf: services)
+            state.services.sort(by: self.sort)
+        case let .addService(service):
+            state = self.addServices(state: state, data: service)
+            state.services = state.services.filter(self.filter)
+        case let .updateService(service):
+            state = self.updateServices(state: state, data: service)
+            state.services = state.services.filter(self.filter)
+        case let .deleteService(serviceId):
+            state = self.deleteServices(state: state, serviceId: serviceId)
+            state.services = state.services.filter(self.filter)
         case .isProcessing(let isProcessing):
             state.isProcessing = isProcessing
-        case .notFoundCompleted:
-            state.retryMore = !state.retryMore
+        case .isLoading(let isLoading):
+            state.isLoading = isLoading
+        case .notFoundMore:
+            state.retryMoreFind = !state.retryMoreFind
         }
         return state
     }
 }
 
 extension PagingReceivedServicesViewReactor {
-        
+
     private func refresh() -> Observable<Mutation> {
         
-        //temp
-//        let query = ServicesQuery(
-//            workspaceId: self.workspaceId,
-////            phase: nil,
-//            before: nil,
-//            last: 2147483647
-//        )
-//        return self.provider.networkManager.fetch(query)
-//            .do(onNext: { [weak self] data in
-//                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
-//                self?.startCursor = pageInfo.startCursor
-//                self?.hasPreviousPage = pageInfo.hasPreviousPage
-//                self?.lastItem = -1
-//            })
-//            .map { self.convert($0) }
-//            .map { .refresh($0) }
-        return .empty()
-    }
-    
-    private func more(_ item: Int) -> Observable<Mutation> {
+        let query = ServicesQuery(
+            workspaceId: self.workspaceId,
+            after: nil,
+            first: self.countPerLoading,
+            phases: [ServicePhase.waiting.toString!, ServicePhase.delivering.toString!]
+        )
         
-        //temp
-//        let query = ServicesQuery(
-//            workspaceId: self.workspaceId,
-////            phase: nil,
-//            before: self.startCursor,
-//            last: self.countPerLoading
-//        )
-//
-//        return self.provider.networkManager.fetch(query)
-//            .do(onNext: { [weak self] data in
-//                guard let pageInfo = data.hiGlovisServices?.pageInfo else { return }
-//                self?.startCursor = pageInfo.startCursor
-//                self?.hasPreviousPage = pageInfo.hasPreviousPage
-//            })
-//            .map { self.convert($0) }
-//            .map { .more($0) }
+        return self.provider.networkManager.fetch(query)
+            .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.services }
+            .do(onNext: { [weak self] data in
+                let pageInfo = data.pageInfo
+                self?.endCursor = pageInfo.endCursor
+                self?.hasNextPage = pageInfo.hasNextPage
+                self?.lastIndexPath = .init(item: -1, section: 0)
+            })
+            .compactMap { $0.edges.compactMap { $0?.node?.fragments.serviceFragment }.map(Service.init) }
+            .map { $0.sorted(by: self.sort) }
+            .map { .refresh($0) }
+    }
+
+    private func moreFind(_ indexPath: IndexPath) -> Observable<Mutation> {
+        
+        let query = ServicesQuery(
+            workspaceId: self.workspaceId,
+            after: self.endCursor,
+            first: self.countPerLoading,
+            phases: [ServicePhase.waiting.toString!, ServicePhase.delivering.toString!]
+        )
+        
+        return self.provider.networkManager.fetch(query)
+            .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.services }
+            .do(onNext: { [weak self] data in
+                let pageInfo = data.pageInfo
+                self?.endCursor = pageInfo.endCursor
+                self?.hasNextPage = pageInfo.hasNextPage
+            })
+            .compactMap { $0.edges.compactMap { $0?.node?.fragments.serviceFragment }.map(Service.init) }
+            .map { $0.sorted(by: self.sort) }
+            .map { [weak self] services in
+                if services.isEmpty {
+                    if let lastIndexPath = self?.lastIndexPath {
+                        self?.lastIndexPath = .init(item: lastIndexPath.item-1, section: lastIndexPath.section)
+                    }
+                    return .notFoundMore
+                } else {
+                    return .more(services)
+                }
+            }
+    }
+
+    private func subscription(_ notification: Notification) -> Observable<Mutation> {
+        if let eventType = notification.eventType,
+           let fragment = notification.service?.fragments.serviceFragment,
+           fragment.type != "RECALL" {
+            let service = Service(fragment)
+            Log.debug("\(eventType)")
+            switch eventType {
+            case .serviceCreated:
+                return .just(.addService(service))
+            case .serviceUpdated:
+                return .just(.updateService(service))
+            case .serviceDeleted:
+                return .just(.deleteService(service.id))
+            default:
+                Log.error("serviceSubscription error: unknowned eventType")
+            }
+        } else {
+            Log.error("serviceSubscription error: not fount eventType or data")
+        }
         return .empty()
     }
+}
+
+extension PagingReceivedServicesViewReactor {
+
+    private func sort(_ lhs: Service, _ rhs: Service) -> Bool {
+        return (lhs.phase.sortOrder, lhs.requestedAt) > (rhs.phase.sortOrder, rhs.requestedAt)
+    }
     
-    //temp
-//    private func subscription(_ result: Result<ServicesByWorkspaceIdSubscription.Data, Error>) -> Observable<Mutation> {
-//        switch result {
-//        case .success(let data):
-//        let subscription = data.serviceBySwsIdxSubscription
-//        if let created = subscription?.asServiceCreated?.item {
-//
-//            var mutations = [Mutation]()
-//
-//            let processing = self.convert(.processing, data: created)
-//
-//                for item in processing {
-//                    let itemServiceIdx = item.currentState.service.serviceIdx
-//
-//                    if self.currentState.sections[0].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
-//                        //이미 존재하면 업데이트
-//                        mutations.append(.updateService(.processing, item))
-//                    }else{
-//                        //같은 항목이 없다면 추가
-//                        mutations.append(.addService(.processing, [item]))
-//                    }
-//                }
-//
-//            return (mutations.isEmpty ? .empty(): .concat(mutations.map {.just($0)}))
-//
-//        }else if let updated = subscription?.asServiceUpdated?.item {
-//
-//            var mutations = [Mutation]()
-//
-//            let processing = self.convert(.processing, data: updated)
-//            let completed = self.convert(.completed, data: updated)
-//
-//            //갱신된 서비스 인덱스가 필터링 된 진행 중 목록에 있다면 추가 또는 업데이트
-//            if processing.isEmpty {
-//                //없다면 목록에서 삭제
-//                mutations.append(.deleteService(.processing, updated.serviceIdx))
-//            }else{
-//                for item in processing {
-//                    let itemServiceIdx = item.currentState.service.serviceIdx
-//
-//                    if self.currentState.sections[0].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
-//                        //이미 존재하면 업데이트
-//                        mutations.append(.updateService(.processing, item))
-//                    }else{
-//                        //같은 항목이 없다면 추가
-//                        mutations.append(.addService(.processing, [item]))
-//                    }
-//                }
+    private func filter(_ item: Service) -> Bool {
+        return (item.phase == .waiting || item.phase == .delivering)
+    }
+    
+//    private func sectioned(_ services: [Service]) -> [ServiceModelSection] {
+//        var map: [String: [Service]] = [:]
+//        for model in services {
+//            let dateString = model.requestedAt.toString("yy.MM.dd E")
+//            if let array = map[dateString] {
+//                var array = array
+//                array.insert(model, at: 0)
+//                map[dateString] = array.sorted(by: { $0.requestedAt > $1.requestedAt })
+//            } else {
+//                map[dateString] = [model]
 //            }
-//
-//            //갱신된 서비스 인덱스가 필터링 된 수락된 목록에 있다면 추가 또는 업데이트
-//            if completed.isEmpty {
-//                //없다면 목록에서 삭제
-//                mutations.append(.deleteService(.completed, updated.serviceIdx))
-//            }else{
-//                for item in completed {
-//                    let itemServiceIdx = item.currentState.service.serviceIdx
-//
-//                    if self.currentState.sections[1].items.contains(where: { $0.currentState.service.serviceIdx == itemServiceIdx }) {
-//                        //이미 존재하면 업데이트
-//                        mutations.append(.updateService(.completed, item))
-//                    }else{
-//                        //같은 항목이 없다면 추가
-//                        mutations.append(.addService(.completed, [item]))
-//                    }
-//                }
-//            }
-//
-//            return (mutations.isEmpty ? .empty(): .from(mutations))
-//
-//        }else if let deleted = subscription?.asServiceDeleted {
-//            return .from([
-//                .deleteService(.processing, deleted.serviceIdx),
-//                .deleteService(.completed, deleted.serviceIdx)
-//            ])
 //        }
-//        case .failure(let error):
-//            print(error.localizedDescription)
-//        }
-//        return .empty()
+//        return map.sorted(by: { $0.key > $1.key })
+//            .map { ($0, $1.map(ServiceCellReactor.init)) }
+//            .map(ServiceModelSection.init)
 //    }
 }
 
-//temp
-//extension PagingReceivedServicesViewReactor {
-    
-    //temp
-//    private func convert(_ data: ServicesQuery.Data) -> [ServiceCellReactor] {
-//        guard let services = data.hiGlovisServices?.edges
-//            .compactMap(\.?.node?.fragments.serviceFragment)
-//                .compactMap(self.provider.serviceManager.convert) else { return [] }
-//        return self.convert(services)
-//    }
-//
-//    private func convert(_ data: ServiceFragment) -> [ServiceCellReactor] {
-//        guard let service = self.provider.serviceManager.convert(service: data) else { return [] }
-//        return self.convert([service])
-//    }
-//
-//    private func convert(_ data: [Service]) -> [ServiceCellReactor] {
-//        return data
-//            .map{
-//                ServiceCellReactor(
-//                    mode: .managementReceived,
-//                    service: $0
-//                )
-//            }
-//            .sorted { [weak self] in self?.sort($0, $1) ?? false }
-//    }
-//
-//    private func sort(_ lhs: ServiceCellReactor, _ rhs: ServiceCellReactor) -> Bool {
-//        return lhs.currentState.service.createdAt > rhs.currentState.service.createdAt
-//    }
-//}
+extension PagingReceivedServicesViewReactor {
 
-//extension PagingReceivedServicesViewReactor {
-//
-//    private func addServices(state: State, data: [ServiceCellReactor]) -> State {
-//        var state = state
-//        for reactor in data {
-//            state.sections[0].items.insert(reactor, at: 0)
-//            state.sections[0].items.sort(by: { self.sort($0, $1) })
-//        }
-//        return state
-//    }
-//
-//    private func updateServices(state: State, data: ServiceCellReactor) -> State {
-//        var state = state
-//        let serviceId = data.currentState.service.id
-//        if let index = state.sections[0].items.firstIndex(where: { $0.currentState.service.id == serviceId }) {
-//            state.sections[0].items[index] = data
-//        }
-//        return state
-//    }
-//
-//    private func deleteServices(state: State, serviceId: String) -> State {
-//        var state = state
-//        state.sections[0].items.removeAll { $0.currentState.service.id == serviceId }
-//        return state
-//    }
-//}
+    private func addServices(state: State, data: Service) -> State {
+        var state = state
+        if state.services.contains(data) {
+            state = self.updateServices(state: state, data: data)
+        } else {
+            state.services.insert(data, at: 0)
+            state.services.sort(by: self.sort)
+        }
+        return state
+    }
+
+    private func updateServices(state: State, data: Service) -> State {
+        var state = state
+        if let index = state.services.firstIndex(of: data) {
+            let prev = state.services[index]
+            if data.hashValue != prev.hashValue {
+                state.services[index] = data
+            }
+        }
+        return state
+    }
+
+    private func deleteServices(state: State, serviceId: String) -> State {
+        var state = state
+        state.services.removeAll { $0.id == serviceId }
+        return state
+    }
+}
 
 extension PagingReceivedServicesViewReactor {
     

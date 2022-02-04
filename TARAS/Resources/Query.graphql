@@ -68,12 +68,12 @@ query service($workspaceId: String!, $serviceId: String!) {
     }
 }
 
-query services($workspaceId: String!, $after: String, $first:Int, $type: String, $phase: String, $phases: [String], $states: [String], $startedAt: DateTime, $endedAt: DateTime) {
+query services($workspaceId: String!, $after: String, $first:Int, $phases: [String]) {
     signedUser {
         joinedWorkspaces(id: $workspaceId) {
             edges {
                 node {
-                    services(after: $after, first: $first, type: $type, phase: $phase, phases: $phases, states: $states, startedAt: $startedAt, endedAt: $endedAt) {
+                    services(after: $after, first: $first, phases: $phases) {
                         pageInfo {
                             endCursor
                             hasNextPage
