@@ -28,7 +28,7 @@ class ServiceCell: UICollectionViewCell, View {
         $0.textColor = .darkGray303030
     }
     
-    private let requestTimeLabel = UILabel().then {
+    private let dateLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .grayA0A0A0
         $0.textAlignment = .right
@@ -244,8 +244,8 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.top.leading.bottom.equalToSuperview()
             }
             
-            bottomContainer.addSubview(self.requestTimeLabel)
-            self.requestTimeLabel.snp.makeConstraints {
+            bottomContainer.addSubview(self.dateLabel)
+            self.dateLabel.snp.makeConstraints {
                 $0.leading.equalTo(self.requestorLabel.snp.trailing).offset(8)
                 $0.top.trailing.equalToSuperview()
                 $0.bottom.equalToSuperview()
@@ -299,6 +299,9 @@ class ServiceCell: UICollectionViewCell, View {
         }
         
         self.requestorLabel.text = .init(format: Text.requestorFormat, service.creator.displayName)
-        self.requestTimeLabel.text = service.requestedAt.toString("yy.MM.dd E HH:mm")
+        
+        //서비스가 종료된 시각을 우선하여 표시함 (진행목록과 종료목록을 구분하기 때문)
+        let date = service.finishedAt ?? service.requestedAt
+        self.dateLabel.text = date.toString("yy.MM.dd E HH:mm")
     }
 }
