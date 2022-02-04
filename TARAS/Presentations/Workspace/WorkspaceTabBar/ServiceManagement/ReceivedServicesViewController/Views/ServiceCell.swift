@@ -14,19 +14,25 @@ import RxSwift
 class ServiceCell: UICollectionViewCell, View {
     
     enum Text {
-        static let titleFormatForNormal = "%@님의 요청"
+        static let requestorFormat = "%@님의 요청"
         static let passStopCountFormat = "+ 경유지 %d개"
     }
     
     private let titleLabel = UILabel().then {
         $0.font = .medium[18]
         $0.textColor = .darkGray303030
-        $0.numberOfLines = 0
+    }
+    
+    private let requestorLabel = UILabel().then {
+        $0.font = .medium[16]
+        $0.textColor = .darkGray303030
     }
     
     private let requestTimeLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .grayA0A0A0
+        $0.textAlignment = .right
+        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
     //단일 목적지일 때 감추기 (여기부터)
@@ -102,9 +108,9 @@ class ServiceCell: UICollectionViewCell, View {
             let topContainer = UIView()
             $0.addSubview(topContainer)
             topContainer.snp.makeConstraints {
-                $0.top.equalToSuperview().offset(12)
+                $0.top.equalToSuperview().offset(12).priority(.high)
                 $0.leading.equalToSuperview().offset(20)
-                $0.trailing.equalToSuperview().offset(-20).priority(.high)
+                $0.trailing.equalToSuperview().offset(-20)
                 $0.height.equalTo(28)
             }
 
@@ -115,38 +121,38 @@ class ServiceCell: UICollectionViewCell, View {
             }
             
             //수평 분리자
-            let separator = UIView().then {
+            let topSeparator = UIView().then {
                 $0.backgroundColor = .lightGrayF1F1F1
             }
-            $0.addSubview(separator)
-            separator.snp.makeConstraints {
+            $0.addSubview(topSeparator)
+            topSeparator.snp.makeConstraints {
                 $0.top.equalTo(topContainer.snp.bottom).offset(10)
                 $0.leading.equalToSuperview().offset(24)
                 $0.trailing.equalToSuperview().offset(-24)
                 $0.height.equalTo(1)
             }
 
-            let bottomContainer = UIView()
-            $0.addSubview(bottomContainer)
-            bottomContainer.snp.makeConstraints {
-                $0.top.equalTo(separator.snp.bottom).offset(10)
+            let middleContainer = UIView()
+            $0.addSubview(middleContainer)
+            middleContainer.snp.makeConstraints {
+                $0.top.equalTo(topSeparator.snp.bottom).offset(10)
                 $0.leading.equalToSuperview().offset(24)
-                $0.trailing.equalToSuperview().offset(-24).priority(.high)
+                $0.trailing.equalToSuperview().offset(-24)
                 $0.height.equalTo(76)
             }
 
-            let bottomContainerInnerView = UIStackView().then {
+            let middleContainerInnerView = UIStackView().then {
                 $0.axis = .vertical
                 $0.distribution = .fill
                 $0.spacing = 36
             }
-            bottomContainer.addSubview(bottomContainerInnerView)
-            bottomContainerInnerView.snp.makeConstraints {
+            middleContainer.addSubview(middleContainerInnerView)
+            middleContainerInnerView.snp.makeConstraints {
                 $0.centerY.leading.trailing.equalToSuperview()
             }
 
             //출발지
-            bottomContainerInnerView.addArrangedSubview(self.beginStopContainer)
+            middleContainerInnerView.addArrangedSubview(self.beginStopContainer)
             self.beginStopContainer.snp.makeConstraints {
                 $0.height.equalTo(20)
             }
@@ -171,7 +177,7 @@ class ServiceCell: UICollectionViewCell, View {
 
             //도착지
             let endStopContainer = UIView()
-            bottomContainerInnerView.addArrangedSubview(endStopContainer)
+            middleContainerInnerView.addArrangedSubview(endStopContainer)
             endStopContainer.snp.makeConstraints {
                 $0.height.equalTo(20)
             }
@@ -197,71 +203,85 @@ class ServiceCell: UICollectionViewCell, View {
             //수직 진행 바
             $0.addSubview(self.processLine)
             self.processLine.snp.makeConstraints {
-                $0.top.equalTo(bottomContainer.snp.top).offset(18)
-                $0.bottom.equalTo(bottomContainer.snp.bottom).offset(-18)
-                $0.leading.equalTo(bottomContainer.snp.leading).offset(3.5)
+                $0.top.equalTo(middleContainer.snp.top).offset(18)
+                $0.bottom.equalTo(middleContainer.snp.bottom).offset(-18)
+                $0.leading.equalTo(middleContainer.snp.leading).offset(3.5)
                 $0.width.equalTo(1)
             }
 
             //경유지 개수
-            bottomContainer.addSubview(self.passStopCountLabel)
+            middleContainer.addSubview(self.passStopCountLabel)
             self.passStopCountLabel.snp.makeConstraints {
                 $0.centerY.trailing.equalToSuperview()
                 $0.leading.equalToSuperview().offset(24)
-                $0.bottom.equalToSuperview().offset(-12).priority(.high)
+                $0.bottom.equalToSuperview().offset(-12)
+            }
+            
+            //수평 분리자
+            let bottomSeparator = UIView().then {
+                $0.backgroundColor = .lightGrayF1F1F1
+            }
+            $0.addSubview(bottomSeparator)
+            bottomSeparator.snp.makeConstraints {
+                $0.top.equalTo(middleContainer.snp.bottom).offset(10)
+                $0.leading.equalToSuperview().offset(24)
+                $0.trailing.equalToSuperview().offset(-24)
+                $0.height.equalTo(1)
+            }
+            
+            let bottomContainer = UIView()
+            $0.addSubview(bottomContainer)
+            bottomContainer.snp.makeConstraints {
+                $0.top.equalTo(bottomSeparator.snp.bottom).offset(10)
+                $0.leading.equalToSuperview().offset(20)
+                $0.trailing.equalToSuperview().offset(-20)
+                $0.bottom.equalToSuperview().offset(-12)
+                $0.height.equalTo(28)
+            }
+            
+            bottomContainer.addSubview(self.requestorLabel)
+            self.requestorLabel.snp.makeConstraints {
+                $0.top.leading.bottom.equalToSuperview()
+            }
+            
+            bottomContainer.addSubview(self.requestTimeLabel)
+            self.requestTimeLabel.snp.makeConstraints {
+                $0.leading.equalTo(self.requestorLabel.snp.trailing).offset(8)
+                $0.top.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview()
             }
         }
     }
     
     func bind(reactor: ServiceCellReactor) {
         let service = reactor.initialState.service
+        let isMyTurn = reactor.initialState.isMyTurn
+        
+        self.contentView.backgroundColor = (isMyTurn ? .purpleEEE8F4: .white)
         
         switch service.phase {
-        case .waiting:
+        case .waiting, .delivering:
             self.contentView.backgroundColor = .white
             self.backgroundView?.isHidden = false
-        case .delivering:
-            self.contentView.backgroundColor = .white
-            self.backgroundView?.isHidden = false
-        case .completed:
-            self.contentView.backgroundColor = .lightGrayF5F6F7
-            self.backgroundView?.isHidden = true
-        case .canceled:
+        case .completed, .canceled:
             self.contentView.backgroundColor = .lightGrayF5F6F7
             self.backgroundView?.isHidden = true
         case .all:
             break
         }
         
-        let title: String = (
-            service.type == .general ?
-                .init(format: Text.titleFormatForNormal, service.creator.displayName):
-                service.serviceUnits.last?.detail ?? ""
-        )
-        let titleWidth = UIScreen.main.bounds.width - 16*2 - 120
-        let paragraph = NSMutableParagraphStyle().then {
-            $0.minimumLineHeight = 28
-            $0.lineSpacing = 2
-        }
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.medium[18], .paragraphStyle: paragraph]
-        let titleHeight = (title as NSString).boundingRect(
-            with: .init(width: titleWidth, height: .infinity),
-            options: .usesLineFragmentOrigin,
-            attributes: attributes,
-            context: nil
-        ).height
-        self.titleLabel.snp.updateConstraints {
-            $0.height.equalTo(titleHeight)
-        }
-        self.titleLabel.attributedText = .init(string: title, attributes: attributes)
+        self.titleLabel.text = service.stateDescription
         
-        self.requestTimeLabel.text = service.requestedAt.toString("HH:mm")
-
+        self.endStopLabel.text = service.serviceUnits.last?.stop.name
+        
         let isSingleDestination = (service.serviceUnits.count == 1)
         if isSingleDestination {
             self.processLine.isHidden = true
             self.passStopCountLabel.isHidden = true
             self.beginStopContainer.isHidden = true
+            
+            
+            self.endStopLabel.textColor = (service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .darkGray303030)
         } else {
             self.processLine.isHidden = false
             self.beginStopContainer.isHidden = false
@@ -271,8 +291,14 @@ class ServiceCell: UICollectionViewCell, View {
             let passStopCount = service.serviceUnits.count - 2
             self.passStopCountLabel.isHidden = (passStopCount <= 0)
             self.passStopCountLabel.text = .init(format: Text.passStopCountFormat, passStopCount)
+            
+            
+            self.beginStopLabel.textColor = (service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .gray535353)
+            self.passStopCountLabel.textColor = (service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count  ? .purple4A3C9F: .gray8C8C8C)
+            self.endStopLabel.textColor = (service.currentServiceUnitIdx == service.serviceUnits.count  ? .purple4A3C9F: .darkGray303030)
         }
         
-        self.endStopLabel.text = service.serviceUnits.last?.stop.name
+        self.requestorLabel.text = .init(format: Text.requestorFormat, service.creator.displayName)
+        self.requestTimeLabel.text = service.requestedAt.toString("yy.MM.dd E HH:mm")
     }
 }
