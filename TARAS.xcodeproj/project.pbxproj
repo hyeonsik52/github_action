@@ -700,6 +700,9 @@
 		ED53080427ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */; };
 		ED53080527ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */; };
 		ED53080627ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */; };
+		ED53080827ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
+		ED53080927ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
+		ED53080A27ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
 		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */; };
@@ -1023,6 +1026,7 @@
 		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
 		ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListViewController.swift; sourceTree = "<group>"; };
+		ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListViewReactor.swift; sourceTree = "<group>"; };
 		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPClearTextView.swift; sourceTree = "<group>"; };
@@ -2152,6 +2156,7 @@
 				EDC1192E26D3A39C0020AB09 /* InProgressServiceListViewController.swift */,
 				EDC1194D26D3A39D0020AB09 /* InProgressServiceListViewReactor.swift */,
 				ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */,
+				ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */,
 				ED5307FE27A3DBD4003B0FB0 /* Views */,
 			);
 			path = ServiceListViewController;
@@ -3001,6 +3006,7 @@
 				ED416D9227A16C640043A7A4 /* ResetPasswordViewReactor.swift in Sources */,
 				ED416D9327A16C640043A7A4 /* ServiceTargetsView.swift in Sources */,
 				ED416D9427A16C640043A7A4 /* Stop.swift in Sources */,
+				ED53080927ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
 				ED416D9527A16C640043A7A4 /* NetworkError.swift in Sources */,
 				ED416D9627A16C640043A7A4 /* SimpleCellReactor.swift in Sources */,
 				ED416D9727A16C640043A7A4 /* WorkspaceInfoView.swift in Sources */,
@@ -3303,6 +3309,7 @@
 				ED416ED727A170FC0043A7A4 /* ResetPasswordViewReactor.swift in Sources */,
 				ED416ED827A170FC0043A7A4 /* ServiceTargetsView.swift in Sources */,
 				ED416ED927A170FC0043A7A4 /* Stop.swift in Sources */,
+				ED53080A27ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
 				ED416EDA27A170FC0043A7A4 /* NetworkError.swift in Sources */,
 				ED416EDB27A170FC0043A7A4 /* SimpleCellReactor.swift in Sources */,
 				ED416EDC27A170FC0043A7A4 /* WorkspaceInfoView.swift in Sources */,
@@ -3605,6 +3612,7 @@
 				ED7A0E772721539400AD6678 /* ResetPasswordViewReactor.swift in Sources */,
 				EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */,
 				EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */,
+				ED53080827ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
 				ED68E1C126D49CBF003D6442 /* NetworkError.swift in Sources */,
 				ED06C73B277DBD2D00F9D0A5 /* SimpleCellReactor.swift in Sources */,
 				EDC11A8126D3A39D0020AB09 /* WorkspaceInfoView.swift in Sources */,

@@ -113,87 +113,87 @@ class FinishedServiceListViewController: BaseNavigationViewController, View {
     
     func bind(reactor: FinishedServiceListViewReactor) {
         
-//        //State
-//        reactor.state.map(\.serviceSections)
-//            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-//            .disposed(by: self.disposeBag)
-//
-//        reactor.state.map(\.services)
-//            .map { !$0.isEmpty }
-//            .bind(to: self.placeholderLabel.rx.isHidden)
-//            .disposed(by: self.disposeBag)
-//
-//        reactor.state.map { $0.isLoading ?? false }
-//            .filter { $0 == false }
-//            .subscribe(onNext: { [weak self] isLoading in
-//                if self?.collectionView.refreshControl?.isRefreshing == true {
-//                    DispatchQueue.main.async { [weak self] in
-//                        self?.collectionView.refreshControl?.endRefreshing()
-//                    }
-//                }
-//            })
-//            .disposed(by: self.disposeBag)
-//
-//        reactor.state.compactMap { $0.isProcessing }
-//            .distinctUntilChanged()
-//            .bind(to: self.activityIndicatorView.rx.isAnimating)
-//            .disposed(by: self.disposeBag)
-//
-//        reactor.state.map { $0.retryMoreFind }
-//            .distinctUntilChanged()
-//            .map { [weak self] _ in
-//                let lastSection = (self?.dataSource.sectionModels.count ?? 1) - 1
-//                let lastIndex = self?.dataSource.sectionModels.last?.items.count ?? 0
-//                return .init(item: lastIndex, section: lastSection)
-//            }
-//            .map { Reactor.Action.moreFind($0) }
+        //State
+        reactor.state.map(\.serviceSections)
+            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.services)
+            .map { !$0.isEmpty }
+            .bind(to: self.placeholderLabel.rx.isHidden)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isLoading ?? false }
+            .filter { $0 == false }
+            .subscribe(onNext: { [weak self] isLoading in
+                if self?.collectionView.refreshControl?.isRefreshing == true {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.collectionView.refreshControl?.endRefreshing()
+                    }
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.compactMap { $0.isProcessing }
+            .distinctUntilChanged()
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.retryMoreFind }
+            .distinctUntilChanged()
+            .map { [weak self] _ in
+                let lastSection = (self?.dataSource.sectionModels.count ?? 1) - 1
+                let lastIndex = self?.dataSource.sectionModels.last?.items.count ?? 0
+                return .init(item: lastIndex, section: lastSection)
+            }
+            .map { Reactor.Action.moreFind($0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        //Action
+        //temp: 서버 느려짐 현상으로 임시 비활성
+//        self.rx.viewDidLoad
+//            .map { Reactor.Action.refresh(nil) }
 //            .bind(to: reactor.action)
 //            .disposed(by: self.disposeBag)
-//
-//        //Action
-//        //temp: 서버 느려짐 현상으로 임시 비활성
-////        self.rx.viewDidLoad
-////            .map { Reactor.Action.refresh(nil) }
-////            .bind(to: reactor.action)
-////            .disposed(by: self.disposeBag)
-//
-//        //temp: 서버 느려짐 현상으로 임시 비활성
-//        self.rx.viewWillAppear
-//            .map {_ in Reactor.Action.refresh }
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
-//
-//        self.collectionView.rx.setDelegate(self)
-//            .disposed(by: self.disposeBag)
-//
-//        self.collectionView.rx.modelSelected(ServiceCellReactor.self)
-//            .map { reactor.reactorForServiceDetail(serviceId: $0.currentState.service.id) }
-//            .subscribe(onNext: { [weak self] reactor in
-//                self?.navigationPush(
-//                    type: ServiceDetailViewController.self,
-//                    reactor: reactor,
-//                    animated: true,
-//                    bottomBarHidden: true
-//                )
-//            }).disposed(by: self.disposeBag)
-//
-//        self.collectionView.refreshControl?.rx.controlEvent(.valueChanged)
-//            .map {_ in Reactor.Action.refresh }
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
+        
+        //temp: 서버 느려짐 현상으로 임시 비활성
+        self.rx.viewWillAppear
+            .map {_ in Reactor.Action.refresh }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.collectionView.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.collectionView.rx.modelSelected(ServiceCellReactor.self)
+            .map { reactor.reactorForServiceDetail(serviceId: $0.currentState.service.id) }
+            .subscribe(onNext: { [weak self] reactor in
+                self?.navigationPush(
+                    type: ServiceDetailViewController.self,
+                    reactor: reactor,
+                    animated: true,
+                    bottomBarHidden: true
+                )
+            }).disposed(by: self.disposeBag)
+        
+        self.collectionView.refreshControl?.rx.controlEvent(.valueChanged)
+            .map {_ in Reactor.Action.refresh }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
     }
 }
 
 extension FinishedServiceListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        let lastSection = self.dataSource.sectionModels.count - 1
-//        let lastIndex = (self.dataSource.sectionModels.last?.items.count ?? 1) - 1
-//        if indexPath.section > lastSection {
-//            self.reactor?.action.onNext(.moreFind(indexPath))
-//        } else if indexPath.section == lastSection, indexPath.item >= lastIndex {
-//            self.reactor?.action.onNext(.moreFind(indexPath))
-//        }
+        let lastSection = self.dataSource.sectionModels.count - 1
+        let lastIndex = (self.dataSource.sectionModels.last?.items.count ?? 1) - 1
+        if indexPath.section > lastSection {
+            self.reactor?.action.onNext(.moreFind(indexPath))
+        } else if indexPath.section == lastSection, indexPath.item >= lastIndex {
+            self.reactor?.action.onNext(.moreFind(indexPath))
+        }
     }
 }
 
