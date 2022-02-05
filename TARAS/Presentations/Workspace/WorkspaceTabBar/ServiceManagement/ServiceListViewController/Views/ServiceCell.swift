@@ -26,6 +26,7 @@ class ServiceCell: UICollectionViewCell, View {
     private let requestorLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .darkGray303030
+        $0.lineBreakMode = .byTruncatingMiddle
     }
     
     private let dateLabel = UILabel().then {
@@ -246,7 +247,7 @@ class ServiceCell: UICollectionViewCell, View {
             
             bottomContainer.addSubview(self.dateLabel)
             self.dateLabel.snp.makeConstraints {
-                $0.leading.equalTo(self.requestorLabel.snp.trailing).offset(8)
+                $0.leading.equalTo(self.requestorLabel.snp.trailing).offset(4)
                 $0.top.trailing.equalToSuperview()
                 $0.bottom.equalToSuperview()
             }
@@ -257,18 +258,10 @@ class ServiceCell: UICollectionViewCell, View {
         let service = reactor.initialState.service
         let isMyTurn = reactor.initialState.isMyTurn
         
-        self.contentView.backgroundColor = (isMyTurn ? .purpleEEE8F4: .white)
+        let isInProgress = (service.phase == .waiting || service.phase == .delivering)
         
-        switch service.phase {
-        case .waiting, .delivering:
-            self.contentView.backgroundColor = .white
-            self.backgroundView?.isHidden = false
-        case .completed, .canceled:
-            self.contentView.backgroundColor = .lightGrayF5F6F7
-            self.backgroundView?.isHidden = true
-        case .all:
-            break
-        }
+        self.contentView.backgroundColor = (isInProgress ? (isMyTurn ? .purpleEAEAF6: .white): .lightGrayF5F6F7)
+        self.backgroundView?.isHidden = !isInProgress
         
         self.titleLabel.text = service.stateDescription
         
@@ -281,7 +274,7 @@ class ServiceCell: UICollectionViewCell, View {
             self.beginStopContainer.isHidden = true
             
             
-            self.endStopLabel.textColor = (service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .darkGray303030)
+            self.endStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .darkGray303030)
         } else {
             self.processLine.isHidden = false
             self.beginStopContainer.isHidden = false
@@ -293,9 +286,9 @@ class ServiceCell: UICollectionViewCell, View {
             self.passStopCountLabel.text = .init(format: Text.passStopCountFormat, passStopCount)
             
             
-            self.beginStopLabel.textColor = (service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .gray535353)
-            self.passStopCountLabel.textColor = (service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count  ? .purple4A3C9F: .gray8C8C8C)
-            self.endStopLabel.textColor = (service.currentServiceUnitIdx == service.serviceUnits.count  ? .purple4A3C9F: .darkGray303030)
+            self.beginStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .gray535353)
+            self.passStopCountLabel.textColor = (isInProgress && service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count  ? .purple4A3C9F: .gray8C8C8C)
+            self.endStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == service.serviceUnits.count ? .purple4A3C9F: .darkGray303030)
         }
         
         self.requestorLabel.text = .init(format: Text.requestorFormat, service.creator.displayName)
