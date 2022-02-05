@@ -1,9 +1,8 @@
 //
-//  ReceivedServicesViewController.swift
-//  ServiceRobotPlatform-iOS
+//  FinishedServiceListViewController.swift
+//  TARAS
 //
-//  Created by nexmond on 2020/05/29.
-//  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
+//  Created by nexmond on 2022/02/04.
 //
 
 import UIKit
@@ -14,29 +13,24 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class ReceivedServicesViewController: BaseViewController, View {
+class FinishedServiceListViewController: BaseNavigationViewController, View {
     
     enum Text {
-        static let title = "서비스 목록"
+        static let title = "종료 서비스"
+    }
+    
+    override var navigationPopGestureEnabled: Bool {
+        return false
     }
     
     weak var delegate: ServiceCellDelegate?
-    
-    private let settingButton = UIButton().then {
-        let image = UIImage(named: "history")?.withRenderingMode(.alwaysOriginal)
-        $0.setImage(image, for: .normal)
-    }
-    private lazy var titleView = WorkspaceTitleView(
-        title: Text.title,
-        button: self.settingButton,
-        buttonWidth: 52
-    )
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         let width = UIScreen.main.bounds.width - 16 * 2
         $0.minimumLineSpacing = 12
         $0.estimatedItemSize = .init(width: width, height: 100)
         $0.sectionInset = .init(top: 8, left: 16, bottom: 24, right: 16)
+        $0.headerReferenceSize = .init(width: width, height: 20)
     }
     private lazy var collectionView = UICollectionView.init(
         frame: .zero,
@@ -49,12 +43,13 @@ class ReceivedServicesViewController: BaseViewController, View {
         $0.backgroundColor = .white
         
         $0.register(ServiceCell.self, forCellWithReuseIdentifier: "cell")
+        $0.register(
+            ServiceStateCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "header"
+        )
         
         $0.refreshControl = UIRefreshControl()
-        
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 20
-        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     private let dataSource = RxCollectionViewSectionedReloadDataSource<ServiceModelSection>(
@@ -66,6 +61,18 @@ class ReceivedServicesViewController: BaseViewController, View {
             cell.reactor = reactor
             
             return cell
+        }, configureSupplementaryView: { dataSource, collectionView, kind, indexPath -> UICollectionReusableView in
+            
+            let title = dataSource[indexPath.section].header
+            
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: "header",
+                for: indexPath) as! ServiceStateCollectionReusableView
+            
+            header.bind(title)
+            
+            return header
         }
     )
     
@@ -74,7 +81,7 @@ class ReceivedServicesViewController: BaseViewController, View {
         $0.font = .regular[16]
         $0.textColor = .darkGray303030
         $0.textAlignment = .center
-        $0.text = "현재 진행 중인 서비스가 없습니다.\n서비스를 요청해보세요!"
+        $0.text = "종료된 서비스가 없습니다."
     }
     
     override func setupConstraints() {
@@ -82,16 +89,9 @@ class ReceivedServicesViewController: BaseViewController, View {
         
         self.view.backgroundColor = .white
         
-        self.view.addSubview(self.titleView)
-        self.titleView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(60)
-        }
-        
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints{
-            $0.top.equalTo(self.titleView.snp.bottom)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -106,15 +106,15 @@ class ReceivedServicesViewController: BaseViewController, View {
     override func setupNaviBar() {
         super.setupNaviBar()
         
-        self.navigationController?.navigationBar.isHidden = true
+        self.title = Text.title
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    func bind(reactor: PagingReceivedServicesViewReactor) {
+    func bind(reactor: FinishedServiceListViewReactor) {
         
         //State
-        reactor.state.map(\.services)
-            .map { [.init(header: "", items: $0.map(reactor.reactorForServiceCell))] }
+        reactor.state.map(\.serviceSections)
             .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
@@ -184,7 +184,7 @@ class ReceivedServicesViewController: BaseViewController, View {
     }
 }
 
-extension ReceivedServicesViewController: UICollectionViewDelegate {
+extension FinishedServiceListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let lastSection = self.dataSource.sectionModels.count - 1

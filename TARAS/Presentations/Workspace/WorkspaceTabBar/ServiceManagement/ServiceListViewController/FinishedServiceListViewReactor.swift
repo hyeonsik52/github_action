@@ -1,14 +1,13 @@
 //
-//  PagingReceivedServicesViewReactor.swift
-//  ServiceRobotPlatform-iOS
+//  FinishedServiceListViewReactor.swift
+//  TARAS
 //
-//  Created by nexmond on 2020/09/19.
-//  Copyright © 2020 Twinny Co.,Ltd. All rights reserved.
+//  Created by nexmond on 2022/02/04.
 //
 
 import ReactorKit
 
-class PagingReceivedServicesViewReactor: Reactor {
+class FinishedServiceListViewReactor: Reactor {
     
     typealias Notification = ServiceByWorkspaceIdSubscription.Data.SubscribeServiceChangeset
     
@@ -37,6 +36,7 @@ class PagingReceivedServicesViewReactor: Reactor {
     
     struct State {
         var services: [Service]
+        var serviceSections: [ServiceModelSection]
         var isLoading: Bool?
         var isProcessing: Bool?
         var retryMoreFind: Bool
@@ -45,6 +45,7 @@ class PagingReceivedServicesViewReactor: Reactor {
     var initialState: State {
         return State(
             services: [],
+            serviceSections: [],
             isLoading: nil,
             isProcessing: nil,
             retryMoreFind: false
@@ -114,18 +115,23 @@ class PagingReceivedServicesViewReactor: Reactor {
         switch mutation {
         case .refresh(let services):
             state.services = services
+            state.serviceSections = self.sectioned(services)
         case .more(let services):
             state.services.append(contentsOf: services)
             state.services.sort(by: self.sort)
+            state.serviceSections = self.sectioned(state.services)
         case let .addService(service):
             state = self.addServices(state: state, data: service)
             state.services = state.services.filter(self.filter)
+            state.serviceSections = self.sectioned(state.services)
         case let .updateService(service):
             state = self.updateServices(state: state, data: service)
             state.services = state.services.filter(self.filter)
+            state.serviceSections = self.sectioned(state.services)
         case let .deleteService(serviceId):
             state = self.deleteServices(state: state, serviceId: serviceId)
             state.services = state.services.filter(self.filter)
+            state.serviceSections = self.sectioned(state.services)
         case .isProcessing(let isProcessing):
             state.isProcessing = isProcessing
         case .isLoading(let isLoading):
@@ -137,7 +143,7 @@ class PagingReceivedServicesViewReactor: Reactor {
     }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension FinishedServiceListViewReactor {
 
     private func refresh() -> Observable<Mutation> {
         
@@ -145,7 +151,7 @@ extension PagingReceivedServicesViewReactor {
             workspaceId: self.workspaceId,
             after: nil,
             first: self.countPerLoading,
-            phases: [ServicePhase.waiting.toString!, ServicePhase.delivering.toString!]
+            phases: [ServicePhase.completed.toString!, ServicePhase.canceled.toString!]
         )
         
         return self.provider.networkManager.fetch(query)
@@ -167,7 +173,7 @@ extension PagingReceivedServicesViewReactor {
             workspaceId: self.workspaceId,
             after: self.endCursor,
             first: self.countPerLoading,
-            phases: [ServicePhase.waiting.toString!, ServicePhase.delivering.toString!]
+            phases: [ServicePhase.completed.toString!, ServicePhase.canceled.toString!]
         )
         
         return self.provider.networkManager.fetch(query)
@@ -214,35 +220,35 @@ extension PagingReceivedServicesViewReactor {
     }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension FinishedServiceListViewReactor {
 
     private func sort(_ lhs: Service, _ rhs: Service) -> Bool {
         return (lhs.phase.sortOrder, lhs.requestedAt) > (rhs.phase.sortOrder, rhs.requestedAt)
     }
     
     private func filter(_ item: Service) -> Bool {
-        return (item.phase == .waiting || item.phase == .delivering)
+        return (item.phase == .completed || item.phase == .canceled)
     }
     
-//    private func sectioned(_ services: [Service]) -> [ServiceModelSection] {
-//        var map: [String: [Service]] = [:]
-//        for model in services {
-//            let dateString = model.requestedAt.toString("yy.MM.dd E")
-//            if let array = map[dateString] {
-//                var array = array
-//                array.insert(model, at: 0)
-//                map[dateString] = array.sorted(by: { $0.requestedAt > $1.requestedAt })
-//            } else {
-//                map[dateString] = [model]
-//            }
-//        }
-//        return map.sorted(by: { $0.key > $1.key })
-//            .map { ($0, $1.map(ServiceCellReactor.init)) }
-//            .map(ServiceModelSection.init)
-//    }
+    private func sectioned(_ services: [Service]) -> [ServiceModelSection] {
+        var map: [String: [Service]] = [:]
+        for model in services {
+            let dateString = model.requestedAt.toString("yy.MM.dd E")
+            if let array = map[dateString] {
+                var array = array
+                array.insert(model, at: 0)
+                map[dateString] = array.sorted(by: { $0.requestedAt > $1.requestedAt })
+            } else {
+                map[dateString] = [model]
+            }
+        }
+        return map.sorted(by: { $0.key > $1.key })
+            .map { ($0, $1.map(self.reactorForServiceCell)) }
+            .map(ServiceModelSection.init)
+    }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension FinishedServiceListViewReactor {
 
     private func addServices(state: State, data: Service) -> State {
         var state = state
@@ -273,7 +279,7 @@ extension PagingReceivedServicesViewReactor {
     }
 }
 
-extension PagingReceivedServicesViewReactor {
+extension FinishedServiceListViewReactor {
     
     func reactorForServiceDetail(serviceId: String) -> ServiceDetailViewReactor {
         return .init(provider: self.provider, workspaceId: self.workspaceId, serviceId: serviceId)
@@ -282,7 +288,7 @@ extension PagingReceivedServicesViewReactor {
     func reactorForServiceCell(service: Service) -> ServiceCellReactor {
         let myUserID = self.provider.userManager.userTB.ID
         let currentServiceUnit = service.serviceUnits.first { $0.orderWithinService == service.currentServiceUnitIdx }
-        let isMyTurn = currentServiceUnit?.receiver.id == myUserID
+        let isMyTurn = (currentServiceUnit?.receiver.id == myUserID && service.status == .arrived)
         return .init(service: service, isMyTurn: isMyTurn)
     }
 }

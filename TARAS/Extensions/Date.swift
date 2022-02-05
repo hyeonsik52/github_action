@@ -10,6 +10,9 @@ import Foundation
 
 extension Date {
     
+    //선호 언어는 무조건 1개 이상이므로 인덱스 접근할 수 있다
+    private static let firstLanguageLocale = Locale(identifier: Locale.preferredLanguages[0])
+    
     //현재 시간을 기준으로 지난 시간에 따른 포맷 문자열 출력
     var overDescription: String {
         return self.overDescription(Date())
@@ -20,10 +23,7 @@ extension Date {
         let isToday = NSCalendar.current.isDateInToday(self)
         
         let dateFormatter = DateFormatter()
-        
-        //선호 언어는 무조건 1개 이상이므로 인덱스 접근할 수 있다
-        let localId = Locale.preferredLanguages[0]
-        dateFormatter.locale = Locale(identifier: localId)
+        dateFormatter.locale = Self.firstLanguageLocale
         
         if isToday {
 
@@ -46,6 +46,7 @@ extension Date {
     
     func toString(_ format: String) -> String {
         let formatter = DateFormatter()
+        formatter.locale = Self.firstLanguageLocale
         formatter.dateFormat = format
         return formatter.string(from: self)
     }

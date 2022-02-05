@@ -26,9 +26,10 @@ class ServiceCell: UICollectionViewCell, View {
     private let requestorLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .darkGray303030
+        $0.lineBreakMode = .byTruncatingMiddle
     }
     
-    private let requestTimeLabel = UILabel().then {
+    private let dateLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .grayA0A0A0
         $0.textAlignment = .right
@@ -42,6 +43,11 @@ class ServiceCell: UICollectionViewCell, View {
         $0.textColor = .gray535353
         $0.setContentHuggingPriority(.required, for: .horizontal)
     }
+    private let beginStopRobotImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .init(named: "robot")
+        $0.isHidden = true
+    }
     
     private let processLine = UIView().then {
         $0.backgroundColor = .lightGrayDDDDDD
@@ -51,12 +57,22 @@ class ServiceCell: UICollectionViewCell, View {
         $0.font = .regular[12]
         $0.textColor = .gray8C8C8C
     }
+    private let passStopRobotImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .init(named: "robot")
+        $0.isHidden = true
+    }
     //단일 목적지일 때 감추기 (여기까지)
     
     private let endStopLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .darkGray303030
         $0.setContentHuggingPriority(.required, for: .horizontal)
+    }
+    private let endStopRobotImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .init(named: "robot")
+        $0.isHidden = true
     }
     
     var disposeBag = DisposeBag()
@@ -174,6 +190,13 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.top.trailing.bottom.equalToSuperview()
                 $0.leading.equalTo(beginDot.snp.trailing).offset(12)
             }
+            
+            //현재 로봇 위치 아이콘
+            self.beginStopContainer.addSubview(self.beginStopRobotImageView)
+            self.beginStopRobotImageView.snp.makeConstraints {
+                $0.center.equalTo(beginDot)
+                $0.size.equalTo(24)
+            }
 
             //도착지
             let endStopContainer = UIView()
@@ -199,6 +222,13 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.top.trailing.bottom.equalToSuperview()
                 $0.leading.equalTo(endDot.snp.trailing).offset(12)
             }
+            
+            //현재 로봇 위치 아이콘
+            endStopContainer.addSubview(self.endStopRobotImageView)
+            self.endStopRobotImageView.snp.makeConstraints {
+                $0.center.equalTo(endDot)
+                $0.size.equalTo(24)
+            }
 
             //수직 진행 바
             $0.addSubview(self.processLine)
@@ -216,6 +246,16 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.leading.equalToSuperview().offset(24)
                 $0.bottom.equalToSuperview().offset(-12)
             }
+            
+            //현재 로봇 위치 아이콘
+            middleContainer.addSubview(self.passStopRobotImageView)
+            self.passStopRobotImageView.snp.makeConstraints {
+                $0.center.equalTo(self.processLine)
+                $0.size.equalTo(24)
+            }
+            
+            //라인을 뒤로 보냄
+            $0.sendSubviewToBack(self.processLine)
             
             //수평 분리자
             let bottomSeparator = UIView().then {
@@ -244,9 +284,9 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.top.leading.bottom.equalToSuperview()
             }
             
-            bottomContainer.addSubview(self.requestTimeLabel)
-            self.requestTimeLabel.snp.makeConstraints {
-                $0.leading.equalTo(self.requestorLabel.snp.trailing).offset(8)
+            bottomContainer.addSubview(self.dateLabel)
+            self.dateLabel.snp.makeConstraints {
+                $0.leading.equalTo(self.requestorLabel.snp.trailing).offset(4)
                 $0.top.trailing.equalToSuperview()
                 $0.bottom.equalToSuperview()
             }
@@ -257,18 +297,10 @@ class ServiceCell: UICollectionViewCell, View {
         let service = reactor.initialState.service
         let isMyTurn = reactor.initialState.isMyTurn
         
-        self.contentView.backgroundColor = (isMyTurn ? .purpleEEE8F4: .white)
+        let isInProgress = (service.phase == .waiting || service.phase == .delivering)
         
-        switch service.phase {
-        case .waiting, .delivering:
-            self.contentView.backgroundColor = .white
-            self.backgroundView?.isHidden = false
-        case .completed, .canceled:
-            self.contentView.backgroundColor = .lightGrayF5F6F7
-            self.backgroundView?.isHidden = true
-        case .all:
-            break
-        }
+        self.contentView.backgroundColor = (isInProgress ? (isMyTurn ? .purpleEAEAF6: .white): .lightGrayF5F6F7)
+        self.backgroundView?.isHidden = !isInProgress
         
         self.titleLabel.text = service.stateDescription
         
@@ -281,7 +313,8 @@ class ServiceCell: UICollectionViewCell, View {
             self.beginStopContainer.isHidden = true
             
             
-            self.endStopLabel.textColor = (service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .darkGray303030)
+            self.endStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .darkGray303030)
+            self.endStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx == 1)
         } else {
             self.processLine.isHidden = false
             self.beginStopContainer.isHidden = false
@@ -293,12 +326,19 @@ class ServiceCell: UICollectionViewCell, View {
             self.passStopCountLabel.text = .init(format: Text.passStopCountFormat, passStopCount)
             
             
-            self.beginStopLabel.textColor = (service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .gray535353)
-            self.passStopCountLabel.textColor = (service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count  ? .purple4A3C9F: .gray8C8C8C)
-            self.endStopLabel.textColor = (service.currentServiceUnitIdx == service.serviceUnits.count  ? .purple4A3C9F: .darkGray303030)
+            self.beginStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .gray535353)
+            self.passStopCountLabel.textColor = (isInProgress && service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count  ? .purple4A3C9F: .gray8C8C8C)
+            self.endStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == service.serviceUnits.count ? .purple4A3C9F: .darkGray303030)
+            
+            self.beginStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx == 1)
+            self.passStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count)
+            self.endStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx == service.serviceUnits.count)
         }
         
         self.requestorLabel.text = .init(format: Text.requestorFormat, service.creator.displayName)
-        self.requestTimeLabel.text = service.requestedAt.toString("yy.MM.dd E HH:mm")
+        
+        //서비스가 종료된 시각을 우선하여 표시함 (진행목록과 종료목록을 구분하기 때문)
+        let date = service.finishedAt ?? service.requestedAt
+        self.dateLabel.text = date.toString("yy.MM.dd E HH:mm")
     }
 }
