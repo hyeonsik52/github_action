@@ -22,13 +22,13 @@ class InProgressServiceListViewController: BaseViewController, View {
     
     weak var delegate: ServiceCellDelegate?
     
-    private let settingButton = UIButton().then {
+    private let historyButton = UIButton().then {
         let image = UIImage(named: "history")?.withRenderingMode(.alwaysOriginal)
         $0.setImage(image, for: .normal)
     }
     private lazy var titleView = WorkspaceTitleView(
         title: Text.title,
-        button: self.settingButton,
+        button: self.historyButton,
         buttonWidth: 52
     )
     
@@ -51,10 +51,6 @@ class InProgressServiceListViewController: BaseViewController, View {
         $0.register(ServiceCell.self, forCellWithReuseIdentifier: "cell")
         
         $0.refreshControl = UIRefreshControl()
-        
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 20
-        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     private let dataSource = RxCollectionViewSectionedReloadDataSource<ServiceModelSection>(
@@ -181,6 +177,17 @@ class InProgressServiceListViewController: BaseViewController, View {
             .map {_ in Reactor.Action.refresh }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+        self.historyButton.rx.tap
+            .map { reactor.reactorForFinishedServiceList() }
+            .subscribe(onNext: { [weak self] reactor in
+                self?.navigationPush(
+                    type: FinishedServiceListViewController.self,
+                    reactor: reactor,
+                    animated: true,
+                    bottomBarHidden: true
+                )
+            }).disposed(by: self.disposeBag)
     }
 }
 

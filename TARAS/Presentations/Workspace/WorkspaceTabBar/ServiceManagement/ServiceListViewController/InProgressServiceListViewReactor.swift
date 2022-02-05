@@ -268,4 +268,8 @@ extension InProgressServiceListViewReactor {
         let isMyTurn = currentServiceUnit?.receiver.id == myUserID
         return .init(service: service, isMyTurn: isMyTurn)
     }
+    
+    func reactorForFinishedServiceList() -> FinishedServiceListViewReactor {
+        return .init(provider: self.provider, workspaceId: self.workspaceId)
+    }
 }
