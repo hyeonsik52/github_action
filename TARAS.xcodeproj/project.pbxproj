@@ -697,6 +697,9 @@
 		ED53080027A3DBFD003B0FB0 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */; };
 		ED53080127A3DD32003B0FB0 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */; };
 		ED53080227A3DD32003B0FB0 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */; };
+		ED53080427ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */; };
+		ED53080527ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */; };
+		ED53080627ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */; };
 		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */; };
@@ -1019,6 +1022,7 @@
 		ED52736B26C3A03C0077CD9D /* SignUpGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
 		ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
+		ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListViewController.swift; sourceTree = "<group>"; };
 		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPClearTextView.swift; sourceTree = "<group>"; };
@@ -2147,6 +2151,7 @@
 			children = (
 				EDC1192E26D3A39C0020AB09 /* InProgressServiceListViewController.swift */,
 				EDC1194D26D3A39D0020AB09 /* InProgressServiceListViewReactor.swift */,
+				ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */,
 				ED5307FE27A3DBD4003B0FB0 /* Views */,
 			);
 			path = ServiceListViewController;
@@ -2844,6 +2849,7 @@
 				ED416CF927A16C640043A7A4 /* FindAccountPasswordView.swift in Sources */,
 				ED416CFA27A16C640043A7A4 /* SettingCellView.swift in Sources */,
 				ED416CFB27A16C640043A7A4 /* ServiceCreationDetailViewController.swift in Sources */,
+				ED53080527ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */,
 				ED416CFC27A16C640043A7A4 /* SignUpCompleteViewController.swift in Sources */,
 				ED416CFD27A16C640043A7A4 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED416CFE27A16C640043A7A4 /* ServiceTemplate.swift in Sources */,
@@ -3145,6 +3151,7 @@
 				ED416E3E27A170FC0043A7A4 /* FindAccountPasswordView.swift in Sources */,
 				ED416E3F27A170FC0043A7A4 /* SettingCellView.swift in Sources */,
 				ED416E4027A170FC0043A7A4 /* ServiceCreationDetailViewController.swift in Sources */,
+				ED53080627ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */,
 				ED416E4127A170FC0043A7A4 /* SignUpCompleteViewController.swift in Sources */,
 				ED416E4227A170FC0043A7A4 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED416E4327A170FC0043A7A4 /* ServiceTemplate.swift in Sources */,
@@ -3446,6 +3453,7 @@
 				EDC118E626D3A24A0020AB09 /* FindAccountPasswordView.swift in Sources */,
 				ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */,
 				ED06C750277DBD2D00F9D0A5 /* ServiceCreationDetailViewController.swift in Sources */,
+				ED53080427ACF63D003B0FB0 /* FinishedServiceListViewController.swift in Sources */,
 				EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */,
 				ED06C73A277DBD2D00F9D0A5 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */,

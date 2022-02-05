@@ -1,0 +1,10 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#DDD" d="M6 5h12v14H6z"/>
+        <rect fill="#1E1E1E" x="5.5" y="19" width="13" height="2" rx=".5"/>
+        <path d="M7 3h10a1 1 0 0 1 1 1v1H6V4a1 1 0 0 1 1-1z" fill="#1E1E1E"/>
+        <circle fill="#1E1E1E" cx="8.5" cy="20.5" r="1.5"/>
+        <circle fill="#1E1E1E" cx="15.5" cy="20.5" r="1.5"/>
+        <rect fill="#1E1E1E" x="9" y="7" width="6" height="4" rx=".5"/>
+    </g>
+</svg>
