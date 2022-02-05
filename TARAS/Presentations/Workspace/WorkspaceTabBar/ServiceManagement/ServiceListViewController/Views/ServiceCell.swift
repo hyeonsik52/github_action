@@ -43,6 +43,11 @@ class ServiceCell: UICollectionViewCell, View {
         $0.textColor = .gray535353
         $0.setContentHuggingPriority(.required, for: .horizontal)
     }
+    private let beginStopRobotImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .init(named: "robot")
+        $0.isHidden = true
+    }
     
     private let processLine = UIView().then {
         $0.backgroundColor = .lightGrayDDDDDD
@@ -52,12 +57,22 @@ class ServiceCell: UICollectionViewCell, View {
         $0.font = .regular[12]
         $0.textColor = .gray8C8C8C
     }
+    private let passStopRobotImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .init(named: "robot")
+        $0.isHidden = true
+    }
     //단일 목적지일 때 감추기 (여기까지)
     
     private let endStopLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .darkGray303030
         $0.setContentHuggingPriority(.required, for: .horizontal)
+    }
+    private let endStopRobotImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .init(named: "robot")
+        $0.isHidden = true
     }
     
     var disposeBag = DisposeBag()
@@ -175,6 +190,13 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.top.trailing.bottom.equalToSuperview()
                 $0.leading.equalTo(beginDot.snp.trailing).offset(12)
             }
+            
+            //현재 로봇 위치 아이콘
+            self.beginStopContainer.addSubview(self.beginStopRobotImageView)
+            self.beginStopRobotImageView.snp.makeConstraints {
+                $0.center.equalTo(beginDot)
+                $0.size.equalTo(24)
+            }
 
             //도착지
             let endStopContainer = UIView()
@@ -200,6 +222,13 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.top.trailing.bottom.equalToSuperview()
                 $0.leading.equalTo(endDot.snp.trailing).offset(12)
             }
+            
+            //현재 로봇 위치 아이콘
+            endStopContainer.addSubview(self.endStopRobotImageView)
+            self.endStopRobotImageView.snp.makeConstraints {
+                $0.center.equalTo(endDot)
+                $0.size.equalTo(24)
+            }
 
             //수직 진행 바
             $0.addSubview(self.processLine)
@@ -217,6 +246,16 @@ class ServiceCell: UICollectionViewCell, View {
                 $0.leading.equalToSuperview().offset(24)
                 $0.bottom.equalToSuperview().offset(-12)
             }
+            
+            //현재 로봇 위치 아이콘
+            middleContainer.addSubview(self.passStopRobotImageView)
+            self.passStopRobotImageView.snp.makeConstraints {
+                $0.center.equalTo(self.processLine)
+                $0.size.equalTo(24)
+            }
+            
+            //라인을 뒤로 보냄
+            $0.sendSubviewToBack(self.processLine)
             
             //수평 분리자
             let bottomSeparator = UIView().then {
@@ -275,6 +314,7 @@ class ServiceCell: UICollectionViewCell, View {
             
             
             self.endStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .darkGray303030)
+            self.endStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx == 1)
         } else {
             self.processLine.isHidden = false
             self.beginStopContainer.isHidden = false
@@ -289,6 +329,10 @@ class ServiceCell: UICollectionViewCell, View {
             self.beginStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == 1 ? .purple4A3C9F: .gray535353)
             self.passStopCountLabel.textColor = (isInProgress && service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count  ? .purple4A3C9F: .gray8C8C8C)
             self.endStopLabel.textColor = (isInProgress && service.currentServiceUnitIdx == service.serviceUnits.count ? .purple4A3C9F: .darkGray303030)
+            
+            self.beginStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx == 1)
+            self.passStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx > 1 && service.currentServiceUnitIdx < service.serviceUnits.count)
+            self.endStopRobotImageView.isHidden = !(isInProgress && service.currentServiceUnitIdx == service.serviceUnits.count)
         }
         
         self.requestorLabel.text = .init(format: Text.requestorFormat, service.creator.displayName)
