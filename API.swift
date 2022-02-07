@@ -1926,6 +1926,100 @@ public final class CreateServiceMutation: GraphQLMutation {
   }
 }
 
+public final class CancelServiceMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation cancelService($id: String) {
+      cancelService(serviceId: $id) {
+        __typename
+        ok
+      }
+    }
+    """
+
+  public let operationName: String = "cancelService"
+
+  public var id: String?
+
+  public init(id: String? = nil) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("cancelService", arguments: ["serviceId": GraphQLVariable("id")], type: .object(CancelService.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(cancelService: CancelService? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "cancelService": cancelService.flatMap { (value: CancelService) -> ResultMap in value.resultMap }])
+    }
+
+    /// CancelService immediately cancels service
+    public var cancelService: CancelService? {
+      get {
+        return (resultMap["cancelService"] as? ResultMap).flatMap { CancelService(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "cancelService")
+      }
+    }
+
+    public struct CancelService: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["CancelServiceMutation"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("ok", type: .scalar(Bool.self)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(ok: Bool? = nil) {
+        self.init(unsafeResultMap: ["__typename": "CancelServiceMutation", "ok": ok])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var ok: Bool? {
+        get {
+          return resultMap["ok"] as? Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "ok")
+        }
+      }
+    }
+  }
+}
+
 public final class CheckSessionQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =

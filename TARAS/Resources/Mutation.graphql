@@ -85,3 +85,9 @@ mutation createService($input: CreateServiceWithServiceTemplateInput!) {
         ... ServiceFragment
     }
 }
+
+mutation cancelService($id: String) {
+	cancelService(serviceId: $id) {
+		ok
+	}
+}
