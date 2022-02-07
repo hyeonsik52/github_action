@@ -339,6 +339,7 @@ class ServiceCell: UICollectionViewCell, View {
         
         //서비스가 종료된 시각을 우선하여 표시함 (진행목록과 종료목록을 구분하기 때문)
         let date = service.finishedAt ?? service.requestedAt
-        self.dateLabel.text = date.toString("yy.MM.dd E HH:mm")
+        let dateFormat = (isInProgress ? "yy.MM.dd E ": "") + "HH:mm"
+        self.dateLabel.text = date.toString(dateFormat)
     }
 }
