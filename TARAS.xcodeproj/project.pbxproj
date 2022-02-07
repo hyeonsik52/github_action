@@ -2072,12 +2072,12 @@
 		EDC1191226D3A39C0020AB09 /* ServiceDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EDC1191326D3A39C0020AB09 /* ServiceBasicInfoViewController */,
 				EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */,
+				EDC1192C26D3A39C0020AB09 /* ServiceDetailViewReactor.swift */,
 				EDC1191A26D3A39C0020AB09 /* Cell */,
 				EDC1191E26D3A39C0020AB09 /* View */,
+				EDC1191326D3A39C0020AB09 /* ServiceBasicInfoViewController */,
 				EDC1192326D3A39C0020AB09 /* ServiceDetailLogViewController */,
-				EDC1192C26D3A39C0020AB09 /* ServiceDetailViewReactor.swift */,
 			);
 			path = ServiceDetailViewController;
 			sourceTree = "<group>";
