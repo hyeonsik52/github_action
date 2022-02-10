@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Basics
         self.setupWindow()
         self.setupNavigationBar()
+        self.setupTabBar()
         
         // FCM Related
         FirebaseApp.configure()
@@ -141,33 +142,52 @@ extension AppDelegate {
     
     /// Naviagation Bar 설정
     func setupNavigationBar() {
+        
+        let titleTextAttributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.black0F0F0F, .font: UIFont.bold[20]]
+        let style = NSMutableParagraphStyle()
+        style.firstLineHeadIndent = 6
+        let largeTitleTextAttributes: [NSAttributedString.Key : Any] = [
+            .foregroundColor: UIColor.black0F0F0F,
+            .font: UIFont.bold[24],
+            .paragraphStyle: style
+        ]
+        
         if #available(iOS 13, *) {
             let coloredAppearance = UINavigationBarAppearance()
-            coloredAppearance.configureWithOpaqueBackground()
-            coloredAppearance.backgroundColor = .white
+            coloredAppearance.configureWithTransparentBackground()
+            coloredAppearance.backgroundColor = .clear
             coloredAppearance.shadowColor = UIColor.clear
-            coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black0F0F0F, .font: UIFont.bold[20]]
-            
-            // large title text left margin
-            let style = NSMutableParagraphStyle()
-            style.firstLineHeadIndent = 6
-            coloredAppearance.largeTitleTextAttributes = [
-                .foregroundColor: UIColor.black0F0F0F,
-                .font: UIFont.bold[24],
-                .paragraphStyle: style
-            ]
+            coloredAppearance.titleTextAttributes = titleTextAttributes
+            coloredAppearance.largeTitleTextAttributes = largeTitleTextAttributes
             UINavigationBar.appearance().standardAppearance = coloredAppearance
             UINavigationBar.appearance().compactAppearance = coloredAppearance
             UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         } else {
-            UINavigationBar.appearance().barTintColor = UIColor.white
-            UINavigationBar.appearance().isTranslucent = false
+            UINavigationBar.appearance().barTintColor = .clear
+            UINavigationBar.appearance().isTranslucent = true
             UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
             UINavigationBar.appearance().shadowImage = UIImage()
+            UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+            UINavigationBar.appearance().largeTitleTextAttributes = largeTitleTextAttributes
         }
         
         UINavigationBar.appearance().tintColor = .black0F0F0F
         UINavigationBar.appearance().prefersLargeTitles = true
+    }
+    
+    func setupTabBar() {
+        
+        if #available(iOS 15, *) {
+            let opaqueAppearance = UITabBarAppearance()
+            opaqueAppearance.configureWithOpaqueBackground()
+            opaqueAppearance.backgroundColor = .white
+            opaqueAppearance.shadowColor = .clear
+            UITabBar.appearance().standardAppearance = opaqueAppearance
+            UITabBar.appearance().scrollEdgeAppearance = opaqueAppearance
+        }
+        
+        UITabBar.appearance().barTintColor = .white
+        UITabBar.appearance().isTranslucent = false
     }
 }
 
