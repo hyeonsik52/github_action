@@ -146,7 +146,6 @@
 		ED416D0627A16C640043A7A4 /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */; };
 		ED416D0727A16C640043A7A4 /* SwiftEntryKit_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FF26B7DFF700C2FA6D /* SwiftEntryKit_View.swift */; };
 		ED416D0827A16C640043A7A4 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
-		ED416D0927A16C640043A7A4 /* ServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195926D3A39D0020AB09 /* ServiceUnitSection.swift */; };
 		ED416D0A27A16C640043A7A4 /* SimpleReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C705277DBD2C00F9D0A5 /* SimpleReactor.swift */; };
 		ED416D0B27A16C640043A7A4 /* NotificationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */; };
 		ED416D0C27A16C640043A7A4 /* SettingTextCellView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1198B26D3A39D0020AB09 /* SettingTextCellView_Reactive.swift */; };
@@ -229,7 +228,6 @@
 		ED416D5A27A16C640043A7A4 /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467026B7E8B500C2FA6D /* BaseManager.swift */; };
 		ED416D5B27A16C640043A7A4 /* FindAccountEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D526D3A24A0020AB09 /* FindAccountEmailView.swift */; };
 		ED416D5C27A16C640043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C727277DBD2C00F9D0A5 /* ServiceCreationDetailViewReactor.swift */; };
-		ED416D5D27A16C640043A7A4 /* ServiceUnitManagementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191B26D3A39C0020AB09 /* ServiceUnitManagementCollectionViewCell.swift */; };
 		ED416D5E27A16C640043A7A4 /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
 		ED416D5F27A16C640043A7A4 /* ServiceCreationCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C71F277DBD2C00F9D0A5 /* ServiceCreationCellReactor.swift */; };
 		ED416D6027A16C640043A7A4 /* FindAccountIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118CF26D3A24A0020AB09 /* FindAccountIdViewController.swift */; };
@@ -242,7 +240,6 @@
 		ED416D6727A16C640043A7A4 /* ConfirmInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E802721673900AD6678 /* ConfirmInputView.swift */; };
 		ED416D6827A16C640043A7A4 /* WorkRequestRobotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194426D3A39D0020AB09 /* WorkRequestRobotView.swift */; };
 		ED416D6927A16C640043A7A4 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461C26B7E7CC00C2FA6D /* UIButton.swift */; };
-		ED416D6A27A16C640043A7A4 /* ServiceUnitManagementHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191D26D3A39C0020AB09 /* ServiceUnitManagementHeader.swift */; };
 		ED416D6B27A16C640043A7A4 /* SRPServiceUnitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */; };
 		ED416D6C27A16C640043A7A4 /* LogoutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */; };
 		ED416D6D27A16C640043A7A4 /* LoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466526B7E8B500C2FA6D /* LoggingInterceptor.swift */; };
@@ -279,7 +276,6 @@
 		ED416D8E27A16C640043A7A4 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462726B7E7CC00C2FA6D /* Optional.swift */; };
 		ED416D8F27A16C640043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D826D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift */; };
 		ED416D9027A16C640043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196C26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift */; };
-		ED416D9127A16C640043A7A4 /* ServiceUnitCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191C26D3A39C0020AB09 /* ServiceUnitCellReactor.swift */; };
 		ED416D9227A16C640043A7A4 /* ResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E702721539400AD6678 /* ResetPasswordViewReactor.swift */; };
 		ED416D9327A16C640043A7A4 /* ServiceTargetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */; };
 		ED416D9427A16C640043A7A4 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -305,7 +301,6 @@
 		ED416DA827A16C640043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1126D3A39D0020AB09 /* WorkspaceHeaderView_Reactive.swift */; };
 		ED416DA927A16C640043A7A4 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6E2721539400AD6678 /* ResetPasswordView.swift */; };
 		ED416DAA27A16C640043A7A4 /* UIView+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */; };
-		ED416DAB27A16C640043A7A4 /* ServiceUnitModelSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E5F2721242600AD6678 /* ServiceUnitModelSet.swift */; };
 		ED416DAC27A16C640043A7A4 /* FindAccountIdResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118CD26D3A24A0020AB09 /* FindAccountIdResultView.swift */; };
 		ED416DAD27A16C640043A7A4 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466F26B7E8B500C2FA6D /* NotificationType.swift */; };
 		ED416DAE27A16C640043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192526D3A39C0020AB09 /* ServiceDetailLogTableViewCell.swift */; };
@@ -449,7 +444,6 @@
 		ED416E4B27A170FC0043A7A4 /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463126B7E7CC00C2FA6D /* UIAlertController+Rx.swift */; };
 		ED416E4C27A170FC0043A7A4 /* SwiftEntryKit_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FF26B7DFF700C2FA6D /* SwiftEntryKit_View.swift */; };
 		ED416E4D27A170FC0043A7A4 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F326B7DF7D00C2FA6D /* BaseNavigationController.swift */; };
-		ED416E4E27A170FC0043A7A4 /* ServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195926D3A39D0020AB09 /* ServiceUnitSection.swift */; };
 		ED416E4F27A170FC0043A7A4 /* SimpleReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C705277DBD2C00F9D0A5 /* SimpleReactor.swift */; };
 		ED416E5027A170FC0043A7A4 /* NotificationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6CAEE278BD05E004C5881 /* NotificationManager+Rx.swift */; };
 		ED416E5127A170FC0043A7A4 /* SettingTextCellView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1198B26D3A39D0020AB09 /* SettingTextCellView_Reactive.swift */; };
@@ -532,7 +526,6 @@
 		ED416E9F27A170FC0043A7A4 /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B467026B7E8B500C2FA6D /* BaseManager.swift */; };
 		ED416EA027A170FC0043A7A4 /* FindAccountEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D526D3A24A0020AB09 /* FindAccountEmailView.swift */; };
 		ED416EA127A170FC0043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C727277DBD2C00F9D0A5 /* ServiceCreationDetailViewReactor.swift */; };
-		ED416EA227A170FC0043A7A4 /* ServiceUnitManagementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191B26D3A39C0020AB09 /* ServiceUnitManagementCollectionViewCell.swift */; };
 		ED416EA327A170FC0043A7A4 /* RestAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD1272298D40029AF7B /* RestAPIRequest.swift */; };
 		ED416EA427A170FC0043A7A4 /* ServiceCreationCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C71F277DBD2C00F9D0A5 /* ServiceCreationCellReactor.swift */; };
 		ED416EA527A170FC0043A7A4 /* FindAccountIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118CF26D3A24A0020AB09 /* FindAccountIdViewController.swift */; };
@@ -545,7 +538,6 @@
 		ED416EAC27A170FC0043A7A4 /* ConfirmInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E802721673900AD6678 /* ConfirmInputView.swift */; };
 		ED416EAD27A170FC0043A7A4 /* WorkRequestRobotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194426D3A39D0020AB09 /* WorkRequestRobotView.swift */; };
 		ED416EAE27A170FC0043A7A4 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461C26B7E7CC00C2FA6D /* UIButton.swift */; };
-		ED416EAF27A170FC0043A7A4 /* ServiceUnitManagementHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191D26D3A39C0020AB09 /* ServiceUnitManagementHeader.swift */; };
 		ED416EB027A170FC0043A7A4 /* SRPServiceUnitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */; };
 		ED416EB127A170FC0043A7A4 /* LogoutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */; };
 		ED416EB227A170FC0043A7A4 /* LoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466526B7E8B500C2FA6D /* LoggingInterceptor.swift */; };
@@ -582,7 +574,6 @@
 		ED416ED327A170FC0043A7A4 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462726B7E7CC00C2FA6D /* Optional.swift */; };
 		ED416ED427A170FC0043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D826D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift */; };
 		ED416ED527A170FC0043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196C26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift */; };
-		ED416ED627A170FC0043A7A4 /* ServiceUnitCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191C26D3A39C0020AB09 /* ServiceUnitCellReactor.swift */; };
 		ED416ED727A170FC0043A7A4 /* ResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E702721539400AD6678 /* ResetPasswordViewReactor.swift */; };
 		ED416ED827A170FC0043A7A4 /* ServiceTargetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */; };
 		ED416ED927A170FC0043A7A4 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -608,7 +599,6 @@
 		ED416EED27A170FC0043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1126D3A39D0020AB09 /* WorkspaceHeaderView_Reactive.swift */; };
 		ED416EEE27A170FC0043A7A4 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6E2721539400AD6678 /* ResetPasswordView.swift */; };
 		ED416EEF27A170FC0043A7A4 /* UIView+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C75F277DCB9100F9D0A5 /* UIView+Search.swift */; };
-		ED416EF027A170FC0043A7A4 /* ServiceUnitModelSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E5F2721242600AD6678 /* ServiceUnitModelSet.swift */; };
 		ED416EF127A170FC0043A7A4 /* FindAccountIdResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118CD26D3A24A0020AB09 /* FindAccountIdResultView.swift */; };
 		ED416EF227A170FC0043A7A4 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B466F26B7E8B500C2FA6D /* NotificationType.swift */; };
 		ED416EF327A170FC0043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192526D3A39C0020AB09 /* ServiceDetailLogTableViewCell.swift */; };
@@ -780,7 +770,6 @@
 		ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */; };
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
-		ED7A0E602721242600AD6678 /* ServiceUnitModelSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E5F2721242600AD6678 /* ServiceUnitModelSet.swift */; };
 		ED7A0E682721328600AD6678 /* SPRSegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E672721328600AD6678 /* SPRSegmentButton.swift */; };
 		ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6A2721526800AD6678 /* SettingCellView.swift */; };
 		ED7A0E752721539400AD6678 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6E2721539400AD6678 /* ResetPasswordView.swift */; };
@@ -839,9 +828,6 @@
 		EDC11A3E26D3A39D0020AB09 /* ServieBasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191726D3A39C0020AB09 /* ServieBasicInfoViewController.swift */; };
 		EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191826D3A39C0020AB09 /* ServiceBasicInfoViewReactor.swift */; };
 		EDC11A4026D3A39D0020AB09 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */; };
-		EDC11A4126D3A39D0020AB09 /* ServiceUnitManagementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191B26D3A39C0020AB09 /* ServiceUnitManagementCollectionViewCell.swift */; };
-		EDC11A4226D3A39D0020AB09 /* ServiceUnitCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191C26D3A39C0020AB09 /* ServiceUnitCellReactor.swift */; };
-		EDC11A4326D3A39D0020AB09 /* ServiceUnitManagementHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191D26D3A39C0020AB09 /* ServiceUnitManagementHeader.swift */; };
 		EDC11A4426D3A39D0020AB09 /* ServiceDetailNumberProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */; };
 		EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */; };
 		EDC11A4726D3A39D0020AB09 /* SRPStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192226D3A39C0020AB09 /* SRPStateView.swift */; };
@@ -863,7 +849,6 @@
 		EDC11A6926D3A39D0020AB09 /* SWSUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */; };
 		EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */; };
 		EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195726D3A39D0020AB09 /* PanModalFullNavigationController.swift */; };
-		EDC11A7026D3A39D0020AB09 /* ServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195926D3A39D0020AB09 /* ServiceUnitSection.swift */; };
 		EDC11A7126D3A39D0020AB09 /* ServiceModelContainerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195A26D3A39D0020AB09 /* ServiceModelContainerSection.swift */; };
 		EDC11A7226D3A39D0020AB09 /* ServiceContainerCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195B26D3A39D0020AB09 /* ServiceContainerCellReactor.swift */; };
 		EDC11A7326D3A39D0020AB09 /* ServiceModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195C26D3A39D0020AB09 /* ServiceModelSection.swift */; };
@@ -1104,7 +1089,6 @@
 		ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		ED7A0E5F2721242600AD6678 /* ServiceUnitModelSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUnitModelSet.swift; sourceTree = "<group>"; };
 		ED7A0E6127212A8D00AD6678 /* TARAS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TARAS-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED7A0E672721328600AD6678 /* SPRSegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPRSegmentButton.swift; sourceTree = "<group>"; };
 		ED7A0E6A2721526800AD6678 /* SettingCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCellView.swift; sourceTree = "<group>"; };
@@ -1164,9 +1148,6 @@
 		EDC1191726D3A39C0020AB09 /* ServieBasicInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServieBasicInfoViewController.swift; sourceTree = "<group>"; };
 		EDC1191826D3A39C0020AB09 /* ServiceBasicInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceBasicInfoViewReactor.swift; sourceTree = "<group>"; };
 		EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
-		EDC1191B26D3A39C0020AB09 /* ServiceUnitManagementCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnitManagementCollectionViewCell.swift; sourceTree = "<group>"; };
-		EDC1191C26D3A39C0020AB09 /* ServiceUnitCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnitCellReactor.swift; sourceTree = "<group>"; };
-		EDC1191D26D3A39C0020AB09 /* ServiceUnitManagementHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnitManagementHeader.swift; sourceTree = "<group>"; };
 		EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailNumberProfileView.swift; sourceTree = "<group>"; };
 		EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPServiceUnitDetailView.swift; sourceTree = "<group>"; };
 		EDC1192226D3A39C0020AB09 /* SRPStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPStateView.swift; sourceTree = "<group>"; };
@@ -1188,7 +1169,6 @@
 		EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWSUserInfoViewController.swift; sourceTree = "<group>"; };
 		EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTargetsView.swift; sourceTree = "<group>"; };
 		EDC1195726D3A39D0020AB09 /* PanModalFullNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanModalFullNavigationController.swift; sourceTree = "<group>"; };
-		EDC1195926D3A39D0020AB09 /* ServiceUnitSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUnitSection.swift; sourceTree = "<group>"; };
 		EDC1195A26D3A39D0020AB09 /* ServiceModelContainerSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModelContainerSection.swift; sourceTree = "<group>"; };
 		EDC1195B26D3A39D0020AB09 /* ServiceContainerCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceContainerCellReactor.swift; sourceTree = "<group>"; };
 		EDC1195C26D3A39D0020AB09 /* ServiceModelSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModelSection.swift; sourceTree = "<group>"; };
@@ -1867,14 +1847,6 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
-		ED7A0E5E2721241200AD6678 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				ED7A0E5F2721242600AD6678 /* ServiceUnitModelSet.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		ED7A0E692721525B00AD6678 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2074,7 +2046,6 @@
 			children = (
 				EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */,
 				EDC1192C26D3A39C0020AB09 /* ServiceDetailViewReactor.swift */,
-				EDC1191A26D3A39C0020AB09 /* Cell */,
 				EDC1191E26D3A39C0020AB09 /* View */,
 				EDC1191326D3A39C0020AB09 /* ServiceBasicInfoViewController */,
 				EDC1192326D3A39C0020AB09 /* ServiceDetailLogViewController */,
@@ -2099,17 +2070,6 @@
 				EDC1191626D3A39C0020AB09 /* SRPDetailInfoCellView_Reactive.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		EDC1191A26D3A39C0020AB09 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				ED7A0E5E2721241200AD6678 /* Models */,
-				EDC1191B26D3A39C0020AB09 /* ServiceUnitManagementCollectionViewCell.swift */,
-				EDC1191C26D3A39C0020AB09 /* ServiceUnitCellReactor.swift */,
-				EDC1191D26D3A39C0020AB09 /* ServiceUnitManagementHeader.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		EDC1191E26D3A39C0020AB09 /* View */ = {
@@ -2209,7 +2169,6 @@
 		EDC1195826D3A39D0020AB09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EDC1195926D3A39D0020AB09 /* ServiceUnitSection.swift */,
 				EDC1195A26D3A39D0020AB09 /* ServiceModelContainerSection.swift */,
 				EDC1195B26D3A39D0020AB09 /* ServiceContainerCellReactor.swift */,
 				EDC1195C26D3A39D0020AB09 /* ServiceModelSection.swift */,
@@ -2868,7 +2827,6 @@
 				ED416D0627A16C640043A7A4 /* UIAlertController+Rx.swift in Sources */,
 				ED416D0727A16C640043A7A4 /* SwiftEntryKit_View.swift in Sources */,
 				ED416D0827A16C640043A7A4 /* BaseNavigationController.swift in Sources */,
-				ED416D0927A16C640043A7A4 /* ServiceUnitSection.swift in Sources */,
 				ED416D0A27A16C640043A7A4 /* SimpleReactor.swift in Sources */,
 				ED416D0B27A16C640043A7A4 /* NotificationManager+Rx.swift in Sources */,
 				ED416D0C27A16C640043A7A4 /* SettingTextCellView_Reactive.swift in Sources */,
@@ -2951,7 +2909,6 @@
 				ED416D5A27A16C640043A7A4 /* BaseManager.swift in Sources */,
 				ED416D5B27A16C640043A7A4 /* FindAccountEmailView.swift in Sources */,
 				ED416D5C27A16C640043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
-				ED416D5D27A16C640043A7A4 /* ServiceUnitManagementCollectionViewCell.swift in Sources */,
 				ED416D5E27A16C640043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416D5F27A16C640043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
 				ED416D6027A16C640043A7A4 /* FindAccountIdViewController.swift in Sources */,
@@ -2964,7 +2921,6 @@
 				ED416D6727A16C640043A7A4 /* ConfirmInputView.swift in Sources */,
 				ED416D6827A16C640043A7A4 /* WorkRequestRobotView.swift in Sources */,
 				ED416D6927A16C640043A7A4 /* UIButton.swift in Sources */,
-				ED416D6A27A16C640043A7A4 /* ServiceUnitManagementHeader.swift in Sources */,
 				ED416D6B27A16C640043A7A4 /* SRPServiceUnitDetailView.swift in Sources */,
 				ED416D6C27A16C640043A7A4 /* LogoutResponseModel.swift in Sources */,
 				ED416D6D27A16C640043A7A4 /* LoggingInterceptor.swift in Sources */,
@@ -3002,7 +2958,6 @@
 				ED416D8E27A16C640043A7A4 /* Optional.swift in Sources */,
 				ED416D8F27A16C640043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */,
 				ED416D9027A16C640043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */,
-				ED416D9127A16C640043A7A4 /* ServiceUnitCellReactor.swift in Sources */,
 				ED416D9227A16C640043A7A4 /* ResetPasswordViewReactor.swift in Sources */,
 				ED416D9327A16C640043A7A4 /* ServiceTargetsView.swift in Sources */,
 				ED416D9427A16C640043A7A4 /* Stop.swift in Sources */,
@@ -3029,7 +2984,6 @@
 				ED416DA827A16C640043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED416DA927A16C640043A7A4 /* ResetPasswordView.swift in Sources */,
 				ED416DAA27A16C640043A7A4 /* UIView+Search.swift in Sources */,
-				ED416DAB27A16C640043A7A4 /* ServiceUnitModelSet.swift in Sources */,
 				ED416DAC27A16C640043A7A4 /* FindAccountIdResultView.swift in Sources */,
 				ED416DAD27A16C640043A7A4 /* NotificationType.swift in Sources */,
 				ED416DAE27A16C640043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
@@ -3171,7 +3125,6 @@
 				ED416E4B27A170FC0043A7A4 /* UIAlertController+Rx.swift in Sources */,
 				ED416E4C27A170FC0043A7A4 /* SwiftEntryKit_View.swift in Sources */,
 				ED416E4D27A170FC0043A7A4 /* BaseNavigationController.swift in Sources */,
-				ED416E4E27A170FC0043A7A4 /* ServiceUnitSection.swift in Sources */,
 				ED416E4F27A170FC0043A7A4 /* SimpleReactor.swift in Sources */,
 				ED416E5027A170FC0043A7A4 /* NotificationManager+Rx.swift in Sources */,
 				ED416E5127A170FC0043A7A4 /* SettingTextCellView_Reactive.swift in Sources */,
@@ -3254,7 +3207,6 @@
 				ED416E9F27A170FC0043A7A4 /* BaseManager.swift in Sources */,
 				ED416EA027A170FC0043A7A4 /* FindAccountEmailView.swift in Sources */,
 				ED416EA127A170FC0043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
-				ED416EA227A170FC0043A7A4 /* ServiceUnitManagementCollectionViewCell.swift in Sources */,
 				ED416EA327A170FC0043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416EA427A170FC0043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
 				ED416EA527A170FC0043A7A4 /* FindAccountIdViewController.swift in Sources */,
@@ -3267,7 +3219,6 @@
 				ED416EAC27A170FC0043A7A4 /* ConfirmInputView.swift in Sources */,
 				ED416EAD27A170FC0043A7A4 /* WorkRequestRobotView.swift in Sources */,
 				ED416EAE27A170FC0043A7A4 /* UIButton.swift in Sources */,
-				ED416EAF27A170FC0043A7A4 /* ServiceUnitManagementHeader.swift in Sources */,
 				ED416EB027A170FC0043A7A4 /* SRPServiceUnitDetailView.swift in Sources */,
 				ED416EB127A170FC0043A7A4 /* LogoutResponseModel.swift in Sources */,
 				ED416EB227A170FC0043A7A4 /* LoggingInterceptor.swift in Sources */,
@@ -3305,7 +3256,6 @@
 				ED416ED327A170FC0043A7A4 /* Optional.swift in Sources */,
 				ED416ED427A170FC0043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */,
 				ED416ED527A170FC0043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */,
-				ED416ED627A170FC0043A7A4 /* ServiceUnitCellReactor.swift in Sources */,
 				ED416ED727A170FC0043A7A4 /* ResetPasswordViewReactor.swift in Sources */,
 				ED416ED827A170FC0043A7A4 /* ServiceTargetsView.swift in Sources */,
 				ED416ED927A170FC0043A7A4 /* Stop.swift in Sources */,
@@ -3332,7 +3282,6 @@
 				ED416EED27A170FC0043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED416EEE27A170FC0043A7A4 /* ResetPasswordView.swift in Sources */,
 				ED416EEF27A170FC0043A7A4 /* UIView+Search.swift in Sources */,
-				ED416EF027A170FC0043A7A4 /* ServiceUnitModelSet.swift in Sources */,
 				ED416EF127A170FC0043A7A4 /* FindAccountIdResultView.swift in Sources */,
 				ED416EF227A170FC0043A7A4 /* NotificationType.swift in Sources */,
 				ED416EF327A170FC0043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
@@ -3474,7 +3423,6 @@
 				ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */,
 				ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */,
 				ED6B45F726B7DF7D00C2FA6D /* BaseNavigationController.swift in Sources */,
-				EDC11A7026D3A39D0020AB09 /* ServiceUnitSection.swift in Sources */,
 				ED06C739277DBD2D00F9D0A5 /* SimpleReactor.swift in Sources */,
 				EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */,
 				EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */,
@@ -3557,7 +3505,6 @@
 				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
 				EDC118E326D3A24A0020AB09 /* FindAccountEmailView.swift in Sources */,
 				ED06C752277DBD2D00F9D0A5 /* ServiceCreationDetailViewReactor.swift in Sources */,
-				EDC11A4126D3A39D0020AB09 /* ServiceUnitManagementCollectionViewCell.swift in Sources */,
 				ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */,
 				ED06C74C277DBD2D00F9D0A5 /* ServiceCreationCellReactor.swift in Sources */,
 				EDC118DE26D3A24A0020AB09 /* FindAccountIdViewController.swift in Sources */,
@@ -3570,7 +3517,6 @@
 				ED7A0E812721673900AD6678 /* ConfirmInputView.swift in Sources */,
 				EDC11A6026D3A39D0020AB09 /* WorkRequestRobotView.swift in Sources */,
 				ED6B464326B7E7CC00C2FA6D /* UIButton.swift in Sources */,
-				EDC11A4326D3A39D0020AB09 /* ServiceUnitManagementHeader.swift in Sources */,
 				EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */,
 				ED508CD6272298D40029AF7B /* LogoutResponseModel.swift in Sources */,
 				ED6B468126B7E8B500C2FA6D /* LoggingInterceptor.swift in Sources */,
@@ -3608,7 +3554,6 @@
 				ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */,
 				EDC118E526D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift in Sources */,
 				EDC11A7F26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift in Sources */,
-				EDC11A4226D3A39D0020AB09 /* ServiceUnitCellReactor.swift in Sources */,
 				ED7A0E772721539400AD6678 /* ResetPasswordViewReactor.swift in Sources */,
 				EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */,
 				EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */,
@@ -3635,7 +3580,6 @@
 				EDC11AFA26D3A39E0020AB09 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED7A0E752721539400AD6678 /* ResetPasswordView.swift in Sources */,
 				ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */,
-				ED7A0E602721242600AD6678 /* ServiceUnitModelSet.swift in Sources */,
 				EDC118DC26D3A24A0020AB09 /* FindAccountIdResultView.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
 				EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */,
