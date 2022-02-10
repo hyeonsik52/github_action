@@ -19,7 +19,8 @@ class ServiceCellReactor: Reactor {
     
     let initialState: State
     
-    init(service: Service, isMyTurn: Bool) {
+    init(service: Service, myUserId: String?) {
+        let isMyTurn = service.isMyTurn(myUserId)
         self.initialState = .init(service: service, isMyTurn: isMyTurn)
     }
 }

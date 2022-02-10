@@ -286,9 +286,6 @@ extension FinishedServiceListViewReactor {
     }
     
     func reactorForServiceCell(service: Service) -> ServiceCellReactor {
-        let myUserID = self.provider.userManager.userTB.ID
-        let currentServiceUnit = service.serviceUnits.first { $0.orderWithinService == service.currentServiceUnitIdx }
-        let isMyTurn = (currentServiceUnit?.receiver.id == myUserID && service.status == .arrived)
-        return .init(service: service, isMyTurn: isMyTurn)
+        return .init(service: service, myUserId: self.provider.userManager.userTB.ID)
     }
 }
