@@ -83,34 +83,45 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
     func bind(reactor: ServiceDetailViewReactor) {
         
         //Action
-        let viewDidLoad = self.rx.viewDidLoad.single()
-        
-        viewDidLoad.map { Reactor.Action.judgeIsFromPush }
+        self.rx.viewDidLoad
+            .map { Reactor.Action.refreshService }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        viewDidLoad
-            .map { Reactor.Action.loadService(refresh: false) }
+        self.refreshControl.rx.controlEvent(.valueChanged)
+            .map {_ in Reactor.Action.refreshService }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+        self.tableView.rx.modelSelected(ServiceDetailServiceUnitCellReactor.self)
+            .subscribe(onNext: { [weak self] reactor in
+                guard let self = self else { return }
+                //TODO: 목적지 상세정보 보기
+            }).disposed(by: self.disposeBag)
+        
+        self.moreButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                //TODO: 더보기 메뉴 표시
+            }).disposed(by: self.disposeBag)
         
         //State
+        reactor.state.compactMap { $0.service }
+            .map(\.stateDescription)
+            .bind(to: self.rx.title)
+            .disposed(by: self.disposeBag)
         
-        reactor.state.compactMap { $0.requestCanceled }
+        
+        reactor.state
+            .map { [.init(items: $0.serviceUnitReactors)] }
+            .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.compactMap { $0.isCanceled }
             .distinctUntilChanged()
             .subscribe(onNext: { successed in
-                reactor.action.onNext(.loadService(refresh: true))
-            })
-            .disposed(by: self.disposeBag)
-        
-        reactor.state.compactMap { $0.serviceDeleted }
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] successed in
-                if successed {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            })
-            .disposed(by: self.disposeBag)
+                reactor.action.onNext(.refreshService)
+            }).disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
