@@ -94,4 +94,38 @@ extension UIAlertController {
             }
         }
     }
+    
+    static func show<T: Describable>(
+        _ style: Style = .alert,
+        title: String? = nil,
+        message: String? = nil,
+        items: [T],
+        withCancel: Bool = true
+    ) -> Observable<(Int, T)> {
+        return .create { observer in
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+            items.enumerated().forEach { (offset, item) in
+                alertController.addAction(.init(title: item.description, style: .default) { _ in
+                    observer.onNext((offset, item))
+                    observer.onCompleted()
+                })
+            }
+            if withCancel {
+                alertController.addAction(.init(title: "취소", style: .cancel))
+            }
+            
+            if let viewController = UIApplication.topViewController {
+                viewController.present(alertController, animated: true, completion: nil)
+            }
+            
+            return Disposables.create {
+                alertController.dismiss(animated: true)
+            }
+        }
+    }
+}
+
+protocol Describable {
+    var description: String { get }
 }

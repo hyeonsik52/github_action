@@ -20,6 +20,26 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
         static let cellHeight: CGFloat = 64
     }
     
+    enum MoreMenu: Describable {
+        case serviceInfo
+        case serviceLog
+        case cancelService
+        case addShortcut
+        
+        var description: String {
+            switch self {
+            case .serviceInfo:
+                return "서비스 정보 보기"
+            case .serviceLog:
+                return "서비스 로그 보기"
+            case .cancelService:
+                return "서비스 중단하기"
+            case .addShortcut:
+                return "간편 생성 등록하기"
+            }
+        }
+    }
+    
     override var navigationPopGestureEnabled: Bool {
         return false
     }
@@ -100,9 +120,36 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             }).disposed(by: self.disposeBag)
         
         self.moreButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                //TODO: 더보기 메뉴 표시
+            .flatMapLatest { _ -> Observable<MoreMenu> in
+                //서비스 정보 보기, 서비스 로그 보기,( 서비스 중단하기,) 간편 생성 등록하기
+                var items: [MoreMenu] = [.serviceInfo, .serviceLog]
+                if let phase = reactor.currentState.service?.phase,
+                   phase == .waiting || phase == .delivering {
+                    items.append(.cancelService)
+                }
+                items.append(.addShortcut)
+                return UIAlertController.show(.actionSheet, items: items).map(\.1)
+            }.subscribe(onNext: { [weak self] selectedMenu in
+                switch selectedMenu {
+                case .serviceInfo:
+                    self?.navigationPush(
+                        type: ServiceBasicInfoViewController.self,
+                        reactor: reactor.reactorForBasicInfo(),
+                        animated: true,
+                        bottomBarHidden: true
+                    )
+                case .serviceLog:
+                    self?.navigationPush(
+                        type: ServiceDetailLogViewController.self,
+                        reactor: reactor.reactorForDetailLog(),
+                        animated: true,
+                        bottomBarHidden: true
+                    )
+                case .cancelService:
+                    reactor.action.onNext(.cancelService)
+                case .addShortcut:
+                    print("shortcut")
+                }
             }).disposed(by: self.disposeBag)
         
         //State

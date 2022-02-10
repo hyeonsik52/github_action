@@ -9,8 +9,6 @@
 import UIKit
 import SnapKit
 import Then
-import RxCocoa
-import RxSwift
 
 class SRPDetailInfoCellView: UIView {
 
@@ -30,14 +28,9 @@ class SRPDetailInfoCellView: UIView {
         $0.isHidden = true
     }
     
-    let didSelect = PublishRelay<Void>()
-    let disposeBag = DisposeBag()
-    var forcedSelection = false
-    
-    convenience init(title: String, forcedSelection: Bool = false) {
+    convenience init(title: String) {
         self.init(frame: .zero)
         self.titleLabel.text = title
-        self.forcedSelection = forcedSelection
     }
     
     override init(frame: CGRect) {
@@ -80,33 +73,9 @@ class SRPDetailInfoCellView: UIView {
             $0.top.bottom.equalToSuperview()
             $0.width.equalTo(12)
         }
-        
-        let button = UIButton()
-        self.addSubview(button)
-        button.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        button.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let self = self,
-                    self.forcedSelection || !self.arrowImageView.isHidden else { return }
-                self.didSelect.accept(())
-            })
-            .disposed(by: self.disposeBag)
     }
     
-    func bind(
-        text: String? = nil,
-        usingArrow: Bool = false
-    ) {
-        if let text = text {
-            self.contentLabel.isHidden = false
-            self.contentLabel.text = text
-        }else{
-            self.contentLabel.isHidden = true
-        }
-        
-        self.arrowImageView.isHidden = !usingArrow
+    func bind(text: String? = nil) {
+        self.contentLabel.text = text ?? "-"
     }
 }
