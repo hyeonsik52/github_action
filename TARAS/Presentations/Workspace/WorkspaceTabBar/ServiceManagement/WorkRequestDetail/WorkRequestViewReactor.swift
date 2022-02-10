@@ -140,8 +140,4 @@ class WorkRequestViewReactor: Reactor {
         }
         return state
     }
-    
-    func reactorForSwsUserInfo(userId: String) -> SWSUserInfoViewReactor {
-        return SWSUserInfoViewReactor(provider: self.provider, workspaceId: self.workspaceId, userId: userId)
-    }
 }

@@ -206,19 +206,19 @@ class WorkRequestViewController: BaseNavigationViewController, View {
             })
             .disposed(by: self.disposeBag)
 
-        self.workTargetView.didSelect
-            .subscribe(onNext: { [weak self] notDetermined in
-                
-                    if let acceptor = reactor.currentState.serviceUnit?.receiver {
-                        
-                        let viewController = SWSUserInfoViewController()
-                        viewController.reactor = reactor.reactorForSwsUserInfo(userId: acceptor.id)
-                        let navigationController = PanModalFullNavigationController(rootViewController: viewController)
-                        
-                        self?.presentPanModal(navigationController)
-                    }
-            })
-            .disposed(by: self.disposeBag)
+//        self.workTargetView.didSelect
+//            .subscribe(onNext: { [weak self] notDetermined in
+//
+//                    if let acceptor = reactor.currentState.serviceUnit?.receiver {
+//
+//                        let viewController = SWSUserInfoViewController()
+//                        viewController.reactor = reactor.reactorForSwsUserInfo(userId: acceptor.id)
+//                        let navigationController = PanModalFullNavigationController(rootViewController: viewController)
+//
+//                        self?.presentPanModal(navigationController)
+//                    }
+//            })
+//            .disposed(by: self.disposeBag)
     }
     
     private func setupDatas(state: WorkRequestViewReactor.State) {

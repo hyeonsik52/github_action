@@ -111,7 +111,6 @@
 		ED416CE327A16C640043A7A4 /* ServiceCreationSummaryViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C722277DBD2C00F9D0A5 /* ServiceCreationSummaryViewReactor.swift */; };
 		ED416CE427A16C640043A7A4 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */; };
 		ED416CE527A16C640043A7A4 /* UpdatePhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197C26D3A39D0020AB09 /* UpdatePhoneNumberViewController.swift */; };
-		ED416CE627A16C640043A7A4 /* SWSUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */; };
 		ED416CE727A16C640043A7A4 /* PanModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195F26D3A39D0020AB09 /* PanModalNavigationController.swift */; };
 		ED416CE827A16C640043A7A4 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E732721539400AD6678 /* UpdateUserInfoViewController.swift */; };
 		ED416CE927A16C640043A7A4 /* Results_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463826B7E7CC00C2FA6D /* Results_BaseObject.swift */; };
@@ -218,7 +217,6 @@
 		ED416D5027A16C640043A7A4 /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
 		ED416D5127A16C640043A7A4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FA26B7DFF700C2FA6D /* Log.swift */; };
 		ED416D5227A16C640043A7A4 /* FindAccountPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D726D3A24A0020AB09 /* FindAccountPasswordViewReactor.swift */; };
-		ED416D5327A16C640043A7A4 /* SWSUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194F26D3A39D0020AB09 /* SWSUserInfoViewReactor.swift */; };
 		ED416D5427A16C640043A7A4 /* WorkspaceSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1B26D3A39D0020AB09 /* WorkspaceSearchResultView.swift */; };
 		ED416D5527A16C640043A7A4 /* ErrorResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */; };
 		ED416D5627A16C640043A7A4 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461D26B7E7CC00C2FA6D /* UIViewController.swift */; };
@@ -410,7 +408,6 @@
 		ED416E2827A170FC0043A7A4 /* ServiceCreationSummaryViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C722277DBD2C00F9D0A5 /* ServiceCreationSummaryViewReactor.swift */; };
 		ED416E2927A170FC0043A7A4 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */; };
 		ED416E2A27A170FC0043A7A4 /* UpdatePhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1197C26D3A39D0020AB09 /* UpdatePhoneNumberViewController.swift */; };
-		ED416E2B27A170FC0043A7A4 /* SWSUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */; };
 		ED416E2C27A170FC0043A7A4 /* PanModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195F26D3A39D0020AB09 /* PanModalNavigationController.swift */; };
 		ED416E2D27A170FC0043A7A4 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E732721539400AD6678 /* UpdateUserInfoViewController.swift */; };
 		ED416E2E27A170FC0043A7A4 /* Results_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463826B7E7CC00C2FA6D /* Results_BaseObject.swift */; };
@@ -517,7 +514,6 @@
 		ED416E9527A170FC0043A7A4 /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52736C26C3A03C0077CD9D /* SignUpTextFieldView.swift */; };
 		ED416E9627A170FC0043A7A4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45FA26B7DFF700C2FA6D /* Log.swift */; };
 		ED416E9727A170FC0043A7A4 /* FindAccountPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D726D3A24A0020AB09 /* FindAccountPasswordViewReactor.swift */; };
-		ED416E9827A170FC0043A7A4 /* SWSUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194F26D3A39D0020AB09 /* SWSUserInfoViewReactor.swift */; };
 		ED416E9927A170FC0043A7A4 /* WorkspaceSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A1B26D3A39D0020AB09 /* WorkspaceSearchResultView.swift */; };
 		ED416E9A27A170FC0043A7A4 /* ErrorResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */; };
 		ED416E9B27A170FC0043A7A4 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B461D26B7E7CC00C2FA6D /* UIViewController.swift */; };
@@ -857,8 +853,6 @@
 		EDC11A6026D3A39D0020AB09 /* WorkRequestRobotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194426D3A39D0020AB09 /* WorkRequestRobotView.swift */; };
 		EDC11A6126D3A39D0020AB09 /* WorkRequestTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194526D3A39D0020AB09 /* WorkRequestTargetView.swift */; };
 		EDC11A6726D3A39D0020AB09 /* InProgressServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194D26D3A39D0020AB09 /* InProgressServiceListViewReactor.swift */; };
-		EDC11A6826D3A39D0020AB09 /* SWSUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1194F26D3A39D0020AB09 /* SWSUserInfoViewReactor.swift */; };
-		EDC11A6926D3A39D0020AB09 /* SWSUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */; };
 		EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */; };
 		EDC11A6F26D3A39D0020AB09 /* PanModalFullNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195726D3A39D0020AB09 /* PanModalFullNavigationController.swift */; };
 		EDC11A7126D3A39D0020AB09 /* ServiceModelContainerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195A26D3A39D0020AB09 /* ServiceModelContainerSection.swift */; };
@@ -1181,8 +1175,6 @@
 		EDC1194426D3A39D0020AB09 /* WorkRequestRobotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestRobotView.swift; sourceTree = "<group>"; };
 		EDC1194526D3A39D0020AB09 /* WorkRequestTargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkRequestTargetView.swift; sourceTree = "<group>"; };
 		EDC1194D26D3A39D0020AB09 /* InProgressServiceListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InProgressServiceListViewReactor.swift; sourceTree = "<group>"; };
-		EDC1194F26D3A39D0020AB09 /* SWSUserInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWSUserInfoViewReactor.swift; sourceTree = "<group>"; };
-		EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWSUserInfoViewController.swift; sourceTree = "<group>"; };
 		EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTargetsView.swift; sourceTree = "<group>"; };
 		EDC1195726D3A39D0020AB09 /* PanModalFullNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanModalFullNavigationController.swift; sourceTree = "<group>"; };
 		EDC1195A26D3A39D0020AB09 /* ServiceModelContainerSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModelContainerSection.swift; sourceTree = "<group>"; };
@@ -2052,7 +2044,6 @@
 				EDC1191226D3A39C0020AB09 /* ServiceDetailViewController */,
 				EDC1192D26D3A39C0020AB09 /* ServiceListViewController */,
 				EDC1192F26D3A39C0020AB09 /* WorkRequestDetail */,
-				EDC1194E26D3A39D0020AB09 /* SWSUserInfoViewController */,
 			);
 			path = ServiceManagement;
 			sourceTree = "<group>";
@@ -2081,9 +2072,9 @@
 		EDC1191326D3A39C0020AB09 /* ServiceBasicInfoViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EDC1191426D3A39C0020AB09 /* View */,
 				EDC1191726D3A39C0020AB09 /* ServieBasicInfoViewController.swift */,
 				EDC1191826D3A39C0020AB09 /* ServiceBasicInfoViewReactor.swift */,
+				EDC1191426D3A39C0020AB09 /* View */,
 			);
 			path = ServiceBasicInfoViewController;
 			sourceTree = "<group>";
@@ -2169,15 +2160,6 @@
 				EDC1194526D3A39D0020AB09 /* WorkRequestTargetView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		EDC1194E26D3A39D0020AB09 /* SWSUserInfoViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EDC1194F26D3A39D0020AB09 /* SWSUserInfoViewReactor.swift */,
-				EDC1195026D3A39D0020AB09 /* SWSUserInfoViewController.swift */,
-			);
-			path = SWSUserInfoViewController;
 			sourceTree = "<group>";
 		};
 		EDC1195326D3A39D0020AB09 /* CommonComponent */ = {
@@ -2819,7 +2801,6 @@
 				ED416CE327A16C640043A7A4 /* ServiceCreationSummaryViewReactor.swift in Sources */,
 				ED416CE427A16C640043A7A4 /* ServiceDetailViewController.swift in Sources */,
 				ED416CE527A16C640043A7A4 /* UpdatePhoneNumberViewController.swift in Sources */,
-				ED416CE627A16C640043A7A4 /* SWSUserInfoViewController.swift in Sources */,
 				ED416CE727A16C640043A7A4 /* PanModalNavigationController.swift in Sources */,
 				ED416CE827A16C640043A7A4 /* UpdateUserInfoViewController.swift in Sources */,
 				ED416CE927A16C640043A7A4 /* Results_BaseObject.swift in Sources */,
@@ -2928,7 +2909,6 @@
 				ED416D5027A16C640043A7A4 /* SignUpTextFieldView.swift in Sources */,
 				ED416D5127A16C640043A7A4 /* Log.swift in Sources */,
 				ED416D5227A16C640043A7A4 /* FindAccountPasswordViewReactor.swift in Sources */,
-				ED416D5327A16C640043A7A4 /* SWSUserInfoViewReactor.swift in Sources */,
 				ED416D5427A16C640043A7A4 /* WorkspaceSearchResultView.swift in Sources */,
 				ED416D5527A16C640043A7A4 /* ErrorResponseModel.swift in Sources */,
 				ED416D5627A16C640043A7A4 /* UIViewController.swift in Sources */,
@@ -3121,7 +3101,6 @@
 				ED416E2827A170FC0043A7A4 /* ServiceCreationSummaryViewReactor.swift in Sources */,
 				ED416E2927A170FC0043A7A4 /* ServiceDetailViewController.swift in Sources */,
 				ED416E2A27A170FC0043A7A4 /* UpdatePhoneNumberViewController.swift in Sources */,
-				ED416E2B27A170FC0043A7A4 /* SWSUserInfoViewController.swift in Sources */,
 				ED416E2C27A170FC0043A7A4 /* PanModalNavigationController.swift in Sources */,
 				ED416E2D27A170FC0043A7A4 /* UpdateUserInfoViewController.swift in Sources */,
 				ED416E2E27A170FC0043A7A4 /* Results_BaseObject.swift in Sources */,
@@ -3230,7 +3209,6 @@
 				ED416E9527A170FC0043A7A4 /* SignUpTextFieldView.swift in Sources */,
 				ED416E9627A170FC0043A7A4 /* Log.swift in Sources */,
 				ED416E9727A170FC0043A7A4 /* FindAccountPasswordViewReactor.swift in Sources */,
-				ED416E9827A170FC0043A7A4 /* SWSUserInfoViewReactor.swift in Sources */,
 				ED416E9927A170FC0043A7A4 /* WorkspaceSearchResultView.swift in Sources */,
 				ED416E9A27A170FC0043A7A4 /* ErrorResponseModel.swift in Sources */,
 				ED416E9B27A170FC0043A7A4 /* UIViewController.swift in Sources */,
@@ -3423,7 +3401,6 @@
 				ED06C74E277DBD2D00F9D0A5 /* ServiceCreationSummaryViewReactor.swift in Sources */,
 				EDC11A4026D3A39D0020AB09 /* ServiceDetailViewController.swift in Sources */,
 				EDC11A8926D3A39D0020AB09 /* UpdatePhoneNumberViewController.swift in Sources */,
-				EDC11A6926D3A39D0020AB09 /* SWSUserInfoViewController.swift in Sources */,
 				EDC11A7626D3A39D0020AB09 /* PanModalNavigationController.swift in Sources */,
 				ED7A0E792721539400AD6678 /* UpdateUserInfoViewController.swift in Sources */,
 				ED6B465C26B7E7CC00C2FA6D /* Results_BaseObject.swift in Sources */,
@@ -3532,7 +3509,6 @@
 				ED52738026C3A03C0077CD9D /* SignUpTextFieldView.swift in Sources */,
 				ED6B460326B7DFF700C2FA6D /* Log.swift in Sources */,
 				EDC118E426D3A24A0020AB09 /* FindAccountPasswordViewReactor.swift in Sources */,
-				EDC11A6826D3A39D0020AB09 /* SWSUserInfoViewReactor.swift in Sources */,
 				EDC11B0226D3A39E0020AB09 /* WorkspaceSearchResultView.swift in Sources */,
 				ED508CD7272298D40029AF7B /* ErrorResponseModel.swift in Sources */,
 				ED6B464426B7E7CC00C2FA6D /* UIViewController.swift in Sources */,
