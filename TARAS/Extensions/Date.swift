@@ -50,4 +50,26 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
+    
+    var infoDateTimeFormatted: String {
+        return self.toString("yyyy/MM/dd HH:mm:ss")
+    }
+    
+    func infoReadableTimeTakenFromThis(to: Date) -> String {
+        
+        let from = self.timeIntervalSince1970
+        let to = to.timeIntervalSince1970
+        let gap = max(0, to - from)
+        
+        let hour = Int(gap/3600)
+        let minute = Int(gap/60)
+        
+        var result = "\(minute)분"
+        
+        if hour > 0 {
+            result = "\(hour)시간 " + result
+        }
+        
+        return result
+    }
 }

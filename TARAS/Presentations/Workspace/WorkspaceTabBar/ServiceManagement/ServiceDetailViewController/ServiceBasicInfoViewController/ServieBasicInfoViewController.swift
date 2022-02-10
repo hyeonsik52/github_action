@@ -21,11 +21,12 @@ class ServiceBasicInfoViewController: BaseNavigationViewController, View {
     }
     
     private let serviceNumberView = SRPDetailInfoCellView(title: "서비스 번호")
-    private let serviceCreatorView = SRPDetailInfoCellView(title: "서비스 생성자", forcedSelection: true)
+    private let serviceCreatorView = SRPDetailInfoCellView(title: "서비스 생성자")
     private let serviceRequestAtView = SRPDetailInfoCellView(title: "서비스 요청 일시")
     private let serviceBeginAtView = SRPDetailInfoCellView(title: "서비스 시작 일시")
     private let serviceEndAtView = SRPDetailInfoCellView(title: "서비스 종료 일시")
     private let serviceTimeView = SRPDetailInfoCellView(title: "서비스 소요 시간")
+    private let serviceRobotMovingDistanceView = SRPDetailInfoCellView(title: "이동 거리")
     private let serviceRobotNameView = SRPDetailInfoCellView(title: "배정 로봇 이름")
     
     override func setupConstraints() {
@@ -59,6 +60,7 @@ class ServiceBasicInfoViewController: BaseNavigationViewController, View {
         addContent(self.serviceBeginAtView)
         addContent(self.serviceEndAtView)
         addContent(self.serviceTimeView)
+        addContent(self.serviceRobotMovingDistanceView)
         addContent(self.serviceRobotNameView)
     }
     
@@ -78,69 +80,50 @@ class ServiceBasicInfoViewController: BaseNavigationViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.backButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            }).disposed(by: self.disposeBag)
-        
         self.scrollView.refreshControl?.rx.controlEvent(.valueChanged)
             .map {_ in Reactor.Action.refresh }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.serviceCreatorView.didSelect
-            .subscribe(onNext: { [weak self] in
-                guard let service = reactor.currentState.service else { return }
-                
-                let viewController = SWSUserInfoViewController()
-                viewController.reactor = reactor.reactorForSwsUserInfo(userId: service.creator.id)
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            })
-            .disposed(by: self.disposeBag)
-        
         //State
-        let service = reactor.state.compactMap { $0.service }
+        let service = reactor.state.map(\.service).share()
         
-        service
-            .map { ($0.serviceNumber, false) }
-            .bind(to: self.serviceNumberView.rx.info)
+        service.map(\.?.serviceNumber)
+            .bind(to: self.serviceNumberView.rx.content)
+            .disposed(by: self.disposeBag)
+        
+        service.map(\.?.creator.displayName)
+            .bind(to: self.serviceCreatorView.rx.content)
+            .disposed(by: self.disposeBag)
+        
+        service.map(\.?.requestedAt.infoDateTimeFormatted)
+            .bind(to: self.serviceRequestAtView.rx.content)
+            .disposed(by: self.disposeBag)
+        
+        service.map(\.?.startedAt?.infoDateTimeFormatted)
+            .bind(to: self.serviceBeginAtView.rx.content)
+            .disposed(by: self.disposeBag)
+        
+        service.map(\.?.finishedAt?.infoDateTimeFormatted)
+            .bind(to: self.serviceEndAtView.rx.content)
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.creator.displayName, false) }
-            .bind(to: self.serviceCreatorView.rx.info)
+            .map { service -> String? in
+                guard let beginAt = service?.startedAt,
+                      let endAt = service?.finishedAt
+                else { return nil }
+                return beginAt.infoReadableTimeTakenFromThis(to: endAt)
+            }.bind(to: self.serviceTimeView.rx.content)
             .disposed(by: self.disposeBag)
         
         service
-            .map { ($0.requestedAt.overDescription, false) }
-            .bind(to: self.serviceRequestAtView.rx.info)
+            .map { $0?.travelDistance == nil ? nil: "\(Int($0!.travelDistance!))m" }
+            .bind(to: self.serviceRobotMovingDistanceView.rx.content)
             .disposed(by: self.disposeBag)
         
-        //temp
-        service
-            .map { ($0.requestedAt.overDescription, false) }
-            .bind(to: self.serviceBeginAtView.rx.info)
-            .disposed(by: self.disposeBag)
-        
-        //temp
-        service
-            .map { ($0.requestedAt.overDescription, false) }
-            .bind(to: self.serviceEndAtView.rx.info)
-            .disposed(by: self.disposeBag)
-        
-//        service
-//            .map {
-//                guard let endAt = $0.endAt, let beginAt = $0.beginAt else { return "-" }
-//                return (endAt.timeIntervalSince1970-beginAt.timeIntervalSince1970).toTimeString
-//        }
-        Observable.just("00:00")
-        .map { ($0, false) }
-        .bind(to: self.serviceTimeView.rx.info)
-        .disposed(by: self.disposeBag)
-        
-        service
-            .map { ($0.robot?.name ?? "-", false) }
-            .bind(to: self.serviceRobotNameView.rx.info)
+        service.map(\.?.robot?.name)
+            .bind(to: self.serviceRobotNameView.rx.content)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isLoading }
@@ -153,8 +136,11 @@ class ServiceBasicInfoViewController: BaseNavigationViewController, View {
         reactor.state.map { $0.isLoading }
             .filter { $0 == false }
             .subscribe(onNext: { [weak self] isLoading in
-                self?.scrollView.refreshControl?.endRefreshing()
-            })
-            .disposed(by: self.disposeBag)
+                if let control = self?.scrollView.refreshControl, control.isRefreshing {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.scrollView.refreshControl?.endRefreshing()
+                    }
+                }
+            }).disposed(by: self.disposeBag)
     }
 }

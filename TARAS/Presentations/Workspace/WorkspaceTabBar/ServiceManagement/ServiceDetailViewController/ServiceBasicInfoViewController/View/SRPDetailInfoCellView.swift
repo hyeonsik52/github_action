@@ -76,7 +76,6 @@ class SRPDetailInfoCellView: UIView {
     }
     
     func bind(text: String? = nil) {
-        self.contentLabel.isHidden = (text == nil)
         self.contentLabel.text = text ?? "-"
     }
 }
