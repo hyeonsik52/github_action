@@ -120,10 +120,10 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             }).disposed(by: self.disposeBag)
         
         self.moreButton.rx.tap
-            .flatMapLatest { [weak self] _ -> Observable<MoreMenu> in
+            .flatMapLatest { _ -> Observable<MoreMenu> in
                 //서비스 정보 보기, 서비스 로그 보기,( 서비스 중단하기,) 간편 생성 등록하기
                 var items: [MoreMenu] = [.serviceInfo, .serviceLog]
-                if let phase = self?.reactor?.currentState.service?.phase,
+                if let phase = reactor.currentState.service?.phase,
                    phase == .waiting || phase == .delivering {
                     items.append(.cancelService)
                 }
