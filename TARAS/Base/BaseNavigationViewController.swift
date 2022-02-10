@@ -69,8 +69,6 @@ class BaseNavigationViewController: BaseViewController {
         
         self.navigationItem.setLeftBarButton(self.backButton, animated: true)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
-        self.navigationBarColor = self.view.backgroundColor
     }
 }
 
