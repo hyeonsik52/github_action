@@ -132,11 +132,21 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             }.subscribe(onNext: { [weak self] selectedMenu in
                 switch selectedMenu {
                 case .serviceInfo:
-                    print("info")
+                    self?.navigationPush(
+                        type: ServiceBasicInfoViewController.self,
+                        reactor: reactor.reactorForBasicInfo(),
+                        animated: true,
+                        bottomBarHidden: true
+                    )
                 case .serviceLog:
-                    print("log")
+                    self?.navigationPush(
+                        type: ServiceDetailLogViewController.self,
+                        reactor: reactor.reactorForDetailLog(),
+                        animated: true,
+                        bottomBarHidden: true
+                    )
                 case .cancelService:
-                    print("cancel")
+                    reactor.action.onNext(.cancelService)
                 case .addShortcut:
                     print("shortcut")
                 }
