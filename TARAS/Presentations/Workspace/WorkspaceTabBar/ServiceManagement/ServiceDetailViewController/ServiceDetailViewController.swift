@@ -16,6 +16,10 @@ import RxDataSources
 
 class ServiceDetailViewController: BaseNavigationViewController, View {
     
+    enum Metric {
+        static let cellHeight: CGFloat = 64
+    }
+    
     override var navigationPopGestureEnabled: Bool {
         return false
     }
@@ -27,23 +31,32 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
         action: nil
     )
     
-    private let flowLayout = UICollectionViewFlowLayout().then {
-        $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        $0.scrollDirection = .vertical
-        $0.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 70)
-        $0.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
-        $0.minimumLineSpacing = 14
+    private let refreshControl = UIRefreshControl()
+    
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
+        $0.backgroundColor = .white
+        
+        $0.register(ServiceDetailServiceUnitCell.self)
+        $0.rowHeight = Metric.cellHeight
+        $0.separatorStyle = .none
+        
+        let leastHeight = CGFloat.leastNonzeroMagnitude
+        $0.sectionHeaderHeight = leastHeight
+        $0.sectionFooterHeight = leastHeight
+        $0.tableHeaderView = .init(frame: .init(x: 0, y: 0, width: 0, height: leastHeight))
+        $0.tableFooterView = .init(frame: .init(x: 0, y: 0, width: 0, height: leastHeight))
+        
+        $0.addSubview(self.refreshControl)
     }
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout).then {
-        
-        $0.backgroundColor = .clear
-        
-        $0.register(ServiceUnitManagementHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
-        $0.register(ServiceUnitManagementCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        
-        $0.refreshControl = UIRefreshControl()
-    }
+    private let dataSource = RxTableViewSectionedReloadDataSource<ServiceDetailServiceUnitSection>(
+        configureCell: { dataSource, tableView, indexPath, reactor -> UITableViewCell in
+            let cell = tableView.dequeueCell(ofType: ServiceDetailServiceUnitCell.self, indexPath: indexPath)
+            reactor.isLastCell = (indexPath.row >= dataSource.sectionModels[indexPath.section].items.count-1)
+            cell.reactor = reactor
+            return cell
+        }
+    )
     
     // MARK: - Life Cycles
     
@@ -59,8 +72,8 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
     override func setupConstraints() {
         super.setupConstraints()
         
-        self.view.addSubview(self.collectionView)
-        self.collectionView.snp.makeConstraints {
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide)
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -114,8 +127,8 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             .filter { $0 == false }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoading in
-                self?.collectionView.refreshControl?.endRefreshing()
-            })
-            .disposed(by: self.disposeBag)
+                guard self?.refreshControl.isRefreshing == true else { return }
+                self?.refreshControl.endRefreshing()
+            }).disposed(by: self.disposeBag)
     }
 }
