@@ -693,6 +693,9 @@
 		ED53080827ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
 		ED53080927ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
 		ED53080A27ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
+		ED53080E27B24682003B0FB0 /* ProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080D27B24682003B0FB0 /* ProgressLineView.swift */; };
+		ED53080F27B24682003B0FB0 /* ProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080D27B24682003B0FB0 /* ProgressLineView.swift */; };
+		ED53081027B24682003B0FB0 /* ProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080D27B24682003B0FB0 /* ProgressLineView.swift */; };
 		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */; };
@@ -1012,6 +1015,7 @@
 		ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListViewController.swift; sourceTree = "<group>"; };
 		ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListViewReactor.swift; sourceTree = "<group>"; };
+		ED53080D27B24682003B0FB0 /* ProgressLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressLineView.swift; sourceTree = "<group>"; };
 		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPClearTextView.swift; sourceTree = "<group>"; };
@@ -2075,6 +2079,7 @@
 		EDC1191E26D3A39C0020AB09 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED53080D27B24682003B0FB0 /* ProgressLineView.swift */,
 				EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */,
 				EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */,
 				EDC1192226D3A39C0020AB09 /* SRPStateView.swift */,
@@ -2858,6 +2863,7 @@
 				ED416D2627A16C640043A7A4 /* UIButton+Rx.swift in Sources */,
 				ED416D2727A16C640043A7A4 /* SignInViewController.swift in Sources */,
 				ED416D2827A16C640043A7A4 /* RealmManager.swift in Sources */,
+				ED53080F27B24682003B0FB0 /* ProgressLineView.swift in Sources */,
 				ED416D2927A16C640043A7A4 /* GraphQLOperation.swift in Sources */,
 				ED416D2A27A16C640043A7A4 /* DefaultMyInfoViewReactor.swift in Sources */,
 				ED416D2B27A16C640043A7A4 /* ServiceType.swift in Sources */,
@@ -3204,6 +3210,7 @@
 				ED416E9C27A170FC0043A7A4 /* UIDevice.swift in Sources */,
 				ED416E9D27A170FC0043A7A4 /* UIImageView.swift in Sources */,
 				ED416E9E27A170FC0043A7A4 /* GenericScalar.swift in Sources */,
+				ED53081027B24682003B0FB0 /* ProgressLineView.swift in Sources */,
 				ED416E9F27A170FC0043A7A4 /* BaseManager.swift in Sources */,
 				ED416EA027A170FC0043A7A4 /* FindAccountEmailView.swift in Sources */,
 				ED416EA127A170FC0043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
@@ -3454,6 +3461,7 @@
 				ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */,
 				ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */,
 				ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */,
+				ED53080E27B24682003B0FB0 /* ProgressLineView.swift in Sources */,
 				ED6B464B26B7E7CC00C2FA6D /* GraphQLOperation.swift in Sources */,
 				EDC11A2E26D3A39D0020AB09 /* DefaultMyInfoViewReactor.swift in Sources */,
 				ED7BCE2A27716BFF0074BFFA /* ServiceType.swift in Sources */,
