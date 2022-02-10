@@ -17,8 +17,8 @@ class ServiceBasicInfoViewReactor: Reactor {
     }
     
     enum Mutation {
-        case loadedService(Service?)
-        case setLoading(Bool?)
+        case refreshService(Service?)
+        case updateIsLoading(Bool?)
     }
     
     struct State {
@@ -26,12 +26,10 @@ class ServiceBasicInfoViewReactor: Reactor {
         var isLoading: Bool?
     }
     
-    var initialState: State {
-        return State(
-            service: nil,
-            isLoading: nil
-        )
-    }
+    var initialState: State = .init(
+        service: nil,
+        isLoading: nil
+    )
     
     let provider : ManagerProviderType
     let workspaceId: String
@@ -46,18 +44,16 @@ class ServiceBasicInfoViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .refresh:
+            let query = ServiceQuery(workspaceId: self.workspaceId, serviceId: self.serviceId)
             return .concat([
-                .just(.setLoading(true)),
+                .just(.updateIsLoading(true)),
                 
-                //temp
-//                self.provider.networkManager
-//                    .fetch(ServiceQuery(workspaceId: self.workspaceId, serviceId: self.serviceId))
-//                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node?.services }
-//                    .compactMap { $0?.edges.first??.node?.fragments.serviceFragment }
-//                    .map { self.provider.serviceManager.convert(service: $0) }
-//                    .map { Mutation.loadedService($0) },
+                self.provider.networkManager.fetch(query)
+                    .map { $0.signedUser?.joinedWorkspaces?.edges.first??.node }
+                    .map { $0?.services?.edges.first??.node?.fragments.serviceFragment }
+                    .map { .refreshService(.init(option: $0)) },
                 
-                .just(.setLoading(false))
+                .just(.updateIsLoading(false))
             ])
         }
     }
@@ -65,9 +61,9 @@ class ServiceBasicInfoViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case let .loadedService(service):
+        case .refreshService(let service):
             state.service = service
-        case .setLoading(let isLoading):
+        case .updateIsLoading(let isLoading):
             state.isLoading = isLoading
         }
         return state
