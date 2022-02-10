@@ -54,6 +54,7 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             let cell = tableView.dequeueCell(ofType: ServiceDetailServiceUnitCell.self, indexPath: indexPath)
             reactor.isLastCell = (indexPath.row >= dataSource.sectionModels[indexPath.section].items.count-1)
             cell.reactor = reactor
+            cell.layer.zPosition = CGFloat(indexPath.row)
             return cell
         }
     )
