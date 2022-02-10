@@ -81,13 +81,8 @@ extension ServiceUnit: FragmentModel {
 extension ServiceUnit {
     
     ///내 작업 여부
-    func isMyWork(_ id: String) -> Bool {
+    func isMyWork(_ id: String?) -> Bool {
         return (self.receiver.id == id)
-    }
-    
-    ///내가 작업할 목적지에 로봇 도착 여부
-    func isMyTurn(_ id: String, currentIndex: Int) -> Bool {
-        return (self.isMyWork(id) && (self.orderWithinService == currentIndex))
     }
 }
 

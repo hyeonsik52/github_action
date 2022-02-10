@@ -247,6 +247,19 @@ extension Service {
     }
 }
 
+extension Service {
+    
+    //내가 작업할 차례 여부
+    func isMyTurn(_ id: String?) -> Bool {
+        //작업대기 상태이면서 현재 진행중 단위서비스의 작업자
+        guard self.status == .arrived,
+              let currentServiceUnit = self.serviceUnits.first(where: {
+                  $0.orderWithinService == self.currentServiceUnitIdx
+              }) else { return false }
+        return currentServiceUnit.isMyWork(id)
+    }
+}
+
 extension Service: Hashable {
     
     func hash(into hasher: inout Hasher) {
