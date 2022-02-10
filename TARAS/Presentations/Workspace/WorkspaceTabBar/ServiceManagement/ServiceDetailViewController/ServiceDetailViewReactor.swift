@@ -34,6 +34,7 @@ class ServiceDetailViewReactor: Reactor {
     
     struct State {
         var service: Service?
+        var serviceUnitReactors: [ServiceDetailServiceUnitCellReactor]
         var isCanceled: Bool?
         var isLoading: Bool?
         var isProcessing: Bool?
@@ -42,6 +43,7 @@ class ServiceDetailViewReactor: Reactor {
     
     let initialState: State = .init(
         service: nil,
+        serviceUnitReactors: [],
         isCanceled: nil,
         isLoading: nil,
         isProcessing: nil,
@@ -120,6 +122,7 @@ class ServiceDetailViewReactor: Reactor {
         switch mutation {
         case .refreshService(let model):
             state.service = model
+            state.serviceUnitReactors = self.convertServiceUnitCellReactors(model)
         case .updateIsCanceled(let isCanceled):
             state.isCanceled = isCanceled
         case .updateIsLoading(let isLoading):
@@ -130,6 +133,38 @@ class ServiceDetailViewReactor: Reactor {
             state.errorMessage = message
         }
         return state
+    }
+    
+    private func convertServiceUnitCellReactors(_ service: Service) -> [ServiceDetailServiceUnitCellReactor] {
+        
+        let myUserId = self.provider.userManager.userTB.ID
+        let isServiceInProgress = (service.phase == .waiting || service.phase == .delivering)
+        let isServicePreparing = (service.phase == .waiting && service.currentServiceUnitIdx == 0)
+        
+        return service.serviceUnits.map {
+            
+            var robotArrivalState: ServiceUnitRobotArrivalState = .passed
+            
+            if $0.orderWithinService > service.currentServiceUnitIdx {
+                robotArrivalState = .waiting
+            } else if $0.orderWithinService == service.currentServiceUnitIdx {
+                if service.status == .waiting {
+                    robotArrivalState = .waiting
+                } else if service.status == .moving {
+                    robotArrivalState = .departure
+                } else if service.status == .arrived {
+                    robotArrivalState = .arrival
+                }
+            }
+            
+            return .init(
+                serviceUnit: $0,
+                userId: myUserId,
+                isServiceInProgress: isServiceInProgress,
+                isServicePreparing: isServicePreparing,
+                robotArrivalState: robotArrivalState
+            )
+        }
     }
 }
 
