@@ -111,6 +111,12 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             .bind(to: self.rx.title)
             .disposed(by: self.disposeBag)
         
+        reactor.state.compactMap { $0.service?.stateColor }
+        .subscribe(onNext: { [weak self] color in
+            UIView.animate(withDuration: 0.25) {
+                self?.navigationBarColor = color
+            }
+        }).disposed(by: self.disposeBag)
         
         reactor.state
             .map { [.init(items: $0.serviceUnitReactors)] }
