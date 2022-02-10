@@ -276,6 +276,7 @@
 		ED416D8E27A16C640043A7A4 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462726B7E7CC00C2FA6D /* Optional.swift */; };
 		ED416D8F27A16C640043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D826D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift */; };
 		ED416D9027A16C640043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196C26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift */; };
+		ED416D9127A16C640043A7A4 /* ServiceDetailServiceUnitCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191C26D3A39C0020AB09 /* ServiceDetailServiceUnitCellReactor.swift */; };
 		ED416D9227A16C640043A7A4 /* ResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E702721539400AD6678 /* ResetPasswordViewReactor.swift */; };
 		ED416D9327A16C640043A7A4 /* ServiceTargetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */; };
 		ED416D9427A16C640043A7A4 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -574,6 +575,7 @@
 		ED416ED327A170FC0043A7A4 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B462726B7E7CC00C2FA6D /* Optional.swift */; };
 		ED416ED427A170FC0043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC118D826D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift */; };
 		ED416ED527A170FC0043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1196C26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift */; };
+		ED416ED627A170FC0043A7A4 /* ServiceDetailServiceUnitCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191C26D3A39C0020AB09 /* ServiceDetailServiceUnitCellReactor.swift */; };
 		ED416ED727A170FC0043A7A4 /* ResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E702721539400AD6678 /* ResetPasswordViewReactor.swift */; };
 		ED416ED827A170FC0043A7A4 /* ServiceTargetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195426D3A39D0020AB09 /* ServiceTargetsView.swift */; };
 		ED416ED927A170FC0043A7A4 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -693,9 +695,15 @@
 		ED53080827ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
 		ED53080927ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
 		ED53080A27ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */; };
+		ED53080C27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080B27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift */; };
 		ED53080E27B24682003B0FB0 /* ProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080D27B24682003B0FB0 /* ProgressLineView.swift */; };
 		ED53080F27B24682003B0FB0 /* ProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080D27B24682003B0FB0 /* ProgressLineView.swift */; };
 		ED53081027B24682003B0FB0 /* ProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080D27B24682003B0FB0 /* ProgressLineView.swift */; };
+		ED53081127B277D1003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080B27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift */; };
+		ED53081227B277D1003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53080B27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift */; };
+		ED53081527B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */; };
+		ED53081627B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */; };
+		ED53081727B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */; };
 		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED68E1BD26D49B8B003D6442 /* SRPClearTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */; };
@@ -831,6 +839,7 @@
 		EDC11A3E26D3A39D0020AB09 /* ServieBasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191726D3A39C0020AB09 /* ServieBasicInfoViewController.swift */; };
 		EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191826D3A39C0020AB09 /* ServiceBasicInfoViewReactor.swift */; };
 		EDC11A4026D3A39D0020AB09 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */; };
+		EDC11A4226D3A39D0020AB09 /* ServiceDetailServiceUnitCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191C26D3A39C0020AB09 /* ServiceDetailServiceUnitCellReactor.swift */; };
 		EDC11A4426D3A39D0020AB09 /* ServiceDetailNumberProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */; };
 		EDC11A4526D3A39D0020AB09 /* SRPServiceUnitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */; };
 		EDC11A4726D3A39D0020AB09 /* SRPStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1192226D3A39C0020AB09 /* SRPStateView.swift */; };
@@ -1015,7 +1024,9 @@
 		ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		ED53080327ACF63D003B0FB0 /* FinishedServiceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListViewController.swift; sourceTree = "<group>"; };
 		ED53080727ACF644003B0FB0 /* FinishedServiceListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListViewReactor.swift; sourceTree = "<group>"; };
+		ED53080B27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailServiceUnitCell.swift; sourceTree = "<group>"; };
 		ED53080D27B24682003B0FB0 /* ProgressLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressLineView.swift; sourceTree = "<group>"; };
+		ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailServiceUnitSection.swift; sourceTree = "<group>"; };
 		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED68E1BB26D49B8B003D6442 /* SRPClearTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPClearTextView.swift; sourceTree = "<group>"; };
@@ -1152,6 +1163,7 @@
 		EDC1191726D3A39C0020AB09 /* ServieBasicInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServieBasicInfoViewController.swift; sourceTree = "<group>"; };
 		EDC1191826D3A39C0020AB09 /* ServiceBasicInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceBasicInfoViewReactor.swift; sourceTree = "<group>"; };
 		EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
+		EDC1191C26D3A39C0020AB09 /* ServiceDetailServiceUnitCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailServiceUnitCellReactor.swift; sourceTree = "<group>"; };
 		EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailNumberProfileView.swift; sourceTree = "<group>"; };
 		EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPServiceUnitDetailView.swift; sourceTree = "<group>"; };
 		EDC1192226D3A39C0020AB09 /* SRPStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRPStateView.swift; sourceTree = "<group>"; };
@@ -1528,6 +1540,14 @@
 				ED5307FF27A3DBFD003B0FB0 /* ServiceCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		ED53081327B278D2003B0FB0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		ED68E1BF26D49CB4003D6442 /* Enum */ = {
@@ -2050,6 +2070,7 @@
 			children = (
 				EDC1191926D3A39C0020AB09 /* ServiceDetailViewController.swift */,
 				EDC1192C26D3A39C0020AB09 /* ServiceDetailViewReactor.swift */,
+				ED53081327B278D2003B0FB0 /* Model */,
 				EDC1191E26D3A39C0020AB09 /* View */,
 				EDC1191326D3A39C0020AB09 /* ServiceBasicInfoViewController */,
 				EDC1192326D3A39C0020AB09 /* ServiceDetailLogViewController */,
@@ -2079,6 +2100,8 @@
 		EDC1191E26D3A39C0020AB09 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED53080B27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift */,
+				EDC1191C26D3A39C0020AB09 /* ServiceDetailServiceUnitCellReactor.swift */,
 				ED53080D27B24682003B0FB0 /* ProgressLineView.swift */,
 				EDC1191F26D3A39C0020AB09 /* ServiceDetailNumberProfileView.swift */,
 				EDC1192026D3A39C0020AB09 /* SRPServiceUnitDetailView.swift */,
@@ -2937,6 +2960,7 @@
 				ED416D7227A16C640043A7A4 /* SRPStateView.swift in Sources */,
 				ED416D7427A16C640043A7A4 /* STProcess.swift in Sources */,
 				ED416D7527A16C640043A7A4 /* ServiceStateCollectionReusableView.swift in Sources */,
+				ED53081127B277D1003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */,
 				ED416D7627A16C640043A7A4 /* ServiceCreationSelectStopViewController+Rx.swift in Sources */,
 				ED416D7727A16C640043A7A4 /* SignUpIdView.swift in Sources */,
 				ED416D7827A16C640043A7A4 /* UIWindow.swift in Sources */,
@@ -2964,6 +2988,7 @@
 				ED416D8E27A16C640043A7A4 /* Optional.swift in Sources */,
 				ED416D8F27A16C640043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */,
 				ED416D9027A16C640043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */,
+				ED416D9127A16C640043A7A4 /* ServiceDetailServiceUnitCellReactor.swift in Sources */,
 				ED416D9227A16C640043A7A4 /* ResetPasswordViewReactor.swift in Sources */,
 				ED416D9327A16C640043A7A4 /* ServiceTargetsView.swift in Sources */,
 				ED416D9427A16C640043A7A4 /* Stop.swift in Sources */,
@@ -3000,6 +3025,7 @@
 				ED416DB327A16C640043A7A4 /* UIColor.swift in Sources */,
 				ED416DB427A16C640043A7A4 /* WorkspaceSelectView_Reactive.swift in Sources */,
 				ED416DB527A16C640043A7A4 /* WorkspaceListSection.swift in Sources */,
+				ED53081627B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */,
 				ED416DB627A16C640043A7A4 /* Version.swift in Sources */,
 				ED416DB727A16C640043A7A4 /* WorkRequestViewReactor.swift in Sources */,
 				ED416DB827A16C640043A7A4 /* UIView.swift in Sources */,
@@ -3157,6 +3183,7 @@
 				ED416E6627A170FC0043A7A4 /* WorkspaceMoreViewController.swift in Sources */,
 				ED416E6727A170FC0043A7A4 /* SettingWorkspaceInfoView_Reactive.swift in Sources */,
 				ED416E6827A170FC0043A7A4 /* ServiceLogCellReactor.swift in Sources */,
+				ED53080C27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */,
 				ED416E6927A170FC0043A7A4 /* SRPProfileTextTableViewCell.swift in Sources */,
 				ED416E6A27A170FC0043A7A4 /* ServiceUnitTargetModelSection.swift in Sources */,
 				ED416E6B27A170FC0043A7A4 /* UIButton+Rx.swift in Sources */,
@@ -3263,6 +3290,7 @@
 				ED416ED327A170FC0043A7A4 /* Optional.swift in Sources */,
 				ED416ED427A170FC0043A7A4 /* FindAccountPasswordCompleteViewController.swift in Sources */,
 				ED416ED527A170FC0043A7A4 /* WorkspaceInfoViewReactor.swift in Sources */,
+				ED416ED627A170FC0043A7A4 /* ServiceDetailServiceUnitCellReactor.swift in Sources */,
 				ED416ED727A170FC0043A7A4 /* ResetPasswordViewReactor.swift in Sources */,
 				ED416ED827A170FC0043A7A4 /* ServiceTargetsView.swift in Sources */,
 				ED416ED927A170FC0043A7A4 /* Stop.swift in Sources */,
@@ -3299,6 +3327,7 @@
 				ED416EF827A170FC0043A7A4 /* UIColor.swift in Sources */,
 				ED416EF927A170FC0043A7A4 /* WorkspaceSelectView_Reactive.swift in Sources */,
 				ED416EFA27A170FC0043A7A4 /* WorkspaceListSection.swift in Sources */,
+				ED53081727B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */,
 				ED416EFB27A170FC0043A7A4 /* Version.swift in Sources */,
 				ED416EFC27A170FC0043A7A4 /* WorkRequestViewReactor.swift in Sources */,
 				ED416EFD27A170FC0043A7A4 /* UIView.swift in Sources */,
@@ -3535,6 +3564,7 @@
 				EDC11A4726D3A39D0020AB09 /* SRPStateView.swift in Sources */,
 				ED06C76D278688C100F9D0A5 /* STProcess.swift in Sources */,
 				EDC11AFD26D3A39E0020AB09 /* ServiceStateCollectionReusableView.swift in Sources */,
+				ED53081227B277D1003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */,
 				ED06C743277DBD2D00F9D0A5 /* ServiceCreationSelectStopViewController+Rx.swift in Sources */,
 				ED52737326C3A03C0077CD9D /* SignUpIdView.swift in Sources */,
 				ED6B464526B7E7CC00C2FA6D /* UIWindow.swift in Sources */,
@@ -3562,6 +3592,7 @@
 				ED6B464D26B7E7CC00C2FA6D /* Optional.swift in Sources */,
 				EDC118E526D3A24A0020AB09 /* FindAccountPasswordCompleteViewController.swift in Sources */,
 				EDC11A7F26D3A39D0020AB09 /* WorkspaceInfoViewReactor.swift in Sources */,
+				EDC11A4226D3A39D0020AB09 /* ServiceDetailServiceUnitCellReactor.swift in Sources */,
 				ED7A0E772721539400AD6678 /* ResetPasswordViewReactor.swift in Sources */,
 				EDC11A6C26D3A39D0020AB09 /* ServiceTargetsView.swift in Sources */,
 				EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */,
@@ -3598,6 +3629,7 @@
 				ED6B463E26B7E7CC00C2FA6D /* UIColor.swift in Sources */,
 				EDC11AFC26D3A39E0020AB09 /* WorkspaceSelectView_Reactive.swift in Sources */,
 				EDC11A3226D3A39D0020AB09 /* WorkspaceListSection.swift in Sources */,
+				ED53081527B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */,
 				ED7BCE2E27716C490074BFFA /* Version.swift in Sources */,
 				EDC11A5426D3A39D0020AB09 /* WorkRequestViewReactor.swift in Sources */,
 				ED6B463D26B7E7CC00C2FA6D /* UIView.swift in Sources */,
