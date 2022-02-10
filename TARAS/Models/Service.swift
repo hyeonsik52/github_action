@@ -72,8 +72,15 @@ extension Service: FragmentModel {
             phonenumber: nil
         )
         
-        self.currentServiceUnitIdx = fragment.currentServiceUnitStep ?? 0
-        var serviceUnits = fragment.serviceUnits?.compactMap { $0?.fragments.serviceUnitFragment }.map(ServiceUnit.init) ?? []
+        let currentServiceUnitIdx = fragment.currentServiceUnitStep ?? 0
+        self.currentServiceUnitIdx = currentServiceUnitIdx
+        var serviceUnits = fragment.serviceUnits?
+            .compactMap { $0?.fragments.serviceUnitFragment }
+            .map { fragment -> ServiceUnit in
+                var serviceUnit = ServiceUnit(fragment)
+                serviceUnit.isInProgress = (serviceUnit.orderWithinService == currentServiceUnitIdx)
+                return serviceUnit
+            } ?? []
         serviceUnits = serviceUnits.filter(\.stop.isValid).sorted { $0.orderWithinService < $1.orderWithinService }
         if let timestamps = fragment.timestamps?.toDictionaries {
             self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator)
@@ -141,8 +148,15 @@ extension Service: FragmentModel {
             phonenumber: nil
         )
         
-        self.currentServiceUnitIdx = fragment?.currentServiceUnitStep ?? 0
-        var serviceUnits = fragment?.serviceUnits?.compactMap { $0?.fragments.serviceUnitFragment }.map(ServiceUnit.init) ?? []
+        let currentServiceUnitIdx = fragment?.currentServiceUnitStep ?? 0
+        self.currentServiceUnitIdx = currentServiceUnitIdx
+        var serviceUnits = fragment?.serviceUnits?
+            .compactMap { $0?.fragments.serviceUnitFragment }
+            .map { fragment -> ServiceUnit in
+                var serviceUnit = ServiceUnit(fragment)
+                serviceUnit.isInProgress = (serviceUnit.orderWithinService == currentServiceUnitIdx)
+                return serviceUnit
+            } ?? []
         serviceUnits = serviceUnits.filter(\.stop.isValid).sorted { $0.orderWithinService < $1.orderWithinService }
         if let timestamps = fragment?.timestamps?.toDictionaries {
             self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator)

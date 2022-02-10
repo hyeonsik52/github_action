@@ -27,6 +27,9 @@ struct ServiceUnit: Identifiable {
     ///(빈 목적지가 존재할 수 있으므로 0부터 시작하지 않을 수 있음)
     let orderWithinService: Int
     
+    ///현재 진행중인지 여부
+    var isInProgress: Bool = false
+    
     ///로봇 도착 시간
     var robotArrivalTime: Date?
     
