@@ -245,6 +245,38 @@ extension Service {
             }
         }
     }
+    
+    var stateColor: UIColor {
+        switch self.status {
+        case .finished:
+            return .init(hex: "#F5F5F5")
+        case .canceled, .failed:
+            return .init(hex: "#F8CECC")
+        case .returning:
+            if self.serviceLogSet.isServiceCompleted {
+                return .init(hex: "#F5F5F5")
+            } else {
+                return .init(hex: "#F8CECC")
+            }
+        default:
+            if self.currentServiceUnitIdx == 0 {
+                return .white
+            } else if self.currentServiceUnitIdx <= self.serviceUnits.count {
+                switch self.status {
+                case .waiting:
+                    return .init(hex: "#FFF2CC")
+                case .moving:
+                    return .init(hex: "#DAE8FC")
+                case .arrived:
+                    return .init(hex: "#DAE8FC")
+                default:
+                    return .white
+                }
+            } else {
+                return .white
+            }
+        }
+    }
 }
 
 extension Service {
