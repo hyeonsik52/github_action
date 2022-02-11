@@ -35,7 +35,7 @@ class InProgressServiceListViewController: BaseViewController, View {
     private let flowLayout = UICollectionViewFlowLayout().then {
         let width = UIScreen.main.bounds.width - 16 * 2
         $0.minimumLineSpacing = 12
-        $0.estimatedItemSize = .init(width: width, height: 100)
+        $0.estimatedItemSize = .init(width: width, height: 200)
         $0.sectionInset = .init(top: 8, left: 16, bottom: 24, right: 16)
     }
     private lazy var collectionView = UICollectionView.init(
