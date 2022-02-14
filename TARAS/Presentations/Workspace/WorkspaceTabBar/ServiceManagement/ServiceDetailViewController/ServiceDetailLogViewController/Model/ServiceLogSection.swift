@@ -10,7 +10,6 @@ import Foundation
 import RxDataSources
 
 struct ServiceLogSection {
-    var header: String
     var items: [Item]
 }
 extension ServiceLogSection: SectionModelType {

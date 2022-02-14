@@ -2104,10 +2104,10 @@
 		EDC1192326D3A39C0020AB09 /* ServiceDetailLogViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EDC1192B26D3A39C0020AB09 /* ServiceDetailLogViewController.swift */,
+				EDC1192A26D3A39C0020AB09 /* ServiceDetailLogViewReactor.swift */,
 				EDC1192426D3A39C0020AB09 /* Cell */,
 				EDC1192626D3A39C0020AB09 /* Model */,
-				EDC1192A26D3A39C0020AB09 /* ServiceDetailLogViewReactor.swift */,
-				EDC1192B26D3A39C0020AB09 /* ServiceDetailLogViewController.swift */,
 			);
 			path = ServiceDetailLogViewController;
 			sourceTree = "<group>";

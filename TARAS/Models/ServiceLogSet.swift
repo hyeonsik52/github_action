@@ -15,9 +15,9 @@ struct ServiceLogSet {
 
 extension ServiceLogSet {
     
-    init(jsonList: [[String: Any]], with serviceUnits: [ServiceUnit], creator: User) {
+    init(jsonList: [[String: Any]], with serviceUnits: [ServiceUnit], creator: User, robot: Robot?) {
         self.serviceLogs = jsonList
-            .compactMap { ServiceLog(json: $0, with: serviceUnits, creator: creator) }
+            .compactMap { ServiceLog(json: $0, with: serviceUnits, creator: creator, robot: robot) }
             .sorted { $0.date < $1.date }
             .filter {
                 if case .unclassified = $0.type {
@@ -79,7 +79,7 @@ extension ServiceLogSet {
     
     var canceledServiceLog: ServiceLog? {
         return self.serviceLogs.first {
-            guard case .canceled(_) = $0.type else { return false }
+            guard case .canceled = $0.type else { return false }
             return true
         }
     }

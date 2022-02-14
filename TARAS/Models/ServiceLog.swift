@@ -17,7 +17,7 @@ struct ServiceLog {
 
 extension ServiceLog {
     
-    init?(json: [String: Any], with serviceUnits: [ServiceUnit], creator: User) {
+    init?(json: [String: Any], with serviceUnits: [ServiceUnit], creator: User, robot: Robot?) {
         guard let date = json["time"] as? String else { return nil }
         
         //*현재 날짜이면, 로그 기록 날짜가 ISO형식이 아닌 것.
@@ -28,14 +28,8 @@ extension ServiceLog {
             case "service_created":
                 self.type = .created(creator: creator.displayName)
             case "robot_assigned":
-                self.type = .robotAssigned
-            case "robot_departed":
-                if let unitIndex = json["unit_index"] as? Int,
-                   let destination = serviceUnits.first(where: { $0.orderWithinService == unitIndex })?.stop.name {
-                    self.type = .robotDeparted(destination: destination)
-                } else {
-                    self.type = .robotDeparted(destination: "알 수 없는 위치")
-                }
+                let robotName = robot?.name ?? "알 수 없는 로봇"
+                self.type = .robotAssigned(robot: robotName)
             case "robot_arrived":
                 if let unitIndex = json["unit_index"] as? Int,
                    let destination = serviceUnits.first(where: { $0.orderWithinService == unitIndex })?.stop.name {
@@ -43,11 +37,17 @@ extension ServiceLog {
                 } else {
                     self.type = .robotArrived(serviceUnitIdx: 0, destination: "알 수 없는 위치")
                 }
+            case "job_done":
+                if let unitIndex = json["unit_index"] as? Int,
+                   let destination = serviceUnits.first(where: { $0.orderWithinService == unitIndex })?.stop.name {
+                    self.type = .workCompleted(destination: destination)
+                } else {
+                    self.type = .workCompleted(destination: "알 수 없는 위치")
+                }
             case "service_finished":
                 self.type = .finished
             case "service_canceled":
-                let canceler = (json["canceler"] as? String) ?? "관리자"
-                self.type = .canceled(manager: canceler)
+                self.type = .canceled
             case "service_failed":
                 if let descriptionString = json["description"] as? String {
                     switch descriptionString {
