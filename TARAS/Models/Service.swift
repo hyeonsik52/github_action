@@ -199,14 +199,16 @@ extension Service {
     var canceledDescription: String? {
         switch self.status {
         case .canceled:
-            return "관리자에 의해 서비스가 중단되었습니다."
+            let defaultMessage = "관리자에 의해 서비스가 중단되었습니다."
+            return self.serviceLogSet.canceledMessage ?? defaultMessage
         case .failed:
-            return "오류로 인해 서비스가 중단되었습니다."
+            let defaultMessage = "오류로 인해 서비스가 중단되었습니다."
+            return self.serviceLogSet.failedMessage ?? defaultMessage
         case .returning:
             if self.serviceLogSet.isServiceCanceled {
-                return "관리자에 의해 서비스가 중단되었습니다."
+                return self.serviceLogSet.canceledMessage
             } else if self.serviceLogSet.isServiceFailed {
-                return "오류로 인해 서비스가 중단되었습니다."
+                return self.serviceLogSet.failedMessage
             }
         default:
             break
@@ -289,6 +291,10 @@ extension Service {
                   $0.orderWithinService == self.currentServiceUnitIdx
               }) else { return false }
         return currentServiceUnit.isMyWork(id)
+    }
+    
+    var currentServiceUnit: ServiceUnit? {
+        return self.serviceUnits.first { $0.orderWithinService == self.currentServiceUnitIdx }
     }
 }
 
