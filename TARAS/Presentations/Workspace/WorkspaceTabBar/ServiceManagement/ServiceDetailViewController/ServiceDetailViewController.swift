@@ -298,17 +298,57 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             }).disposed(by: self.disposeBag)
         
         //State
-        reactor.state.compactMap { $0.service }
-            .map(\.stateDescription)
+        let service = reactor.state.map(\.service).share()
+        
+        service.compactMap(\.?.stateDescription)
             .bind(to: self.rx.title)
             .disposed(by: self.disposeBag)
         
-        reactor.state.compactMap { $0.service?.stateColor }
-        .subscribe(onNext: { [weak self] color in
-            UIView.animate(withDuration: 0.25) {
-                self?.navigationBarColor = color
-            }
-        }).disposed(by: self.disposeBag)
+        service.compactMap(\.?.stateColor)
+            .subscribe(onNext: { [weak self] color in
+                UIView.animate(withDuration: 0.25) {
+                    self?.navigationBarColor = color
+                }
+            }).disposed(by: self.disposeBag)
+        
+        service
+            .subscribe(onNext: { [weak self] service in
+                guard let self = self else { return }
+                
+                //서비스 시작 전은 표시하지 않음
+                guard let service = service else {
+                    self.headerContainer.isHidden = true
+                    return
+                }
+                self.headerContainer.isHidden = false
+                
+                //실패, 중단
+                self.errorContainer.isHidden = (service.phase != .canceled)
+                self.errorLabel.text = service.canceledDescription
+                
+                //완료
+                self.completedTimeContainer.isHidden = (service.phase != .completed)
+                self.completedTimeLabel.text = service.finishedAt?.infoDateTimeFormatted
+                
+                //정차지 도착 - 작업완료, 그 외는 표시하지 않음
+                let userId = reactor.provider.userManager.userTB.ID
+                let isMyTurn = service.isMyTurn(userId)
+                
+                let authNumber = service.currentServiceUnit?.authNumber
+                self.authNumberContainer.isHidden = (!isMyTurn || (authNumber ?? "").isEmpty)
+                self.authNumberLabel.text = authNumber
+                
+                let detail = service.currentServiceUnit?.detail
+                self.detailContainer.isHidden = (!isMyTurn || (detail ?? "").isEmpty)
+                self.detailLabel.text = detail
+                
+                self.workCompletionButtonContainer.isHidden = !isMyTurn
+                
+                //하위 뷰가 모두 감춰지면 컨테이너도 감춤
+                let isContainerHidden = self.headerContentView.subviews.map(\.isHidden).reduce(true, { $0 && $1 })
+                self.headerContainer.isHidden = isContainerHidden
+                
+            }).disposed(by: self.disposeBag)
         
         reactor.state
             .map { [.init(items: $0.serviceUnitReactors)] }
