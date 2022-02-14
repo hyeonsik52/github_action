@@ -70,17 +70,33 @@ extension ServiceLogSet {
     }
     
     var isServiceCanceled: Bool {
-        return (self.serviceLogs.first {
+        return (self.canceledServiceLog != nil)
+    }
+    
+    var canceledMessage: String? {
+        return self.canceledServiceLog?.type.message
+    }
+    
+    var canceledServiceLog: ServiceLog? {
+        return self.serviceLogs.first {
             guard case .canceled(_) = $0.type else { return false }
             return true
-        } != nil)
+        }
+    }
+    
+    var failedMessage: String? {
+        return self.failedServiceLog?.type.message
     }
     
     var isServiceFailed: Bool {
-        return (self.serviceLogs.first {
+        return (self.failedServiceLog != nil)
+    }
+    
+    var failedServiceLog: ServiceLog? {
+        return self.serviceLogs.first {
             guard case .failed(_) = $0.type else { return false }
             return true
-        } != nil)
+        }
     }
 }
 

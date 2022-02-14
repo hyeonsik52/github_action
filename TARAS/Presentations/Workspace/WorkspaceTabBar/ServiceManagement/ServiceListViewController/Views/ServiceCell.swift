@@ -27,13 +27,14 @@ class ServiceCell: UICollectionViewCell, View {
         $0.font = .medium[16]
         $0.textColor = .darkGray303030
         $0.lineBreakMode = .byTruncatingMiddle
+        $0.setContentHuggingPriority(.defaultLow - 1, for: .horizontal)
     }
     
     private let dateLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .grayA0A0A0
         $0.textAlignment = .right
-        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+        $0.setContentCompressionResistancePriority(.defaultHigh + 1, for: .horizontal)
     }
     
     //단일 목적지일 때 감추기 (여기부터)
