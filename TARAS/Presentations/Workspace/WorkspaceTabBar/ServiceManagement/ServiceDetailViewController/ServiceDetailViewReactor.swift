@@ -26,7 +26,6 @@ class ServiceDetailViewReactor: Reactor {
     
     enum Mutation {
         case refreshService(Service)
-        case updateIsCanceled(Bool)
         case updateIsLoading(Bool?)
         case updateIsProcessing(Bool?)
         case updateErrorMessage(String?)
@@ -35,7 +34,6 @@ class ServiceDetailViewReactor: Reactor {
     struct State {
         var service: Service?
         var serviceUnitReactors: [ServiceDetailServiceUnitCellReactor]
-        var isCanceled: Bool?
         var isLoading: Bool?
         var isProcessing: Bool?
         var errorMessage: String?
@@ -44,7 +42,6 @@ class ServiceDetailViewReactor: Reactor {
     let initialState: State = .init(
         service: nil,
         serviceUnitReactors: [],
-        isCanceled: nil,
         isLoading: nil,
         isProcessing: nil,
         errorMessage: nil
@@ -94,8 +91,6 @@ class ServiceDetailViewReactor: Reactor {
                 
                 self.provider.networkManager.perform(mutation)
                     .flatMapLatest { payload -> Observable<Mutation> in
-                        let isCanceled = payload.cancelService?.ok == true
-                        return .just(.updateIsCanceled(isCanceled))
                     }.catch(self.catchClosure),
                 
                 .just(.updateIsProcessing(false))
@@ -123,8 +118,6 @@ class ServiceDetailViewReactor: Reactor {
         case .refreshService(let model):
             state.service = model
             state.serviceUnitReactors = self.convertServiceUnitCellReactors(model)
-        case .updateIsCanceled(let isCanceled):
-            state.isCanceled = isCanceled
         case .updateIsLoading(let isLoading):
             state.isLoading = isLoading
         case .updateIsProcessing(let isProcessing):

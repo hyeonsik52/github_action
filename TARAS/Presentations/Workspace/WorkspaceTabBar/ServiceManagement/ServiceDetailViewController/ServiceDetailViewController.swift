@@ -355,12 +355,6 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
-        reactor.state.compactMap { $0.isCanceled }
-            .distinctUntilChanged()
-            .subscribe(onNext: { successed in
-                reactor.action.onNext(.refreshService)
-            }).disposed(by: self.disposeBag)
-        
         reactor.state.map { $0.isLoading }
             .distinctUntilChanged()
             .queueing(2)
