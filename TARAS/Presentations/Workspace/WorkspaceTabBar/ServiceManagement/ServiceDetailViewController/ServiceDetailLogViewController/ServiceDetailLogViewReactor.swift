@@ -12,15 +12,12 @@ class ServiceDetailLogViewReactor: Reactor {
     
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
     
-    private var serviceLogs = [ServiceLog]()
-    
     enum Action {
         case refresh
     }
     
     enum Mutation {
         case refreshServiceLogs([ServiceLog])
-        case addServiceLogs([ServiceLog])
         case isLoading(Bool?)
     }
     
@@ -46,16 +43,16 @@ class ServiceDetailLogViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .refresh:
+            let query = ServiceQuery(workspaceId: self.workspaceId, serviceId: self.serviceId)
             return .concat([
                 .just(.isLoading(true)),
-                //temp
-//                self.provider.networkManager.fetch(ServiceQuery(serviceId: self.serviceId))
-//                    .compactMap { $0.hiGlovisServiceByOrderId?.fragments.serviceFragment.timestamps }
-//                    .compactMap { $0.data(using: .utf8) }
-//                    .compactMap { try? JSONSerialization.jsonObject(with: $0, options: .allowFragments) }
-//                    .compactMap { $0 as? [String: Any] }
-//                    .compactMap { self.provider.serviceManager.convert(log: $0) }
-//                    .map { .refreshServiceLogs([$0]) },
+                
+                self.provider.networkManager.fetch(query)
+                    .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node }
+                    .compactMap { $0.services?.edges.first??.node?.fragments.serviceFragment }
+                    .map { Service($0).serviceLogSet.serviceLogs }
+                    .map { .refreshServiceLogs($0) },
+                
                 .just(.isLoading(false))
             ])
         }
@@ -64,10 +61,8 @@ class ServiceDetailLogViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case let .refreshServiceLogs(services):
-            state.serviceLogs = services.sorted { $0.date > $1.date }
-        case let .addServiceLogs(services):
-            state.serviceLogs.append(contentsOf: services.sorted { $0.date > $1.date })
+        case .refreshServiceLogs(let serviceLogs):
+            state.serviceLogs = serviceLogs
         case .isLoading(let loading):
             state.isLoading = loading
         }
