@@ -15,6 +15,13 @@ import RxSwift
 import RxDataSources
 
 class ServiceDetailViewController: BaseNavigationViewController, View {
+
+    enum Text {
+        static let authCodeTitle = "인증번호"
+        static let detailTitle = "요청사항"
+        static let completedTimeTitle = "완료일시"
+        static let workCompletion = "작업 완료"
+    }
     
     enum Metric {
         static let cellHeight: CGFloat = 64
@@ -50,6 +57,47 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
         target: nil,
         action: nil
     )
+    
+    private let headerContainer = UIView().then {
+        $0.backgroundColor = .grayF6F6F6
+        $0.isHidden = true
+    }
+    
+    private let headerContentView = UIStackView().then {
+        $0.axis = .vertical
+    }
+    
+    private var authNumberContainer: UIView!
+    private let authNumberLabel = UILabel().then {
+        $0.font = .medium[14]
+        $0.textColor = .black0F0F0F
+        $0.textAlignment = .right
+    }
+    
+    private var detailContainer: UIView!
+    private let detailLabel = UILabel().then {
+        $0.font = .medium[14]
+        $0.textColor = .black0F0F0F
+        $0.numberOfLines = 0
+    }
+    
+    private var completedTimeContainer: UIView!
+    private let completedTimeLabel = UILabel().then {
+        $0.font = .medium[14]
+        $0.textColor = .black0F0F0F
+        $0.textAlignment = .right
+    }
+    
+    private var errorContainer: UIView!
+    private let errorLabel = UILabel().then {
+        $0.font = .medium[14]
+        $0.textColor = .redEB4D39
+    }
+    
+    private let workCompletionButtonContainer = UIView().then {
+        $0.isHidden = true
+    }
+    private let workCompletionButton = SRPButton(Text.workCompletion)
     
     private let refreshControl = UIRefreshControl()
     
@@ -93,10 +141,107 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
     override func setupConstraints() {
         super.setupConstraints()
         
+        let header = UIStackView().then {
+            $0.axis = .vertical
+        }
+        self.view.addSubview(header)
+        header.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        header.addArrangedSubview(self.headerContainer)
+        
+        self.headerContainer.addSubview(self.headerContentView)
+        self.headerContentView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(8)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.bottom.equalToSuperview().offset(-8)
+        }
+        
+        func addContainer(
+            title: String?,
+            label: UILabel,
+            isLabelBottom: Bool = false
+        ) -> UIView {
+            
+            let container = UIView()
+            self.headerContentView.addArrangedSubview(container)
+            
+            let titleLabel = UILabel().then {
+                $0.font = .regular[14]
+                $0.textColor = .gray999999
+                $0.text = title
+                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+            }
+            container.addSubview(titleLabel)
+            titleLabel.snp.makeConstraints {
+                if !isLabelBottom {
+                    $0.bottom.equalToSuperview()
+                }
+                $0.top.leading.equalToSuperview()
+                $0.height.equalTo(48)
+            }
+            
+            container.addSubview(label)
+            if isLabelBottom {
+                label.snp.makeConstraints {
+                    $0.top.equalTo(titleLabel.snp.bottom)
+                    $0.leading.trailing.equalToSuperview()
+                    $0.bottom.equalToSuperview().offset(-4)
+                }
+            } else {
+                label.snp.makeConstraints {
+                    $0.centerY.equalTo(titleLabel)
+                    $0.leading.equalTo(titleLabel.snp.trailing)
+                    $0.trailing.equalToSuperview()
+                }
+            }
+            
+            container.isHidden = true
+            
+            return container
+        }
+        
+        self.authNumberContainer = addContainer(title: Text.authCodeTitle, label: self.authNumberLabel)
+        self.detailContainer = addContainer(title: Text.detailTitle, label: self.detailLabel, isLabelBottom: true)
+        self.completedTimeContainer = addContainer(title: Text.completedTimeTitle, label: self.completedTimeLabel)
+        self.errorContainer = addContainer(title: nil, label: self.errorLabel)
+        
+        self.headerContentView.addArrangedSubview(self.workCompletionButtonContainer)
+        self.workCompletionButtonContainer.snp.makeConstraints {
+            $0.height.equalTo(88)
+        }
+        self.workCompletionButtonContainer.addSubview(self.workCompletionButton)
+        self.workCompletionButton.snp.makeConstraints {
+            $0.centerY.leading.trailing.equalToSuperview()
+            $0.height.equalTo(64)
+        }
+        
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.top.equalTo(header.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        let navigationBottomLine = UIView().then {
+            $0.backgroundColor = .lightGrayF0F0F0
+        }
+        self.view.addSubview(navigationBottomLine)
+        navigationBottomLine.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
+        let headerBottomLine = UIView().then {
+            $0.backgroundColor = .lightGrayF0F0F0
+        }
+        self.headerContainer.addSubview(headerBottomLine)
+        headerBottomLine.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
     
