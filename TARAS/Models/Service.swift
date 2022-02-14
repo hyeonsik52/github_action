@@ -72,6 +72,12 @@ extension Service: FragmentModel {
             phonenumber: nil
         )
         
+        if let robot = fragment.robot?.fragments.robotFragment {
+            self.robot = .init(robot)
+        } else {
+            self.robot = nil
+        }
+        
         let currentServiceUnitIdx = fragment.currentServiceUnitStep ?? 0
         self.currentServiceUnitIdx = currentServiceUnitIdx
         var serviceUnits = fragment.serviceUnits?
@@ -83,7 +89,7 @@ extension Service: FragmentModel {
             } ?? []
         serviceUnits = serviceUnits.filter(\.stop.isValid).sorted { $0.orderWithinService < $1.orderWithinService }
         if let timestamps = fragment.timestamps?.toDictionaries {
-            self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator)
+            self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator, robot: self.robot)
         } else {
             self.serviceLogSet = .init(serviceLogs: [])
         }
@@ -101,12 +107,6 @@ extension Service: FragmentModel {
         self.requestedAt = fragment.createdAt
         self.startedAt = self.serviceLogSet.startedAt
         self.finishedAt = self.serviceLogSet.finishedAt
-        
-        if let robot = fragment.robot?.fragments.robotFragment {
-            self.robot = .init(robot)
-        } else {
-            self.robot = nil
-        }
         
         if let phase = fragment.phase {
             self.phase = .init(phase: phase, state: self.status, logset: self.serviceLogSet)
@@ -148,6 +148,12 @@ extension Service: FragmentModel {
             phonenumber: nil
         )
         
+        if let robot = fragment?.robot?.fragments.robotFragment {
+            self.robot = .init(robot)
+        } else {
+            self.robot = nil
+        }
+        
         let currentServiceUnitIdx = fragment?.currentServiceUnitStep ?? 0
         self.currentServiceUnitIdx = currentServiceUnitIdx
         var serviceUnits = fragment?.serviceUnits?
@@ -159,7 +165,7 @@ extension Service: FragmentModel {
             } ?? []
         serviceUnits = serviceUnits.filter(\.stop.isValid).sorted { $0.orderWithinService < $1.orderWithinService }
         if let timestamps = fragment?.timestamps?.toDictionaries {
-            self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator)
+            self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator, robot: self.robot)
         } else {
             self.serviceLogSet = .init(serviceLogs: [])
         }
@@ -177,12 +183,6 @@ extension Service: FragmentModel {
         self.requestedAt = fragment?.createdAt ?? Date()
         self.startedAt = self.serviceLogSet.startedAt
         self.finishedAt = self.serviceLogSet.finishedAt
-        
-        if let robot = fragment?.robot?.fragments.robotFragment {
-            self.robot = .init(robot)
-        } else {
-            self.robot = nil
-        }
         
         if let phase = fragment?.phase {
             self.phase = .init(phase: phase, state: self.status, logset: self.serviceLogSet)
