@@ -12,7 +12,9 @@ import ReactorKit
 class ServiceDetailViewReactor: Reactor {
     
     enum Text {
-        static let errorRequestFailed = "서비스를 취소하지 못했습니다."
+        static let errorRequestFailed = "요청에 실패했습니다."
+        static let errorServiceCanclationFailed = "서비스를 취소하지 못했습니다."
+        static let errorWorkCompletionFailed = "작업을 완료하지 못했습니다."
         static let errorNetworkConnection = "서버와의 통신이 원활하지 않습니다."
     }
     
@@ -22,6 +24,7 @@ class ServiceDetailViewReactor: Reactor {
     enum Action {
         case refreshService
         case cancelService
+        case completeServiceUnit
     }
     
     enum Mutation {
@@ -74,6 +77,7 @@ class ServiceDetailViewReactor: Reactor {
         case .refreshService:
             let query = ServiceQuery(workspaceId: self.workspaceId, serviceId: self.serviceId)
             return .concat([
+                .just(.updateErrorMessage(nil)),
                 .just(.updateIsLoading(true)),
                 
                 self.provider.networkManager.fetch(query)
@@ -87,10 +91,39 @@ class ServiceDetailViewReactor: Reactor {
         case .cancelService:
             let mutation = CancelServiceMutation(id: self.serviceId)
             return .concat([
+                .just(.updateErrorMessage(nil)),
                 .just(.updateIsProcessing(true)),
                 
                 self.provider.networkManager.perform(mutation)
                     .flatMapLatest { payload -> Observable<Mutation> in
+                        if payload.cancelService?.ok == true {
+                            return .just(.updateErrorMessage(nil))
+                        } else {
+                            return .just(.updateErrorMessage(Text.errorServiceCanclationFailed))
+                        }
+                    }.catch(self.catchClosure),
+                
+                .just(.updateIsProcessing(false))
+            ])
+        case .completeServiceUnit:
+            guard let service = self.currentState.service else {
+                return .empty()
+            }
+            let mutation = CompleteServiceUnitMutation(
+                serviceId: self.serviceId,
+                serviceStep: service.currentServiceUnitIdx
+            )
+            return .concat([
+                .just(.updateErrorMessage(nil)),
+                .just(.updateIsProcessing(true)),
+                
+                self.provider.networkManager.perform(mutation)
+                    .flatMapLatest { payload -> Observable<Mutation> in
+                        if payload.completeServiceUnit?.ok == true {
+                            return .just(.updateErrorMessage(nil))
+                        } else {
+                            return .just(.updateErrorMessage(Text.errorWorkCompletionFailed))
+                        }
                     }.catch(self.catchClosure),
                 
                 .just(.updateIsProcessing(false))

@@ -297,6 +297,11 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                 }
             }).disposed(by: self.disposeBag)
         
+        self.workCompletionButton.rx.tap
+            .map { Reactor.Action.completeServiceUnit }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
         //State
         let service = reactor.state.map(\.service).share()
         
@@ -374,5 +379,17 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                 guard self?.refreshControl.isRefreshing == true else { return }
                 self?.refreshControl.endRefreshing()
             }).disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.errorMessage)
+            .distinctUntilChanged()
+            .compactMap { $0 }
+            .bind(to: Toaster.rx.showToast(color: .redEB4D39))
+            .disposed(by: self.disposeBag)
+        
+        //네트워크 통신 중엔 비활성화
+        reactor.state.map { !($0.isProcessing == true) }
+        .distinctUntilChanged()
+        .bind(to: self.workCompletionButton.rx.isEnabled)
+        .disposed(by: self.disposeBag)
     }
 }
