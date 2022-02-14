@@ -11,14 +11,9 @@ import ReactorKit
 class ServiceLogCellReactor: Reactor {
     typealias Action = NoAction
     
-    var initialState: ServiceLog?
+    var initialState: ServiceLog
     
-    let provider : ManagerProviderType
-    let workspaceId: String
-    
-    init(model: ServiceLog, provider: ManagerProviderType, workspaceId: String) {
+    init(model: ServiceLog) {
         self.initialState = model
-        self.provider = provider
-        self.workspaceId = workspaceId
     }
 }
