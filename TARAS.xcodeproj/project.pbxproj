@@ -807,6 +807,9 @@
 		ED98973027BB5BA6000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98972D27BB5BA1000C9246 /* ServiceDetailStopViewController+Rx.swift */; };
 		ED98973127BB5BAA000C9246 /* ServiceDetailStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */; };
 		ED98973227BB5BAA000C9246 /* ServiceDetailStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */; };
+		ED98973927BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */; };
+		ED98973A27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */; };
+		ED98973B27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -1131,6 +1134,7 @@
 		ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericScalar.swift; sourceTree = "<group>"; };
 		ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailStopViewController.swift; sourceTree = "<group>"; };
 		ED98972D27BB5BA1000C9246 /* ServiceDetailStopViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceDetailStopViewController+Rx.swift"; sourceTree = "<group>"; };
+		ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceShortcutRegistrationViewReactor.swift; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -1925,6 +1929,14 @@
 			path = ServiceDetailStopViewController;
 			sourceTree = "<group>";
 		};
+		ED98973727BB7B03000C9246 /* ServiceShortcutRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */,
+			);
+			path = ServiceShortcutRegistration;
+			sourceTree = "<group>";
+		};
 		EDC118C926D3A24A0020AB09 /* FindAccount */ = {
 			isa = PBXGroup;
 			children = (
@@ -2083,6 +2095,7 @@
 				EDC1191326D3A39C0020AB09 /* ServiceBasicInfoViewController */,
 				EDC1192326D3A39C0020AB09 /* ServiceDetailLogViewController */,
 				ED98972A27BB43D3000C9246 /* ServiceDetailStopViewController */,
+				ED98973727BB7B03000C9246 /* ServiceShortcutRegistration */,
 			);
 			path = ServiceDetailViewController;
 			sourceTree = "<group>";
@@ -3014,6 +3027,7 @@
 				ED416DA827A16C640043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED416DA927A16C640043A7A4 /* ResetPasswordView.swift in Sources */,
 				ED416DAA27A16C640043A7A4 /* UIView+Search.swift in Sources */,
+				ED98973A27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */,
 				ED416DAC27A16C640043A7A4 /* FindAccountIdResultView.swift in Sources */,
 				ED416DAD27A16C640043A7A4 /* NotificationType.swift in Sources */,
 				ED416DAE27A16C640043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
@@ -3316,6 +3330,7 @@
 				ED416EEC27A170FC0043A7A4 /* ServiceLogSet.swift in Sources */,
 				ED416EED27A170FC0043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED416EEE27A170FC0043A7A4 /* ResetPasswordView.swift in Sources */,
+				ED98973B27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */,
 				ED416EEF27A170FC0043A7A4 /* UIView+Search.swift in Sources */,
 				ED416EF127A170FC0043A7A4 /* FindAccountIdResultView.swift in Sources */,
 				ED416EF227A170FC0043A7A4 /* NotificationType.swift in Sources */,
@@ -3618,6 +3633,7 @@
 				EDC11AFA26D3A39E0020AB09 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED7A0E752721539400AD6678 /* ResetPasswordView.swift in Sources */,
 				ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */,
+				ED98973927BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */,
 				EDC118DC26D3A24A0020AB09 /* FindAccountIdResultView.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
 				EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */,
