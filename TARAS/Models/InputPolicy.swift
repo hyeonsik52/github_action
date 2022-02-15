@@ -88,6 +88,10 @@ extension InputPolicy {
     /// 1~200자의 모든 문자
     static let requestMessage = InputPolicy(range: 1...200, format: "^.+$")
     
+    /// 간편 생성 설명
+    /// 1~100자의 모든 문자
+    static let serviceShortcutDescription = InputPolicy(range: 1...100, format: "^.+$")
+    
     /// 최소 1자 이상
     static let min1 = InputPolicy(range: 1...Int.max, format: "^.+$")
     

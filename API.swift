@@ -518,6 +518,65 @@ public struct CreateServiceWithServiceTemplateInput: GraphQLMapConvertible {
   }
 }
 
+public struct CreateServiceTemplateFromServiceInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - description
+  ///   - name
+  ///   - serviceId
+  ///   - workspaceId
+  ///   - userId
+  public init(description: Swift.Optional<String?> = nil, name: String, serviceId: GraphQLID, workspaceId: Swift.Optional<GraphQLID?> = nil, userId: Swift.Optional<GraphQLID?> = nil) {
+    graphQLMap = ["description": description, "name": name, "serviceId": serviceId, "workspaceId": workspaceId, "userId": userId]
+  }
+
+  public var description: Swift.Optional<String?> {
+    get {
+      return graphQLMap["description"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "description")
+    }
+  }
+
+  public var name: String {
+    get {
+      return graphQLMap["name"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var serviceId: GraphQLID {
+    get {
+      return graphQLMap["serviceId"] as! GraphQLID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "serviceId")
+    }
+  }
+
+  public var workspaceId: Swift.Optional<GraphQLID?> {
+    get {
+      return graphQLMap["workspaceId"] as? Swift.Optional<GraphQLID?> ?? Swift.Optional<GraphQLID?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "workspaceId")
+    }
+  }
+
+  public var userId: Swift.Optional<GraphQLID?> {
+    get {
+      return graphQLMap["userId"] as? Swift.Optional<GraphQLID?> ?? Swift.Optional<GraphQLID?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
+    }
+  }
+}
+
 public enum ServiceEventEnum: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
   case serviceCreated
@@ -2014,6 +2073,125 @@ public final class CancelServiceMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "ok")
+        }
+      }
+    }
+  }
+}
+
+public final class CreateServiceTemplateMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation createServiceTemplate($input: CreateServiceTemplateFromServiceInput!) {
+      createServiceTemplateFromService(input: $input) {
+        __typename
+        ...ServiceTemplateFragment
+      }
+    }
+    """
+
+  public let operationName: String = "createServiceTemplate"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ServiceTemplateFragment.fragmentDefinition)
+    return document
+  }
+
+  public var input: CreateServiceTemplateFromServiceInput
+
+  public init(input: CreateServiceTemplateFromServiceInput) {
+    self.input = input
+  }
+
+  public var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("createServiceTemplateFromService", arguments: ["input": GraphQLVariable("input")], type: .object(CreateServiceTemplateFromService.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createServiceTemplateFromService: CreateServiceTemplateFromService? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createServiceTemplateFromService": createServiceTemplateFromService.flatMap { (value: CreateServiceTemplateFromService) -> ResultMap in value.resultMap }])
+    }
+
+    /// CreateServiceTemplateFromService copies service to new service template
+    /// 
+    /// New service template created this way cannot have any arguments
+    public var createServiceTemplateFromService: CreateServiceTemplateFromService? {
+      get {
+        return (resultMap["createServiceTemplateFromService"] as? ResultMap).flatMap { CreateServiceTemplateFromService(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "createServiceTemplateFromService")
+      }
+    }
+
+    public struct CreateServiceTemplateFromService: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["ServiceTemplateNode"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(ServiceTemplateFragment.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, name: String, serviceType: String, description: String? = nil, arguments: GenericScalar? = nil, types: GenericScalar? = nil, isCompiled: Bool) {
+        self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id, "name": name, "serviceType": serviceType, "description": description, "arguments": arguments, "types": types, "isCompiled": isCompiled])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var serviceTemplateFragment: ServiceTemplateFragment {
+          get {
+            return ServiceTemplateFragment(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
         }
       }
     }

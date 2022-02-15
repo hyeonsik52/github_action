@@ -220,4 +220,12 @@ extension ServiceDetailViewReactor {
             serviceUnitId: serviceUnitId
         )
     }
+    
+    func reactorForShortcutRegistration() -> ServiceShortcutRegistrationViewReactor {
+        return .init(
+            provider: self.provider,
+            workspaceId: self.workspaceId,
+            serviceId: self.serviceId
+        )
+    }
 }
