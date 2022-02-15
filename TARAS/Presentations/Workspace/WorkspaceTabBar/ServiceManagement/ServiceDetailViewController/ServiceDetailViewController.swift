@@ -291,7 +291,12 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                 case .cancelService:
                     reactor.action.onNext(.cancelService)
                 case .addShortcut:
-                    print("shortcut")
+                    self?.navigationPush(
+                        type: ServiceShortcutRegistrationViewController.self,
+                        reactor: reactor.reactorForShortcutRegistration(),
+                        animated: true,
+                        bottomBarHidden: true
+                    )
                 }
             }).disposed(by: self.disposeBag)
         
