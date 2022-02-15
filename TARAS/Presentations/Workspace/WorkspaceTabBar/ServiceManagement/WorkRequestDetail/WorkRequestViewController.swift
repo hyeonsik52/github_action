@@ -229,7 +229,7 @@ class WorkRequestViewController: BaseNavigationViewController, View {
         
         self.detailLabel.text = serviceUnit.detail
         
-        let receivers = serviceUnit.receiver.displayName//.map { $0.displayName }.joined(separator: ", ")
+        let receivers = serviceUnit.recipients.map(\.displayName).joined(separator: ", ")
         self.workTargetView.bind(content: receivers, profileImageUrl: nil)
     }
 }

@@ -173,7 +173,7 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                 $0.font = .regular[14]
                 $0.textColor = .gray999999
                 $0.text = title
-                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+                $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
             }
             container.addSubview(titleLabel)
             titleLabel.snp.makeConstraints {
@@ -184,6 +184,7 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                 $0.height.equalTo(48)
             }
             
+            label.setContentHuggingPriority(.defaultLow-1, for: .horizontal)
             container.addSubview(label)
             if isLabelBottom {
                 label.snp.makeConstraints {
@@ -193,9 +194,8 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                 }
             } else {
                 label.snp.makeConstraints {
-                    $0.centerY.equalTo(titleLabel)
+                    $0.top.bottom.trailing.equalToSuperview()
                     $0.leading.equalTo(titleLabel.snp.trailing)
-                    $0.trailing.equalToSuperview()
                 }
             }
             
@@ -259,10 +259,8 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             .disposed(by: self.disposeBag)
         
         self.tableView.rx.modelSelected(ServiceDetailServiceUnitCellReactor.self)
-            .subscribe(onNext: { [weak self] reactor in
-                guard let self = self else { return }
-                //TODO: 목적지 상세정보 보기
-            }).disposed(by: self.disposeBag)
+            .flatMapLatest(ServiceDetailStopViewController.show)
+            .subscribe().disposed(by: self.disposeBag)
         
         self.moreButton.rx.tap
             .flatMapLatest { _ -> Observable<MoreMenu> in

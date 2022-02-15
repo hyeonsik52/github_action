@@ -17,8 +17,8 @@ struct ServiceUnit: Identifiable {
     ///단위서비스 작업 위치
     let stop: Stop
     
-    ///수신자(작업자)
-    let receiver: User
+    ///수신자(작업자)들
+    let recipients: [User]
     
     ///요청사항
     let detail: String?
@@ -45,7 +45,7 @@ extension ServiceUnit: FragmentModel {
         self.state = fragment.state
         
         self.stop = .init(option: fragment.stop?.fragments.stopFragment)
-        self.receiver = .init(option: fragment.receivers?.first??.fragments.userFragment)
+        self.recipients = fragment.receivers?.compactMap(\.?.fragments.userFragment).map(User.init) ?? []
         
         self.detail = fragment.message
 
@@ -64,7 +64,7 @@ extension ServiceUnit: FragmentModel {
         self.state = fragment?.state ?? Self.unknownName
         
         self.stop = .init(option: fragment?.stop?.fragments.stopFragment)
-        self.receiver = .init(option: fragment?.receivers?.first??.fragments.userFragment)
+        self.recipients = fragment?.receivers?.compactMap(\.?.fragments.userFragment).map(User.init) ?? []
         
         self.detail = fragment?.message
 
@@ -82,7 +82,7 @@ extension ServiceUnit {
     
     ///내 작업 여부
     func isMyWork(_ id: String?) -> Bool {
-        return (self.receiver.id == id)
+        return self.recipients.contains { $0.id == id }
     }
 }
 
@@ -92,7 +92,7 @@ extension ServiceUnit: Hashable {
         hasher.combine(self.id)
         hasher.combine(self.state)
         hasher.combine(self.stop)
-        hasher.combine(self.receiver)
+        hasher.combine(self.recipients)
         hasher.combine(self.detail)
         hasher.combine(self.orderWithinService)
         hasher.combine(self.robotArrivalTime)

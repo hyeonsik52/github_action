@@ -167,11 +167,11 @@ class ServiceDetailServiceUnitCell: UITableViewCell, View, ReusableView {
             } else {
                 switch robotArrivalState {
                 case .waiting, .departure:
-                    self.upperLineView.update(lineWidth: 3, lineColor: .blue0C68F8, isLineDashed: false)
-                    self.lowerLineView.update(lineWidth: 3, lineColor: .blue0C68F8, isLineDashed: false)
+                    self.upperLineView.update(lineWidth: 3, lineColor: .purple4A3C9F, isLineDashed: false)
+                    self.lowerLineView.update(lineWidth: 3, lineColor: .purple4A3C9F, isLineDashed: false)
                 case .arrival:
                     self.upperLineView.update(lineWidth: 2, lineColor: .grayB4B4B4, isLineDashed: false)
-                    self.lowerLineView.update(lineWidth: 3, lineColor: .blue0C68F8, isLineDashed: false)
+                    self.lowerLineView.update(lineWidth: 3, lineColor: .purple4A3C9F, isLineDashed: false)
                 case .passed:
                     self.upperLineView.update(lineWidth: 2, lineColor: .grayB4B4B4, isLineDashed: false)
                     self.lowerLineView.update(lineWidth: 2, lineColor: .grayB4B4B4, isLineDashed: false)
