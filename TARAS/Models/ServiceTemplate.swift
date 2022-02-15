@@ -30,7 +30,11 @@ extension ServiceTemplate: FragmentModel {
     init(_ fragment: ServiceTemplateFragment) {
         self.id = fragment.id
         self.name = fragment.name
-        self.type = .init(string: fragment.serviceType)
+        if fragment.isCompiled {
+            self.type = .shortcut
+        } else {
+            self.type = .general(.init(rawValue: fragment.serviceType))
+        }
         self.description = fragment.description
         self.arguments = fragment.arguments?.toDictionary ?? [:]
         self.types = fragment.types?.toDictionary ?? [:]
@@ -40,7 +44,11 @@ extension ServiceTemplate: FragmentModel {
     init(option fragment: ServiceTemplateFragment?) {
         self.id = fragment?.id ?? Self.unknownId
         self.name = fragment?.name ?? Self.unknownName
-        self.type = .general(nil)
+        if fragment?.isCompiled == true {
+            self.type = .shortcut
+        } else {
+            self.type = .general(.init(rawValue: fragment?.serviceType ?? ""))
+        }
         self.description = fragment?.description
         self.arguments = fragment?.arguments?.toDictionary ?? [:]
         self.types = fragment?.types?.toDictionary ?? [:]
