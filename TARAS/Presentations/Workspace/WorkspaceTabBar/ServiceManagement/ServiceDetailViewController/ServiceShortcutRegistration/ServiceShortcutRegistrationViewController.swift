@@ -171,8 +171,8 @@ class ServiceShortcutRegistrationViewController: BaseNavigationViewController, V
         self.backButton.rx.tap
             .flatMapLatest { [weak self] _ -> Observable<Int> in
                 guard let self = self else { return .just(0) }
-                guard self.textFieldView.textField.text?.isEmpty == true,
-                      self.detailTextView.text.isEmpty == true
+                guard self.textFieldView.textField.text?.count != 0 ||
+                      self.detailTextView.text.count != 0
                 else { return .just(1) }
                 return UIAlertController.present(
                     in: self,
