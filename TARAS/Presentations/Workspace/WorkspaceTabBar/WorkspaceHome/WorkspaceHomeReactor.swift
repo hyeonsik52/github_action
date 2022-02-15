@@ -15,6 +15,7 @@ class WorkspaceHomeReactor: Reactor {
     enum Text {
         static let errorRequestFailed = "요청에 실패했습니다."
         static let errorCreateServiceFailed = "서비스를 생성하지 못했습니다."
+        static let errorShortcutDeletionFailed = "간편 생성을 삭제하지 못했습니다."
         static let errorNetworkConnection = "서버와의 통신이 원활하지 않습니다."
     }
     
@@ -25,6 +26,7 @@ class WorkspaceHomeReactor: Reactor {
         case refreshInfo
         case loadTemplates
         case createServiceByShortcut(id: String)
+        case deleteShortcut(id: String)
     }
     
     enum Mutation {
@@ -110,6 +112,22 @@ class WorkspaceHomeReactor: Reactor {
                             return .updateError(nil)
                         } else {
                             return .updateError(Text.errorCreateServiceFailed)
+                        }
+                    }.catch(self.catchClosure),
+                
+                .just(.isProcessing(false))
+            ])
+        case .deleteShortcut(let templateId):
+            return .concat([
+                .just(.updateError(nil)),
+                .just(.isProcessing(true)),
+                
+                self.provider.networkManager.perform(DeleteServiceTemplateMutation(id: templateId))
+                    .map { payload -> Mutation in
+                        if payload.deleteServiceTemplate == true {
+                            return .updateError(nil)
+                        } else {
+                            return .updateError(Text.errorShortcutDeletionFailed)
                         }
                     }.catch(self.catchClosure),
                 

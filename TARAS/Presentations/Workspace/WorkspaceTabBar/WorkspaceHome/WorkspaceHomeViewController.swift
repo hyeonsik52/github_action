@@ -91,8 +91,7 @@ class WorkspaceHomeViewController: BaseViewController, View {
                     usingCancel: true
                 ).flatMapLatest { ($0.0 == 0 ? Observable.just(template): .empty()) }
                 .subscribe(onNext: { [weak self] template in
-                    //서비스 템플릿 삭제
-                    print("D", template.name)
+                    self?.reactor?.action.onNext(.deleteShortcut(id: template.id))
                 }).disposed(by: self.disposeBag)
             }
         }

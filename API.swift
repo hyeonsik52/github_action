@@ -2198,6 +2198,58 @@ public final class CreateServiceTemplateMutation: GraphQLMutation {
   }
 }
 
+public final class DeleteServiceTemplateMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation deleteServiceTemplate($id: ID!) {
+      deleteServiceTemplate(id: $id)
+    }
+    """
+
+  public let operationName: String = "deleteServiceTemplate"
+
+  public var id: GraphQLID
+
+  public init(id: GraphQLID) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("deleteServiceTemplate", arguments: ["id": GraphQLVariable("id")], type: .scalar(Bool.self)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteServiceTemplate: Bool? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteServiceTemplate": deleteServiceTemplate])
+    }
+
+    /// DeleteServiceTemplate deletes service template with given id
+    public var deleteServiceTemplate: Bool? {
+      get {
+        return resultMap["deleteServiceTemplate"] as? Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "deleteServiceTemplate")
+      }
+    }
+  }
+}
+
 public final class CheckSessionQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
