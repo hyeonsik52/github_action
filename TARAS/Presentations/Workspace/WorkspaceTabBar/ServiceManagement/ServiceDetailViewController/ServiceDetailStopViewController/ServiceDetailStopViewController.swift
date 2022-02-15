@@ -140,7 +140,7 @@ class ServiceDetailStopViewController: BaseViewController, View {
         
         self.view.addSubview(self.closeButton)
         self.closeButton.snp.makeConstraints {
-            $0.top.equalTo(contentView.snp.bottom).offset(20)
+            $0.top.equalTo(contentView.snp.bottom).offset(32)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.bottom.equalToSuperview().offset(-16)
             $0.height.equalTo(64)
@@ -151,7 +151,7 @@ class ServiceDetailStopViewController: BaseViewController, View {
         let serviceUnit = reactor.initialState.serviceUnit
         
         self.stopLabel.text = serviceUnit.stop.name
-        self.recipientLabel.text = serviceUnit.receiver.displayName
+        self.recipientLabel.text = serviceUnit.recipients.map(\.displayName).joined(separator: ", ")
         self.authNumberLabel.text = serviceUnit.authNumber
         self.detailLabel.text = serviceUnit.detail
     }
