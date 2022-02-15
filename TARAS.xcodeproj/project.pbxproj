@@ -801,6 +801,9 @@
 		ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2B27716C0E0074BFFA /* ServicePhase.swift */; };
 		ED7BCE2E27716C490074BFFA /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2D27716C490074BFFA /* Version.swift */; };
 		ED7BCE302771712C0074BFFA /* GenericScalar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */; };
+		ED98972C27BB441E000C9246 /* ServiceDetailStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */; };
+		ED98973127BB5BAA000C9246 /* ServiceDetailStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */; };
+		ED98973227BB5BAA000C9246 /* ServiceDetailStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -1123,6 +1126,7 @@
 		ED7BCE2B27716C0E0074BFFA /* ServicePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicePhase.swift; sourceTree = "<group>"; };
 		ED7BCE2D27716C490074BFFA /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericScalar.swift; sourceTree = "<group>"; };
+		ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailStopViewController.swift; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -1908,6 +1912,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		ED98972A27BB43D3000C9246 /* ServiceDetailStopViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED98972B27BB441E000C9246 /* ServiceDetailStopViewController.swift */,
+			);
+			path = ServiceDetailStopViewController;
+			sourceTree = "<group>";
+		};
 		EDC118C926D3A24A0020AB09 /* FindAccount */ = {
 			isa = PBXGroup;
 			children = (
@@ -2065,6 +2077,7 @@
 				EDC1191E26D3A39C0020AB09 /* View */,
 				EDC1191326D3A39C0020AB09 /* ServiceBasicInfoViewController */,
 				EDC1192326D3A39C0020AB09 /* ServiceDetailLogViewController */,
+				ED98972A27BB43D3000C9246 /* ServiceDetailStopViewController */,
 			);
 			path = ServiceDetailViewController;
 			sourceTree = "<group>";
@@ -2759,6 +2772,7 @@
 				ED416CB927A16C640043A7A4 /* LargeTitleView.swift in Sources */,
 				ED416CBA27A16C640043A7A4 /* Position.swift in Sources */,
 				ED416CBB27A16C640043A7A4 /* STFlow.swift in Sources */,
+				ED98973127BB5BAA000C9246 /* ServiceDetailStopViewController.swift in Sources */,
 				ED416CBC27A16C640043A7A4 /* UpdatePhoneNumberViewReactor.swift in Sources */,
 				ED416CBD27A16C640043A7A4 /* TRSTagListViewModel.swift in Sources */,
 				ED416CBE27A16C640043A7A4 /* WorkspaceInfoViewController.swift in Sources */,
@@ -3133,6 +3147,7 @@
 				ED416E4827A170FC0043A7A4 /* Account.swift in Sources */,
 				ED416E4927A170FC0043A7A4 /* WorkspaceHomeViewController.swift in Sources */,
 				ED416E4A27A170FC0043A7A4 /* ServiceCellReactor.swift in Sources */,
+				ED98972C27BB441E000C9246 /* ServiceDetailStopViewController.swift in Sources */,
 				ED416E4B27A170FC0043A7A4 /* UIAlertController+Rx.swift in Sources */,
 				ED416E4C27A170FC0043A7A4 /* SwiftEntryKit_View.swift in Sources */,
 				ED416E4D27A170FC0043A7A4 /* BaseNavigationController.swift in Sources */,
@@ -3359,6 +3374,7 @@
 				ED52732726C255FC0077CD9D /* LargeTitleView.swift in Sources */,
 				ED6B45F826B7DF7D00C2FA6D /* Position.swift in Sources */,
 				ED06C7792786893200F9D0A5 /* STFlow.swift in Sources */,
+				ED98973227BB5BAA000C9246 /* ServiceDetailStopViewController.swift in Sources */,
 				EDC11A8A26D3A39D0020AB09 /* UpdatePhoneNumberViewReactor.swift in Sources */,
 				EDFC63D1279EB2FA006613CA /* TRSTagListViewModel.swift in Sources */,
 				EDC11A7E26D3A39D0020AB09 /* WorkspaceInfoViewController.swift in Sources */,
