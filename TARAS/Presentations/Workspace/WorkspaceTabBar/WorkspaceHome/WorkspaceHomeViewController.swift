@@ -171,10 +171,9 @@ class WorkspaceHomeViewController: BaseViewController, View {
                     items: ["생성하기"],
                     usingCancel: true
                 ).flatMapLatest { ($0.0 == 0 ? Observable.just(template): .empty()) }
-            }.subscribe(onNext: { [weak self] template in
-                //서비스 템플릿 전달
-                print("S", template.name)
-            }).disposed(by: self.disposeBag)
+            }.map { Reactor.Action.createServiceByShortcut(id: $0.id) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
 
         modelSelected.filter(\.type.isGeneral)
             .subscribe(onNext: { [weak self] template in
@@ -204,8 +203,19 @@ class WorkspaceHomeViewController: BaseViewController, View {
             .filter { $0 == false }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoading in
+                guard self?.collectionView.refreshControl?.isRefreshing == true else { return }
                 self?.collectionView.refreshControl?.endRefreshing()
-            })
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.compactMap { $0.isProcessing }
+            .distinctUntilChanged()
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.errorMessage)
+            .distinctUntilChanged()
+            .compactMap { $0 }
+            .bind(to: Toaster.rx.showToast(color: .redEB4D39))
             .disposed(by: self.disposeBag)
     }
 }

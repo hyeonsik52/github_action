@@ -12,12 +12,19 @@ import RxSwift
 
 class WorkspaceHomeReactor: Reactor {
     
+    enum Text {
+        static let errorRequestFailed = "요청에 실패했습니다."
+        static let errorCreateServiceFailed = "서비스를 생성하지 못했습니다."
+        static let errorNetworkConnection = "서버와의 통신이 원활하지 않습니다."
+    }
+    
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
     let disposeBag = DisposeBag()
     
     enum Action {
         case refreshInfo
         case loadTemplates
+        case createServiceByShortcut(id: String)
     }
     
     enum Mutation {
@@ -25,6 +32,8 @@ class WorkspaceHomeReactor: Reactor {
         case loadedWorkspaceInfo(Workspace?)
         case loadTemplates([ServiceTemplate])
         case isLoading(Bool)
+        case isProcessing(Bool?)
+        case updateError(String?)
     }
     
     struct State {
@@ -32,16 +41,18 @@ class WorkspaceHomeReactor: Reactor {
         var worspace: Workspace?
         var templates: [ServiceTemplate]
         var isLoading: Bool
+        var isProcessing: Bool?
+        var errorMessage: String?
     }
     
-    var initialState: State {
-        return State(
-            myUserInfo: nil,
-            worspace: nil,
-            templates: [],
-            isLoading: false
-        )
-    }
+    var initialState: State = .init(
+        myUserInfo: nil,
+        worspace: nil,
+        templates: [],
+        isLoading: false,
+        isProcessing: nil,
+        errorMessage: nil
+    )
     
     let provider : ManagerProviderType
     let workspaceId: String
@@ -82,6 +93,42 @@ class WorkspaceHomeReactor: Reactor {
                 
                 .just(.isLoading(false))
             ])
+        case .createServiceByShortcut(let templateId):
+            let json = try! GenericScalar(jsonValue: ["arguments": [:]])
+            let input = CreateServiceWithServiceTemplateInput(
+                serviceTemplateId: templateId,
+                input: json
+            )
+            return .concat([
+                .just(.updateError(nil)),
+                .just(.isProcessing(true)),
+                
+                self.provider.networkManager.perform(CreateServiceMutation(input: input))
+                    .map { $0.createServiceWithServiceTemplate?.fragments.serviceFragment }
+                    .map { fragment -> Mutation in
+                        if fragment != nil {
+                            return .updateError(nil)
+                        } else {
+                            return .updateError(Text.errorCreateServiceFailed)
+                        }
+                    }.catch(self.catchClosure),
+                
+                .just(.isProcessing(false))
+            ])
+        }
+    }
+    
+    var catchClosure: ((Error) throws -> Observable<Mutation>) {
+        return { error in
+            guard let multipleError = error as? MultipleError,
+                  let errors = multipleError.graphQLErrors else {
+                return .just(.updateError(Text.errorNetworkConnection))
+            }
+            for error in errors {
+                guard let message = error.message, !message.isEmpty else { continue }
+                return .just(.updateError(message))
+            }
+            return .just(.updateError(Text.errorRequestFailed))
         }
     }
     
@@ -96,6 +143,10 @@ class WorkspaceHomeReactor: Reactor {
             state.templates = templates
         case .isLoading(let loading):
             state.isLoading = loading
+        case .isProcessing(let isProcessing):
+            state.isProcessing = isProcessing
+        case .updateError(let message):
+            state.errorMessage = message
         }
         return state
     }
