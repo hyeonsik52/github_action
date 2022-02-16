@@ -83,18 +83,3 @@ class NotificationManager: BaseManager, NotificationManagerType {
 
 final class AddOrUpdateServiceUnit: Notification<ServiceUnitCreationModel> {}
 final class UpdateService: Notification<Service> {}
-
-final class ToggleServiceUnit: Notification<ToggleServiceUnitType> {}
-struct ToggleServiceUnitType: Hashable {
-    var serviceUnit: ServiceUnit
-    var isOpened: Bool
-    
-    static func ==(lhs: ToggleServiceUnitType, rhs: ToggleServiceUnitType) -> Bool {
-        return (lhs.serviceUnit == rhs.serviceUnit && lhs.isOpened == rhs.isOpened)
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.serviceUnit)
-        hasher.combine(self.isOpened)
-    }
-}

@@ -25,6 +25,7 @@ class ServiceDetailViewReactor: Reactor {
         case refreshService
         case cancelService
         case completeServiceUnit
+        case updateService(Service)
     }
     
     enum Mutation {
@@ -54,22 +55,25 @@ class ServiceDetailViewReactor: Reactor {
     let workspaceId: String
     let serviceId: String
     
-    init(
-        provider: ManagerProviderType,
-        workspaceId: String,
-        serviceId: String
-    ) {
+    init(provider: ManagerProviderType, workspaceId: String, serviceId: String) {
         self.provider = provider
         self.workspaceId = workspaceId
         self.serviceId = serviceId
+        
+        self.subscription()
     }
     
-    private func bind() {
-        //temp
-//        self.provider.subscriptionManager.service(by: self.serviceId)
-//            .subscribe(onNext: { [weak self] result in
-//                self?.action.onNext(.refreshService)
-//            }).disposed(by: self.disposeBag)
+    private func subscription() {
+        
+        self.provider.subscriptionManager
+            .serviceBy(serviceId: self.serviceId)
+            .compactMap { try? $0.get() }
+            .compactMap(\.subscribeServiceByServiceId?.fragments.serviceFragment)
+            .map(Service.init)
+            .subscribe(onNext: { [weak self] service in
+                self?.action.onNext(.updateService(service))
+                self?.provider.notificationManager.post(UpdateService(service))
+            }).disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -88,6 +92,8 @@ class ServiceDetailViewReactor: Reactor {
                 
                 .just(.updateIsLoading(false))
             ])
+        case .updateService(let service):
+            return .just(.refreshService(service))
         case .cancelService:
             let mutation = CancelServiceMutation(id: self.serviceId)
             return .concat([

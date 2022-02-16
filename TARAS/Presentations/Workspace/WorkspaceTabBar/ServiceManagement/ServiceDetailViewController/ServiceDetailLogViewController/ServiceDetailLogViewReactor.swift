@@ -11,9 +11,11 @@ import ReactorKit
 class ServiceDetailLogViewReactor: Reactor {
     
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
+    let disposeBag = DisposeBag()
     
     enum Action {
         case refresh
+        case updateService(Service)
     }
     
     enum Mutation {
@@ -38,6 +40,17 @@ class ServiceDetailLogViewReactor: Reactor {
         self.provider = provider
         self.workspaceId = workspaceId
         self.serviceId = serviceId
+        
+        self.subscription()
+    }
+    
+    private func subscription() {
+        
+        self.provider.notificationManager
+            .observe(to: UpdateService.self)
+            .map(Action.updateService)
+            .bind(to: self.action)
+            .disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -55,6 +68,8 @@ class ServiceDetailLogViewReactor: Reactor {
                 
                 .just(.isLoading(false))
             ])
+        case .updateService(let service):
+            return .just(.refreshServiceLogs(service.serviceLogSet.serviceLogs))
         }
     }
     
