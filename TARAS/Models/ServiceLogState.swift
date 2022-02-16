@@ -13,6 +13,9 @@ enum ServiceLogState {
     case created(creator: String)
     /// 로봇 배정됨
     case robotAssigned(robot: String)
+    //tmp: 로봇 출발 로그는 처리하지 않음
+//    /// 로봇 출발
+//    case robotDeparted(destination: String)
     /// 정차지에 로봇 도착
     case robotArrived(serviceUnitIdx: Int, destination: String)
     /// 작업 완료
@@ -32,6 +35,9 @@ enum ServiceLogState {
             return "\(creator)님이 서비스를 요청하였습니다."
         case .robotAssigned(let robot):
             return "\(robot) 로봇이 배정되었습니다."
+            //tmp: 로봇 출발 로그는 처리하지 않음
+//        case .robotDeparted(let destination):
+//            return "로봇이 \(destination)(으)로 출발하였습니다."
         case .robotArrived(_, let destination):
             return "로봇이 \(destination)에 도착하였습니다."
         case .workCompleted(let destination):
@@ -58,6 +64,12 @@ enum ServiceLogState {
             let attributedString = NSMutableAttributedString(string: robot, attributes: nomalAttributes)
             attributedString.append(.init(string: " 로봇이 배정되었습니다."))
             return attributedString
+            //tmp: 로봇 출발 로그는 처리하지 않음
+//        case .robotDeparted(let destination):
+//            let attributedString = NSMutableAttributedString(string: "로봇이 ")
+//            attributedString.append(.init(string: destination, attributes: nomalAttributes))
+//            attributedString.append(.init(string: "(으)로 출발하였습니다."))
+//            return attributedString
         case .robotArrived(_, let destination):
             let attributedString = NSMutableAttributedString(string: "로봇이 ")
             attributedString.append(.init(string: destination, attributes: nomalAttributes))
