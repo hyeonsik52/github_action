@@ -30,6 +30,14 @@ extension ServiceLog {
             case "robot_assigned":
                 let robotName = robot?.name ?? "알 수 없는 로봇"
                 self.type = .robotAssigned(robot: robotName)
+                //tmp: 로봇 출발 로그는 처리하지 않음
+//            case "robot_departed":
+//                if let unitIndex = json["unit_index"] as? Int,
+//                   let destination = serviceUnits.first(where: { $0.orderWithinService == unitIndex })?.stop.name {
+//                    self.type = .robotDeparted(destination: destination)
+//                } else {
+//                    self.type = .robotDeparted(destination: "알 수 없는 위치")
+//                }
             case "robot_arrived":
                 if let unitIndex = json["unit_index"] as? Int,
                    let destination = serviceUnits.first(where: { $0.orderWithinService == unitIndex })?.stop.name {
