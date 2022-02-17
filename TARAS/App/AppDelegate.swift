@@ -332,31 +332,24 @@ extension AppDelegate: MessagingDelegate {
         Log.info("Firebase registration token: \(token) [with \(String(describing: tokenSet.apns))] (from: \(`func`))")
         
         // 앱 서버에 FCM token 을 업로드
-        if let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString {
-//            let input = UpdateFcmRegistrationIdInput(
-//                clientType: "ios",
-//                deviceUniqueKey: deviceUniqueKey,
-//                registrationId: token
-//            )
-//
-//            Log.info("\(input)")
-//
-//            self.provider.networkManager
-//                .perform(UpdateFcmTokenMutation(input: input))
-//                .map { $0.updateFcmRegistrationIdMutation }
-//                .subscribe(onNext: { [weak self] result in
-//                    if let payload = result.asUpdateFcmRegistrationIdPayload {
-//                        if payload.result.isTrue {
-//                            Log.complete("updated FCM token to server")
-//                        }
-//                    }else if let error = result.asUpdateFcmRegistrationIdError {
-//                        self?.registrationToken = prevTokenSet
-//                        Log.error("failed to update FCM token to server: \(error.errorCode)")
-//                    }
-//                }, onError: { [weak self] error in
-//                    self?.registrationToken = prevTokenSet
-//                    Log.error("failed to update FCM token to server: \(error.localizedDescription)")
-//                }).disposed(by: self.disposeBag)
+        if let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString,
+           let accessToken = USER_TB.getFirst?.accessToken,
+           accessToken.count > 0 {
+            
+            let mutation = RegisterFcmMutation(input: .init(
+                deviceUniqueKey: deviceUniqueKey,
+                clientType: "ios",
+                fcmToken: token
+            ))
+            
+            self.provider.networkManager.perform(mutation)
+                .subscribe(onNext: { result in
+                    if result.registerFcm == true {
+                        Log.complete("updated FCM token to server")
+                    } else {
+                        Log.complete("Failed FCM token updated to server")
+                    }
+                }).disposed(by: self.disposeBag)
         }else{
             self.registrationToken = prevTokenSet
             Log.error("failed to update FCM token to server: not found device unique id")
