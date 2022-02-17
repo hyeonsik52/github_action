@@ -166,36 +166,26 @@ extension SignInViewReactor {
     }
 
     func uploadFcmToken() -> Observable<Mutation> {
-//        guard let token = Messaging.messaging().fcmToken, let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString else {
-//            return .empty()
-//        }
-//
-//        let input = UpdateFcmRegistrationIdInput(
-//            clientType: "ios",
-//            deviceUniqueKey: deviceUniqueKey,
-//            registrationId: token
-//        )
-//
-//        Log.info("\(input)")
-//
-//
-//
-//        return self.provider.networkManager
-//            .perform(UpdateFcmTokenMutation(input: input))
-//            .map { $0.updateFcmRegistrationIdMutation }
-//            .flatMapLatest { result -> Observable<Mutation> in
-//                if let payload = result.asUpdateFcmRegistrationIdPayload {
-//                    if payload.result.isTrue {
-//                        Log.complete("updated FCM token to server")
-//                    }else{
-//                        Log.complete("Failed FCM token updated to server")
-//                    }
-//                }else if let error = result.asUpdateFcmRegistrationIdError {
-//                    Log.err("Failed to update FCM token to server: \(error.errorCode)")
-//                }
-//                return .empty()
-//            }
-//            .catchErrorJustReturn(.updateError(.common(.networkNotConnect)))
-        return .empty()
+        guard let token = Messaging.messaging().fcmToken,
+              let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString
+        else {
+            return .empty()
+        }
+        
+        let mutation = RegisterFcmMutation(input: .init(
+            deviceUniqueKey: deviceUniqueKey,
+            clientType: "ios",
+            fcmToken: token
+        ))
+        
+        return self.provider.networkManager.perform(mutation)
+            .flatMapLatest { payload -> Observable<Mutation> in
+                if payload.registerFcm == true {
+                    Log.complete("updated FCM token to server")
+                } else {
+                    Log.complete("Failed FCM token updated to server")
+                }
+                return .empty()
+            }
     }
 }

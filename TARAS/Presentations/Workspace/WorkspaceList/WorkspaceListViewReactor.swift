@@ -34,7 +34,6 @@ final class WorkspaceListViewReactor: Reactor {
     
     enum Action {
         case refresh
-        case updateFCMToken
         case judgeEntrance
     }
     
@@ -95,42 +94,8 @@ final class WorkspaceListViewReactor: Reactor {
                     
                     return .setSection(sections)
                 }
-            
-        case .updateFCMToken:
-//            Messaging.messaging().token { token, error in
-//                if let token = token,
-//                    let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString,
-//                    self.provider.userManager.userTB.accessToken.count > 0
-//                {
-//                    let input = UpdateFcmRegistrationIdInput(
-//                        clientType: "ios",
-//                        deviceUniqueKey: deviceUniqueKey,
-//                        registrationId: token
-//                    )
-//
-//                    Log.debug("\(input)")
-//
-//                    let _ = self.provider.networkManager
-//                        .perform(UpdateFcmTokenMutation(input: input))
-//                        .map { $0.updateFcmRegistrationIdMutation }
-//                        .flatMap { data -> Observable<Mutation> in
-//                            if let payload = data.asUpdateFcmRegistrationIdPayload {
-//                                if payload.result.isTrue {
-//                                    Log.complete("updated FCM token to server")
-//                                }
-//                            }
-//                            if let error = data.asUpdateFcmRegistrationIdError {
-//                                Log.err("failed to update FCM token to server: \(error.errorCode)")
-//                            }
-//                            return .empty()
-//                    }
-//                }
-//            }
-            return .empty()
-            
         case .judgeEntrance:
             return .just(.updateEntrance)
-            
         }
     }
 

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>887621066453-b802gn5dmlfsf8rhg17ptoao2f3tci94.apps.googleusercontent.com</string>
+	<string>162069569726-l4ij5bevq4ajfpd2o8bnen4lb5t9gtos.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.887621066453-b802gn5dmlfsf8rhg17ptoao2f3tci94</string>
+	<string>com.googleusercontent.apps.162069569726-l4ij5bevq4ajfpd2o8bnen4lb5t9gtos</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD4GVNcDjipzH8CtO4QZulBZRgvV7v2NSA</string>
+	<string>AIzaSyBgNHd7P35jYwMjPDETZZQ-gzavPM5A-go</string>
 	<key>GCM_SENDER_ID</key>
-	<string>887621066453</string>
+	<string>162069569726</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>kr.co.twinny.taras.qa</string>
 	<key>PROJECT_ID</key>
-	<string>servicerobotplatform2</string>
+	<string>tarasproj</string>
 	<key>STORAGE_BUCKET</key>
-	<string>servicerobotplatform2.appspot.com</string>
+	<string>tarasproj.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:887621066453:ios:df2631a5c1cbc0a0ef0c5c</string>
+	<string>1:162069569726:ios:ee148d58df7a0b75b47eef</string>
 </dict>
 </plist>

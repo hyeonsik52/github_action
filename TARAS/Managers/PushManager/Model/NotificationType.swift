@@ -9,15 +9,6 @@ import Foundation
 
 enum NotificationType: String, Equatable {
     
-    // 서비스 시작됨
-    case serviceStarted = "service_started"
-    
-    // 작업 대기중
-    case waitingWorkCompleted = "wating_work_to_completed"
-    
-    // 서비스 종료됨
-    case serviceEnded = "service_ended"
-    
-    // 기타
-    case `default`
+    // 서비스 수신
+    case received = "new_service"
 }
