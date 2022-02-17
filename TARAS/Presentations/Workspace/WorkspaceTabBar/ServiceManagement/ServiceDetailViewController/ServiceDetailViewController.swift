@@ -67,28 +67,36 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
         $0.axis = .vertical
     }
     
-    private var authNumberContainer: UIView!
+    private let authNumberContainer = UIView().then {
+        $0.isHidden = true
+    }
     private let authNumberLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .black0F0F0F
         $0.textAlignment = .right
     }
     
-    private var detailContainer: UIView!
+    private let detailContainer = UIView().then {
+        $0.isHidden = true
+    }
     private let detailLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .black0F0F0F
         $0.numberOfLines = 0
     }
     
-    private var completedTimeContainer: UIView!
+    private let completedTimeContainer = UIView().then {
+        $0.isHidden = true
+    }
     private let completedTimeLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .black0F0F0F
         $0.textAlignment = .right
     }
     
-    private var errorContainer: UIView!
+    private let errorContainer = UIView().then {
+        $0.isHidden = true
+    }
     private let errorLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .redEB4D39
@@ -161,12 +169,11 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
         }
         
         func addContainer(
+            _ container: UIView,
             title: String?,
             label: UILabel,
             isLabelBottom: Bool = false
-        ) -> UIView {
-            
-            let container = UIView()
+        ) {
             self.headerContentView.addArrangedSubview(container)
             
             let titleLabel = UILabel().then {
@@ -198,16 +205,12 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                     $0.leading.equalTo(titleLabel.snp.trailing)
                 }
             }
-            
-            container.isHidden = true
-            
-            return container
         }
         
-        self.authNumberContainer = addContainer(title: Text.authCodeTitle, label: self.authNumberLabel)
-        self.detailContainer = addContainer(title: Text.detailTitle, label: self.detailLabel, isLabelBottom: true)
-        self.completedTimeContainer = addContainer(title: Text.completedTimeTitle, label: self.completedTimeLabel)
-        self.errorContainer = addContainer(title: nil, label: self.errorLabel)
+        addContainer(self.authNumberContainer, title: Text.authCodeTitle, label: self.authNumberLabel)
+        addContainer(self.detailContainer, title: Text.detailTitle, label: self.detailLabel, isLabelBottom: true)
+        addContainer(self.completedTimeContainer, title: Text.completedTimeTitle, label: self.completedTimeLabel)
+        addContainer(self.errorContainer, title: nil, label: self.errorLabel)
         
         self.headerContentView.addArrangedSubview(self.workCompletionButtonContainer)
         self.workCompletionButtonContainer.snp.makeConstraints {
