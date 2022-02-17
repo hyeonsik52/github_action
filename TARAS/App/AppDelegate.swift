@@ -274,11 +274,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             Log.info("Message ID: \(messageID)")
         }
         
-        if let infoString = userInfo["gcm.notification.information"] as? String,
-            let infoData = infoString.data(using: .utf8),
-            let infoDic = try? JSONSerialization.jsonObject(with: infoData, options: []) as? [String: AnyHashable],
+        if let infoDic = userInfo as? [String: Any] {
             let info = NotificationInfo(infoDic)
-        {
             self.provider.pushManager.setupTabBarController(info)
         }
         

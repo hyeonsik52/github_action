@@ -34,12 +34,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let response = connectionOptions.notificationResponse {
             let userInfo = response.notification.request.content.userInfo
 
-            if let infoString = userInfo["gcm.notification.information"] as? String,
-                let infoData = infoString.data(using: .utf8),
-                let infoDic = try? JSONSerialization.jsonObject(with: infoData, options: []) as? [String: AnyHashable],
+            if let infoDic = userInfo as? [String: Any] {
                 let info = NotificationInfo(infoDic)
-            {
-                appDelegate.provider.pushManager.setupTabBarController(info)
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                appDelegate?.provider.pushManager.setupTabBarController(info)
             }
         }
     }
