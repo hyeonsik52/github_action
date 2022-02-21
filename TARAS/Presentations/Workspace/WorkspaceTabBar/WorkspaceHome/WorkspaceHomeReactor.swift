@@ -37,6 +37,7 @@ class WorkspaceHomeReactor: Reactor {
         case isProcessing(Bool?)
         case updateError(String?)
         case isShortcutDeleted(Bool?)
+        case isShortcutCreated(Bool?)
     }
     
     struct State {
@@ -47,6 +48,7 @@ class WorkspaceHomeReactor: Reactor {
         var isProcessing: Bool?
         var errorMessage: String?
         var isShortcutDeleted: Bool?
+        var isShortcutCreated: Bool?
     }
     
     var initialState: State = .init(
@@ -56,7 +58,8 @@ class WorkspaceHomeReactor: Reactor {
         isLoading: false,
         isProcessing: nil,
         errorMessage: nil,
-        isShortcutDeleted: nil
+        isShortcutDeleted: nil,
+        isShortcutCreated: nil
     )
     
     let provider : ManagerProviderType
@@ -105,6 +108,7 @@ class WorkspaceHomeReactor: Reactor {
                 input: json
             )
             return .concat([
+                .just(.isShortcutCreated(nil)),
                 .just(.updateError(nil)),
                 .just(.isProcessing(true)),
                 
@@ -112,7 +116,7 @@ class WorkspaceHomeReactor: Reactor {
                     .map { $0.createServiceWithServiceTemplate?.fragments.serviceFragment }
                     .map { fragment -> Mutation in
                         if fragment != nil {
-                            return .updateError(nil)
+                            return .isShortcutCreated(true)
                         } else {
                             return .updateError(Text.errorCreateServiceFailed)
                         }
@@ -171,6 +175,8 @@ class WorkspaceHomeReactor: Reactor {
             state.errorMessage = message
         case .isShortcutDeleted(let succeeded):
             state.isShortcutDeleted = succeeded
+        case .isShortcutCreated(let succeeded):
+            state.isShortcutCreated = succeeded
         }
         return state
     }

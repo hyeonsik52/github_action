@@ -77,7 +77,7 @@ class WorkspaceTabBarController: UITabBarController, View {
             serviceManagementNavigationController,
             receivedServicesNavigationController
         ]
-        
+        self.selectedIndex = 1
     }
     
     fileprivate func setupAppearance() {

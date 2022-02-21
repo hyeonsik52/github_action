@@ -223,5 +223,12 @@ class WorkspaceHomeViewController: BaseViewController, View {
             .map {_ in Reactor.Action.loadTemplates }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.isShortcutCreated)
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .subscribe(onNext: { [weak self] _ in
+                self?.tabBarController?.selectedIndex = 1
+            }).disposed(by: self.disposeBag)
     }
 }
