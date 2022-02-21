@@ -148,16 +148,16 @@ class InProgressServiceListViewController: BaseViewController, View {
         
         //Action
         //temp: 서버 느려짐 현상으로 임시 비활성
-        self.rx.viewDidLoad
-            .map { Reactor.Action.refresh }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        //temp: 서버 느려짐 현상으로 임시 비활성
-//        self.rx.viewWillAppear
-//            .map {_ in Reactor.Action.refresh }
+//        self.rx.viewDidLoad
+//            .map { Reactor.Action.refresh }
 //            .bind(to: reactor.action)
 //            .disposed(by: self.disposeBag)
+        
+        //temp: 서버 느려짐 현상으로 임시 비활성
+        self.rx.viewWillAppear
+            .map {_ in Reactor.Action.refresh }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
         
         self.collectionView.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
