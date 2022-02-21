@@ -33,6 +33,7 @@ class ServiceDetailViewReactor: Reactor {
         case updateIsLoading(Bool?)
         case updateIsProcessing(Bool?)
         case updateErrorMessage(String?)
+        case updateIsServiceUnitCompleted(Bool?)
     }
     
     struct State {
@@ -41,6 +42,7 @@ class ServiceDetailViewReactor: Reactor {
         var isLoading: Bool?
         var isProcessing: Bool?
         var errorMessage: String?
+        var isServiceUnitCompleted: Bool?
     }
     
     let initialState: State = .init(
@@ -48,7 +50,8 @@ class ServiceDetailViewReactor: Reactor {
         serviceUnitReactors: [],
         isLoading: nil,
         isProcessing: nil,
-        errorMessage: nil
+        errorMessage: nil,
+        isServiceUnitCompleted: nil
     )
     
     let provider : ManagerProviderType
@@ -87,13 +90,23 @@ class ServiceDetailViewReactor: Reactor {
                 self.provider.networkManager.fetch(query)
                     .compactMap { $0.signedUser?.joinedWorkspaces?.edges.first??.node }
                     .compactMap { $0.services?.edges.first??.node?.fragments.serviceFragment }
-                    .map { .refreshService(.init($0)) }
-                    .catch(self.catchClosure),
+                    .flatMapLatest { fragment -> Observable<Mutation> in
+                        let service = Service(fragment)
+                        var observables = [Observable<Mutation>.just(.refreshService(service))]
+                        if service.status == .moving {
+                            observables.append(.just(.updateIsServiceUnitCompleted(nil)))
+                        }
+                        return .concat(observables)
+                    }.catch(self.catchClosure),
                 
                 .just(.updateIsLoading(false))
             ])
         case .updateService(let service):
-            return .just(.refreshService(service))
+            var observables = [Observable<Mutation>.just(.refreshService(service))]
+            if service.status == .moving {
+                observables.append(.just(.updateIsServiceUnitCompleted(nil)))
+            }
+            return .concat(observables)
         case .cancelService:
             let mutation = CancelServiceMutation(id: self.serviceId)
             return .concat([
@@ -126,7 +139,7 @@ class ServiceDetailViewReactor: Reactor {
                 self.provider.networkManager.perform(mutation)
                     .flatMapLatest { payload -> Observable<Mutation> in
                         if payload.completeServiceUnit?.ok == true {
-                            return .just(.updateErrorMessage(nil))
+                            return .just(.updateIsServiceUnitCompleted(true))
                         } else {
                             return .just(.updateErrorMessage(Text.errorWorkCompletionFailed))
                         }
@@ -163,6 +176,8 @@ class ServiceDetailViewReactor: Reactor {
             state.isProcessing = isProcessing
         case .updateErrorMessage(let message):
             state.errorMessage = message
+        case .updateIsServiceUnitCompleted(let succeeded):
+            state.isServiceUnitCompleted = succeeded
         }
         return state
     }

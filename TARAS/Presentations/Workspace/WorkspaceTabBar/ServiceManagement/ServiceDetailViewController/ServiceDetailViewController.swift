@@ -397,7 +397,7 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             .disposed(by: self.disposeBag)
         
         //네트워크 통신 중엔 비활성화
-        reactor.state.map { !($0.isProcessing == true) }
+        reactor.state.map { !($0.isProcessing == true) && !($0.isServiceUnitCompleted == true) }
         .distinctUntilChanged()
         .bind(to: self.workCompletionButton.rx.isEnabled)
         .disposed(by: self.disposeBag)
