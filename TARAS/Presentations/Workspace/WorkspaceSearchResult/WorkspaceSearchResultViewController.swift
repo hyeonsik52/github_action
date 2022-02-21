@@ -19,7 +19,9 @@ class WorkspaceSearchResultViewController: BaseNavigationViewController, Reactor
         static let WSSRVC_1 = "워크스페이스 가입"
     }
 
-    let resultView = WorkspaceSearchResultView()
+    let resultView = WorkspaceSearchResultView().then {
+        $0.isHidden = true
+    }
 
 
     // MARK: - Life cycles
@@ -76,6 +78,7 @@ class WorkspaceSearchResultViewController: BaseNavigationViewController, Reactor
         reactor.state.compactMap { $0.workspace }
             .subscribe(onNext: { [weak self] workspace in
                 self?.resultView.setupView(with: workspace)
+                self?.resultView.isHidden = false
             }).disposed(by: self.disposeBag)
         
         reactor.state.map(\.result)
@@ -92,6 +95,12 @@ class WorkspaceSearchResultViewController: BaseNavigationViewController, Reactor
             }
             .map {_ in Reactor.Action.refresh }
             .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.errorMessage)
+            .distinctUntilChanged()
+            .filterNil()
+            .bind(to: Toaster.rx.showToast(color: .redEB4D39))
             .disposed(by: self.disposeBag)
     }
 }

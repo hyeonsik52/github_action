@@ -83,24 +83,43 @@ final class WorkspaceSearchResultViewReactor: Reactor {
             ])
             
         case .request:
-            guard let worksapceId = self.currentState.workspace?.id else { return .empty() }
-            let currentStatus = self.currentState.workspace?.myMemberState ?? .notMember
+            guard let worksapce = self.currentState.workspace else { return .empty() }
+            let currentStatus = worksapce.myMemberState
             guard currentStatus != .member else { return .empty() }
+            
             let call: Observable<Mutation> = {
                 switch currentStatus {
                 case .notMember:
                     return self.provider.networkManager
-                        .perform(RequestJoinWorkspaceMutation(id: worksapceId))
-                        .compactMap(\.requestToJoinWorkspace)
-                        .map { .setResult($0) }
-                        .catch { error in
+                        .fetch(WorkspaceByCodeQuery(code: self.workspaceCode))
+                        .compactMap(\.workspaces?.edges.first)
+                        .compactMap(\.?.node?.fragments.onlyWorkspaceFragment)
+                        .flatMapLatest { fragment -> Observable<Mutation> in
+                            let isEmailRequired = (fragment.isRequiredUserEmailToJoin == true)
+                            let isPhonenumberRequired = (fragment.isRequiredUserPhoneNumberToJoin == true)
+                            if isEmailRequired || isPhonenumberRequired {
+                                let requireAttributes = [
+                                    (isEmailRequired ? "이메일": nil),
+                                    (isPhonenumberRequired ? "전화번호": nil)
+                                ].compactMap { $0 }
+                                .joined(separator: ", ")
+                                let message = "해당 워크스페이스는 \(requireAttributes) 인증이 필수입니다. 인증 후 다시 시도해 주세요."
+                                return .concat([
+                                    .just(.setError(nil)),
+                                    .just(.setError(message))
+                                ])
+                            }
+                            return self.provider.networkManager
+                                .perform(RequestJoinWorkspaceMutation(id: worksapce.id))
+                                .compactMap(\.requestToJoinWorkspace)
+                                .map { .setResult($0) }
+                        }.catch { error in
                             let message = TRSError.common(.networkNotConnect).description
                             return .just(.setError(message))
-                            //TODO: 이메일, 전화번호, 이메일+전화번호 필수 여부에 따라 오류 표출
                         }
                 case .requestingToJoin:
                     return self.provider.networkManager
-                        .perform(CancelJoinWorkspaceMutation(id: worksapceId))
+                        .perform(CancelJoinWorkspaceMutation(id: worksapce.id))
                         .compactMap(\.cancelToJoinWorkspace)
                         .map { .setResult($0) }
                 default:
@@ -121,14 +140,15 @@ final class WorkspaceSearchResultViewReactor: Reactor {
         switch mutation {
         case let .setWorkspace(workspace):
             state.workspace = workspace
-            state.result = nil
             
         case let .setLoading(isLoading):
             state.isLoading = isLoading
             
         case let .setResult(result):
             state.result = result
-            state.errorMessage = (result == true ? nil: "")
+            if result == true {
+                state.errorMessage = nil
+            }
             
         case let .setError(message):
             state.errorMessage = message
