@@ -5,6 +5,7 @@ fragment UserFragment on UserNode {
     displayName
     email
     phoneNumber
+#	role
 }
 
 fragment MemberFragment on MemberNode {

@@ -269,8 +269,12 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
             .flatMapLatest { _ -> Observable<MoreMenu> in
                 //서비스 정보 보기, 서비스 로그 보기,( 서비스 중단하기,) 간편 생성 등록하기
                 var items: [MoreMenu] = [.serviceInfo, .serviceLog]
-                if let phase = reactor.currentState.service?.phase,
-                   phase == .waiting || phase == .delivering {
+                //서비스가 대기 또는 배달 상태이면서, 내가 관리자 또는 생성자일 때 서비스 중단 가능
+                if let service = reactor.currentState.service,
+                   service.phase == .waiting || service.phase == .delivering,
+                   service.creator.role == .administrator || service.creator.role == .manager ||
+                    (service.creator.role == .member && reactor.provider.userManager.account().ID == service.creator.id)
+                {
                     items.append(.cancelService)
                 }
                 items.append(.addShortcut)
