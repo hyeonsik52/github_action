@@ -291,6 +291,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
                 let entryName = ServiceCreationRepeatCountViewController.ViewID
                 SwiftEntryKit.dismiss(.specific(entryName: entryName))
                 self?.navigationPop(animated: true, bottomBarHidden: false)
+                self?.tabBarController?.selectedIndex = 1
             }).disposed(by: self.disposeBag)
         
         reactor.state.map(\.errorMessage)

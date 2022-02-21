@@ -21,6 +21,8 @@ struct User: Identifiable {
     let email: String?
     ///유저 전화번호
     let phonenumber: String?
+    
+    let role: UserRole? = nil
 }
 
 extension User: FragmentModel {
@@ -34,6 +36,8 @@ extension User: FragmentModel {
         
         self.email = fragment.email
         self.phonenumber = fragment.phoneNumber
+        
+//        self.role = fragment.role
     }
     
     init?(member fragment: MemberFragment) {
@@ -46,6 +50,8 @@ extension User: FragmentModel {
         
         self.email = nil
         self.phonenumber = nil
+        
+//        self.role = fragment.role
     }
     
     init(option fragment: UserFragment?) {
@@ -57,6 +63,8 @@ extension User: FragmentModel {
 
         self.email = fragment?.email
         self.phonenumber = fragment?.phoneNumber
+        
+//        self.role = fragment?.role
     }
 }
 

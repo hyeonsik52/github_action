@@ -36,6 +36,8 @@ class WorkspaceHomeReactor: Reactor {
         case isLoading(Bool)
         case isProcessing(Bool?)
         case updateError(String?)
+        case isShortcutDeleted(Bool?)
+        case isShortcutCreated(Bool?)
     }
     
     struct State {
@@ -45,6 +47,8 @@ class WorkspaceHomeReactor: Reactor {
         var isLoading: Bool
         var isProcessing: Bool?
         var errorMessage: String?
+        var isShortcutDeleted: Bool?
+        var isShortcutCreated: Bool?
     }
     
     var initialState: State = .init(
@@ -53,7 +57,9 @@ class WorkspaceHomeReactor: Reactor {
         templates: [],
         isLoading: false,
         isProcessing: nil,
-        errorMessage: nil
+        errorMessage: nil,
+        isShortcutDeleted: nil,
+        isShortcutCreated: nil
     )
     
     let provider : ManagerProviderType
@@ -102,6 +108,7 @@ class WorkspaceHomeReactor: Reactor {
                 input: json
             )
             return .concat([
+                .just(.isShortcutCreated(nil)),
                 .just(.updateError(nil)),
                 .just(.isProcessing(true)),
                 
@@ -109,7 +116,7 @@ class WorkspaceHomeReactor: Reactor {
                     .map { $0.createServiceWithServiceTemplate?.fragments.serviceFragment }
                     .map { fragment -> Mutation in
                         if fragment != nil {
-                            return .updateError(nil)
+                            return .isShortcutCreated(true)
                         } else {
                             return .updateError(Text.errorCreateServiceFailed)
                         }
@@ -119,13 +126,14 @@ class WorkspaceHomeReactor: Reactor {
             ])
         case .deleteShortcut(let templateId):
             return .concat([
+                .just(.isShortcutDeleted(nil)),
                 .just(.updateError(nil)),
                 .just(.isProcessing(true)),
                 
                 self.provider.networkManager.perform(DeleteServiceTemplateMutation(id: templateId))
                     .map { payload -> Mutation in
                         if payload.deleteServiceTemplate == true {
-                            return .updateError(nil)
+                            return .isShortcutDeleted(true)
                         } else {
                             return .updateError(Text.errorShortcutDeletionFailed)
                         }
@@ -165,6 +173,10 @@ class WorkspaceHomeReactor: Reactor {
             state.isProcessing = isProcessing
         case .updateError(let message):
             state.errorMessage = message
+        case .isShortcutDeleted(let succeeded):
+            state.isShortcutDeleted = succeeded
+        case .isShortcutCreated(let succeeded):
+            state.isShortcutCreated = succeeded
         }
         return state
     }

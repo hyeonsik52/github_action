@@ -100,11 +100,15 @@ extension AppDelegate {
                 let message = errorUserInfo[NSLocalizedDescriptionKey] as? String
                 if let title = title {
                     let actionTitle = (errorUserInfo[NSLocalizedRecoverySuggestionErrorKey] as? String) ?? "확인"
+                    let exitTitle = "앱 종료"
                     return UIAlertController.show(
                         .alert,
                         title: title,
                         message: message,
-                        items: [actionTitle],
+                        items: [
+                            UIAlertController.AlertAction(title: exitTitle, style: .destructive),
+                            UIAlertController.AlertAction(title: actionTitle, style: .default)
+                        ],
                         usingCancel: false
                     ).map(\.0)
                 } else {
@@ -112,7 +116,9 @@ extension AppDelegate {
                     return .just(-1)
                 }
             }.subscribe(onNext: { index in
-                if index >= 0 {
+                if index == 0 {
+                    exit(0)
+                } else {
                     //앱 설치 페이지로 이동
                 }
             }).disposed(by: self.disposeBag)

@@ -17,7 +17,7 @@ class WorkspaceMoreViewController: BaseNavigationViewController, ReactorKit.View
     enum Text {
         static let Title = "정보"
         static let QuitTitle = "워크스페이스 탈퇴"
-        static let QuitContent = "해당 워크스페이스에서 탈퇴하시겠습니까?"
+        static let QuitContent = "\n해당 워크스페이스에서 탈퇴하시겠습니까?"
         static let Cancel = "취소"
         static let Quit = "탈퇴"
         static let QuitComplate = "워크스페이스에서 탈퇴하였습니다."

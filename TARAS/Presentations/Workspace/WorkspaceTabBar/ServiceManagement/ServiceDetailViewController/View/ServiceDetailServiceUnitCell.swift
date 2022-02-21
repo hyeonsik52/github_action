@@ -35,7 +35,7 @@ class ServiceDetailServiceUnitCell: UITableViewCell, View, ReusableView {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 4
         $0.layer.borderColor = UIColor.orange.cgColor
-        $0.layer.borderWidth = 2
+        $0.layer.borderWidth = 1
         $0.textAlignment = .center
         $0.backgroundColor = .orange.withAlphaComponent(0.1)
         $0.font = .bold[14]
@@ -128,7 +128,7 @@ class ServiceDetailServiceUnitCell: UITableViewCell, View, ReusableView {
             $0.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().offset(-16)
             $0.width.equalTo(40)
-            $0.height.equalTo(20)
+            $0.height.equalTo(24)
         }
         
         self.contentView.addSubview(self.separator)

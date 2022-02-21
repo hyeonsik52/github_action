@@ -199,10 +199,10 @@ extension Service {
     var canceledDescription: String? {
         switch self.status {
         case .canceled:
-            let defaultMessage = "관리자에 의해 서비스가 중단되었습니다."
+            let defaultMessage = "관리자가 서비스를 취소하였습니다."
             return self.serviceLogSet.canceledMessage ?? defaultMessage
         case .failed:
-            let defaultMessage = "오류로 인해 서비스가 중단되었습니다."
+            let defaultMessage = "알 수 없는 오류로 서비스가 취소되었습니다."
             return self.serviceLogSet.failedMessage ?? defaultMessage
         case .returning:
             if self.serviceLogSet.isServiceCanceled {
