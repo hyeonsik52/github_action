@@ -36,6 +36,7 @@ class WorkspaceHomeReactor: Reactor {
         case isLoading(Bool)
         case isProcessing(Bool?)
         case updateError(String?)
+        case isShortcutDeleted(Bool?)
     }
     
     struct State {
@@ -45,6 +46,7 @@ class WorkspaceHomeReactor: Reactor {
         var isLoading: Bool
         var isProcessing: Bool?
         var errorMessage: String?
+        var isShortcutDeleted: Bool?
     }
     
     var initialState: State = .init(
@@ -53,7 +55,8 @@ class WorkspaceHomeReactor: Reactor {
         templates: [],
         isLoading: false,
         isProcessing: nil,
-        errorMessage: nil
+        errorMessage: nil,
+        isShortcutDeleted: nil
     )
     
     let provider : ManagerProviderType
@@ -119,13 +122,14 @@ class WorkspaceHomeReactor: Reactor {
             ])
         case .deleteShortcut(let templateId):
             return .concat([
+                .just(.isShortcutDeleted(nil)),
                 .just(.updateError(nil)),
                 .just(.isProcessing(true)),
                 
                 self.provider.networkManager.perform(DeleteServiceTemplateMutation(id: templateId))
                     .map { payload -> Mutation in
                         if payload.deleteServiceTemplate == true {
-                            return .updateError(nil)
+                            return .isShortcutDeleted(true)
                         } else {
                             return .updateError(Text.errorShortcutDeletionFailed)
                         }
@@ -165,6 +169,8 @@ class WorkspaceHomeReactor: Reactor {
             state.isProcessing = isProcessing
         case .updateError(let message):
             state.errorMessage = message
+        case .isShortcutDeleted(let succeeded):
+            state.isShortcutDeleted = succeeded
         }
         return state
     }

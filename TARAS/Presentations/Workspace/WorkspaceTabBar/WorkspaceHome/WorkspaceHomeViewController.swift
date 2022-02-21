@@ -216,5 +216,12 @@ class WorkspaceHomeViewController: BaseViewController, View {
             .compactMap { $0 }
             .bind(to: Toaster.rx.showToast(color: .redEB4D39))
             .disposed(by: self.disposeBag)
+        
+        reactor.state.map(\.isShortcutDeleted)
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .map {_ in Reactor.Action.loadTemplates }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
     }
 }
