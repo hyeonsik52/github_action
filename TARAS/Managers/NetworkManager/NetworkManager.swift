@@ -32,7 +32,7 @@ protocol NetworkManagerType: AnyObject {
 
 class NetworkManager: BaseManager, NetworkManagerType {
     
-    private static let endpointURL = "\(Info.serverEndpoint)/graphql/"
+    private static let endpointURL = "\(Info.serverEndpoint)/v1/graphql"
     
     /// A web socket transport to use for subscriptions
     private(set) var webSocketTransport: WebSocketTransport!
