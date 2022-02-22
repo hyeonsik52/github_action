@@ -67,9 +67,12 @@ class WorkspaceMoreViewController: BaseNavigationViewController, ReactorKit.View
 
         self.settingButton.rx.throttleTap
             .subscribe(onNext: { [weak self] in
-                let viewController = DefaultMyInfoViewController()
-                viewController.reactor = reactor.reactorForSetting()
-                self?.trsNavigationController?.pushViewController(viewController, animated: true, hideBottom: true)
+                self?.navigationPush(
+                    type: DefaultMyInfoViewController.self,
+                    reactor: reactor.reactorForSetting(),
+                    animated: true,
+                    bottomBarHidden: true
+                )
             }).disposed(by: self.disposeBag)
 
         // State

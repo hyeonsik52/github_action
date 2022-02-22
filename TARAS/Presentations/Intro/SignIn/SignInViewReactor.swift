@@ -138,14 +138,6 @@ class SignInViewReactor: Reactor {
     func reactorForForgotAccount() -> SignInViewReactor {
         return SignInViewReactor(provider: self.provider)
     }
-
-    func reactorForFindAccountId() -> FindAccountEmailViewReactor {
-        return FindAccountEmailViewReactor(provider: self.provider, type: .id)
-    }
-
-    func reactorForFindPassword() -> FindAccountIdViewReactor {
-        return FindAccountIdViewReactor(provider: self.provider)
-    }
 }
 
 extension SignInViewReactor {

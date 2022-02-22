@@ -114,7 +114,7 @@ class SignUpNameViewController: BaseNavigationViewController, ReactorKit.View {
                     //워크스페이스 목록
                     let viewController = WorkspaceListViewController()
                     viewController.reactor = reactor.reactorForWorkspaceList()
-                    let navigationController = BaseNavigationController(rootViewController: viewController)
+                    let navigationController = UINavigationController(rootViewController: viewController)
                     
                     if result.1 == true {
                         //인증으로 연결 시 설정 페이지도 푸시

@@ -61,43 +61,6 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
             .map { Reactor.Action.signIn(id: $0, password: $1) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
-        
-        
-//        self.signInView.findAccountButton.rx.tap
-//            .flatMapLatest {
-//                UIAlertController.show(
-//                    .actionSheet,
-//                    title: "아이디 찾기",
-//                    items: [
-//                        "전화번호로 아이디 찾기",
-//                        "이메일로 아이디 찾기"
-//                    ]
-//                )
-//            }.subscribe(onNext: { [weak self] selected, _ in
-//                if selected == 0 {
-//                    //아이디-전화번호
-//                } else {
-//                    //아이디-이메일
-//                }
-//            }).disposed(by: self.disposeBag)
-//
-//        self.signInView.resetPasswordButton.rx.tap
-//            .flatMapLatest {
-//                UIAlertController.show(
-//                    .actionSheet,
-//                    title: "비밀번호 재설정",
-//                    items: [
-//                        "전화번호로 비밀번호 재설정",
-//                        "이메일로 비밀번호 재설정"
-//                    ]
-//                )
-//            }.subscribe(onNext: { [weak self] selected, _ in
-//                if selected == 0 {
-//                    //비밀번호-전화번호
-//                } else {
-//                    //비밀번호-이메일
-//                }
-//            }).disposed(by: self.disposeBag)
 
         // 회원가입
         signInView.signUpButton.rx.tap
@@ -124,7 +87,7 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
                 guard let self = self else { return }
                 let viewController = WorkspaceListViewController()
                 viewController.reactor = reactor
-                let navigationController = BaseNavigationController(rootViewController: viewController)
+                let navigationController = UINavigationController(rootViewController: viewController)
                 self.view.window?.rootViewController = navigationController
             }).disposed(by: self.disposeBag)
 

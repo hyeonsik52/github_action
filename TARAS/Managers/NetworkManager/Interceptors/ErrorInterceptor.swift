@@ -74,7 +74,7 @@ class ErrorInterceptor: BaseErrorInterceptor {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 //            let viewController = SignInViewController()
 //            viewController.reactor = SignInViewReactor(provider: appDelegate.provider)
-//            let navigationController = BaseNavigationController(rootViewController: viewController)
+//            let navigationController = UINavigationController(rootViewController: viewController)
 //            window.rootViewController = navigationController
         }
         alert.addAction(action)

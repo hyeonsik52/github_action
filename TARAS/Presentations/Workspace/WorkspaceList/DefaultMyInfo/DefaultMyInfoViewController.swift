@@ -162,21 +162,6 @@ class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
         
-        //인증 관련 기능 작업 전 까지 임시로 주석처리
-//        self.emailCellView.didSelect
-//            .subscribe(onNext: { [weak self] in
-//                let viewController = UpdateUserInfoViewController()
-//                viewController.reactor = reactor.reactorForUpdateUserInfo(.email)
-//                self?.navigationController?.pushViewController(viewController, animated: true)
-//            }).disposed(by: self.disposeBag)
-//
-//        self.phoneNumberCellView.didSelect
-//            .subscribe(onNext: { [weak self] in
-//                let viewController = UpdateUserInfoViewController()
-//                viewController.reactor = reactor.reactorForUpdateUserInfo(.phoneNumber)
-//                self?.navigationController?.pushViewController(viewController, animated: true)
-//            }).disposed(by: self.disposeBag)
-        
         self.signOutButton.rx.throttleTap
             .subscribe(onNext: { [weak self] in
                 self?.logout(reactor)
@@ -223,7 +208,7 @@ class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View
                 let viewController = SignInViewController()
                 viewController.reactor = SignInViewReactor(provider: appDelegate.provider)
                 viewController.modalTransitionStyle = .crossDissolve
-                let navigationViewController = BaseNavigationController(rootViewController: viewController)
+                let navigationViewController = UINavigationController(rootViewController: viewController)
                 window.rootViewController = navigationViewController
                 self?.navigationController?.viewControllers = []
             }).disposed(by: self.disposeBag)

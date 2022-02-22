@@ -12,7 +12,7 @@ import Then
 import ReactorKit
 import RxSwift
 
-final class WorkspaceListCell: BaseTableViewCell, ReactorKit.View {
+final class WorkspaceListCell: UITableViewCell, ReusableView, ReactorKit.View {
     
     let titleLabel = UILabel().then {
         $0.textColor = .black0F0F0F
@@ -38,23 +38,18 @@ final class WorkspaceListCell: BaseTableViewCell, ReactorKit.View {
     
     let disclosureImageView = UIImageView(image: UIImage(named: "enterRight"))
     
+    var disposeBag = DisposeBag()
     
     // MARK: - Init
     
-    override func initial() {
-        super.initial()
-        
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupConstraints()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        self.titleLabel.text = nil
-        self.memberCountLabel.text = nil
-        self.createdAtLabel.text = nil
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: Binding
 
@@ -70,6 +65,8 @@ final class WorkspaceListCell: BaseTableViewCell, ReactorKit.View {
     // MARK: - Constraints
     
     private func setupConstraints() {
+        
+        self.selectionStyle = .none
         
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {

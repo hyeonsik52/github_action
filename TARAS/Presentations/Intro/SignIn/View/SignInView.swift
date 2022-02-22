@@ -48,12 +48,13 @@ class SignInView: UIView {
         $0.isEnabled = false
     }
     
-    /// '계정찾기' 버튼
-    let findAccountButton = GostButton(Text.finedAccount)
-    let resetPasswordButton = GostButton(Text.resetPassword)
-    
     /// '회원가입' 버튼
-    let signUpButton = GostButton(Text.signUp)
+    let signUpButton = UIButton().then {
+        $0.titleLabel?.font = .regular[12]
+        $0.setTitleColor(.black0F0F0F, for: .normal)
+        $0.setTitle(Text.signUp, for: .normal)
+        $0.setBackgroundImage(.init(), for: .normal)
+    }
     
     
     // MARK: - Init

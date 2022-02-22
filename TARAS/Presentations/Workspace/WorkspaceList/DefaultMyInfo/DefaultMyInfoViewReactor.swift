@@ -206,10 +206,6 @@ class DefaultMyInfoViewReactor: Reactor {
 
 extension DefaultMyInfoViewReactor {
     
-    func reactorForResetPassword() -> ResetPasswordViewReactor {
-        return ResetPasswordViewReactor(provider: self.provider)
-    }
-    
     func reactorForUpdateUserInfo(_ inputType: AccountInputType) -> UpdateUserInfoViewReactor? {
         guard let account = self.currentState.account else { return nil }
         let prevValue: String? = {

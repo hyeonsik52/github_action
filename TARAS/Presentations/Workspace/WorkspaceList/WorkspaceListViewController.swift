@@ -176,3 +176,18 @@ class WorkspaceListViewController: BaseViewController, ReactorKit.View {
             }).disposed(by: self.disposeBag)
     }
 }
+
+extension WorkspaceListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+}

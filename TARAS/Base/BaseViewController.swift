@@ -15,10 +15,6 @@ class BaseViewController: UIViewController {
     
     var disposeBag = DisposeBag()
     
-    var trsNavigationController: BaseNavigationController? {
-        return self.navigationController as? BaseNavigationController
-    }
-    
     let activityIndicatorView = UIActivityIndicatorView(style: Constants.indicatorStyle)
     private(set) var activityIndicatorPosition: Position = .init()
     

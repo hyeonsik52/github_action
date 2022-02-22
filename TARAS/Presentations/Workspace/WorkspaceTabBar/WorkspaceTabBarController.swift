@@ -42,7 +42,7 @@ class WorkspaceTabBarController: UITabBarController, View {
         let workspaceHomeViewController = WorkspaceHomeViewController()
         workspaceHomeViewController.reactor = reactor.reactorForWorkspaceHome()
         
-        let workspaceHomeNavigationController = BaseNavigationController(rootViewController: workspaceHomeViewController)
+        let workspaceHomeNavigationController = UINavigationController(rootViewController: workspaceHomeViewController)
         workspaceHomeNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab1,
             image: UIImage(named: "tabCreateOff"),
@@ -54,7 +54,7 @@ class WorkspaceTabBarController: UITabBarController, View {
         let serviceManagementViewController = InProgressServiceListViewController()
         serviceManagementViewController.reactor = reactor.reactorForMyServices()
         
-        let serviceManagementNavigationController = BaseNavigationController(rootViewController: serviceManagementViewController)
+        let serviceManagementNavigationController = UINavigationController(rootViewController: serviceManagementViewController)
         serviceManagementNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab2,
             image: UIImage(named: "tabMyserviceOff"),
@@ -65,7 +65,7 @@ class WorkspaceTabBarController: UITabBarController, View {
         let workspaceMoreViewController = WorkspaceMoreViewController()
         workspaceMoreViewController.reactor = reactor.reactorForMore()
         
-        let receivedServicesNavigationController = BaseNavigationController(rootViewController: workspaceMoreViewController)
+        let receivedServicesNavigationController = UINavigationController(rootViewController: workspaceMoreViewController)
         receivedServicesNavigationController.tabBarItem = UITabBarItem(
             title: Text.tab3,
             image: UIImage(named: "tab-more-off"),

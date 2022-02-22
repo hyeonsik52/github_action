@@ -233,15 +233,6 @@ extension ServiceDetailViewReactor {
         )
     }
     
-    func reactorForWorkRequest(with serviceUnitId: String) -> WorkRequestViewReactor {
-        return .init(
-            provider: self.provider,
-            workspaceId: self.workspaceId,
-            serviceId: self.serviceId,
-            serviceUnitId: serviceUnitId
-        )
-    }
-    
     func reactorForShortcutRegistration() -> ServiceShortcutRegistrationViewReactor {
         return .init(
             provider: self.provider,

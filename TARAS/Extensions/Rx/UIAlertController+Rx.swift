@@ -125,7 +125,3 @@ extension UIAlertController {
         }
     }
 }
-
-protocol Describable {
-    var description: String { get }
-}

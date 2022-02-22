@@ -52,7 +52,7 @@ class LaunchScreenViewController: BaseViewController, ReactorKit.View {
                 guard let self = self else { return }
                 let viewController = WorkspaceListViewController()
                 viewController.reactor = reactor
-                let navigationController = BaseNavigationController(rootViewController: viewController)
+                let navigationController = UINavigationController(rootViewController: viewController)
                 self.view.window?.rootViewController = navigationController
             }).disposed(by: self.disposeBag)
 
@@ -65,7 +65,7 @@ class LaunchScreenViewController: BaseViewController, ReactorKit.View {
                 guard let self = self else { return }
                 let viewController = SignInViewController()
                 viewController.reactor = reactor
-                let navigationController = BaseNavigationController(rootViewController: viewController)
+                let navigationController = UINavigationController(rootViewController: viewController)
                 navigationController.modalTransitionStyle = .crossDissolve
                 self.view.window?.rootViewController = navigationController
             }).disposed(by: self.disposeBag)
