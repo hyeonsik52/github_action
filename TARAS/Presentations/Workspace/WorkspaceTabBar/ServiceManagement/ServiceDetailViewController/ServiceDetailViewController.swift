@@ -272,8 +272,8 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
                 //서비스가 대기 또는 배달 상태이면서, 내가 관리자 또는 생성자일 때 서비스 중단 가능
                 if let service = reactor.currentState.service,
                    service.phase == .waiting || service.phase == .delivering,
-                   service.creator.role == .administrator || service.creator.role == .manager ||
-                    (service.creator.role == .member && reactor.provider.userManager.account().ID == service.creator.id)
+                   (reactor.provider.userManager.account().id == service.creator.username) ||
+                    service.creator.role == .administrator || service.creator.role == .manager
                 {
                     items.append(.cancelService)
                 }
