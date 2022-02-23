@@ -59,14 +59,12 @@ extension Service: FragmentModel {
         
         self.serviceNumber = fragment.serviceNumber ?? "-"
         
-        var creatorName = "알 수 없는 유저"
-        if let creatorInfo = fragment.creator?.toDictionary,
-           let name = creatorInfo["name"] as? String {
-            creatorName = name
-        }
+        let creatorInfo = fragment.creator?.toDictionary
+        let username = (creatorInfo?["id"] as? String) ?? User.unknownName
+        let creatorName = (creatorInfo?["name"] as? String) ?? "알 수 없는 유저"
         self.creator = .init(
             id: User.unknownId,
-            username: User.unknownName,
+            username: username,
             displayName: creatorName,
             email: nil,
             phonenumber: nil
@@ -135,14 +133,12 @@ extension Service: FragmentModel {
         
         self.serviceNumber = fragment?.serviceNumber ?? "-"
         
-        var creatorName = "알 수 없는 유저"
-        if let creatorInfo = fragment?.creator?.toDictionary,
-           let name = creatorInfo["name"] as? String {
-            creatorName = name
-        }
+        let creatorInfo = fragment?.creator?.toDictionary
+        let username = (creatorInfo?["id"] as? String) ?? User.unknownName
+        let creatorName = (creatorInfo?["name"] as? String) ?? "알 수 없는 유저"
         self.creator = .init(
             id: User.unknownId,
-            username: User.unknownName,
+            username: username,
             displayName: creatorName,
             email: nil,
             phonenumber: nil

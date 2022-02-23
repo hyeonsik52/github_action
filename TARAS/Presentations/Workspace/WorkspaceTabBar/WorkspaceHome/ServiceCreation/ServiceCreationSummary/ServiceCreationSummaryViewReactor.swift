@@ -33,7 +33,8 @@ class ServiceCreationSummaryViewReactor: Reactor {
     
     enum Action {
         case updateStop(Stop)
-        case updateStopState(ServiceUnitCreationModel.StopState)
+        case updateIsWorkWaiting(Bool)
+        case updateIsLoadingStop(Bool)
         case updateDetail(String?)
         case updateReceivers([User])
         case confirm
@@ -46,6 +47,8 @@ class ServiceCreationSummaryViewReactor: Reactor {
     
     struct State {
         var serviceUnit: ServiceUnit
+        var isWorkWaiting: Bool?
+        var isLoadingStop: Bool?
         var isConfirmed: Bool?
     }
     
@@ -73,6 +76,8 @@ class ServiceCreationSummaryViewReactor: Reactor {
         
         self.initialState = .init(
             serviceUnit: serviceUnit,
+            isWorkWaiting: nil,
+            isLoadingStop: nil,
             isConfirmed: nil
         )
     }
@@ -86,8 +91,10 @@ class ServiceCreationSummaryViewReactor: Reactor {
                 guard let process = self?.templateProcess else { return }
                 $0.updateStopState(with: process)
             }))
-        case .updateStopState(let state):
-            return .just(.updateServiceUnit({ $0.stopState = state }))
+        case .updateIsWorkWaiting(let flag):
+            return .just(.updateServiceUnit({ $0.isWorkWaiting = flag }))
+        case .updateIsLoadingStop(let flag):
+            return .just(.updateServiceUnit({ $0.isLoadingStop = flag }))
         case .updateDetail(let detail):
             let isEmpty = detail?.isEmpty ?? true
             return .just(.updateServiceUnit({ $0.detail = (isEmpty ? nil: detail) }))
