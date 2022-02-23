@@ -160,24 +160,7 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         }
         
         addSectionView(
-            title: ServiceUnitCreationModel.StopState.waitableTitle,
-            container: self.workWaitingSwitchContainer
-        ) { container, titleView, sectionView in
-            
-            sectionView.snp.makeConstraints {
-                $0.bottom.equalToSuperview()
-            }
-            
-            sectionView.addSubview(self.workWaitingSwitch)
-            self.workWaitingSwitch.snp.makeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
-                $0.trailing.equalToSuperview().offset(-16)
-            }
-        }
-        
-        addSectionView(
-            title: ServiceUnitCreationModel.StopState.loadableTitle,
+            title: "상/하차",
             container: self.loadingTypeSwitchContainer
         ) { container, titleView, sectionView in
             
@@ -195,6 +178,23 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             self.loadingTypeSwitch.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.leading.equalTo(self.loadingTypeSwitchStateLabel.snp.trailing).offset(8)
+                $0.trailing.equalToSuperview().offset(-16)
+            }
+        }
+        
+        addSectionView(
+            title: "작업대기",
+            container: self.workWaitingSwitchContainer
+        ) { container, titleView, sectionView in
+            
+            sectionView.snp.makeConstraints {
+                $0.bottom.equalToSuperview()
+            }
+            
+            sectionView.addSubview(self.workWaitingSwitch)
+            self.workWaitingSwitch.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.leading.greaterThanOrEqualTo(titleView.snp.trailing)
                 $0.trailing.equalToSuperview().offset(-16)
             }
         }
@@ -316,15 +316,11 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         let title = "정차지 \(reactor.mode.text)"
         self.title = title
         self.confirmButton.setTitle(title, for: .normal)
-        self.detailTextView.text = reactor.initialState.serviceUnit.detail
         
-        if let stopState = reactor.initialState.serviceUnit.stopState {
-            if stopState.isWaitable {
-                self.workWaitingSwitch.isOn = stopState.isWaitValue ?? false
-            } else if stopState.isLoadable {
-                self.loadingTypeSwitch.isOn = stopState.isLoadingValue ?? false
-            }
-        }
+        let serivceUnit = reactor.initialState.serviceUnit
+        self.detailTextView.text = serivceUnit.detail
+        self.workWaitingSwitch.isOn = serivceUnit.isWorkWaiting ?? false
+        self.loadingTypeSwitch.isOn = serivceUnit.isLoadingStop ?? false
         
         //Action
         self.confirmButton.rx.tap
@@ -342,15 +338,13 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         
         self.workWaitingSwitch.rx.isOn
             .skip(until: self.rx.viewDidAppear)
-            .map { .isWait($0) }
-            .map(Reactor.Action.updateStopState)
+            .map(Reactor.Action.updateIsWorkWaiting)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         self.loadingTypeSwitch.rx.isOn
             .skip(until: self.rx.viewDidAppear)
-            .map { .isLoading($0) }
-            .map(Reactor.Action.updateStopState)
+            .map(Reactor.Action.updateIsLoadingStop)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -380,11 +374,6 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.loadingTypeSwitch.rx.isOn
-            .map { $0 ? "상차": "하차" }
-            .bind(to: self.loadingTypeSwitchStateLabel.rx.text)
-            .disposed(by: self.disposeBag)
-        
         //State
         let serviceUnit = reactor.state.map(\.serviceUnit).share()
         
@@ -392,13 +381,28 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
             .bind(to: self.stopLabel.rx.text)
             .disposed(by: self.disposeBag)
         
-        serviceUnit.map { !($0.stopState?.isWaitable == true) }
+        serviceUnit.map { $0.isWorkWaiting == nil }
         .bind(to: self.workWaitingSwitchContainer.rx.isHidden)
         .disposed(by: self.disposeBag)
         
-        serviceUnit.map { !($0.stopState?.isLoadable == true) }
+        serviceUnit.map { $0.isLoadingStop == nil }
         .bind(to: self.loadingTypeSwitchContainer.rx.isHidden)
         .disposed(by: self.disposeBag)
+        
+        serviceUnit.compactMap(\.isLoadingStop)
+            .distinctUntilChanged()
+            .bind(to: self.loadingTypeSwitch.rx.isOn)
+            .disposed(by: self.disposeBag)
+        
+        serviceUnit.compactMap(\.isLoadingStop)
+            .map { $0 ? "상차": "하차" }
+            .bind(to: self.loadingTypeSwitchStateLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        serviceUnit.compactMap(\.isWorkWaiting)
+            .distinctUntilChanged()
+            .bind(to: self.workWaitingSwitch.rx.isOn)
+            .disposed(by: self.disposeBag)
         
         serviceUnit.map(\.detail)
             .bind(to: self.detailTextView.rx.text)
@@ -422,16 +426,6 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         receivers.map(\.isEmpty)
             .bind(to: self.receiverListContainer.rx.isHidden)
             .disposed(by: self.disposeBag)
-        
-//        serviceUnit.map(\.attachmentId)
-//            .observe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-//            .map { fileName -> UIImage? in
-//                guard let fileName = fileName,
-//                      let imageData = Caching.instance.load(fileName: fileName) else { return nil }
-//                return UIImage(data: imageData)
-//            }.observe(on: MainScheduler.instance)
-//            .bind(to: self.imageView.rx.image)
-//            .disposed(by: self.disposeBag)
         
         reactor.state.map(\.isConfirmed)
             .distinctUntilChanged()

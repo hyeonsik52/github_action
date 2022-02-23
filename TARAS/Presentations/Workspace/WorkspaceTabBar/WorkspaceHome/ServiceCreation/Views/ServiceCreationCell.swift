@@ -173,7 +173,7 @@ class ServiceCreationCell: UICollectionViewCell, View {
         let serviceUnit = reactor.initialState
         
         self.titleLabel.text = reactor.destinationType.description
-        self.subTitleLabel.text = (serviceUnit.stopState?.isWaitValue == true ? "작업대기": nil)
+        self.subTitleLabel.text = (serviceUnit.isWorkWaiting == true ? "작업대기": nil)
         
         self.destinationLabel.text = serviceUnit.stop.name
         
