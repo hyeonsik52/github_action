@@ -58,7 +58,7 @@ class ServiceShortcutRegistrationViewReactor: Reactor {
                 name: name,
                 serviceId: self.serviceId,
                 workspaceId: self.workspaceId,
-                userId: nil
+                userId: self.provider.userManager.userTB.ID
             )
             return .concat([
                 .just(.updateErrorMessage(nil)),
