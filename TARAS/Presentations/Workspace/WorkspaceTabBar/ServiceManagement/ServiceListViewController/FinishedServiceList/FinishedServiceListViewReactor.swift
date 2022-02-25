@@ -227,7 +227,7 @@ extension FinishedServiceListViewReactor {
     }
     
     private func filter(_ item: Service) -> Bool {
-        return (item.phase == .completed || item.phase == .canceled)
+        return (item.type != .recall && item.type != .unknown) && (item.phase == .completed || item.phase == .canceled)
     }
     
     private func sectioned(_ services: [Service]) -> [ServiceModelSection] {

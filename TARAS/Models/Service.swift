@@ -48,7 +48,7 @@ extension Service: FragmentModel {
         if let type = fragment.type {
             self.type = .init(rawValue: type) ?? .general
         } else {
-            self.type = .general
+            self.type = .unknown
         }
         
         if let state = fragment.state {
@@ -85,7 +85,7 @@ extension Service: FragmentModel {
                 serviceUnit.isInProgress = (serviceUnit.orderWithinService == currentServiceUnitIdx)
                 return serviceUnit
             } ?? []
-        serviceUnits = serviceUnits.filter(\.stop.isValid).sorted { $0.orderWithinService < $1.orderWithinService }
+        serviceUnits = serviceUnits.filter { $0.orderWithinService > 0 }.sorted { $0.orderWithinService < $1.orderWithinService }
         if let timestamps = fragment.timestamps?.toDictionaries {
             self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator, robot: self.robot)
         } else {
@@ -122,7 +122,7 @@ extension Service: FragmentModel {
         if let type = fragment?.type {
             self.type = .init(rawValue: type) ?? .general
         } else {
-            self.type = .general
+            self.type = .unknown
         }
         
         if let state = fragment?.state {
@@ -159,7 +159,7 @@ extension Service: FragmentModel {
                 serviceUnit.isInProgress = (serviceUnit.orderWithinService == currentServiceUnitIdx)
                 return serviceUnit
             } ?? []
-        serviceUnits = serviceUnits.filter(\.stop.isValid).sorted { $0.orderWithinService < $1.orderWithinService }
+        serviceUnits = serviceUnits.filter { $0.orderWithinService > 0 }.sorted { $0.orderWithinService < $1.orderWithinService }
         if let timestamps = fragment?.timestamps?.toDictionaries {
             self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator, robot: self.robot)
         } else {

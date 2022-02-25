@@ -221,7 +221,7 @@ extension InProgressServiceListViewReactor {
     }
     
     private func filter(_ item: Service) -> Bool {
-        return (item.phase == .waiting || item.phase == .delivering)
+        return (item.type != .recall && item.type != .unknown) && (item.phase == .waiting || item.phase == .delivering)
     }
 }
 
