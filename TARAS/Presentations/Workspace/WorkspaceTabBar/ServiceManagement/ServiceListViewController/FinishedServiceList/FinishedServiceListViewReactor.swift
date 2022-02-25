@@ -114,6 +114,7 @@ class FinishedServiceListViewReactor: Reactor {
         var state = state
         switch mutation {
         case .refresh(let services):
+            let services = services.filter(self.filter)
             state.services = services
             state.serviceSections = self.sectioned(services)
         case .more(let services):

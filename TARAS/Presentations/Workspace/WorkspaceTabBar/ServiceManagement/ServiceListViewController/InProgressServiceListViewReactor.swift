@@ -113,7 +113,7 @@ class InProgressServiceListViewReactor: Reactor {
         var state = state
         switch mutation {
         case .refresh(let services):
-            state.services = services
+            state.services = services.filter(self.filter)
         case .more(let services):
             state.services.append(contentsOf: services)
             state.services.sort(by: self.sort)
