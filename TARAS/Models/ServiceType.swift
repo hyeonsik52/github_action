@@ -14,4 +14,8 @@ enum ServiceType: String {
     case general = "GENERAL"
     ///로딩-언로딩 (L)
     case loading = "LOADING"
+    ///복귀
+    case recall = "RECALL"
+    ///알수없는
+    case unknown
 }

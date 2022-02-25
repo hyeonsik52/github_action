@@ -114,6 +114,7 @@ class FinishedServiceListViewReactor: Reactor {
         var state = state
         switch mutation {
         case .refresh(let services):
+            let services = services.filter(self.filter)
             state.services = services
             state.serviceSections = self.sectioned(services)
         case .more(let services):
@@ -227,7 +228,7 @@ extension FinishedServiceListViewReactor {
     }
     
     private func filter(_ item: Service) -> Bool {
-        return (item.phase == .completed || item.phase == .canceled)
+        return (item.type != .recall && item.type != .unknown) && (item.phase == .completed || item.phase == .canceled)
     }
     
     private func sectioned(_ services: [Service]) -> [ServiceModelSection] {
