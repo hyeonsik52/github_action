@@ -16,6 +16,10 @@ typealias InterceptorsBlock = (_ store: ApolloStore, _ client: URLSessionClient,
 
 struct MultipleError: Error {
     let graphQLErrors: [GraphQLError]?
+    
+    var isUnauthorized: Bool {
+        return self.graphQLErrors?.contains { $0.message?.lowercased().contains("unauthorized") ?? false } ?? false
+    }
 }
 
 protocol NetworkManagerType: AnyObject {

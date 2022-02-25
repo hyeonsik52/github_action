@@ -61,9 +61,11 @@ extension LaunchScreenViewReactor {
             
             // 2. 최소 버전 확인
             return self.provider.networkManager.clientUpdateCheck()
-                .map { $0 == nil }
-                .flatMapLatest { isValid -> Observable<Mutation> in
-                    if isValid {
+                .flatMapLatest { error -> Observable<Mutation> in
+                    if let error = error {
+                        Log.error("Invalid client version.", error.localizedDescription)
+                        return .just(.updateAutoSignInEnablility(false))
+                    } else {
                         // 3. 세션 유효성 확인
                         // 3-1. accessToken, refreshToken 이 DB 에 존재하는지로 자동 로그인 가능 여부 판단, 전달
                         let hasToken = self.provider.userManager.hasTokens
@@ -74,9 +76,6 @@ extension LaunchScreenViewReactor {
                         } else {
                             return .just(.updateAutoSignInEnablility(hasToken))
                         }
-                    } else {
-                        // 3-2. 업데이트 알림 표출 -> AppDelegate 또는 SceneDelegate에서 표시하므로 무시함
-                        return .empty()
                     }
                 }
         }

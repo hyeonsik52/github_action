@@ -30,22 +30,28 @@ class ErrorInterceptor: BaseErrorInterceptor {
         completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void
     ) where Operation : GraphQLOperation {
         
-        if response?.httpResponse.statusCode == 401 {
+        //HTTP 상태 코드가 401이거나, Unauthorized 오류 발생 시 세션 갱신 시도
+        if response?.httpResponse.statusCode == 401 ||
+            (error as? MultipleError)?.isUnauthorized == true {
             
-//            let authKey = self.provider.userManager.authPayload().keys.first!
-//
-//            let accessToken = request
-//                .additionalHeaders[authKey]?
-//                .components(separatedBy: .whitespaces)
-//                .last ?? ""
-//
-//            self.provider.userManager.reAuthenticate(accessToken) { error in
-//                if let _ = error {
-                    self.goBackToSignIn()
-//                } else {
-//                    chain.retry(request: request, completion: completion)
-//                }
-//            }
+            let authKey = self.provider.userManager.authPayload().keys.first!
+            
+            let accessToken = request
+                .additionalHeaders[authKey]?
+                .components(separatedBy: .whitespaces)
+                .last ?? ""
+            
+            self.provider.userManager.reAuthenticate(accessToken) { [weak self] result in
+                switch result {
+                case .success:
+                    chain.retry(request: request, completion: completion)
+                case .failure(let error):
+                    Log.error("Token refresh failure.", error.localizedDescription)
+                    self?.goBackToSignIn()
+                case .unspecified(let error):
+                    completion(.failure(error))
+                }
+            }
         } else {
             completion(.failure(error))
         }
@@ -72,10 +78,9 @@ class ErrorInterceptor: BaseErrorInterceptor {
 
         let action = UIAlertAction(title: "재로그인하러 가기", style: .default) { _ in
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//            let viewController = SignInViewController()
-//            viewController.reactor = SignInViewReactor(provider: appDelegate.provider)
-//            let navigationController = UINavigationController(rootViewController: viewController)
-//            window.rootViewController = navigationController
+            let viewController = SignInViewController()
+            viewController.reactor = SignInViewReactor(provider: appDelegate.provider)
+            window.rootViewController = UINavigationController(rootViewController: viewController)
         }
         alert.addAction(action)
         window.rootViewController?.present(alert, animated: true, completion: nil)

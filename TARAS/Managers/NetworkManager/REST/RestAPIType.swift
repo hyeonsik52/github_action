@@ -11,11 +11,12 @@ enum RestAPIType<T: RestAPIResponse> {
     
     case login(input: LoginRequestModel)
     case logout(input: LogoutRequestModel)
+    case refreshSession(input: RefreshSessionRequestModel)
     
     var url: URL {
         let path: String = {
             switch self {
-            case .login:
+            case .login, .refreshSession:
                 return "auth/token/"
             case .logout:
                 return "auth/revoke_token/"
@@ -29,6 +30,8 @@ enum RestAPIType<T: RestAPIResponse> {
         case .login(let input):
             return input.dictionary
         case .logout(let input):
+            return input.dictionary
+        case .refreshSession(let input):
             return input.dictionary
         }
     }
