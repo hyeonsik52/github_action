@@ -59,6 +59,24 @@ extension Stop: FragmentModel {
     }
 }
 
+extension Stop {
+
+    init(option fragment: StopRawFragment?) {
+
+        self.id = fragment?.id ?? Self.unknownId
+        self.name = fragment?.name ?? "알 수 없는 위치"
+        
+        if let data = fragment?.remark.toString?.data(using: .utf8),
+           let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
+           let type = json["type"] as? String,
+            type.lowercased() == "loading" {
+            self.stopType = .loading
+        } else {
+            self.stopType = .normal
+        }
+    }
+}
+
 extension Stop: Hashable {
     
     func hash(into hasher: inout Hasher) {

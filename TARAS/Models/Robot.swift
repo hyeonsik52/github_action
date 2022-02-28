@@ -31,6 +31,15 @@ extension Robot: FragmentModel {
     }
 }
 
+extension Robot {
+
+    init(_ fragment: RobotRawFragment) {
+
+        self.id = fragment.key
+        self.name = fragment.name
+    }
+}
+
 extension Robot: Hashable {
     
     func hash(into hasher: inout Hasher) {

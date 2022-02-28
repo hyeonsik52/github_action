@@ -79,6 +79,28 @@ extension ServiceUnit: FragmentModel {
 }
 
 extension ServiceUnit {
+
+    init(_ fragment: ServiceUnitRawFragment) {
+
+        self.id = fragment.id
+        self.state = nil
+        
+        self.stop = .init(option: fragment.stop?.fragments.stopRawFragment)
+        self.recipients = fragment.receivers?.map(\.fragments.userRawFragment).map(User.init) ?? []
+        
+        self.detail = fragment.message
+
+        self.orderWithinService = fragment.index
+        
+        //서비스 로그에서 해당 정보 탐색 후 입력
+        self.robotArrivalTime = nil
+        
+        //temp
+        self.authNumber = nil
+    }
+}
+
+extension ServiceUnit {
     
     ///내 작업 여부
     func isMyWork(_ id: String?) -> Bool {
