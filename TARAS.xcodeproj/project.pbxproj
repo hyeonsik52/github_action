@@ -693,6 +693,9 @@
 		ED98973927BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */; };
 		ED98973A27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */; };
 		ED98973B27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */; };
+		ED99E78227CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
+		ED99E78327CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
+		ED99E78427CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -965,6 +968,7 @@
 		ED98972D27BB5BA1000C9246 /* ServiceDetailStopViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceDetailStopViewController+Rx.swift"; sourceTree = "<group>"; };
 		ED98973327BB7AFA000C9246 /* ServiceShortcutRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceShortcutRegistrationViewController.swift; sourceTree = "<group>"; };
 		ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceShortcutRegistrationViewReactor.swift; sourceTree = "<group>"; };
+		ED99E78127CC60880083007B /* Fragment_raw.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fragment_raw.graphql; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schema.json; path = TARAS/Resources/GraphQL/schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = TARAS/Resources/GraphQL/API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -1345,6 +1349,7 @@
 				EDA1FA2826C14B9F00E8C39B /* API.swift */,
 				ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */,
 				ED7BCE1527713CCD0074BFFA /* Fragment.graphql */,
+				ED99E78127CC60880083007B /* Fragment_raw.graphql */,
 				ED7BCE1727713CDB0074BFFA /* Query.graphql */,
 				ED7BCE1927713CED0074BFFA /* Mutation.graphql */,
 				ED7BCE1B27713CFE0074BFFA /* Subscription.graphql */,
@@ -2176,6 +2181,7 @@
 				ED416DDF27A16C640043A7A4 /* schema.json in Resources */,
 				ED416F3527A176570043A7A4 /* GoogleService-Info.plist in Resources */,
 				ED416DF327A16E200043A7A4 /* Info-qa.plist in Resources */,
+				ED99E78327CC60880083007B /* Fragment_raw.graphql in Resources */,
 				ED416DE027A16C640043A7A4 /* LaunchScreen.storyboard in Resources */,
 				ED416DE127A16C640043A7A4 /* Query.graphql in Resources */,
 				ED416DE227A16C640043A7A4 /* Assets.xcassets in Resources */,
@@ -2192,6 +2198,7 @@
 				ED416F2327A170FC0043A7A4 /* Mutation.graphql in Resources */,
 				ED416F3727A176AE0043A7A4 /* GoogleService-Info.plist in Resources */,
 				ED416F2427A170FC0043A7A4 /* schema.json in Resources */,
+				ED99E78427CC60880083007B /* Fragment_raw.graphql in Resources */,
 				ED416F2627A170FC0043A7A4 /* LaunchScreen.storyboard in Resources */,
 				ED416F2727A170FC0043A7A4 /* Query.graphql in Resources */,
 				ED416F2827A170FC0043A7A4 /* Assets.xcassets in Resources */,
@@ -2208,6 +2215,7 @@
 				EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */,
 				ED416DF027A16DFD0043A7A4 /* Info-dev.plist in Resources */,
 				ED416DEF27A16DFD0043A7A4 /* GoogleService-Info.plist in Resources */,
+				ED99E78227CC60880083007B /* Fragment_raw.graphql in Resources */,
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				ED7BCE1827713CDB0074BFFA /* Query.graphql in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,

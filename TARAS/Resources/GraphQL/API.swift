@@ -8,20 +8,11 @@ public struct RegisterFcmMutationInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
-  ///   - deviceUniqueKey
   ///   - clientType
+  ///   - deviceUniqueKey
   ///   - fcmToken
-  public init(deviceUniqueKey: String, clientType: String, fcmToken: String) {
-    graphQLMap = ["deviceUniqueKey": deviceUniqueKey, "clientType": clientType, "fcmToken": fcmToken]
-  }
-
-  public var deviceUniqueKey: String {
-    get {
-      return graphQLMap["deviceUniqueKey"] as! String
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "deviceUniqueKey")
-    }
+  public init(clientType: String, deviceUniqueKey: String, fcmToken: String) {
+    graphQLMap = ["clientType": clientType, "deviceUniqueKey": deviceUniqueKey, "fcmToken": fcmToken]
   }
 
   public var clientType: String {
@@ -30,6 +21,15 @@ public struct RegisterFcmMutationInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "clientType")
+    }
+  }
+
+  public var deviceUniqueKey: String {
+    get {
+      return graphQLMap["deviceUniqueKey"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "deviceUniqueKey")
     }
   }
 
@@ -47,20 +47,11 @@ public struct UnregisterFcmMutationInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
-  ///   - deviceUniqueKey
   ///   - clientType
+  ///   - deviceUniqueKey
   ///   - fcmToken
-  public init(deviceUniqueKey: String, clientType: String, fcmToken: String) {
-    graphQLMap = ["deviceUniqueKey": deviceUniqueKey, "clientType": clientType, "fcmToken": fcmToken]
-  }
-
-  public var deviceUniqueKey: String {
-    get {
-      return graphQLMap["deviceUniqueKey"] as! String
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "deviceUniqueKey")
-    }
+  public init(clientType: String, deviceUniqueKey: String, fcmToken: String) {
+    graphQLMap = ["clientType": clientType, "deviceUniqueKey": deviceUniqueKey, "fcmToken": fcmToken]
   }
 
   public var clientType: String {
@@ -69,6 +60,15 @@ public struct UnregisterFcmMutationInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "clientType")
+    }
+  }
+
+  public var deviceUniqueKey: String {
+    get {
+      return graphQLMap["deviceUniqueKey"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "deviceUniqueKey")
     }
   }
 
@@ -86,11 +86,20 @@ public struct RequestVerificationNumberMutationInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
+  ///   - data
   ///   - methodType
   ///   - purpose
-  ///   - data
-  public init(methodType: Swift.Optional<VerificationMethod?> = nil, purpose: Swift.Optional<VerificationPurpose?> = nil, data: Swift.Optional<String?> = nil) {
-    graphQLMap = ["methodType": methodType, "purpose": purpose, "data": data]
+  public init(data: Swift.Optional<String?> = nil, methodType: Swift.Optional<VerificationMethod?> = nil, purpose: Swift.Optional<VerificationPurpose?> = nil) {
+    graphQLMap = ["data": data, "methodType": methodType, "purpose": purpose]
+  }
+
+  public var data: Swift.Optional<String?> {
+    get {
+      return graphQLMap["data"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "data")
+    }
   }
 
   public var methodType: Swift.Optional<VerificationMethod?> {
@@ -110,48 +119,39 @@ public struct RequestVerificationNumberMutationInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "purpose")
     }
   }
-
-  public var data: Swift.Optional<String?> {
-    get {
-      return graphQLMap["data"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "data")
-    }
-  }
 }
 
 public enum VerificationMethod: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
+  case direct
   case email
   case sms
-  case direct
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
+      case "DIRECT": self = .direct
       case "EMAIL": self = .email
       case "SMS": self = .sms
-      case "DIRECT": self = .direct
       default: self = .__unknown(rawValue)
     }
   }
 
   public var rawValue: RawValue {
     switch self {
+      case .direct: return "DIRECT"
       case .email: return "EMAIL"
       case .sms: return "SMS"
-      case .direct: return "DIRECT"
       case .__unknown(let value): return value
     }
   }
 
   public static func == (lhs: VerificationMethod, rhs: VerificationMethod) -> Bool {
     switch (lhs, rhs) {
+      case (.direct, .direct): return true
       case (.email, .email): return true
       case (.sms, .sms): return true
-      case (.direct, .direct): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -159,9 +159,9 @@ public enum VerificationMethod: RawRepresentable, Equatable, Hashable, CaseItera
 
   public static var allCases: [VerificationMethod] {
     return [
+      .direct,
       .email,
       .sms,
-      .direct,
     ]
   }
 }
@@ -169,22 +169,22 @@ public enum VerificationMethod: RawRepresentable, Equatable, Hashable, CaseItera
 public enum VerificationPurpose: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
   case createUser
+  case findUser
   case releaseAccount
+  case resetPassword
   case updateEmailAddress
   case updatePhoneNumber
-  case resetPassword
-  case findUser
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
       case "CREATE_USER": self = .createUser
+      case "FIND_USER": self = .findUser
       case "RELEASE_ACCOUNT": self = .releaseAccount
+      case "RESET_PASSWORD": self = .resetPassword
       case "UPDATE_EMAIL_ADDRESS": self = .updateEmailAddress
       case "UPDATE_PHONE_NUMBER": self = .updatePhoneNumber
-      case "RESET_PASSWORD": self = .resetPassword
-      case "FIND_USER": self = .findUser
       default: self = .__unknown(rawValue)
     }
   }
@@ -192,11 +192,11 @@ public enum VerificationPurpose: RawRepresentable, Equatable, Hashable, CaseIter
   public var rawValue: RawValue {
     switch self {
       case .createUser: return "CREATE_USER"
+      case .findUser: return "FIND_USER"
       case .releaseAccount: return "RELEASE_ACCOUNT"
+      case .resetPassword: return "RESET_PASSWORD"
       case .updateEmailAddress: return "UPDATE_EMAIL_ADDRESS"
       case .updatePhoneNumber: return "UPDATE_PHONE_NUMBER"
-      case .resetPassword: return "RESET_PASSWORD"
-      case .findUser: return "FIND_USER"
       case .__unknown(let value): return value
     }
   }
@@ -204,11 +204,11 @@ public enum VerificationPurpose: RawRepresentable, Equatable, Hashable, CaseIter
   public static func == (lhs: VerificationPurpose, rhs: VerificationPurpose) -> Bool {
     switch (lhs, rhs) {
       case (.createUser, .createUser): return true
+      case (.findUser, .findUser): return true
       case (.releaseAccount, .releaseAccount): return true
+      case (.resetPassword, .resetPassword): return true
       case (.updateEmailAddress, .updateEmailAddress): return true
       case (.updatePhoneNumber, .updatePhoneNumber): return true
-      case (.resetPassword, .resetPassword): return true
-      case (.findUser, .findUser): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -217,11 +217,11 @@ public enum VerificationPurpose: RawRepresentable, Equatable, Hashable, CaseIter
   public static var allCases: [VerificationPurpose] {
     return [
       .createUser,
+      .findUser,
       .releaseAccount,
+      .resetPassword,
       .updateEmailAddress,
       .updatePhoneNumber,
-      .resetPassword,
-      .findUser,
     ]
   }
 }
@@ -260,27 +260,27 @@ public enum AuthenticationTokenScope: RawRepresentable, Equatable, Hashable, Cas
   public typealias RawValue = String
   /// Create user
   case createUser
-  /// Update email address
-  case updateEmailAddress
-  /// Update phone number
-  case updatePhoneNumber
+  /// Find user
+  case findUser
   /// Release account
   case releaseAccount
   /// Reset password
   case resetPassword
-  /// Find user
-  case findUser
+  /// Update email address
+  case updateEmailAddress
+  /// Update phone number
+  case updatePhoneNumber
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
       case "CREATE_USER": self = .createUser
-      case "UPDATE_EMAIL_ADDRESS": self = .updateEmailAddress
-      case "UPDATE_PHONE_NUMBER": self = .updatePhoneNumber
+      case "FIND_USER": self = .findUser
       case "RELEASE_ACCOUNT": self = .releaseAccount
       case "RESET_PASSWORD": self = .resetPassword
-      case "FIND_USER": self = .findUser
+      case "UPDATE_EMAIL_ADDRESS": self = .updateEmailAddress
+      case "UPDATE_PHONE_NUMBER": self = .updatePhoneNumber
       default: self = .__unknown(rawValue)
     }
   }
@@ -288,11 +288,11 @@ public enum AuthenticationTokenScope: RawRepresentable, Equatable, Hashable, Cas
   public var rawValue: RawValue {
     switch self {
       case .createUser: return "CREATE_USER"
-      case .updateEmailAddress: return "UPDATE_EMAIL_ADDRESS"
-      case .updatePhoneNumber: return "UPDATE_PHONE_NUMBER"
+      case .findUser: return "FIND_USER"
       case .releaseAccount: return "RELEASE_ACCOUNT"
       case .resetPassword: return "RESET_PASSWORD"
-      case .findUser: return "FIND_USER"
+      case .updateEmailAddress: return "UPDATE_EMAIL_ADDRESS"
+      case .updatePhoneNumber: return "UPDATE_PHONE_NUMBER"
       case .__unknown(let value): return value
     }
   }
@@ -300,11 +300,11 @@ public enum AuthenticationTokenScope: RawRepresentable, Equatable, Hashable, Cas
   public static func == (lhs: AuthenticationTokenScope, rhs: AuthenticationTokenScope) -> Bool {
     switch (lhs, rhs) {
       case (.createUser, .createUser): return true
-      case (.updateEmailAddress, .updateEmailAddress): return true
-      case (.updatePhoneNumber, .updatePhoneNumber): return true
+      case (.findUser, .findUser): return true
       case (.releaseAccount, .releaseAccount): return true
       case (.resetPassword, .resetPassword): return true
-      case (.findUser, .findUser): return true
+      case (.updateEmailAddress, .updateEmailAddress): return true
+      case (.updatePhoneNumber, .updatePhoneNumber): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -313,11 +313,11 @@ public enum AuthenticationTokenScope: RawRepresentable, Equatable, Hashable, Cas
   public static var allCases: [AuthenticationTokenScope] {
     return [
       .createUser,
-      .updateEmailAddress,
-      .updatePhoneNumber,
+      .findUser,
       .releaseAccount,
       .resetPassword,
-      .findUser,
+      .updateEmailAddress,
+      .updatePhoneNumber,
     ]
   }
 }
@@ -326,20 +326,11 @@ public struct ResetPasswordMutationInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
-  ///   - username
   ///   - password
   ///   - token
-  public init(username: String, password: String, token: String) {
-    graphQLMap = ["username": username, "password": password, "token": token]
-  }
-
-  public var username: String {
-    get {
-      return graphQLMap["username"] as! String
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "username")
-    }
+  ///   - username
+  public init(password: String, token: String, username: String) {
+    graphQLMap = ["password": password, "token": token, "username": username]
   }
 
   public var password: String {
@@ -359,21 +350,6 @@ public struct ResetPasswordMutationInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "token")
     }
   }
-}
-
-public struct CreateUserMutationInput: GraphQLMapConvertible {
-  public var graphQLMap: GraphQLMap
-
-  /// - Parameters:
-  ///   - username
-  ///   - password
-  ///   - displayName
-  ///   - email
-  ///   - phoneNumber
-  ///   - remark
-  public init(username: String, password: String, displayName: Swift.Optional<String?> = nil, email: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, remark: Swift.Optional<JSONString?> = nil) {
-    graphQLMap = ["username": username, "password": password, "displayName": displayName, "email": email, "phoneNumber": phoneNumber, "remark": remark]
-  }
 
   public var username: String {
     get {
@@ -383,14 +359,20 @@ public struct CreateUserMutationInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "username")
     }
   }
+}
 
-  public var password: String {
-    get {
-      return graphQLMap["password"] as! String
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "password")
-    }
+public struct CreateUserMutationInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - displayName
+  ///   - email
+  ///   - password
+  ///   - phoneNumber
+  ///   - remark
+  ///   - username
+  public init(displayName: Swift.Optional<String?> = nil, email: Swift.Optional<String?> = nil, password: String, phoneNumber: Swift.Optional<String?> = nil, remark: Swift.Optional<JSONString?> = nil, username: String) {
+    graphQLMap = ["displayName": displayName, "email": email, "password": password, "phoneNumber": phoneNumber, "remark": remark, "username": username]
   }
 
   public var displayName: Swift.Optional<String?> {
@@ -408,6 +390,15 @@ public struct CreateUserMutationInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "email")
+    }
+  }
+
+  public var password: String {
+    get {
+      return graphQLMap["password"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "password")
     }
   }
 
@@ -428,20 +419,6 @@ public struct CreateUserMutationInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "remark")
     }
   }
-}
-
-public struct UpdateUserMutationInput: GraphQLMapConvertible {
-  public var graphQLMap: GraphQLMap
-
-  /// - Parameters:
-  ///   - username
-  ///   - password
-  ///   - displayName
-  ///   - email
-  ///   - phoneNumber
-  public init(username: String, password: Swift.Optional<String?> = nil, displayName: Swift.Optional<String?> = nil, email: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil) {
-    graphQLMap = ["username": username, "password": password, "displayName": displayName, "email": email, "phoneNumber": phoneNumber]
-  }
 
   public var username: String {
     get {
@@ -451,14 +428,19 @@ public struct UpdateUserMutationInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "username")
     }
   }
+}
 
-  public var password: Swift.Optional<String?> {
-    get {
-      return graphQLMap["password"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "password")
-    }
+public struct UpdateUserMutationInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - displayName
+  ///   - email
+  ///   - password
+  ///   - phoneNumber
+  ///   - username
+  public init(displayName: Swift.Optional<String?> = nil, email: Swift.Optional<String?> = nil, password: Swift.Optional<String?> = nil, phoneNumber: Swift.Optional<String?> = nil, username: String) {
+    graphQLMap = ["displayName": displayName, "email": email, "password": password, "phoneNumber": phoneNumber, "username": username]
   }
 
   public var displayName: Swift.Optional<String?> {
@@ -479,6 +461,15 @@ public struct UpdateUserMutationInput: GraphQLMapConvertible {
     }
   }
 
+  public var password: Swift.Optional<String?> {
+    get {
+      return graphQLMap["password"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "password")
+    }
+  }
+
   public var phoneNumber: Swift.Optional<String?> {
     get {
       return graphQLMap["phoneNumber"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
@@ -487,25 +478,25 @@ public struct UpdateUserMutationInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "phoneNumber")
     }
   }
+
+  public var username: String {
+    get {
+      return graphQLMap["username"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "username")
+    }
+  }
 }
 
 public struct CreateServiceWithServiceTemplateInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
-  ///   - serviceTemplateId
   ///   - input
-  public init(serviceTemplateId: GraphQLID, input: Swift.Optional<GenericScalar?> = nil) {
-    graphQLMap = ["serviceTemplateId": serviceTemplateId, "input": input]
-  }
-
-  public var serviceTemplateId: GraphQLID {
-    get {
-      return graphQLMap["serviceTemplateId"] as! GraphQLID
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "serviceTemplateId")
-    }
+  ///   - serviceTemplateId
+  public init(input: Swift.Optional<GenericScalar?> = nil, serviceTemplateId: GraphQLID) {
+    graphQLMap = ["input": input, "serviceTemplateId": serviceTemplateId]
   }
 
   public var input: Swift.Optional<GenericScalar?> {
@@ -514,6 +505,15 @@ public struct CreateServiceWithServiceTemplateInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "input")
+    }
+  }
+
+  public var serviceTemplateId: GraphQLID {
+    get {
+      return graphQLMap["serviceTemplateId"] as! GraphQLID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "serviceTemplateId")
     }
   }
 }
@@ -525,10 +525,10 @@ public struct CreateServiceTemplateFromServiceInput: GraphQLMapConvertible {
   ///   - description
   ///   - name
   ///   - serviceId
-  ///   - workspaceId
   ///   - userId
-  public init(description: Swift.Optional<String?> = nil, name: String, serviceId: GraphQLID, workspaceId: Swift.Optional<GraphQLID?> = nil, userId: Swift.Optional<GraphQLID?> = nil) {
-    graphQLMap = ["description": description, "name": name, "serviceId": serviceId, "workspaceId": workspaceId, "userId": userId]
+  ///   - workspaceId
+  public init(description: Swift.Optional<String?> = nil, name: String, serviceId: GraphQLID, userId: Swift.Optional<GraphQLID?> = nil, workspaceId: Swift.Optional<GraphQLID?> = nil) {
+    graphQLMap = ["description": description, "name": name, "serviceId": serviceId, "userId": userId, "workspaceId": workspaceId]
   }
 
   public var description: Swift.Optional<String?> {
@@ -558,15 +558,6 @@ public struct CreateServiceTemplateFromServiceInput: GraphQLMapConvertible {
     }
   }
 
-  public var workspaceId: Swift.Optional<GraphQLID?> {
-    get {
-      return graphQLMap["workspaceId"] as? Swift.Optional<GraphQLID?> ?? Swift.Optional<GraphQLID?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "workspaceId")
-    }
-  }
-
   public var userId: Swift.Optional<GraphQLID?> {
     get {
       return graphQLMap["userId"] as? Swift.Optional<GraphQLID?> ?? Swift.Optional<GraphQLID?>.none
@@ -575,88 +566,262 @@ public struct CreateServiceTemplateFromServiceInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "userId")
     }
   }
+
+  public var workspaceId: Swift.Optional<GraphQLID?> {
+    get {
+      return graphQLMap["workspaceId"] as? Swift.Optional<GraphQLID?> ?? Swift.Optional<GraphQLID?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "workspaceId")
+    }
+  }
 }
 
-public enum ServiceEventEnum: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-  public typealias RawValue = String
-  case serviceCreated
-  case serviceUpdated
-  case serviceDeleted
-  /// Auto generated constant for unknown enum values
-  case __unknown(RawValue)
+/// Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+public struct String_comparison_exp: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
 
-  public init?(rawValue: RawValue) {
-    switch rawValue {
-      case "SERVICE_CREATED": self = .serviceCreated
-      case "SERVICE_UPDATED": self = .serviceUpdated
-      case "SERVICE_DELETED": self = .serviceDeleted
-      default: self = .__unknown(rawValue)
+  /// - Parameters:
+  ///   - _eq
+  ///   - _gt
+  ///   - _gte
+  ///   - _ilike: does the column match the given case-insensitive pattern
+  ///   - _in
+  ///   - _iregex: does the column match the given POSIX regular expression, case insensitive
+  ///   - _isNull
+  ///   - _like: does the column match the given pattern
+  ///   - _lt
+  ///   - _lte
+  ///   - _neq
+  ///   - _nilike: does the column NOT match the given case-insensitive pattern
+  ///   - _nin
+  ///   - _niregex: does the column NOT match the given POSIX regular expression, case insensitive
+  ///   - _nlike: does the column NOT match the given pattern
+  ///   - _nregex: does the column NOT match the given POSIX regular expression, case sensitive
+  ///   - _nsimilar: does the column NOT match the given SQL regular expression
+  ///   - _regex: does the column match the given POSIX regular expression, case sensitive
+  ///   - _similar: does the column match the given SQL regular expression
+  public init(_eq: Swift.Optional<String?> = nil, _gt: Swift.Optional<String?> = nil, _gte: Swift.Optional<String?> = nil, _ilike: Swift.Optional<String?> = nil, _in: Swift.Optional<[String]?> = nil, _iregex: Swift.Optional<String?> = nil, _isNull: Swift.Optional<Bool?> = nil, _like: Swift.Optional<String?> = nil, _lt: Swift.Optional<String?> = nil, _lte: Swift.Optional<String?> = nil, _neq: Swift.Optional<String?> = nil, _nilike: Swift.Optional<String?> = nil, _nin: Swift.Optional<[String]?> = nil, _niregex: Swift.Optional<String?> = nil, _nlike: Swift.Optional<String?> = nil, _nregex: Swift.Optional<String?> = nil, _nsimilar: Swift.Optional<String?> = nil, _regex: Swift.Optional<String?> = nil, _similar: Swift.Optional<String?> = nil) {
+    graphQLMap = ["_eq": _eq, "_gt": _gt, "_gte": _gte, "_ilike": _ilike, "_in": _in, "_iregex": _iregex, "_is_null": _isNull, "_like": _like, "_lt": _lt, "_lte": _lte, "_neq": _neq, "_nilike": _nilike, "_nin": _nin, "_niregex": _niregex, "_nlike": _nlike, "_nregex": _nregex, "_nsimilar": _nsimilar, "_regex": _regex, "_similar": _similar]
+  }
+
+  public var _eq: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_eq"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_eq")
     }
   }
 
-  public var rawValue: RawValue {
-    switch self {
-      case .serviceCreated: return "SERVICE_CREATED"
-      case .serviceUpdated: return "SERVICE_UPDATED"
-      case .serviceDeleted: return "SERVICE_DELETED"
-      case .__unknown(let value): return value
+  public var _gt: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_gt"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_gt")
     }
   }
 
-  public static func == (lhs: ServiceEventEnum, rhs: ServiceEventEnum) -> Bool {
-    switch (lhs, rhs) {
-      case (.serviceCreated, .serviceCreated): return true
-      case (.serviceUpdated, .serviceUpdated): return true
-      case (.serviceDeleted, .serviceDeleted): return true
-      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-      default: return false
+  public var _gte: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_gte"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_gte")
     }
   }
 
-  public static var allCases: [ServiceEventEnum] {
-    return [
-      .serviceCreated,
-      .serviceUpdated,
-      .serviceDeleted,
-    ]
+  /// does the column match the given case-insensitive pattern
+  public var _ilike: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_ilike"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_ilike")
+    }
+  }
+
+  public var _in: Swift.Optional<[String]?> {
+    get {
+      return graphQLMap["_in"] as? Swift.Optional<[String]?> ?? Swift.Optional<[String]?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_in")
+    }
+  }
+
+  /// does the column match the given POSIX regular expression, case insensitive
+  public var _iregex: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_iregex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_iregex")
+    }
+  }
+
+  public var _isNull: Swift.Optional<Bool?> {
+    get {
+      return graphQLMap["_is_null"] as? Swift.Optional<Bool?> ?? Swift.Optional<Bool?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_is_null")
+    }
+  }
+
+  /// does the column match the given pattern
+  public var _like: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_like"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_like")
+    }
+  }
+
+  public var _lt: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_lt"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_lt")
+    }
+  }
+
+  public var _lte: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_lte"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_lte")
+    }
+  }
+
+  public var _neq: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_neq"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_neq")
+    }
+  }
+
+  /// does the column NOT match the given case-insensitive pattern
+  public var _nilike: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_nilike"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_nilike")
+    }
+  }
+
+  public var _nin: Swift.Optional<[String]?> {
+    get {
+      return graphQLMap["_nin"] as? Swift.Optional<[String]?> ?? Swift.Optional<[String]?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_nin")
+    }
+  }
+
+  /// does the column NOT match the given POSIX regular expression, case insensitive
+  public var _niregex: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_niregex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_niregex")
+    }
+  }
+
+  /// does the column NOT match the given pattern
+  public var _nlike: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_nlike"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_nlike")
+    }
+  }
+
+  /// does the column NOT match the given POSIX regular expression, case sensitive
+  public var _nregex: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_nregex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_nregex")
+    }
+  }
+
+  /// does the column NOT match the given SQL regular expression
+  public var _nsimilar: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_nsimilar"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_nsimilar")
+    }
+  }
+
+  /// does the column match the given POSIX regular expression, case sensitive
+  public var _regex: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_regex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_regex")
+    }
+  }
+
+  /// does the column match the given SQL regular expression
+  public var _similar: Swift.Optional<String?> {
+    get {
+      return graphQLMap["_similar"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "_similar")
+    }
   }
 }
 
 public enum UserRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
-  case awaitingToJoin
-  case member
-  case manager
   case administrator
+  case awaitingToJoin
+  case manager
+  case member
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
-      case "AWAITING_TO_JOIN": self = .awaitingToJoin
-      case "MEMBER": self = .member
-      case "MANAGER": self = .manager
       case "ADMINISTRATOR": self = .administrator
+      case "AWAITING_TO_JOIN": self = .awaitingToJoin
+      case "MANAGER": self = .manager
+      case "MEMBER": self = .member
       default: self = .__unknown(rawValue)
     }
   }
 
   public var rawValue: RawValue {
     switch self {
-      case .awaitingToJoin: return "AWAITING_TO_JOIN"
-      case .member: return "MEMBER"
-      case .manager: return "MANAGER"
       case .administrator: return "ADMINISTRATOR"
+      case .awaitingToJoin: return "AWAITING_TO_JOIN"
+      case .manager: return "MANAGER"
+      case .member: return "MEMBER"
       case .__unknown(let value): return value
     }
   }
 
   public static func == (lhs: UserRole, rhs: UserRole) -> Bool {
     switch (lhs, rhs) {
-      case (.awaitingToJoin, .awaitingToJoin): return true
-      case (.member, .member): return true
-      case (.manager, .manager): return true
       case (.administrator, .administrator): return true
+      case (.awaitingToJoin, .awaitingToJoin): return true
+      case (.manager, .manager): return true
+      case (.member, .member): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -664,10 +829,10 @@ public enum UserRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apoll
 
   public static var allCases: [UserRole] {
     return [
-      .awaitingToJoin,
-      .member,
-      .manager,
       .administrator,
+      .awaitingToJoin,
+      .manager,
+      .member,
     ]
   }
 }
@@ -694,7 +859,7 @@ public final class RegisterFcmMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -709,7 +874,7 @@ public final class RegisterFcmMutation: GraphQLMutation {
     }
 
     public init(registerFcm: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "registerFcm": registerFcm])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "registerFcm": registerFcm])
     }
 
     public var registerFcm: Bool? {
@@ -745,7 +910,7 @@ public final class UnregisterFcmMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -760,7 +925,7 @@ public final class UnregisterFcmMutation: GraphQLMutation {
     }
 
     public init(unregisterFcm: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "unregisterFcm": unregisterFcm])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "unregisterFcm": unregisterFcm])
     }
 
     public var unregisterFcm: Bool? {
@@ -796,7 +961,7 @@ public final class RequestJoinWorkspaceMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -811,7 +976,7 @@ public final class RequestJoinWorkspaceMutation: GraphQLMutation {
     }
 
     public init(requestToJoinWorkspace: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "requestToJoinWorkspace": requestToJoinWorkspace])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "requestToJoinWorkspace": requestToJoinWorkspace])
     }
 
     /// RequestToJoinWorkspace requests to join workspace
@@ -850,7 +1015,7 @@ public final class CancelJoinWorkspaceMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -865,7 +1030,7 @@ public final class CancelJoinWorkspaceMutation: GraphQLMutation {
     }
 
     public init(cancelToJoinWorkspace: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "cancelToJoinWorkspace": cancelToJoinWorkspace])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "cancelToJoinWorkspace": cancelToJoinWorkspace])
     }
 
     /// CancelToJoinWorkspace cancels the request to join workspace
@@ -911,7 +1076,7 @@ public final class RequestAuthMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -926,7 +1091,7 @@ public final class RequestAuthMutation: GraphQLMutation {
     }
 
     public init(requestVerificationNumber: RequestVerificationNumber? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "requestVerificationNumber": requestVerificationNumber.flatMap { (value: RequestVerificationNumber) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "requestVerificationNumber": requestVerificationNumber.flatMap { (value: RequestVerificationNumber) -> ResultMap in value.resultMap }])
     }
 
     /// Send verification number by email or SMS.
@@ -1081,7 +1246,7 @@ public final class CheckAuthMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1096,7 +1261,7 @@ public final class CheckAuthMutation: GraphQLMutation {
     }
 
     public init(checkVerificationNumber: CheckVerificationNumber? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "checkVerificationNumber": checkVerificationNumber.flatMap { (value: CheckVerificationNumber) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "checkVerificationNumber": checkVerificationNumber.flatMap { (value: CheckVerificationNumber) -> ResultMap in value.resultMap }])
     }
 
     /// Check verification number and close request when valid number
@@ -1251,7 +1416,7 @@ public final class ResetPasswordMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1266,7 +1431,7 @@ public final class ResetPasswordMutation: GraphQLMutation {
     }
 
     public init(resetPassword: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "resetPassword": resetPassword])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "resetPassword": resetPassword])
     }
 
     /// ResetPassword updates user's password with additional authentication token
@@ -1303,7 +1468,7 @@ public final class ReleaseAccountMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1318,7 +1483,7 @@ public final class ReleaseAccountMutation: GraphQLMutation {
     }
 
     public init(releaseAccount: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "releaseAccount": releaseAccount])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "releaseAccount": releaseAccount])
     }
 
     /// ReleaseAccount sets inactive user to active with authentication token
@@ -1364,7 +1529,7 @@ public final class SignUpMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1379,7 +1544,7 @@ public final class SignUpMutation: GraphQLMutation {
     }
 
     public init(createUser: CreateUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "createUser": createUser.flatMap { (value: CreateUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "createUser": createUser.flatMap { (value: CreateUser) -> ResultMap in value.resultMap }])
     }
 
     /// CreateUser creates new user without any previleges
@@ -1472,7 +1637,7 @@ public final class ValidateUsernameMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1487,7 +1652,7 @@ public final class ValidateUsernameMutation: GraphQLMutation {
     }
 
     public init(validateUsername: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "validateUsername": validateUsername])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "validateUsername": validateUsername])
     }
 
     /// ValidateUserName checks whether given username is already used or not
@@ -1517,7 +1682,7 @@ public final class WithdrawMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1532,7 +1697,7 @@ public final class WithdrawMutation: GraphQLMutation {
     }
 
     public init(withdrawUser: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "withdrawUser": withdrawUser])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "withdrawUser": withdrawUser])
     }
 
     /// WithdrawUser deletes user itself
@@ -1580,7 +1745,7 @@ public final class UpdateUserMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1595,7 +1760,7 @@ public final class UpdateUserMutation: GraphQLMutation {
     }
 
     public init(updateUser: UpdateUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "updateUser": updateUser.flatMap { (value: UpdateUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "updateUser": updateUser.flatMap { (value: UpdateUser) -> ResultMap in value.resultMap }])
     }
 
     /// UpdateUser updates user whose username is given username
@@ -1690,7 +1855,7 @@ public final class UpdateUserEmailMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1705,7 +1870,7 @@ public final class UpdateUserEmailMutation: GraphQLMutation {
     }
 
     public init(updateUserEmail: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "updateUserEmail": updateUserEmail])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "updateUserEmail": updateUserEmail])
     }
 
     /// UpdateUserEmail updates user's email by given authentication token
@@ -1742,7 +1907,7 @@ public final class LeaveWorkspaceMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1757,7 +1922,7 @@ public final class LeaveWorkspaceMutation: GraphQLMutation {
     }
 
     public init(leaveWorkspace: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "leaveWorkspace": leaveWorkspace])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "leaveWorkspace": leaveWorkspace])
     }
 
     /// LeaveWorkspace removes the role of the user itself to given workspace
@@ -1800,7 +1965,7 @@ public final class CompleteServiceUnitMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1815,7 +1980,7 @@ public final class CompleteServiceUnitMutation: GraphQLMutation {
     }
 
     public init(completeServiceUnit: CompleteServiceUnit? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "completeServiceUnit": completeServiceUnit.flatMap { (value: CompleteServiceUnit) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "completeServiceUnit": completeServiceUnit.flatMap { (value: CompleteServiceUnit) -> ResultMap in value.resultMap }])
     }
 
     public var completeServiceUnit: CompleteServiceUnit? {
@@ -1903,7 +2068,7 @@ public final class CreateServiceMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -1918,7 +2083,7 @@ public final class CreateServiceMutation: GraphQLMutation {
     }
 
     public init(createServiceWithServiceTemplate: CreateServiceWithServiceTemplate? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "createServiceWithServiceTemplate": createServiceWithServiceTemplate.flatMap { (value: CreateServiceWithServiceTemplate) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "createServiceWithServiceTemplate": createServiceWithServiceTemplate.flatMap { (value: CreateServiceWithServiceTemplate) -> ResultMap in value.resultMap }])
     }
 
     /// CreateServiceWithServiceTemplate creates with given service template and arguments
@@ -2010,7 +2175,7 @@ public final class CancelServiceMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -2025,7 +2190,7 @@ public final class CancelServiceMutation: GraphQLMutation {
     }
 
     public init(cancelService: CancelService? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "cancelService": cancelService.flatMap { (value: CancelService) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "cancelService": cancelService.flatMap { (value: CancelService) -> ResultMap in value.resultMap }])
     }
 
     /// CancelService immediately cancels service
@@ -2110,7 +2275,7 @@ public final class CreateServiceTemplateMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -2125,7 +2290,7 @@ public final class CreateServiceTemplateMutation: GraphQLMutation {
     }
 
     public init(createServiceTemplateFromService: CreateServiceTemplateFromService? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "createServiceTemplateFromService": createServiceTemplateFromService.flatMap { (value: CreateServiceTemplateFromService) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "createServiceTemplateFromService": createServiceTemplateFromService.flatMap { (value: CreateServiceTemplateFromService) -> ResultMap in value.resultMap }])
     }
 
     /// CreateServiceTemplateFromService copies service to new service template
@@ -2220,7 +2385,7 @@ public final class DeleteServiceTemplateMutation: GraphQLMutation {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+    public static let possibleTypes: [String] = ["mutation_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -2235,7 +2400,7 @@ public final class DeleteServiceTemplateMutation: GraphQLMutation {
     }
 
     public init(deleteServiceTemplate: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteServiceTemplate": deleteServiceTemplate])
+      self.init(unsafeResultMap: ["__typename": "mutation_root", "deleteServiceTemplate": deleteServiceTemplate])
     }
 
     /// DeleteServiceTemplate deletes service template with given id
@@ -2265,7 +2430,7 @@ public final class CheckSessionQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -2280,7 +2445,7 @@ public final class CheckSessionQuery: GraphQLQuery {
     }
 
     public init(isVaildAccessToken: Bool? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "isVaildAccessToken": isVaildAccessToken])
+      self.init(unsafeResultMap: ["__typename": "query_root", "isVaildAccessToken": isVaildAccessToken])
     }
 
     public var isVaildAccessToken: Bool? {
@@ -2319,7 +2484,7 @@ public final class FindUserQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -2334,7 +2499,7 @@ public final class FindUserQuery: GraphQLQuery {
     }
 
     public init(findUser: FindUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "findUser": findUser.flatMap { (value: FindUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "findUser": findUser.flatMap { (value: FindUser) -> ResultMap in value.resultMap }])
     }
 
     /// FindUser gets user by email authenticated token
@@ -2426,7 +2591,7 @@ public final class WorkspaceByCodeQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -2441,7 +2606,7 @@ public final class WorkspaceByCodeQuery: GraphQLQuery {
     }
 
     public init(workspaces: Workspace? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "workspaces": workspaces.flatMap { (value: Workspace) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "workspaces": workspaces.flatMap { (value: Workspace) -> ResultMap in value.resultMap }])
     }
 
     public var workspaces: Workspace? {
@@ -2635,7 +2800,7 @@ public final class MyWorkspacesQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -2650,7 +2815,7 @@ public final class MyWorkspacesQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -3024,7 +3189,7 @@ public final class WorkspaceByIdQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -3039,7 +3204,7 @@ public final class WorkspaceByIdQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -3281,7 +3446,7 @@ public final class ServiceQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -3296,7 +3461,7 @@ public final class ServiceQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -3666,7 +3831,7 @@ public final class ServicesQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -3681,7 +3846,7 @@ public final class ServicesQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -4073,7 +4238,7 @@ public final class MyUserInfoQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -4088,7 +4253,7 @@ public final class MyUserInfoQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -4210,7 +4375,7 @@ public final class StopListQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -4225,7 +4390,7 @@ public final class StopListQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -4586,7 +4751,7 @@ public final class UserListQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -4601,7 +4766,7 @@ public final class UserListQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -4935,7 +5100,7 @@ public final class ClientVersionQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -4950,7 +5115,7 @@ public final class ClientVersionQuery: GraphQLQuery {
     }
 
     public init(clientVersion: ClientVersion? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "clientVersion": clientVersion.flatMap { (value: ClientVersion) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "clientVersion": clientVersion.flatMap { (value: ClientVersion) -> ResultMap in value.resultMap }])
     }
 
     public var clientVersion: ClientVersion? {
@@ -5057,7 +5222,7 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -5072,7 +5237,7 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
     }
 
     public init(serviceTemplates: ServiceTemplate? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "serviceTemplates": serviceTemplates.flatMap { (value: ServiceTemplate) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "serviceTemplates": serviceTemplates.flatMap { (value: ServiceTemplate) -> ResultMap in value.resultMap }])
     }
 
     public var serviceTemplates: ServiceTemplate? {
@@ -5259,7 +5424,7 @@ public final class ServicesInProgressQuery: GraphQLQuery {
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
+    public static let possibleTypes: [String] = ["query_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
@@ -5274,7 +5439,7 @@ public final class ServicesInProgressQuery: GraphQLQuery {
     }
 
     public init(signedUser: SignedUser? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
+      self.init(unsafeResultMap: ["__typename": "query_root", "signedUser": signedUser.flatMap { (value: SignedUser) -> ResultMap in value.resultMap }])
     }
 
     /// SignedUser gets user by given access token
@@ -5487,46 +5652,48 @@ public final class ServicesInProgressQuery: GraphQLQuery {
   }
 }
 
-public final class ServiceByIdSubscription: GraphQLSubscription {
+public final class ServiceBySubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription serviceById($id: ID!) {
-      subscribeServiceByServiceId(serviceId: $id) {
+    subscription serviceBy($id: String_comparison_exp!, $workspaceId: String_comparison_exp!) {
+      service_tmp(where: {workspace_id: $workspaceId, id: $id}) {
         __typename
-        ...ServiceFragment
+        ...ServiceRawFragment
       }
     }
     """
 
-  public let operationName: String = "serviceById"
+  public let operationName: String = "serviceBy"
 
   public var queryDocument: String {
     var document: String = operationDefinition
-    document.append("\n" + ServiceFragment.fragmentDefinition)
-    document.append("\n" + RobotFragment.fragmentDefinition)
-    document.append("\n" + ServiceUnitFragment.fragmentDefinition)
-    document.append("\n" + StopFragment.fragmentDefinition)
-    document.append("\n" + UserFragment.fragmentDefinition)
+    document.append("\n" + ServiceRawFragment.fragmentDefinition)
+    document.append("\n" + RobotRawFragment.fragmentDefinition)
+    document.append("\n" + ServiceUnitRawFragment.fragmentDefinition)
+    document.append("\n" + StopRawFragment.fragmentDefinition)
+    document.append("\n" + UserRawFragment.fragmentDefinition)
     return document
   }
 
-  public var id: GraphQLID
+  public var id: String_comparison_exp
+  public var workspaceId: String_comparison_exp
 
-  public init(id: GraphQLID) {
+  public init(id: String_comparison_exp, workspaceId: String_comparison_exp) {
     self.id = id
+    self.workspaceId = workspaceId
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id]
+    return ["id": id, "workspaceId": workspaceId]
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Subscription"]
+    public static let possibleTypes: [String] = ["subscription_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("subscribeServiceByServiceId", arguments: ["serviceId": GraphQLVariable("id")], type: .object(SubscribeServiceByServiceId.selections)),
+        GraphQLField("service_tmp", arguments: ["where": ["workspace_id": GraphQLVariable("workspaceId"), "id": GraphQLVariable("id")]], type: .nonNull(.list(.nonNull(.object(ServiceTmp.selections))))),
       ]
     }
 
@@ -5536,26 +5703,27 @@ public final class ServiceByIdSubscription: GraphQLSubscription {
       self.resultMap = unsafeResultMap
     }
 
-    public init(subscribeServiceByServiceId: SubscribeServiceByServiceId? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Subscription", "subscribeServiceByServiceId": subscribeServiceByServiceId.flatMap { (value: SubscribeServiceByServiceId) -> ResultMap in value.resultMap }])
+    public init(serviceTmp: [ServiceTmp]) {
+      self.init(unsafeResultMap: ["__typename": "subscription_root", "service_tmp": serviceTmp.map { (value: ServiceTmp) -> ResultMap in value.resultMap }])
     }
 
-    public var subscribeServiceByServiceId: SubscribeServiceByServiceId? {
+    /// fetch data from the table: "taras_core_service"
+    public var serviceTmp: [ServiceTmp] {
       get {
-        return (resultMap["subscribeServiceByServiceId"] as? ResultMap).flatMap { SubscribeServiceByServiceId(unsafeResultMap: $0) }
+        return (resultMap["service_tmp"] as! [ResultMap]).map { (value: ResultMap) -> ServiceTmp in ServiceTmp(unsafeResultMap: value) }
       }
       set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "subscribeServiceByServiceId")
+        resultMap.updateValue(newValue.map { (value: ServiceTmp) -> ResultMap in value.resultMap }, forKey: "service_tmp")
       }
     }
 
-    public struct SubscribeServiceByServiceId: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["ServiceNode"]
+    public struct ServiceTmp: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["service_tmp"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLFragmentSpread(ServiceFragment.self),
+          GraphQLFragmentSpread(ServiceRawFragment.self),
         ]
       }
 
@@ -5590,9 +5758,9 @@ public final class ServiceByIdSubscription: GraphQLSubscription {
           self.resultMap = unsafeResultMap
         }
 
-        public var serviceFragment: ServiceFragment {
+        public var serviceRawFragment: ServiceRawFragment {
           get {
-            return ServiceFragment(unsafeResultMap: resultMap)
+            return ServiceRawFragment(unsafeResultMap: resultMap)
           }
           set {
             resultMap += newValue.resultMap
@@ -5603,56 +5771,50 @@ public final class ServiceByIdSubscription: GraphQLSubscription {
   }
 }
 
-public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
+public final class ServicesBySubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription serviceByWorkspaceId($id: ID!, $accessToken: String!) {
-      subscribeServiceChangeset(
-        workspaceId: $id
-        phases: [Initialization, Executing, Done]
-        accessToken: $accessToken
-      ) {
+    subscription servicesBy($workspaceId: String_comparison_exp!) {
+      service_change_set(where: {service: {workspace_id: $workspaceId}}) {
         __typename
-        eventType
+        event_type
         service {
           __typename
-          ...ServiceFragment
+          ...ServiceRawFragment
         }
       }
     }
     """
 
-  public let operationName: String = "serviceByWorkspaceId"
+  public let operationName: String = "servicesBy"
 
   public var queryDocument: String {
     var document: String = operationDefinition
-    document.append("\n" + ServiceFragment.fragmentDefinition)
-    document.append("\n" + RobotFragment.fragmentDefinition)
-    document.append("\n" + ServiceUnitFragment.fragmentDefinition)
-    document.append("\n" + StopFragment.fragmentDefinition)
-    document.append("\n" + UserFragment.fragmentDefinition)
+    document.append("\n" + ServiceRawFragment.fragmentDefinition)
+    document.append("\n" + RobotRawFragment.fragmentDefinition)
+    document.append("\n" + ServiceUnitRawFragment.fragmentDefinition)
+    document.append("\n" + StopRawFragment.fragmentDefinition)
+    document.append("\n" + UserRawFragment.fragmentDefinition)
     return document
   }
 
-  public var id: GraphQLID
-  public var accessToken: String
+  public var workspaceId: String_comparison_exp
 
-  public init(id: GraphQLID, accessToken: String) {
-    self.id = id
-    self.accessToken = accessToken
+  public init(workspaceId: String_comparison_exp) {
+    self.workspaceId = workspaceId
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "accessToken": accessToken]
+    return ["workspaceId": workspaceId]
   }
 
   public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Subscription"]
+    public static let possibleTypes: [String] = ["subscription_root"]
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("subscribeServiceChangeset", arguments: ["workspaceId": GraphQLVariable("id"), "phases": ["Initialization", "Executing", "Done"], "accessToken": GraphQLVariable("accessToken")], type: .object(SubscribeServiceChangeset.selections)),
+        GraphQLField("service_change_set", arguments: ["where": ["service": ["workspace_id": GraphQLVariable("workspaceId")]]], type: .nonNull(.list(.nonNull(.object(ServiceChangeSet.selections))))),
       ]
     }
 
@@ -5662,27 +5824,28 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
       self.resultMap = unsafeResultMap
     }
 
-    public init(subscribeServiceChangeset: SubscribeServiceChangeset? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Subscription", "subscribeServiceChangeset": subscribeServiceChangeset.flatMap { (value: SubscribeServiceChangeset) -> ResultMap in value.resultMap }])
+    public init(serviceChangeSet: [ServiceChangeSet]) {
+      self.init(unsafeResultMap: ["__typename": "subscription_root", "service_change_set": serviceChangeSet.map { (value: ServiceChangeSet) -> ResultMap in value.resultMap }])
     }
 
-    public var subscribeServiceChangeset: SubscribeServiceChangeset? {
+    /// fetch data from the table: "service_change_set"
+    public var serviceChangeSet: [ServiceChangeSet] {
       get {
-        return (resultMap["subscribeServiceChangeset"] as? ResultMap).flatMap { SubscribeServiceChangeset(unsafeResultMap: $0) }
+        return (resultMap["service_change_set"] as! [ResultMap]).map { (value: ResultMap) -> ServiceChangeSet in ServiceChangeSet(unsafeResultMap: value) }
       }
       set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "subscribeServiceChangeset")
+        resultMap.updateValue(newValue.map { (value: ServiceChangeSet) -> ResultMap in value.resultMap }, forKey: "service_change_set")
       }
     }
 
-    public struct SubscribeServiceChangeset: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["ServiceChangeSetType"]
+    public struct ServiceChangeSet: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["service_change_set"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("eventType", type: .scalar(ServiceEventEnum.self)),
-          GraphQLField("service", type: .object(Service.selections)),
+          GraphQLField("event_type", type: .nonNull(.scalar(bpchar.self))),
+          GraphQLField("service", type: .nonNull(.object(Service.selections))),
         ]
       }
 
@@ -5692,8 +5855,8 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
         self.resultMap = unsafeResultMap
       }
 
-      public init(eventType: ServiceEventEnum? = nil, service: Service? = nil) {
-        self.init(unsafeResultMap: ["__typename": "ServiceChangeSetType", "eventType": eventType, "service": service.flatMap { (value: Service) -> ResultMap in value.resultMap }])
+      public init(eventType: bpchar, service: Service) {
+        self.init(unsafeResultMap: ["__typename": "service_change_set", "event_type": eventType, "service": service.resultMap])
       }
 
       public var __typename: String {
@@ -5705,31 +5868,32 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
         }
       }
 
-      public var eventType: ServiceEventEnum? {
+      public var eventType: bpchar {
         get {
-          return resultMap["eventType"] as? ServiceEventEnum
+          return resultMap["event_type"]! as! bpchar
         }
         set {
-          resultMap.updateValue(newValue, forKey: "eventType")
+          resultMap.updateValue(newValue, forKey: "event_type")
         }
       }
 
-      public var service: Service? {
+      /// An object relationship
+      public var service: Service {
         get {
-          return (resultMap["service"] as? ResultMap).flatMap { Service(unsafeResultMap: $0) }
+          return Service(unsafeResultMap: resultMap["service"]! as! ResultMap)
         }
         set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "service")
+          resultMap.updateValue(newValue.resultMap, forKey: "service")
         }
       }
 
       public struct Service: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["ServiceNode"]
+        public static let possibleTypes: [String] = ["service_tmp"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(ServiceFragment.self),
+            GraphQLFragmentSpread(ServiceRawFragment.self),
           ]
         }
 
@@ -5764,14 +5928,736 @@ public final class ServiceByWorkspaceIdSubscription: GraphQLSubscription {
             self.resultMap = unsafeResultMap
           }
 
-          public var serviceFragment: ServiceFragment {
+          public var serviceRawFragment: ServiceRawFragment {
             get {
-              return ServiceFragment(unsafeResultMap: resultMap)
+              return ServiceRawFragment(unsafeResultMap: resultMap)
             }
             set {
               resultMap += newValue.resultMap
             }
           }
+        }
+      }
+    }
+  }
+}
+
+public struct UserRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment UserRawFragment on user {
+      __typename
+      id
+      username
+      display_name
+      email
+      phone_number
+    }
+    """
+
+  public static let possibleTypes: [String] = ["user"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(String.self))),
+      GraphQLField("username", type: .nonNull(.scalar(String.self))),
+      GraphQLField("display_name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("email", type: .scalar(bytea.self)),
+      GraphQLField("phone_number", type: .scalar(bytea.self)),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: String, username: String, displayName: String, email: bytea? = nil, phoneNumber: bytea? = nil) {
+    self.init(unsafeResultMap: ["__typename": "user", "id": id, "username": username, "display_name": displayName, "email": email, "phone_number": phoneNumber])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: String {
+    get {
+      return resultMap["id"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var username: String {
+    get {
+      return resultMap["username"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "username")
+    }
+  }
+
+  public var displayName: String {
+    get {
+      return resultMap["display_name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "display_name")
+    }
+  }
+
+  public var email: bytea? {
+    get {
+      return resultMap["email"] as? bytea
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "email")
+    }
+  }
+
+  public var phoneNumber: bytea? {
+    get {
+      return resultMap["phone_number"] as? bytea
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "phone_number")
+    }
+  }
+}
+
+public struct RobotRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment RobotRawFragment on robot {
+      __typename
+      key
+      name
+    }
+    """
+
+  public static let possibleTypes: [String] = ["robot"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("key", type: .nonNull(.scalar(String.self))),
+      GraphQLField("name", type: .scalar(String.self)),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(key: String, name: String? = nil) {
+    self.init(unsafeResultMap: ["__typename": "robot", "key": key, "name": name])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var key: String {
+    get {
+      return resultMap["key"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "key")
+    }
+  }
+
+  /// A computed field, executes function "name"
+  public var name: String? {
+    get {
+      return resultMap["name"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+}
+
+public struct StopRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment StopRawFragment on station_group {
+      __typename
+      id
+      name
+      is_stop
+      remark
+    }
+    """
+
+  public static let possibleTypes: [String] = ["station_group"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(String.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("is_stop", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("remark", type: .nonNull(.scalar(jsonb.self))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: String, name: String, isStop: Bool, remark: jsonb) {
+    self.init(unsafeResultMap: ["__typename": "station_group", "id": id, "name": name, "is_stop": isStop, "remark": remark])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: String {
+    get {
+      return resultMap["id"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var name: String {
+    get {
+      return resultMap["name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var isStop: Bool {
+    get {
+      return resultMap["is_stop"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "is_stop")
+    }
+  }
+
+  public var remark: jsonb {
+    get {
+      return resultMap["remark"]! as! jsonb
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "remark")
+    }
+  }
+}
+
+public struct ServiceUnitRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ServiceUnitRawFragment on service_unit {
+      __typename
+      id
+      index
+      stop {
+        __typename
+        ...StopRawFragment
+      }
+      receivers {
+        __typename
+        ...UserRawFragment
+      }
+    }
+    """
+
+  public static let possibleTypes: [String] = ["service_unit"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(bigint.self))),
+      GraphQLField("index", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("stop", type: .object(Stop.selections)),
+      GraphQLField("receivers", type: .list(.nonNull(.object(Receiver.selections)))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: bigint, index: Int, stop: Stop? = nil, receivers: [Receiver]? = nil) {
+    self.init(unsafeResultMap: ["__typename": "service_unit", "id": id, "index": index, "stop": stop.flatMap { (value: Stop) -> ResultMap in value.resultMap }, "receivers": receivers.flatMap { (value: [Receiver]) -> [ResultMap] in value.map { (value: Receiver) -> ResultMap in value.resultMap } }])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: bigint {
+    get {
+      return resultMap["id"]! as! bigint
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var index: Int {
+    get {
+      return resultMap["index"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "index")
+    }
+  }
+
+  /// An object relationship
+  public var stop: Stop? {
+    get {
+      return (resultMap["stop"] as? ResultMap).flatMap { Stop(unsafeResultMap: $0) }
+    }
+    set {
+      resultMap.updateValue(newValue?.resultMap, forKey: "stop")
+    }
+  }
+
+  /// A computed field, executes function "receivers"
+  public var receivers: [Receiver]? {
+    get {
+      return (resultMap["receivers"] as? [ResultMap]).flatMap { (value: [ResultMap]) -> [Receiver] in value.map { (value: ResultMap) -> Receiver in Receiver(unsafeResultMap: value) } }
+    }
+    set {
+      resultMap.updateValue(newValue.flatMap { (value: [Receiver]) -> [ResultMap] in value.map { (value: Receiver) -> ResultMap in value.resultMap } }, forKey: "receivers")
+    }
+  }
+
+  public struct Stop: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["station_group"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(StopRawFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(id: String, name: String, isStop: Bool, remark: jsonb) {
+      self.init(unsafeResultMap: ["__typename": "station_group", "id": id, "name": name, "is_stop": isStop, "remark": remark])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var stopRawFragment: StopRawFragment {
+        get {
+          return StopRawFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+
+  public struct Receiver: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["user"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(UserRawFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(id: String, username: String, displayName: String, email: bytea? = nil, phoneNumber: bytea? = nil) {
+      self.init(unsafeResultMap: ["__typename": "user", "id": id, "username": username, "display_name": displayName, "email": email, "phone_number": phoneNumber])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var userRawFragment: UserRawFragment {
+        get {
+          return UserRawFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+}
+
+public struct ServiceRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ServiceRawFragment on service_tmp {
+      __typename
+      id
+      phase
+      type
+      service_state
+      timestamps
+      service_number
+      created_at
+      creator
+      robot {
+        __typename
+        ...RobotRawFragment
+      }
+      current_service_unit_step
+      service_units {
+        __typename
+        ...ServiceUnitRawFragment
+      }
+      total_moving_distance
+    }
+    """
+
+  public static let possibleTypes: [String] = ["service_tmp"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(String.self))),
+      GraphQLField("phase", type: .scalar(String.self)),
+      GraphQLField("type", type: .scalar(String.self)),
+      GraphQLField("service_state", type: .scalar(String.self)),
+      GraphQLField("timestamps", type: .nonNull(.scalar(jsonb.self))),
+      GraphQLField("service_number", type: .nonNull(.scalar(String.self))),
+      GraphQLField("created_at", type: .nonNull(.scalar(timestamptz.self))),
+      GraphQLField("creator", type: .scalar(jsonb.self)),
+      GraphQLField("robot", type: .object(Robot.selections)),
+      GraphQLField("current_service_unit_step", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("service_units", type: .nonNull(.list(.nonNull(.object(ServiceUnit.selections))))),
+      GraphQLField("total_moving_distance", type: .scalar(float8.self)),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: String, phase: String? = nil, type: String? = nil, serviceState: String? = nil, timestamps: jsonb, serviceNumber: String, createdAt: timestamptz, creator: jsonb? = nil, robot: Robot? = nil, currentServiceUnitStep: Int, serviceUnits: [ServiceUnit], totalMovingDistance: float8? = nil) {
+    self.init(unsafeResultMap: ["__typename": "service_tmp", "id": id, "phase": phase, "type": type, "service_state": serviceState, "timestamps": timestamps, "service_number": serviceNumber, "created_at": createdAt, "creator": creator, "robot": robot.flatMap { (value: Robot) -> ResultMap in value.resultMap }, "current_service_unit_step": currentServiceUnitStep, "service_units": serviceUnits.map { (value: ServiceUnit) -> ResultMap in value.resultMap }, "total_moving_distance": totalMovingDistance])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: String {
+    get {
+      return resultMap["id"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var phase: String? {
+    get {
+      return resultMap["phase"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "phase")
+    }
+  }
+
+  public var type: String? {
+    get {
+      return resultMap["type"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "type")
+    }
+  }
+
+  /// A computed field, executes function "service_state"
+  public var serviceState: String? {
+    get {
+      return resultMap["service_state"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "service_state")
+    }
+  }
+
+  public var timestamps: jsonb {
+    get {
+      return resultMap["timestamps"]! as! jsonb
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "timestamps")
+    }
+  }
+
+  public var serviceNumber: String {
+    get {
+      return resultMap["service_number"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "service_number")
+    }
+  }
+
+  public var createdAt: timestamptz {
+    get {
+      return resultMap["created_at"]! as! timestamptz
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "created_at")
+    }
+  }
+
+  /// A computed field, executes function "creator"
+  public var creator: jsonb? {
+    get {
+      return resultMap["creator"] as? jsonb
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "creator")
+    }
+  }
+
+  /// An object relationship
+  public var robot: Robot? {
+    get {
+      return (resultMap["robot"] as? ResultMap).flatMap { Robot(unsafeResultMap: $0) }
+    }
+    set {
+      resultMap.updateValue(newValue?.resultMap, forKey: "robot")
+    }
+  }
+
+  public var currentServiceUnitStep: Int {
+    get {
+      return resultMap["current_service_unit_step"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "current_service_unit_step")
+    }
+  }
+
+  /// An array relationship
+  public var serviceUnits: [ServiceUnit] {
+    get {
+      return (resultMap["service_units"] as! [ResultMap]).map { (value: ResultMap) -> ServiceUnit in ServiceUnit(unsafeResultMap: value) }
+    }
+    set {
+      resultMap.updateValue(newValue.map { (value: ServiceUnit) -> ResultMap in value.resultMap }, forKey: "service_units")
+    }
+  }
+
+  /// A computed field, executes function "total_moving_distance"
+  public var totalMovingDistance: float8? {
+    get {
+      return resultMap["total_moving_distance"] as? float8
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "total_moving_distance")
+    }
+  }
+
+  public struct Robot: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["robot"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(RobotRawFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(key: String, name: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "robot", "key": key, "name": name])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var robotRawFragment: RobotRawFragment {
+        get {
+          return RobotRawFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+
+  public struct ServiceUnit: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["service_unit"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(ServiceUnitRawFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var serviceUnitRawFragment: ServiceUnitRawFragment {
+        get {
+          return ServiceUnitRawFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
         }
       }
     }

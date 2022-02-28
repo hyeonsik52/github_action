@@ -1,0 +1,51 @@
+
+fragment UserRawFragment on user {
+	id
+	username
+	display_name
+	email
+	phone_number
+#	role
+}
+
+fragment RobotRawFragment on robot {
+	key
+	name
+}
+
+fragment StopRawFragment on station_group {
+	id
+	name
+	is_stop
+	remark
+}
+
+fragment ServiceUnitRawFragment on service_unit {
+	id
+	index
+	stop {
+		... StopRawFragment
+	}
+	receivers {
+		... UserRawFragment
+	}
+}
+
+fragment ServiceRawFragment on service_tmp {
+	id
+	phase
+	type
+	service_state
+	timestamps
+	service_number
+	created_at
+	creator
+	robot {
+		...RobotRawFragment
+	}
+	current_service_unit_step
+	service_units {
+		...ServiceUnitRawFragment
+	}
+	total_moving_distance
+}

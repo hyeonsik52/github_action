@@ -1,15 +1,15 @@
 
-subscription serviceById($id: ID!) {
-    subscribeServiceByServiceId(serviceId: $id) {
-        ... ServiceFragment
-    }
+subscription serviceBy($id: String_comparison_exp!, $workspaceId: String_comparison_exp!) {
+	service_tmp(where: { workspace_id: $workspaceId, id: $id }) {
+		...ServiceRawFragment
+	}
 }
 
-subscription serviceByWorkspaceId($id: ID!, $accessToken: String!) {
-    subscribeServiceChangeset(workspaceId: $id, phases: [Initialization, Executing, Done], accessToken: $accessToken) {
-        eventType
-        service {
-            ... ServiceFragment
-        }
-    }
+subscription servicesBy($workspaceId: String_comparison_exp!) {
+	service_change_set(where: { service: { workspace_id: $workspaceId } }) {
+		event_type
+		service {
+			...ServiceRawFragment
+		}
+	}
 }
