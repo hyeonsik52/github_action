@@ -192,6 +192,83 @@ extension Service: FragmentModel {
 
 extension Service {
     
+    init(_ fragment: ServiceRawFragment) {
+        
+        self.id = fragment.id
+        
+        if let type = fragment.type {
+            self.type = .init(rawValue: type) ?? .general
+        } else {
+            self.type = .unknown
+        }
+        
+        if let state = fragment.serviceState {
+            self.status = .init(state: state)
+        } else {
+            self.status = .unknown
+        }
+        
+        self.serviceNumber = fragment.serviceNumber
+        
+        let creatorInfo = fragment.creator?.toDictionary
+        let username = (creatorInfo?["id"] as? String) ?? User.unknownName
+        let creatorName = (creatorInfo?["name"] as? String) ?? "알 수 없는 유저"
+        self.creator = .init(
+            id: User.unknownId,
+            username: username,
+            displayName: creatorName,
+            email: nil,
+            phonenumber: nil
+        )
+        
+        if let robot = fragment.robot?.fragments.robotRawFragment {
+            self.robot = .init(robot)
+        } else {
+            self.robot = nil
+        }
+        
+        let currentServiceUnitIdx = fragment.currentServiceUnitStep
+        self.currentServiceUnitIdx = currentServiceUnitIdx
+        var serviceUnits = fragment.serviceUnits
+            .compactMap { $0.fragments.serviceUnitRawFragment }
+            .map { fragment -> ServiceUnit in
+                var serviceUnit = ServiceUnit(fragment)
+                serviceUnit.isInProgress = (serviceUnit.orderWithinService == currentServiceUnitIdx)
+                return serviceUnit
+            }
+        serviceUnits = serviceUnits.filter { $0.orderWithinService > 0 }.sorted { $0.orderWithinService < $1.orderWithinService }
+        if let timestamps = fragment.timestamps.toDictionaries {
+            self.serviceLogSet = .init(jsonList: timestamps, with: serviceUnits, creator: self.creator, robot: self.robot)
+        } else {
+            self.serviceLogSet = .init(serviceLogs: [])
+        }
+        
+        //목적지에 로봇이 도착한 시간 입력
+        for index in 0..<serviceUnits.count {
+            guard let targetLog = self.serviceLogSet.serviceLogs.first(where: {
+                guard case .robotArrived(let serviceUnitIdx, _) = $0.type else { return false }
+                return (serviceUnits[index].orderWithinService == serviceUnitIdx)
+            }) else { continue }
+            serviceUnits[index].robotArrivalTime = targetLog.date
+        }
+        self.serviceUnits = serviceUnits
+        
+        self.requestedAt = fragment.createdAt
+        self.startedAt = self.serviceLogSet.startedAt
+        self.finishedAt = self.serviceLogSet.finishedAt
+        
+        if let phase = fragment.phase {
+            self.phase = .init(phase: phase, state: self.status, logset: self.serviceLogSet)
+        } else {
+            self.phase = .waiting
+        }
+        
+        self.travelDistance = fragment.totalMovingDistance
+    }
+}
+
+extension Service {
+    
     var canceledDescription: String? {
         switch self.status {
         case .canceled:

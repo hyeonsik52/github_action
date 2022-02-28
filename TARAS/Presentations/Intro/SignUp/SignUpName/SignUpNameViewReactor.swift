@@ -86,9 +86,9 @@ class SignUpNameViewReactor: Reactor {
     private func signUp(_ name: String) -> Observable<Mutation> {
         
         let input = CreateUserMutationInput(
-            username: self.accountInfo.id,
+            displayName: name,
             password: self.accountInfo.password,
-            displayName: name
+            username: self.accountInfo.id
         )
         let mutation = SignUpMutation(input: input)
 
@@ -183,8 +183,8 @@ extension SignUpNameViewReactor {
         }
         
         let mutation = RegisterFcmMutation(input: .init(
-            deviceUniqueKey: deviceUniqueKey,
             clientType: "ios",
+            deviceUniqueKey: deviceUniqueKey,
             fcmToken: token
         ))
         

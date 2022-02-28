@@ -68,6 +68,22 @@ extension User: FragmentModel {
     }
 }
 
+extension User {
+    
+    init(_ fragment: UserRawFragment) {
+        
+        self.id = fragment.id
+        
+        self.username = fragment.username
+        self.displayName = fragment.displayName
+        
+        self.email = fragment.email
+        self.phonenumber = fragment.phoneNumber
+        
+//        self.role = fragment.role
+    }
+}
+
 extension User: Hashable {
     
     func hash(into hasher: inout Hasher) {

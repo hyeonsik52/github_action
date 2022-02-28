@@ -99,7 +99,7 @@ class UpdateUserInfoViewReactor: Reactor {
     }
     
     private func update(_ text: String) -> Observable<Mutation> {
-        let input = UpdateUserMutationInput(username: self.userID, displayName: text)
+        let input = UpdateUserMutationInput(displayName: text, username: self.userID)
         return .concat([
             .just(.updateIsUpdated(nil)),
             .just(.updateIsProcessing(true)),

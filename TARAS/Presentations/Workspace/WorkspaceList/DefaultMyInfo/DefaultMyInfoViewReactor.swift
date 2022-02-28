@@ -133,8 +133,8 @@ class DefaultMyInfoViewReactor: Reactor {
             .filterNil()
             .flatMapLatest { token -> Observable<Mutation> in
                 let mutation = UnregisterFcmMutation(input: .init(
-                    deviceUniqueKey: deviceUniqueKey,
                     clientType: "ios",
+                    deviceUniqueKey: deviceUniqueKey,
                     fcmToken: token
                 ))
                 return self.provider.networkManager.perform(mutation)
@@ -169,8 +169,8 @@ class DefaultMyInfoViewReactor: Reactor {
             self.getFCMToken().filterNil()
                 .flatMapLatest { token -> Observable<Mutation> in
                     let mutation = UnregisterFcmMutation(input: .init(
-                        deviceUniqueKey: deviceUniqueKey,
                         clientType: "ios",
+                        deviceUniqueKey: deviceUniqueKey,
                         fcmToken: token
                     ))
                     return self.provider.networkManager.perform(mutation)
