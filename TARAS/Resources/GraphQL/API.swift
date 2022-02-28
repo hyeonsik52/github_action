@@ -5652,11 +5652,11 @@ public final class ServicesInProgressQuery: GraphQLQuery {
   }
 }
 
-public final class ServiceBySubscription: GraphQLSubscription {
+public final class ServiceByIdSubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription serviceBy($id: String_comparison_exp!, $workspaceId: String_comparison_exp!) {
+    subscription serviceById($id: String_comparison_exp!, $workspaceId: String_comparison_exp!) {
       service_tmp(where: {workspace_id: $workspaceId, id: $id}) {
         __typename
         ...ServiceRawFragment
@@ -5664,7 +5664,7 @@ public final class ServiceBySubscription: GraphQLSubscription {
     }
     """
 
-  public let operationName: String = "serviceBy"
+  public let operationName: String = "serviceById"
 
   public var queryDocument: String {
     var document: String = operationDefinition
@@ -5771,12 +5771,12 @@ public final class ServiceBySubscription: GraphQLSubscription {
   }
 }
 
-public final class ServicesBySubscription: GraphQLSubscription {
+public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription servicesBy($workspaceId: String_comparison_exp!) {
-      service_change_set(where: {service: {workspace_id: $workspaceId}}) {
+    subscription servicesByWorkspaceId($id: String_comparison_exp!) {
+      service_change_set(where: {service: {workspace_id: $id}}) {
         __typename
         event_type
         service {
@@ -5787,7 +5787,7 @@ public final class ServicesBySubscription: GraphQLSubscription {
     }
     """
 
-  public let operationName: String = "servicesBy"
+  public let operationName: String = "servicesByWorkspaceId"
 
   public var queryDocument: String {
     var document: String = operationDefinition
@@ -5799,14 +5799,14 @@ public final class ServicesBySubscription: GraphQLSubscription {
     return document
   }
 
-  public var workspaceId: String_comparison_exp
+  public var id: String_comparison_exp
 
-  public init(workspaceId: String_comparison_exp) {
-    self.workspaceId = workspaceId
+  public init(id: String_comparison_exp) {
+    self.id = id
   }
 
   public var variables: GraphQLMap? {
-    return ["workspaceId": workspaceId]
+    return ["id": id]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -5814,7 +5814,7 @@ public final class ServicesBySubscription: GraphQLSubscription {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("service_change_set", arguments: ["where": ["service": ["workspace_id": GraphQLVariable("workspaceId")]]], type: .nonNull(.list(.nonNull(.object(ServiceChangeSet.selections))))),
+        GraphQLField("service_change_set", arguments: ["where": ["service": ["workspace_id": GraphQLVariable("id")]]], type: .nonNull(.list(.nonNull(.object(ServiceChangeSet.selections))))),
       ]
     }
 
@@ -6183,6 +6183,7 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       __typename
       id
       index
+      message
       stop {
         __typename
         ...StopRawFragment
@@ -6201,6 +6202,7 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
       GraphQLField("id", type: .nonNull(.scalar(bigint.self))),
       GraphQLField("index", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("message", type: .scalar(String.self)),
       GraphQLField("stop", type: .object(Stop.selections)),
       GraphQLField("receivers", type: .list(.nonNull(.object(Receiver.selections)))),
     ]
@@ -6212,8 +6214,8 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: bigint, index: Int, stop: Stop? = nil, receivers: [Receiver]? = nil) {
-    self.init(unsafeResultMap: ["__typename": "service_unit", "id": id, "index": index, "stop": stop.flatMap { (value: Stop) -> ResultMap in value.resultMap }, "receivers": receivers.flatMap { (value: [Receiver]) -> [ResultMap] in value.map { (value: Receiver) -> ResultMap in value.resultMap } }])
+  public init(id: bigint, index: Int, message: String? = nil, stop: Stop? = nil, receivers: [Receiver]? = nil) {
+    self.init(unsafeResultMap: ["__typename": "service_unit", "id": id, "index": index, "message": message, "stop": stop.flatMap { (value: Stop) -> ResultMap in value.resultMap }, "receivers": receivers.flatMap { (value: [Receiver]) -> [ResultMap] in value.map { (value: Receiver) -> ResultMap in value.resultMap } }])
   }
 
   public var __typename: String {
@@ -6240,6 +6242,15 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "index")
+    }
+  }
+
+  public var message: String? {
+    get {
+      return resultMap["message"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "message")
     }
   }
 

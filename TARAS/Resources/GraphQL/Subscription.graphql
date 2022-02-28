@@ -1,12 +1,12 @@
 
-subscription serviceBy($id: String_comparison_exp!, $workspaceId: String_comparison_exp!) {
+subscription serviceById($id: String_comparison_exp!, $workspaceId: String_comparison_exp!) {
 	service_tmp(where: { workspace_id: $workspaceId, id: $id }) {
 		...ServiceRawFragment
 	}
 }
 
-subscription servicesBy($workspaceId: String_comparison_exp!) {
-	service_change_set(where: { service: { workspace_id: $workspaceId } }) {
+subscription servicesByWorkspaceId($id: String_comparison_exp!) {
+	service_change_set(where: { service: { workspace_id: $id } }) {
 		event_type
 		service {
 			...ServiceRawFragment

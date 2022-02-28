@@ -23,6 +23,7 @@ fragment StopRawFragment on station_group {
 fragment ServiceUnitRawFragment on service_unit {
 	id
 	index
+	message
 	stop {
 		... StopRawFragment
 	}
