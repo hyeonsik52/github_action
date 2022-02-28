@@ -40,27 +40,34 @@ extension SubscriptionManager: SubscriptionManagerType {
 extension SubscriptionManagerType {
     
     /// 내가 수신한 서비스 변화(생성, 수정, 삭제) 구독
-    public func services(by workspaceId: String) -> Observable<ServiceByWorkspaceIdSubscription.Data.SubscribeServiceChangeset> {
-        //temp: 서버가 느려지는 현상이 있어, 임시 비활성
-        return .empty()
-//        return self.subscribe(ServiceByWorkspaceIdSubscription(id: workspaceId))
-//            .compactMap { result in
-//                switch result {
-//                case .success(let data):
-//                    if let changeSet = data.subscribeServiceChangeset {
-//                        return changeSet
-//                    } else {
-//                        Log.err("serviceSubscription error: not fount changeset")
-//                    }
-//                case .failure(let error):
-//                    Log.err("serviceSubscription error: \(error.localizedDescription)")
-//                }
-//                return nil
-//            }
+    public func services(
+        by workspaceId: String
+    ) -> Observable<[ServicesByWorkspaceIdSubscription.Data.ServiceChangeSet]> {
+        return self.subscribe(ServicesByWorkspaceIdSubscription(id: .init(_eq: workspaceId)))
+            .compactMap { result in
+                switch result {
+                case .success(let data):
+                    let changeSets = data.serviceChangeSet
+                    if changeSets.isEmpty {
+                        Log.error("serviceSubscription error:", "not fount changeset")
+                    } else {
+                        return changeSets
+                    }
+                case .failure(let error):
+                    Log.error("serviceSubscription error:", error.localizedDescription)
+                }
+                return nil
+            }
     }
-
+    
     /// 특정 서비스 구독 (진행중 서비스 상세 화면)
-    public func serviceBy(serviceId: String) -> Observable<Result<ServiceByIdSubscription.Data, Error>> {
-        return self.subscribe(ServiceByIdSubscription(id: serviceId))
+    public func service(
+        by serviceId: String,
+        with workspaceId: String
+    ) -> Observable<Result<ServiceByIdSubscription.Data, Error>> {
+        let subscription = ServiceByIdSubscription(
+            id: .init(_eq: serviceId),
+            workspaceId: .init(_eq: workspaceId))
+        return self.subscribe(subscription)
     }
 }
