@@ -69,13 +69,16 @@ class ServiceDetailViewReactor: Reactor {
     private func subscription() {
         
         self.provider.subscriptionManager
-            .serviceBy(serviceId: self.serviceId)
+            .service(by: self.serviceId, with: self.workspaceId)
             .compactMap { try? $0.get() }
-            .compactMap(\.subscribeServiceByServiceId?.fragments.serviceFragment)
-            .map(Service.init)
+            .map { $0.serviceTmp.map(\.fragments.serviceRawFragment).map(Service.init) }
             .subscribe(onNext: { [weak self] service in
-                self?.action.onNext(.updateService(service))
-                self?.provider.notificationManager.post(UpdateService(service))
+                if service.count > 1 {
+                    Log.debug("!!!!!!-3")
+                }
+                guard let first = service.first else { return }
+                self?.action.onNext(.updateService(first))
+                self?.provider.notificationManager.post(UpdateService(first))
             }).disposed(by: self.disposeBag)
     }
     
