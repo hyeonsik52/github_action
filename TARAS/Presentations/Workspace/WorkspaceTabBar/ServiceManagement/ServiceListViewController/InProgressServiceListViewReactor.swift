@@ -10,7 +10,7 @@ import ReactorKit
 
 class InProgressServiceListViewReactor: Reactor {
     
-    typealias Notification = ServiceByWorkspaceIdSubscription.Data.SubscribeServiceChangeset
+    typealias Notification = ServicesByWorkspaceIdSubscription.Data.ServiceChangeSet
     
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     let disposeBag = DisposeBag()
@@ -64,16 +64,20 @@ class InProgressServiceListViewReactor: Reactor {
     init(provider: ManagerProviderType, workspaceId: String) {
         self.provider = provider
         self.workspaceId = workspaceId
-        self.bind()
+        
+        self.subscription()
     }
     
-    private func bind() {
+    private func subscription() {
         
-        //TODO: 화면에 표시되는 항목의 변경사항만 추적하여 업데이트하도록 개선
-//        self.provider.subscriptionManager.serviceBy(workspaceId: self.workspaceId)
-//            .subscribe(onNext: { [weak self] result in
-//                self?.action.onNext(.notification(result))
-//            }).disposed(by: self.disposeBag)
+        self.provider.subscriptionManager.services(by: self.workspaceId)
+            .subscribe(onNext: { [weak self] result in
+                if result.count > 1 {
+                    Log.debug("!!!!!!-1")
+                }
+                guard let first = result.first else { return }
+                self?.action.onNext(.notification(first))
+            }).disposed(by: self.disposeBag)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -192,17 +196,17 @@ extension InProgressServiceListViewReactor {
     }
 
     private func subscription(_ notification: Notification) -> Observable<Mutation> {
-        if let eventType = notification.eventType,
-           let fragment = notification.service?.fragments.serviceFragment,
-           fragment.type != "RECALL" {
+        let eventType = notification.eventType
+        let fragment = notification.service.fragments.serviceRawFragment
+        if fragment.type != "RECALL" {
             let service = Service(fragment)
             Log.debug("\(eventType)")
             switch eventType {
-            case .serviceCreated:
+            case "ServiceCreated":
                 return .just(.addService(service))
-            case .serviceUpdated:
+            case "ServiceUpdated":
                 return .just(.updateService(service))
-            case .serviceDeleted:
+            case "ServiceDeleted":
                 return .just(.deleteService(service.id))
             default:
                 Log.error("serviceSubscription error: unknowned eventType")
