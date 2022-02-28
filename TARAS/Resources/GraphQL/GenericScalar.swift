@@ -10,6 +10,12 @@ import Apollo
 
 public typealias DateTime = Date
 public typealias JSONString = String
+public typealias bpchar = String
+public typealias bytea = String
+public typealias jsonb = GenericScalar
+public typealias bigint = String
+public typealias timestamptz = Date
+public typealias float8 = Double
 
 public struct GenericScalar: JSONDecodable, JSONEncodable {
     
