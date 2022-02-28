@@ -340,8 +340,8 @@ extension AppDelegate: MessagingDelegate {
            accessToken.count > 0 {
             
             let mutation = RegisterFcmMutation(input: .init(
-                deviceUniqueKey: deviceUniqueKey,
                 clientType: "ios",
+                deviceUniqueKey: deviceUniqueKey,
                 fcmToken: token
             ))
             

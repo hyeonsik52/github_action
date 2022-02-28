@@ -114,8 +114,8 @@ class ServiceCreationViewReactor: Reactor {
             let json = try! GenericScalar(jsonValue: jsonValue)
             
             let input = CreateServiceWithServiceTemplateInput(
-                serviceTemplateId: self.templateProcess.templateId,
-                input: json
+                input: json,
+                serviceTemplateId: self.templateProcess.templateId
             )
             
             return .concat([
