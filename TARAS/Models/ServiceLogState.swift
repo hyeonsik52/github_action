@@ -8,7 +8,7 @@
 import Foundation
 
 /// 서비스 로그 유형
-enum ServiceLogState {
+enum ServiceLogState: Equatable {
     /// 서비스 요청
     case created(creator: String)
     /// 로봇 배정됨
@@ -92,6 +92,29 @@ enum ServiceLogState {
             return reason.styledMessage
         case .unclassified(let typeString):
             return .init(string: typeString)
+        }
+    }
+    
+    static func == (lhs: ServiceLogState, rhs: ServiceLogState) -> Bool {
+        switch (lhs, rhs) {
+        case (.created(let left), .created(let right)):
+            return left == right
+        case (.robotAssigned(let left), .robotAssigned(let right)):
+            return left == right
+        case (.robotArrived(let left1, let left2), .robotArrived(let right1, let right2)):
+            return left1 == right1 && left2 == right2
+        case (.workCompleted(let left), .workCompleted(let right)):
+            return left == right
+        case (.finished, .finished):
+            return true
+        case (.canceled, .canceled):
+            return true
+        case (.failed(let left), .failed(let right)):
+            return left == right
+        case (.unclassified(let left), .unclassified(let right)):
+            return left == right
+        default:
+            return false
         }
     }
 }

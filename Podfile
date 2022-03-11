@@ -45,11 +45,11 @@ target 'TARAS' do
   pods
 end
 
-#target '{테스트 타겟 이름}' do
-#  pods
-#  pod 'RxBlocking', '~> 6'
-#  pod 'RxTest', '~> 6'
-#end
+target 'TARAS-DevTests' do
+  pods
+  pod 'RxBlocking', '~> 6'
+  pod 'RxTest', '~> 6'
+end
 
 post_install do |installer|
    installer.pods_project.targets.each do |target|

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0937600DE4462FD39D4C2B1F /* Pods_TARAS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */; };
 		29777413D700174F2A955E98 /* Pods_TARAS_QA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DE2B466381FA202337AA9F /* Pods_TARAS_QA.framework */; };
+		BDDE4A428C2CB02AC2800130 /* Pods_TARAS_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */; };
 		C6B29AA5C3EC8DBD71B4B01F /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */; };
 		ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */; };
 		ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */; };
@@ -661,6 +662,7 @@
 		ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */; };
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
+		ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4D27D5F41A007EBE70 /* MockModel.swift */; };
 		ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6A2721526800AD6678 /* SettingCellView.swift */; };
 		ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */; };
 		ED7A0E792721539400AD6678 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E732721539400AD6678 /* UpdateUserInfoViewController.swift */; };
@@ -696,6 +698,7 @@
 		ED99E78227CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
 		ED99E78327CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
 		ED99E78427CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
+		ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99E78D27CCD0E50083007B /* ModelTests.swift */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -768,14 +771,27 @@
 		EDFC63D1279EB2FA006613CA /* TRSTagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63D0279EB2FA006613CA /* TRSTagListViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		ED99E78F27CCD0E50083007B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDF0C38E26B405F60061552F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDF0C39526B405F60061552F;
+			remoteInfo = "TARAS-Dev";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0593411C0BCB302AC88FBE81 /* Pods-TARAS-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		2211A5F09D4F142FAC72BB48 /* Pods-TARAS-QA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-QA.release.xcconfig"; path = "Target Support Files/Pods-TARAS-QA/Pods-TARAS-QA.release.xcconfig"; sourceTree = "<group>"; };
 		4062DBC86F6F76E8D3A1DF40 /* Pods-TARAS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS.debug.xcconfig"; path = "Target Support Files/Pods-TARAS/Pods-TARAS.debug.xcconfig"; sourceTree = "<group>"; };
+		5C2A49A92445DE4EEE3FE1D9 /* Pods-TARAS-DevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-DevTests.release.xcconfig"; path = "Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests.release.xcconfig"; sourceTree = "<group>"; };
 		7400D67BE094B82474F5F5B7 /* Pods-TARAS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS.release.xcconfig"; path = "Target Support Files/Pods-TARAS/Pods-TARAS.release.xcconfig"; sourceTree = "<group>"; };
+		8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_DevTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DE2B466381FA202337AA9F /* Pods_TARAS_QA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_QA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8F340D7BE2D88A2CF04EB05 /* Pods-TARAS-QA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-QA.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-QA/Pods-TARAS-QA.debug.xcconfig"; sourceTree = "<group>"; };
+		B1A5806CEC45543BC5AC2AF3 /* Pods-TARAS-DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-DevTests.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCell.swift; sourceTree = "<group>"; };
@@ -943,6 +959,7 @@
 		ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		ED78EC4D27D5F41A007EBE70 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
 		ED7A0E6127212A8D00AD6678 /* TARAS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TARAS-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED7A0E6A2721526800AD6678 /* SettingCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCellView.swift; sourceTree = "<group>"; };
 		ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -969,6 +986,8 @@
 		ED98973327BB7AFA000C9246 /* ServiceShortcutRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceShortcutRegistrationViewController.swift; sourceTree = "<group>"; };
 		ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceShortcutRegistrationViewReactor.swift; sourceTree = "<group>"; };
 		ED99E78127CC60880083007B /* Fragment_raw.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fragment_raw.graphql; sourceTree = "<group>"; };
+		ED99E78B27CCD0E50083007B /* TARAS-DevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TARAS-DevTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED99E78D27CCD0E50083007B /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schema.json; path = TARAS/Resources/GraphQL/schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = TARAS/Resources/GraphQL/API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -1058,6 +1077,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ED99E78827CCD0E50083007B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDDE4A428C2CB02AC2800130 /* Pods_TARAS_DevTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDF0C39326B405F60061552F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1075,6 +1102,7 @@
 				9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */,
 				92DE2B466381FA202337AA9F /* Pods_TARAS_QA.framework */,
 				DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */,
+				8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1088,6 +1116,8 @@
 				7400D67BE094B82474F5F5B7 /* Pods-TARAS.release.xcconfig */,
 				A8F340D7BE2D88A2CF04EB05 /* Pods-TARAS-QA.debug.xcconfig */,
 				2211A5F09D4F142FAC72BB48 /* Pods-TARAS-QA.release.xcconfig */,
+				B1A5806CEC45543BC5AC2AF3 /* Pods-TARAS-DevTests.debug.xcconfig */,
+				5C2A49A92445DE4EEE3FE1D9 /* Pods-TARAS-DevTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1760,6 +1790,23 @@
 			path = ServiceShortcutRegistration;
 			sourceTree = "<group>";
 		};
+		ED99E78C27CCD0E50083007B /* TARAS-DevTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED99E78D27CCD0E50083007B /* ModelTests.swift */,
+				ED99E79427CCD22F0083007B /* Mock */,
+			);
+			path = "TARAS-DevTests";
+			sourceTree = "<group>";
+		};
+		ED99E79427CCD22F0083007B /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				ED78EC4D27D5F41A007EBE70 /* MockModel.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		EDC118E826D3A39C0020AB09 /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
@@ -2031,6 +2078,7 @@
 			isa = PBXGroup;
 			children = (
 				EDF0C39826B405F60061552F /* TARAS */,
+				ED99E78C27CCD0E50083007B /* TARAS-DevTests */,
 				EDF0C39726B405F60061552F /* Products */,
 				BEE83EA739F40AF88EFBC2BE /* Pods */,
 				B78B945B18F3A657F0DEEFC7 /* Frameworks */,
@@ -2043,6 +2091,7 @@
 				EDF0C39626B405F60061552F /* TARAS-Dev.app */,
 				ED416DEA27A16C640043A7A4 /* TARAS-QA.app */,
 				ED416F2F27A170FC0043A7A4 /* TARAS.app */,
+				ED99E78B27CCD0E50083007B /* TARAS-DevTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2117,6 +2166,26 @@
 			productReference = ED416F2F27A170FC0043A7A4 /* TARAS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		ED99E78A27CCD0E50083007B /* TARAS-DevTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED99E79327CCD0E50083007B /* Build configuration list for PBXNativeTarget "TARAS-DevTests" */;
+			buildPhases = (
+				4D997054A61F35ECBA7447ED /* [CP] Check Pods Manifest.lock */,
+				ED99E78727CCD0E50083007B /* Sources */,
+				ED99E78827CCD0E50083007B /* Frameworks */,
+				ED99E78927CCD0E50083007B /* Resources */,
+				905043D0F4D85458E13F3FC9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED99E79027CCD0E50083007B /* PBXTargetDependency */,
+			);
+			name = "TARAS-DevTests";
+			productName = "TARAS-DevTests";
+			productReference = ED99E78B27CCD0E50083007B /* TARAS-DevTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EDF0C39526B405F60061552F /* TARAS-Dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDF0C3AA26B405F70061552F /* Build configuration list for PBXNativeTarget "TARAS-Dev" */;
@@ -2143,9 +2212,13 @@
 		EDF0C38E26B405F60061552F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					ED99E78A27CCD0E50083007B = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = EDF0C39526B405F60061552F;
+					};
 					EDF0C39526B405F60061552F = {
 						CreatedOnToolsVersion = 12.5.1;
 						LastSwiftMigration = 1300;
@@ -2168,6 +2241,7 @@
 				EDF0C39526B405F60061552F /* TARAS-Dev */,
 				ED416CAF27A16C640043A7A4 /* TARAS-QA */,
 				ED416DF427A170FC0043A7A4 /* TARAS */,
+				ED99E78A27CCD0E50083007B /* TARAS-DevTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2207,6 +2281,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ED99E78927CCD0E50083007B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDF0C39426B405F60061552F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2227,6 +2308,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4D997054A61F35ECBA7447ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TARAS-DevTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		86C4D66D1468F977BED34B6C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2247,6 +2350,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		905043D0F4D85458E13F3FC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8644044C0CCB20F37BBB37C /* [CP] Embed Pods Frameworks */ = {
@@ -2899,6 +3019,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ED99E78727CCD0E50083007B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */,
+				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDF0C39226B405F60061552F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3150,6 +3279,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		ED99E79027CCD0E50083007B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDF0C39526B405F60061552F /* TARAS-Dev */;
+			targetProxy = ED99E78F27CCD0E50083007B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -3281,6 +3418,48 @@
 				TRS_SERVER_ENDPOINT = api.taras.twinny.ai;
 				TRS_SERVER_REST_CLIENT_ID = zXlZunIKzh5D4FVfl1ZeIWIQQ1PrBkIP9nHKBHuY;
 				TRS_SERVER_REST_CLIENT_SECRET = gma2T91R5Js52Ma25UOLxBbjr18ARmqVu5F4Yi25DrhQaGv2nqPxtLMSUl1XhhED2kR2dOMq9LJfQbIa3dg6fPmodGZhbf148VzhiJH6rXUv8cjTqhFKQmN8J1nYsePW;
+			};
+			name = Release;
+		};
+		ED99E79127CCD0E50083007B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1A5806CEC45543BC5AC2AF3 /* Pods-TARAS-DevTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y4DVJNGENA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.twinny.TARAS-DevTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TARAS-Dev.app/TARAS-Dev";
+			};
+			name = Debug;
+		};
+		ED99E79227CCD0E50083007B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C2A49A92445DE4EEE3FE1D9 /* Pods-TARAS-DevTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y4DVJNGENA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.twinny.TARAS-DevTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TARAS-Dev.app/TARAS-Dev";
 			};
 			name = Release;
 		};
@@ -3488,6 +3667,15 @@
 			buildConfigurations = (
 				ED416F2D27A170FC0043A7A4 /* Debug */,
 				ED416F2E27A170FC0043A7A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED99E79327CCD0E50083007B /* Build configuration list for PBXNativeTarget "TARAS-DevTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED99E79127CCD0E50083007B /* Debug */,
+				ED99E79227CCD0E50083007B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
