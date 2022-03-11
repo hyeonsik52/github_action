@@ -698,7 +698,7 @@
 		ED99E78227CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
 		ED99E78327CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
 		ED99E78427CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
-		ED99E78E27CCD0E50083007B /* TARAS_DevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99E78D27CCD0E50083007B /* TARAS_DevTests.swift */; };
+		ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99E78D27CCD0E50083007B /* ModelTests.swift */; };
 		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
@@ -987,7 +987,7 @@
 		ED98973827BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceShortcutRegistrationViewReactor.swift; sourceTree = "<group>"; };
 		ED99E78127CC60880083007B /* Fragment_raw.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fragment_raw.graphql; sourceTree = "<group>"; };
 		ED99E78B27CCD0E50083007B /* TARAS-DevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TARAS-DevTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED99E78D27CCD0E50083007B /* TARAS_DevTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TARAS_DevTests.swift; sourceTree = "<group>"; };
+		ED99E78D27CCD0E50083007B /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schema.json; path = TARAS/Resources/GraphQL/schema.json; sourceTree = SOURCE_ROOT; };
 		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = TARAS/Resources/GraphQL/API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -1793,7 +1793,7 @@
 		ED99E78C27CCD0E50083007B /* TARAS-DevTests */ = {
 			isa = PBXGroup;
 			children = (
-				ED99E78D27CCD0E50083007B /* TARAS_DevTests.swift */,
+				ED99E78D27CCD0E50083007B /* ModelTests.swift */,
 				ED99E79427CCD22F0083007B /* Mock */,
 			);
 			path = "TARAS-DevTests";
@@ -3023,7 +3023,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED99E78E27CCD0E50083007B /* TARAS_DevTests.swift in Sources */,
+				ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */,
 				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
