@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StopType {
+enum StopType: String {
     case normal
     case loading
     
