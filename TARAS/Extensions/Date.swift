@@ -24,6 +24,7 @@ extension Date {
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Self.firstLanguageLocale
+        dateFormatter.timeZone = .current
         
         if isToday {
 
@@ -47,6 +48,7 @@ extension Date {
     func toString(_ format: String) -> String {
         let formatter = DateFormatter()
         formatter.locale = Self.firstLanguageLocale
+        formatter.timeZone = .current
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
@@ -71,5 +73,12 @@ extension Date {
         }
         
         return result
+    }
+}
+
+extension Date {
+    
+    var ISO8601Format: String {
+        return self.toString("yyyy-MM-dd'T'HH:mm:ss.SSS'Z")
     }
 }
