@@ -6,7 +6,6 @@
 //
 
 import ReactorKit
-import FirebaseMessaging
 
 class DefaultMyInfoViewReactor: Reactor {
     
@@ -129,29 +128,20 @@ class DefaultMyInfoViewReactor: Reactor {
             return .just(.updateIsLogout(true))
         }
         
-        return self.getFCMToken()
-            .filterNil()
-            .flatMapLatest { token -> Observable<Mutation> in
-                let mutation = UnregisterFcmMutation(input: .init(
-                    clientType: "ios",
-                    deviceUniqueKey: deviceUniqueKey,
-                    fcmToken: token
-                ))
-                return self.provider.networkManager.perform(mutation)
-                    .flatMapLatest { payload -> Observable<Mutation> in
-                        if payload.unregisterFcm == true {
-                            let request: RestAPIType<LogoutResponseModel> = .logout(input: .init(
-                                token: accessToken
-                            ))
-                            return self.provider.networkManager.postByRest(request)
-                                .flatMap {_ in goSignIn() }
-                                .catch { error -> Observable<Mutation> in
-                                    return goSignIn()
-                                }
-                        } else {
+        return self.provider.networkManager.unregisterFcmToken()
+            .flatMapLatest { isSuccess -> Observable<Mutation> in
+                if isSuccess {
+                    let request: RestAPIType<LogoutResponseModel> = .logout(input: .init(
+                        token: accessToken
+                    ))
+                    return self.provider.networkManager.postByRest(request)
+                        .flatMap {_ in goSignIn() }
+                        .catch { error -> Observable<Mutation> in
                             return goSignIn()
                         }
-                    }
+                } else {
+                    return goSignIn()
+                }
             }.catch { _ in
                 return goSignIn()
             }
@@ -166,41 +156,16 @@ class DefaultMyInfoViewReactor: Reactor {
             .just(.updateIsResign(nil)),
             .just(.updateIsProcessing(true)),
             
-            self.getFCMToken().filterNil()
-                .flatMapLatest { token -> Observable<Mutation> in
-                    let mutation = UnregisterFcmMutation(input: .init(
-                        clientType: "ios",
-                        deviceUniqueKey: deviceUniqueKey,
-                        fcmToken: token
-                    ))
-                    return self.provider.networkManager.perform(mutation)
-                        .flatMapLatest { payload -> Observable<Mutation> in
-                            return self.provider.networkManager.perform(WithdrawMutation())
-                                .map { $0.withdrawUser ?? false }
-                                .do(onNext: { [weak self] _ in self?.provider.userManager.initializeUserTB() })
-                                .map { .updateIsResign($0) }
-                        }
+            self.provider.networkManager.unregisterFcmToken()
+                .flatMapLatest { _ -> Observable<Mutation> in
+                    return self.provider.networkManager.perform(WithdrawMutation())
+                        .map { $0.withdrawUser ?? false }
+                        .do(onNext: { [weak self] _ in self?.provider.userManager.initializeUserTB() })
+                        .map { .updateIsResign($0) }
                 }.catchAndReturn(.updateError(.common(.networkNotConnect))),
 
             .just(.updateIsProcessing(false))
         ])
-    }
-    
-    func getFCMToken() -> Observable<String?> {
-        return .create { observer -> Disposable in
-            
-            Messaging.messaging().token { token, error in
-                if let error = error {
-                    observer.onError(error)
-                }
-                
-                if let token = token {
-                    observer.onNext(token)
-                    observer.onCompleted()
-                }
-            }
-            return Disposables.create()
-        }
     }
 }
 

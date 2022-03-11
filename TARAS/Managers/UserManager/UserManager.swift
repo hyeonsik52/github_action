@@ -101,6 +101,9 @@ extension UserManager {
                     self?.updateTokens(access: payload.accessToken, refresh: payload.refreshToken)
                     self?.provider.networkManager.updateWebSocketTransportConnectingPayload()
 
+                    //fcm 토큰 갱신
+                    self?.provider.networkManager.registerFcmToken(auto: #function)
+                    
                     // 1. completion(nil)은 재호출 하는 기능이기 때문에, 성공한 경우에만 사용해야 함.
                     completion(.success)
                 case .failure(let error):

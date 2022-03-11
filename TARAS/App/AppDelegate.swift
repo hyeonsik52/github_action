@@ -25,12 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let provider = ManagerProvider()
     let disposeBag = DisposeBag()
     var reachability = try? Reachability()
-    
-    struct TokenSet: Equatable {
-        var apns: Data?
-        var fcm: String?
-    }
-    private var registrationToken: TokenSet?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -304,58 +298,13 @@ extension AppDelegate: MessagingDelegate {
         // APN 등록 성공 후 전달받은 deviceToken을 Firebase 서버로 전달
         Messaging.messaging().apnsToken = deviceToken
         
-        let current = TokenSet(apns: deviceToken, fcm: Messaging.messaging().fcmToken)
-        self.uploadFcmToken(with: current, #function)
+        let current = PushTokenSet(apns: deviceToken, fcm: Messaging.messaging().fcmToken)
+        self.provider.networkManager.registerFcmToken(with: current, #function)
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
-        let current = TokenSet(apns: messaging.apnsToken, fcm: fcmToken)
-        self.uploadFcmToken(with: current, #function)
-    }
-    
-    private func uploadFcmToken(with tokenSet: TokenSet, _ func: String) {
-        // 토큰이 없는 경우 업로드에 실패하므로 무시함
-        guard self.provider.userManager.hasTokens else {
-            Log.info("Can't upload fcm token without authorization token. (from: \(`func`))")
-            return
-        }
-        
-        // 이전에 업로드 성공한 토큰이 다시 등록되는 경우 무시함
-        let prevTokenSet = self.registrationToken
-        guard tokenSet != self.registrationToken else {
-            Log.info("Ignored already registered token set. (from: \(`func`))")
-            return
-        }
-        self.registrationToken = tokenSet
-        
-        guard let token = tokenSet.fcm else { return }
-        
-        // 토큰이 사용 가능할 때 or 리프레시 됐을 때 메소드가 자동으로 호출 됨
-        Log.info("Firebase registration token: \(token) [with \(String(describing: tokenSet.apns))] (from: \(`func`))")
-        
-        // 앱 서버에 FCM token 을 업로드
-        if let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString,
-           let accessToken = USER_TB.getFirst?.accessToken,
-           accessToken.count > 0 {
-            
-            let mutation = RegisterFcmMutation(input: .init(
-                clientType: "ios",
-                deviceUniqueKey: deviceUniqueKey,
-                fcmToken: token
-            ))
-            
-            self.provider.networkManager.perform(mutation)
-                .subscribe(onNext: { result in
-                    if result.registerFcm == true {
-                        Log.complete("updated FCM token to server")
-                    } else {
-                        Log.complete("Failed FCM token updated to server")
-                    }
-                }).disposed(by: self.disposeBag)
-        }else{
-            self.registrationToken = prevTokenSet
-            Log.error("failed to update FCM token to server: not found device unique id")
-        }
+        let current = PushTokenSet(apns: messaging.apnsToken, fcm: fcmToken)
+        self.provider.networkManager.registerFcmToken(with: current, #function)
     }
 }

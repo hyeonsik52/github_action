@@ -32,6 +32,11 @@ protocol NetworkManagerType: AnyObject {
     
     func clientUpdateCheck() -> Observable<Error?>
     func clientVersionCheck() -> Observable<Version?>
+    
+    func registerFcmToken(with tokenSet: PushTokenSet, _ func: String)
+    func registerFcmToken(auto func: String)
+    func registerFcmToken<T>(auto func: String) -> Observable<T>
+    func unregisterFcmToken() -> Observable<Bool>
 }
 
 class NetworkManager: BaseManager, NetworkManagerType {
