@@ -5,7 +5,6 @@
 //  Created by nexmond on 2021/01/13.
 //
 
-import FirebaseMessaging
 import ReactorKit
 import RxSwift
 
@@ -143,7 +142,7 @@ class SignUpNameViewReactor: Reactor {
                         
                         return .concat([
                             // 3. FCM 토큰 업로드
-                            self.uploadFcmToken(),
+                            self.provider.networkManager.registerFcmToken(auto: #function),
                             // 4. 유저 정보 불러오기
                             self.loadUserInfo(withAuth)
                         ])
@@ -172,30 +171,6 @@ extension SignUpNameViewReactor {
                 } else {
                     return .just(.updateError(.etc("존재하지 않는 유저입니다.")))
                 }
-            }
-    }
-    
-    func uploadFcmToken() -> Observable<Mutation> {
-        guard let token = Messaging.messaging().fcmToken,
-              let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString
-        else {
-            return .empty()
-        }
-        
-        let mutation = RegisterFcmMutation(input: .init(
-            clientType: "ios",
-            deviceUniqueKey: deviceUniqueKey,
-            fcmToken: token
-        ))
-        
-        return self.provider.networkManager.perform(mutation)
-            .flatMapLatest { payload -> Observable<Mutation> in
-                if payload.registerFcm == true {
-                    Log.complete("updated FCM token to server")
-                } else {
-                    Log.complete("Failed FCM token updated to server")
-                }
-                return .empty()
             }
     }
 }
