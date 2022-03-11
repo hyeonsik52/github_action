@@ -663,6 +663,9 @@
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
 		ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4D27D5F41A007EBE70 /* MockModel.swift */; };
+		ED78EC5027DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */; };
+		ED78EC5127DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */; };
+		ED78EC5227DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */; };
 		ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6A2721526800AD6678 /* SettingCellView.swift */; };
 		ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */; };
 		ED7A0E792721539400AD6678 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E732721539400AD6678 /* UpdateUserInfoViewController.swift */; };
@@ -960,6 +963,7 @@
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		ED78EC4D27D5F41A007EBE70 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
+		ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_fcm.swift; sourceTree = "<group>"; };
 		ED7A0E6127212A8D00AD6678 /* TARAS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TARAS-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED7A0E6A2721526800AD6678 /* SettingCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCellView.swift; sourceTree = "<group>"; };
 		ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -1609,6 +1613,7 @@
 			isa = PBXGroup;
 			children = (
 				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
+				ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */,
 				ED6B466126B7E8B500C2FA6D /* Interceptors */,
 				ED508CC8272298D40029AF7B /* REST */,
 			);
@@ -2664,6 +2669,7 @@
 				ED416D5C27A16C640043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
 				ED416D5E27A16C640043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416D5F27A16C640043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
+				ED78EC5127DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
 				ED416D6127A16C640043A7A4 /* SignUpIdViewReactor.swift in Sources */,
 				ED416D6227A16C640043A7A4 /* ServiceBasicInfoViewReactor.swift in Sources */,
 				ED416D6327A16C640043A7A4 /* ServiceUnitTargetCell.swift in Sources */,
@@ -2913,6 +2919,7 @@
 				ED53081027B24682003B0FB0 /* ProgressLineView.swift in Sources */,
 				ED416E9F27A170FC0043A7A4 /* BaseManager.swift in Sources */,
 				ED416EA127A170FC0043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
+				ED78EC5227DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
 				ED416EA327A170FC0043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416EA427A170FC0043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
 				ED416EA627A170FC0043A7A4 /* SignUpIdViewReactor.swift in Sources */,
@@ -3171,6 +3178,7 @@
 				ED06C752277DBD2D00F9D0A5 /* ServiceCreationDetailViewReactor.swift in Sources */,
 				ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */,
 				ED06C74C277DBD2D00F9D0A5 /* ServiceCreationCellReactor.swift in Sources */,
+				ED78EC5027DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
 				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */,
 				ED06C737277DBD2D00F9D0A5 /* ServiceUnitTargetCell.swift in Sources */,
