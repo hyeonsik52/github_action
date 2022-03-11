@@ -662,6 +662,7 @@
 		ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */; };
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
+		ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4D27D5F41A007EBE70 /* MockModel.swift */; };
 		ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6A2721526800AD6678 /* SettingCellView.swift */; };
 		ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */; };
 		ED7A0E792721539400AD6678 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E732721539400AD6678 /* UpdateUserInfoViewController.swift */; };
@@ -958,6 +959,7 @@
 		ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		ED78EC4D27D5F41A007EBE70 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
 		ED7A0E6127212A8D00AD6678 /* TARAS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TARAS-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED7A0E6A2721526800AD6678 /* SettingCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCellView.swift; sourceTree = "<group>"; };
 		ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -1800,6 +1802,7 @@
 		ED99E79427CCD22F0083007B /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				ED78EC4D27D5F41A007EBE70 /* MockModel.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -3021,6 +3024,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED99E78E27CCD0E50083007B /* TARAS_DevTests.swift in Sources */,
+				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
