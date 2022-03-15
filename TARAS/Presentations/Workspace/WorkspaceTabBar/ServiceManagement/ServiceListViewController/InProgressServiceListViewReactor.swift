@@ -72,11 +72,9 @@ class InProgressServiceListViewReactor: Reactor {
         
         self.provider.subscriptionManager.services(by: self.workspaceId)
             .subscribe(onNext: { [weak self] result in
-                if result.count > 1 {
-                    Log.debug("!!!!!!-1")
+                result.forEach { changeSet in
+                    self?.action.onNext(.notification(changeSet))
                 }
-                guard let first = result.first else { return }
-                self?.action.onNext(.notification(first))
             }).disposed(by: self.disposeBag)
     }
     
@@ -93,8 +91,7 @@ class InProgressServiceListViewReactor: Reactor {
             guard self.currentState.isLoading == false else { return .empty() }
 
             if indexPath.section > self.lastIndexPath.section ||
-                (indexPath.section == self.lastIndexPath.section &&
-                indexPath.item > self.lastIndexPath.item) {
+                (indexPath.section == self.lastIndexPath.section && indexPath.item > self.lastIndexPath.item) {
                 self.lastIndexPath = indexPath
                 if !self.hasNextPage {
                     return .empty()
@@ -212,7 +209,7 @@ extension InProgressServiceListViewReactor {
                 Log.error("serviceSubscription error: unknowned eventType")
             }
         } else {
-            Log.error("serviceSubscription error: not fount eventType or data")
+            Log.info("serviceSubscription info: recall service ignored")
         }
         return .empty()
     }
