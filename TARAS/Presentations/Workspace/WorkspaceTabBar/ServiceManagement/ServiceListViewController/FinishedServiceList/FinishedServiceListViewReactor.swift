@@ -269,6 +269,8 @@ extension FinishedServiceListViewReactor {
             if data.hashValue != prev.hashValue {
                 state.services[index] = data
             }
+        } else {
+            state = self.addServices(state: state, data: data)
         }
         return state
     }
