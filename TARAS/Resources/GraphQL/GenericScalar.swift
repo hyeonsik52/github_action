@@ -70,13 +70,7 @@ extension Date: JSONDecodable, JSONEncodable {
             throw JSONDecodingError.couldNotConvert(value: value, to: Date.self)
         }
         
-        let dateFormatter = DateFormatter()
-        let locale = Locale(identifier: Locale.preferredLanguages[0])
-        dateFormatter.locale = locale
-        dateFormatter.timeZone = .current
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
-        
-        if let data = dateFormatter.date(from: string) {
+        if let data = string.ISO8601Date {
             self = data
         } else {
             throw JSONDecodingError.couldNotConvert(value: value, to: Date.self)
@@ -84,14 +78,6 @@ extension Date: JSONDecodable, JSONEncodable {
     }
     
     public var jsonValue: JSONValue {
-        let dateFormatter = DateFormatter()
-        let locale = Locale(identifier: Locale.preferredLanguages[0])
-        dateFormatter.locale = locale
-        dateFormatter.timeZone = .current
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
-        
-        return dateFormatter.string(from: self)
+        return self.ISO8601Format
     }
 }
-
-public typealias Upload = String

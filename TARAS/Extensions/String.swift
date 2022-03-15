@@ -91,24 +91,24 @@ extension Array where Element == String {
 
 extension String {
     
-    func toDate(_ format: String? = nil) -> Date? {
-        if let format = format {
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: Locale.preferredLanguages[0])
-            dateFormatter.dateFormat = format
-            return dateFormatter.date(from: self)
-        } else {
-//            let formatter = ISO8601DateFormatter()
-//            formatter.formatOptions =  [.withInternetDateTime, .withFractionalSeconds]
-//            return formatter.date(from: self)
-            let dateFormatter = DateFormatter()
-            let locale = Locale(identifier: Locale.preferredLanguages[0])
-            dateFormatter.locale = locale
-            dateFormatter.timeZone = .current
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
-            return dateFormatter.date(from: self)
-        }
+    func toDate(_ format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: Locale.preferredLanguages[0])
+        dateFormatter.timeZone = .current
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: self)
     }
+    
+    var ISO8601Date: Date? {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.timeZone = .current
+        return dateFormatter.date(from: self) ??
+        self.toDate(String.ISO8601FormatString1) ??
+        self.toDate(String.ISO8601FormatString2)
+    }
+    
+    static let ISO8601FormatString1 = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+    static let ISO8601FormatString2 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
 }
 
 extension String {
