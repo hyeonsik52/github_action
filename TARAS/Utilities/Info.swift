@@ -18,8 +18,20 @@ enum Info {
         return .init(bitPattern: value.longLongValue)
     }
     
-    static var serverEndpoint: String {
-        return "https://" + self["ServerEndpoint"]!
+    static func serverEndpoint(scheme: String) -> String {
+        return scheme + "://" + self["ServerEndpoint"]!
+    }
+    
+    static var restEndpoint: String {
+        return self.serverEndpoint(scheme: "https") + "/auth"
+    }
+    
+    static var graphEndpoint: String {
+        return self.serverEndpoint(scheme: "https") + "/v1/graphql"
+    }
+    
+    static var graphWSEndpoint: String {
+        return self.serverEndpoint(scheme: "wss") + "/v1/graphql"
     }
     
     static var serverRestClientId: String {

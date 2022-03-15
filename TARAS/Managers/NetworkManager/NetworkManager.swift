@@ -41,8 +41,6 @@ protocol NetworkManagerType: AnyObject {
 
 class NetworkManager: BaseManager, NetworkManagerType {
     
-    private static let endpointURL = "\(Info.serverEndpoint)/v1/graphql"
-    
     /// A web socket transport to use for subscriptions
     private(set) var webSocketTransport: WebSocketTransport!
     
@@ -58,7 +56,7 @@ class NetworkManager: BaseManager, NetworkManagerType {
         provider: ManagerProviderType,
         store: ApolloStore = ApolloStore(),
         client: URLSessionClient = URLSessionClient(),
-        endPointURL strUrl: String = endpointURL,
+        endPointURL strUrl: String = Info.graphEndpoint,
         interceptors: InterceptorsBlock? = nil
     ) {
         self.init(provider: provider)
@@ -75,19 +73,23 @@ class NetworkManager: BaseManager, NetworkManagerType {
         provider: ManagerProviderType,
         store: ApolloStore = ApolloStore(),
         client: URLSessionClient = URLSessionClient(),
-        endPointURL strUrl: String = endpointURL,
+        endPointURL strUrl: String = Info.graphEndpoint,
+        wsEndPointURL wsStrUrl: String = Info.graphWSEndpoint,
         interceptors: InterceptorsBlock? = nil
     ) {
-        let endpointURL = URL(string: strUrl)!
+        let authPayload = provider.userManager.authPayload()
+        
+        var wsURLRequest = URLRequest(url: .init(string: wsStrUrl)!)
+        wsURLRequest.setValue(authPayload["Authorization"], forHTTPHeaderField: "Authorization")
         
         /// A web socket transport to use for subscriptions
-        let request = URLRequest(url: endpointURL)
-        let authPayload = provider.userManager.authPayload()
-        let websocket = DefaultWebSocket(request: request)
+        let websocket = DefaultWebSocket(request: wsURLRequest)
         let webSocketTransport = WebSocketTransport(websocket: websocket, reconnectionInterval: 1, connectingPayload: authPayload)
         webSocketTransport.delegate = self
         self.webSocketTransport = webSocketTransport
-
+        
+        let endpointURL = URL(string: strUrl)!
+        
         /// An HTTP transport to use for queries and mutations.
         let normalTransport: RequestChainNetworkTransport = {
             let interceptorProvider = NetworkInterceptorProvider(store: store, client: client, provider: provider, interceptors: interceptors)
@@ -210,6 +212,7 @@ extension NetworkManager {
     func updateWebSocketTransportConnectingPayload() {
         Log.debug("💡 \(#function)")
         let authPayload = self.provider.userManager.authPayload()
+        self.webSocketTransport.updateHeaderValues(authPayload)
         self.webSocketTransport.updateConnectingPayload(authPayload)
     }
     
