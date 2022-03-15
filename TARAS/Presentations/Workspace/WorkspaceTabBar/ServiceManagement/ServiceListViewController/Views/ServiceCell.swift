@@ -87,12 +87,12 @@ class ServiceCell: UICollectionViewCell, View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        attributes.size = self.contentView.systemLayoutSizeFitting(UICollectionViewCell.layoutFittingExpandedSize)
-        attributes.size.width = UIScreen.main.bounds.width - 16*2
-        return attributes
-    }
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+//        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+//        attributes.size = self.contentView.systemLayoutSizeFitting(UICollectionViewCell.layoutFittingExpandedSize)
+//        attributes.size.width = UIScreen.main.bounds.width - 16*2
+//        return attributes
+//    }
     
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)

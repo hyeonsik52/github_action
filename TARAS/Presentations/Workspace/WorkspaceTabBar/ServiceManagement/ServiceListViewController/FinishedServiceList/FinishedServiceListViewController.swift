@@ -26,7 +26,8 @@ class FinishedServiceListViewController: BaseNavigationViewController, View {
     private let flowLayout = UICollectionViewFlowLayout().then {
         let width = UIScreen.main.bounds.width - 16 * 2
         $0.minimumLineSpacing = 12
-        $0.estimatedItemSize = .init(width: width, height: 200)
+//        $0.estimatedItemSize = .init(width: width, height: 198)
+        $0.itemSize = .init(width: width, height: 198)
         $0.sectionInset = .init(top: 8, left: 16, bottom: 24, right: 16)
         $0.headerReferenceSize = .init(width: width, height: 20)
     }
