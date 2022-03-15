@@ -33,7 +33,8 @@ class InProgressServiceListViewController: BaseViewController, View {
     private let flowLayout = UICollectionViewFlowLayout().then {
         let width = UIScreen.main.bounds.width - 16 * 2
         $0.minimumLineSpacing = 12
-        $0.estimatedItemSize = .init(width: width, height: 200)
+//        $0.estimatedItemSize = .init(width: width, height: 200)
+        $0.itemSize = .init(width: width, height: 198)
         $0.sectionInset = .init(top: 8, left: 16, bottom: 24, right: 16)
     }
     private lazy var collectionView = UICollectionView.init(
@@ -145,15 +146,8 @@ class InProgressServiceListViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         //Action
-        //temp: 서버 느려짐 현상으로 임시 비활성
-//        self.rx.viewDidLoad
-//            .map { Reactor.Action.refresh }
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
-        
-        //temp: 서버 느려짐 현상으로 임시 비활성
-        self.rx.viewWillAppear
-            .map {_ in Reactor.Action.refresh }
+        self.rx.viewDidLoad
+            .map { Reactor.Action.refresh }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -192,11 +186,10 @@ class InProgressServiceListViewController: BaseViewController, View {
 extension InProgressServiceListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let lastSection = self.dataSource.sectionModels.count - 1
-        let lastIndex = (self.dataSource.sectionModels.last?.items.count ?? 1) - 1
-        if indexPath.section > lastSection {
-            self.reactor?.action.onNext(.moreFind(indexPath))
-        } else if indexPath.section == lastSection, indexPath.item >= lastIndex {
+        let lastSection = max(0, self.dataSource.sectionModels.count - 1)
+        let lastItem = (self.dataSource.sectionModels.last?.items.count ?? 1) - 1
+        if indexPath.section > lastSection ||
+            (indexPath.section == lastSection && indexPath.item >= lastItem) {
             self.reactor?.action.onNext(.moreFind(indexPath))
         }
     }

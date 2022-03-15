@@ -28,7 +28,8 @@ fragment ServiceUnitRawFragment on service_unit {
 		... StopRawFragment
 	}
 	receivers {
-		... UserRawFragment
+		id
+		display_name
 	}
 }
 

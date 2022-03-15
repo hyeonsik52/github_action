@@ -17,12 +17,12 @@ enum RestAPIType<T: RestAPIResponse> {
         let path: String = {
             switch self {
             case .login, .refreshSession:
-                return "auth/token/"
+                return "token/"
             case .logout:
-                return "auth/revoke_token/"
+                return "revoke_token/"
             }
         }()
-        return URL(string: Info.serverEndpoint)!.appendingPathComponent(path)
+        return URL(string: Info.restEndpoint)!.appendingPathComponent(path)
     }
     
     var parameters: [String: Any] {

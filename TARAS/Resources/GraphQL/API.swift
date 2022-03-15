@@ -577,216 +577,6 @@ public struct CreateServiceTemplateFromServiceInput: GraphQLMapConvertible {
   }
 }
 
-/// Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
-public struct String_comparison_exp: GraphQLMapConvertible {
-  public var graphQLMap: GraphQLMap
-
-  /// - Parameters:
-  ///   - _eq
-  ///   - _gt
-  ///   - _gte
-  ///   - _ilike: does the column match the given case-insensitive pattern
-  ///   - _in
-  ///   - _iregex: does the column match the given POSIX regular expression, case insensitive
-  ///   - _isNull
-  ///   - _like: does the column match the given pattern
-  ///   - _lt
-  ///   - _lte
-  ///   - _neq
-  ///   - _nilike: does the column NOT match the given case-insensitive pattern
-  ///   - _nin
-  ///   - _niregex: does the column NOT match the given POSIX regular expression, case insensitive
-  ///   - _nlike: does the column NOT match the given pattern
-  ///   - _nregex: does the column NOT match the given POSIX regular expression, case sensitive
-  ///   - _nsimilar: does the column NOT match the given SQL regular expression
-  ///   - _regex: does the column match the given POSIX regular expression, case sensitive
-  ///   - _similar: does the column match the given SQL regular expression
-  public init(_eq: Swift.Optional<String?> = nil, _gt: Swift.Optional<String?> = nil, _gte: Swift.Optional<String?> = nil, _ilike: Swift.Optional<String?> = nil, _in: Swift.Optional<[String]?> = nil, _iregex: Swift.Optional<String?> = nil, _isNull: Swift.Optional<Bool?> = nil, _like: Swift.Optional<String?> = nil, _lt: Swift.Optional<String?> = nil, _lte: Swift.Optional<String?> = nil, _neq: Swift.Optional<String?> = nil, _nilike: Swift.Optional<String?> = nil, _nin: Swift.Optional<[String]?> = nil, _niregex: Swift.Optional<String?> = nil, _nlike: Swift.Optional<String?> = nil, _nregex: Swift.Optional<String?> = nil, _nsimilar: Swift.Optional<String?> = nil, _regex: Swift.Optional<String?> = nil, _similar: Swift.Optional<String?> = nil) {
-    graphQLMap = ["_eq": _eq, "_gt": _gt, "_gte": _gte, "_ilike": _ilike, "_in": _in, "_iregex": _iregex, "_is_null": _isNull, "_like": _like, "_lt": _lt, "_lte": _lte, "_neq": _neq, "_nilike": _nilike, "_nin": _nin, "_niregex": _niregex, "_nlike": _nlike, "_nregex": _nregex, "_nsimilar": _nsimilar, "_regex": _regex, "_similar": _similar]
-  }
-
-  public var _eq: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_eq"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_eq")
-    }
-  }
-
-  public var _gt: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_gt"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_gt")
-    }
-  }
-
-  public var _gte: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_gte"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_gte")
-    }
-  }
-
-  /// does the column match the given case-insensitive pattern
-  public var _ilike: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_ilike"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_ilike")
-    }
-  }
-
-  public var _in: Swift.Optional<[String]?> {
-    get {
-      return graphQLMap["_in"] as? Swift.Optional<[String]?> ?? Swift.Optional<[String]?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_in")
-    }
-  }
-
-  /// does the column match the given POSIX regular expression, case insensitive
-  public var _iregex: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_iregex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_iregex")
-    }
-  }
-
-  public var _isNull: Swift.Optional<Bool?> {
-    get {
-      return graphQLMap["_is_null"] as? Swift.Optional<Bool?> ?? Swift.Optional<Bool?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_is_null")
-    }
-  }
-
-  /// does the column match the given pattern
-  public var _like: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_like"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_like")
-    }
-  }
-
-  public var _lt: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_lt"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_lt")
-    }
-  }
-
-  public var _lte: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_lte"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_lte")
-    }
-  }
-
-  public var _neq: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_neq"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_neq")
-    }
-  }
-
-  /// does the column NOT match the given case-insensitive pattern
-  public var _nilike: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_nilike"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_nilike")
-    }
-  }
-
-  public var _nin: Swift.Optional<[String]?> {
-    get {
-      return graphQLMap["_nin"] as? Swift.Optional<[String]?> ?? Swift.Optional<[String]?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_nin")
-    }
-  }
-
-  /// does the column NOT match the given POSIX regular expression, case insensitive
-  public var _niregex: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_niregex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_niregex")
-    }
-  }
-
-  /// does the column NOT match the given pattern
-  public var _nlike: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_nlike"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_nlike")
-    }
-  }
-
-  /// does the column NOT match the given POSIX regular expression, case sensitive
-  public var _nregex: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_nregex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_nregex")
-    }
-  }
-
-  /// does the column NOT match the given SQL regular expression
-  public var _nsimilar: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_nsimilar"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_nsimilar")
-    }
-  }
-
-  /// does the column match the given POSIX regular expression, case sensitive
-  public var _regex: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_regex"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_regex")
-    }
-  }
-
-  /// does the column match the given SQL regular expression
-  public var _similar: Swift.Optional<String?> {
-    get {
-      return graphQLMap["_similar"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "_similar")
-    }
-  }
-}
-
 public enum UserRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
   case administrator
@@ -5656,8 +5446,8 @@ public final class ServiceByIdSubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription serviceById($id: String_comparison_exp!, $workspaceId: String_comparison_exp!) {
-      service_tmp(where: {workspace_id: $workspaceId, id: $id}) {
+    subscription serviceById($id: String!) {
+      service_tmp(where: {id: {_eq: $id}}) {
         __typename
         ...ServiceRawFragment
       }
@@ -5672,20 +5462,17 @@ public final class ServiceByIdSubscription: GraphQLSubscription {
     document.append("\n" + RobotRawFragment.fragmentDefinition)
     document.append("\n" + ServiceUnitRawFragment.fragmentDefinition)
     document.append("\n" + StopRawFragment.fragmentDefinition)
-    document.append("\n" + UserRawFragment.fragmentDefinition)
     return document
   }
 
-  public var id: String_comparison_exp
-  public var workspaceId: String_comparison_exp
+  public var id: String
 
-  public init(id: String_comparison_exp, workspaceId: String_comparison_exp) {
+  public init(id: String) {
     self.id = id
-    self.workspaceId = workspaceId
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "workspaceId": workspaceId]
+    return ["id": id]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -5693,7 +5480,7 @@ public final class ServiceByIdSubscription: GraphQLSubscription {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("service_tmp", arguments: ["where": ["workspace_id": GraphQLVariable("workspaceId"), "id": GraphQLVariable("id")]], type: .nonNull(.list(.nonNull(.object(ServiceTmp.selections))))),
+        GraphQLField("service_tmp", arguments: ["where": ["id": ["_eq": GraphQLVariable("id")]]], type: .nonNull(.list(.nonNull(.object(ServiceTmp.selections))))),
       ]
     }
 
@@ -5775,8 +5562,11 @@ public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    subscription servicesByWorkspaceId($id: String_comparison_exp!) {
-      service_change_set(where: {service: {workspace_id: $id}}) {
+    subscription servicesByWorkspaceId($id: String!, $userId: String!, $jsonFilter: jsonb!) {
+      service_change_set(
+        where: {_and: [{service: {workspace_id: {_eq: $id}}}, {_or: [{service: {service_units: {receivers: {id: {_eq: $userId}}}}}, {service: {creator: {_contains: $jsonFilter}}}]}]}
+        order_by: {created_at: asc}
+      ) {
         __typename
         event_type
         service {
@@ -5795,18 +5585,21 @@ public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
     document.append("\n" + RobotRawFragment.fragmentDefinition)
     document.append("\n" + ServiceUnitRawFragment.fragmentDefinition)
     document.append("\n" + StopRawFragment.fragmentDefinition)
-    document.append("\n" + UserRawFragment.fragmentDefinition)
     return document
   }
 
-  public var id: String_comparison_exp
+  public var id: String
+  public var userId: String
+  public var jsonFilter: jsonb
 
-  public init(id: String_comparison_exp) {
+  public init(id: String, userId: String, jsonFilter: jsonb) {
     self.id = id
+    self.userId = userId
+    self.jsonFilter = jsonFilter
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id]
+    return ["id": id, "userId": userId, "jsonFilter": jsonFilter]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -5814,7 +5607,7 @@ public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("service_change_set", arguments: ["where": ["service": ["workspace_id": GraphQLVariable("id")]]], type: .nonNull(.list(.nonNull(.object(ServiceChangeSet.selections))))),
+        GraphQLField("service_change_set", arguments: ["where": ["_and": [["service": ["workspace_id": ["_eq": GraphQLVariable("id")]]], ["_or": [["service": ["service_units": ["receivers": ["id": ["_eq": GraphQLVariable("userId")]]]]], ["service": ["creator": ["_contains": GraphQLVariable("jsonFilter")]]]]]]], "order_by": ["created_at": "asc"]], type: .nonNull(.list(.nonNull(.object(ServiceChangeSet.selections))))),
       ]
     }
 
@@ -6190,7 +5983,8 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       }
       receivers {
         __typename
-        ...UserRawFragment
+        id
+        display_name
       }
     }
     """
@@ -6336,7 +6130,8 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
     public static var selections: [GraphQLSelection] {
       return [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLFragmentSpread(UserRawFragment.self),
+        GraphQLField("id", type: .nonNull(.scalar(String.self))),
+        GraphQLField("display_name", type: .nonNull(.scalar(String.self))),
       ]
     }
 
@@ -6346,8 +6141,8 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(id: String, username: String, displayName: String, email: bytea? = nil, phoneNumber: bytea? = nil) {
-      self.init(unsafeResultMap: ["__typename": "user", "id": id, "username": username, "display_name": displayName, "email": email, "phone_number": phoneNumber])
+    public init(id: String, displayName: String) {
+      self.init(unsafeResultMap: ["__typename": "user", "id": id, "display_name": displayName])
     }
 
     public var __typename: String {
@@ -6359,29 +6154,21 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       }
     }
 
-    public var fragments: Fragments {
+    public var id: String {
       get {
-        return Fragments(unsafeResultMap: resultMap)
+        return resultMap["id"]! as! String
       }
       set {
-        resultMap += newValue.resultMap
+        resultMap.updateValue(newValue, forKey: "id")
       }
     }
 
-    public struct Fragments {
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
+    public var displayName: String {
+      get {
+        return resultMap["display_name"]! as! String
       }
-
-      public var userRawFragment: UserRawFragment {
-        get {
-          return UserRawFragment(unsafeResultMap: resultMap)
-        }
-        set {
-          resultMap += newValue.resultMap
-        }
+      set {
+        resultMap.updateValue(newValue, forKey: "display_name")
       }
     }
   }

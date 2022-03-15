@@ -86,7 +86,16 @@ extension ServiceUnit {
         self.state = nil
         
         self.stop = .init(option: fragment.stop?.fragments.stopRawFragment)
-        self.recipients = fragment.receivers?.map(\.fragments.userRawFragment).map(User.init) ?? []
+        //warn: 내 작업 여부 판단, 정차지 작업자 표시를 위한 데이터만 포함되어 있으므로, subscription을 통해 업데이트 된 수신자 정보 사용에 주의하시기 바랍니다.
+        self.recipients = fragment.receivers?.map {
+            return .init(
+                id: $0.id,
+                username: User.unknownId,
+                displayName: $0.displayName,
+                email: nil,
+                phonenumber: nil
+            )
+        } ?? []
         
         self.detail = fragment.message
 

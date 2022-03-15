@@ -21,7 +21,7 @@ extension ServiceLog {
         guard let date = json["time"] as? String else { return nil }
         
         //*현재 날짜이면, 로그 기록 날짜가 ISO형식이 아닌 것.
-        self.date = date.toDate() ?? Date()
+        self.date = date.ISO8601Date ?? Date()
         
         if let typeString = json["type"] as? String {
             switch typeString {

@@ -37,7 +37,7 @@ extension Workspace: FragmentModel {
 
         self.id = fragment.id
         self.name = fragment.name
-        self.createdAt = fragment.createdAt?.toDate() ?? Date()
+        self.createdAt = fragment.createdAt?.ISO8601Date ?? Date()
         self.memberCount = fragment.members?.totalCount ?? 0
         
         self.myMemberState = .member
@@ -79,7 +79,7 @@ extension Workspace: FragmentModel {
         self.id = fragment?.id ?? Self.unknownId
         self.name = fragment?.name ?? "알 수 없는 워크스페이스"
         
-        self.createdAt = fragment?.createdAt?.toDate() ?? Date()
+        self.createdAt = fragment?.createdAt?.ISO8601Date ?? Date()
         self.memberCount = fragment?.members?.totalCount ?? 0
         
         self.myMemberState = .member

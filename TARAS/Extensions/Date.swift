@@ -79,6 +79,8 @@ extension Date {
 extension Date {
     
     var ISO8601Format: String {
-        return self.toString("yyyy-MM-dd'T'HH:mm:ss.SSS'Z")
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.timeZone = .current
+        return dateFormatter.string(from: self)
     }
 }

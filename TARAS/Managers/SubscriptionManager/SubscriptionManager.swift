@@ -10,6 +10,9 @@ import RxSwift
 
 protocol SubscriptionManagerType: AnyObject {
     func subscribe<T: GraphQLSubscription>(_ subscription: T) -> Observable<Result<T.Data, Error>>
+    
+    func services(by workspaceId: String) -> Observable<[ServicesByWorkspaceIdSubscription.Data.ServiceChangeSet]>
+    func service(id: String) -> Observable<Result<ServiceByIdSubscription.Data, Error>>
 }
 
 class SubscriptionManager: BaseManager {
@@ -37,19 +40,19 @@ extension SubscriptionManager: SubscriptionManagerType {
 }
 
 
-extension SubscriptionManagerType {
+extension SubscriptionManager {
     
     /// 내가 수신한 서비스 변화(생성, 수정, 삭제) 구독
-    public func services(
-        by workspaceId: String
-    ) -> Observable<[ServicesByWorkspaceIdSubscription.Data.ServiceChangeSet]> {
-        return self.subscribe(ServicesByWorkspaceIdSubscription(id: .init(_eq: workspaceId)))
+    public func services(by workspaceId: String) -> Observable<[ServicesByWorkspaceIdSubscription.Data.ServiceChangeSet]> {
+        let userTb = self.provider.userManager.userTB
+        guard let userId = userTb.ID, let userUsername = userTb.id else { return .empty() }
+        return self.subscribe(ServicesByWorkspaceIdSubscription(id: workspaceId, userId: userId, jsonFilter: try! .init(jsonValue: ["id": userUsername])))
             .compactMap { result in
                 switch result {
                 case .success(let data):
                     let changeSets = data.serviceChangeSet
                     if changeSets.isEmpty {
-                        Log.error("serviceSubscription error:", "not fount changeset")
+                        Log.error("serviceSubscription error:", "not found changeset")
                     } else {
                         return changeSets
                     }
@@ -61,13 +64,7 @@ extension SubscriptionManagerType {
     }
     
     /// 특정 서비스 구독 (진행중 서비스 상세 화면)
-    public func service(
-        by serviceId: String,
-        with workspaceId: String
-    ) -> Observable<Result<ServiceByIdSubscription.Data, Error>> {
-        let subscription = ServiceByIdSubscription(
-            id: .init(_eq: serviceId),
-            workspaceId: .init(_eq: workspaceId))
-        return self.subscribe(subscription)
+    public func service(id: String) -> Observable<Result<ServiceByIdSubscription.Data, Error>> {
+        return self.subscribe(ServiceByIdSubscription(id: id))
     }
 }
