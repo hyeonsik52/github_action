@@ -20,6 +20,11 @@ fragment StopRawFragment on station_group {
 	remark
 }
 
+fragment ReceiverRawFragment on receiver {
+	id
+	display_name
+}
+
 fragment ServiceUnitRawFragment on service_unit {
 	id
 	index
@@ -28,8 +33,7 @@ fragment ServiceUnitRawFragment on service_unit {
 		... StopRawFragment
 	}
 	receivers {
-		id
-		display_name
+		... ReceiverRawFragment
 	}
 }
 
@@ -50,4 +54,67 @@ fragment ServiceRawFragment on service_tmp {
 		...ServiceUnitRawFragment
 	}
 	total_moving_distance
+}
+
+fragment ServiceChildArgumentRawFragment on taras_core_childargument {
+	id
+	array_of
+	name
+	required
+	display_text
+	ui_component_type
+	ui_component_default_value
+	model
+	need_to_set
+	input_type {
+		name
+	}
+}
+
+fragment ServiceArgumentRecursive on taras_core_childargument {
+	input_type {
+		child_arguments {
+			...ServiceChildArgumentRawFragment
+			input_type {
+				child_arguments {
+					...ServiceChildArgumentRawFragment
+					input_type {
+						child_arguments {
+							...ServiceChildArgumentRawFragment
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+fragment ServiceArgumentRawFragment on taras_core_serviceargument {
+	id
+	array_of
+	input_type {
+		name
+		child_arguments {
+			...ServiceChildArgumentRawFragment
+			...ServiceArgumentRecursive
+		}
+	}
+	name
+	required
+	display_text
+	ui_component_type
+	ui_component_default_value
+	model
+	need_to_set
+}
+
+fragment ServiceTemplateRawFragmnet on service_template {
+	id
+	name
+	service_type
+	description
+	is_compiled
+	arguments {
+		...ServiceArgumentRawFragment
+	}
 }

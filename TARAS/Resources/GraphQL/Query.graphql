@@ -138,14 +138,13 @@ query clientVersion {
     }
 }
 
-query serviceTemplates($workspaceId: ID) {
-    serviceTemplates(workspaceId: $workspaceId) {
-        edges {
-            node {
-				... ServiceTemplateFragment
-            }
-        }
-    }
+query serviceTemplates($workspaceId: String!) {
+	service_template(where:{ _or: [
+		{ workspace_id: { _eq: $workspaceId } },
+		{ workspace_id: { _is_null: true } }
+	] } ) {
+		...ServiceTemplateRawFragmnet
+	}
 }
 
 #진행중인 서비스 개수

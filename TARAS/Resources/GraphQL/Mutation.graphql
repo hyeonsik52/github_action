@@ -94,7 +94,7 @@ mutation cancelService($id: String) {
 
 mutation createServiceTemplate($input: CreateServiceTemplateFromServiceInput!) {
 	createServiceTemplateFromService(input: $input) {
-		... ServiceTemplateFragment
+		id
 	}
 }
 
