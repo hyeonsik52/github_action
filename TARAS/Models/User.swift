@@ -82,6 +82,19 @@ extension User {
         
 //        self.role = fragment.role
     }
+    
+    init(_ fragment: ReceiverRawFragment) {
+        
+        self.id = fragment.id ?? Self.unknownId
+        
+        self.username = Self.unknownName
+        self.displayName = fragment.displayName ?? "알 수 없는 사용자"
+        
+        self.email = nil
+        self.phonenumber = nil
+        
+//        self.role = fragment.role
+    }
 }
 
 extension User: Hashable {
