@@ -60,6 +60,9 @@
 		ED3C109F27C38B0E005680FD /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C109E27C38B0E005680FD /* Describable.swift */; };
 		ED3C10A027C38B0E005680FD /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C109E27C38B0E005680FD /* Describable.swift */; };
 		ED3C10A127C38B0E005680FD /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C109E27C38B0E005680FD /* Describable.swift */; };
+		ED40515B27E2019900AC411E /* ServiceArgumentGeneralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED40515A27E2019900AC411E /* ServiceArgumentGeneralization.swift */; };
+		ED40515C27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED40515A27E2019900AC411E /* ServiceArgumentGeneralization.swift */; };
+		ED40515D27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED40515A27E2019900AC411E /* ServiceArgumentGeneralization.swift */; };
 		ED416CA627A0CE310043A7A4 /* TRSPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED416CA527A0CE310043A7A4 /* TRSPlaceholderView.swift */; };
 		ED416CAA27A0DB9F0043A7A4 /* TRSTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED416CA927A0DB9F0043A7A4 /* TRSTag.swift */; };
 		ED416CAC27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED416CAB27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift */; };
@@ -844,6 +847,7 @@
 		ED06C77A2786893D00F9D0A5 /* STFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlows.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlows.swift; sourceTree = SOURCE_ROOT; };
 		ED06C77C2786894300F9D0A5 /* STView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STView.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STView.swift; sourceTree = SOURCE_ROOT; };
 		ED3C109E27C38B0E005680FD /* Describable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Describable.swift; sourceTree = "<group>"; };
+		ED40515A27E2019900AC411E /* ServiceArgumentGeneralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceArgumentGeneralization.swift; sourceTree = "<group>"; };
 		ED416CA527A0CE310043A7A4 /* TRSPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSPlaceholderView.swift; sourceTree = "<group>"; };
 		ED416CA927A0DB9F0043A7A4 /* TRSTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTag.swift; sourceTree = "<group>"; };
 		ED416CAB27A0FDA60043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSNetworDisconnectedPlaceholderView.swift; sourceTree = "<group>"; };
@@ -1719,6 +1723,7 @@
 				ED6B469426B7E9CE00C2FA6D /* TRSError.swift */,
 				ED06C766277EFE7B00F9D0A5 /* ServiceTemplateType.swift */,
 				ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */,
+				ED40515A27E2019900AC411E /* ServiceArgumentGeneralization.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2604,6 +2609,7 @@
 				ED416D0727A16C640043A7A4 /* SwiftEntryKit_View.swift in Sources */,
 				ED416D0A27A16C640043A7A4 /* SimpleReactor.swift in Sources */,
 				ED416D0B27A16C640043A7A4 /* NotificationManager+Rx.swift in Sources */,
+				ED40515C27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				ED416D0C27A16C640043A7A4 /* SettingTextCellView_Reactive.swift in Sources */,
 				ED416D0D27A16C640043A7A4 /* SignInView.swift in Sources */,
 				ED416D0E27A16C640043A7A4 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
@@ -2854,6 +2860,7 @@
 				ED416E4B27A170FC0043A7A4 /* UIAlertController+Rx.swift in Sources */,
 				ED416E4C27A170FC0043A7A4 /* SwiftEntryKit_View.swift in Sources */,
 				ED416E4F27A170FC0043A7A4 /* SimpleReactor.swift in Sources */,
+				ED40515B27E2019900AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				ED416E5027A170FC0043A7A4 /* NotificationManager+Rx.swift in Sources */,
 				ED416E5127A170FC0043A7A4 /* SettingTextCellView_Reactive.swift in Sources */,
 				ED416E5227A170FC0043A7A4 /* SignInView.swift in Sources */,
@@ -3113,6 +3120,7 @@
 				ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */,
 				ED06C739277DBD2D00F9D0A5 /* SimpleReactor.swift in Sources */,
 				EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */,
+				ED40515D27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */,
 				ED52732626C255FC0077CD9D /* SignInView.swift in Sources */,
 				ED06C758277DBD2D00F9D0A5 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
