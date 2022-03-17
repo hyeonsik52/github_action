@@ -95,6 +95,10 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
                                 animated: true,
                                 bottomBarHidden: true
                             )
+                        } else {
+                            #if !PROD
+                            "서비스 생성에 필요한 인수가 없습니다.\n서비스 템플릿을 확인해주세요.".sek.showToast(color: .redEB4D39)
+                            #endif
                         }
                     }).disposed(by: self.reusableDisposeBag)
                 
