@@ -28,11 +28,7 @@ extension String: STNode {}
 extension NSString: STNode {}
 extension Bool: STNode {}
 extension Int: STNode {}
-extension JSON: STNode {
-    var key: String {
-        return self.keys.first ?? ""
-    }
-}
+extension JSON: STNode {}
 
 extension STNode {
     

@@ -9,6 +9,5 @@ import Foundation
 
 struct STAUIComponent<T>: STUI {
     let type: String
-    let defaultValue: T?
-    let placeholder: String?
+    let defaultValue: T
 }
