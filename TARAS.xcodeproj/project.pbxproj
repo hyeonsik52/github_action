@@ -57,6 +57,15 @@
 		ED06C7792786893200F9D0A5 /* STFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C7782786893200F9D0A5 /* STFlow.swift */; };
 		ED06C77B2786893D00F9D0A5 /* STFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77A2786893D00F9D0A5 /* STFlows.swift */; };
 		ED06C77D2786894300F9D0A5 /* STView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77C2786894300F9D0A5 /* STView.swift */; };
+		ED2AAD4827E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
+		ED2AAD4927E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
+		ED2AAD4A27E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
+		ED2AAD4C27E30D48002A02F5 /* StringConvertibleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */; };
+		ED2AAD4D27E30D48002A02F5 /* StringConvertibleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */; };
+		ED2AAD4E27E30D48002A02F5 /* StringConvertibleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */; };
+		ED2AAD5027E30D8E002A02F5 /* Convertibles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */; };
+		ED2AAD5127E30D8E002A02F5 /* Convertibles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */; };
+		ED2AAD5227E30D8E002A02F5 /* Convertibles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */; };
 		ED3C109F27C38B0E005680FD /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C109E27C38B0E005680FD /* Describable.swift */; };
 		ED3C10A027C38B0E005680FD /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C109E27C38B0E005680FD /* Describable.swift */; };
 		ED3C10A127C38B0E005680FD /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C109E27C38B0E005680FD /* Describable.swift */; };
@@ -846,6 +855,9 @@
 		ED06C7782786893200F9D0A5 /* STFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlow.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlow.swift; sourceTree = SOURCE_ROOT; };
 		ED06C77A2786893D00F9D0A5 /* STFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlows.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlows.swift; sourceTree = SOURCE_ROOT; };
 		ED06C77C2786894300F9D0A5 /* STView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STView.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STView.swift; sourceTree = SOURCE_ROOT; };
+		ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertible.swift; sourceTree = "<group>"; };
+		ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConvertibleInitializer.swift; sourceTree = "<group>"; };
+		ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertibles.swift; sourceTree = "<group>"; };
 		ED3C109E27C38B0E005680FD /* Describable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Describable.swift; sourceTree = "<group>"; };
 		ED40515A27E2019900AC411E /* ServiceArgumentGeneralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceArgumentGeneralization.swift; sourceTree = "<group>"; };
 		ED416CA527A0CE310043A7A4 /* TRSPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSPlaceholderView.swift; sourceTree = "<group>"; };
@@ -1208,6 +1220,7 @@
 		ED06C77E278689D100F9D0A5 /* ServiceTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				ED2AAD4627E30CE7002A02F5 /* Convertible */,
 				ED06C76A278688B100F9D0A5 /* STParser.swift */,
 				ED06C76C278688C100F9D0A5 /* STProcess.swift */,
 				ED06C76E278688D400F9D0A5 /* STArgument.swift */,
@@ -1220,6 +1233,16 @@
 				ED06C77C2786894300F9D0A5 /* STView.swift */,
 			);
 			path = ServiceTemplate;
+			sourceTree = "<group>";
+		};
+		ED2AAD4627E30CE7002A02F5 /* Convertible */ = {
+			isa = PBXGroup;
+			children = (
+				ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */,
+				ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */,
+				ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */,
+			);
+			path = Convertible;
 			sourceTree = "<group>";
 		};
 		ED3C109D27C389EE005680FD /* Protocols */ = {
@@ -2678,6 +2701,7 @@
 				ED78EC5127DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
 				ED416D6127A16C640043A7A4 /* SignUpIdViewReactor.swift in Sources */,
 				ED416D6227A16C640043A7A4 /* ServiceBasicInfoViewReactor.swift in Sources */,
+				ED2AAD5127E30D8E002A02F5 /* Convertibles.swift in Sources */,
 				ED416D6327A16C640043A7A4 /* ServiceUnitTargetCell.swift in Sources */,
 				ED416D6427A16C640043A7A4 /* UIFont.swift in Sources */,
 				ED416D6527A16C640043A7A4 /* ServiceTemplateCell.swift in Sources */,
@@ -2690,6 +2714,7 @@
 				ED416D7027A16C640043A7A4 /* STUI.swift in Sources */,
 				ED416D7127A16C640043A7A4 /* SignUpNameView.swift in Sources */,
 				ED416D7427A16C640043A7A4 /* STProcess.swift in Sources */,
+				ED2AAD4D27E30D48002A02F5 /* StringConvertibleInitializer.swift in Sources */,
 				ED416D7527A16C640043A7A4 /* ServiceDateCollectionReusableView.swift in Sources */,
 				ED53081127B277D1003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */,
 				ED416D7627A16C640043A7A4 /* ServiceCreationSelectStopViewController+Rx.swift in Sources */,
@@ -2735,6 +2760,7 @@
 				ED416DA827A16C640043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED416DAA27A16C640043A7A4 /* UIView+Search.swift in Sources */,
 				ED98973A27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */,
+				ED2AAD4927E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */,
 				ED416DAD27A16C640043A7A4 /* NotificationType.swift in Sources */,
 				ED416DAE27A16C640043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
 				ED416DAF27A16C640043A7A4 /* SignUpPasswordViewReactor.swift in Sources */,
@@ -2929,6 +2955,7 @@
 				ED78EC5227DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
 				ED416EA327A170FC0043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416EA427A170FC0043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
+				ED2AAD5227E30D8E002A02F5 /* Convertibles.swift in Sources */,
 				ED416EA627A170FC0043A7A4 /* SignUpIdViewReactor.swift in Sources */,
 				ED416EA727A170FC0043A7A4 /* ServiceBasicInfoViewReactor.swift in Sources */,
 				ED416EA827A170FC0043A7A4 /* ServiceUnitTargetCell.swift in Sources */,
@@ -2941,6 +2968,7 @@
 				ED416EB227A170FC0043A7A4 /* LoggingInterceptor.swift in Sources */,
 				ED416EB327A170FC0043A7A4 /* WorkspaceListCell.swift in Sources */,
 				ED416EB527A170FC0043A7A4 /* STUI.swift in Sources */,
+				ED2AAD4E27E30D48002A02F5 /* StringConvertibleInitializer.swift in Sources */,
 				ED416EB627A170FC0043A7A4 /* SignUpNameView.swift in Sources */,
 				ED416EB927A170FC0043A7A4 /* STProcess.swift in Sources */,
 				ED416EBA27A170FC0043A7A4 /* ServiceDateCollectionReusableView.swift in Sources */,
@@ -2986,6 +3014,7 @@
 				ED416EEC27A170FC0043A7A4 /* ServiceLogSet.swift in Sources */,
 				ED416EED27A170FC0043A7A4 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED98973B27BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */,
+				ED2AAD4A27E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */,
 				ED416EEF27A170FC0043A7A4 /* UIView+Search.swift in Sources */,
 				ED416EF227A170FC0043A7A4 /* NotificationType.swift in Sources */,
 				ED416EF327A170FC0043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
@@ -3189,6 +3218,7 @@
 				ED78EC5027DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
 				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */,
+				ED2AAD5027E30D8E002A02F5 /* Convertibles.swift in Sources */,
 				ED06C737277DBD2D00F9D0A5 /* ServiceUnitTargetCell.swift in Sources */,
 				ED6B464726B7E7CC00C2FA6D /* UIFont.swift in Sources */,
 				ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */,
@@ -3201,6 +3231,7 @@
 				ED06C7772786892600F9D0A5 /* STUI.swift in Sources */,
 				ED52737526C3A03C0077CD9D /* SignUpNameView.swift in Sources */,
 				ED06C76D278688C100F9D0A5 /* STProcess.swift in Sources */,
+				ED2AAD4C27E30D48002A02F5 /* StringConvertibleInitializer.swift in Sources */,
 				EDC11AFD26D3A39E0020AB09 /* ServiceDateCollectionReusableView.swift in Sources */,
 				ED53081227B277D1003B0FB0 /* ServiceDetailServiceUnitCell.swift in Sources */,
 				ED06C743277DBD2D00F9D0A5 /* ServiceCreationSelectStopViewController+Rx.swift in Sources */,
@@ -3246,6 +3277,7 @@
 				EDC11AFA26D3A39E0020AB09 /* WorkspaceHeaderView_Reactive.swift in Sources */,
 				ED06C760277DCB9100F9D0A5 /* UIView+Search.swift in Sources */,
 				ED98973927BB84C3000C9246 /* ServiceShortcutRegistrationViewReactor.swift in Sources */,
+				ED2AAD4827E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */,
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
 				EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */,
 				ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */,
