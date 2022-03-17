@@ -71,24 +71,6 @@ fragment ServiceChildArgumentRawFragment on taras_core_childargument {
 	}
 }
 
-fragment ServiceArgumentRecursive on taras_core_childargument {
-	input_type {
-		child_arguments {
-			...ServiceChildArgumentRawFragment
-			input_type {
-				child_arguments {
-					...ServiceChildArgumentRawFragment
-					input_type {
-						child_arguments {
-							...ServiceChildArgumentRawFragment
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 fragment ServiceArgumentRawFragment on taras_core_serviceargument {
 	id
 	array_of
@@ -96,7 +78,18 @@ fragment ServiceArgumentRawFragment on taras_core_serviceargument {
 		name
 		child_arguments {
 			...ServiceChildArgumentRawFragment
-			...ServiceArgumentRecursive
+			input_type {
+				name
+				child_arguments {
+					...ServiceChildArgumentRawFragment
+					input_type {
+						name
+						child_arguments {
+							...ServiceChildArgumentRawFragment
+						}
+					}
+				}
+			}
 		}
 	}
 	name

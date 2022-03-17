@@ -4973,7 +4973,6 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
     document.append("\n" + ServiceTemplateRawFragmnet.fragmentDefinition)
     document.append("\n" + ServiceArgumentRawFragment.fragmentDefinition)
     document.append("\n" + ServiceChildArgumentRawFragment.fragmentDefinition)
-    document.append("\n" + ServiceArgumentRecursive.fragmentDefinition)
     return document
   }
 
@@ -6612,373 +6611,6 @@ public struct ServiceChildArgumentRawFragment: GraphQLFragment {
   }
 }
 
-public struct ServiceArgumentRecursive: GraphQLFragment {
-  /// The raw GraphQL definition of this fragment.
-  public static let fragmentDefinition: String =
-    """
-    fragment ServiceArgumentRecursive on taras_core_childargument {
-      __typename
-      input_type {
-        __typename
-        child_arguments {
-          __typename
-          ...ServiceChildArgumentRawFragment
-          input_type {
-            __typename
-            child_arguments {
-              __typename
-              ...ServiceChildArgumentRawFragment
-              input_type {
-                __typename
-                child_arguments {
-                  __typename
-                  ...ServiceChildArgumentRawFragment
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    """
-
-  public static let possibleTypes: [String] = ["taras_core_childargument"]
-
-  public static var selections: [GraphQLSelection] {
-    return [
-      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-      GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
-    ]
-  }
-
-  public private(set) var resultMap: ResultMap
-
-  public init(unsafeResultMap: ResultMap) {
-    self.resultMap = unsafeResultMap
-  }
-
-  public init(inputType: InputType) {
-    self.init(unsafeResultMap: ["__typename": "taras_core_childargument", "input_type": inputType.resultMap])
-  }
-
-  public var __typename: String {
-    get {
-      return resultMap["__typename"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "__typename")
-    }
-  }
-
-  /// An object relationship
-  public var inputType: InputType {
-    get {
-      return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
-    }
-    set {
-      resultMap.updateValue(newValue.resultMap, forKey: "input_type")
-    }
-  }
-
-  public struct InputType: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(childArguments: [ChildArgument]) {
-      self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
-    }
-
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
-    }
-
-    /// An array relationship
-    public var childArguments: [ChildArgument] {
-      get {
-        return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
-      }
-      set {
-        resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
-      }
-    }
-
-    public struct ChildArgument: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["taras_core_childargument"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
-          GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// An object relationship
-      public var inputType: InputType {
-        get {
-          return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
-        }
-        set {
-          resultMap.updateValue(newValue.resultMap, forKey: "input_type")
-        }
-      }
-
-      public var fragments: Fragments {
-        get {
-          return Fragments(unsafeResultMap: resultMap)
-        }
-        set {
-          resultMap += newValue.resultMap
-        }
-      }
-
-      public struct Fragments {
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
-          get {
-            return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-      }
-
-      public struct InputType: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(childArguments: [ChildArgument]) {
-          self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        /// An array relationship
-        public var childArguments: [ChildArgument] {
-          get {
-            return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
-          }
-          set {
-            resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
-          }
-        }
-
-        public struct ChildArgument: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["taras_core_childargument"]
-
-          public static var selections: [GraphQLSelection] {
-            return [
-              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
-              GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
-            ]
-          }
-
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var __typename: String {
-            get {
-              return resultMap["__typename"]! as! String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "__typename")
-            }
-          }
-
-          /// An object relationship
-          public var inputType: InputType {
-            get {
-              return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
-            }
-            set {
-              resultMap.updateValue(newValue.resultMap, forKey: "input_type")
-            }
-          }
-
-          public var fragments: Fragments {
-            get {
-              return Fragments(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-
-          public struct Fragments {
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
-              get {
-                return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
-              }
-              set {
-                resultMap += newValue.resultMap
-              }
-            }
-          }
-
-          public struct InputType: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
-
-            public static var selections: [GraphQLSelection] {
-              return [
-                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
-              ]
-            }
-
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public init(childArguments: [ChildArgument]) {
-              self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
-            }
-
-            public var __typename: String {
-              get {
-                return resultMap["__typename"]! as! String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "__typename")
-              }
-            }
-
-            /// An array relationship
-            public var childArguments: [ChildArgument] {
-              get {
-                return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
-              }
-              set {
-                resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
-              }
-            }
-
-            public struct ChildArgument: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["taras_core_childargument"]
-
-              public static var selections: [GraphQLSelection] {
-                return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
-                ]
-              }
-
-              public private(set) var resultMap: ResultMap
-
-              public init(unsafeResultMap: ResultMap) {
-                self.resultMap = unsafeResultMap
-              }
-
-              public var __typename: String {
-                get {
-                  return resultMap["__typename"]! as! String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "__typename")
-                }
-              }
-
-              public var fragments: Fragments {
-                get {
-                  return Fragments(unsafeResultMap: resultMap)
-                }
-                set {
-                  resultMap += newValue.resultMap
-                }
-              }
-
-              public struct Fragments {
-                public private(set) var resultMap: ResultMap
-
-                public init(unsafeResultMap: ResultMap) {
-                  self.resultMap = unsafeResultMap
-                }
-
-                public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
-                  get {
-                    return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
-                  }
-                  set {
-                    resultMap += newValue.resultMap
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 public struct ServiceArgumentRawFragment: GraphQLFragment {
   /// The raw GraphQL definition of this fragment.
   public static let fragmentDefinition: String =
@@ -6993,7 +6625,22 @@ public struct ServiceArgumentRawFragment: GraphQLFragment {
         child_arguments {
           __typename
           ...ServiceChildArgumentRawFragment
-          ...ServiceArgumentRecursive
+          input_type {
+            __typename
+            name
+            child_arguments {
+              __typename
+              ...ServiceChildArgumentRawFragment
+              input_type {
+                __typename
+                name
+                child_arguments {
+                  __typename
+                  ...ServiceChildArgumentRawFragment
+                }
+              }
+            }
+          }
         }
       }
       name
@@ -7190,7 +6837,7 @@ public struct ServiceArgumentRawFragment: GraphQLFragment {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
-          GraphQLFragmentSpread(ServiceArgumentRecursive.self),
+          GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
         ]
       }
 
@@ -7206,6 +6853,16 @@ public struct ServiceArgumentRawFragment: GraphQLFragment {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// An object relationship
+      public var inputType: InputType {
+        get {
+          return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "input_type")
         }
       }
 
@@ -7233,13 +6890,219 @@ public struct ServiceArgumentRawFragment: GraphQLFragment {
             resultMap += newValue.resultMap
           }
         }
+      }
 
-        public var serviceArgumentRecursive: ServiceArgumentRecursive {
+      public struct InputType: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(name: String, childArguments: [ChildArgument]) {
+          self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "name": name, "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
           get {
-            return ServiceArgumentRecursive(unsafeResultMap: resultMap)
+            return resultMap["__typename"]! as! String
           }
           set {
-            resultMap += newValue.resultMap
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var name: String {
+          get {
+            return resultMap["name"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        /// An array relationship
+        public var childArguments: [ChildArgument] {
+          get {
+            return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
+          }
+        }
+
+        public struct ChildArgument: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["taras_core_childargument"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
+              GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// An object relationship
+          public var inputType: InputType {
+            get {
+              return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
+            }
+            set {
+              resultMap.updateValue(newValue.resultMap, forKey: "input_type")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
+              get {
+                return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+
+          public struct InputType: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("name", type: .nonNull(.scalar(String.self))),
+                GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(name: String, childArguments: [ChildArgument]) {
+              self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "name": name, "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var name: String {
+              get {
+                return resultMap["name"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "name")
+              }
+            }
+
+            /// An array relationship
+            public var childArguments: [ChildArgument] {
+              get {
+                return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
+              }
+              set {
+                resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
+              }
+            }
+
+            public struct ChildArgument: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["taras_core_childargument"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              public var fragments: Fragments {
+                get {
+                  return Fragments(unsafeResultMap: resultMap)
+                }
+                set {
+                  resultMap += newValue.resultMap
+                }
+              }
+
+              public struct Fragments {
+                public private(set) var resultMap: ResultMap
+
+                public init(unsafeResultMap: ResultMap) {
+                  self.resultMap = unsafeResultMap
+                }
+
+                public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
+                  get {
+                    return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
+                  }
+                  set {
+                    resultMap += newValue.resultMap
+                  }
+                }
+              }
+            }
           }
         }
       }
