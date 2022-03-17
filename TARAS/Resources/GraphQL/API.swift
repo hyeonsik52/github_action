@@ -2041,18 +2041,12 @@ public final class CreateServiceTemplateMutation: GraphQLMutation {
     mutation createServiceTemplate($input: CreateServiceTemplateFromServiceInput!) {
       createServiceTemplateFromService(input: $input) {
         __typename
-        ...ServiceTemplateFragment
+        id
       }
     }
     """
 
   public let operationName: String = "createServiceTemplate"
-
-  public var queryDocument: String {
-    var document: String = operationDefinition
-    document.append("\n" + ServiceTemplateFragment.fragmentDefinition)
-    return document
-  }
 
   public var input: CreateServiceTemplateFromServiceInput
 
@@ -2101,7 +2095,7 @@ public final class CreateServiceTemplateMutation: GraphQLMutation {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLFragmentSpread(ServiceTemplateFragment.self),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         ]
       }
 
@@ -2111,8 +2105,8 @@ public final class CreateServiceTemplateMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, name: String, serviceType: String, description: String? = nil, arguments: GenericScalar? = nil, types: GenericScalar? = nil, isCompiled: Bool) {
-        self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id, "name": name, "serviceType": serviceType, "description": description, "arguments": arguments, "types": types, "isCompiled": isCompiled])
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id])
       }
 
       public var __typename: String {
@@ -2124,29 +2118,12 @@ public final class CreateServiceTemplateMutation: GraphQLMutation {
         }
       }
 
-      public var fragments: Fragments {
+      public var id: GraphQLID {
         get {
-          return Fragments(unsafeResultMap: resultMap)
+          return resultMap["id"]! as! GraphQLID
         }
         set {
-          resultMap += newValue.resultMap
-        }
-      }
-
-      public struct Fragments {
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public var serviceTemplateFragment: ServiceTemplateFragment {
-          get {
-            return ServiceTemplateFragment(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
+          resultMap.updateValue(newValue, forKey: "id")
         }
       }
     }
@@ -4979,16 +4956,12 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query serviceTemplates($workspaceId: ID) {
-      serviceTemplates(workspaceId: $workspaceId) {
+    query serviceTemplates($workspaceId: String!) {
+      service_template(
+        where: {_or: [{workspace_id: {_eq: $workspaceId}}, {workspace_id: {_is_null: true}}]}
+      ) {
         __typename
-        edges {
-          __typename
-          node {
-            __typename
-            ...ServiceTemplateFragment
-          }
-        }
+        ...ServiceTemplateRawFragmnet
       }
     }
     """
@@ -4997,13 +4970,15 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
 
   public var queryDocument: String {
     var document: String = operationDefinition
-    document.append("\n" + ServiceTemplateFragment.fragmentDefinition)
+    document.append("\n" + ServiceTemplateRawFragmnet.fragmentDefinition)
+    document.append("\n" + ServiceArgumentRawFragment.fragmentDefinition)
+    document.append("\n" + ServiceChildArgumentRawFragment.fragmentDefinition)
     return document
   }
 
-  public var workspaceId: GraphQLID?
+  public var workspaceId: String
 
-  public init(workspaceId: GraphQLID? = nil) {
+  public init(workspaceId: String) {
     self.workspaceId = workspaceId
   }
 
@@ -5016,7 +4991,7 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("serviceTemplates", arguments: ["workspaceId": GraphQLVariable("workspaceId")], type: .object(ServiceTemplate.selections)),
+        GraphQLField("service_template", arguments: ["where": ["_or": [["workspace_id": ["_eq": GraphQLVariable("workspaceId")]], ["workspace_id": ["_is_null": true]]]]], type: .nonNull(.list(.nonNull(.object(ServiceTemplate.selections))))),
       ]
     }
 
@@ -5026,26 +5001,27 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(serviceTemplates: ServiceTemplate? = nil) {
-      self.init(unsafeResultMap: ["__typename": "query_root", "serviceTemplates": serviceTemplates.flatMap { (value: ServiceTemplate) -> ResultMap in value.resultMap }])
+    public init(serviceTemplate: [ServiceTemplate]) {
+      self.init(unsafeResultMap: ["__typename": "query_root", "service_template": serviceTemplate.map { (value: ServiceTemplate) -> ResultMap in value.resultMap }])
     }
 
-    public var serviceTemplates: ServiceTemplate? {
+    /// fetch data from the table: "taras_core_servicetemplate"
+    public var serviceTemplate: [ServiceTemplate] {
       get {
-        return (resultMap["serviceTemplates"] as? ResultMap).flatMap { ServiceTemplate(unsafeResultMap: $0) }
+        return (resultMap["service_template"] as! [ResultMap]).map { (value: ResultMap) -> ServiceTemplate in ServiceTemplate(unsafeResultMap: value) }
       }
       set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "serviceTemplates")
+        resultMap.updateValue(newValue.map { (value: ServiceTemplate) -> ResultMap in value.resultMap }, forKey: "service_template")
       }
     }
 
     public struct ServiceTemplate: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["ServiceTemplateNodeConnection"]
+      public static let possibleTypes: [String] = ["service_template"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
+          GraphQLFragmentSpread(ServiceTemplateRawFragmnet.self),
         ]
       }
 
@@ -5053,10 +5029,6 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
 
       public init(unsafeResultMap: ResultMap) {
         self.resultMap = unsafeResultMap
-      }
-
-      public init(edges: [Edge?]) {
-        self.init(unsafeResultMap: ["__typename": "ServiceTemplateNodeConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
       }
 
       public var __typename: String {
@@ -5068,108 +5040,28 @@ public final class ServiceTemplatesQuery: GraphQLQuery {
         }
       }
 
-      /// Contains the nodes in this connection.
-      public var edges: [Edge?] {
+      public var fragments: Fragments {
         get {
-          return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
+          return Fragments(unsafeResultMap: resultMap)
         }
         set {
-          resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
+          resultMap += newValue.resultMap
         }
       }
 
-      public struct Edge: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["ServiceTemplateNodeEdge"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("node", type: .object(Node.selections)),
-          ]
-        }
-
+      public struct Fragments {
         public private(set) var resultMap: ResultMap
 
         public init(unsafeResultMap: ResultMap) {
           self.resultMap = unsafeResultMap
         }
 
-        public init(node: Node? = nil) {
-          self.init(unsafeResultMap: ["__typename": "ServiceTemplateNodeEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
-        }
-
-        public var __typename: String {
+        public var serviceTemplateRawFragmnet: ServiceTemplateRawFragmnet {
           get {
-            return resultMap["__typename"]! as! String
+            return ServiceTemplateRawFragmnet(unsafeResultMap: resultMap)
           }
           set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        /// The item at the end of the edge
-        public var node: Node? {
-          get {
-            return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
-          }
-          set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "node")
-          }
-        }
-
-        public struct Node: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["ServiceTemplateNode"]
-
-          public static var selections: [GraphQLSelection] {
-            return [
-              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLFragmentSpread(ServiceTemplateFragment.self),
-            ]
-          }
-
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public init(id: GraphQLID, name: String, serviceType: String, description: String? = nil, arguments: GenericScalar? = nil, types: GenericScalar? = nil, isCompiled: Bool) {
-            self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id, "name": name, "serviceType": serviceType, "description": description, "arguments": arguments, "types": types, "isCompiled": isCompiled])
-          }
-
-          public var __typename: String {
-            get {
-              return resultMap["__typename"]! as! String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "__typename")
-            }
-          }
-
-          public var fragments: Fragments {
-            get {
-              return Fragments(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-
-          public struct Fragments {
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public var serviceTemplateFragment: ServiceTemplateFragment {
-              get {
-                return ServiceTemplateFragment(unsafeResultMap: resultMap)
-              }
-              set {
-                resultMap += newValue.resultMap
-              }
-            }
+            resultMap += newValue.resultMap
           }
         }
       }
@@ -5462,6 +5354,7 @@ public final class ServiceByIdSubscription: GraphQLSubscription {
     document.append("\n" + RobotRawFragment.fragmentDefinition)
     document.append("\n" + ServiceUnitRawFragment.fragmentDefinition)
     document.append("\n" + StopRawFragment.fragmentDefinition)
+    document.append("\n" + ReceiverRawFragment.fragmentDefinition)
     return document
   }
 
@@ -5585,6 +5478,7 @@ public final class ServicesByWorkspaceIdSubscription: GraphQLSubscription {
     document.append("\n" + RobotRawFragment.fragmentDefinition)
     document.append("\n" + ServiceUnitRawFragment.fragmentDefinition)
     document.append("\n" + StopRawFragment.fragmentDefinition)
+    document.append("\n" + ReceiverRawFragment.fragmentDefinition)
     return document
   }
 
@@ -5968,6 +5862,65 @@ public struct StopRawFragment: GraphQLFragment {
   }
 }
 
+public struct ReceiverRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ReceiverRawFragment on receiver {
+      __typename
+      id
+      display_name
+    }
+    """
+
+  public static let possibleTypes: [String] = ["receiver"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .scalar(String.self)),
+      GraphQLField("display_name", type: .scalar(String.self)),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: String? = nil, displayName: String? = nil) {
+    self.init(unsafeResultMap: ["__typename": "receiver", "id": id, "display_name": displayName])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: String? {
+    get {
+      return resultMap["id"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var displayName: String? {
+    get {
+      return resultMap["display_name"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "display_name")
+    }
+  }
+}
+
 public struct ServiceUnitRawFragment: GraphQLFragment {
   /// The raw GraphQL definition of this fragment.
   public static let fragmentDefinition: String =
@@ -5983,8 +5936,7 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       }
       receivers {
         __typename
-        id
-        display_name
+        ...ReceiverRawFragment
       }
     }
     """
@@ -6125,13 +6077,12 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
   }
 
   public struct Receiver: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["user"]
+    public static let possibleTypes: [String] = ["receiver"]
 
     public static var selections: [GraphQLSelection] {
       return [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("id", type: .nonNull(.scalar(String.self))),
-        GraphQLField("display_name", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(ReceiverRawFragment.self),
       ]
     }
 
@@ -6141,8 +6092,8 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(id: String, displayName: String) {
-      self.init(unsafeResultMap: ["__typename": "user", "id": id, "display_name": displayName])
+    public init(id: String? = nil, displayName: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "receiver", "id": id, "display_name": displayName])
     }
 
     public var __typename: String {
@@ -6154,21 +6105,29 @@ public struct ServiceUnitRawFragment: GraphQLFragment {
       }
     }
 
-    public var id: String {
+    public var fragments: Fragments {
       get {
-        return resultMap["id"]! as! String
+        return Fragments(unsafeResultMap: resultMap)
       }
       set {
-        resultMap.updateValue(newValue, forKey: "id")
+        resultMap += newValue.resultMap
       }
     }
 
-    public var displayName: String {
-      get {
-        return resultMap["display_name"]! as! String
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
       }
-      set {
-        resultMap.updateValue(newValue, forKey: "display_name")
+
+      public var receiverRawFragment: ReceiverRawFragment {
+        get {
+          return ReceiverRawFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
       }
     }
   }
@@ -6453,6 +6412,854 @@ public struct ServiceRawFragment: GraphQLFragment {
       public var serviceUnitRawFragment: ServiceUnitRawFragment {
         get {
           return ServiceUnitRawFragment(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+    }
+  }
+}
+
+public struct ServiceChildArgumentRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ServiceChildArgumentRawFragment on taras_core_childargument {
+      __typename
+      id
+      array_of
+      name
+      required
+      display_text
+      ui_component_type
+      ui_component_default_value
+      model
+      need_to_set
+      input_type {
+        __typename
+        name
+      }
+    }
+    """
+
+  public static let possibleTypes: [String] = ["taras_core_childargument"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(bigint.self))),
+      GraphQLField("array_of", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("required", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("display_text", type: .nonNull(.scalar(String.self))),
+      GraphQLField("ui_component_type", type: .nonNull(.scalar(String.self))),
+      GraphQLField("ui_component_default_value", type: .nonNull(.scalar(String.self))),
+      GraphQLField("model", type: .nonNull(.scalar(String.self))),
+      GraphQLField("need_to_set", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: bigint, arrayOf: Bool, name: String, `required`: Bool, displayText: String, uiComponentType: String, uiComponentDefaultValue: String, model: String, needToSet: Bool, inputType: InputType) {
+    self.init(unsafeResultMap: ["__typename": "taras_core_childargument", "id": id, "array_of": arrayOf, "name": name, "required": `required`, "display_text": displayText, "ui_component_type": uiComponentType, "ui_component_default_value": uiComponentDefaultValue, "model": model, "need_to_set": needToSet, "input_type": inputType.resultMap])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: bigint {
+    get {
+      return resultMap["id"]! as! bigint
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var arrayOf: Bool {
+    get {
+      return resultMap["array_of"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "array_of")
+    }
+  }
+
+  public var name: String {
+    get {
+      return resultMap["name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var `required`: Bool {
+    get {
+      return resultMap["required"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "required")
+    }
+  }
+
+  public var displayText: String {
+    get {
+      return resultMap["display_text"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "display_text")
+    }
+  }
+
+  public var uiComponentType: String {
+    get {
+      return resultMap["ui_component_type"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "ui_component_type")
+    }
+  }
+
+  public var uiComponentDefaultValue: String {
+    get {
+      return resultMap["ui_component_default_value"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "ui_component_default_value")
+    }
+  }
+
+  public var model: String {
+    get {
+      return resultMap["model"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "model")
+    }
+  }
+
+  public var needToSet: Bool {
+    get {
+      return resultMap["need_to_set"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "need_to_set")
+    }
+  }
+
+  /// An object relationship
+  public var inputType: InputType {
+    get {
+      return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
+    }
+    set {
+      resultMap.updateValue(newValue.resultMap, forKey: "input_type")
+    }
+  }
+
+  public struct InputType: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(name: String) {
+      self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "name": name])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var name: String {
+      get {
+        return resultMap["name"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "name")
+      }
+    }
+  }
+}
+
+public struct ServiceArgumentRawFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ServiceArgumentRawFragment on taras_core_serviceargument {
+      __typename
+      id
+      array_of
+      input_type {
+        __typename
+        name
+        child_arguments {
+          __typename
+          ...ServiceChildArgumentRawFragment
+          input_type {
+            __typename
+            name
+            child_arguments {
+              __typename
+              ...ServiceChildArgumentRawFragment
+              input_type {
+                __typename
+                name
+                child_arguments {
+                  __typename
+                  ...ServiceChildArgumentRawFragment
+                }
+              }
+            }
+          }
+        }
+      }
+      name
+      required
+      display_text
+      ui_component_type
+      ui_component_default_value
+      model
+      need_to_set
+    }
+    """
+
+  public static let possibleTypes: [String] = ["taras_core_serviceargument"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(bigint.self))),
+      GraphQLField("array_of", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("required", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("display_text", type: .nonNull(.scalar(String.self))),
+      GraphQLField("ui_component_type", type: .nonNull(.scalar(String.self))),
+      GraphQLField("ui_component_default_value", type: .nonNull(.scalar(String.self))),
+      GraphQLField("model", type: .nonNull(.scalar(String.self))),
+      GraphQLField("need_to_set", type: .nonNull(.scalar(Bool.self))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: bigint, arrayOf: Bool, inputType: InputType, name: String, `required`: Bool, displayText: String, uiComponentType: String, uiComponentDefaultValue: String, model: String, needToSet: Bool) {
+    self.init(unsafeResultMap: ["__typename": "taras_core_serviceargument", "id": id, "array_of": arrayOf, "input_type": inputType.resultMap, "name": name, "required": `required`, "display_text": displayText, "ui_component_type": uiComponentType, "ui_component_default_value": uiComponentDefaultValue, "model": model, "need_to_set": needToSet])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: bigint {
+    get {
+      return resultMap["id"]! as! bigint
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var arrayOf: Bool {
+    get {
+      return resultMap["array_of"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "array_of")
+    }
+  }
+
+  /// An object relationship
+  public var inputType: InputType {
+    get {
+      return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
+    }
+    set {
+      resultMap.updateValue(newValue.resultMap, forKey: "input_type")
+    }
+  }
+
+  public var name: String {
+    get {
+      return resultMap["name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var `required`: Bool {
+    get {
+      return resultMap["required"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "required")
+    }
+  }
+
+  public var displayText: String {
+    get {
+      return resultMap["display_text"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "display_text")
+    }
+  }
+
+  public var uiComponentType: String {
+    get {
+      return resultMap["ui_component_type"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "ui_component_type")
+    }
+  }
+
+  public var uiComponentDefaultValue: String {
+    get {
+      return resultMap["ui_component_default_value"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "ui_component_default_value")
+    }
+  }
+
+  public var model: String {
+    get {
+      return resultMap["model"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "model")
+    }
+  }
+
+  public var needToSet: Bool {
+    get {
+      return resultMap["need_to_set"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "need_to_set")
+    }
+  }
+
+  public struct InputType: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(name: String, childArguments: [ChildArgument]) {
+      self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "name": name, "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var name: String {
+      get {
+        return resultMap["name"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "name")
+      }
+    }
+
+    /// An array relationship
+    public var childArguments: [ChildArgument] {
+      get {
+        return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
+      }
+      set {
+        resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
+      }
+    }
+
+    public struct ChildArgument: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["taras_core_childargument"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
+          GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// An object relationship
+      public var inputType: InputType {
+        get {
+          return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "input_type")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
+          get {
+            return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+
+      public struct InputType: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(name: String, childArguments: [ChildArgument]) {
+          self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "name": name, "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var name: String {
+          get {
+            return resultMap["name"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        /// An array relationship
+        public var childArguments: [ChildArgument] {
+          get {
+            return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
+          }
+        }
+
+        public struct ChildArgument: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["taras_core_childargument"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
+              GraphQLField("input_type", type: .nonNull(.object(InputType.selections))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// An object relationship
+          public var inputType: InputType {
+            get {
+              return InputType(unsafeResultMap: resultMap["input_type"]! as! ResultMap)
+            }
+            set {
+              resultMap.updateValue(newValue.resultMap, forKey: "input_type")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
+              get {
+                return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+
+          public struct InputType: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["taras_core_serviceargumenttype"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("name", type: .nonNull(.scalar(String.self))),
+                GraphQLField("child_arguments", type: .nonNull(.list(.nonNull(.object(ChildArgument.selections))))),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(name: String, childArguments: [ChildArgument]) {
+              self.init(unsafeResultMap: ["__typename": "taras_core_serviceargumenttype", "name": name, "child_arguments": childArguments.map { (value: ChildArgument) -> ResultMap in value.resultMap }])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var name: String {
+              get {
+                return resultMap["name"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "name")
+              }
+            }
+
+            /// An array relationship
+            public var childArguments: [ChildArgument] {
+              get {
+                return (resultMap["child_arguments"] as! [ResultMap]).map { (value: ResultMap) -> ChildArgument in ChildArgument(unsafeResultMap: value) }
+              }
+              set {
+                resultMap.updateValue(newValue.map { (value: ChildArgument) -> ResultMap in value.resultMap }, forKey: "child_arguments")
+              }
+            }
+
+            public struct ChildArgument: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["taras_core_childargument"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLFragmentSpread(ServiceChildArgumentRawFragment.self),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              public var fragments: Fragments {
+                get {
+                  return Fragments(unsafeResultMap: resultMap)
+                }
+                set {
+                  resultMap += newValue.resultMap
+                }
+              }
+
+              public struct Fragments {
+                public private(set) var resultMap: ResultMap
+
+                public init(unsafeResultMap: ResultMap) {
+                  self.resultMap = unsafeResultMap
+                }
+
+                public var serviceChildArgumentRawFragment: ServiceChildArgumentRawFragment {
+                  get {
+                    return ServiceChildArgumentRawFragment(unsafeResultMap: resultMap)
+                  }
+                  set {
+                    resultMap += newValue.resultMap
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public struct ServiceTemplateRawFragmnet: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment ServiceTemplateRawFragmnet on service_template {
+      __typename
+      id
+      name
+      service_type
+      description
+      is_compiled
+      arguments {
+        __typename
+        ...ServiceArgumentRawFragment
+      }
+    }
+    """
+
+  public static let possibleTypes: [String] = ["service_template"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(String.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("service_type", type: .nonNull(.scalar(String.self))),
+      GraphQLField("description", type: .scalar(String.self)),
+      GraphQLField("is_compiled", type: .nonNull(.scalar(Bool.self))),
+      GraphQLField("arguments", type: .nonNull(.list(.nonNull(.object(Argument.selections))))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: String, name: String, serviceType: String, description: String? = nil, isCompiled: Bool, arguments: [Argument]) {
+    self.init(unsafeResultMap: ["__typename": "service_template", "id": id, "name": name, "service_type": serviceType, "description": description, "is_compiled": isCompiled, "arguments": arguments.map { (value: Argument) -> ResultMap in value.resultMap }])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: String {
+    get {
+      return resultMap["id"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var name: String {
+    get {
+      return resultMap["name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var serviceType: String {
+    get {
+      return resultMap["service_type"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "service_type")
+    }
+  }
+
+  public var description: String? {
+    get {
+      return resultMap["description"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "description")
+    }
+  }
+
+  public var isCompiled: Bool {
+    get {
+      return resultMap["is_compiled"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "is_compiled")
+    }
+  }
+
+  /// An array relationship
+  public var arguments: [Argument] {
+    get {
+      return (resultMap["arguments"] as! [ResultMap]).map { (value: ResultMap) -> Argument in Argument(unsafeResultMap: value) }
+    }
+    set {
+      resultMap.updateValue(newValue.map { (value: Argument) -> ResultMap in value.resultMap }, forKey: "arguments")
+    }
+  }
+
+  public struct Argument: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["taras_core_serviceargument"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLFragmentSpread(ServiceArgumentRawFragment.self),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var fragments: Fragments {
+      get {
+        return Fragments(unsafeResultMap: resultMap)
+      }
+      set {
+        resultMap += newValue.resultMap
+      }
+    }
+
+    public struct Fragments {
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public var serviceArgumentRawFragment: ServiceArgumentRawFragment {
+        get {
+          return ServiceArgumentRawFragment(unsafeResultMap: resultMap)
         }
         set {
           resultMap += newValue.resultMap
@@ -7629,120 +8436,6 @@ public struct VersionFragment: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "currentVersionName")
-    }
-  }
-}
-
-public struct ServiceTemplateFragment: GraphQLFragment {
-  /// The raw GraphQL definition of this fragment.
-  public static let fragmentDefinition: String =
-    """
-    fragment ServiceTemplateFragment on ServiceTemplateNode {
-      __typename
-      id
-      name
-      serviceType
-      description
-      arguments
-      types
-      isCompiled
-    }
-    """
-
-  public static let possibleTypes: [String] = ["ServiceTemplateNode"]
-
-  public static var selections: [GraphQLSelection] {
-    return [
-      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-      GraphQLField("name", type: .nonNull(.scalar(String.self))),
-      GraphQLField("serviceType", type: .nonNull(.scalar(String.self))),
-      GraphQLField("description", type: .scalar(String.self)),
-      GraphQLField("arguments", type: .scalar(GenericScalar.self)),
-      GraphQLField("types", type: .scalar(GenericScalar.self)),
-      GraphQLField("isCompiled", type: .nonNull(.scalar(Bool.self))),
-    ]
-  }
-
-  public private(set) var resultMap: ResultMap
-
-  public init(unsafeResultMap: ResultMap) {
-    self.resultMap = unsafeResultMap
-  }
-
-  public init(id: GraphQLID, name: String, serviceType: String, description: String? = nil, arguments: GenericScalar? = nil, types: GenericScalar? = nil, isCompiled: Bool) {
-    self.init(unsafeResultMap: ["__typename": "ServiceTemplateNode", "id": id, "name": name, "serviceType": serviceType, "description": description, "arguments": arguments, "types": types, "isCompiled": isCompiled])
-  }
-
-  public var __typename: String {
-    get {
-      return resultMap["__typename"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "__typename")
-    }
-  }
-
-  public var id: GraphQLID {
-    get {
-      return resultMap["id"]! as! GraphQLID
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "id")
-    }
-  }
-
-  public var name: String {
-    get {
-      return resultMap["name"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "name")
-    }
-  }
-
-  public var serviceType: String {
-    get {
-      return resultMap["serviceType"]! as! String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "serviceType")
-    }
-  }
-
-  public var description: String? {
-    get {
-      return resultMap["description"] as? String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "description")
-    }
-  }
-
-  public var arguments: GenericScalar? {
-    get {
-      return resultMap["arguments"] as? GenericScalar
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "arguments")
-    }
-  }
-
-  public var types: GenericScalar? {
-    get {
-      return resultMap["types"] as? GenericScalar
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "types")
-    }
-  }
-
-  public var isCompiled: Bool {
-    get {
-      return resultMap["isCompiled"]! as! Bool
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "isCompiled")
     }
   }
 }

@@ -94,8 +94,7 @@ class WorkspaceHomeReactor: Reactor {
                 
                 self.provider.networkManager
                     .fetch(ServiceTemplatesQuery(workspaceId: self.workspaceId))
-                    .compactMap { $0.serviceTemplates?.edges.compactMap(\.?.node) }
-                    .compactMap { $0.compactMap { $0.fragments.serviceTemplateFragment } }
+                    .map { $0.serviceTemplate.map(\.fragments.serviceTemplateRawFragmnet) }
                     .map { $0.map(ServiceTemplate.init) }
                     .map { .loadTemplates($0) },
                 

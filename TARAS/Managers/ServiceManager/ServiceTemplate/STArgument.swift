@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct STArgument: STNode {
+struct STArgument {
     
-    let key: String
+    let name: String
     
     let required: Bool
+    let needToSet: Bool
     let inputType: String
     let displayText: String
     
@@ -21,16 +22,19 @@ struct STArgument: STNode {
     let subArguments: [STNode]?
     
     init(
-        key: String,
+        name: String,
         required: Bool,
+        needToSet: Bool,
         inputType: String,
         dispalyText: String,
         ui: STUI,
         from: STASource? = nil,
         subArguments: [STNode]? = nil
     ) {
-        self.key = key
+        self.name = name
+        
         self.required = required
+        self.needToSet = needToSet
         self.inputType = inputType
         self.displayText = dispalyText
         
@@ -38,6 +42,14 @@ struct STArgument: STNode {
         self.from = from
         
         self.subArguments = subArguments
+    }
+    
+}
+
+extension STArgument: STNode {
+    
+    var key: String {
+        return self.name
     }
     
     var subNodes: [STNode]? {

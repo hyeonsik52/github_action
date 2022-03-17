@@ -9,18 +9,15 @@ import Foundation
 
 struct ServiceBuilder {
     
-    private let template: ServiceTemplate
+    private let arguments: [ServiceArgumentType]
     private let parser = STParser()
     
-    init(_ template: ServiceTemplate) {
-        self.template = template
+    init(_ arguments: [ServiceArgumentType]) {
+        self.arguments = arguments
     }
     
-    func parse() -> [STNode] {
-        return self.parser.parse(
-            args: self.template.arguments,
-            types: self.template.types
-        )
+    func parse() -> [STNode]? {
+        return self.parser.parse(self.arguments)
     }
     
     func generateServiceTemplateInputJsonValue(
@@ -30,7 +27,7 @@ struct ServiceBuilder {
         
         var args = [String: Any]()
         
-        self.parse().forEach { arg in
+        self.parse()?.forEach { arg in
             let key = arg.key
             args[key] = {
                 switch key {

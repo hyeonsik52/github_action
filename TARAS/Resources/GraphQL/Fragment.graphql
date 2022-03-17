@@ -87,13 +87,3 @@ fragment VersionFragment on ClientVersionNode {
     currentVersionCode
     currentVersionName
 }
-
-fragment ServiceTemplateFragment on ServiceTemplateNode {
-	id
-	name
-	serviceType
-	description
-	arguments
-	types
-	isCompiled
-}

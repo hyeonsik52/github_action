@@ -66,9 +66,9 @@ class ServiceShortcutRegistrationViewReactor: Reactor {
                 .just(.updateIsProcessing(true)),
                 
                 self.provider.networkManager.perform(CreateServiceTemplateMutation(input: input))
-                    .map { $0.createServiceTemplateFromService?.fragments.serviceTemplateFragment }
-                    .flatMapLatest { fragment -> Observable<Mutation> in
-                        if fragment != nil {
+                    .map { $0.createServiceTemplateFromService?.id != nil }
+                    .flatMapLatest { isSuccess -> Observable<Mutation> in
+                        if isSuccess {
                             return .just(.updateIsConfirmed(true))
                         } else {
                             return .just(.updateErrorMessage(Text.errorRegistrationFailed))

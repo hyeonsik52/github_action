@@ -17,17 +17,17 @@ struct ServiceTemplate: Identifiable {
     let type: ServiceTemplateType
     /// 서비스 템플릿 설명
     let description: String?
-    /// 인수 정보
-    let arguments: [String: Any]
-    /// arguments에서 사용되는 인수 유형
-    let types: [String: Any]
     /// 간편생성 여부
     let isCompiled: Bool
+    
+    /// 템플릿을 통한 서비스 생성 보조
+    let serviceBuilder: ServiceBuilder
 }
 
 extension ServiceTemplate: FragmentModel {
     
-    init(_ fragment: ServiceTemplateFragment) {
+    init(_ fragment: ServiceTemplateRawFragmnet) {
+        
         self.id = fragment.id
         self.name = fragment.name
         if fragment.isCompiled {
@@ -36,12 +36,14 @@ extension ServiceTemplate: FragmentModel {
             self.type = .general(.init(rawValue: fragment.serviceType))
         }
         self.description = fragment.description
-        self.arguments = fragment.arguments?.toDictionary ?? [:]
-        self.types = fragment.types?.toDictionary ?? [:]
         self.isCompiled = fragment.isCompiled
+        
+        let arguments = fragment.arguments.map(\.fragments.serviceArgumentRawFragment)
+        self.serviceBuilder = .init(arguments)
     }
     
-    init(option fragment: ServiceTemplateFragment?) {
+    init(option fragment: ServiceTemplateRawFragmnet?) {
+        
         self.id = fragment?.id ?? Self.unknownId
         self.name = fragment?.name ?? Self.unknownName
         if fragment?.isCompiled == true {
@@ -50,15 +52,9 @@ extension ServiceTemplate: FragmentModel {
             self.type = .general(.init(rawValue: fragment?.serviceType ?? ""))
         }
         self.description = fragment?.description
-        self.arguments = fragment?.arguments?.toDictionary ?? [:]
-        self.types = fragment?.types?.toDictionary ?? [:]
         self.isCompiled = fragment?.isCompiled ?? false
-    }
-}
-
-extension ServiceTemplate {
-    
-    var serviceBuilder: ServiceBuilder {
-        return .init(self)
+        
+        let arguments = fragment?.arguments.map(\.fragments.serviceArgumentRawFragment) ?? []
+        self.serviceBuilder = .init(arguments)
     }
 }
