@@ -7,76 +7,70 @@
 
 import Foundation
 
-typealias JSON = [String: Any]
-
 struct STParser {
     
-    private func extract<T>(_ json: JSON, key: String, type: T.Type) -> T? {
-        guard let value = json[key] as? T else { return nil }
-        return value
+    private func parse<Convertible: DefaultStringConvertible>(
+        arg: ServiceArgumentType,
+        type: Convertible.Type
+    ) -> STNode {
+        
+        let required = arg.required
+        let needToSet = arg.needToSet
+        let inputType = arg.generalizedInputType.name
+        let displayName = arg.displayText
+        let uiComponentType = arg.uiComponentType
+        let uiComponentDefaultValue = Convertible(string: arg.uiComponentDefaultValue)
+        let from = STASource(rawValue: arg.model)
+        let subArguments = self.parse(arg.generalizedInputType.generalizedChildArguments)
+        
+        return STArgument(
+            name: arg.name,
+            required: required,
+            needToSet: needToSet,
+            inputType: inputType,
+            dispalyText: displayName,
+            ui: STAUIComponent<Convertible>(
+                type: uiComponentType,
+                defaultValue: uiComponentDefaultValue
+            ),
+            from: from,
+            subArguments: subArguments
+        )
     }
     
-    private func parse<T>(key: String, value: Any, types: JSON, type: T.Type) -> STNode? {
-        if let json = value as? JSON {
-            
-            let required = self.extract(json, key: "required", type: Bool.self) ?? false
-            let inputType = self.extract(json, key: "input_type", type: String.self) ?? ""
-            let displayName = self.extract(json, key: "display_text", type: String.self) ?? ""
-            let uiComponentType = self.extract(json, key: "ui_component_type", type: String.self) ?? ""
-            let uiComponentDefaultValue = self.extract(json, key: "ui_component_default_value", type: T.self)
-            let uiComponentPlaceholder = self.extract(json, key: "ui_component_placeholder", type: String.self)
-            let from = STASource(rawValue: self.extract(json, key: "from", type: String.self) ?? "")
-            
-            var subArguments: [STNode]?
-            let type = inputType.replacingOccurrences(of: "[]", with: "")
-            if let typeArg = types[type] as? JSON {
-                subArguments = self.parse(args: typeArg, types: types)
-            }
-            
-            return STArgument(
-                key: key,
-                required: required,
-                inputType: inputType,
-                dispalyText: displayName,
-                ui: STAUIComponent<T>(
-                    type: uiComponentType,
-                    defaultValue: uiComponentDefaultValue,
-                    placeholder: uiComponentPlaceholder
-                ),
-                from: from,
-                subArguments: subArguments
-            )
+    private func parseType<Convertible: DefaultStringConvertible>(
+        arg: ServiceArgumentType,
+        type: Convertible.Type
+    ) -> STNode {
+        if arg.arrayOf {
+            return self.parse(arg: arg, type: [Convertible].self)
         } else {
-            return [key: value]
+            return self.parse(arg: arg, type: Convertible.self)
         }
     }
     
-    func parse(args: JSON, types: JSON) -> [STNode] {
-        return args.compactMap {
-            let key = $0.key
-            let value = $0.value
-            
-            guard let json = value as? JSON else {
-                return self.parse(key: key, value: value, types: types, type: Any.self)
-            }
-            
-            let inputType = self.extract(json, key: "input_type", type: String.self) ?? ""
-            
-            switch inputType {
-            case "int":
-                return self.parse(key: key, value: json, types: types, type: Int.self)
-            case "bool":
-                return self.parse(key: key, value: json, types: types, type: Bool.self)
-            case "string":
-                return self.parse(key: key, value: json, types: types, type: String.self)
+    func parse(_ args: [ServiceArgumentType]?) -> [STNode]? {
+        guard let arguments = args, arguments.count > 0 else { return nil }
+        return arguments.map {
+            switch $0.generalizedInputType.name {
+            case "Boolean":
+                return self.parseType(arg: $0, type: Bool.self)
+            case "Integer":
+                return self.parseType(arg: $0, type: Int.self)
+            case "Float":
+                return self.parseType(arg: $0, type: Float.self)
+            case "String":
+                return self.parseType(arg: $0, type: String.self)
             case "JSON":
-                return self.parse(key: key, value: json, types: types, type: JSON.self)
+                return self.parseType(arg: $0, type: JSON.self)
+            case "Receiver":
+                return self.parseType(arg: $0, type: ConvertibleReceiver.self)
+            case "Destination":
+                return self.parseType(arg: $0, type: ConvertibleDestination.self)
+            case "LoadingDestination":
+                return self.parseType(arg: $0, type: ConvertibleLoadingDestination.self)
             default:
-                if inputType.contains("[]") {
-                    return self.parse(key: key, value: json, types: types, type: [Any].self)
-                } else {
-                    return self.parse(key: key, value: json, types: types, type: Any.self)
-                }
+                return self.parseType(arg: $0, type: ConvertibleUnknown.self)
             }
         }
     }

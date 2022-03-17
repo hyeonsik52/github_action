@@ -16,14 +16,14 @@ class STProcess {
     init(template: ServiceTemplate) {
         self.template = template
         self.args = STArgument(
-            key: "arguments",
-            required: false,
-            inputType: "user_defined",
-            dispalyText: "",
-            ui: STAUIComponent<JSON>(
-                type: "[]JSON",
-                defaultValue: nil,
-                placeholder: nil
+            name: "arguments",
+            required: true,
+            needToSet: true,
+            inputType: "Argument",
+            dispalyText: "서비스 생성을 위한 인수 목록",
+            ui: STAUIComponent<ConvertibleArgument>(
+                type: "arguments",
+                defaultValue: .init()
             ),
             from: nil,
             subArguments: template.serviceBuilder.parse()
@@ -47,7 +47,7 @@ class STProcess {
         var validKeys = [String]()
         keys.forEach {
             result = result?[$0]
-            if let json = result as? JSON, let value = json[$0] {
+            if let json = result as? JSON, let value = json.data[$0] {
                 result = value as? STNode
             }
             if let availabled = result {
@@ -106,7 +106,7 @@ extension STProcess {
     }
     
     var serviceBuilder: ServiceBuilder {
-        return .init(self.template)
+        return self.template.serviceBuilder
     }
     
     var templateId: String {
