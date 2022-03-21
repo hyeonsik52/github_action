@@ -42,7 +42,7 @@ extension ServiceUnitCreationModel {
         
         //템플릿에서 서비스 타입이 로딩인지 확인
         if process.isServiceTypeLS {
-            let isNotLoading = process.peek(with: "loading_command")?.asArgument?.ui.asComponent(String.self)?.defaultValue == "UNLOAD"
+            let isNotLoading = process.peek(with: "loading_command")?.asArgument?.ui.defaultValue() == "UNLOAD"
             if self.stop.isLoadingStop {
                 //로딩이고 정차지가 LS이면 상/하차 표시
                 self.isLoadingStop = !isNotLoading
@@ -54,8 +54,7 @@ extension ServiceUnitCreationModel {
         
         //작업대기 표시
         if let isWaitArgs = process.peek(with: "is_waited")?.asArgument {
-            let isWait = isWaitArgs.ui.asComponent(Bool.self)?.defaultValue ?? false
-            self.isWorkWaiting = isWait
+            self.isWorkWaiting = isWaitArgs.ui.defaultValue()
         } else {
             self.isWorkWaiting = nil
         }
@@ -91,13 +90,14 @@ extension ServiceUnitCreationModel: ServiceTemplateSerialization {
             switch field {
             case "ID": return self.stop.id
             case "name": return self.stop.name
-            case "message": return self.detail ?? argument.ui.asComponent(String.self)?.defaultValue ?? ""
+            case "message": return self.detail ?? argument.ui.defaultValue()
             case "loading_command": return (self.isLoadingStop ?? true) ? "LOAD": "UNLOAD"
-            case "is_waited": return self.isWorkWaiting ?? argument.ui.asComponent(Bool.self)?.defaultValue ?? true
+            case "is_waited": return self.isWorkWaiting ?? argument.ui.defaultValue()
             case "receivers":
                 guard let receiverArgs = parentNode.subNodes?.compactMap(\.asArgument)
                     .first(where: { $0.key == "receivers" }) else { return "" }
                 return self.receivers.map { $0.toJSON(node: receiverArgs) }
+            case "img_urls": return argument.ui.defaultValue() as [String]
             default: return ""
             }
         } else {
