@@ -529,8 +529,7 @@ class ModelTests: XCTestCase {
         XCTAssertEqual(basicServiceTemplate.name, MockModel.displayName)
         XCTAssertTrue(basicServiceTemplate.type.isGeneral)
         XCTAssertEqual(basicServiceTemplate.description, MockModel.description)
-        XCTAssertEqual(basicServiceTemplate.arguments.isEmpty, false)
-        XCTAssertEqual(basicServiceTemplate.types.isEmpty, false)
+        XCTAssertEqual(basicServiceTemplate.serviceBuilder.arguments.isEmpty, false)
         XCTAssertEqual(basicServiceTemplate.isCompiled, false)
         
         //optional
@@ -540,8 +539,7 @@ class ModelTests: XCTestCase {
         XCTAssertEqual(optionalServiceTemplate.name, MockModel.displayName)
         XCTAssertTrue(optionalServiceTemplate.type.isShortcut)
         XCTAssertEqual(optionalServiceTemplate.description, nil)
-        XCTAssertEqual(optionalServiceTemplate.arguments.isEmpty, true)
-        XCTAssertEqual(optionalServiceTemplate.types.isEmpty, true)
+        XCTAssertEqual(optionalServiceTemplate.serviceBuilder.arguments.isEmpty, true)
         XCTAssertEqual(optionalServiceTemplate.isCompiled, true)
     }
 }

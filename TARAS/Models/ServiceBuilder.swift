@@ -9,7 +9,7 @@ import Foundation
 
 struct ServiceBuilder {
     
-    private let arguments: [ServiceArgumentType]
+    let arguments: [ServiceArgumentType]
     private let parser = STParser()
     
     init(_ arguments: [ServiceArgumentType]) {
