@@ -65,14 +65,14 @@ struct STParser {
                 return self.parseType(arg: $0, type: String.self)
             case "JSON":
                 return self.parseType(arg: $0, type: JSON.self)
-            case "Receiver":
-                return self.parseType(arg: $0, type: ConvertibleReceiver.self)
-            case "Destination":
-                return self.parseType(arg: $0, type: ConvertibleDestination.self)
-            case "LoadingDestination":
-                return self.parseType(arg: $0, type: ConvertibleLoadingDestination.self)
+//            case "Receiver":
+//                return self.parseType(arg: $0, type: ConvertibleReceiver.self)
+//            case "Destination":
+//                return self.parseType(arg: $0, type: ConvertibleDestination.self)
+//            case "LoadingDestination":
+//                return self.parseType(arg: $0, type: ConvertibleLoadingDestination.self)
             default:
-                return self.parseType(arg: $0, type: ConvertibleUnknown.self)
+                return self.parseType(arg: $0, type: ConvertibleDefault.self)
             }
         }
     }
