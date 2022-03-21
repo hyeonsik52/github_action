@@ -23,3 +23,5 @@ extension StringConvertibleInitializer {
 }
 
 extension Array: StringConvertibleInitializer { }
+
+extension Dictionary: StringConvertibleInitializer { }

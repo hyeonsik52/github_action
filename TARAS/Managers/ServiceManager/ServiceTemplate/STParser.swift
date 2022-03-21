@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias JSON = [String: Any]
+
 struct STParser {
     
     private func parse<Convertible: DefaultStringConvertible>(

@@ -47,7 +47,7 @@ class STProcess {
         var validKeys = [String]()
         keys.forEach {
             result = result?[$0]
-            if let json = result as? JSON, let value = json.data[$0] {
+            if let json = result as? JSON, let value = json[$0] {
                 result = value as? STNode
             }
             if let availabled = result {
