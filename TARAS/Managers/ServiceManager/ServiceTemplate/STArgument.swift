@@ -44,6 +44,18 @@ struct STArgument {
         self.subArguments = subArguments
     }
     
+    static func root(subArguments: [STNode]?) -> STArgument {
+        return .init(
+            name: "root",
+            required: false,
+            needToSet: false,
+            inputType: "",
+            dispalyText: "",
+            ui: STAUIComponent(type: "", defaultValue: ""),
+            from: nil,
+            subArguments: subArguments
+        )
+    }
 }
 
 extension STArgument: STNode {

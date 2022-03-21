@@ -10,24 +10,12 @@ import Foundation
 class STProcess {
     
     private let template: ServiceTemplate
-    private let args: STNode
+    private let args: [STNode]?
     private var keys = [String]()
     
     init(template: ServiceTemplate) {
         self.template = template
-        self.args = STArgument(
-            name: "arguments",
-            required: true,
-            needToSet: true,
-            inputType: "Argument",
-            dispalyText: "서비스 생성을 위한 인수 목록",
-            ui: STAUIComponent<ConvertibleArgument>(
-                type: "arguments",
-                defaultValue: .init()
-            ),
-            from: nil,
-            subArguments: template.serviceBuilder.parse()
-        )
+        self.args = template.serviceBuilder.parse()
     }
     
     ///셀렉터에 해당하는 값을 반환한다. 유효한 셀렉터가 아닌 경우 경고를 남긴다.
@@ -43,7 +31,7 @@ class STProcess {
     
     private func value(keys: [String]) -> STNode? {
         var availabledResult: STNode?
-        var result: STNode? = self.args
+        var result: STNode? = STArgument.root(subArguments: self.args)
         var validKeys = [String]()
         keys.forEach {
             result = result?[$0]

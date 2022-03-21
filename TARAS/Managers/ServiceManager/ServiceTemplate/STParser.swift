@@ -15,28 +15,18 @@ struct STParser {
         arg: ServiceArgumentType,
         type: Convertible.Type
     ) -> STNode {
-        
-        let required = arg.required
-        let needToSet = arg.needToSet
-        let inputType = arg.generalizedInputType.name
-        let displayName = arg.displayText
-        let uiComponentType = arg.uiComponentType
-        let uiComponentDefaultValue = Convertible(string: arg.uiComponentDefaultValue)
-        let from = STASource(rawValue: arg.model)
-        let subArguments = self.parse(arg.generalizedInputType.generalizedChildArguments)
-        
         return STArgument(
             name: arg.name,
-            required: required,
-            needToSet: needToSet,
-            inputType: inputType,
-            dispalyText: displayName,
-            ui: STAUIComponent<Convertible>(
-                type: uiComponentType,
-                defaultValue: uiComponentDefaultValue
+            required: arg.required,
+            needToSet: arg.needToSet,
+            inputType: arg.generalizedInputType.name,
+            dispalyText: arg.displayText,
+            ui: STAUIComponent(
+                type: arg.uiComponentType,
+                defaultValue: Convertible(string: arg.uiComponentDefaultValue)
             ),
-            from: from,
-            subArguments: subArguments
+            from: .init(rawValue: arg.model),
+            subArguments: self.parse(arg.generalizedInputType.generalizedChildArguments)
         )
     }
     
