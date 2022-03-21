@@ -198,7 +198,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
                 if let repeatCount = reactor.templateProcess.value(selector: "repeat_count") {
                     //반복 획수 받기, 초기화해서 보여주기
                     print("repeat count", repeatCount)
-                    let value = repeatCount.asArgument?.ui.asComponent(Int.self)?.defaultValue ?? 1
+                    let value: Int = repeatCount.asArgument?.ui.defaultValue() ?? 1
                     return ServiceCreationRepeatCountViewController.count(value: value)
                         .map { .request(repeat: $0) }
                 } else {

@@ -24,29 +24,28 @@ struct ServiceBuilder {
         with serviceUnits: [ServiceUnitCreationModel],
         repeatCount: Int? = nil
     ) -> [String: Any] {
-        
         var args = [String: Any]()
-        
         self.parse()?.forEach { arg in
-            let key = arg.key
-            args[key] = {
-                switch key {
-                case "destinations":
-                    if let scheme = arg.asArgument {
-                        return serviceUnits.map { $0.toJSON(scheme: scheme) }
+            let field = arg.key
+            if arg.asArgument?.needToSet == true {
+                args[field] = {
+                    switch field {
+//                    case "robot_key":
+//                        return ""
+                    case "destinations":
+                        return serviceUnits.map { $0.toJSON(node: arg) }
+                    case "repeat_count":
+                        if let repeatCount = repeatCount {
+                            return repeatCount
+                        }
+                    default: break
                     }
-                case "repeat_count":
-                    if let repeatCount = repeatCount {
-                        return repeatCount
-                    }
-                default: break
-                }
-                return ""
-            }()
+                    return ""
+                }()
+            } else {
+                Log.debug("Field '\(field)' is ignored as no setting is needed.")
+            }
         }
-        
-        return [
-            "arguments": args
-        ]
+        return args
     }
 }

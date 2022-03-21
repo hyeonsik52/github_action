@@ -42,7 +42,7 @@ extension ServiceUnitCreationModel {
         
         //템플릿에서 서비스 타입이 로딩인지 확인
         if process.isServiceTypeLS {
-            let isNotLoading = process.peek(with: "loading_command")?.asArgument?.ui.asComponent(String.self)?.defaultValue == "UNLOAD"
+            let isNotLoading = process.peek(with: "loading_command")?.asArgument?.ui.defaultValue() == "UNLOAD"
             if self.stop.isLoadingStop {
                 //로딩이고 정차지가 LS이면 상/하차 표시
                 self.isLoadingStop = !isNotLoading
@@ -54,8 +54,7 @@ extension ServiceUnitCreationModel {
         
         //작업대기 표시
         if let isWaitArgs = process.peek(with: "is_waited")?.asArgument {
-            let isWait = isWaitArgs.ui.asComponent(Bool.self)?.defaultValue ?? false
-            self.isWorkWaiting = isWait
+            self.isWorkWaiting = isWaitArgs.ui.defaultValue()
         } else {
             self.isWorkWaiting = nil
         }
@@ -64,33 +63,45 @@ extension ServiceUnitCreationModel {
 
 protocol ServiceTemplateSerialization {
     
-    func toJSON(scheme: STArgument) -> [String: Any]
+    func toJSON(node: STNode) -> [String: Any]
+    func fieldValue(field: String, node: STNode, parentNode: STNode) -> Any
+}
+
+extension ServiceTemplateSerialization {
+    
+    func toJSON(node: STNode) -> [String: Any] {
+        var args = [String: Any]()
+        node.subNodes?.forEach { arg in
+            let field = arg.key
+            if arg.asArgument?.needToSet == true {
+                args[field] = self.fieldValue(field: field, node: arg, parentNode: node)
+            } else {
+                Log.debug("Field '\(field)' is ignored as no setting is needed.")
+            }
+        }
+        return args
+    }
 }
 
 extension ServiceUnitCreationModel: ServiceTemplateSerialization {
     
-    func toJSON(scheme: STArgument) -> [String : Any] {
-        var args = [String: Any]()
-        scheme.subArguments?.forEach { arg in
-            let key = arg.key
-            if arg.asArgument?.required == true {
-                args[key] = {
-                    switch key {
-                    case "ID": return self.stop.id
-                    case "name": return self.stop.name
-                    case "message": return self.detail ?? ""
-                    case "loading_command": return (self.isLoadingStop ?? true) ? "LOAD": "UNLOAD"
-                    case "is_waited": return self.isWorkWaiting ?? true
-                    case "receivers":
-                        guard let receiverScheme = scheme.subArguments?
-                                .first(where: { $0.key == "receivers" })?
-                                .asArgument else { return "" }
-                        return self.receivers.map { $0.toJSON(scheme: receiverScheme) }
-                    default: return ""
-                    }
-                }()
+    func fieldValue(field: String, node: STNode, parentNode: STNode) -> Any {
+        if let argument = node.asArgument {
+            switch field {
+            case "ID": return self.stop.id
+            case "name": return self.stop.name
+            case "message": return self.detail ?? argument.ui.defaultValue()
+            case "loading_command": return (self.isLoadingStop ?? true) ? "LOAD": "UNLOAD"
+            case "is_waited": return self.isWorkWaiting ?? argument.ui.defaultValue()
+            case "receivers":
+                guard let receiverArgs = parentNode.subNodes?.compactMap(\.asArgument)
+                    .first(where: { $0.key == "receivers" }) else { return "" }
+                return self.receivers.map { $0.toJSON(node: receiverArgs) }
+            case "img_urls": return argument.ui.defaultValue() as [String]
+            default: return ""
             }
+        } else {
+            return ""
         }
-        return args
     }
 }

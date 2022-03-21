@@ -10,7 +10,13 @@ import Foundation
 protocol STUI {}
 
 extension STUI {
-    func asComponent<T>(_ type: T.Type) -> STAUIComponent<T>? {
+    
+    func asComponent<T>() -> STAUIComponent<T>? {
         return self as? STAUIComponent<T>
+    }
+    
+    func defaultValue<T: DefaultStringConvertible>() -> T {
+        let argument: STAUIComponent<T>? = self.asComponent()
+        return argument?.defaultValue ?? .defaultValue
     }
 }

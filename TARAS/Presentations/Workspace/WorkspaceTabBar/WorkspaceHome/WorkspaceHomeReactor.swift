@@ -101,9 +101,8 @@ class WorkspaceHomeReactor: Reactor {
                 .just(.isLoading(false))
             ])
         case .createServiceByShortcut(let templateId):
-            let json = try! GenericScalar(jsonValue: ["arguments": [:]])
             let input = CreateServiceWithServiceTemplateInput(
-                input: json,
+                input: try! .init(jsonValue: [:]),
                 serviceTemplateId: templateId
             )
             return .concat([
