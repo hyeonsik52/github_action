@@ -7,7 +7,6 @@
 
 import Foundation
 @testable import TARAS_Dev
-import CoreImage
 
 struct MockModel {
     

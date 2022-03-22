@@ -57,6 +57,13 @@
 		ED06C7792786893200F9D0A5 /* STFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C7782786893200F9D0A5 /* STFlow.swift */; };
 		ED06C77B2786893D00F9D0A5 /* STFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77A2786893D00F9D0A5 /* STFlows.swift */; };
 		ED06C77D2786894300F9D0A5 /* STView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C77C2786894300F9D0A5 /* STView.swift */; };
+		ED28513727E99185003196AD /* MockUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28513627E99185003196AD /* MockUserManager.swift */; };
+		ED28513927E991AA003196AD /* MockPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28513827E991AA003196AD /* MockPushManager.swift */; };
+		ED28513B27E991B8003196AD /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28513A27E991B8003196AD /* MockNetworkManager.swift */; };
+		ED28513D27E991C9003196AD /* MockSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28513C27E991C9003196AD /* MockSubscriptionManager.swift */; };
+		ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28513E27E991E5003196AD /* MockNotificationManager.swift */; };
+		ED28514127E99218003196AD /* MockManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514027E99218003196AD /* MockManagerProvider.swift */; };
+		ED28514527E9AFBA003196AD /* MockGraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514427E9AFBA003196AD /* MockGraphQL.swift */; };
 		ED2AAD4827E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4927E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4A27E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
@@ -855,6 +862,13 @@
 		ED06C7782786893200F9D0A5 /* STFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlow.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlow.swift; sourceTree = SOURCE_ROOT; };
 		ED06C77A2786893D00F9D0A5 /* STFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STFlows.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STFlows.swift; sourceTree = SOURCE_ROOT; };
 		ED06C77C2786894300F9D0A5 /* STView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = STView.swift; path = TARAS/Managers/ServiceManager/ServiceTemplate/STView.swift; sourceTree = SOURCE_ROOT; };
+		ED28513627E99185003196AD /* MockUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserManager.swift; sourceTree = "<group>"; };
+		ED28513827E991AA003196AD /* MockPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPushManager.swift; sourceTree = "<group>"; };
+		ED28513A27E991B8003196AD /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		ED28513C27E991C9003196AD /* MockSubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSubscriptionManager.swift; sourceTree = "<group>"; };
+		ED28513E27E991E5003196AD /* MockNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationManager.swift; sourceTree = "<group>"; };
+		ED28514027E99218003196AD /* MockManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockManagerProvider.swift; sourceTree = "<group>"; };
+		ED28514427E9AFBA003196AD /* MockGraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGraphQL.swift; sourceTree = "<group>"; };
 		ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertible.swift; sourceTree = "<group>"; };
 		ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConvertibleInitializer.swift; sourceTree = "<group>"; };
 		ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertibles.swift; sourceTree = "<group>"; };
@@ -1233,6 +1247,69 @@
 				ED06C77C2786894300F9D0A5 /* STView.swift */,
 			);
 			path = ServiceTemplate;
+			sourceTree = "<group>";
+		};
+		ED28513527E990E3003196AD /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				ED28514027E99218003196AD /* MockManagerProvider.swift */,
+				ED28514627E9BE7E003196AD /* User */,
+				ED28514727E9BE85003196AD /* Push */,
+				ED28514827E9BE8B003196AD /* Subscription */,
+				ED28514927E9BE90003196AD /* Notification */,
+				ED28514327E9AEF5003196AD /* Network */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		ED28514227E9AED9003196AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED99E78D27CCD0E50083007B /* ModelTests.swift */,
+				ED78EC4D27D5F41A007EBE70 /* MockModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ED28514327E9AEF5003196AD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				ED28513A27E991B8003196AD /* MockNetworkManager.swift */,
+				ED28514427E9AFBA003196AD /* MockGraphQL.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		ED28514627E9BE7E003196AD /* User */ = {
+			isa = PBXGroup;
+			children = (
+				ED28513627E99185003196AD /* MockUserManager.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		ED28514727E9BE85003196AD /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				ED28513827E991AA003196AD /* MockPushManager.swift */,
+			);
+			path = Push;
+			sourceTree = "<group>";
+		};
+		ED28514827E9BE8B003196AD /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				ED28513C27E991C9003196AD /* MockSubscriptionManager.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
+		ED28514927E9BE90003196AD /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				ED28513E27E991E5003196AD /* MockNotificationManager.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		ED2AAD4627E30CE7002A02F5 /* Convertible */ = {
@@ -1826,18 +1903,10 @@
 		ED99E78C27CCD0E50083007B /* TARAS-DevTests */ = {
 			isa = PBXGroup;
 			children = (
-				ED99E78D27CCD0E50083007B /* ModelTests.swift */,
-				ED99E79427CCD22F0083007B /* Mock */,
+				ED28514227E9AED9003196AD /* Model */,
+				ED28513527E990E3003196AD /* Managers */,
 			);
 			path = "TARAS-DevTests";
-			sourceTree = "<group>";
-		};
-		ED99E79427CCD22F0083007B /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				ED78EC4D27D5F41A007EBE70 /* MockModel.swift */,
-			);
-			path = Mock;
 			sourceTree = "<group>";
 		};
 		EDC118E826D3A39C0020AB09 /* Workspace */ = {
@@ -3066,8 +3135,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED28513B27E991B8003196AD /* MockNetworkManager.swift in Sources */,
+				ED28513927E991AA003196AD /* MockPushManager.swift in Sources */,
+				ED28513727E99185003196AD /* MockUserManager.swift in Sources */,
 				ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */,
+				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
 				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
+				ED28513D27E991C9003196AD /* MockSubscriptionManager.swift in Sources */,
+				ED28514127E99218003196AD /* MockManagerProvider.swift in Sources */,
+				ED28514527E9AFBA003196AD /* MockGraphQL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
