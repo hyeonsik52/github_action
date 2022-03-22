@@ -26,7 +26,7 @@ class MockUserManager: BaseManager, UserManagerType {
     }
     
     var hasTokens: Bool {
-        return true
+        return (self.userTB.accessToken != nil && self.userTB.refreshToken != nil)
     }
     
     func reAuthenticate(_ accessToken: String, _ completion: @escaping (ErrorResult) -> Void) {
