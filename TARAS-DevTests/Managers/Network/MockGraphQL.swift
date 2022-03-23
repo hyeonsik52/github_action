@@ -135,14 +135,7 @@ final class MockGraphQLSubscription: GraphQLSubscription {
 
   public let operationName: String = "mockGraphQL"
 
-  public var id: String
-
-  public init(id: String) {
-    self.id = id
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {

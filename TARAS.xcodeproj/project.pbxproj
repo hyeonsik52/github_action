@@ -66,6 +66,7 @@
 		ED28514527E9AFBA003196AD /* MockGraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514427E9AFBA003196AD /* MockGraphQL.swift */; };
 		ED28514B27E9BECB003196AD /* UserManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514A27E9BECB003196AD /* UserManagerTests.swift */; };
 		ED28514D27E9CBF4003196AD /* PushManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514C27E9CBF3003196AD /* PushManagerTests.swift */; };
+		ED28514F27E9CE40003196AD /* SubscriptionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514E27E9CE40003196AD /* SubscriptionManagerTests.swift */; };
 		ED2AAD4827E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4927E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4A27E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
@@ -873,6 +874,7 @@
 		ED28514427E9AFBA003196AD /* MockGraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGraphQL.swift; sourceTree = "<group>"; };
 		ED28514A27E9BECB003196AD /* UserManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerTests.swift; sourceTree = "<group>"; };
 		ED28514C27E9CBF3003196AD /* PushManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManagerTests.swift; sourceTree = "<group>"; };
+		ED28514E27E9CE40003196AD /* SubscriptionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagerTests.swift; sourceTree = "<group>"; };
 		ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertible.swift; sourceTree = "<group>"; };
 		ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConvertibleInitializer.swift; sourceTree = "<group>"; };
 		ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertibles.swift; sourceTree = "<group>"; };
@@ -1305,6 +1307,7 @@
 		ED28514827E9BE8B003196AD /* Subscription */ = {
 			isa = PBXGroup;
 			children = (
+				ED28514E27E9CE40003196AD /* SubscriptionManagerTests.swift */,
 				ED28513C27E991C9003196AD /* MockSubscriptionManager.swift */,
 			);
 			path = Subscription;
@@ -3145,6 +3148,7 @@
 				ED28513927E991AA003196AD /* MockPushManager.swift in Sources */,
 				ED28513727E99185003196AD /* MockUserManager.swift in Sources */,
 				ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */,
+				ED28514F27E9CE40003196AD /* SubscriptionManagerTests.swift in Sources */,
 				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
 				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
 				ED28514D27E9CBF4003196AD /* PushManagerTests.swift in Sources */,

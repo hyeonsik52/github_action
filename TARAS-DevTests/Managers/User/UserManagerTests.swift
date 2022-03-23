@@ -10,7 +10,7 @@ import XCTest
 
 class UserManagerTests: XCTestCase {
 
-    let userManager = MockManagerProvider().userManager
+    let userManager = MockManagerProvider().userManager as! MockUserManager
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -100,6 +100,7 @@ class UserManagerTests: XCTestCase {
         self.userManager.reAuthenticate(accessToken) { result in
             expect.fulfill()
         }
+        XCTAssertTrue(self.userManager.isReAuthenticating)
         
         var afterRequestBlocked = false
         self.userManager.reAuthenticate(accessToken) { result in

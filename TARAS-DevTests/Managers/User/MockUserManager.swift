@@ -19,7 +19,7 @@ class MockUserManager: BaseManager, UserManagerType {
         $0.refreshToken = self.refreshToken
     }
     
-    private var isReAuthenticating = false
+    var isReAuthenticating = false
     
     var userTB: USER_TB {
         return self._userTB
