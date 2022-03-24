@@ -115,16 +115,16 @@ class SignUpNameViewReactor: Reactor {
         
     private func login(_ withAuth: Bool) -> Observable<Mutation> {
         
-        let request: RestAPIType<LoginResponseModel> = .login(input: .init(
+        let request = LoginRequestModel(
             grantType: "password",
             username: self.accountInfo.id,
             password: self.accountInfo.password
-        ))
+        )
         
         return .concat([
             .just(.updateIsProcessing(true)),
             
-            self.provider.networkManager.postByRest(request)
+            self.provider.networkManager.rest(.call(request))
                 .flatMapLatest { [weak self] result -> Observable<Mutation> in
                     guard let self = self else { return .empty() }
                     

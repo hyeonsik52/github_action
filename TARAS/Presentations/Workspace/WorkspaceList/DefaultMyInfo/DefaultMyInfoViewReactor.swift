@@ -131,10 +131,8 @@ class DefaultMyInfoViewReactor: Reactor {
         return self.provider.networkManager.unregisterFcmToken()
             .flatMapLatest { isSuccess -> Observable<Mutation> in
                 if isSuccess {
-                    let request: RestAPIType<LogoutResponseModel> = .logout(input: .init(
-                        token: accessToken
-                    ))
-                    return self.provider.networkManager.postByRest(request)
+                    let request = LogoutRequestModel(token: accessToken)
+                    return self.provider.networkManager.rest(.call(request))
                         .flatMap {_ in goSignIn() }
                         .catch { error -> Observable<Mutation> in
                             return goSignIn()

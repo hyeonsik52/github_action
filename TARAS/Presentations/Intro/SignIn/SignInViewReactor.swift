@@ -65,16 +65,16 @@ class SignInViewReactor: Reactor {
                 return .empty()
             }
             
-            let request: RestAPIType<LoginResponseModel> = .login(input: .init(
+            let request = LoginRequestModel(
                 grantType: "password",
                 username: id,
                 password: password
-            ))
+            )
             
             return .concat([
                 .just(.updateIsProcessing(true)),
                 
-                self.provider.networkManager.postByRest(request)
+                self.provider.networkManager.rest(.call(request))
                     .flatMapLatest { [weak self] result -> Observable<Mutation> in
                         guard let self = self else { return .empty() }
                         

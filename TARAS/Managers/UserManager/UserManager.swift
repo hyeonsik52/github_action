@@ -78,8 +78,6 @@ extension UserManager {
             return
         }
         
-        let request: RestAPIType<LoginResponseModel> = .refreshSession(input: .init(refreshToken: refreshToken))
-
         // 2. 서버의 토큰이 만료된 상태(하지만 클라에서는 호출이 이루어지지 않아 만료 상태를 모르는 상태)에서 2개 이상의
         // 호출이 일어날 경우 동시에 재인증 과정이 진행될 수 있기 때문에,
         // isReAuthenticating 플래그로 인증 중에 진입하는 경우 재시도하도록 한다.
@@ -92,8 +90,10 @@ extension UserManager {
         }
 
         self.isReAuthenticating = true
-
-        self.provider.networkManager.postByRest(request)
+                
+        let request = RefreshSessionRequestModel(refreshToken: refreshToken)
+        
+        self.provider.networkManager.rest(.call(request))
             .subscribe(onNext: { [weak self] result in
                 
                 switch result {
