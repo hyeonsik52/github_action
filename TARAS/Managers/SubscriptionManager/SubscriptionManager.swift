@@ -8,7 +8,7 @@
 import Apollo
 import RxSwift
 
-protocol SubscriptionManagerType: AnyObject, ServiceSubscriptionSupport {
+protocol SubscriptionManagerType: AnyObject {
     func subscribe<T: GraphQLSubscription>(_ subscription: T) -> Observable<Result<T.Data, Error>>
 }
 

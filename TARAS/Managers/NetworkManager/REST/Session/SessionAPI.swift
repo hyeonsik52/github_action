@@ -27,7 +27,7 @@ struct SessionAPI<T: SessionAPIRequest>: RestAPI {
         return self.request.dictionary
     }
     
-    static func call(_ request: T) -> Self {
+    static func api(_ request: T) -> Self {
         return .init(request: request)
     }
 }

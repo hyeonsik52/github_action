@@ -93,7 +93,7 @@ extension UserManager {
                 
         let request = RefreshSessionRequestModel(refreshToken: refreshToken)
         
-        self.provider.networkManager.rest(.call(request))
+        self.provider.networkManager.rest.call(.api(request))
             .subscribe(onNext: { [weak self] result in
                 
                 switch result {
@@ -102,7 +102,7 @@ extension UserManager {
                     self?.provider.networkManager.updateWebSocketTransportConnectingPayload()
 
                     //fcm 토큰 갱신
-                    self?.provider.networkManager.registerFcmToken(auto: #function)
+                    self?.provider.networkManager.fcm.register(auto: #function)
                     
                     // 1. completion(nil)은 재호출 하는 기능이기 때문에, 성공한 경우에만 사용해야 함.
                     completion(.success)

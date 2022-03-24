@@ -104,7 +104,7 @@ class DefaultMyInfoViewReactor: Reactor {
                 .catchAndReturn(.updateError(.common(.networkNotConnect))),
             
             self.provider.networkManager
-                .clientVersionCheck()
+                .clientVersion.check()
                 .map {
                     let thisVersionName = Info.appVersion
                     guard let versionCheck = $0 else {
@@ -128,11 +128,11 @@ class DefaultMyInfoViewReactor: Reactor {
             return .just(.updateIsLogout(true))
         }
         
-        return self.provider.networkManager.unregisterFcmToken()
+        return self.provider.networkManager.fcm.unregister()
             .flatMapLatest { isSuccess -> Observable<Mutation> in
                 if isSuccess {
                     let request = LogoutRequestModel(token: accessToken)
-                    return self.provider.networkManager.rest(.call(request))
+                    return self.provider.networkManager.rest.call(.api(request))
                         .flatMap {_ in goSignIn() }
                         .catch { error -> Observable<Mutation> in
                             return goSignIn()
@@ -154,7 +154,7 @@ class DefaultMyInfoViewReactor: Reactor {
             .just(.updateIsResign(nil)),
             .just(.updateIsProcessing(true)),
             
-            self.provider.networkManager.unregisterFcmToken()
+            self.provider.networkManager.fcm.unregister()
                 .flatMapLatest { _ -> Observable<Mutation> in
                     return self.provider.networkManager.perform(WithdrawMutation())
                         .map { $0.withdrawUser ?? false }

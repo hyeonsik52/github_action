@@ -11,12 +11,13 @@ import Alamofire
 import RxAlamofire
 
 protocol RESTSupport {
-    func rest(_ method: String, _ api: RestAPI) -> Observable<(HTTPURLResponse, Data)>
+    func call(_ method: String, _ api: RestAPI) -> Observable<(HTTPURLResponse, Data)>
+    func call<T: RestAPIRequest>(_ request: SessionAPI<T>) -> Observable<Result<T.Response, RestError>>
 }
 
-extension NetworkManager {
+extension NetworkManager: RESTSupport {
     
-    func rest(
+    func call(
         _ method: String,
         _ api: RestAPI
     ) -> Observable<(HTTPURLResponse, Data)> {
@@ -34,14 +35,18 @@ extension NetworkManager {
                 ])
             ).responseData()
     }
+    
+    func call<T: RestAPIRequest>(
+        _ request: SessionAPI<T>
+    ) -> Observable<Result<T.Response, RestError>> {
+        return self.call(HTTPMethod.post.rawValue, request).as().response(T.Response.self)
+    }
 }
 
 extension NetworkManagerType {
     
-    func rest<T: RestAPIRequest>(
-        _ request: SessionAPI<T>
-    ) -> Observable<Result<T.Response, RestError>> {
-        return self.rest(HTTPMethod.post.rawValue, request).as().response(T.Response.self)
+    var rest: RESTSupport {
+        return self as! RESTSupport
     }
 }
 

@@ -69,7 +69,7 @@ class ServiceDetailViewReactor: Reactor {
     private func subscription() {
         
         self.provider.subscriptionManager
-            .service(id: self.serviceId)
+            .service.single(id: self.serviceId)
             .compactMap { try? $0.get() }
             .map { $0.serviceTmp.map(\.fragments.serviceRawFragment).map(Service.init) }
             .subscribe(onNext: { [weak self] service in

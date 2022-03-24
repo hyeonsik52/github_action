@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import Apollo
 
-protocol NetworkManagerType: AnyObject, RESTSupport, FCMSupport, ClientVersionSupport {
+protocol NetworkManagerType: AnyObject {
     func fetch<T: GraphQLQuery>(_ query: T) -> Observable<T.Data>
     func perform<T: GraphQLMutation>(_ mutation: T) -> Observable<T.Data>
     func subscribe<T: GraphQLSubscription>(_ subscription: T) -> Observable<Result<T.Data, Error>>

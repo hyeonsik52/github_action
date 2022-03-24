@@ -9,13 +9,14 @@ import Foundation
 import RxSwift
 
 protocol ClientVersionSupport {
-    func clientUpdateCheck() -> Observable<Error?>
-    func clientVersionCheck() -> Observable<Version?>
+    func version() -> Observable<Result<Version, Error>>
+    func updateCheck() -> Observable<Error?>
+    func check() -> Observable<Version?>
 }
 
-extension NetworkManager {
+extension NetworkManager: ClientVersionSupport {
     
-    func clientVersion() -> Observable<Result<Version, Error>> {
+    func version() -> Observable<Result<Version, Error>> {
         return self.fetch(ClientVersionQuery())
             .map { payload in
                 let error = NSError(
@@ -49,8 +50,8 @@ extension NetworkManager {
             }.observe(on: MainScheduler.instance)
     }
     
-    func clientUpdateCheck() -> Observable<Error?> {
-        return self.clientVersion().map {
+    func updateCheck() -> Observable<Error?> {
+        return self.version().map {
             if case .failure(let error) = $0 {
                 return error
             } else {
@@ -59,7 +60,14 @@ extension NetworkManager {
         }
     }
     
-    func clientVersionCheck() -> Observable<Version?> {
-        return self.clientVersion().map { try? $0.get() }
+    func check() -> Observable<Version?> {
+        return self.version().map { try? $0.get() }
+    }
+}
+
+extension NetworkManagerType {
+    
+    var clientVersion: ClientVersionSupport {
+        return self as! ClientVersionSupport
     }
 }

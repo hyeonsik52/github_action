@@ -124,7 +124,7 @@ class SignUpNameViewReactor: Reactor {
         return .concat([
             .just(.updateIsProcessing(true)),
             
-            self.provider.networkManager.rest(.call(request))
+            self.provider.networkManager.rest.call(.api(request))
                 .flatMapLatest { [weak self] result -> Observable<Mutation> in
                     guard let self = self else { return .empty() }
                     
@@ -142,7 +142,7 @@ class SignUpNameViewReactor: Reactor {
                         
                         return .concat([
                             // 3. FCM 토큰 업로드
-                            self.provider.networkManager.registerFcmToken(auto: #function),
+                            self.provider.networkManager.fcm.register(auto: #function),
                             // 4. 유저 정보 불러오기
                             self.loadUserInfo(withAuth)
                         ])
