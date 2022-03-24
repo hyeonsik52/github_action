@@ -1,5 +1,5 @@
 //
-//  NetworkManager_fcm.swift
+//  NetworkManager_FCM.swift
 //  TARAS
 //
 //  Created by nexmond on 2022/03/11.
@@ -9,17 +9,24 @@ import Foundation
 import RxSwift
 import FirebaseMessaging
 
+protocol FCMSupport {
+    func register(with tokenSet: PushTokenSet, _ func: String)
+    func register(auto func: String)
+    func register<T>(auto func: String) -> Observable<T>
+    func unregister() -> Observable<Bool>
+}
+
 struct PushTokenSet: Equatable {
     var apns: Data?
     var fcm: String?
 }
 
-extension NetworkManager {
+extension NetworkManager: FCMSupport {
     
     static var registeredToken: PushTokenSet?
     static var fcmDisposeBag = DisposeBag()
     
-    func registerFcmToken(with tokenSet: PushTokenSet, _ func: String) {
+    func register(with tokenSet: PushTokenSet, _ func: String) {
         // 토큰이 없는 경우 업로드에 실패하므로 무시함
         guard self.provider.userManager.hasTokens else {
             Log.info("Can't upload fcm token without authorization token. (from: \(`func`))")
@@ -63,17 +70,17 @@ extension NetworkManager {
         }
     }
     
-    func registerFcmToken(auto func: String) {
+    func register(auto func: String) {
         let tokenSet = PushTokenSet(apns: nil, fcm: Messaging.messaging().fcmToken)
-        self.registerFcmToken(with: tokenSet, `func`)
+        self.register(with: tokenSet, `func`)
     }
     
-    func registerFcmToken<T>(auto func: String) -> Observable<T> {
-        self.registerFcmToken(auto: `func`)
+    func register<T>(auto func: String) -> Observable<T> {
+        self.register(auto: `func`)
         return .empty()
     }
     
-    func unregisterFcmToken() -> Observable<Bool> {
+    func unregister() -> Observable<Bool> {
         guard let _ = self.provider.userManager.userTB.accessToken,
               let deviceUniqueKey = UIDevice.current.identifierForVendor?.uuidString,
               let fcmToken = Messaging.messaging().fcmToken
@@ -88,5 +95,12 @@ extension NetworkManager {
         ))
         
         return self.perform(mutation).map { $0.unregisterFcm == true }
+    }
+}
+
+extension NetworkManagerType {
+    
+    var fcm: FCMSupport {
+        return self as! FCMSupport
     }
 }

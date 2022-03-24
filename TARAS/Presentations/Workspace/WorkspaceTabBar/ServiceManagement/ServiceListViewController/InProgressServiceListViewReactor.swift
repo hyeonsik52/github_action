@@ -70,7 +70,7 @@ class InProgressServiceListViewReactor: Reactor {
     
     private func subscription() {
         
-        self.provider.subscriptionManager.services(by: self.workspaceId)
+        self.provider.subscriptionManager.service.changes(in: self.workspaceId)
             .subscribe(onNext: { [weak self] result in
                 result.forEach { changeSet in
                     self?.action.onNext(.notification(changeSet))

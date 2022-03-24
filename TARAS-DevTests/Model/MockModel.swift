@@ -7,7 +7,6 @@
 
 import Foundation
 @testable import TARAS_Dev
-import CoreImage
 
 struct MockModel {
     
@@ -29,7 +28,7 @@ struct MockModel {
     }()
     
     static var createdAt = Date()
-    static var createdAtString = MockModel.dateFormatter.string(from: MockModel.createdAt)
+    static var createdAtString = MockModel.createdAt.ISO8601Format
     
     //MARK: - Account
     static var account_basic: Account {
@@ -278,10 +277,7 @@ struct MockModel {
         
         let rawReceiver = ServiceUnitRawFragment.Receiver(
             id: self.id,
-            username: self.username,
-            displayName: self.displayName,
-            email: self.email,
-            phoneNumber: self.phoneNumber
+            displayName: self.displayName
         )
         
         let rawFragment = ServiceUnitRawFragment(
@@ -650,84 +646,182 @@ struct MockModel {
     
     static func serviceTemplate_basic_general() throws -> ServiceTemplate {
         
-        let arguments = try GenericScalar(jsonValue: [
-            "destinations": [
-                "required": true,
-                "input_type": "[]Destination",
-                "display_text": "목적지",
-                "ui_component_type": "destinations"
-            ],
-            "repeat_count": [
-                "required": true,
-                "input_type": "int",
-                "display_text": "반복횟수",
-                "ui_component_type": "input",
-                "ui_component_default_value": 1
-            ]
-        ])
+        let arguments: [ServiceTemplateRawFragmnet.Argument] = [
+            try .init(ServiceArgumentRawFragment(
+                id: "1",
+                arrayOf: true,
+                inputType: .init(
+                    name: "destinations",
+                    childArguments: [
+                        try .init(ServiceArgumentRawFragment(
+                            id: "1",
+                            arrayOf: false,
+                            inputType: .init(
+                                name: "String",
+                                childArguments: []
+                            ),
+                            name: "ID",
+                            required: true,
+                            displayText: "목적지",
+                            uiComponentType: "select",
+                            uiComponentDefaultValue: "",
+                            model: "$TARAS:station_group",
+                            needToSet: true
+                        )),
+                        try .init(ServiceArgumentRawFragment(
+                            id: "2",
+                            arrayOf: false,
+                            inputType: .init(
+                                name: "String",
+                                childArguments: []
+                            ),
+                            name: "message",
+                            required: true,
+                            displayText: "요청사항",
+                            uiComponentType: "input",
+                            uiComponentDefaultValue: "",
+                            model: "",
+                            needToSet: true
+                        )),
+                        try .init(ServiceArgumentRawFragment(
+                            id: "3",
+                            arrayOf: false,
+                            inputType: .init(
+                                name: "Boolean",
+                                childArguments: []
+                            ),
+                            name: "is_waited",
+                            required: true,
+                            displayText: "작업 대기 여부",
+                            uiComponentType: "checkbox",
+                            uiComponentDefaultValue: "true",
+                            model: "",
+                            needToSet: true
+                        )),
+                        try .init(ServiceArgumentRawFragment(
+                            id: "4",
+                            arrayOf: false,
+                            inputType: .init(
+                                name: "String",
+                                childArguments: []
+                            ),
+                            name: "event_name",
+                            required: false,
+                            displayText: "이벤트 이름",
+                            uiComponentType: "input",
+                            uiComponentDefaultValue: "",
+                            model: "",
+                            needToSet: false
+                        )),
+                        try .init(ServiceArgumentRawFragment(
+                            id: "5",
+                            arrayOf: false,
+                            inputType: .init(
+                                name: "String",
+                                childArguments: []
+                            ),
+                            name: "timestamp_key",
+                            required: false,
+                            displayText: "타임스탬프 키",
+                            uiComponentType: "input",
+                            uiComponentDefaultValue: "",
+                            model: "",
+                            needToSet: false
+                        )),
+                        try .init(ServiceArgumentRawFragment(
+                            id: "7",
+                            arrayOf: true,
+                            inputType: .init(
+                                name: "Receiver",
+                                childArguments: [
+                                    try .init(ServiceArgumentRawFragment(
+                                        id: "6",
+                                        arrayOf: false,
+                                        inputType: .init(
+                                            name: "String",
+                                            childArguments: []
+                                        ),
+                                        name: "ID",
+                                        required: true,
+                                        displayText: "수신자",
+                                        uiComponentType: "select",
+                                        uiComponentDefaultValue: "",
+                                        model: "$TARAS:user",
+                                        needToSet: true
+                                    ))
+                                ]
+                            ),
+                            name: "receivers",
+                            required: true,
+                            displayText: "수신자",
+                            uiComponentType: "receivers",
+                            uiComponentDefaultValue: "",
+                            model: "",
+                            needToSet: true
+                        )),
+                        try .init(ServiceArgumentRawFragment(
+                            id: "20",
+                            arrayOf: true,
+                            inputType: .init(
+                                name: "String",
+                                childArguments: []
+                            ),
+                            name: "img_urls",
+                            required: false,
+                            displayText: "사진 목록",
+                            uiComponentType: "input",
+                            uiComponentDefaultValue: "",
+                            model: "",
+                            needToSet: false
+                        )),
+                        try .init(ServiceArgumentRawFragment(
+                            id: "17",
+                            arrayOf: false,
+                            inputType: .init(
+                                name: "String",
+                                childArguments: []
+                            ),
+                            name: "name",
+                            required: true,
+                            displayText: "목적지 이름",
+                            uiComponentType: "input",
+                            uiComponentDefaultValue: "",
+                            model: "$TARAS:station_group",
+                            needToSet: true
+                        ))
+                    ]),
+                name: "destinations",
+                required: true,
+                displayText: "목적지",
+                uiComponentType: "destinations",
+                uiComponentDefaultValue: "",
+                model: "",
+                needToSet: true
+            )),
+            try .init(ServiceArgumentRawFragment(
+                id: "2",
+                arrayOf: false,
+                inputType: .init(
+                    name: "Integer",
+                    childArguments: []
+                ),
+                name: "repeat_count",
+                required: true,
+                displayText: "반복횟수",
+                uiComponentType: "input",
+                uiComponentDefaultValue: "1",
+                model: "",
+                needToSet: true
+            ))
+        ]
         
-        let types = try GenericScalar(jsonValue: [
-            "Receiver": [
-                "ID": [
-                    "from": "$TARAS:user",
-                    "required": true,
-                    "input_type": "string",
-                    "display_text": "수신자",
-                    "ui_component_type": "select"
-                ],
-                "input_type": "user_defined"
-            ],
-            "Destination": [
-                "ID": [
-                    "from": "$TARAS:station_group",
-                    "required": true,
-                    "input_type": "string",
-                    "need_to_set": true,
-                    "display_text": "목적지",
-                    "ui_component_type": "select"
-                ],
-                "name": [
-                    "required": true,
-                    "input_type": "string",
-                    "need_to_set": true,
-                    "display_text": "목적지",
-                    "ui_component_type": "input"
-                ],
-                "message": [
-                    "required": true,
-                    "input_type": "string",
-                    "need_to_set": true,
-                    "display_text": "요청사항",
-                    "ui_component_type": "input",
-                    "ui_component_default_value": ""
-                ],
-                "is_waited": [
-                    "required": true,
-                    "input_type": "bool",
-                    "need_to_set": true,
-                    "display_text": "작업 대기 여부",
-                    "ui_component_type": "checkbox",
-                    "ui_component_default_value": true
-                ],
-                "receivers": [
-                    "required": true,
-                    "input_type": "[]Receiver",
-                    "need_to_set": true,
-                    "display_text": "수신자",
-                    "ui_component_type": "receivers"
-                ],
-                "input_type": "user_defined"
-            ]
-        ])
-        
-        let fragment = ServiceTemplateFragment(
+        let fragment = ServiceTemplateRawFragmnet(
             id: self.id,
             name: self.displayName,
             serviceType: self.serviceType,
             description: self.description,
-            arguments: arguments,
-            types: types,
-            isCompiled: false
+            isCompiled: false,
+            arguments: arguments
         )
         
         return .init(fragment)
@@ -735,14 +829,13 @@ struct MockModel {
     
     static func serviceTemplate_optional_shortcut() throws -> ServiceTemplate {
         
-        let optionalFragment = ServiceTemplateFragment(
+        let optionalFragment = ServiceTemplateRawFragmnet(
             id: self.id,
             name: self.displayName,
             serviceType: self.serviceType,
             description: nil,
-            arguments: nil,
-            types: nil,
-            isCompiled: true
+            isCompiled: true,
+            arguments: []
         )
         
         return .init(option: optionalFragment)

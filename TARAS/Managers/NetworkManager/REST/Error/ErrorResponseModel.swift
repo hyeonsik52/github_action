@@ -1,6 +1,6 @@
 //
 //  ErrorResponseModel.swift
-//  TARAS-AL
+//  TARAS
 //
 //  Created by nexmond on 2021/10/15.
 //

@@ -1,13 +1,13 @@
 //
 //  LoginRequestModel.swift
-//  TARAS-AL
+//  TARAS
 //
 //  Created by nexmond on 2021/10/15.
 //
 
 import Foundation
 
-struct LoginRequestModel: RestAPIRequest {
+struct LoginRequestModel: SessionAPIRequest {
     typealias Response = LoginResponseModel
     
     enum CodingKeys: String, CodingKey {
@@ -19,4 +19,6 @@ struct LoginRequestModel: RestAPIRequest {
     let grantType: String
     let username: String
     let password: String
+    
+    let name: SessionAPIName = .login
 }

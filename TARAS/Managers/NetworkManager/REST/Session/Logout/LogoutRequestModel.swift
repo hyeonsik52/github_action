@@ -1,13 +1,13 @@
 //
 //  LogoutRequestModel.swift
-//  TARAS-AL
+//  TARAS
 //
 //  Created by nexmond on 2021/10/16.
 //
 
 import Foundation
 
-struct LogoutRequestModel: RestAPIRequest {
+struct LogoutRequestModel: SessionAPIRequest {
     typealias Response = LogoutResponseModel
     
     enum CodingKeys: String, CodingKey {
@@ -15,4 +15,6 @@ struct LogoutRequestModel: RestAPIRequest {
     }
     
     let token: String
+    
+    let name: SessionAPIName = .logout
 }

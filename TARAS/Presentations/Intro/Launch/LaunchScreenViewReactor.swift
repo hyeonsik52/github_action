@@ -60,7 +60,7 @@ extension LaunchScreenViewReactor {
             self.provider.userManager.updateClientInfo()
             
             // 2. 최소 버전 확인
-            return self.provider.networkManager.clientUpdateCheck()
+            return self.provider.networkManager.clientVersion.updateCheck()
                 .flatMapLatest { error -> Observable<Mutation> in
                     if let error = error {
                         Log.error("Invalid client version.", error.localizedDescription)

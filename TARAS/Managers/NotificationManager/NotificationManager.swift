@@ -26,41 +26,86 @@ class Notification<T: Hashable>: Equatable {
 
 class NotificationManager: BaseManager, NotificationManagerType {
     
-    private let queue = OperationQueue()
+    class NotificationStorageItem<T: Hashable, N: Notification<T>> {
+        
+        private let lock = NSLock()
+        private var token: NSObjectProtocol!
+        
+        private var storage = [AnyObject]()
+        private var closures: [ObserveClosure<T>]
+        
+        var isInvalidated = false
+        
+        var stacked: [N] {
+            guard !self.isInvalidated else { return [] }
+            return self.storage as! [N]
+        }
+        
+        init(queue: OperationQueue, closure: @escaping ObserveClosure<T>) {
+            self.closures = [closure]
+            self.token = NotificationCenter.default.addObserver(
+                forName: .init(rawValue: N.name),
+                object: nil,
+                queue: queue,
+                using: { [weak self] notification in
+                    guard let self = self,
+                          !self.isInvalidated,
+                          let object = notification.object as? T else { return }
+                    self.lock.lock(); defer { self.lock.unlock() }
+                    Log.debug("\(#function): \(N.name): received: \(object)")
+                    let notification = N.init(object)
+                    self.storage.insert(notification, at: 0)
+                    self.closures.forEach { $0(object) }
+                }
+            )
+        }
+        
+        func add(closure: @escaping ObserveClosure<T>) {
+            self.lock.lock(); defer { self.lock.unlock() }
+            guard !self.isInvalidated else { return }
+            self.closures.append(closure)
+        }
+        
+        func invalidate() {
+            self.lock.lock(); defer { self.lock.unlock() }
+            NotificationCenter.default.removeObserver(self.token!)
+            self.storage.removeAll()
+            self.closures.removeAll()
+            self.token = nil
+            self.isInvalidated = true
+        }
+    }
+    
     private let lock = NSLock()
-    private var storage = [AnyObject]()
-    private var tokenStorage = [String: NSObjectProtocol]()
+    private let queue = OperationQueue()
+    private var storage = [String: AnyObject]()
+    
+    private func convertedStorageItem<T: Hashable, N: Notification<T>>(_ type: N.Type) -> NotificationStorageItem<T, N>? {
+        return self.storage[N.name] as? NotificationStorageItem<T, N>
+    }
     
     func observe<T, N: Notification<T>>(
         to: N.Type, repeat: Int = 0,
         _ closure: @escaping ObserveClosure<T>
     ) {
         self.lock.lock(); defer { self.lock.unlock() }
-        if `repeat` > 0, let stacked = self.storage.filter({ $0 is N }) as? [N] {
-            stacked.enumerated().forEach {
+        let storageItem = self.convertedStorageItem(N.self)
+        if `repeat` > 0, let unwrapped = storageItem {
+            unwrapped.stacked.enumerated().forEach {
                 guard $0.0 < `repeat` else { return }
                 closure($0.1.object)
             }
         }
-        self.tokenStorage[N.name] = NotificationCenter.default.addObserver(
-            forName: .init(rawValue: to.name),
-            object: nil,
-            queue: self.queue,
-            using: { [weak self] notification in
-                guard let self = self,
-                      let object = notification.object as? T else { return }
-                self.lock.lock(); defer { self.lock.unlock() }
-                Log.debug("\(#function): \(to.name): received: \(object)")
-                let notification = N.init(object)
-                self.storage.insert(notification, at: 0)
-                closure(object)
-            }
-        )
+        if let unwrapped = storageItem {
+            unwrapped.add(closure: closure)
+        } else {
+            self.storage[N.name] = NotificationStorageItem<T, N>(queue: self.queue, closure: closure)
+        }
         Log.debug("\(#function): \(to.name)")
     }
     
     func post<T: Hashable, N: Notification<T>>(_ notification: N) {
-        if let existed = self.storage.first as? N, existed == notification {
+        if let existed = self.convertedStorageItem(N.self)?.stacked.first as? N, existed == notification {
             Log.debug("\(#function): \(N.name) is ignored")
             return
         }
@@ -73,10 +118,9 @@ class NotificationManager: BaseManager, NotificationManagerType {
     
     func dispose<T, N: Notification<T>>(to: N.Type) {
         self.lock.lock(); defer { self.lock.unlock() }
-        guard let token = self.tokenStorage[N.name] else { return }
-        NotificationCenter.default.removeObserver(token)
-        self.tokenStorage.removeValue(forKey: N.name)
-        self.storage.removeAll(where: { ($0 as? N) != nil })
+        guard let existed = self.convertedStorageItem(N.self) else { return }
+        existed.invalidate()
+        self.storage.removeValue(forKey: N.name)
         Log.debug("\(#function): \(to.name)")
     }
 }

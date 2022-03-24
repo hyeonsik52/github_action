@@ -86,7 +86,7 @@ extension AppDelegate {
     
     func checkUpdate() {
         
-        self.provider.networkManager.clientUpdateCheck()
+        self.provider.networkManager.clientVersion.updateCheck()
             .filterNil()
             .flatMapLatest { error -> Observable<Int> in
                 let errorUserInfo = (error as NSError).userInfo
@@ -299,12 +299,12 @@ extension AppDelegate: MessagingDelegate {
         Messaging.messaging().apnsToken = deviceToken
         
         let current = PushTokenSet(apns: deviceToken, fcm: Messaging.messaging().fcmToken)
-        self.provider.networkManager.registerFcmToken(with: current, #function)
+        self.provider.networkManager.fcm.register(with: current, #function)
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
         let current = PushTokenSet(apns: messaging.apnsToken, fcm: fcmToken)
-        self.provider.networkManager.registerFcmToken(with: current, #function)
+        self.provider.networkManager.fcm.register(with: current, #function)
     }
 }
