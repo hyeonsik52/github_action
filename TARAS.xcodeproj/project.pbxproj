@@ -94,6 +94,11 @@
 		ED28517827EC0928003196AD /* SubscriptionManager_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */; };
 		ED28517927EC0928003196AD /* SubscriptionManager_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */; };
 		ED28517A27EC0928003196AD /* SubscriptionManager_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */; };
+		ED28517D27EC49CB003196AD /* RealmManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517C27EC49CB003196AD /* RealmManagerTests.swift */; };
+		ED28517F27EC49D3003196AD /* BaseObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517E27EC49D3003196AD /* BaseObjectTests.swift */; };
+		ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28518027EC49DA003196AD /* ResultsTests.swift */; };
+		ED28518327EC49E2003196AD /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28518227EC49E2003196AD /* ListTests.swift */; };
+		ED28518527EC49E5003196AD /* SequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28518427EC49E5003196AD /* SequenceTests.swift */; };
 		ED2AAD4827E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4927E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4A27E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
@@ -913,6 +918,11 @@
 		ED28516F27EC03EC003196AD /* NetworkManager_ClientVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_ClientVersion.swift; sourceTree = "<group>"; };
 		ED28517327EC0587003196AD /* MultipleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleError.swift; sourceTree = "<group>"; };
 		ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager_Service.swift; sourceTree = "<group>"; };
+		ED28517C27EC49CB003196AD /* RealmManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManagerTests.swift; sourceTree = "<group>"; };
+		ED28517E27EC49D3003196AD /* BaseObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseObjectTests.swift; sourceTree = "<group>"; };
+		ED28518027EC49DA003196AD /* ResultsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTests.swift; sourceTree = "<group>"; };
+		ED28518227EC49E2003196AD /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
+		ED28518427EC49E5003196AD /* SequenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceTests.swift; sourceTree = "<group>"; };
 		ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertible.swift; sourceTree = "<group>"; };
 		ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConvertibleInitializer.swift; sourceTree = "<group>"; };
 		ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertibles.swift; sourceTree = "<group>"; };
@@ -1302,6 +1312,7 @@
 				ED28514827E9BE8B003196AD /* Subscription */,
 				ED28514927E9BE90003196AD /* Notification */,
 				ED28514327E9AEF5003196AD /* Network */,
+				ED28517B27EC49A0003196AD /* Database */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1408,6 +1419,18 @@
 				ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		ED28517B27EC49A0003196AD /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				ED28517C27EC49CB003196AD /* RealmManagerTests.swift */,
+				ED28517E27EC49D3003196AD /* BaseObjectTests.swift */,
+				ED28518027EC49DA003196AD /* ResultsTests.swift */,
+				ED28518227EC49E2003196AD /* ListTests.swift */,
+				ED28518427EC49E5003196AD /* SequenceTests.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		ED2AAD4627E30CE7002A02F5 /* Convertible */ = {
@@ -3234,20 +3257,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED28515127EAD97B003196AD /* NotificationManagerTests.swift in Sources */,
+				ED28517D27EC49CB003196AD /* RealmManagerTests.swift in Sources */,
 				ED28513B27E991B8003196AD /* MockNetworkManager.swift in Sources */,
 				ED28513927E991AA003196AD /* MockPushManager.swift in Sources */,
 				ED28513727E99185003196AD /* MockUserManager.swift in Sources */,
 				ED28515327EB0EC2003196AD /* NetworkManagerTests.swift in Sources */,
 				ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */,
+				ED28518327EC49E2003196AD /* ListTests.swift in Sources */,
 				ED28515527EB1691003196AD /* MockREST.swift in Sources */,
 				ED28514F27E9CE40003196AD /* SubscriptionManagerTests.swift in Sources */,
 				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
+				ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */,
 				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
 				ED28514D27E9CBF4003196AD /* PushManagerTests.swift in Sources */,
 				ED28514B27E9BECB003196AD /* UserManagerTests.swift in Sources */,
 				ED28513D27E991C9003196AD /* MockSubscriptionManager.swift in Sources */,
 				ED28514127E99218003196AD /* MockManagerProvider.swift in Sources */,
 				ED28514527E9AFBA003196AD /* MockGraphQL.swift in Sources */,
+				ED28518527EC49E5003196AD /* SequenceTests.swift in Sources */,
+				ED28517F27EC49D3003196AD /* BaseObjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
