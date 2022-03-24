@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RefreshSessionRequestModel: RestAPIRequest {
+struct RefreshSessionRequestModel: SessionAPIRequest {
     typealias Response = LoginResponseModel
     
     enum CodingKeys: String, CodingKey {
@@ -17,4 +17,6 @@ struct RefreshSessionRequestModel: RestAPIRequest {
     
     let grantType: String = "refresh_token"
     let refreshToken: String
+    
+    let name: SessionAPIName = .refreshSession
 }

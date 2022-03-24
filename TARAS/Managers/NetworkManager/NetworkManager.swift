@@ -5,41 +5,20 @@
 //  Created by nexmond on 2021/01/12.
 //
 
-import Apollo
-import RxSwift
 import Foundation
-import Alamofire
-import RxAlamofire
-import RxReachability
+import RxSwift
+import Apollo
 
-typealias InterceptorsBlock = (_ store: ApolloStore, _ client: URLSessionClient, _ provider: ManagerProviderType) -> [ApolloInterceptor]
-
-struct MultipleError: Error {
-    let graphQLErrors: [GraphQLError]?
-    
-    var isUnauthorized: Bool {
-        return self.graphQLErrors?.contains { $0.message?.lowercased().contains("unauthorized") ?? false } ?? false
-    }
-}
-
-protocol NetworkManagerType: AnyObject {
+protocol NetworkManagerType: AnyObject, RESTSupport, FCMSupport, ClientVersionSupport {
     func fetch<T: GraphQLQuery>(_ query: T) -> Observable<T.Data>
     func perform<T: GraphQLMutation>(_ mutation: T) -> Observable<T.Data>
     func subscribe<T: GraphQLSubscription>(_ subscription: T) -> Observable<Result<T.Data, Error>>
     func updateWebSocketTransportConnectingPayload()
-    
-    func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>>
-    
-    func clientUpdateCheck() -> Observable<Error?>
-    func clientVersionCheck() -> Observable<Version?>
-    
-    func registerFcmToken(with tokenSet: PushTokenSet, _ func: String)
-    func registerFcmToken(auto func: String)
-    func registerFcmToken<T>(auto func: String) -> Observable<T>
-    func unregisterFcmToken() -> Observable<Bool>
 }
 
-class NetworkManager: BaseManager, NetworkManagerType {
+typealias InterceptorsBlock = (_ store: ApolloStore, _ client: URLSessionClient, _ provider: ManagerProviderType) -> [ApolloInterceptor]
+
+class NetworkManager: BaseManager {
     
     /// A web socket transport to use for subscriptions
     private(set) var webSocketTransport: WebSocketTransport!
@@ -114,8 +93,7 @@ class NetworkManager: BaseManager, NetworkManagerType {
     }
 }
 
-
-extension NetworkManager {
+extension NetworkManager: NetworkManagerType {
 
     func fetch<T: GraphQLQuery>(_ query: T) -> Observable<T.Data> {
         
@@ -215,54 +193,6 @@ extension NetworkManager {
         self.webSocketTransport.updateHeaderValues(authPayload)
         self.webSocketTransport.updateConnectingPayload(authPayload)
     }
-    
-    func clientVersion() -> Observable<Result<Version, Error>> {
-        return self.fetch(ClientVersionQuery())
-            .map { payload in
-                let error = NSError(
-                    domain: "TARAS",
-                    code: -99,
-                    userInfo: [
-                        NSLocalizedDescriptionKey: "버전 정보를 가져오지 못햇습니다."
-                    ]
-                )
-                if let fragment = payload.clientVersion?.fragments.versionFragment {
-                    let model = Version(fragment)
-                    if model.mustUpdate {
-                        let error = NSError(
-                            domain: "TARAS",
-                            code: -99,
-                            userInfo: [
-                                NSLocalizedFailureErrorKey: "업데이트",
-                                NSLocalizedDescriptionKey: "안정적인 앱 사용을 위해\n업데이트를 진행해주세요.",
-                                NSLocalizedRecoverySuggestionErrorKey: "업데이트"
-                            ]
-                        )
-                        return .failure(error)
-                    } else {
-                        return .success(model)
-                    }
-                } else {
-                    return .failure(error)
-                }
-            }.catch { error in
-                return .just(.failure(error))
-            }.observe(on: MainScheduler.instance)
-    }
-    
-    func clientUpdateCheck() -> Observable<Error?> {
-        return self.clientVersion().map {
-            if case .failure(let error) = $0 {
-                return error
-            } else {
-                return nil
-            }
-        }
-    }
-    
-    func clientVersionCheck() -> Observable<Version?> {
-        return self.clientVersion().map { try? $0.get() }
-    }
 }
 
 extension NetworkManager: WebSocketTransportDelegate {
@@ -277,46 +207,5 @@ extension NetworkManager: WebSocketTransportDelegate {
     
     func webSocketTransport(_ webSocketTransport: WebSocketTransport, didDisconnectWithError error: Error?) {
         Log.debug("💡 \(#function) | \(error?.localizedDescription ?? "unknowed error")")
-    }
-}
-
-struct RestError: Error {
-    var code: String
-    var description: String?
-}
-
-extension NetworkManager {
-    
-    func postByRest<T: RestAPIResponse>(_ api: RestAPIType<T>) -> Observable<Result<T, RestError>> {
-        var parameters = api.parameters
-        parameters["client_id"] = Info.serverRestClientId
-        parameters["client_secret"] = Info.serverRestClientSecret
-        Log.request("\(api) \(parameters)")
-        return Session.default.rx
-            .request(
-                .post,
-                api.url,
-                parameters: parameters,
-                headers: .init([
-                    .contentType("application/x-www-form-urlencoded")
-                ])
-            ).responseData()
-            .map {
-                do {
-                    let responseModel = try JSONDecoder().decode(T.self, from: $0.1)
-                    return .success(responseModel)
-                } catch let error {
-                    if let errorModel = try? JSONDecoder().decode(ErrorResponseModel.self, from: $0.1) {
-                        Log.error("\(errorModel)")
-                        return .failure(errorModel.toRestError)
-                    } else {
-                        Log.fail("JSON serialization error: \(error.localizedDescription)")
-                        return .failure(.init(
-                            code: "JSON serialization error",
-                            description: error.localizedDescription
-                        ))
-                    }
-                }
-            }
     }
 }

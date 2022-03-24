@@ -68,6 +68,27 @@
 		ED28514D27E9CBF4003196AD /* PushManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514C27E9CBF3003196AD /* PushManagerTests.swift */; };
 		ED28514F27E9CE40003196AD /* SubscriptionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28514E27E9CE40003196AD /* SubscriptionManagerTests.swift */; };
 		ED28515127EAD97B003196AD /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28515027EAD97B003196AD /* NotificationManagerTests.swift */; };
+		ED28515B27EBFEAF003196AD /* SessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28515A27EBFEAF003196AD /* SessionAPI.swift */; };
+		ED28515C27EBFEAF003196AD /* SessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28515A27EBFEAF003196AD /* SessionAPI.swift */; };
+		ED28515D27EBFEAF003196AD /* SessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28515A27EBFEAF003196AD /* SessionAPI.swift */; };
+		ED28515F27EBFED0003196AD /* SessionAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28515E27EBFED0003196AD /* SessionAPIRequest.swift */; };
+		ED28516027EBFED0003196AD /* SessionAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28515E27EBFED0003196AD /* SessionAPIRequest.swift */; };
+		ED28516127EBFED0003196AD /* SessionAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28515E27EBFED0003196AD /* SessionAPIRequest.swift */; };
+		ED28516327EBFEE8003196AD /* SessionAPIName.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516227EBFEE8003196AD /* SessionAPIName.swift */; };
+		ED28516427EBFEE8003196AD /* SessionAPIName.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516227EBFEE8003196AD /* SessionAPIName.swift */; };
+		ED28516527EBFEE8003196AD /* SessionAPIName.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516227EBFEE8003196AD /* SessionAPIName.swift */; };
+		ED28516727EC0150003196AD /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516627EC0150003196AD /* RestError.swift */; };
+		ED28516827EC0150003196AD /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516627EC0150003196AD /* RestError.swift */; };
+		ED28516927EC0150003196AD /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516627EC0150003196AD /* RestError.swift */; };
+		ED28516C27EC02AB003196AD /* NetworkManager_REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516B27EC02AB003196AD /* NetworkManager_REST.swift */; };
+		ED28516D27EC02AB003196AD /* NetworkManager_REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516B27EC02AB003196AD /* NetworkManager_REST.swift */; };
+		ED28516E27EC02AB003196AD /* NetworkManager_REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516B27EC02AB003196AD /* NetworkManager_REST.swift */; };
+		ED28517027EC03EC003196AD /* NetworkManager_ClientVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516F27EC03EC003196AD /* NetworkManager_ClientVersion.swift */; };
+		ED28517127EC03EC003196AD /* NetworkManager_ClientVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516F27EC03EC003196AD /* NetworkManager_ClientVersion.swift */; };
+		ED28517227EC03EC003196AD /* NetworkManager_ClientVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28516F27EC03EC003196AD /* NetworkManager_ClientVersion.swift */; };
+		ED28517427EC0587003196AD /* MultipleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517327EC0587003196AD /* MultipleError.swift */; };
+		ED28517527EC0587003196AD /* MultipleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517327EC0587003196AD /* MultipleError.swift */; };
+		ED28517627EC0587003196AD /* MultipleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517327EC0587003196AD /* MultipleError.swift */; };
 		ED2AAD4827E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4927E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4A27E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
@@ -244,7 +265,7 @@
 		ED416D7927A16C640043A7A4 /* ServiceCreationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C720277DBD2C00F9D0A5 /* ServiceCreationFooter.swift */; };
 		ED416D7A27A16C640043A7A4 /* SimpleDataSourcesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C704277DBD2C00F9D0A5 /* SimpleDataSourcesSection.swift */; };
 		ED416D7B27A16C640043A7A4 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD0272298D40029AF7B /* LoginRequestModel.swift */; };
-		ED416D7C27A16C640043A7A4 /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
+		ED416D7C27A16C640043A7A4 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPI.swift */; };
 		ED416D7E27A16C640043A7A4 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED416D8127A16C640043A7A4 /* SignUpNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735D26C3A03C0077CD9D /* SignUpNameViewController.swift */; };
 		ED416D8227A16C640043A7A4 /* List_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463526B7E7CC00C2FA6D /* List_BaseObject.swift */; };
@@ -484,7 +505,7 @@
 		ED416EBE27A170FC0043A7A4 /* ServiceCreationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C720277DBD2C00F9D0A5 /* ServiceCreationFooter.swift */; };
 		ED416EBF27A170FC0043A7A4 /* SimpleDataSourcesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C704277DBD2C00F9D0A5 /* SimpleDataSourcesSection.swift */; };
 		ED416EC027A170FC0043A7A4 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CD0272298D40029AF7B /* LoginRequestModel.swift */; };
-		ED416EC127A170FC0043A7A4 /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
+		ED416EC127A170FC0043A7A4 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPI.swift */; };
 		ED416EC327A170FC0043A7A4 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED416EC627A170FC0043A7A4 /* SignUpNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52735D26C3A03C0077CD9D /* SignUpNameViewController.swift */; };
 		ED416EC727A170FC0043A7A4 /* List_BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B463526B7E7CC00C2FA6D /* List_BaseObject.swift */; };
@@ -567,7 +588,7 @@
 		ED416F3327A171320043A7A4 /* Info-prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED416F3227A171320043A7A4 /* Info-prod.plist */; };
 		ED416F3527A176570043A7A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED416F3427A176570043A7A4 /* GoogleService-Info.plist */; };
 		ED416F3727A176AE0043A7A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED416F3627A176AE0043A7A4 /* GoogleService-Info.plist */; };
-		ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPIType.swift */; };
+		ED508CD3272298D40029AF7B /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPI.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
 		ED508CD6272298D40029AF7B /* LogoutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */; };
@@ -686,9 +707,9 @@
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
 		ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4D27D5F41A007EBE70 /* MockModel.swift */; };
-		ED78EC5027DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */; };
-		ED78EC5127DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */; };
-		ED78EC5227DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */; };
+		ED78EC5027DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */; };
+		ED78EC5127DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */; };
+		ED78EC5227DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */; };
 		ED7A0E6B2721526800AD6678 /* SettingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E6A2721526800AD6678 /* SettingCellView.swift */; };
 		ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */; };
 		ED7A0E792721539400AD6678 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E732721539400AD6678 /* UpdateUserInfoViewController.swift */; };
@@ -877,6 +898,13 @@
 		ED28514C27E9CBF3003196AD /* PushManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManagerTests.swift; sourceTree = "<group>"; };
 		ED28514E27E9CE40003196AD /* SubscriptionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagerTests.swift; sourceTree = "<group>"; };
 		ED28515027EAD97B003196AD /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
+		ED28515A27EBFEAF003196AD /* SessionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAPI.swift; sourceTree = "<group>"; };
+		ED28515E27EBFED0003196AD /* SessionAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAPIRequest.swift; sourceTree = "<group>"; };
+		ED28516227EBFEE8003196AD /* SessionAPIName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAPIName.swift; sourceTree = "<group>"; };
+		ED28516627EC0150003196AD /* RestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
+		ED28516B27EC02AB003196AD /* NetworkManager_REST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_REST.swift; sourceTree = "<group>"; };
+		ED28516F27EC03EC003196AD /* NetworkManager_ClientVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_ClientVersion.swift; sourceTree = "<group>"; };
+		ED28517327EC0587003196AD /* MultipleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleError.swift; sourceTree = "<group>"; };
 		ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertible.swift; sourceTree = "<group>"; };
 		ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConvertibleInitializer.swift; sourceTree = "<group>"; };
 		ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertibles.swift; sourceTree = "<group>"; };
@@ -894,7 +922,7 @@
 		ED416F3227A171320043A7A4 /* Info-prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-prod.plist"; sourceTree = "<group>"; };
 		ED416F3427A176570043A7A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED416F3627A176AE0043A7A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		ED508CC9272298D40029AF7B /* RestAPIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIType.swift; sourceTree = "<group>"; };
+		ED508CC9272298D40029AF7B /* RestAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutResponseModel.swift; sourceTree = "<group>"; };
@@ -1001,7 +1029,7 @@
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		ED78EC4D27D5F41A007EBE70 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
-		ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_fcm.swift; sourceTree = "<group>"; };
+		ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_FCM.swift; sourceTree = "<group>"; };
 		ED7A0E6127212A8D00AD6678 /* TARAS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TARAS-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED7A0E6A2721526800AD6678 /* SettingCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCellView.swift; sourceTree = "<group>"; };
 		ED7A0E722721539400AD6678 /* UpdateUserInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -1324,6 +1352,54 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		ED28515627EBFE03003196AD /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				ED28515A27EBFEAF003196AD /* SessionAPI.swift */,
+				ED28516227EBFEE8003196AD /* SessionAPIName.swift */,
+				ED28515E27EBFED0003196AD /* SessionAPIRequest.swift */,
+				ED28515727EBFE4A003196AD /* Login */,
+				ED28515827EBFE51003196AD /* Logout */,
+				ED28515927EBFE58003196AD /* RefreshSession */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		ED28515727EBFE4A003196AD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CD0272298D40029AF7B /* LoginRequestModel.swift */,
+				ED508CCC272298D40029AF7B /* LoginResponseModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		ED28515827EBFE51003196AD /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */,
+				ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */,
+			);
+			path = Logout;
+			sourceTree = "<group>";
+		};
+		ED28515927EBFE58003196AD /* RefreshSession */ = {
+			isa = PBXGroup;
+			children = (
+				EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */,
+			);
+			path = RefreshSession;
+			sourceTree = "<group>";
+		};
+		ED28516A27EC0187003196AD /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				ED28516627EC0150003196AD /* RestError.swift */,
+				ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		ED2AAD4627E30CE7002A02F5 /* Convertible */ = {
 			isa = PBXGroup;
 			children = (
@@ -1374,33 +1450,13 @@
 		ED508CC8272298D40029AF7B /* REST */ = {
 			isa = PBXGroup;
 			children = (
-				ED508CC9272298D40029AF7B /* RestAPIType.swift */,
-				ED508CCA272298D40029AF7B /* ResponseModels */,
-				ED508CCF272298D40029AF7B /* RequestModels */,
+				ED508CC9272298D40029AF7B /* RestAPI.swift */,
+				ED508CD1272298D40029AF7B /* RestAPIRequest.swift */,
+				ED508CCB272298D40029AF7B /* RestAPIResponse.swift */,
+				ED28516A27EC0187003196AD /* Error */,
+				ED28515627EBFE03003196AD /* Session */,
 			);
 			path = REST;
-			sourceTree = "<group>";
-		};
-		ED508CCA272298D40029AF7B /* ResponseModels */ = {
-			isa = PBXGroup;
-			children = (
-				ED508CCB272298D40029AF7B /* RestAPIResponse.swift */,
-				ED508CCC272298D40029AF7B /* LoginResponseModel.swift */,
-				ED508CCD272298D40029AF7B /* LogoutResponseModel.swift */,
-				ED508CCE272298D40029AF7B /* ErrorResponseModel.swift */,
-			);
-			path = ResponseModels;
-			sourceTree = "<group>";
-		};
-		ED508CCF272298D40029AF7B /* RequestModels */ = {
-			isa = PBXGroup;
-			children = (
-				ED508CD0272298D40029AF7B /* LoginRequestModel.swift */,
-				ED508CD1272298D40029AF7B /* RestAPIRequest.swift */,
-				ED508CD2272298D40029AF7B /* LogoutRequestModel.swift */,
-				EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */,
-			);
-			path = RequestModels;
 			sourceTree = "<group>";
 		};
 		ED52730726C255FC0077CD9D /* SignIn */ = {
@@ -1729,7 +1785,10 @@
 			isa = PBXGroup;
 			children = (
 				ED6B466726B7E8B500C2FA6D /* NetworkManager.swift */,
-				ED78EC4F27DB1588007EBE70 /* NetworkManager_fcm.swift */,
+				ED28516B27EC02AB003196AD /* NetworkManager_REST.swift */,
+				ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */,
+				ED28516F27EC03EC003196AD /* NetworkManager_ClientVersion.swift */,
+				ED28517327EC0587003196AD /* MultipleError.swift */,
 				ED6B466126B7E8B500C2FA6D /* Interceptors */,
 				ED508CC8272298D40029AF7B /* REST */,
 			);
@@ -2662,8 +2721,11 @@
 				ED416CCC27A16C640043A7A4 /* ServiceCreationSummaryViewController.swift in Sources */,
 				ED416CCE27A16C640043A7A4 /* Robot.swift in Sources */,
 				ED416CCF27A16C640043A7A4 /* SignUpPasswordView.swift in Sources */,
+				ED28517127EC03EC003196AD /* NetworkManager_ClientVersion.swift in Sources */,
+				ED28517527EC0587003196AD /* MultipleError.swift in Sources */,
 				ED416CD027A16C640043A7A4 /* Log+Extract.swift in Sources */,
 				ED416CD127A16C640043A7A4 /* WorkspaceSearchViewReactor.swift in Sources */,
+				ED28516427EBFEE8003196AD /* SessionAPIName.swift in Sources */,
 				ED416CD227A16C640043A7A4 /* SignUpIdViewController.swift in Sources */,
 				ED416CD427A16C640043A7A4 /* SwiftEntryKit.swift in Sources */,
 				ED416CD527A16C640043A7A4 /* ServiceBuilder.swift in Sources */,
@@ -2674,6 +2736,7 @@
 				ED416CDA27A16C640043A7A4 /* WorkspaceSelectView.swift in Sources */,
 				ED416CDB27A16C640043A7A4 /* PushManager.swift in Sources */,
 				ED416CDC27A16C640043A7A4 /* WorkspaceInfoView_Reactive.swift in Sources */,
+				ED28516827EC0150003196AD /* RestError.swift in Sources */,
 				ED416CDD27A16C640043A7A4 /* Info.swift in Sources */,
 				ED416CDE27A16C640043A7A4 /* UITextField.swift in Sources */,
 				ED416CDF27A16C640043A7A4 /* STView.swift in Sources */,
@@ -2702,6 +2765,7 @@
 				ED416CFC27A16C640043A7A4 /* SignUpCompleteViewController.swift in Sources */,
 				ED416CFD27A16C640043A7A4 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED416CFE27A16C640043A7A4 /* ServiceTemplate.swift in Sources */,
+				ED28516027EBFED0003196AD /* SessionAPIRequest.swift in Sources */,
 				ED416CFF27A16C640043A7A4 /* ServiceModelSection.swift in Sources */,
 				ED416D0027A16C640043A7A4 /* ServicePhase.swift in Sources */,
 				ED416D0127A16C640043A7A4 /* API.swift in Sources */,
@@ -2750,6 +2814,7 @@
 				ED416D3627A16C640043A7A4 /* FilterNil.swift in Sources */,
 				ED416D3727A16C640043A7A4 /* DefaultMyInfoViewController.swift in Sources */,
 				ED416D3827A16C640043A7A4 /* SRPDetailInfoCellView_Reactive.swift in Sources */,
+				ED28516D27EC02AB003196AD /* NetworkManager_REST.swift in Sources */,
 				ED416D3A27A16C640043A7A4 /* ServiceDetailLogViewReactor.swift in Sources */,
 				ED416D3B27A16C640043A7A4 /* UpdateUserInfoViewReactor.swift in Sources */,
 				ED416D3C27A16C640043A7A4 /* WorkspaceTabBarControllerReactor.swift in Sources */,
@@ -2779,7 +2844,7 @@
 				ED416D5C27A16C640043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
 				ED416D5E27A16C640043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416D5F27A16C640043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
-				ED78EC5127DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
+				ED78EC5127DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */,
 				ED416D6127A16C640043A7A4 /* SignUpIdViewReactor.swift in Sources */,
 				ED416D6227A16C640043A7A4 /* ServiceBasicInfoViewReactor.swift in Sources */,
 				ED2AAD5127E30D8E002A02F5 /* Convertibles.swift in Sources */,
@@ -2804,7 +2869,7 @@
 				ED416D7927A16C640043A7A4 /* ServiceCreationFooter.swift in Sources */,
 				ED416D7A27A16C640043A7A4 /* SimpleDataSourcesSection.swift in Sources */,
 				ED416D7B27A16C640043A7A4 /* LoginRequestModel.swift in Sources */,
-				ED416D7C27A16C640043A7A4 /* RestAPIType.swift in Sources */,
+				ED416D7C27A16C640043A7A4 /* RestAPI.swift in Sources */,
 				ED416D7E27A16C640043A7A4 /* UITableView.swift in Sources */,
 				ED416D8127A16C640043A7A4 /* SignUpNameViewController.swift in Sources */,
 				ED416D8227A16C640043A7A4 /* List_BaseObject.swift in Sources */,
@@ -2856,6 +2921,7 @@
 				ED416DB827A16C640043A7A4 /* UIView.swift in Sources */,
 				ED416DB927A16C640043A7A4 /* Service.swift in Sources */,
 				ED416DBA27A16C640043A7A4 /* SwiftEntryKit_String.swift in Sources */,
+				ED28515C27EBFEAF003196AD /* SessionAPI.swift in Sources */,
 				ED416DBB27A16C640043A7A4 /* ServiceLogState.swift in Sources */,
 				ED416DBC27A16C640043A7A4 /* TEST_TB.swift in Sources */,
 				ED416DBD27A16C640043A7A4 /* ThreadSafeReference_BaseObject.swift in Sources */,
@@ -2916,8 +2982,11 @@
 				ED416E1127A170FC0043A7A4 /* ServiceCreationSummaryViewController.swift in Sources */,
 				ED416E1327A170FC0043A7A4 /* Robot.swift in Sources */,
 				ED416E1427A170FC0043A7A4 /* SignUpPasswordView.swift in Sources */,
+				ED28517227EC03EC003196AD /* NetworkManager_ClientVersion.swift in Sources */,
+				ED28517627EC0587003196AD /* MultipleError.swift in Sources */,
 				ED416E1527A170FC0043A7A4 /* Log+Extract.swift in Sources */,
 				ED416E1627A170FC0043A7A4 /* WorkspaceSearchViewReactor.swift in Sources */,
+				ED28516527EBFEE8003196AD /* SessionAPIName.swift in Sources */,
 				ED416E1727A170FC0043A7A4 /* SignUpIdViewController.swift in Sources */,
 				ED416E1927A170FC0043A7A4 /* SwiftEntryKit.swift in Sources */,
 				ED416E1A27A170FC0043A7A4 /* ServiceBuilder.swift in Sources */,
@@ -2928,6 +2997,7 @@
 				ED416E1F27A170FC0043A7A4 /* WorkspaceSelectView.swift in Sources */,
 				ED416E2027A170FC0043A7A4 /* PushManager.swift in Sources */,
 				ED416E2127A170FC0043A7A4 /* WorkspaceInfoView_Reactive.swift in Sources */,
+				ED28516927EC0150003196AD /* RestError.swift in Sources */,
 				ED416E2227A170FC0043A7A4 /* Info.swift in Sources */,
 				ED416E2327A170FC0043A7A4 /* UITextField.swift in Sources */,
 				ED416E2427A170FC0043A7A4 /* STView.swift in Sources */,
@@ -2956,6 +3026,7 @@
 				ED416E4127A170FC0043A7A4 /* SignUpCompleteViewController.swift in Sources */,
 				ED416E4227A170FC0043A7A4 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED416E4327A170FC0043A7A4 /* ServiceTemplate.swift in Sources */,
+				ED28516127EBFED0003196AD /* SessionAPIRequest.swift in Sources */,
 				ED416E4427A170FC0043A7A4 /* ServiceModelSection.swift in Sources */,
 				ED416E4527A170FC0043A7A4 /* ServicePhase.swift in Sources */,
 				ED416E4627A170FC0043A7A4 /* API.swift in Sources */,
@@ -3004,6 +3075,7 @@
 				ED416E7927A170FC0043A7A4 /* AppDelegate.swift in Sources */,
 				ED416E7B27A170FC0043A7A4 /* FilterNil.swift in Sources */,
 				ED416E7C27A170FC0043A7A4 /* DefaultMyInfoViewController.swift in Sources */,
+				ED28516E27EC02AB003196AD /* NetworkManager_REST.swift in Sources */,
 				ED416E7D27A170FC0043A7A4 /* SRPDetailInfoCellView_Reactive.swift in Sources */,
 				ED416E7F27A170FC0043A7A4 /* ServiceDetailLogViewReactor.swift in Sources */,
 				ED416E8027A170FC0043A7A4 /* UpdateUserInfoViewReactor.swift in Sources */,
@@ -3033,7 +3105,7 @@
 				ED53081027B24682003B0FB0 /* ProgressLineView.swift in Sources */,
 				ED416E9F27A170FC0043A7A4 /* BaseManager.swift in Sources */,
 				ED416EA127A170FC0043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
-				ED78EC5227DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
+				ED78EC5227DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */,
 				ED416EA327A170FC0043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416EA427A170FC0043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
 				ED2AAD5227E30D8E002A02F5 /* Convertibles.swift in Sources */,
@@ -3059,7 +3131,7 @@
 				ED416EBE27A170FC0043A7A4 /* ServiceCreationFooter.swift in Sources */,
 				ED416EBF27A170FC0043A7A4 /* SimpleDataSourcesSection.swift in Sources */,
 				ED416EC027A170FC0043A7A4 /* LoginRequestModel.swift in Sources */,
-				ED416EC127A170FC0043A7A4 /* RestAPIType.swift in Sources */,
+				ED416EC127A170FC0043A7A4 /* RestAPI.swift in Sources */,
 				ED416EC327A170FC0043A7A4 /* UITableView.swift in Sources */,
 				ED416EC627A170FC0043A7A4 /* SignUpNameViewController.swift in Sources */,
 				ED416EC727A170FC0043A7A4 /* List_BaseObject.swift in Sources */,
@@ -3110,6 +3182,7 @@
 				ED416EFB27A170FC0043A7A4 /* Version.swift in Sources */,
 				ED416EFD27A170FC0043A7A4 /* UIView.swift in Sources */,
 				ED416EFE27A170FC0043A7A4 /* Service.swift in Sources */,
+				ED28515D27EBFEAF003196AD /* SessionAPI.swift in Sources */,
 				ED416EFF27A170FC0043A7A4 /* SwiftEntryKit_String.swift in Sources */,
 				ED416F0027A170FC0043A7A4 /* ServiceLogState.swift in Sources */,
 				ED416F0127A170FC0043A7A4 /* TEST_TB.swift in Sources */,
@@ -3190,8 +3263,11 @@
 				ED06C74F277DBD2D00F9D0A5 /* ServiceCreationSummaryViewController.swift in Sources */,
 				ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */,
 				ED52737726C3A03C0077CD9D /* SignUpPasswordView.swift in Sources */,
+				ED28517027EC03EC003196AD /* NetworkManager_ClientVersion.swift in Sources */,
+				ED28517427EC0587003196AD /* MultipleError.swift in Sources */,
 				ED6B464A26B7E7CC00C2FA6D /* Log+Extract.swift in Sources */,
 				EDC11B0526D3A39E0020AB09 /* WorkspaceSearchViewReactor.swift in Sources */,
+				ED28516327EBFEE8003196AD /* SessionAPIName.swift in Sources */,
 				ED52737126C3A03C0077CD9D /* SignUpIdViewController.swift in Sources */,
 				ED6B460626B7DFF700C2FA6D /* SwiftEntryKit.swift in Sources */,
 				ED06C7692786889E00F9D0A5 /* ServiceBuilder.swift in Sources */,
@@ -3202,6 +3278,7 @@
 				EDC11AFE26D3A39E0020AB09 /* WorkspaceSelectView.swift in Sources */,
 				ED6B468626B7E8B500C2FA6D /* PushManager.swift in Sources */,
 				EDC11A8026D3A39D0020AB09 /* WorkspaceInfoView_Reactive.swift in Sources */,
+				ED28516727EC0150003196AD /* RestError.swift in Sources */,
 				ED6B46B426B8025500C2FA6D /* Info.swift in Sources */,
 				ED6B464226B7E7CC00C2FA6D /* UITextField.swift in Sources */,
 				ED06C77D2786894300F9D0A5 /* STView.swift in Sources */,
@@ -3230,6 +3307,7 @@
 				EDC117F126CF8E5D0020AB09 /* SignUpCompleteViewController.swift in Sources */,
 				ED06C73A277DBD2D00F9D0A5 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */,
+				ED28515F27EBFED0003196AD /* SessionAPIRequest.swift in Sources */,
 				EDC11A7326D3A39D0020AB09 /* ServiceModelSection.swift in Sources */,
 				ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */,
 				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
@@ -3278,6 +3356,7 @@
 				ED6B464F26B7E7CC00C2FA6D /* FilterNil.swift in Sources */,
 				EDC11A2F26D3A39D0020AB09 /* DefaultMyInfoViewController.swift in Sources */,
 				EDC11A3D26D3A39D0020AB09 /* SRPDetailInfoCellView_Reactive.swift in Sources */,
+				ED28516C27EC02AB003196AD /* NetworkManager_REST.swift in Sources */,
 				EDC11A4C26D3A39D0020AB09 /* ServiceDetailLogViewReactor.swift in Sources */,
 				ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */,
 				EDC11A7A26D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift in Sources */,
@@ -3307,7 +3386,7 @@
 				ED06C752277DBD2D00F9D0A5 /* ServiceCreationDetailViewReactor.swift in Sources */,
 				ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */,
 				ED06C74C277DBD2D00F9D0A5 /* ServiceCreationCellReactor.swift in Sources */,
-				ED78EC5027DB1588007EBE70 /* NetworkManager_fcm.swift in Sources */,
+				ED78EC5027DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */,
 				ED52737226C3A03C0077CD9D /* SignUpIdViewReactor.swift in Sources */,
 				EDC11A3F26D3A39D0020AB09 /* ServiceBasicInfoViewReactor.swift in Sources */,
 				ED2AAD5027E30D8E002A02F5 /* Convertibles.swift in Sources */,
@@ -3332,7 +3411,7 @@
 				ED06C74D277DBD2D00F9D0A5 /* ServiceCreationFooter.swift in Sources */,
 				ED06C738277DBD2D00F9D0A5 /* SimpleDataSourcesSection.swift in Sources */,
 				ED508CD8272298D40029AF7B /* LoginRequestModel.swift in Sources */,
-				ED508CD3272298D40029AF7B /* RestAPIType.swift in Sources */,
+				ED508CD3272298D40029AF7B /* RestAPI.swift in Sources */,
 				ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */,
 				ED52737426C3A03C0077CD9D /* SignUpNameViewController.swift in Sources */,
 				ED6B465926B7E7CC00C2FA6D /* List_BaseObject.swift in Sources */,
@@ -3384,6 +3463,7 @@
 				ED6B463D26B7E7CC00C2FA6D /* UIView.swift in Sources */,
 				ED6B46A026B7E9CE00C2FA6D /* Service.swift in Sources */,
 				ED6B460526B7DFF700C2FA6D /* SwiftEntryKit_String.swift in Sources */,
+				ED28515B27EBFEAF003196AD /* SessionAPI.swift in Sources */,
 				ED7BCE2427716AD60074BFFA /* ServiceLogState.swift in Sources */,
 				ED6B469026B7E8B500C2FA6D /* TEST_TB.swift in Sources */,
 				ED6B465B26B7E7CC00C2FA6D /* ThreadSafeReference_BaseObject.swift in Sources */,

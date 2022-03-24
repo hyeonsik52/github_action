@@ -1,5 +1,5 @@
 //
-//  NetworkManager_fcm.swift
+//  NetworkManager_FCM.swift
 //  TARAS
 //
 //  Created by nexmond on 2022/03/11.
@@ -8,6 +8,13 @@
 import Foundation
 import RxSwift
 import FirebaseMessaging
+
+protocol FCMSupport {
+    func registerFcmToken(with tokenSet: PushTokenSet, _ func: String)
+    func registerFcmToken(auto func: String)
+    func registerFcmToken<T>(auto func: String) -> Observable<T>
+    func unregisterFcmToken() -> Observable<Bool>
+}
 
 struct PushTokenSet: Equatable {
     var apns: Data?
