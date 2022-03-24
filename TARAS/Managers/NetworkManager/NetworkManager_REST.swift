@@ -12,7 +12,6 @@ import RxAlamofire
 
 protocol RESTSupport {
     func call(_ method: String, _ api: RestAPI) -> Observable<(HTTPURLResponse, Data)>
-    func call<T: RestAPIRequest>(_ request: SessionAPI<T>) -> Observable<Result<T.Response, RestError>>
 }
 
 extension NetworkManager: RESTSupport {
@@ -35,6 +34,9 @@ extension NetworkManager: RESTSupport {
                 ])
             ).responseData()
     }
+}
+
+extension RESTSupport {
     
     func call<T: RestAPIRequest>(
         _ request: SessionAPI<T>

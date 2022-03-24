@@ -14,7 +14,7 @@ protocol SubscriptionManagerType: AnyObject {
 
 class SubscriptionManager: BaseManager, SubscriptionManagerType {
     
-    private var observables = [String: Any]()
+    private(set) var observables = [String: Any]()
     private let lock = NSLock()
     
     func subscribe<T: GraphQLSubscription>(_ subscription: T) -> Observable<Result<T.Data, Error>> {
