@@ -89,6 +89,9 @@
 		ED28517427EC0587003196AD /* MultipleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517327EC0587003196AD /* MultipleError.swift */; };
 		ED28517527EC0587003196AD /* MultipleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517327EC0587003196AD /* MultipleError.swift */; };
 		ED28517627EC0587003196AD /* MultipleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517327EC0587003196AD /* MultipleError.swift */; };
+		ED28517827EC0928003196AD /* SubscriptionManager_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */; };
+		ED28517927EC0928003196AD /* SubscriptionManager_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */; };
+		ED28517A27EC0928003196AD /* SubscriptionManager_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */; };
 		ED2AAD4827E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4927E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
 		ED2AAD4A27E30D1C002A02F5 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */; };
@@ -905,6 +908,7 @@
 		ED28516B27EC02AB003196AD /* NetworkManager_REST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_REST.swift; sourceTree = "<group>"; };
 		ED28516F27EC03EC003196AD /* NetworkManager_ClientVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_ClientVersion.swift; sourceTree = "<group>"; };
 		ED28517327EC0587003196AD /* MultipleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleError.swift; sourceTree = "<group>"; };
+		ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager_Service.swift; sourceTree = "<group>"; };
 		ED2AAD4727E30D1C002A02F5 /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertible.swift; sourceTree = "<group>"; };
 		ED2AAD4B27E30D48002A02F5 /* StringConvertibleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConvertibleInitializer.swift; sourceTree = "<group>"; };
 		ED2AAD4F27E30D8E002A02F5 /* Convertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertibles.swift; sourceTree = "<group>"; };
@@ -1811,6 +1815,7 @@
 			isa = PBXGroup;
 			children = (
 				ED6B466926B7E8B500C2FA6D /* SubscriptionManager.swift */,
+				ED28517727EC0928003196AD /* SubscriptionManager_Service.swift */,
 			);
 			path = SubscriptionManager;
 			sourceTree = "<group>";
@@ -2816,6 +2821,7 @@
 				ED416D3827A16C640043A7A4 /* SRPDetailInfoCellView_Reactive.swift in Sources */,
 				ED28516D27EC02AB003196AD /* NetworkManager_REST.swift in Sources */,
 				ED416D3A27A16C640043A7A4 /* ServiceDetailLogViewReactor.swift in Sources */,
+				ED28517927EC0928003196AD /* SubscriptionManager_Service.swift in Sources */,
 				ED416D3B27A16C640043A7A4 /* UpdateUserInfoViewReactor.swift in Sources */,
 				ED416D3C27A16C640043A7A4 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				ED416D3D27A16C640043A7A4 /* SRPDetailInfoCellView.swift in Sources */,
@@ -3077,6 +3083,7 @@
 				ED416E7C27A170FC0043A7A4 /* DefaultMyInfoViewController.swift in Sources */,
 				ED28516E27EC02AB003196AD /* NetworkManager_REST.swift in Sources */,
 				ED416E7D27A170FC0043A7A4 /* SRPDetailInfoCellView_Reactive.swift in Sources */,
+				ED28517A27EC0928003196AD /* SubscriptionManager_Service.swift in Sources */,
 				ED416E7F27A170FC0043A7A4 /* ServiceDetailLogViewReactor.swift in Sources */,
 				ED416E8027A170FC0043A7A4 /* UpdateUserInfoViewReactor.swift in Sources */,
 				ED416E8127A170FC0043A7A4 /* WorkspaceTabBarControllerReactor.swift in Sources */,
@@ -3358,6 +3365,7 @@
 				EDC11A3D26D3A39D0020AB09 /* SRPDetailInfoCellView_Reactive.swift in Sources */,
 				ED28516C27EC02AB003196AD /* NetworkManager_REST.swift in Sources */,
 				EDC11A4C26D3A39D0020AB09 /* ServiceDetailLogViewReactor.swift in Sources */,
+				ED28517827EC0928003196AD /* SubscriptionManager_Service.swift in Sources */,
 				ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */,
 				EDC11A7A26D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				EDC11A3C26D3A39D0020AB09 /* SRPDetailInfoCellView.swift in Sources */,
