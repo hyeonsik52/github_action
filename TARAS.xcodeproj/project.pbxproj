@@ -762,6 +762,7 @@
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
 		EDA1FA3126C1564700E8C39B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3026C1564700E8C39B /* User.swift */; };
 		EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3226C1590100E8C39B /* FragmentModel.swift */; };
+		EDB401BE27EC686700021594 /* SignInReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401BD27EC686700021594 /* SignInReactorTests.swift */; };
 		EDBF63CE27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63CF27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63D027C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
@@ -1083,6 +1084,7 @@
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		EDA1FA3026C1564700E8C39B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EDA1FA3226C1590100E8C39B /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
+		EDB401BD27EC686700021594 /* SignInReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInReactorTests.swift; sourceTree = "<group>"; };
 		EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshSessionRequestModel.swift; sourceTree = "<group>"; };
 		EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteViewController.swift; sourceTree = "<group>"; };
 		EDC118FE26D3A39C0020AB09 /* DefaultMyInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -2029,6 +2031,7 @@
 			isa = PBXGroup;
 			children = (
 				ED7B19CF27EC57DE00FC0B71 /* LaunchScreenReactorTests.swift */,
+				EDB401BD27EC686700021594 /* SignInReactorTests.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -3293,6 +3296,7 @@
 				ED28514B27E9BECB003196AD /* UserManagerTests.swift in Sources */,
 				ED28513D27E991C9003196AD /* MockSubscriptionManager.swift in Sources */,
 				ED28514127E99218003196AD /* MockManagerProvider.swift in Sources */,
+				EDB401BE27EC686700021594 /* SignInReactorTests.swift in Sources */,
 				ED28514527E9AFBA003196AD /* MockGraphQL.swift in Sources */,
 				ED28518527EC49E5003196AD /* SequenceTests.swift in Sources */,
 				ED28517F27EC49D3003196AD /* BaseObjectTests.swift in Sources */,

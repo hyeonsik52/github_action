@@ -22,7 +22,6 @@ class SignInViewReactor: Reactor {
         case updateIsSignIn(Bool?)
         case updateIsProcessing(Bool)
         case updateError(TRSError?)
-        case resetPassword
     }
     
     struct State {
@@ -30,7 +29,6 @@ class SignInViewReactor: Reactor {
         var isSignIn: Bool?
         var isProcessing: Bool
         var errorMessage: String?
-        var passwordReset: Int?
     }
     
     let provider: ManagerProviderType
@@ -39,8 +37,7 @@ class SignInViewReactor: Reactor {
         isValid: false,
         isSignIn: nil,
         isProcessing: false,
-        errorMessage: nil,
-        passwordReset: nil
+        errorMessage: nil
     )
     
     init(provider: ManagerProviderType) {
@@ -113,15 +110,12 @@ class SignInViewReactor: Reactor {
         case .updateIsValid(let isValid):
             state.isValid = isValid
             state.errorMessage = nil
-            state.passwordReset = nil
         case .updateIsSignIn(let isSignIn):
             state.isSignIn = isSignIn
         case .updateIsProcessing(let isProcessing):
             state.isProcessing = isProcessing
         case .updateError(let error):
             state.errorMessage = error?.description
-        case .resetPassword:
-            state.passwordReset = 0
         }
         return state
     }
