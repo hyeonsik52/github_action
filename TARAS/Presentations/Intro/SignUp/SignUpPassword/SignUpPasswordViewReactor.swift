@@ -18,7 +18,6 @@ class SignUpPasswordViewReactor: Reactor {
 
     enum Action: Equatable {
         case checkPasswordValidation(password: String, confirm: String)
-        case checkConfirmValidation(password: String, confirm: String)
     }
     
     enum Mutation {
@@ -49,22 +48,17 @@ class SignUpPasswordViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .checkPasswordValidation(let password, let confirm):
-            guard InputPolicy.password.matchRange(password),
-                  password == confirm else {
+            guard !confirm.isEmpty, InputPolicy.password.matchRange(password) else {
                 return .just(.updateIsValid(false))
             }
-            return .just(.updateIsValid(true))
-        case .checkConfirmValidation(let password, let confirm):
-            guard !confirm.isEmpty else {
-                return .just(.updateIsValid(false))
-            }
-            guard password == confirm else {
+            if password != confirm {
                 return .concat([
                     .just(.updateIsValid(false)),
                     .just(.updateError(.account(.passwordNotMatch)))
                 ])
+            } else {
+                return .just(.updateIsValid(true))
             }
-            return .just(.updateIsValid(true))
         }
     }
 
