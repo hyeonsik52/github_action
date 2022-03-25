@@ -726,6 +726,7 @@
 		ED7A0E7C272160C300AD6678 /* WorkspaceTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E7B272160C300AD6678 /* WorkspaceTitleView.swift */; };
 		ED7A0E7E2721610200AD6678 /* JoinRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E7D2721610200AD6678 /* JoinRequestView.swift */; };
 		ED7A0E812721673900AD6678 /* ConfirmInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A0E802721673900AD6678 /* ConfirmInputView.swift */; };
+		ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7B19CF27EC57DE00FC0B71 /* LaunchScreenReactorTests.swift */; };
 		ED7BCE1627713CCD0074BFFA /* Fragment.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1527713CCD0074BFFA /* Fragment.graphql */; };
 		ED7BCE1827713CDB0074BFFA /* Query.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1727713CDB0074BFFA /* Query.graphql */; };
 		ED7BCE1A27713CED0074BFFA /* Mutation.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1927713CED0074BFFA /* Mutation.graphql */; };
@@ -1055,6 +1056,7 @@
 		ED7A0E7B272160C300AD6678 /* WorkspaceTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceTitleView.swift; sourceTree = "<group>"; };
 		ED7A0E7D2721610200AD6678 /* JoinRequestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRequestView.swift; sourceTree = "<group>"; };
 		ED7A0E802721673900AD6678 /* ConfirmInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmInputView.swift; sourceTree = "<group>"; };
+		ED7B19CF27EC57DE00FC0B71 /* LaunchScreenReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenReactorTests.swift; sourceTree = "<group>"; };
 		ED7BCE1527713CCD0074BFFA /* Fragment.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fragment.graphql; sourceTree = "<group>"; };
 		ED7BCE1727713CDB0074BFFA /* Query.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Query.graphql; sourceTree = "<group>"; };
 		ED7BCE1927713CED0074BFFA /* Mutation.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mutation.graphql; sourceTree = "<group>"; };
@@ -1987,6 +1989,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		ED7B19CE27EC564900FC0B71 /* Reactors */ = {
+			isa = PBXGroup;
+			children = (
+				EDB401BC27EC683E00021594 /* Intro */,
+			);
+			path = Reactors;
+			sourceTree = "<group>";
+		};
 		ED98972A27BB43D3000C9246 /* ServiceDetailStopViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2010,8 +2020,17 @@
 			children = (
 				ED28514227E9AED9003196AD /* Model */,
 				ED28513527E990E3003196AD /* Managers */,
+				ED7B19CE27EC564900FC0B71 /* Reactors */,
 			);
 			path = "TARAS-DevTests";
+			sourceTree = "<group>";
+		};
+		EDB401BC27EC683E00021594 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				ED7B19CF27EC57DE00FC0B71 /* LaunchScreenReactorTests.swift */,
+			);
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		EDC118E826D3A39C0020AB09 /* Workspace */ = {
@@ -3268,6 +3287,7 @@
 				ED28514F27E9CE40003196AD /* SubscriptionManagerTests.swift in Sources */,
 				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
 				ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */,
+				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
 				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
 				ED28514D27E9CBF4003196AD /* PushManagerTests.swift in Sources */,
 				ED28514B27E9BECB003196AD /* UserManagerTests.swift in Sources */,
