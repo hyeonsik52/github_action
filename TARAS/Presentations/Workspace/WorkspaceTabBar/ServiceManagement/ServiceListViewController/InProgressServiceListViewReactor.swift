@@ -116,7 +116,8 @@ class InProgressServiceListViewReactor: Reactor {
         case .refresh(let services):
             state.services = services.filter(self.filter)
         case .more(let services):
-            state.services.append(contentsOf: services)
+            let filteredServices = services.filter(self.filter)
+            state.services.append(contentsOf: filteredServices)
             state.services.sort(by: self.sort)
         case let .addService(service):
             state = self.addServices(state: state, data: service)

@@ -118,7 +118,8 @@ class FinishedServiceListViewReactor: Reactor {
             state.services = services
             state.serviceSections = self.sectioned(services)
         case .more(let services):
-            state.services.append(contentsOf: services)
+            let filteredServices = services.filter(self.filter)
+            state.services.append(contentsOf: filteredServices)
             state.services.sort(by: self.sort)
             state.serviceSections = self.sectioned(state.services)
         case let .addService(service):
