@@ -68,6 +68,30 @@ extension NetworkManager: ClientVersionSupport {
 extension NetworkManagerType {
     
     var clientVersion: ClientVersionSupport {
-        return self as! ClientVersionSupport
+        guard let converted = self as? ClientVersionSupport else {
+            return ClientVersionSupportDefault()
+        }
+        return converted
+    }
+}
+
+struct ClientVersionSupportDefault: ClientVersionSupport {
+    
+    func version() -> Observable<Result<Version, Error>> {
+        return .just(.success(.thisAppVersion))
+    }
+    
+    func updateCheck() -> Observable<Error?> {
+        return self.version().map {
+            if case .failure(let error) = $0 {
+                return error
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    func check() -> Observable<Version?> {
+        return self.version().map { try? $0.get() }
     }
 }

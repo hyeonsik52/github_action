@@ -15,6 +15,7 @@ struct MockModel {
     static let displayName = "displayName"
     static let email = "a@b.cd"
     static let phoneNumber = "01012345678"
+    static let password = "hgfH432!"
     
     static let userRole = UserRole.member
     

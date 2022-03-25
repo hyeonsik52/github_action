@@ -48,9 +48,29 @@ extension RESTSupport {
 extension NetworkManagerType {
     
     var rest: RESTSupport {
-        return self as! RESTSupport
+        guard let converted = self as? RESTSupport else {
+            return RESTSupportDefault()
+        }
+        return converted
     }
 }
+
+struct RESTSupportDefault: RESTSupport {
+    
+    func call(_ method: String, _ api: RestAPI) -> Observable<(HTTPURLResponse, Data)> {
+        return .create { observer in
+            DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(100)) {
+                let httpResponse = HTTPURLResponse(url: api.url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                let data = try! JSONSerialization.data(withJSONObject: api.parameters, options: .fragmentsAllowed)
+                observer.onNext((httpResponse, data))
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+}
+
+//-----
 
 struct WithDataError: Error {
     var data: Data
