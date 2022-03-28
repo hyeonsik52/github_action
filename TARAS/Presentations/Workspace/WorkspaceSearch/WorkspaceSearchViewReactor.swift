@@ -13,7 +13,7 @@ import RxSwift
 
 final class WorkspaceSearchViewReactor: Reactor {
     
-    enum Action {
+    enum Action: Equatable {
         case updateIsInitialOpen
         case updateCode(String)
         case confirmCode

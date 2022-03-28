@@ -769,6 +769,7 @@
 		EDB401C827EDA74300021594 /* WorkspaceListReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401C727EDA74300021594 /* WorkspaceListReactorTests.swift */; };
 		EDB401CA27F1678C00021594 /* DefaultMyInfoReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401C927F1678C00021594 /* DefaultMyInfoReactorTests.swift */; };
 		EDB401CD27F1709200021594 /* UpdateUserInfoReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401CC27F1709200021594 /* UpdateUserInfoReactorTests.swift */; };
+		EDB401CF27F1769100021594 /* WorkspaceSearchReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401CE27F1769100021594 /* WorkspaceSearchReactorTests.swift */; };
 		EDBF63CE27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63CF27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63D027C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
@@ -1097,6 +1098,7 @@
 		EDB401C727EDA74300021594 /* WorkspaceListReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactorTests.swift; sourceTree = "<group>"; };
 		EDB401C927F1678C00021594 /* DefaultMyInfoReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoReactorTests.swift; sourceTree = "<group>"; };
 		EDB401CC27F1709200021594 /* UpdateUserInfoReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoReactorTests.swift; sourceTree = "<group>"; };
+		EDB401CE27F1769100021594 /* WorkspaceSearchReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchReactorTests.swift; sourceTree = "<group>"; };
 		EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshSessionRequestModel.swift; sourceTree = "<group>"; };
 		EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteViewController.swift; sourceTree = "<group>"; };
 		EDC118FE26D3A39C0020AB09 /* DefaultMyInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -2065,6 +2067,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB401C727EDA74300021594 /* WorkspaceListReactorTests.swift */,
+				EDB401CE27F1769100021594 /* WorkspaceSearchReactorTests.swift */,
 			);
 			path = WorkspaceList;
 			sourceTree = "<group>";
@@ -3332,6 +3335,7 @@
 				ED28518327EC49E2003196AD /* ListTests.swift in Sources */,
 				ED28515527EB1691003196AD /* MockREST.swift in Sources */,
 				ED28514F27E9CE40003196AD /* SubscriptionManagerTests.swift in Sources */,
+				EDB401CF27F1769100021594 /* WorkspaceSearchReactorTests.swift in Sources */,
 				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
 				ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */,
 				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
