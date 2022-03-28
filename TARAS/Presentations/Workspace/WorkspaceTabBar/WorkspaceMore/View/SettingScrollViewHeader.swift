@@ -12,7 +12,7 @@ import Then
 
 class SettingScrollViewHeader: UIView {
     
-    private var titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .gray888888
     }
