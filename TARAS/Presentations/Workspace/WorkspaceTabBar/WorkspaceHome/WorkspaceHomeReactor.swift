@@ -22,7 +22,7 @@ class WorkspaceHomeReactor: Reactor {
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
     let disposeBag = DisposeBag()
     
-    enum Action {
+    enum Action: Equatable {
         case refreshInfo
         case loadTemplates
         case createServiceByShortcut(id: String)

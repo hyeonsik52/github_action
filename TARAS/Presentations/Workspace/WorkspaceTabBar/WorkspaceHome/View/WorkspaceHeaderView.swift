@@ -12,7 +12,7 @@ import Then
 
 class WorkspaceHeaderView: UIView {
 
-    private var userNameLabel = UILabel().then{
+    let userNameLabel = UILabel().then{
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.6
         $0.lineBreakMode = .byTruncatingHead
