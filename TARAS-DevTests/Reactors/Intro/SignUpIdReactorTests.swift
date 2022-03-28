@@ -35,16 +35,16 @@ class SignUpIdReactorTests: XCTestCase {
         viewController.reactor = reactor
         
         // 3. send an user interaction programatically
-        viewController.signUpView.id.accept(MockModel.id)
+        viewController.signUpView.id.accept(DummyModel.id)
         
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(id: MockModel.id))
+        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(id: DummyModel.id))
         
         // 3. send an user interaction programatically
         viewController.signUpView.duplicateCheckButtonDidTap.accept(())
         
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .checkDuplication(id: MockModel.id))
+        XCTAssertEqual(reactor.stub.actions.last, .checkDuplication(id: DummyModel.id))
     }
     
     func testStates() throws {

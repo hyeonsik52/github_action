@@ -32,17 +32,17 @@ class SignInReactorTests: XCTestCase {
 
         // 2. prepare a view with a stub reactor
         let viewController = SignInViewController()
-        viewController.signInView.idTextFieldView.textField.text = MockModel.username
-        viewController.signInView.passwordTextFieldView.textField.text = MockModel.password
+        viewController.signInView.idTextFieldView.textField.text = DummyModel.username
+        viewController.signInView.passwordTextFieldView.textField.text = DummyModel.password
         viewController.reactor = reactor
 
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(id: MockModel.username, password: MockModel.password))
+        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(id: DummyModel.username, password: DummyModel.password))
         
         // 3. send an user interaction programatically
         viewController.signInView.signInButton.sendActions(for: .touchUpInside)
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .signIn(id: MockModel.username, password: MockModel.password))
+        XCTAssertEqual(reactor.stub.actions.last, .signIn(id: DummyModel.username, password: DummyModel.password))
     }
     
     func testStates() throws {

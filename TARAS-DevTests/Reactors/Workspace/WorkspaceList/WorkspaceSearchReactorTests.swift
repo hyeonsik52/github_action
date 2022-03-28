@@ -30,11 +30,11 @@ class WorkspaceSearchReactorTests: XCTestCase {
 
         // 2. prepare a view with a stub reactor
         let viewController = WorkspaceSearchViewController()
-        viewController.textFieldView.textField.text = MockModel.displayName
+        viewController.textFieldView.textField.text = DummyModel.displayName
         viewController.reactor = reactor
         
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .updateCode(MockModel.displayName))
+        XCTAssertEqual(reactor.stub.actions.last, .updateCode(DummyModel.displayName))
 
         // 3. send an user interaction programatically
         viewController.viewDidAppear(false)

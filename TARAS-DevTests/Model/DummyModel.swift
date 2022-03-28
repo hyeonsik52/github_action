@@ -8,7 +8,7 @@
 import Foundation
 @testable import TARAS_Dev
 
-struct MockModel {
+struct DummyModel {
     
     static let id = "01234567-abcd-bcde-cdef-890123456789"
     static let username = "username"
@@ -29,7 +29,7 @@ struct MockModel {
     }()
     
     static var createdAt = Date()
-    static var createdAtString = MockModel.createdAt.ISO8601Format
+    static var createdAtString = DummyModel.createdAt.ISO8601Format
     
     //MARK: - Account
     static var account_basic: Account {

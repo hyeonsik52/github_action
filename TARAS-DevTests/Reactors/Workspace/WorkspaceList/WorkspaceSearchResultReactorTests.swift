@@ -27,7 +27,7 @@ class WorkspaceSearchResultReactorTests: XCTestCase {
         // 1. prepare a stub reactor
         let reactor = WorkspaceSearchResultViewReactor(
             provider: self.provider,
-            workspaceCode: MockModel.workspaceCode
+            workspaceCode: DummyModel.workspaceCode
         )
         reactor.isStubEnabled = true
 
@@ -47,7 +47,7 @@ class WorkspaceSearchResultReactorTests: XCTestCase {
         
         
         let state = WorkspaceSearchResultViewReactor.State(
-            workspace: MockModel.workspace_basic,
+            workspace: DummyModel.workspace_basic,
             isLoading: false,
             result: true,
             errorMessage: nil
@@ -61,7 +61,7 @@ class WorkspaceSearchResultReactorTests: XCTestCase {
         // 1. prepare a stub reactor
         let reactor = WorkspaceSearchResultViewReactor(
             provider: self.provider,
-            workspaceCode: MockModel.workspaceCode
+            workspaceCode: DummyModel.workspaceCode
         )
         reactor.isStubEnabled = true
 
@@ -71,7 +71,7 @@ class WorkspaceSearchResultReactorTests: XCTestCase {
 
         // 3. set a stub state
         let state = WorkspaceSearchResultViewReactor.State(
-            workspace: MockModel.workspace_only,
+            workspace: DummyModel.workspace_only,
             isLoading: false,
             result: nil,
             errorMessage: nil

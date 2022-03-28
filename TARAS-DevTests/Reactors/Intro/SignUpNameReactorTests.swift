@@ -35,14 +35,14 @@ class SignUpNameReactorTests: XCTestCase {
         viewController.reactor = reactor
         
         // 3. send an user interaction programatically
-        viewController.signUpView.name.accept(MockModel.displayName)
+        viewController.signUpView.name.accept(DummyModel.displayName)
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(name: MockModel.displayName))
+        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(name: DummyModel.displayName))
 
         // 3. send an user interaction programatically
         viewController.confirmButton.sendActions(for: .touchUpInside)
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .signUp(name: MockModel.displayName))
+        XCTAssertEqual(reactor.stub.actions.last, .signUp(name: DummyModel.displayName))
         
         // 3. send an user interaction programatically
         viewController.reactor?.action.onNext(.login(withAuth: true))

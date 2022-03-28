@@ -27,22 +27,22 @@ class ModelTests: XCTestCase {
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         
         //basic
-        let account = MockModel.account_basic
+        let account = DummyModel.account_basic
         
-        XCTAssertEqual(account.ID, MockModel.id)
-        XCTAssertEqual(account.id, MockModel.username)
+        XCTAssertEqual(account.ID, DummyModel.id)
+        XCTAssertEqual(account.id, DummyModel.username)
         XCTAssertEqual(account.password, nil)
-        XCTAssertEqual(account.name, MockModel.displayName)
-        XCTAssertEqual(account.email, MockModel.email)
+        XCTAssertEqual(account.name, DummyModel.displayName)
+        XCTAssertEqual(account.email, DummyModel.email)
         XCTAssertEqual(account.phoneNumber, nil)
         
         //optional
-        let optionalAccount = MockModel.account_optional
+        let optionalAccount = DummyModel.account_optional
         
-        XCTAssertEqual(optionalAccount.ID, MockModel.id)
-        XCTAssertEqual(optionalAccount.id, MockModel.username)
+        XCTAssertEqual(optionalAccount.ID, DummyModel.id)
+        XCTAssertEqual(optionalAccount.id, DummyModel.username)
         XCTAssertEqual(optionalAccount.password, nil)
-        XCTAssertEqual(optionalAccount.name, MockModel.displayName)
+        XCTAssertEqual(optionalAccount.name, DummyModel.displayName)
         XCTAssertEqual(optionalAccount.email, nil)
         XCTAssertEqual(optionalAccount.phoneNumber, nil)
         
@@ -53,167 +53,167 @@ class ModelTests: XCTestCase {
     func testUser() throws {
 
         //basic
-        let user = MockModel.user_basic
+        let user = DummyModel.user_basic
         
-        XCTAssertEqual(user.id, MockModel.id)
-        XCTAssertEqual(user.username, MockModel.username)
-        XCTAssertEqual(user.displayName, MockModel.displayName)
-        XCTAssertEqual(user.email, MockModel.email)
-        XCTAssertEqual(user.phonenumber, MockModel.phoneNumber)
+        XCTAssertEqual(user.id, DummyModel.id)
+        XCTAssertEqual(user.username, DummyModel.username)
+        XCTAssertEqual(user.displayName, DummyModel.displayName)
+        XCTAssertEqual(user.email, DummyModel.email)
+        XCTAssertEqual(user.phonenumber, DummyModel.phoneNumber)
         XCTAssertEqual(user.role, nil)
         
         //optional
-        let optionalUser = MockModel.user_optional
+        let optionalUser = DummyModel.user_optional
         
-        XCTAssertEqual(optionalUser.id, MockModel.id)
-        XCTAssertEqual(optionalUser.username, MockModel.username)
-        XCTAssertEqual(optionalUser.displayName, MockModel.displayName)
+        XCTAssertEqual(optionalUser.id, DummyModel.id)
+        XCTAssertEqual(optionalUser.username, DummyModel.username)
+        XCTAssertEqual(optionalUser.displayName, DummyModel.displayName)
         XCTAssertEqual(optionalUser.email, nil)
         XCTAssertEqual(optionalUser.phonenumber, nil)
         XCTAssertEqual(optionalUser.role, nil)
         
         //member
-        if let member = MockModel.user_member {
+        if let member = DummyModel.user_member {
             
-            XCTAssertEqual(member.id, MockModel.id)
+            XCTAssertEqual(member.id, DummyModel.id)
             XCTAssertEqual(member.username, "")
-            XCTAssertEqual(member.displayName, MockModel.displayName)
+            XCTAssertEqual(member.displayName, DummyModel.displayName)
             XCTAssertEqual(member.email, nil)
             XCTAssertEqual(member.phonenumber, nil)
             XCTAssertEqual(member.role, nil)
         }
         
         //raw
-        let rawUser = MockModel.user_raw
+        let rawUser = DummyModel.user_raw
         
-        XCTAssertEqual(rawUser.id, MockModel.id)
-        XCTAssertEqual(rawUser.username, MockModel.username)
-        XCTAssertEqual(rawUser.displayName, MockModel.displayName)
-        XCTAssertEqual(rawUser.email, MockModel.email)
-        XCTAssertEqual(rawUser.phonenumber, MockModel.phoneNumber)
+        XCTAssertEqual(rawUser.id, DummyModel.id)
+        XCTAssertEqual(rawUser.username, DummyModel.username)
+        XCTAssertEqual(rawUser.displayName, DummyModel.displayName)
+        XCTAssertEqual(rawUser.email, DummyModel.email)
+        XCTAssertEqual(rawUser.phonenumber, DummyModel.phoneNumber)
         XCTAssertEqual(rawUser.role, nil)
     }
     
     func testRobot() throws {
         
         //basic
-        let robot = MockModel.robot_basic
+        let robot = DummyModel.robot_basic
         
-        XCTAssertEqual(robot.id, MockModel.id)
-        XCTAssertEqual(robot.name, MockModel.displayName)
+        XCTAssertEqual(robot.id, DummyModel.id)
+        XCTAssertEqual(robot.name, DummyModel.displayName)
         
         //optional
-        let optionalRobot = MockModel.robot_optional
+        let optionalRobot = DummyModel.robot_optional
         
-        XCTAssertEqual(optionalRobot.id, MockModel.id)
-        XCTAssertNotEqual(optionalRobot.name, MockModel.displayName)
+        XCTAssertEqual(optionalRobot.id, DummyModel.id)
+        XCTAssertNotEqual(optionalRobot.name, DummyModel.displayName)
         
         //raw
-        let rawRobot = MockModel.robot_raw
+        let rawRobot = DummyModel.robot_raw
         
-        XCTAssertEqual(rawRobot.id, MockModel.id)
-        XCTAssertEqual(rawRobot.name, MockModel.displayName)
+        XCTAssertEqual(rawRobot.id, DummyModel.id)
+        XCTAssertEqual(rawRobot.name, DummyModel.displayName)
     }
     
     func testStop() throws {
         
         //basic
         let stopTypeLoading = StopType.loading
-        let stop = MockModel.stop_basic(type: stopTypeLoading)
+        let stop = DummyModel.stop_basic(type: stopTypeLoading)
         
-        XCTAssertEqual(stop.id, MockModel.id)
-        XCTAssertEqual(stop.name, MockModel.displayName)
+        XCTAssertEqual(stop.id, DummyModel.id)
+        XCTAssertEqual(stop.name, DummyModel.displayName)
         XCTAssertEqual(stop.stopType, stopTypeLoading)
         XCTAssertEqual(stop.stopType.isLoading, true)
         
         //optional
-        let optionalStop = MockModel.stop_optional
+        let optionalStop = DummyModel.stop_optional
         
         XCTAssertEqual(optionalStop.id, Stop.unknownId)
-        XCTAssertNotEqual(optionalStop.name, MockModel.displayName)
+        XCTAssertNotEqual(optionalStop.name, DummyModel.displayName)
         
         //raw
         let stopTypeNormal = StopType.normal
-        let rawStop = try MockModel.stop_raw(type: stopTypeNormal)
+        let rawStop = try DummyModel.stop_raw(type: stopTypeNormal)
         
-        XCTAssertEqual(rawStop.id, MockModel.id)
-        XCTAssertEqual(rawStop.name, MockModel.displayName)
+        XCTAssertEqual(rawStop.id, DummyModel.id)
+        XCTAssertEqual(rawStop.name, DummyModel.displayName)
         XCTAssertEqual(rawStop.stopType, stopTypeNormal)
     }
     
     func testWorkpsace() throws {
         
         //basic
-        let workspace = MockModel.workspace_basic
+        let workspace = DummyModel.workspace_basic
         
-        XCTAssertEqual(workspace.id, MockModel.id)
-        XCTAssertEqual(workspace.name, MockModel.displayName)
+        XCTAssertEqual(workspace.id, DummyModel.id)
+        XCTAssertEqual(workspace.name, DummyModel.displayName)
         XCTAssertEqual(
             Int(workspace.createdAt.timeIntervalSince1970),
-            Int(MockModel.createdAt.timeIntervalSince1970)
+            Int(DummyModel.createdAt.timeIntervalSince1970)
         )
-        XCTAssertEqual(workspace.memberCount, MockModel.workspaceMemberCount)
+        XCTAssertEqual(workspace.memberCount, DummyModel.workspaceMemberCount)
         XCTAssertEqual(workspace.isRequiredUserEmailToJoin, nil)
         XCTAssertEqual(workspace.isRequiredUserPhoneNumberToJoin, nil)
-        XCTAssertEqual(workspace.myMemberState, MockModel.myMemberStatus)
-        XCTAssertEqual(workspace.code, MockModel.workspaceCode)
+        XCTAssertEqual(workspace.myMemberState, DummyModel.myMemberStatus)
+        XCTAssertEqual(workspace.code, DummyModel.workspaceCode)
         
         //optional
-        let optionalWorkspace = MockModel.workspace_optional
+        let optionalWorkspace = DummyModel.workspace_optional
         
-        XCTAssertEqual(optionalWorkspace.id, MockModel.id)
-        XCTAssertEqual(optionalWorkspace.name, MockModel.displayName)
-        XCTAssertNotEqual(workspace.createdAt, MockModel.createdAt)
-        XCTAssertNotEqual(optionalWorkspace.memberCount, MockModel.workspaceMemberCount)
+        XCTAssertEqual(optionalWorkspace.id, DummyModel.id)
+        XCTAssertEqual(optionalWorkspace.name, DummyModel.displayName)
+        XCTAssertNotEqual(workspace.createdAt, DummyModel.createdAt)
+        XCTAssertNotEqual(optionalWorkspace.memberCount, DummyModel.workspaceMemberCount)
         XCTAssertEqual(optionalWorkspace.isRequiredUserEmailToJoin, nil)
         XCTAssertEqual(optionalWorkspace.isRequiredUserPhoneNumberToJoin, nil)
-        XCTAssertEqual(optionalWorkspace.myMemberState, MockModel.myMemberStatus)
-        XCTAssertNotEqual(optionalWorkspace.code, MockModel.workspaceCode)
+        XCTAssertEqual(optionalWorkspace.myMemberState, DummyModel.myMemberStatus)
+        XCTAssertNotEqual(optionalWorkspace.code, DummyModel.workspaceCode)
         
         //only
-        let onlyWorkspace = MockModel.workspace_only
+        let onlyWorkspace = DummyModel.workspace_only
         
-        XCTAssertEqual(onlyWorkspace.id, MockModel.id)
-        XCTAssertEqual(onlyWorkspace.name, MockModel.displayName)
+        XCTAssertEqual(onlyWorkspace.id, DummyModel.id)
+        XCTAssertEqual(onlyWorkspace.name, DummyModel.displayName)
         XCTAssertEqual(
             Int(workspace.createdAt.timeIntervalSince1970),
-            Int(MockModel.createdAt.timeIntervalSince1970)
+            Int(DummyModel.createdAt.timeIntervalSince1970)
         )
-        XCTAssertEqual(onlyWorkspace.memberCount, MockModel.workspaceMemberCount)
+        XCTAssertEqual(onlyWorkspace.memberCount, DummyModel.workspaceMemberCount)
         XCTAssertEqual(onlyWorkspace.isRequiredUserEmailToJoin, true)
         XCTAssertEqual(onlyWorkspace.isRequiredUserPhoneNumberToJoin, true)
-        XCTAssertEqual(onlyWorkspace.myMemberState, MockModel.myMemberStatus)
-        XCTAssertEqual(onlyWorkspace.code, MockModel.workspaceCode)
+        XCTAssertEqual(onlyWorkspace.myMemberState, DummyModel.myMemberStatus)
+        XCTAssertEqual(onlyWorkspace.code, DummyModel.workspaceCode)
     }
     
     func testServiceUnit() throws {
         
         //basic
-        let serviceUnit = MockModel.serviceUnit_basic
+        let serviceUnit = DummyModel.serviceUnit_basic
         
-        XCTAssertEqual(serviceUnit.id, MockModel.id)
-        XCTAssertEqual(serviceUnit.state, MockModel.serviceUnitState)
-        XCTAssertEqual(serviceUnit.stop, MockModel.stop_basic(type: .normal))
-        XCTAssertEqual(serviceUnit.recipients.first, MockModel.user_basic)
-        XCTAssertEqual(serviceUnit.orderWithinService, MockModel.serviceCurrentStep)
-        XCTAssertEqual(serviceUnit.isMyWork(MockModel.id), true)
+        XCTAssertEqual(serviceUnit.id, DummyModel.id)
+        XCTAssertEqual(serviceUnit.state, DummyModel.serviceUnitState)
+        XCTAssertEqual(serviceUnit.stop, DummyModel.stop_basic(type: .normal))
+        XCTAssertEqual(serviceUnit.recipients.first, DummyModel.user_basic)
+        XCTAssertEqual(serviceUnit.orderWithinService, DummyModel.serviceCurrentStep)
+        XCTAssertEqual(serviceUnit.isMyWork(DummyModel.id), true)
         
         //optional
-        let optionalServiceUnit = MockModel.serviceUnit_optional
+        let optionalServiceUnit = DummyModel.serviceUnit_optional
         
-        XCTAssertEqual(optionalServiceUnit.id, MockModel.id)
-        XCTAssertEqual(optionalServiceUnit.state, MockModel.serviceUnitState)
-        XCTAssertNotEqual(optionalServiceUnit.stop, MockModel.stop_basic(type: .normal))
+        XCTAssertEqual(optionalServiceUnit.id, DummyModel.id)
+        XCTAssertEqual(optionalServiceUnit.state, DummyModel.serviceUnitState)
+        XCTAssertNotEqual(optionalServiceUnit.stop, DummyModel.stop_basic(type: .normal))
         XCTAssertEqual(optionalServiceUnit.recipients.first, nil)
-        XCTAssertEqual(optionalServiceUnit.orderWithinService, MockModel.serviceCurrentStep)
+        XCTAssertEqual(optionalServiceUnit.orderWithinService, DummyModel.serviceCurrentStep)
         
         //only
-        let rawServiceUnit = try MockModel.serviceUnit_raw()
-        XCTAssertEqual(rawServiceUnit.id, MockModel.id)
-        XCTAssertNotEqual(rawServiceUnit.state, MockModel.serviceUnitState)
-        XCTAssertEqual(rawServiceUnit.stop, MockModel.stop_basic(type: .normal))
-        XCTAssertEqual(rawServiceUnit.recipients.first, MockModel.user_basic)
-        XCTAssertEqual(rawServiceUnit.orderWithinService, MockModel.serviceCurrentStep)
+        let rawServiceUnit = try DummyModel.serviceUnit_raw()
+        XCTAssertEqual(rawServiceUnit.id, DummyModel.id)
+        XCTAssertNotEqual(rawServiceUnit.state, DummyModel.serviceUnitState)
+        XCTAssertEqual(rawServiceUnit.stop, DummyModel.stop_basic(type: .normal))
+        XCTAssertEqual(rawServiceUnit.recipients.first, DummyModel.user_basic)
+        XCTAssertEqual(rawServiceUnit.orderWithinService, DummyModel.serviceCurrentStep)
     }
     
     func testServiceLog() throws {
@@ -225,14 +225,14 @@ class ModelTests: XCTestCase {
         }
         
         try check(
-            MockModel.serviceLog_created.type,
-            .created(creator: MockModel.displayName),
+            DummyModel.serviceLog_created.type,
+            .created(creator: DummyModel.displayName),
             "서비스를 요청"
         )
         
         try check(
-            MockModel.serviceLog_assigined.type,
-            .robotAssigned(robot: MockModel.displayName),
+            DummyModel.serviceLog_assigined.type,
+            .robotAssigned(robot: DummyModel.displayName),
             "로봇이 배정"
         )
         
@@ -243,49 +243,49 @@ class ModelTests: XCTestCase {
 //        )
         
         try check(
-            MockModel.serviceLog_arrived.type,
+            DummyModel.serviceLog_arrived.type,
             .robotArrived(serviceUnitIdx: 0, destination: "알 수 없는 위치"),
             "도착"
         )
         
         try check(
-            MockModel.serviceLog_jobDone.type,
+            DummyModel.serviceLog_jobDone.type,
             .workCompleted(destination: "알 수 없는 위치"),
             "작업이 완료"
         )
         
         try check(
-            MockModel.serviceLog_finished.type,
+            DummyModel.serviceLog_finished.type,
             .finished,
             "서비스가 완료"
         )
         
         try check(
-            MockModel.serviceLog_canceled.type,
+            DummyModel.serviceLog_canceled.type,
             .canceled,
             "서비스를 취소"
         )
         
         try check(
-            MockModel.serviceLog_failed(description: "timeout").type,
+            DummyModel.serviceLog_failed(description: "timeout").type,
             .failed(.timeout),
             "대기시간 초과로 서비스가 종료"
         )
         
         try check(
-            MockModel.serviceLog_failed(description: "emergency").type,
+            DummyModel.serviceLog_failed(description: "emergency").type,
             .failed(.emergency),
             "비상정지로 서비스가 종료"
         )
         
         try check(
-            MockModel.serviceLog_failed(description: "robot").type,
+            DummyModel.serviceLog_failed(description: "robot").type,
             .failed(.robot),
             "기기 오류로 서비스가 종료"
         )
         
         try check(
-            MockModel.serviceLog_failed(description: "server").type,
+            DummyModel.serviceLog_failed(description: "server").type,
             .failed(.server),
             "서버 오류로 서비스가 종료"
         )
@@ -293,7 +293,7 @@ class ModelTests: XCTestCase {
     
     func testServiceLogSet() throws {
         
-        let serviceLogSet = MockModel.serviceLogSet_completed
+        let serviceLogSet = DummyModel.serviceLogSet_completed
         
         XCTAssertEqual(serviceLogSet.isServiceCompleted, true)
         XCTAssertEqual(serviceLogSet.isServiceCanceled, false)
@@ -369,7 +369,7 @@ class ModelTests: XCTestCase {
     
     func testServicePhase() throws {
         
-        let serviceLogSet = MockModel.serviceLogSet_completed
+        let serviceLogSet = DummyModel.serviceLogSet_completed
         
         let check: (ServicePhase, String, ServiceState, ServiceLogSet) throws -> ServicePhase = {
             let phase = ServicePhase(phase: $1, state: $2, logset: $3)
@@ -421,39 +421,39 @@ class ModelTests: XCTestCase {
     func testService() throws {
         
         //basic
-        let service = try MockModel.service_basic()
+        let service = try DummyModel.service_basic()
         
-        XCTAssertEqual(service.id, MockModel.id)
+        XCTAssertEqual(service.id, DummyModel.id)
         XCTAssertEqual(service.type, .general)
         XCTAssertEqual(service.status, .finished)
         XCTAssertEqual(service.phase, .completed)
-        XCTAssertEqual(service.serviceNumber, MockModel.serviceNumber)
-        XCTAssertEqual(service.requestedAt, MockModel.createdAt)
-        XCTAssertNotEqual(service.startedAt, MockModel.createdAt)
-        XCTAssertNotEqual(service.finishedAt, MockModel.createdAt)
-        XCTAssertEqual(service.robot, MockModel.robot_basic)
-        XCTAssertEqual(service.creator.username, MockModel.username)
-        XCTAssertEqual(service.currentServiceUnitIdx, MockModel.serviceCurrentStep)
+        XCTAssertEqual(service.serviceNumber, DummyModel.serviceNumber)
+        XCTAssertEqual(service.requestedAt, DummyModel.createdAt)
+        XCTAssertNotEqual(service.startedAt, DummyModel.createdAt)
+        XCTAssertNotEqual(service.finishedAt, DummyModel.createdAt)
+        XCTAssertEqual(service.robot, DummyModel.robot_basic)
+        XCTAssertEqual(service.creator.username, DummyModel.username)
+        XCTAssertEqual(service.currentServiceUnitIdx, DummyModel.serviceCurrentStep)
         XCTAssertEqual(service.serviceUnits.isEmpty, false)
-        XCTAssertEqual(service.travelDistance, MockModel.serviceMovingDistance)
+        XCTAssertEqual(service.travelDistance, DummyModel.serviceMovingDistance)
         XCTAssertEqual(service.serviceLogSet.serviceLogs.isEmpty, false)
         
-        XCTAssertEqual(service.isMyTurn(MockModel.id), false)
-        XCTAssertEqual(service.currentServiceUnit?.orderWithinService, MockModel.serviceCurrentStep)
+        XCTAssertEqual(service.isMyTurn(DummyModel.id), false)
+        XCTAssertEqual(service.currentServiceUnit?.orderWithinService, DummyModel.serviceCurrentStep)
         
         XCTAssertEqual(service.canceledDescription, nil)
         XCTAssertEqual(service.stateDescription, "서비스 완료")
         XCTAssertEqual(service.stateColor.hashValue, UIColor(hex: "#F5F5F5").hashValue)
         
         //optional
-        let optionalService = MockModel.service_optional
+        let optionalService = DummyModel.service_optional
         
         XCTAssertEqual(optionalService.id, Service.unknownId)
         XCTAssertEqual(optionalService.type, .unknown)
         XCTAssertEqual(optionalService.status, .unknown)
         XCTAssertEqual(optionalService.phase, .waiting)
         XCTAssertEqual(optionalService.serviceNumber, "-")
-        XCTAssertNotEqual(optionalService.requestedAt, MockModel.createdAt)
+        XCTAssertNotEqual(optionalService.requestedAt, DummyModel.createdAt)
         XCTAssertEqual(optionalService.startedAt, nil)
         XCTAssertEqual(optionalService.finishedAt, nil)
         XCTAssertEqual(optionalService.robot, nil)
@@ -464,36 +464,36 @@ class ModelTests: XCTestCase {
         XCTAssertEqual(optionalService.serviceLogSet.serviceLogs.isEmpty, true)
         
         //raw
-        let rawService = try MockModel.service_raw()
+        let rawService = try DummyModel.service_raw()
         
-        XCTAssertEqual(rawService.id, MockModel.id)
+        XCTAssertEqual(rawService.id, DummyModel.id)
         XCTAssertEqual(rawService.type, .general)
         XCTAssertEqual(rawService.status, .finished)
         XCTAssertEqual(rawService.phase, .completed)
-        XCTAssertEqual(rawService.serviceNumber, MockModel.serviceNumber)
-        XCTAssertEqual(rawService.requestedAt, MockModel.createdAt)
-        XCTAssertNotEqual(rawService.startedAt, MockModel.createdAt)
-        XCTAssertNotEqual(rawService.finishedAt, MockModel.createdAt)
+        XCTAssertEqual(rawService.serviceNumber, DummyModel.serviceNumber)
+        XCTAssertEqual(rawService.requestedAt, DummyModel.createdAt)
+        XCTAssertNotEqual(rawService.startedAt, DummyModel.createdAt)
+        XCTAssertNotEqual(rawService.finishedAt, DummyModel.createdAt)
         XCTAssertEqual(rawService.robot, nil)
-        XCTAssertEqual(rawService.creator.username, MockModel.username)
-        XCTAssertEqual(rawService.currentServiceUnitIdx, MockModel.serviceCurrentStep)
+        XCTAssertEqual(rawService.creator.username, DummyModel.username)
+        XCTAssertEqual(rawService.currentServiceUnitIdx, DummyModel.serviceCurrentStep)
         XCTAssertEqual(rawService.serviceUnits.isEmpty, false)
-        XCTAssertEqual(rawService.travelDistance, MockModel.serviceMovingDistance)
+        XCTAssertEqual(rawService.travelDistance, DummyModel.serviceMovingDistance)
         XCTAssertEqual(rawService.serviceLogSet.serviceLogs.isEmpty, false)
         
         //canceled, failed, returning
-        let canceledService = MockModel.canceledService()
+        let canceledService = DummyModel.canceledService()
         XCTAssertNotNil(canceledService.canceledDescription)
         XCTAssertNotNil(canceledService.stateDescription == "서비스 취소")
         
-        let failedService = MockModel.failedService()
+        let failedService = DummyModel.failedService()
         XCTAssertNotNil(failedService.canceledDescription)
         XCTAssertNotNil(failedService.stateDescription == "서비스 취소")
         
-        let returningCancledService = MockModel.canceledService(isStateReturning: true)
+        let returningCancledService = DummyModel.canceledService(isStateReturning: true)
         XCTAssertNotNil(returningCancledService.canceledDescription)
         
-        let returningFailedService = MockModel.failedService(isStateReturning: true)
+        let returningFailedService = DummyModel.failedService(isStateReturning: true)
         XCTAssertNotNil(returningFailedService.canceledDescription)
     }
     
@@ -505,17 +505,17 @@ class ModelTests: XCTestCase {
         XCTAssertEqual(thisAppVersion.currentVersion, Info.appVersion)
         
         //basic
-        let basicVersion = MockModel.version_basic_latest
+        let basicVersion = DummyModel.version_basic_latest
         XCTAssertEqual(basicVersion.isLatest, true)
         XCTAssertEqual(basicVersion.mustUpdate, false)
         
         //optional
-        let optionalVersion = MockModel.version_optional_new
+        let optionalVersion = DummyModel.version_optional_new
         XCTAssertEqual(optionalVersion.isLatest, false)
         XCTAssertEqual(optionalVersion.mustUpdate, false)
         
         //mustUpdate
-        let mustUpdateVersion = MockModel.version_must_update
+        let mustUpdateVersion = DummyModel.version_must_update
         XCTAssertEqual(mustUpdateVersion.isLatest, false)
         XCTAssertEqual(mustUpdateVersion.mustUpdate, true)
     }
@@ -523,20 +523,20 @@ class ModelTests: XCTestCase {
     func testServiceTemplate() throws {
         
         //basic
-        let basicServiceTemplate = try MockModel.serviceTemplate_basic_general()
+        let basicServiceTemplate = try DummyModel.serviceTemplate_basic_general()
         
-        XCTAssertEqual(basicServiceTemplate.id, MockModel.id)
-        XCTAssertEqual(basicServiceTemplate.name, MockModel.displayName)
+        XCTAssertEqual(basicServiceTemplate.id, DummyModel.id)
+        XCTAssertEqual(basicServiceTemplate.name, DummyModel.displayName)
         XCTAssertTrue(basicServiceTemplate.type.isGeneral)
-        XCTAssertEqual(basicServiceTemplate.description, MockModel.description)
+        XCTAssertEqual(basicServiceTemplate.description, DummyModel.description)
         XCTAssertEqual(basicServiceTemplate.serviceBuilder.arguments.isEmpty, false)
         XCTAssertEqual(basicServiceTemplate.isCompiled, false)
         
         //optional
-        let optionalServiceTemplate = try MockModel.serviceTemplate_optional_shortcut()
+        let optionalServiceTemplate = try DummyModel.serviceTemplate_optional_shortcut()
         
-        XCTAssertEqual(optionalServiceTemplate.id, MockModel.id)
-        XCTAssertEqual(optionalServiceTemplate.name, MockModel.displayName)
+        XCTAssertEqual(optionalServiceTemplate.id, DummyModel.id)
+        XCTAssertEqual(optionalServiceTemplate.name, DummyModel.displayName)
         XCTAssertTrue(optionalServiceTemplate.type.isShortcut)
         XCTAssertEqual(optionalServiceTemplate.description, nil)
         XCTAssertEqual(optionalServiceTemplate.serviceBuilder.arguments.isEmpty, true)

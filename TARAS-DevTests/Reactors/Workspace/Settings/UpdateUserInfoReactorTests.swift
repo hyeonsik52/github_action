@@ -27,24 +27,24 @@ class UpdateUserInfoReactorTests: XCTestCase {
         // 1. prepare a stub reactor
         let reactor = UpdateUserInfoViewReactor(
             provider: self.provider,
-            userID: MockModel.username,
+            userID: DummyModel.username,
             inputType: .name,
-            prevValue: MockModel.displayName
+            prevValue: DummyModel.displayName
         )
         reactor.isStubEnabled = true
         
         // 2. prepare a view with a stub reactor
         let viewController = UpdateUserInfoViewController()
-        viewController.userInputView.textField.text = MockModel.displayName
+        viewController.userInputView.textField.text = DummyModel.displayName
         viewController.reactor = reactor
         
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(text: MockModel.displayName))
+        XCTAssertEqual(reactor.stub.actions.last, .checkValidation(text: DummyModel.displayName))
         
         // 3. send an user interaction programatically
         viewController.userInputView.confirmButton.sendActions(for: .touchUpInside)
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .update(text: MockModel.displayName))
+        XCTAssertEqual(reactor.stub.actions.last, .update(text: DummyModel.displayName))
     }
 
     func testStates() throws {
@@ -52,9 +52,9 @@ class UpdateUserInfoReactorTests: XCTestCase {
         // 1. prepare a stub reactor
         let reactor = UpdateUserInfoViewReactor(
             provider: self.provider,
-            userID: MockModel.username,
+            userID: DummyModel.username,
             inputType: .name,
-            prevValue: MockModel.displayName
+            prevValue: DummyModel.displayName
         )
         reactor.isStubEnabled = true
         

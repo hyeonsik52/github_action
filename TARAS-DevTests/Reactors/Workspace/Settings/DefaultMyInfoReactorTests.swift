@@ -60,7 +60,7 @@ class DefaultMyInfoReactorTests: XCTestCase {
         viewController.reactor = reactor
 
         // 3. set a stub state
-        let account = MockModel.account_basic
+        let account = DummyModel.account_basic
         let latestVersion = Version.thisAppVersion
         let state = DefaultMyInfoViewReactor.State(
             account: account,

@@ -716,7 +716,7 @@
 		ED6B46B026B7EE4E00C2FA6D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */; };
 		ED6B46B226B7EE5B00C2FA6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED6B46B426B8025500C2FA6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B326B8025500C2FA6D /* Info.swift */; };
-		ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4D27D5F41A007EBE70 /* MockModel.swift */; };
+		ED78EC4E27D5F41A007EBE70 /* DummyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4D27D5F41A007EBE70 /* DummyModel.swift */; };
 		ED78EC5027DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */; };
 		ED78EC5127DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */; };
 		ED78EC5227DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */; };
@@ -1056,7 +1056,7 @@
 		ED6B46AF26B7EE4E00C2FA6D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ED6B46B126B7EE5B00C2FA6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ED6B46B326B8025500C2FA6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		ED78EC4D27D5F41A007EBE70 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
+		ED78EC4D27D5F41A007EBE70 /* DummyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyModel.swift; sourceTree = "<group>"; };
 		ED78EC4F27DB1588007EBE70 /* NetworkManager_FCM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_FCM.swift; sourceTree = "<group>"; };
 		ED7A0E6127212A8D00AD6678 /* TARAS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TARAS-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED7A0E6A2721526800AD6678 /* SettingCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCellView.swift; sourceTree = "<group>"; };
@@ -1341,7 +1341,7 @@
 			isa = PBXGroup;
 			children = (
 				ED99E78D27CCD0E50083007B /* ModelTests.swift */,
-				ED78EC4D27D5F41A007EBE70 /* MockModel.swift */,
+				ED78EC4D27D5F41A007EBE70 /* DummyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3344,7 +3344,7 @@
 				ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */,
 				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
 				EDB401CA27F1678C00021594 /* DefaultMyInfoReactorTests.swift in Sources */,
-				ED78EC4E27D5F41A007EBE70 /* MockModel.swift in Sources */,
+				ED78EC4E27D5F41A007EBE70 /* DummyModel.swift in Sources */,
 				ED28514D27E9CBF4003196AD /* PushManagerTests.swift in Sources */,
 				ED28514B27E9BECB003196AD /* UserManagerTests.swift in Sources */,
 				ED28513D27E991C9003196AD /* MockSubscriptionManager.swift in Sources */,

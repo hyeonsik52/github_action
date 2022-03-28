@@ -56,11 +56,11 @@ class UserManagerTests: XCTestCase {
     func testUpdateUserInfo() throws {
         
         let userFragment = UserFragment(
-            id: MockModel.id,
-            username: MockModel.username,
-            displayName: MockModel.displayName,
-            email: MockModel.email,
-            phoneNumber: MockModel.phoneNumber
+            id: DummyModel.id,
+            username: DummyModel.username,
+            displayName: DummyModel.displayName,
+            email: DummyModel.email,
+            phoneNumber: DummyModel.phoneNumber
         )
         
         self.userManager.updateUserInfo(userFragment)
@@ -113,10 +113,10 @@ class UserManagerTests: XCTestCase {
     
     func testInitializeLastWorkspaceId() throws {
         
-        self.userManager.userTB.lastWorkspaceId = MockModel.id
+        self.userManager.userTB.lastWorkspaceId = DummyModel.id
         XCTAssertNotNil(self.userManager.userTB.lastWorkspaceId)
         
-        self.userManager.initializeLastWorkspaceId(MockModel.id)
+        self.userManager.initializeLastWorkspaceId(DummyModel.id)
         XCTAssertNil(self.userManager.userTB.lastWorkspaceId)
     }
     

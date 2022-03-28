@@ -27,7 +27,7 @@ class SignUpPasswordReactorTests: XCTestCase {
     func testActions() throws {
         
         // 1. prepare a stub reactor
-        let account = Account(ID: MockModel.id)
+        let account = Account(ID: DummyModel.id)
         let reactor = SignUpPasswordViewReactor(provider: self.provider, accountInfo: account)
         reactor.isStubEnabled = true
         
@@ -36,17 +36,17 @@ class SignUpPasswordReactorTests: XCTestCase {
         viewController.reactor = reactor
         
         // 3. send an user interaction programatically
-        viewController.signUpPasswordView.password.accept(MockModel.password)
-        viewController.signUpPasswordView.passwordConfirmed.accept(MockModel.password)
+        viewController.signUpPasswordView.password.accept(DummyModel.password)
+        viewController.signUpPasswordView.passwordConfirmed.accept(DummyModel.password)
         
         // 4. assert actions
-        XCTAssertEqual(reactor.stub.actions.last, .checkPasswordValidation(password: MockModel.password, confirm: MockModel.password))
+        XCTAssertEqual(reactor.stub.actions.last, .checkPasswordValidation(password: DummyModel.password, confirm: DummyModel.password))
     }
     
     func testStates() throws {
         
         // 1. prepare a stub reactor
-        let account = Account(ID: MockModel.id)
+        let account = Account(ID: DummyModel.id)
         let reactor = SignUpPasswordViewReactor(provider: self.provider, accountInfo: account)
         reactor.isStubEnabled = true
         
