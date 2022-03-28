@@ -768,6 +768,7 @@
 		EDB401C427EDA2D800021594 /* SignUpNameReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401C327EDA2D800021594 /* SignUpNameReactorTests.swift */; };
 		EDB401C827EDA74300021594 /* WorkspaceListReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401C727EDA74300021594 /* WorkspaceListReactorTests.swift */; };
 		EDB401CA27F1678C00021594 /* DefaultMyInfoReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401C927F1678C00021594 /* DefaultMyInfoReactorTests.swift */; };
+		EDB401CD27F1709200021594 /* UpdateUserInfoReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401CC27F1709200021594 /* UpdateUserInfoReactorTests.swift */; };
 		EDBF63CE27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63CF27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63D027C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
@@ -1095,6 +1096,7 @@
 		EDB401C327EDA2D800021594 /* SignUpNameReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNameReactorTests.swift; sourceTree = "<group>"; };
 		EDB401C727EDA74300021594 /* WorkspaceListReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactorTests.swift; sourceTree = "<group>"; };
 		EDB401C927F1678C00021594 /* DefaultMyInfoReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoReactorTests.swift; sourceTree = "<group>"; };
+		EDB401CC27F1709200021594 /* UpdateUserInfoReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoReactorTests.swift; sourceTree = "<group>"; };
 		EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshSessionRequestModel.swift; sourceTree = "<group>"; };
 		EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteViewController.swift; sourceTree = "<group>"; };
 		EDC118FE26D3A39C0020AB09 /* DefaultMyInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -2053,7 +2055,7 @@
 		EDB401C527EDA6AF00021594 /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
-				EDB401C927F1678C00021594 /* DefaultMyInfoReactorTests.swift */,
+				EDB401CB27F1705B00021594 /* Settings */,
 				EDB401C627EDA6DB00021594 /* WorkspaceList */,
 			);
 			path = Workspace;
@@ -2065,6 +2067,15 @@
 				EDB401C727EDA74300021594 /* WorkspaceListReactorTests.swift */,
 			);
 			path = WorkspaceList;
+			sourceTree = "<group>";
+		};
+		EDB401CB27F1705B00021594 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EDB401C927F1678C00021594 /* DefaultMyInfoReactorTests.swift */,
+				EDB401CC27F1709200021594 /* UpdateUserInfoReactorTests.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EDC118E826D3A39C0020AB09 /* Workspace */ = {
@@ -3333,6 +3344,7 @@
 				EDB401BE27EC686700021594 /* SignInReactorTests.swift in Sources */,
 				ED28514527E9AFBA003196AD /* MockGraphQL.swift in Sources */,
 				ED28518527EC49E5003196AD /* SequenceTests.swift in Sources */,
+				EDB401CD27F1709200021594 /* UpdateUserInfoReactorTests.swift in Sources */,
 				EDB401C027ED5A5E00021594 /* SignUpIdReactorTests.swift in Sources */,
 				EDB401C227ED78AF00021594 /* SignUpPasswordReactorTests.swift in Sources */,
 				ED28517F27EC49D3003196AD /* BaseObjectTests.swift in Sources */,

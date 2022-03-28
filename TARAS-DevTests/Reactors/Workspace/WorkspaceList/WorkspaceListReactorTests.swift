@@ -23,6 +23,7 @@ class WorkspaceListReactorTests: XCTestCase {
     }
 
     func testActions() throws {
+        
         // 1. prepare a stub reactor
         let reactor = WorkspaceListViewReactor(provider: self.provider, isFrom: .none)
         reactor.isStubEnabled = true
