@@ -42,7 +42,7 @@ class WorkspaceHomeReactor: Reactor {
     
     struct State {
         var myUserInfo: User?
-        var worspace: Workspace?
+        var workspace: Workspace?
         var templates: [ServiceTemplate]
         var isLoading: Bool
         var isProcessing: Bool?
@@ -53,7 +53,7 @@ class WorkspaceHomeReactor: Reactor {
     
     var initialState: State = .init(
         myUserInfo: nil,
-        worspace: nil,
+        workspace: nil,
         templates: [],
         isLoading: false,
         isProcessing: nil,
@@ -162,7 +162,7 @@ class WorkspaceHomeReactor: Reactor {
         case let .loadedMyInfo(info):
             state.myUserInfo = info
         case let .loadedWorkspaceInfo(workspace):
-            state.worspace = workspace
+            state.workspace = workspace
         case let .loadTemplates(templates):
             state.templates = templates
         case .isLoading(let loading):

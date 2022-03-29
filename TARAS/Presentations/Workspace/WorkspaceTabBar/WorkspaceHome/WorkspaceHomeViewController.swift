@@ -185,7 +185,7 @@ class WorkspaceHomeViewController: BaseViewController, View {
             }).disposed(by: self.disposeBag)
         
         //State
-        reactor.state.compactMap { $0.worspace }
+        reactor.state.compactMap { $0.workspace }
             .bind(to: self.workspaceView.rx.workspace)
             .disposed(by: self.disposeBag)
         

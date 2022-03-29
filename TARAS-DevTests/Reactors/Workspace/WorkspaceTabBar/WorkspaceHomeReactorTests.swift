@@ -67,7 +67,7 @@ class WorkspaceHomeReactorTests: XCTestCase {
         // 3. set a stub state
         let state = WorkspaceHomeReactor.State(
             myUserInfo: DummyModel.user_basic,
-            worspace: DummyModel.workspace_basic,
+            workspace: DummyModel.workspace_basic,
             templates: [try DummyModel.serviceTemplate_basic_general()],
             isLoading: false,
             isProcessing: false,
@@ -78,7 +78,7 @@ class WorkspaceHomeReactorTests: XCTestCase {
         reactor.stub.state.value = state
         
         // 4. assert view properties
-        XCTAssertEqual(viewController.workspaceView.nameLabel.text, state.worspace?.name)
+        XCTAssertEqual(viewController.workspaceView.nameLabel.text, state.workspace?.name)
         XCTAssertEqual(viewController.headerView.userNameLabel.text, "\(state.myUserInfo?.displayName ?? "")님!")
         XCTAssertEqual(viewController.collectionView.numberOfItems(inSection: 0), state.templates.count)
         XCTAssertEqual(viewController.collectionView.refreshControl?.isRefreshing, state.isProcessing)
