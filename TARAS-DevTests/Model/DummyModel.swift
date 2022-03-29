@@ -648,172 +648,195 @@ struct DummyModel {
     static func serviceTemplate_basic_general() throws -> ServiceTemplate {
         
         let arguments: [ServiceTemplateRawFragmnet.Argument] = [
-            try .init(ServiceArgumentRawFragment(
-                id: "1",
-                arrayOf: true,
-                inputType: .init(
-                    name: "destinations",
-                    childArguments: [
-                        try .init(ServiceArgumentRawFragment(
-                            id: "1",
-                            arrayOf: false,
-                            inputType: .init(
-                                name: "String",
-                                childArguments: []
-                            ),
-                            name: "ID",
-                            required: true,
-                            displayText: "목적지",
-                            uiComponentType: "select",
-                            uiComponentDefaultValue: "",
-                            model: "$TARAS:station_group",
-                            needToSet: true
-                        )),
-                        try .init(ServiceArgumentRawFragment(
-                            id: "2",
-                            arrayOf: false,
-                            inputType: .init(
-                                name: "String",
-                                childArguments: []
-                            ),
-                            name: "message",
-                            required: true,
-                            displayText: "요청사항",
-                            uiComponentType: "input",
-                            uiComponentDefaultValue: "",
-                            model: "",
-                            needToSet: true
-                        )),
-                        try .init(ServiceArgumentRawFragment(
-                            id: "3",
-                            arrayOf: false,
-                            inputType: .init(
-                                name: "Boolean",
-                                childArguments: []
-                            ),
-                            name: "is_waited",
-                            required: true,
-                            displayText: "작업 대기 여부",
-                            uiComponentType: "checkbox",
-                            uiComponentDefaultValue: "true",
-                            model: "",
-                            needToSet: true
-                        )),
-                        try .init(ServiceArgumentRawFragment(
-                            id: "4",
-                            arrayOf: false,
-                            inputType: .init(
-                                name: "String",
-                                childArguments: []
-                            ),
-                            name: "event_name",
-                            required: false,
-                            displayText: "이벤트 이름",
-                            uiComponentType: "input",
-                            uiComponentDefaultValue: "",
-                            model: "",
-                            needToSet: false
-                        )),
-                        try .init(ServiceArgumentRawFragment(
-                            id: "5",
-                            arrayOf: false,
-                            inputType: .init(
-                                name: "String",
-                                childArguments: []
-                            ),
-                            name: "timestamp_key",
-                            required: false,
-                            displayText: "타임스탬프 키",
-                            uiComponentType: "input",
-                            uiComponentDefaultValue: "",
-                            model: "",
-                            needToSet: false
-                        )),
-                        try .init(ServiceArgumentRawFragment(
-                            id: "7",
-                            arrayOf: true,
-                            inputType: .init(
-                                name: "Receiver",
-                                childArguments: [
-                                    try .init(ServiceArgumentRawFragment(
-                                        id: "6",
-                                        arrayOf: false,
-                                        inputType: .init(
-                                            name: "String",
-                                            childArguments: []
-                                        ),
-                                        name: "ID",
-                                        required: true,
-                                        displayText: "수신자",
-                                        uiComponentType: "select",
-                                        uiComponentDefaultValue: "",
-                                        model: "$TARAS:user",
-                                        needToSet: true
-                                    ))
-                                ]
-                            ),
-                            name: "receivers",
-                            required: true,
-                            displayText: "수신자",
-                            uiComponentType: "receivers",
-                            uiComponentDefaultValue: "",
-                            model: "",
-                            needToSet: true
-                        )),
-                        try .init(ServiceArgumentRawFragment(
-                            id: "20",
-                            arrayOf: true,
-                            inputType: .init(
-                                name: "String",
-                                childArguments: []
-                            ),
-                            name: "img_urls",
-                            required: false,
-                            displayText: "사진 목록",
-                            uiComponentType: "input",
-                            uiComponentDefaultValue: "",
-                            model: "",
-                            needToSet: false
-                        )),
-                        try .init(ServiceArgumentRawFragment(
-                            id: "17",
-                            arrayOf: false,
-                            inputType: .init(
-                                name: "String",
-                                childArguments: []
-                            ),
-                            name: "name",
-                            required: true,
-                            displayText: "목적지 이름",
-                            uiComponentType: "input",
-                            uiComponentDefaultValue: "",
-                            model: "$TARAS:station_group",
-                            needToSet: true
-                        ))
-                    ]),
-                name: "destinations",
-                required: true,
-                displayText: "목적지",
-                uiComponentType: "destinations",
-                uiComponentDefaultValue: "",
-                model: "",
-                needToSet: true
-            )),
-            try .init(ServiceArgumentRawFragment(
-                id: "2",
-                arrayOf: false,
-                inputType: .init(
-                    name: "Integer",
-                    childArguments: []
-                ),
-                name: "repeat_count",
-                required: true,
-                displayText: "반복횟수",
-                uiComponentType: "input",
-                uiComponentDefaultValue: "1",
-                model: "",
-                needToSet: true
-            ))
+            .init(unsafeResultMap: [
+                "__typename": "taras_core_serviceargument",
+                "array_of": true,
+                "display_text": "목적지",
+                "id": "1",
+                "input_type": [
+                    "__typename": "taras_core_serviceargumenttype",
+                    "child_arguments": [
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": false,
+                            "display_text": "이벤트 이름",
+                            "id": "4",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [],
+                                "name": "String"
+                            ],
+                            "model": "",
+                            "name": "event_name",
+                            "need_to_set": false,
+                            "required": false,
+                            "ui_component_default_value": "",
+                            "ui_component_type": "input"
+                        ],
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": false,
+                            "display_text": "타임스탬프 키",
+                            "id": "5",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [],
+                                "name": "String"
+                            ],
+                            "model": "",
+                            "name": "timestamp_key",
+                            "need_to_set": false,
+                            "required": false,
+                            "ui_component_default_value": "",
+                            "ui_component_type": "input"
+                        ],
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": false,
+                            "display_text": "목적지 이름",
+                            "id": "17",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [],
+                                "name": "String"
+                            ],
+                            "model": "$TARAS:station_group",
+                            "name": "name",
+                            "need_to_set": false,
+                            "required": false,
+                            "ui_component_default_value": "",
+                            "ui_component_type": "input"
+                        ],
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": false,
+                            "display_text": "목적지",
+                            "id": "1",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [],
+                                "name": "String"
+                            ],
+                            "model": "$TARAS:station_group",
+                            "name": "ID",
+                            "need_to_set": true,
+                            "required": true,
+                            "ui_component_default_value": "",
+                            "ui_component_type": "select"
+                        ],
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": false,
+                            "display_text": "요청사항",
+                            "id": "2",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [],
+                                "name": "String"
+                            ],
+                            "model": "",
+                            "name": "message",
+                            "need_to_set": true,
+                            "required": true,
+                            "ui_component_default_value": "",
+                            "ui_component_type": "input"
+                        ],
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": false,
+                            "display_text": "작업 대기 여부",
+                            "id": "3",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [],
+                                "name": "Boolean"
+                            ],
+                            "model": "",
+                            "name": "is_waited",
+                            "need_to_set": true,
+                            "required": true,
+                            "ui_component_default_value": "true",
+                            "ui_component_type": "checkbox"
+                        ],
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": true,
+                            "display_text": "수신자",
+                            "id": "7",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [
+                                    [
+                                        "__typename": "taras_core_childargument",
+                                        "array_of": false,
+                                        "display_text": "수신자",
+                                        "id": "6",
+                                        "input_type": [
+                                            "__typename": "taras_core_serviceargumenttype",
+                                            "child_arguments": [],
+                                            "name": "String"
+                                        ],
+                                        "model": "$TARAS:user",
+                                        "name": "ID",
+                                        "need_to_set": true,
+                                        "required": true,
+                                        "ui_component_default_value": "",
+                                        "ui_component_type": "select"
+                                    ]
+                                ],
+                                "name": "Receiver"
+                            ],
+                            "model": "",
+                            "name": "receivers",
+                            "need_to_set": true,
+                            "required": true,
+                            "ui_component_default_value": "",
+                            "ui_component_type": "receivers"
+                        ],
+                        [
+                            "__typename": "taras_core_childargument",
+                            "array_of": true,
+                            "display_text": "사진 목록",
+                            "id": "20",
+                            "input_type": [
+                                "__typename": "taras_core_serviceargumenttype",
+                                "child_arguments": [],
+                                "name": "String"
+                            ],
+                            "model": "",
+                            "name": "img_urls",
+                            "need_to_set": false,
+                            "required": false,
+                            "ui_component_default_value": "",
+                            "ui_component_type": "input"
+                        ]
+                    ],
+                    "name": "Destination"
+                ],
+                "model": "",
+                "name": "destinations",
+                "need_to_set": true,
+                "required": true,
+                "ui_component_default_value": "",
+                "ui_component_type": "destinations"
+            ]),
+            .init(unsafeResultMap: [
+                "__typename": "taras_core_serviceargument",
+                "array_of": false,
+                "display_text": "반복횟수",
+                "id": "2",
+                "input_type": [
+                    "__typename": "taras_core_serviceargumenttype",
+                    "child_arguments": [],
+                    "name": "Integer"
+                ],
+                "model": "",
+                "name": "repeat_count",
+                "need_to_set": true,
+                "required": true,
+                "ui_component_default_value": "1",
+                "ui_component_type": "input"
+            ])
         ]
         
         let fragment = ServiceTemplateRawFragmnet(

@@ -30,7 +30,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
         $0.sectionHeadersPinToVisibleBounds = true
         $0.sectionFootersPinToVisibleBounds = true
     }
-    private lazy var collectionView = UICollectionView.init(
+    lazy var collectionView = UICollectionView.init(
         frame: .zero,
         collectionViewLayout: self.flowLayout
     ).then {
@@ -111,7 +111,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
             self?.reactor?.action.onNext(.move(sourceIndexPath.row, destinationIndexPath.row))
         })
     
-    private let requestButton = SRPButton("서비스 생성하기").then {
+    let requestButton = SRPButton("서비스 생성하기").then {
         $0.isEnabled = false
         $0.clipsToBounds = true
     }

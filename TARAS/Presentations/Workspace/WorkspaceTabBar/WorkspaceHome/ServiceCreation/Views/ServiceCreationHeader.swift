@@ -11,7 +11,7 @@ import Then
 
 class ServiceCreationHeader: UICollectionReusableView {
     
-    private let titleLabel = UILabel().then{
+    let titleLabel = UILabel().then{
         $0.font = .bold[16]
         $0.textColor = .darkGray303030
     }
