@@ -11,7 +11,7 @@ import Then
 
 class TRSListPlaceholderView: UIView {
     
-    private let notFoundPlaceholder = TRSPlaceholderView(.init(
+    let notFoundPlaceholder = TRSPlaceholderView(.init(
         title: "검색 결과가 없습니다.",
         edges: .init(top: 48, left: 0, bottom: 0, right: 0),
         image: .init(named: "results-not-found")
@@ -31,7 +31,7 @@ class TRSListPlaceholderView: UIView {
         $0.imageEdgeInsets = .init(top: 0, left: -8, bottom: 0, right: 8)
     }
     
-    private lazy var disconnectedPlaceholder = TRSPlaceholderView(.init(
+    lazy var disconnectedPlaceholder = TRSPlaceholderView(.init(
         title: "연결 상태가 일시적으로 불안정합니다.",
         edges: .init(top: 64, left: 0, bottom: 0, right: 0),
         image: .init(named: "network-disconnected"),

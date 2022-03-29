@@ -15,10 +15,10 @@ import RxDataSources
 
 class ServiceCreationSelectStopViewController: BaseNavigationViewController, View {
     
-    private let searchView = TRSSearchView(placeholder: "장소명(초성) 검색")
-    private let listPlaceholderView = TRSListPlaceholderView()
+    let searchView = TRSSearchView(placeholder: "장소명(초성) 검색")
+    let listPlaceholderView = TRSListPlaceholderView()
     
-    private lazy var tableView = UITableView(frame: .zero, style: .plain).then {
+    lazy var tableView = UITableView(frame: .zero, style: .plain).then {
         $0.alwaysBounceVertical = true
         $0.separatorStyle = .none
         $0.rowHeight = 48

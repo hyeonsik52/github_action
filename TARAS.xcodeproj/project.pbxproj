@@ -643,6 +643,7 @@
 		ED53081527B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */; };
 		ED53081627B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */; };
 		ED53081727B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */; };
+		ED5BC9C427F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9C327F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift */; };
 		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
@@ -986,6 +987,7 @@
 		ED53080B27B23974003B0FB0 /* ServiceDetailServiceUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailServiceUnitCell.swift; sourceTree = "<group>"; };
 		ED53080D27B24682003B0FB0 /* ProgressLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressLineView.swift; sourceTree = "<group>"; };
 		ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailServiceUnitSection.swift; sourceTree = "<group>"; };
+		ED5BC9C327F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationSelectStopReactorTests.swift; sourceTree = "<group>"; };
 		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -2105,6 +2107,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB401D827F19A9200021594 /* ServiceCreationReactorTests.swift */,
+				ED5BC9C327F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift */,
 			);
 			path = ServiceCreation;
 			sourceTree = "<group>";
@@ -3368,6 +3371,7 @@
 				EDB401CF27F1769100021594 /* WorkspaceSearchReactorTests.swift in Sources */,
 				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
 				ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */,
+				ED5BC9C427F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift in Sources */,
 				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
 				EDB401CA27F1678C00021594 /* DefaultMyInfoReactorTests.swift in Sources */,
 				EDB401D427F189D800021594 /* WorkspaceHomeReactorTests.swift in Sources */,
