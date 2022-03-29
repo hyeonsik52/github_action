@@ -27,7 +27,7 @@ class WorkspaceMoreViewController: BaseNavigationViewController, ReactorKit.View
         $0.setImage(.init(named: "setting"), for: .normal)
     }
     private lazy var titleView = WorkspaceTitleView(title: Text.Title, button: self.settingButton, buttonWidth: 52)
-    private lazy var workspaceView = JoinRequestView(entry: .joined).then {
+    lazy var workspaceView = JoinRequestView(entry: .joined).then {
         $0.delegate = self
         $0.isHidden = true
     }

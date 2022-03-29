@@ -772,6 +772,7 @@
 		EDB401CF27F1769100021594 /* WorkspaceSearchReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401CE27F1769100021594 /* WorkspaceSearchReactorTests.swift */; };
 		EDB401D127F17D8E00021594 /* WorkspaceSearchResultReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401D027F17D8E00021594 /* WorkspaceSearchResultReactorTests.swift */; };
 		EDB401D427F189D800021594 /* WorkspaceHomeReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401D327F189D800021594 /* WorkspaceHomeReactorTests.swift */; };
+		EDB401D627F1968F00021594 /* WorkspaceMoreReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401D527F1968F00021594 /* WorkspaceMoreReactorTests.swift */; };
 		EDBF63CE27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63CF27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63D027C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
@@ -1103,6 +1104,7 @@
 		EDB401CE27F1769100021594 /* WorkspaceSearchReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchReactorTests.swift; sourceTree = "<group>"; };
 		EDB401D027F17D8E00021594 /* WorkspaceSearchResultReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSearchResultReactorTests.swift; sourceTree = "<group>"; };
 		EDB401D327F189D800021594 /* WorkspaceHomeReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceHomeReactorTests.swift; sourceTree = "<group>"; };
+		EDB401D527F1968F00021594 /* WorkspaceMoreReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceMoreReactorTests.swift; sourceTree = "<group>"; };
 		EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshSessionRequestModel.swift; sourceTree = "<group>"; };
 		EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteViewController.swift; sourceTree = "<group>"; };
 		EDC118FE26D3A39C0020AB09 /* DefaultMyInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -2091,6 +2093,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB401D327F189D800021594 /* WorkspaceHomeReactorTests.swift */,
+				EDB401D527F1968F00021594 /* WorkspaceMoreReactorTests.swift */,
 			);
 			path = WorkspaceTabBar;
 			sourceTree = "<group>";
@@ -3368,6 +3371,7 @@
 				EDB401C027ED5A5E00021594 /* SignUpIdReactorTests.swift in Sources */,
 				EDB401C227ED78AF00021594 /* SignUpPasswordReactorTests.swift in Sources */,
 				ED28517F27EC49D3003196AD /* BaseObjectTests.swift in Sources */,
+				EDB401D627F1968F00021594 /* WorkspaceMoreReactorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

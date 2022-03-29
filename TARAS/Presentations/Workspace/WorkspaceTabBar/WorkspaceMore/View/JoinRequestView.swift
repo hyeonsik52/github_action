@@ -40,19 +40,19 @@ class JoinRequestView: UIView {
         $0.contentMode = .scaleAspectFill
     }
     
-    private let nameLabel = UILabel().then {
+    let nameLabel = UILabel().then {
         $0.textColor = .black
         $0.font = .bold[24]
         $0.textAlignment = .center
     }
     
-    private let dateLabel = UILabel().then {
+    let dateLabel = UILabel().then {
         $0.textColor = .black
         $0.font = .medium[14]
         $0.textAlignment = .center
     }
     
-    private let joinedWorkspaceLabel = UILabel().then {
+    let joinedWorkspaceLabel = UILabel().then {
         $0.textColor = .black
         $0.font = .medium[16]
         $0.textAlignment = .center
@@ -60,7 +60,7 @@ class JoinRequestView: UIView {
         $0.isHidden = true
     }
     
-    private let button = SRPButton("", appearance: .init(font: .bold[14]))
+    let button = SRPButton("", appearance: .init(font: .bold[14]))
     
     weak var delegate: JoinRequestViewDelegate?
     var disposeBag = DisposeBag()
