@@ -28,7 +28,7 @@ class ServiceCreationReactorTests: XCTestCase {
         let reactor = ServiceCreationViewReactor(
             provider: self.provider,
             workspaceId: DummyModel.id,
-            process: .init(template: try DummyModel.serviceTemplate_basic_general())
+            process: try DummyModel.serviceTemplateProcess_general()
         )
         reactor.isStubEnabled = true
 
@@ -39,25 +39,7 @@ class ServiceCreationReactorTests: XCTestCase {
         
         // 3. set a stub state
         let state = ServiceCreationViewReactor.State(
-            serviceUnits: [
-                .init(
-                    stop: .init(
-                        id: DummyModel.id,
-                        name: DummyModel.displayName,
-                        selectedAt: Date(),
-                        isLoadingStop: false
-                    ),
-                    isWorkWaiting: true,
-                    isLoadingStop: nil,
-                    receivers: [
-                        .init(
-                            id: DummyModel.id,
-                            name: DummyModel.displayName
-                        )
-                    ],
-                    detail: nil
-                )
-            ],
+            serviceUnits: [DummyModel.serviceUnitCreationModel],
             isProcessing: false,
             isRequestSuccess: nil,
             errorMessage: nil

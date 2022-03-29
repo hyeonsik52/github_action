@@ -864,4 +864,29 @@ struct DummyModel {
         
         return .init(option: optionalFragment)
     }
+    
+    //MARK: - Service Creation
+    static func serviceTemplateProcess_general() throws -> STProcess {
+        return .init(template: try DummyModel.serviceTemplate_basic_general())
+    }
+    
+    static var serviceUnitCreationModel: ServiceUnitCreationModel {
+        return .init(
+            stop: .init(
+                id: DummyModel.id,
+                name: DummyModel.displayName,
+                selectedAt: Date(),
+                isLoadingStop: false
+            ),
+            isWorkWaiting: true,
+            isLoadingStop: nil,
+            receivers: [
+                .init(
+                    id: DummyModel.id,
+                    name: DummyModel.displayName
+                )
+            ],
+            detail: nil
+        )
+    }
 }
