@@ -15,19 +15,19 @@ import RxSwift
 
 class ServiceBasicInfoViewController: BaseNavigationViewController, View {
 
-    private let scrollView = UIScrollView().then {
+    let scrollView = UIScrollView().then {
         $0.contentInset.top = 14
         $0.refreshControl = UIRefreshControl()
     }
     
-    private let serviceNumberView = SRPDetailInfoCellView(title: "서비스 번호")
-    private let serviceCreatorView = SRPDetailInfoCellView(title: "서비스 생성자")
-    private let serviceRequestAtView = SRPDetailInfoCellView(title: "서비스 요청 일시")
-    private let serviceBeginAtView = SRPDetailInfoCellView(title: "서비스 시작 일시")
-    private let serviceEndAtView = SRPDetailInfoCellView(title: "서비스 종료 일시")
-    private let serviceTimeView = SRPDetailInfoCellView(title: "서비스 소요 시간")
-    private let serviceRobotMovingDistanceView = SRPDetailInfoCellView(title: "이동 거리")
-    private let serviceRobotNameView = SRPDetailInfoCellView(title: "배정 로봇 이름")
+    let serviceNumberView = SRPDetailInfoCellView(title: "서비스 번호")
+    let serviceCreatorView = SRPDetailInfoCellView(title: "서비스 생성자")
+    let serviceRequestAtView = SRPDetailInfoCellView(title: "서비스 요청 일시")
+    let serviceBeginAtView = SRPDetailInfoCellView(title: "서비스 시작 일시")
+    let serviceEndAtView = SRPDetailInfoCellView(title: "서비스 종료 일시")
+    let serviceTimeView = SRPDetailInfoCellView(title: "서비스 소요 시간")
+    let serviceRobotMovingDistanceView = SRPDetailInfoCellView(title: "이동 거리")
+    let serviceRobotNameView = SRPDetailInfoCellView(title: "배정 로봇 이름")
     
     override func setupConstraints() {
         super.setupConstraints()

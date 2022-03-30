@@ -598,6 +598,7 @@
 		ED416F3327A171320043A7A4 /* Info-prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED416F3227A171320043A7A4 /* Info-prod.plist */; };
 		ED416F3527A176570043A7A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED416F3427A176570043A7A4 /* GoogleService-Info.plist */; };
 		ED416F3727A176AE0043A7A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED416F3627A176AE0043A7A4 /* GoogleService-Info.plist */; };
+		ED46A17F27F451A100018576 /* ServiceBasicInfoReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED46A17E27F451A100018576 /* ServiceBasicInfoReactorTests.swift */; };
 		ED508CD3272298D40029AF7B /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CC9272298D40029AF7B /* RestAPI.swift */; };
 		ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCB272298D40029AF7B /* RestAPIResponse.swift */; };
 		ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED508CCC272298D40029AF7B /* LoginResponseModel.swift */; };
@@ -963,6 +964,7 @@
 		ED416F3227A171320043A7A4 /* Info-prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-prod.plist"; sourceTree = "<group>"; };
 		ED416F3427A176570043A7A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED416F3627A176AE0043A7A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ED46A17E27F451A100018576 /* ServiceBasicInfoReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBasicInfoReactorTests.swift; sourceTree = "<group>"; };
 		ED508CC9272298D40029AF7B /* RestAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
 		ED508CCB272298D40029AF7B /* RestAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIResponse.swift; sourceTree = "<group>"; };
 		ED508CCC272298D40029AF7B /* LoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -2147,6 +2149,7 @@
 			isa = PBXGroup;
 			children = (
 				EDBA7D7D27F4477600DDCCF4 /* ServiceDetailReactorTests.swift */,
+				ED46A17E27F451A100018576 /* ServiceBasicInfoReactorTests.swift */,
 			);
 			path = SerivceDetail;
 			sourceTree = "<group>";
@@ -3417,6 +3420,7 @@
 				ED5BC9CF27F42801006C995E /* InProgressServiceListReactorTests.swift in Sources */,
 				ED5BC9C427F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift in Sources */,
 				ED5BC9CA27F4218F006C995E /* ServiceCreationSummaryReactorTests.swift in Sources */,
+				ED46A17F27F451A100018576 /* ServiceBasicInfoReactorTests.swift in Sources */,
 				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
 				EDB401CA27F1678C00021594 /* DefaultMyInfoReactorTests.swift in Sources */,
 				EDB401D427F189D800021594 /* WorkspaceHomeReactorTests.swift in Sources */,
