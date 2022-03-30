@@ -645,6 +645,7 @@
 		ED53081727B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */; };
 		ED5BC9C427F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9C327F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift */; };
 		ED5BC9C627F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9C527F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift */; };
+		ED5BC9C827F41C6E006C995E /* ServiceCreationDetailRectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9C727F41C6E006C995E /* ServiceCreationDetailRectorTests.swift */; };
 		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
@@ -990,6 +991,7 @@
 		ED53081427B2790E003B0FB0 /* ServiceDetailServiceUnitSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailServiceUnitSection.swift; sourceTree = "<group>"; };
 		ED5BC9C327F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationSelectStopReactorTests.swift; sourceTree = "<group>"; };
 		ED5BC9C527F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationSelectReceiverReactorTests.swift; sourceTree = "<group>"; };
+		ED5BC9C727F41C6E006C995E /* ServiceCreationDetailRectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationDetailRectorTests.swift; sourceTree = "<group>"; };
 		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -2111,6 +2113,7 @@
 				EDB401D827F19A9200021594 /* ServiceCreationReactorTests.swift */,
 				ED5BC9C327F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift */,
 				ED5BC9C527F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift */,
+				ED5BC9C727F41C6E006C995E /* ServiceCreationDetailRectorTests.swift */,
 			);
 			path = ServiceCreation;
 			sourceTree = "<group>";
@@ -3381,6 +3384,7 @@
 				EDB401D427F189D800021594 /* WorkspaceHomeReactorTests.swift in Sources */,
 				ED78EC4E27D5F41A007EBE70 /* DummyModel.swift in Sources */,
 				ED28514D27E9CBF4003196AD /* PushManagerTests.swift in Sources */,
+				ED5BC9C827F41C6E006C995E /* ServiceCreationDetailRectorTests.swift in Sources */,
 				ED28514B27E9BECB003196AD /* UserManagerTests.swift in Sources */,
 				ED28513D27E991C9003196AD /* MockSubscriptionManager.swift in Sources */,
 				ED28514127E99218003196AD /* MockManagerProvider.swift in Sources */,

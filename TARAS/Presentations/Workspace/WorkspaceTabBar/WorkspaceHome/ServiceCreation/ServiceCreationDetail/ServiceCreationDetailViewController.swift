@@ -33,7 +33,7 @@ class ServiceCreationDetailViewController: BaseNavigationViewController, View {
         $0.setImage(UIImage(named: "iconBkExCircle"), for: .normal)
     }
     
-    private lazy var detailTextView = UITextView().then {
+    private(set) lazy var detailTextView = UITextView().then {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 4
         $0.layer.borderColor = UIColor.grayC9C9C9.cgColor
@@ -171,15 +171,15 @@ class ServiceCreationDetailViewController: BaseNavigationViewController, View {
             .disposed(by: self.disposeBag)
         
         //State
-        let picture = reactor.state.map(\.picture).share()
-        
-        picture.map { $0 == nil }
-        .bind(to: self.imageContainer.rx.isHidden)
-        .disposed(by: self.disposeBag)
-        
-        picture.map { $0 != nil }
-        .bind(to: self.addImageButton.rx.isHidden)
-        .disposed(by: self.disposeBag)
+//        let picture = reactor.state.map(\.picture).share()
+//
+//        picture.map { $0 == nil }
+//        .bind(to: self.imageContainer.rx.isHidden)
+//        .disposed(by: self.disposeBag)
+//
+//        picture.map { $0 != nil }
+//        .bind(to: self.addImageButton.rx.isHidden)
+//        .disposed(by: self.disposeBag)
         
 //        picture
 //            .observe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))

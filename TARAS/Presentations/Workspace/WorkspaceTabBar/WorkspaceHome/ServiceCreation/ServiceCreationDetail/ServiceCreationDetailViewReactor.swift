@@ -12,7 +12,7 @@ class ServiceCreationDetailViewReactor: Reactor {
     
     typealias ServiceUnit = ServiceUnitCreationModel
     
-    enum Action {
+    enum Action: Equatable {
 //        case setPicture(String?)
         case confirm(String?)
     }
@@ -23,12 +23,12 @@ class ServiceCreationDetailViewReactor: Reactor {
     }
     
     struct State {
-        var picture: String?
+//        var picture: String?
         var isConfirmed: Bool?
     }
     
     var initialState: State = .init(
-        picture: nil,
+//        picture: nil,
         isConfirmed: nil
     )
     
