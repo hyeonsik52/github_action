@@ -31,7 +31,7 @@ class FinishedServiceListViewController: BaseNavigationViewController, View {
         $0.sectionInset = .init(top: 8, left: 16, bottom: 24, right: 16)
         $0.headerReferenceSize = .init(width: width, height: 20)
     }
-    private lazy var collectionView = UICollectionView.init(
+    lazy var collectionView = UICollectionView.init(
         frame: .zero,
         collectionViewLayout: self.flowLayout
     ).then {
@@ -75,7 +75,7 @@ class FinishedServiceListViewController: BaseNavigationViewController, View {
         }
     )
     
-    private let placeholderLabel = UILabel().then {
+    let placeholderLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.font = .regular[16]
         $0.textColor = .darkGray303030

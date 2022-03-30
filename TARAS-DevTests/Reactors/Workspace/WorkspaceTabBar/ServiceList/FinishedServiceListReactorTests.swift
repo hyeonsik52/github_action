@@ -1,5 +1,5 @@
 //
-//  InProgressServiceListReactorTests.swift
+//  FinishedServiceListReactorTests.swift
 //  TARAS-DevTests
 //
 //  Created by nexmond on 2022/03/30.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import TARAS_Dev
 
-class InProgressServiceListReactorTests: XCTestCase {
+class FinishedServiceListReactorTests: XCTestCase {
     
     var provider: ManagerProviderType!
     
@@ -25,14 +25,14 @@ class InProgressServiceListReactorTests: XCTestCase {
     func testActions() throws {
         
         // 1. prepare a stub reactor
-        let reactor = InProgressServiceListViewReactor(
+        let reactor = FinishedServiceListViewReactor(
             provider: self.provider,
             workspaceId: DummyModel.id
         )
         reactor.isStubEnabled = true
 
         // 2. prepare a view with a stub reactor
-        let viewController = InProgressServiceListViewController()
+        let viewController = FinishedServiceListViewController()
         viewController.reactor = reactor
         
         // 3. send an user interaction programatically
@@ -45,6 +45,7 @@ class InProgressServiceListReactorTests: XCTestCase {
         // 4. assert actions
         XCTAssertEqual(reactor.stub.actions.last, .refresh)
         
+        reactor.stub.state.value.serviceSections = [.init(header: "", items: [])]
         // 3. send an user interaction programatically
         reactor.stub.state.value.retryMoreFind = true
         // 4. assert actions
@@ -54,19 +55,20 @@ class InProgressServiceListReactorTests: XCTestCase {
     func testStates() throws {
         
         // 1. prepare a stub reactor
-        let reactor = InProgressServiceListViewReactor(
+        let reactor = FinishedServiceListViewReactor(
             provider: self.provider,
             workspaceId: DummyModel.id
         )
         reactor.isStubEnabled = true
 
         // 2. prepare a view with a stub reactor
-        let viewController = InProgressServiceListViewController()
+        let viewController = FinishedServiceListViewController()
         viewController.reactor = reactor
 
         // 3. set a stub state
-        let state = InProgressServiceListViewReactor.State(
+        let state = FinishedServiceListViewReactor.State(
             services: [],
+            serviceSections: [.init(header: "", items: [])],
             isLoading: nil,
             isProcessing: nil,
             retryMoreFind: false

@@ -842,6 +842,7 @@
 		EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C39B26B405F60061552F /* SceneDelegate.swift */; };
 		EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
 		EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
+		EDF281C227F43F9500351838 /* FinishedServiceListReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF281C127F43F9500351838 /* FinishedServiceListReactorTests.swift */; };
 		EDFC63C7279C0E1E006613CA /* TRSRecentSearchTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */; };
 		EDFC63C9279E8EEB006613CA /* TRSTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */; };
 		EDFC63CB279E9793006613CA /* SimpleDefualts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFC63CA279E9793006613CA /* SimpleDefualts.swift */; };
@@ -1181,6 +1182,7 @@
 		EDF0C3A226B405F70061552F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDF0C3A526B405F70061552F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDF0C3AD26B41BA20061552F /* TARAS-Dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TARAS-Dev.entitlements"; sourceTree = "<group>"; };
+		EDF281C127F43F9500351838 /* FinishedServiceListReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedServiceListReactorTests.swift; sourceTree = "<group>"; };
 		EDFC63C6279C0E1E006613CA /* TRSRecentSearchTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSRecentSearchTermsView.swift; sourceTree = "<group>"; };
 		EDFC63C8279E8EEB006613CA /* TRSTagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSTagListView.swift; sourceTree = "<group>"; };
 		EDFC63CA279E9793006613CA /* SimpleDefualts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDefualts.swift; sourceTree = "<group>"; };
@@ -1698,6 +1700,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5BC9CE27F42801006C995E /* InProgressServiceListReactorTests.swift */,
+				EDF281C127F43F9500351838 /* FinishedServiceListReactorTests.swift */,
 			);
 			path = ServiceList;
 			sourceTree = "<group>";
@@ -3411,6 +3414,7 @@
 				ED28514B27E9BECB003196AD /* UserManagerTests.swift in Sources */,
 				ED28513D27E991C9003196AD /* MockSubscriptionManager.swift in Sources */,
 				ED28514127E99218003196AD /* MockManagerProvider.swift in Sources */,
+				EDF281C227F43F9500351838 /* FinishedServiceListReactorTests.swift in Sources */,
 				EDB401BE27EC686700021594 /* SignInReactorTests.swift in Sources */,
 				ED28514527E9AFBA003196AD /* MockGraphQL.swift in Sources */,
 				ED28518527EC49E5003196AD /* SequenceTests.swift in Sources */,
