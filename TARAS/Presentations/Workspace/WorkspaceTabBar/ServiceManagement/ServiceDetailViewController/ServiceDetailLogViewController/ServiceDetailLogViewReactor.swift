@@ -13,7 +13,7 @@ class ServiceDetailLogViewReactor: Reactor {
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
     let disposeBag = DisposeBag()
     
-    enum Action {
+    enum Action: Equatable {
         case refresh
         case updateService(Service)
     }
