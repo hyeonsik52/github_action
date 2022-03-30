@@ -39,7 +39,7 @@ class ServiceCreationSummaryReactorTests: XCTestCase {
         viewController.reactor = reactor
         
         // 4. assert actions
-        XCTAssertTrue(reactor.stub.actions.contains(where: { $0 == .updateDetail(reactor.initialState.serviceUnit.detail)}))
+        XCTAssertEqual(reactor.stub.actions.last, .updateDetail(""))
         
         // 3. send an user interaction programatically
         viewController.confirmButton.sendActions(for: .touchUpInside)
@@ -77,16 +77,17 @@ class ServiceCreationSummaryReactorTests: XCTestCase {
 
         // 3. set a stub state
         let state = reactor.initialState
+        reactor.stub.state.value = state
         
         // 4. assert view properties
         let serviceUnit = state.serviceUnit
         XCTAssertEqual(viewController.stopLabel.text, serviceUnit.stop?.name)
         XCTAssertEqual(viewController.workWaitingSwitchContainer.isHidden, serviceUnit.isWorkWaiting == nil)
         XCTAssertEqual(viewController.loadingTypeSwitchContainer.isHidden, serviceUnit.isLoadingStop == nil)
-        XCTAssertEqual(viewController.workWaitingSwitch.isOn, serviceUnit.isWorkWaiting)
-        XCTAssertEqual(viewController.loadingTypeSwitch.isOn, serviceUnit.isLoadingStop)
-        XCTAssertEqual(viewController.loadingTypeSwitchStateLabel.text, serviceUnit.isLoadingStop == true ? "상차": "하차")
-        XCTAssertEqual(viewController.detailTextView.text, serviceUnit.detail)
+        XCTAssertEqual(viewController.workWaitingSwitch.isOn, serviceUnit.isWorkWaiting == true)
+        XCTAssertEqual(viewController.loadingTypeSwitch.isOn, serviceUnit.isLoadingStop == true)
+        XCTAssertEqual(viewController.loadingTypeSwitchStateLabel.text, serviceUnit.isLoadingStop == nil ? nil: (serviceUnit.isLoadingStop == true ? "상차": "하차"))
+        XCTAssertEqual(viewController.detailTextView.text, serviceUnit.detail ?? "")
         XCTAssertEqual(viewController.receiverLabel.text, serviceUnit.receivers.map(\.name).joined(separator: "\n"))
         XCTAssertEqual(viewController.receiverListContainer.isHidden, serviceUnit.receivers.isEmpty)
     }
