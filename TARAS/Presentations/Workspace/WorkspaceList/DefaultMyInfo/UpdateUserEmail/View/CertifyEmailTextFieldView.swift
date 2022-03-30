@@ -38,7 +38,6 @@ class CertifyEmailTextFieldView: UIView {
     let innerLabel = UILabel().then {
         $0.font = .bold[14]
         $0.textColor = .redEB4D39
-        $0.text = "00:00" // 타이머 라벨 위치 확인용 텍스트
     }
     
     private let viewType: ViewType

@@ -41,7 +41,7 @@ class CertifyEmailView: UIView {
     ).then {
         $0.textField.keyboardType = AccountInputType.phoneNumber.keyboardType
         $0.textField.delegate = self
-//        $0.isHidden = true // 인증번호 텍스트 필드 위치 확인용 주석
+        $0.isHidden = true
     }
     
     /// 에러 메시지 라벨
@@ -49,7 +49,6 @@ class CertifyEmailView: UIView {
         $0.textColor = .redEB4D39
         $0.font = .bold[14]
         $0.numberOfLines = 0
-        $0.text = "error message" // 에러 메시지 라벨 위치 확인용 텍스트
     }
     
     
