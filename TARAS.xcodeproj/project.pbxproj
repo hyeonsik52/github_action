@@ -782,6 +782,7 @@
 		EDB401D427F189D800021594 /* WorkspaceHomeReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401D327F189D800021594 /* WorkspaceHomeReactorTests.swift */; };
 		EDB401D627F1968F00021594 /* WorkspaceMoreReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401D527F1968F00021594 /* WorkspaceMoreReactorTests.swift */; };
 		EDB401D927F19A9200021594 /* ServiceCreationReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB401D827F19A9200021594 /* ServiceCreationReactorTests.swift */; };
+		EDBA7D7E27F4477600DDCCF4 /* ServiceDetailReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA7D7D27F4477600DDCCF4 /* ServiceDetailReactorTests.swift */; };
 		EDBF63CE27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63CF27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
 		EDBF63D027C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */; };
@@ -1122,6 +1123,7 @@
 		EDB401D327F189D800021594 /* WorkspaceHomeReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceHomeReactorTests.swift; sourceTree = "<group>"; };
 		EDB401D527F1968F00021594 /* WorkspaceMoreReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceMoreReactorTests.swift; sourceTree = "<group>"; };
 		EDB401D827F19A9200021594 /* ServiceCreationReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationReactorTests.swift; sourceTree = "<group>"; };
+		EDBA7D7D27F4477600DDCCF4 /* ServiceDetailReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailReactorTests.swift; sourceTree = "<group>"; };
 		EDBF63CD27C618A100AF74D5 /* RefreshSessionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshSessionRequestModel.swift; sourceTree = "<group>"; };
 		EDC117F026CF8E5D0020AB09 /* SignUpCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteViewController.swift; sourceTree = "<group>"; };
 		EDC118FE26D3A39C0020AB09 /* DefaultMyInfoViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoViewReactor.swift; sourceTree = "<group>"; };
@@ -2124,6 +2126,7 @@
 				EDB401D527F1968F00021594 /* WorkspaceMoreReactorTests.swift */,
 				EDB401D727F19A6A00021594 /* ServiceCreation */,
 				ED5BC9CD27F427C7006C995E /* ServiceList */,
+				EDBA7D7F27F4477C00DDCCF4 /* SerivceDetail */,
 			);
 			path = WorkspaceTabBar;
 			sourceTree = "<group>";
@@ -2138,6 +2141,14 @@
 				ED5BC9C927F4218F006C995E /* ServiceCreationSummaryReactorTests.swift */,
 			);
 			path = ServiceCreation;
+			sourceTree = "<group>";
+		};
+		EDBA7D7F27F4477C00DDCCF4 /* SerivceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				EDBA7D7D27F4477600DDCCF4 /* ServiceDetailReactorTests.swift */,
+			);
+			path = SerivceDetail;
 			sourceTree = "<group>";
 		};
 		EDC118E826D3A39C0020AB09 /* Workspace */ = {
@@ -3385,6 +3396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED28515127EAD97B003196AD /* NotificationManagerTests.swift in Sources */,
+				EDBA7D7E27F4477600DDCCF4 /* ServiceDetailReactorTests.swift in Sources */,
 				ED28517D27EC49CB003196AD /* RealmManagerTests.swift in Sources */,
 				EDB401C427EDA2D800021594 /* SignUpNameReactorTests.swift in Sources */,
 				ED28513B27E991B8003196AD /* MockNetworkManager.swift in Sources */,

@@ -21,7 +21,7 @@ class ServiceDetailViewReactor: Reactor {
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
     let disposeBag = DisposeBag()
     
-    enum Action {
+    enum Action: Equatable {
         case refreshService
         case cancelService
         case completeServiceUnit
@@ -182,7 +182,7 @@ class ServiceDetailViewReactor: Reactor {
         return state
     }
     
-    private func convertServiceUnitCellReactors(_ service: Service) -> [ServiceDetailServiceUnitCellReactor] {
+    func convertServiceUnitCellReactors(_ service: Service) -> [ServiceDetailServiceUnitCellReactor] {
         
         let myUserId = self.provider.userManager.userTB.ID
         let isServiceInProgress = (service.phase == .waiting || service.phase == .delivering)
