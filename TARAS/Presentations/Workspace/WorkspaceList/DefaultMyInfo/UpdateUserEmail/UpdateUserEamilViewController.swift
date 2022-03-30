@@ -100,18 +100,26 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             .distinctUntilChanged()
             .bind(to: self.certifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
+                
+        Observable.combineLatest(
+            reactor.state.map { $0.isDispose }.distinctUntilChanged(),
+            self.certifyEmailView.email.distinctUntilChanged(),
+            resultSelector:  { $0 || $1 == "" }
+        )
+        .filter { $0 }
+        .subscribe(onNext: { [weak self] _ in
+            self?.serialTimer?.dispose()
+            self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
+            self?.confirmButton.isEnabled = false
+        }).disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.isDispose }
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] isDispose in
-                self?.serialTimer?.dispose()
-                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
-            }).disposed(by: self.disposeBag)
-        
-        reactor.state.map { $0.isEnable }
-            .distinctUntilChanged()
-            .bind(to: self.confirmButton.rx.isEnabled)
-            .disposed(by: self.disposeBag)
+        Observable.combineLatest(
+            reactor.state.map { $0.isEnable }.distinctUntilChanged(),
+            self.certifyEmailView.authNumber.distinctUntilChanged(),
+            resultSelector:  { $0 && $1 != "" }
+        )
+        .bind(to: self.confirmButton.rx.isEnabled)
+        .disposed(by: self.disposeBag)
         
         // 만료시간 표시
         reactor.state.map { $0.authNumberExpires }
