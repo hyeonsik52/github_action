@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class UpdateUserEmailViewController: BaseNavigationViewController {
+class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.View {
     
     override var navigationPopWithBottomBarHidden: Bool {
         return true
@@ -63,6 +63,101 @@ class UpdateUserEmailViewController: BaseNavigationViewController {
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    
+    // MARK: - RractorKit
+    
+    func bind(reactor: UpdateUserEmailViewReactor) {
+        
+        // Action
+        self.certifyEmailView.email
+            .distinctUntilChanged()
+            .map { Reactor.Action.checkValidation(email: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.certifyEmailView.authNumber
+            .distinctUntilChanged()
+            .map { Reactor.Action.checkEnable(authNumber: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.certifyEmailView.certifyButtonDidTap
+            .withLatestFrom(self.certifyEmailView.email)
+            .map(Reactor.Action.sendAuthNumber)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.confirmButton.rx.throttleTap(.seconds(3))
+            .withLatestFrom(self.certifyEmailView.authNumber)
+            .map(Reactor.Action.checkAuthNumber)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // State
+        reactor.state.map { $0.isValid }
+            .distinctUntilChanged()
+            .bind(to: self.certifyEmailView.isCertifyButtonEnabled)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isDispose }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] isDispose in
+                self?.serialTimer?.dispose()
+                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isEnable }
+            .distinctUntilChanged()
+            .bind(to: self.confirmButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        // 만료시간 표시
+        reactor.state.map { $0.authNumberExpires }
+            .distinctUntilChanged()
+            .filter { $0 > 0 }
+            .subscribe(onNext: { [weak self] expires in
+                guard let self = self else { return }
+                
+                // 인증번호 입력 텍스트 필드 표시
+                self.certifyEmailView.authNumberTextFieldView.isHidden = false
+                // '인증' -> '재인증' 문구 변경
+                self.certifyEmailView.emailTextFieldView.innerButton.setTitle(
+                    Text.retryCertifyEmailButtonTitle,
+                    for: .normal
+                    )
+                
+                self.serialTimer?.dispose()
+                self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+                    .map { timer in
+                        let remainExpires = TimeInterval(expires - timer)
+                        
+                        if remainExpires < 0 {
+                            self.confirmButton.isEnabled = false
+                            self.serialTimer?.dispose()
+                        }
+
+                        return remainExpires.toTimeString
+                    }
+                    .bind(to: self.certifyEmailView.remainExpires)
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isUpdateUserEmail }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isProcessing }
+            .distinctUntilChanged()
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.errorMessage }
+            .distinctUntilChanged()
+            .bind(to: self.certifyEmailView.errorMessage)
+            .disposed(by: self.disposeBag)
     }
     
     override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {
