@@ -26,10 +26,10 @@ class ServiceCreationSelectReceiverViewController: BaseNavigationViewController,
         $0.tagListDelegate = self
         $0.isHidden = true
     }
-    private let searchView = TRSSearchView(placeholder: "이름(초성) 검색", usingRecentSearchTerms: false)
-    private let listPlaceholderView = TRSListPlaceholderView()
+    let searchView = TRSSearchView(placeholder: "이름(초성) 검색", usingRecentSearchTerms: false)
+    let listPlaceholderView = TRSListPlaceholderView()
     
-    private lazy var tableView = UITableView(frame: .zero, style: .plain).then {
+    lazy var tableView = UITableView(frame: .zero, style: .plain).then {
         $0.alwaysBounceVertical = true
         $0.separatorStyle = .none
         
