@@ -74,8 +74,6 @@ class CertifyEmailView: UIView {
     
     // MARK: - Init
     
-    // MARK: - Init
-    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
