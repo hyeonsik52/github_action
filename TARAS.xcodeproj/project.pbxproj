@@ -9,6 +9,21 @@
 /* Begin PBXBuildFile section */
 		0937600DE4462FD39D4C2B1F /* Pods_TARAS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */; };
 		29777413D700174F2A955E98 /* Pods_TARAS_QA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DE2B466381FA202337AA9F /* Pods_TARAS_QA.framework */; };
+		B597876027F2934B00052A5C /* CertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597875F27F2934B00052A5C /* CertifyEmailView.swift */; };
+		B597876227F2935600052A5C /* CertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */; };
+		B597876427F2936500052A5C /* CertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876327F2936500052A5C /* CertifyEmailGuideView.swift */; };
+		B597876627F2937700052A5C /* UpdateUserEamilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */; };
+		B597876727F293CA00052A5C /* CertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876327F2936500052A5C /* CertifyEmailGuideView.swift */; };
+		B597876827F293CA00052A5C /* CertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876327F2936500052A5C /* CertifyEmailGuideView.swift */; };
+		B597876927F293CD00052A5C /* CertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */; };
+		B597876A27F293CE00052A5C /* CertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */; };
+		B597876B27F293D000052A5C /* CertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597875F27F2934B00052A5C /* CertifyEmailView.swift */; };
+		B597876C27F293D000052A5C /* CertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597875F27F2934B00052A5C /* CertifyEmailView.swift */; };
+		B597876D27F293D300052A5C /* UpdateUserEamilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */; };
+		B597876E27F293D300052A5C /* UpdateUserEamilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */; };
+		B597877427F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
+		B597877527F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
+		B597877627F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		BDDE4A428C2CB02AC2800130 /* Pods_TARAS_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */; };
 		C6B29AA5C3EC8DBD71B4B01F /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */; };
 		ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */; };
@@ -849,6 +864,11 @@
 		9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8F340D7BE2D88A2CF04EB05 /* Pods-TARAS-QA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-QA.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-QA/Pods-TARAS-QA.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A5806CEC45543BC5AC2AF3 /* Pods-TARAS-DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-DevTests.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B597875F27F2934B00052A5C /* CertifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailView.swift; sourceTree = "<group>"; };
+		B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailTextFieldView.swift; sourceTree = "<group>"; };
+		B597876327F2936500052A5C /* CertifyEmailGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailGuideView.swift; sourceTree = "<group>"; };
+		B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEamilViewController.swift; sourceTree = "<group>"; };
+		B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailViewReactor.swift; sourceTree = "<group>"; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCell.swift; sourceTree = "<group>"; };
@@ -1184,6 +1204,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B597875D27F2931A00052A5C /* UpdateUserEmail */ = {
+			isa = PBXGroup;
+			children = (
+				B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */,
+				B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */,
+				B597875E27F2933200052A5C /* View */,
+			);
+			path = UpdateUserEmail;
+			sourceTree = "<group>";
+		};
+		B597875E27F2933200052A5C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B597876327F2936500052A5C /* CertifyEmailGuideView.swift */,
+				B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */,
+				B597875F27F2934B00052A5C /* CertifyEmailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B78B945B18F3A657F0DEEFC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2043,6 +2083,7 @@
 				EDC118FE26D3A39C0020AB09 /* DefaultMyInfoViewReactor.swift */,
 				ED7A0E692721525B00AD6678 /* Views */,
 				ED7A0E712721539400AD6678 /* UpdateUserInfo */,
+				B597875D27F2931A00052A5C /* UpdateUserEmail */,
 			);
 			path = DefaultMyInfo;
 			sourceTree = "<group>";
@@ -2804,6 +2845,7 @@
 				ED416D0027A16C640043A7A4 /* ServicePhase.swift in Sources */,
 				ED416D0127A16C640043A7A4 /* API.swift in Sources */,
 				ED416D0227A16C640043A7A4 /* ServiceState.swift in Sources */,
+				B597877527F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED416D0327A16C640043A7A4 /* Account.swift in Sources */,
 				ED416D0427A16C640043A7A4 /* WorkspaceHomeViewController.swift in Sources */,
 				ED416D0527A16C640043A7A4 /* ServiceCellReactor.swift in Sources */,
@@ -2876,6 +2918,7 @@
 				ED416D5827A16C640043A7A4 /* UIImageView.swift in Sources */,
 				ED416D5927A16C640043A7A4 /* GenericScalar.swift in Sources */,
 				ED416D5A27A16C640043A7A4 /* BaseManager.swift in Sources */,
+				B597876C27F293D000052A5C /* CertifyEmailView.swift in Sources */,
 				ED416D5C27A16C640043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
 				ED416D5E27A16C640043A7A4 /* RestAPIRequest.swift in Sources */,
 				ED416D5F27A16C640043A7A4 /* ServiceCreationCellReactor.swift in Sources */,
@@ -2921,9 +2964,11 @@
 				ED416D9127A16C640043A7A4 /* ServiceDetailServiceUnitCellReactor.swift in Sources */,
 				ED416D9427A16C640043A7A4 /* Stop.swift in Sources */,
 				ED53080927ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
+				B597876827F293CA00052A5C /* CertifyEmailGuideView.swift in Sources */,
 				EDBF63CF27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */,
 				ED98973527BB7AFA000C9246 /* ServiceShortcutRegistrationViewController.swift in Sources */,
 				ED416D9627A16C640043A7A4 /* SimpleCellReactor.swift in Sources */,
+				B597876A27F293CE00052A5C /* CertifyEmailTextFieldView.swift in Sources */,
 				ED416D9727A16C640043A7A4 /* WorkspaceInfoView.swift in Sources */,
 				ED416D9827A16C640043A7A4 /* SwiftEntryKit_Show.swift in Sources */,
 				ED416D9927A16C640043A7A4 /* ServiceCreationViewReactor.swift in Sources */,
@@ -2948,6 +2993,7 @@
 				ED416DB027A16C640043A7A4 /* ServiceUnitCreationModel.swift in Sources */,
 				ED416DB127A16C640043A7A4 /* SignUpNameViewReactor.swift in Sources */,
 				ED416DB227A16C640043A7A4 /* RxSwift+Operator.swift in Sources */,
+				B597876E27F293D300052A5C /* UpdateUserEamilViewController.swift in Sources */,
 				ED416DB327A16C640043A7A4 /* UIColor.swift in Sources */,
 				ED416DB427A16C640043A7A4 /* WorkspaceSelectView_Reactive.swift in Sources */,
 				ED416DB527A16C640043A7A4 /* WorkspaceListSection.swift in Sources */,
@@ -3066,6 +3112,7 @@
 				ED416E4527A170FC0043A7A4 /* ServicePhase.swift in Sources */,
 				ED416E4627A170FC0043A7A4 /* API.swift in Sources */,
 				ED416E4727A170FC0043A7A4 /* ServiceState.swift in Sources */,
+				B597877627F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED416E4827A170FC0043A7A4 /* Account.swift in Sources */,
 				ED416E4927A170FC0043A7A4 /* WorkspaceHomeViewController.swift in Sources */,
 				ED416E4A27A170FC0043A7A4 /* ServiceCellReactor.swift in Sources */,
@@ -3099,6 +3146,7 @@
 				ED416E6C27A170FC0043A7A4 /* SignInViewController.swift in Sources */,
 				ED416E6D27A170FC0043A7A4 /* RealmManager.swift in Sources */,
 				ED416E6E27A170FC0043A7A4 /* GraphQLOperation.swift in Sources */,
+				B597876427F2936500052A5C /* CertifyEmailGuideView.swift in Sources */,
 				ED416E6F27A170FC0043A7A4 /* DefaultMyInfoViewReactor.swift in Sources */,
 				ED416E7027A170FC0043A7A4 /* ServiceType.swift in Sources */,
 				ED416E7127A170FC0043A7A4 /* ErrorInterceptor.swift in Sources */,
@@ -3187,6 +3235,7 @@
 				ED53080A27ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
 				ED98973627BB7AFA000C9246 /* ServiceShortcutRegistrationViewController.swift in Sources */,
 				ED416EDB27A170FC0043A7A4 /* SimpleCellReactor.swift in Sources */,
+				B597876227F2935600052A5C /* CertifyEmailTextFieldView.swift in Sources */,
 				ED416EDC27A170FC0043A7A4 /* WorkspaceInfoView.swift in Sources */,
 				ED416EDD27A170FC0043A7A4 /* SwiftEntryKit_Show.swift in Sources */,
 				ED416EDE27A170FC0043A7A4 /* ServiceCreationViewReactor.swift in Sources */,
@@ -3196,6 +3245,7 @@
 				ED416EE227A170FC0043A7A4 /* TRSListPlaceholderView.swift in Sources */,
 				ED416EE527A170FC0043A7A4 /* TRSSearchView.swift in Sources */,
 				ED416EE627A170FC0043A7A4 /* ServiceTemplateListSection.swift in Sources */,
+				B597876027F2934B00052A5C /* CertifyEmailView.swift in Sources */,
 				ED416EE727A170FC0043A7A4 /* WorkspaceListViewController.swift in Sources */,
 				ED416EE827A170FC0043A7A4 /* SignUpGuideView.swift in Sources */,
 				ED416EE927A170FC0043A7A4 /* ServiceDetailViewReactor.swift in Sources */,
@@ -3210,6 +3260,7 @@
 				ED416EF427A170FC0043A7A4 /* SignUpPasswordViewReactor.swift in Sources */,
 				ED416EF527A170FC0043A7A4 /* ServiceUnitCreationModel.swift in Sources */,
 				ED416EF627A170FC0043A7A4 /* SignUpNameViewReactor.swift in Sources */,
+				B597876627F2937700052A5C /* UpdateUserEamilViewController.swift in Sources */,
 				ED416EF727A170FC0043A7A4 /* RxSwift+Operator.swift in Sources */,
 				ED416EF827A170FC0043A7A4 /* UIColor.swift in Sources */,
 				ED416EF927A170FC0043A7A4 /* WorkspaceSelectView_Reactive.swift in Sources */,
@@ -3355,6 +3406,7 @@
 				ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */,
 				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
 				ED7BCE2827716B1B0074BFFA /* ServiceState.swift in Sources */,
+				B597877427F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
 				EDC11AF826D3A39E0020AB09 /* WorkspaceHomeViewController.swift in Sources */,
 				EDC11A7426D3A39D0020AB09 /* ServiceCellReactor.swift in Sources */,
@@ -3427,6 +3479,7 @@
 				ED6B464626B7E7CC00C2FA6D /* UIImageView.swift in Sources */,
 				ED7BCE302771712C0074BFFA /* GenericScalar.swift in Sources */,
 				ED6B468926B7E8B500C2FA6D /* BaseManager.swift in Sources */,
+				B597876B27F293D000052A5C /* CertifyEmailView.swift in Sources */,
 				ED06C752277DBD2D00F9D0A5 /* ServiceCreationDetailViewReactor.swift in Sources */,
 				ED508CD9272298D40029AF7B /* RestAPIRequest.swift in Sources */,
 				ED06C74C277DBD2D00F9D0A5 /* ServiceCreationCellReactor.swift in Sources */,
@@ -3472,9 +3525,11 @@
 				EDC11A4226D3A39D0020AB09 /* ServiceDetailServiceUnitCellReactor.swift in Sources */,
 				EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */,
 				ED53080827ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
+				B597876727F293CA00052A5C /* CertifyEmailGuideView.swift in Sources */,
 				EDBF63CE27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */,
 				ED98973427BB7AFA000C9246 /* ServiceShortcutRegistrationViewController.swift in Sources */,
 				ED06C73B277DBD2D00F9D0A5 /* SimpleCellReactor.swift in Sources */,
+				B597876927F293CD00052A5C /* CertifyEmailTextFieldView.swift in Sources */,
 				EDC11A8126D3A39D0020AB09 /* WorkspaceInfoView.swift in Sources */,
 				ED6B460426B7DFF700C2FA6D /* SwiftEntryKit_Show.swift in Sources */,
 				ED06C746277DBD2D00F9D0A5 /* ServiceCreationViewReactor.swift in Sources */,
@@ -3499,6 +3554,7 @@
 				ED06C75C277DBD2D00F9D0A5 /* ServiceUnitCreationModel.swift in Sources */,
 				ED52737626C3A03C0077CD9D /* SignUpNameViewReactor.swift in Sources */,
 				ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */,
+				B597876D27F293D300052A5C /* UpdateUserEamilViewController.swift in Sources */,
 				ED6B463E26B7E7CC00C2FA6D /* UIColor.swift in Sources */,
 				EDC11AFC26D3A39E0020AB09 /* WorkspaceSelectView_Reactive.swift in Sources */,
 				EDC11A3226D3A39D0020AB09 /* WorkspaceListSection.swift in Sources */,
