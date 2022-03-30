@@ -11,6 +11,7 @@ import Then
 import RxSwift
 import RxCocoa
 
+//TODO: 숫자 증감, 수동 입력에 대한 단위테스트 필요
 class ServiceCreationRepeatCountViewController: BaseViewController {
     
     private let titleLabel = UILabel().then {
