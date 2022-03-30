@@ -29,11 +29,7 @@ class CertifyEmailView: UIView {
     
     let errorMessage = PublishRelay<String?>()
     
-    let retryCertifyEmailButtonTitle = PublishRelay<String>()
-    
     let isCertifyButtonEnabled = PublishRelay<Bool>()
-    
-    let isExpiresLabelHidden = PublishRelay<Bool>()
     
     let isAuthNumberTextFieldHidden = PublishRelay<Bool>()
     
@@ -97,14 +93,6 @@ class CertifyEmailView: UIView {
         
         isAuthNumberTextFieldHidden
             .bind(to: self.authNumberTextFieldView.rx.isHidden)
-            .disposed(by: self.disposeBag)
-        
-        isExpiresLabelHidden
-            .bind(to: self.authNumberTextFieldView.innerLabel.rx.isHidden)
-            .disposed(by: self.disposeBag)
-        
-        retryCertifyEmailButtonTitle
-            .bind(to: self.emailTextFieldView.innerButton.rx.title())
             .disposed(by: self.disposeBag)
         
         // 만료시간 라벨에 표시

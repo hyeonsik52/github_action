@@ -95,7 +95,7 @@ extension AccountError {
         case .authNumberSendFailed:
             return "인증번호 전송에 실패했습니다."
         case .authNumberNotMatch:
-            return "잘못된 인증번호입니다."
+            return "인증번호가 일치하지 않습니다."
         case .idEmailNotMatch:
             return "등록된 이메일 정보와 일치하지 않습니다."
         case .invalidPassword:

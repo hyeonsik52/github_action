@@ -27,6 +27,7 @@ class CertifyEmailTextFieldView: UIView {
         $0.clearButtonMode = .whileEditing
         $0.autocapitalizationType = .none
         $0.enablesReturnKeyAutomatically = true
+        $0.autocorrectionType = .no
     }
     
     let innerButton = SRPButton("").then {
