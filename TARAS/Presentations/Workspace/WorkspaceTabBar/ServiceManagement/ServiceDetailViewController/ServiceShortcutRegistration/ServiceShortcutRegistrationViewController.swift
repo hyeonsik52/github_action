@@ -35,13 +35,13 @@ class ServiceShortcutRegistrationViewController: BaseNavigationViewController, V
         $0.keyboardDismissMode = .onDrag
     }
     
-    private lazy var textFieldView = SignTextFieldView(Text.namePlaceholder).then {
+    lazy var textFieldView = SignTextFieldView(Text.namePlaceholder).then {
         $0.textField.autocapitalizationType = .none
         $0.textField.keyboardType = AccountInputType.name.keyboardType
         $0.textField.delegate = self
     }
     
-    private lazy var detailTextView = UITextView().then {
+    lazy var detailTextView = UITextView().then {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 4
         $0.backgroundColor = .lightGrayF6F6F6
@@ -53,7 +53,7 @@ class ServiceShortcutRegistrationViewController: BaseNavigationViewController, V
         $0.delegate = self
     }
     
-    private let confirmButton = SRPButton(Text.confirmButtonTitle)
+    let confirmButton = SRPButton(Text.confirmButtonTitle)
     
     override var navigationPopWithBottomBarHidden: Bool {
         return true
