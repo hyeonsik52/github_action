@@ -37,7 +37,7 @@ class InProgressServiceListViewController: BaseViewController, View {
         $0.itemSize = .init(width: width, height: 198)
         $0.sectionInset = .init(top: 8, left: 16, bottom: 24, right: 16)
     }
-    private lazy var collectionView = UICollectionView.init(
+    lazy var collectionView = UICollectionView.init(
         frame: .zero,
         collectionViewLayout: self.flowLayout
     ).then {
@@ -64,7 +64,7 @@ class InProgressServiceListViewController: BaseViewController, View {
         }
     )
     
-    private let placeholderLabel = UILabel().then {
+    let placeholderLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.font = .regular[16]
         $0.textColor = .darkGray303030

@@ -647,6 +647,10 @@
 		ED5BC9C627F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9C527F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift */; };
 		ED5BC9C827F41C6E006C995E /* ServiceCreationDetailRectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9C727F41C6E006C995E /* ServiceCreationDetailRectorTests.swift */; };
 		ED5BC9CA27F4218F006C995E /* ServiceCreationSummaryReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9C927F4218F006C995E /* ServiceCreationSummaryReactorTests.swift */; };
+		ED5BC9CF27F42801006C995E /* InProgressServiceListReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9CE27F42801006C995E /* InProgressServiceListReactorTests.swift */; };
+		ED5BC9D127F43753006C995E /* GraphQLSelectionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9D027F43753006C995E /* GraphQLSelectionSet.swift */; };
+		ED5BC9D227F43753006C995E /* GraphQLSelectionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9D027F43753006C995E /* GraphQLSelectionSet.swift */; };
+		ED5BC9D327F43753006C995E /* GraphQLSelectionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BC9D027F43753006C995E /* GraphQLSelectionSet.swift */; };
 		ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED633E30279F936300585AB0 /* KeyboardExtension.swift */; };
 		ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED68E1B926D4867C003D6442 /* UITableView.swift */; };
 		ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */; };
@@ -994,6 +998,8 @@
 		ED5BC9C527F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationSelectReceiverReactorTests.swift; sourceTree = "<group>"; };
 		ED5BC9C727F41C6E006C995E /* ServiceCreationDetailRectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationDetailRectorTests.swift; sourceTree = "<group>"; };
 		ED5BC9C927F4218F006C995E /* ServiceCreationSummaryReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCreationSummaryReactorTests.swift; sourceTree = "<group>"; };
+		ED5BC9CE27F42801006C995E /* InProgressServiceListReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressServiceListReactorTests.swift; sourceTree = "<group>"; };
+		ED5BC9D027F43753006C995E /* GraphQLSelectionSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLSelectionSet.swift; sourceTree = "<group>"; };
 		ED633E30279F936300585AB0 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		ED68E1B926D4867C003D6442 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		ED6B45F126B7DF7D00C2FA6D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -1688,6 +1694,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		ED5BC9CD27F427C7006C995E /* ServiceList */ = {
+			isa = PBXGroup;
+			children = (
+				ED5BC9CE27F42801006C995E /* InProgressServiceListReactorTests.swift */,
+			);
+			path = ServiceList;
+			sourceTree = "<group>";
+		};
 		ED6B45F026B7DF7D00C2FA6D /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1793,6 +1807,7 @@
 			isa = PBXGroup;
 			children = (
 				ED6B462526B7E7CC00C2FA6D /* GraphQLOperation.swift */,
+				ED5BC9D027F43753006C995E /* GraphQLSelectionSet.swift */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -2105,6 +2120,7 @@
 				EDB401D327F189D800021594 /* WorkspaceHomeReactorTests.swift */,
 				EDB401D527F1968F00021594 /* WorkspaceMoreReactorTests.swift */,
 				EDB401D727F19A6A00021594 /* ServiceCreation */,
+				ED5BC9CD27F427C7006C995E /* ServiceList */,
 			);
 			path = WorkspaceTabBar;
 			sourceTree = "<group>";
@@ -3052,6 +3068,7 @@
 				ED416DAD27A16C640043A7A4 /* NotificationType.swift in Sources */,
 				ED416DAE27A16C640043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
 				ED416DAF27A16C640043A7A4 /* SignUpPasswordViewReactor.swift in Sources */,
+				ED5BC9D227F43753006C995E /* GraphQLSelectionSet.swift in Sources */,
 				ED416DB027A16C640043A7A4 /* ServiceUnitCreationModel.swift in Sources */,
 				ED416DB127A16C640043A7A4 /* SignUpNameViewReactor.swift in Sources */,
 				ED416DB227A16C640043A7A4 /* RxSwift+Operator.swift in Sources */,
@@ -3314,6 +3331,7 @@
 				ED416EEF27A170FC0043A7A4 /* UIView+Search.swift in Sources */,
 				ED416EF227A170FC0043A7A4 /* NotificationType.swift in Sources */,
 				ED416EF327A170FC0043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
+				ED5BC9D327F43753006C995E /* GraphQLSelectionSet.swift in Sources */,
 				ED416EF427A170FC0043A7A4 /* SignUpPasswordViewReactor.swift in Sources */,
 				ED416EF527A170FC0043A7A4 /* ServiceUnitCreationModel.swift in Sources */,
 				ED416EF627A170FC0043A7A4 /* SignUpNameViewReactor.swift in Sources */,
@@ -3381,6 +3399,7 @@
 				EDB401CF27F1769100021594 /* WorkspaceSearchReactorTests.swift in Sources */,
 				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
 				ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */,
+				ED5BC9CF27F42801006C995E /* InProgressServiceListReactorTests.swift in Sources */,
 				ED5BC9C427F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift in Sources */,
 				ED5BC9CA27F4218F006C995E /* ServiceCreationSummaryReactorTests.swift in Sources */,
 				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
@@ -3620,6 +3639,7 @@
 				ED6B468826B7E8B500C2FA6D /* NotificationType.swift in Sources */,
 				EDC11A4826D3A39D0020AB09 /* ServiceDetailLogTableViewCell.swift in Sources */,
 				ED52737926C3A03C0077CD9D /* SignUpPasswordViewReactor.swift in Sources */,
+				ED5BC9D127F43753006C995E /* GraphQLSelectionSet.swift in Sources */,
 				ED06C75C277DBD2D00F9D0A5 /* ServiceUnitCreationModel.swift in Sources */,
 				ED52737626C3A03C0077CD9D /* SignUpNameViewReactor.swift in Sources */,
 				ED6B465726B7E7CC00C2FA6D /* RxSwift+Operator.swift in Sources */,
