@@ -187,4 +187,8 @@ extension DefaultMyInfoViewReactor {
             prevValue: prevValue
         )
     }
+    
+    func reactorForUpdateEmail() -> UpdateUserEmailViewReactor {
+        return UpdateUserEmailViewReactor(provider: self.provider)
+    }
 }
