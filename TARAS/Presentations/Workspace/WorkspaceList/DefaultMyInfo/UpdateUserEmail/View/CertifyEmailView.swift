@@ -21,6 +21,26 @@ class CertifyEmailView: UIView {
         static let SUPVC_6 = "인증번호 입력"
     }
     
+    let email = PublishRelay<String>()
+    
+    let authNumber = PublishRelay<String>()
+    
+    let remainExpires = PublishRelay<String>()
+    
+    let errorMessage = PublishRelay<String?>()
+    
+    let retryCertifyEmailButtonTitle = PublishRelay<String>()
+    
+    let isCertifyButtonEnabled = PublishRelay<Bool>()
+    
+    let isExpiresLabelHidden = PublishRelay<Bool>()
+    
+    let isAuthNumberTextFieldHidden = PublishRelay<Bool>()
+    
+    let certifyButtonDidTap = PublishRelay<Void>()
+    
+    let disposeBag = DisposeBag()
+    
     
     // MARK: - UI
     
@@ -54,10 +74,49 @@ class CertifyEmailView: UIView {
     
     // MARK: - Init
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         self.setupContraints()
+        
+        self.emailTextFieldView.textField.rx.text.orEmpty
+            .bind(to: self.email)
+            .disposed(by: self.disposeBag)
+        
+        self.emailTextFieldView.innerButton.rx.throttleTap(.seconds(3))
+            .bind(to: self.certifyButtonDidTap)
+            .disposed(by: self.disposeBag)
+        
+        self.authNumberTextFieldView.textField.rx.text.orEmpty
+            .bind(to: self.authNumber)
+            .disposed(by: disposeBag)
+        
+        isCertifyButtonEnabled
+            .bind(to: self.emailTextFieldView.innerButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        isAuthNumberTextFieldHidden
+            .bind(to: self.authNumberTextFieldView.rx.isHidden)
+            .disposed(by: self.disposeBag)
+        
+        isExpiresLabelHidden
+            .bind(to: self.authNumberTextFieldView.innerLabel.rx.isHidden)
+            .disposed(by: self.disposeBag)
+        
+        retryCertifyEmailButtonTitle
+            .bind(to: self.emailTextFieldView.innerButton.rx.title())
+            .disposed(by: self.disposeBag)
+        
+        // 만료시간 라벨에 표시
+        remainExpires
+            .bind(to: self.authNumberTextFieldView.innerLabel.rx.text)
+            .disposed(by: self.disposeBag)
+            
+        errorMessage
+            .bind(to: self.errorMessageLabel.rx.text)
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder: NSCoder) {
