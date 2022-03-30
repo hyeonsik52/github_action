@@ -69,6 +69,8 @@ enum AccountError {
     case idPasswordNotMatch
     /// 미등록 이메일 입력
     case unregisteredEmail
+    /// 인증번호 전송 실패
+    case authNumberSendFailed
     /// 인증번호 불일치
     case authNumberNotMatch
     /// 아이디-이메일 불일치
@@ -90,6 +92,8 @@ extension AccountError {
             return "아이디 또는 비밀번호가 일치하지 않습니다."
         case .unregisteredEmail:
             return "등록되어 있지 않은 이메일입니다."
+        case .authNumberSendFailed:
+            return "인증번호 전송에 실패했습니다."
         case .authNumberNotMatch:
             return "잘못된 인증번호입니다."
         case .idEmailNotMatch:
