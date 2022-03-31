@@ -29,6 +29,8 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         $0.isEnabled = false
     }
     
+    let isConfirmButtonisEnable = PublishRelay<Bool>()
+    
     var serialTimer: Disposable?
     
     
@@ -52,6 +54,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         self.view.addSubview(self.confirmButton)
         self.confirmButton.snp.makeConstraints {
             $0.height.equalTo(60)
+            
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-12)
@@ -100,25 +103,20 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             .distinctUntilChanged()
             .bind(to: self.certifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
-                
-        Observable.combineLatest(
-            reactor.state.map { $0.isDispose }.distinctUntilChanged(),
-            self.certifyEmailView.email.distinctUntilChanged(),
-            resultSelector:  { $0 || $1 == "" }
-        )
-        .subscribe(onNext: { [weak self] isEditing in
-            if isEditing {
+        
+        self.certifyEmailView.email.distinctUntilChanged()
+            .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
-                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
-                self?.confirmButton.isEnabled = !isEditing
-                self?.certifyEmailView.authNumberTextFieldView.isHidden = isEditing
-            }
-        }).disposed(by: self.disposeBag)
+                self?.certifyEmailView.authNumberTextFieldView.isHidden = true
+                self?.certifyEmailView.clearAuthNumberTextField()
+                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = nil
+            }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
             reactor.state.map { $0.isEnable }.distinctUntilChanged(),
             self.certifyEmailView.authNumber.distinctUntilChanged(),
-            resultSelector:  { $0 && $1 != "" }
+            self.isConfirmButtonisEnable,
+            resultSelector: { $0 && !$1.isEmpty && $2 }
         )
         .bind(to: self.confirmButton.rx.isEnabled)
         .disposed(by: self.disposeBag)
@@ -131,7 +129,10 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 guard let self = self else { return }
                 
                 self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
+                self.certifyEmailView.clearAuthNumberTextField()
                 
+                // '확인' 버튼 활성화 조건
+                self.isConfirmButtonisEnable.accept(true)
                 // 인증번호 입력 텍스트 필드 표시
                 self.certifyEmailView.authNumberTextFieldView.isHidden = false
                 // '인증' -> '재인증' 문구 변경
@@ -145,8 +146,11 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                     .map { timer in
                         let remainExpires = TimeInterval(expires - timer)
                         
+                        if remainExpires == 0 {
+                            self.isConfirmButtonisEnable.accept(false)
+                        }
+                        
                         if remainExpires < 0 {
-                            self.confirmButton.isEnabled = false
                             self.serialTimer?.dispose()
                         }
 
