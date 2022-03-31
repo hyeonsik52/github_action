@@ -182,4 +182,3 @@ extension CertifyEmailView: UITextFieldDelegate {
         return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: policy)
     }
 }
-

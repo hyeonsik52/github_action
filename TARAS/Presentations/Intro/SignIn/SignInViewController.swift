@@ -75,7 +75,7 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
         signInView.findIdAndPwButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 self?.forgotAccountAlert(idHandler: {
-                    let viewController = FindIdCertifyEmailViewController()
+                    let viewController = ForgotAccountCertifyEmailViewController()
                     self?.navigationController?.pushViewController(viewController, animated: true)
                 }, passwordHandler: {
                     // todo: 비밀번호 재설정 시
