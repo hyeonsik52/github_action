@@ -130,6 +130,8 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             .subscribe(onNext: { [weak self] expires in
                 guard let self = self else { return }
                 
+                self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
+                
                 // 인증번호 입력 텍스트 필드 표시
                 self.certifyEmailView.authNumberTextFieldView.isHidden = false
                 // '인증' -> '재인증' 문구 변경
