@@ -31,6 +31,16 @@
 		B5D0606427F5BA2800BCEE87 /* CompleteFindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */; };
 		B5D0606627F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */; };
 		B5D0606827F5BA4A00BCEE87 /* CompleteFindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */; };
+		B5D0606927F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */; };
+		B5D0606A27F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */; };
+		B5D0606B27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */; };
+		B5D0606C27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */; };
+		B5D0606D27F5BB0000BCEE87 /* CompleteFindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */; };
+		B5D0606E27F5BB0000BCEE87 /* CompleteFindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */; };
+		B5D0606F27F5BB0200BCEE87 /* CompleteFindIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */; };
+		B5D0607027F5BB0300BCEE87 /* CompleteFindIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */; };
+		B5D0607127F5BB0500BCEE87 /* CompleteFindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */; };
+		B5D0607227F5BB0500BCEE87 /* CompleteFindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */; };
 		BDDE4A428C2CB02AC2800130 /* Pods_TARAS_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */; };
 		C6B29AA5C3EC8DBD71B4B01F /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */; };
 		ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */; };
@@ -2902,6 +2912,7 @@
 				ED416CFD27A16C640043A7A4 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED416CFE27A16C640043A7A4 /* ServiceTemplate.swift in Sources */,
 				ED28516027EBFED0003196AD /* SessionAPIRequest.swift in Sources */,
+				B5D0606F27F5BB0200BCEE87 /* CompleteFindIdViewReactor.swift in Sources */,
 				ED416CFF27A16C640043A7A4 /* ServiceModelSection.swift in Sources */,
 				ED416D0027A16C640043A7A4 /* ServicePhase.swift in Sources */,
 				ED416D0127A16C640043A7A4 /* API.swift in Sources */,
@@ -2909,6 +2920,7 @@
 				B597877527F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED416D0327A16C640043A7A4 /* Account.swift in Sources */,
 				ED416D0427A16C640043A7A4 /* WorkspaceHomeViewController.swift in Sources */,
+				B5D0607127F5BB0500BCEE87 /* CompleteFindIdView.swift in Sources */,
 				ED416D0527A16C640043A7A4 /* ServiceCellReactor.swift in Sources */,
 				ED416D0627A16C640043A7A4 /* UIAlertController+Rx.swift in Sources */,
 				ED416D0727A16C640043A7A4 /* SwiftEntryKit_View.swift in Sources */,
@@ -2957,6 +2969,7 @@
 				ED416D3B27A16C640043A7A4 /* UpdateUserInfoViewReactor.swift in Sources */,
 				ED416D3C27A16C640043A7A4 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				ED416D3D27A16C640043A7A4 /* SRPDetailInfoCellView.swift in Sources */,
+				B5D0606927F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */,
 				ED416D3E27A16C640043A7A4 /* NotificationManager.swift in Sources */,
 				ED416D3F27A16C640043A7A4 /* WorkspaceSearchResultViewController.swift in Sources */,
 				ED416D4027A16C640043A7A4 /* UIViewController+Rx.swift in Sources */,
@@ -3008,6 +3021,7 @@
 				ED416D7927A16C640043A7A4 /* ServiceCreationFooter.swift in Sources */,
 				ED416D7A27A16C640043A7A4 /* SimpleDataSourcesSection.swift in Sources */,
 				ED416D7B27A16C640043A7A4 /* LoginRequestModel.swift in Sources */,
+				B5D0606D27F5BB0000BCEE87 /* CompleteFindIdViewController.swift in Sources */,
 				ED416D7C27A16C640043A7A4 /* RestAPI.swift in Sources */,
 				ED416D7E27A16C640043A7A4 /* UITableView.swift in Sources */,
 				ED416D8127A16C640043A7A4 /* SignUpNameViewController.swift in Sources */,
@@ -3080,6 +3094,7 @@
 				ED416DCA27A16C640043A7A4 /* SceneDelegate.swift in Sources */,
 				ED416DCB27A16C640043A7A4 /* String.swift in Sources */,
 				ED416DCC27A16C640043A7A4 /* UserManager.swift in Sources */,
+				B5D0606B27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */,
 				ED416DCD27A16C640043A7A4 /* ThreadConfined_BaseObject.swift in Sources */,
 				ED416DCE27A16C640043A7A4 /* SettingTextCellView.swift in Sources */,
 				ED416DCF27A16C640043A7A4 /* TRSPlaceholderView.swift in Sources */,
@@ -3470,6 +3485,7 @@
 				ED06C73A277DBD2D00F9D0A5 /* ServiceUnitTargetCellReactor.swift in Sources */,
 				ED06C6FD277C28CA00F9D0A5 /* ServiceTemplate.swift in Sources */,
 				ED28515F27EBFED0003196AD /* SessionAPIRequest.swift in Sources */,
+				B5D0607027F5BB0300BCEE87 /* CompleteFindIdViewReactor.swift in Sources */,
 				EDC11A7326D3A39D0020AB09 /* ServiceModelSection.swift in Sources */,
 				ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */,
 				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
@@ -3477,6 +3493,7 @@
 				B597877427F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
 				EDC11AF826D3A39E0020AB09 /* WorkspaceHomeViewController.swift in Sources */,
+				B5D0607227F5BB0500BCEE87 /* CompleteFindIdView.swift in Sources */,
 				EDC11A7426D3A39D0020AB09 /* ServiceCellReactor.swift in Sources */,
 				ED6B465626B7E7CC00C2FA6D /* UIAlertController+Rx.swift in Sources */,
 				ED6B460726B7DFF700C2FA6D /* SwiftEntryKit_View.swift in Sources */,
@@ -3525,6 +3542,7 @@
 				ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */,
 				EDC11A7A26D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				EDC11A3C26D3A39D0020AB09 /* SRPDetailInfoCellView.swift in Sources */,
+				B5D0606A27F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */,
 				EDC6CAF0278BD05E004C5881 /* NotificationManager.swift in Sources */,
 				EDC11B0126D3A39E0020AB09 /* WorkspaceSearchResultViewController.swift in Sources */,
 				ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */,
@@ -3576,6 +3594,7 @@
 				ED06C74D277DBD2D00F9D0A5 /* ServiceCreationFooter.swift in Sources */,
 				ED06C738277DBD2D00F9D0A5 /* SimpleDataSourcesSection.swift in Sources */,
 				ED508CD8272298D40029AF7B /* LoginRequestModel.swift in Sources */,
+				B5D0606E27F5BB0000BCEE87 /* CompleteFindIdViewController.swift in Sources */,
 				ED508CD3272298D40029AF7B /* RestAPI.swift in Sources */,
 				ED68E1BA26D4867C003D6442 /* UITableView.swift in Sources */,
 				ED52737426C3A03C0077CD9D /* SignUpNameViewController.swift in Sources */,
@@ -3648,6 +3667,7 @@
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,
 				ED6B464C26B7E7CC00C2FA6D /* String.swift in Sources */,
 				ED6B468B26B7E8B500C2FA6D /* UserManager.swift in Sources */,
+				B5D0606C27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */,
 				ED6B465A26B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift in Sources */,
 				EDC11A9326D3A39D0020AB09 /* SettingTextCellView.swift in Sources */,
 				ED416CA627A0CE310043A7A4 /* TRSPlaceholderView.swift in Sources */,
