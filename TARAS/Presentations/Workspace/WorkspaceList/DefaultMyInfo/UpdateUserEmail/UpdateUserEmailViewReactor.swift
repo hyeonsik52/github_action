@@ -23,7 +23,6 @@ class UpdateUserEmailViewReactor: Reactor {
     
     enum Mutation {
         case updateIsvalid(Bool)
-        case resetTimer
         case updateEnable(Bool)
         case calculateRemainExpires(Int)
         case updateUserEmail(Bool)
@@ -33,7 +32,6 @@ class UpdateUserEmailViewReactor: Reactor {
     
     struct State {
         var isValid: Bool
-        var isDispose: Bool
         var isEnable: Bool
         var authNumberExpires: Int
         var isUpdateUserEmail: Bool
@@ -45,7 +43,6 @@ class UpdateUserEmailViewReactor: Reactor {
     
     var initialState: State = .init(
         isValid: false,
-        isDispose: false,
         isEnable: false,
         authNumberExpires: 0,
         isUpdateUserEmail: false,
@@ -75,13 +72,10 @@ class UpdateUserEmailViewReactor: Reactor {
         switch mutation {
         case .updateIsvalid(let isValid):
             state.isValid = isValid
-        case .resetTimer:
-            state.isDispose = true
         case .updateEnable(let isEnable):
             state.isEnable = isEnable
         case .calculateRemainExpires(let authNumberExpires):
             state.authNumberExpires = authNumberExpires
-            state.isDispose = false
         case .updateUserEmail(let isUpdateUserEmail):
             state.isUpdateUserEmail = isUpdateUserEmail
         case .updateIsProcessing(let isProcessing):
@@ -93,27 +87,23 @@ class UpdateUserEmailViewReactor: Reactor {
     }
     
     private func checkValidation(email: String) -> Observable<Mutation> {
-        if email == "" { return .just(.updateError(nil)) }
-        guard InputPolicy.email.match(email) else {
-            return .concat([
-                .just(.resetTimer),
-                .just(.updateError(.common(.invalidInputFormat(.email)))),
-                .just(.updateIsvalid(false))
-            ])
-        }
+        let isMatch = InputPolicy.email.match(email)
+        let isEmpty = email.isEmpty
+        let error: TRSError? = isEmpty || isMatch ? nil : .common(.invalidInputFormat(.email))
+        
         return .concat([
-            .just(.resetTimer),
-            .just(.updateError(nil)),
-            .just(.updateIsvalid(true))
+            .just(.updateError(error)),
+            .just(.updateIsvalid(isMatch))
         ])
     }
     
     private func checkEnable(authNumber: String) -> Observable<Mutation> {
-        if authNumber == "" { return .just(.updateError(nil)) }
-        guard InputPolicy.authNumber.match(authNumber) else {
-            return .just(.updateEnable(false))
-        }
-        return .just(.updateEnable(true))
+        let isMatch = InputPolicy.authNumber.match(authNumber)
+        
+        return .concat([
+            .just(.updateError(nil)),
+            .just(.updateEnable(isMatch))
+        ])
     }
     
     private func sendAuthNumber(email: String) -> Observable<Mutation> {
