@@ -149,6 +149,12 @@ class CertifyEmailView: UIView {
     func authNumberTextFieldBecomeFirstResponse() {
         self.authNumberTextFieldView.textField.becomeFirstResponder()
     }
+    
+    // rx의 textfield의 이벤트가 딜레이 되어 묶어줌
+    func clearAuthNumberTextField() {
+        self.authNumberTextFieldView.textField.text = nil
+        self.authNumber.accept("")
+    }
 }
 
 
