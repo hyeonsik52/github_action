@@ -54,6 +54,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         self.view.addSubview(self.confirmButton)
         self.confirmButton.snp.makeConstraints {
             $0.height.equalTo(60)
+            
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-12)
@@ -102,20 +103,14 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             .distinctUntilChanged()
             .bind(to: self.certifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
-                
-        Observable.combineLatest(
-            reactor.state.map { $0.isDispose }.distinctUntilChanged(),
-            self.certifyEmailView.email.distinctUntilChanged(),
-            resultSelector:  { $0 || $1.isEmpty }
-        )
-        .subscribe(onNext: { [weak self] isEditing in
-            if isEditing {
+        
+        self.certifyEmailView.email.distinctUntilChanged()
+            .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
-                self?.confirmButton.isEnabled = !isEditing
-                self?.certifyEmailView.authNumberTextFieldView.isHidden = isEditing
-                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
-            }
-        }).disposed(by: self.disposeBag)
+                self?.certifyEmailView.authNumberTextFieldView.isHidden = true
+                self?.certifyEmailView.clearAuthNumberTextField()
+                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = nil
+            }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
             reactor.state.map { $0.isEnable }.distinctUntilChanged(),
@@ -134,10 +129,9 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 guard let self = self else { return }
                 
                 self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
-                self.certifyEmailView.authNumberTextFieldView.textField.text = ""
-                self.certifyEmailView.authNumber.accept("")
+                self.certifyEmailView.clearAuthNumberTextField()
                 
-                // '확인' 버튼 활성화 조건r
+                // '확인' 버튼 활성화 조건
                 self.isConfirmButtonisEnable.accept(true)
                 // 인증번호 입력 텍스트 필드 표시
                 self.certifyEmailView.authNumberTextFieldView.isHidden = false
