@@ -27,6 +27,7 @@ class CertifyEmailTextFieldView: UIView {
         $0.clearButtonMode = .whileEditing
         $0.autocapitalizationType = .none
         $0.enablesReturnKeyAutomatically = true
+        $0.autocorrectionType = .no
     }
     
     let innerButton = SRPButton("").then {
@@ -38,7 +39,6 @@ class CertifyEmailTextFieldView: UIView {
     let innerLabel = UILabel().then {
         $0.font = .bold[14]
         $0.textColor = .redEB4D39
-        $0.text = "00:00" // 타이머 라벨 위치 확인용 텍스트
     }
     
     private let viewType: ViewType
@@ -55,7 +55,7 @@ class CertifyEmailTextFieldView: UIView {
                 return .numberPad
             }
         }()
-        self.textField.returnKeyType = (viewType == .email ? .continue: .done)
+        self.textField.returnKeyType = (viewType == .email ? .next: .done)
         self.textField.autocapitalizationType = .none
         self.textField.placeholder = placeholder
         self.innerButton.setTitle(buttonTitle, for: .normal)

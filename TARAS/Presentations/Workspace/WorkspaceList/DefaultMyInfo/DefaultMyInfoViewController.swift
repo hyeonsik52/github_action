@@ -164,10 +164,9 @@ class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View
         
         self.emailCellView.didSelect
             .subscribe(onNext: { [weak self] in
-                //TODO: 기능 개발이 완료되어 사용할 수 있을 때, 화면을 연결합니다.
-//                let viewController = UpdateUserEmailViewController()
-//                viewController.reactor = reactor.reactorForUpdateEmail()
-//                self?.navigationController?.pushViewController(viewController, animated: true)
+                let viewController = UpdateUserEmailViewController()
+                viewController.reactor = reactor.reactorForUpdateEmail()
+                self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
         
         self.signOutButton.rx.throttleTap

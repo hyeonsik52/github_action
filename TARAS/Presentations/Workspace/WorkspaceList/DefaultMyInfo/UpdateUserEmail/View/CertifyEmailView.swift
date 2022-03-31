@@ -21,6 +21,22 @@ class CertifyEmailView: UIView {
         static let SUPVC_6 = "인증번호 입력"
     }
     
+    let email = PublishRelay<String>()
+    
+    let authNumber = PublishRelay<String>()
+    
+    let remainExpires = PublishRelay<String>()
+    
+    let errorMessage = PublishRelay<String?>()
+    
+    let isCertifyButtonEnabled = PublishRelay<Bool>()
+    
+    let isAuthNumberTextFieldHidden = PublishRelay<Bool>()
+    
+    let certifyButtonDidTap = PublishRelay<Void>()
+    
+    let disposeBag = DisposeBag()
+    
     
     // MARK: - UI
     
@@ -41,7 +57,7 @@ class CertifyEmailView: UIView {
     ).then {
         $0.textField.keyboardType = AccountInputType.phoneNumber.keyboardType
         $0.textField.delegate = self
-//        $0.isHidden = true // 인증번호 텍스트 필드 위치 확인용 주석
+        $0.isHidden = true
     }
     
     /// 에러 메시지 라벨
@@ -49,7 +65,6 @@ class CertifyEmailView: UIView {
         $0.textColor = .redEB4D39
         $0.font = .bold[14]
         $0.numberOfLines = 0
-        $0.text = "error message" // 에러 메시지 라벨 위치 확인용 텍스트
     }
     
     
@@ -59,6 +74,35 @@ class CertifyEmailView: UIView {
         super.init(frame: .zero)
         
         self.setupContraints()
+        
+        self.emailTextFieldView.textField.rx.text.orEmpty
+            .bind(to: self.email)
+            .disposed(by: self.disposeBag)
+        
+        self.emailTextFieldView.innerButton.rx.throttleTap(.seconds(3))
+            .bind(to: self.certifyButtonDidTap)
+            .disposed(by: self.disposeBag)
+        
+        self.authNumberTextFieldView.textField.rx.text.orEmpty
+            .bind(to: self.authNumber)
+            .disposed(by: disposeBag)
+        
+        isCertifyButtonEnabled
+            .bind(to: self.emailTextFieldView.innerButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        isAuthNumberTextFieldHidden
+            .bind(to: self.authNumberTextFieldView.rx.isHidden)
+            .disposed(by: self.disposeBag)
+        
+        // 만료시간 라벨에 표시
+        remainExpires
+            .bind(to: self.authNumberTextFieldView.innerLabel.rx.text)
+            .disposed(by: self.disposeBag)
+            
+        errorMessage
+            .bind(to: self.errorMessageLabel.rx.text)
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -101,6 +145,10 @@ class CertifyEmailView: UIView {
     func emailTextFieldBecomeFirstResponse() {
         self.emailTextFieldView.textField.becomeFirstResponder()
     }
+    
+    func authNumberTextFieldBecomeFirstResponse() {
+        self.authNumberTextFieldView.textField.becomeFirstResponder()
+    }
 }
 
 
@@ -112,6 +160,7 @@ extension CertifyEmailView: UITextFieldDelegate {
         if textField == self.emailTextFieldView.textField {
             if self.emailTextFieldView.innerButton.isEnabled {
                 self.emailTextFieldView.innerButton.sendActions(for: .touchUpInside)
+                return false
             }
         }
         
