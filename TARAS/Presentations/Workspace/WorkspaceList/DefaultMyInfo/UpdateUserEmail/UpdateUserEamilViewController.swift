@@ -29,6 +29,8 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         $0.isEnabled = false
     }
     
+    let isConfirmButtonisEnable = PublishRelay<Bool>()
+    
     var serialTimer: Disposable?
     
     
@@ -118,7 +120,8 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         Observable.combineLatest(
             reactor.state.map { $0.isEnable }.distinctUntilChanged(),
             self.certifyEmailView.authNumber.distinctUntilChanged(),
-            resultSelector:  { $0 && $1 != "" }
+            self.isConfirmButtonisEnable,
+            resultSelector: { $0 && ($1 != "") && $2 }
         )
         .bind(to: self.confirmButton.rx.isEnabled)
         .disposed(by: self.disposeBag)
@@ -132,6 +135,10 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 
                 self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
                 
+                // '확인' 버튼 활성화 조건
+                Observable.just(true)
+                    .bind(to: self.isConfirmButtonisEnable)
+                    .disposed(by: self.disposeBag)
                 // 인증번호 입력 텍스트 필드 표시
                 self.certifyEmailView.authNumberTextFieldView.isHidden = false
                 // '인증' -> '재인증' 문구 변경
@@ -145,8 +152,13 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                     .map { timer in
                         let remainExpires = TimeInterval(expires - timer)
                         
+                        if remainExpires == 0 {
+                            Observable.just(false)
+                                .bind(to: self.isConfirmButtonisEnable)
+                                .disposed(by: self.disposeBag)
+                        }
+                        
                         if remainExpires < 0 {
-                            self.confirmButton.isEnabled = false
                             self.serialTimer?.dispose()
                         }
 
