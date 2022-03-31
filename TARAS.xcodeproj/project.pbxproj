@@ -2059,10 +2059,10 @@
 		ED6B46A926B7EA3F00C2FA6D /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				B5D0605527F5B91E00BCEE87 /* ForgotAccount */,
 				ED6B46AA26B7EA3F00C2FA6D /* Launch */,
 				ED52730726C255FC0077CD9D /* SignIn */,
 				ED52735226C3A03C0077CD9D /* SignUp */,
+				B5D0605527F5B91E00BCEE87 /* ForgotAccount */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
