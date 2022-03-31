@@ -41,6 +41,10 @@
 		B5D0607027F5BB0300BCEE87 /* CompleteFindIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */; };
 		B5D0607127F5BB0500BCEE87 /* CompleteFindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */; };
 		B5D0607227F5BB0500BCEE87 /* CompleteFindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */; };
+		B5D0607327F5BB5200BCEE87 /* ForgotAccountGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */; };
+		B5D0607427F5BB5200BCEE87 /* ForgotAccountGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */; };
+		B5D0607527F5BB5400BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
+		B5D0607627F5BB5500BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
 		BDDE4A428C2CB02AC2800130 /* Pods_TARAS_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */; };
 		C6B29AA5C3EC8DBD71B4B01F /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */; };
 		ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */; };
@@ -3040,6 +3044,7 @@
 				ED416D9427A16C640043A7A4 /* Stop.swift in Sources */,
 				ED53080927ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
 				B597876827F293CA00052A5C /* CertifyEmailGuideView.swift in Sources */,
+				B5D0607527F5BB5400BCEE87 /* ForgotAccountTextFieldView.swift in Sources */,
 				EDBF63CF27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */,
 				ED98973527BB7AFA000C9246 /* ServiceShortcutRegistrationViewController.swift in Sources */,
 				ED416D9627A16C640043A7A4 /* SimpleCellReactor.swift in Sources */,
@@ -3084,6 +3089,7 @@
 				ED416DBE27A16C640043A7A4 /* ServiceUnitTargetModel.swift in Sources */,
 				ED416DBF27A16C640043A7A4 /* JoinRequestView.swift in Sources */,
 				ED416DC027A16C640043A7A4 /* SignUpPasswordViewController.swift in Sources */,
+				B5D0607327F5BB5200BCEE87 /* ForgotAccountGuideView.swift in Sources */,
 				ED416DC127A16C640043A7A4 /* TRSTag.swift in Sources */,
 				ED416DC427A16C640043A7A4 /* WorkspaceSearchResultViewReactor.swift in Sources */,
 				ED98972F27BB5BA6000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
@@ -3613,6 +3619,7 @@
 				EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */,
 				ED53080827ACF644003B0FB0 /* FinishedServiceListViewReactor.swift in Sources */,
 				B597876727F293CA00052A5C /* CertifyEmailGuideView.swift in Sources */,
+				B5D0607627F5BB5500BCEE87 /* ForgotAccountTextFieldView.swift in Sources */,
 				EDBF63CE27C618A100AF74D5 /* RefreshSessionRequestModel.swift in Sources */,
 				ED98973427BB7AFA000C9246 /* ServiceShortcutRegistrationViewController.swift in Sources */,
 				ED06C73B277DBD2D00F9D0A5 /* SimpleCellReactor.swift in Sources */,
@@ -3657,6 +3664,7 @@
 				ED06C75B277DBD2D00F9D0A5 /* ServiceUnitTargetModel.swift in Sources */,
 				ED7A0E7E2721610200AD6678 /* JoinRequestView.swift in Sources */,
 				ED52737826C3A03C0077CD9D /* SignUpPasswordViewController.swift in Sources */,
+				B5D0607427F5BB5200BCEE87 /* ForgotAccountGuideView.swift in Sources */,
 				ED416CAA27A0DB9F0043A7A4 /* TRSTag.swift in Sources */,
 				EDC11B0326D3A39E0020AB09 /* WorkspaceSearchResultViewReactor.swift in Sources */,
 				ED98973027BB5BA6000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
