@@ -167,6 +167,7 @@ class UpdateUserEmailViewReactor: Reactor {
         let mutation = CheckAuthMutation(input: input)
         
         return .concat([
+            .just(.updateIsProcessing(true)),
             .just(.updateError(nil)),
             
             self.provider.networkManager.perform(mutation)
@@ -189,7 +190,9 @@ class UpdateUserEmailViewReactor: Reactor {
                     let mutation = UpdateUserEmailMutation(token: token)
                     return self.provider.networkManager.perform(mutation)
                         .map { .updateUserEmail($0.updateUserEmail ?? false) }
-                }.catchAndReturn(.updateError(.common(.networkNotConnect)))
+                }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+            
+                .just(.updateIsProcessing(false))
         ])
     }
     

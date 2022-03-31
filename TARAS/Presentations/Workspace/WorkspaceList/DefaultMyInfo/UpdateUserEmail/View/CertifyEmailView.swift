@@ -145,6 +145,10 @@ class CertifyEmailView: UIView {
     func emailTextFieldBecomeFirstResponse() {
         self.emailTextFieldView.textField.becomeFirstResponder()
     }
+    
+    func authNumberTextFieldBecomeFirstResponse() {
+        self.authNumberTextFieldView.textField.becomeFirstResponder()
+    }
 }
 
 
@@ -156,6 +160,7 @@ extension CertifyEmailView: UITextFieldDelegate {
         if textField == self.emailTextFieldView.textField {
             if self.emailTextFieldView.innerButton.isEnabled {
                 self.emailTextFieldView.innerButton.sendActions(for: .touchUpInside)
+                return false
             }
         }
         
