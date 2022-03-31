@@ -41,7 +41,7 @@ class ForgotAccountCertifyEmailView: UIView {
     // MARK: - UI
     
     /// 이메일 등록 가이드 뷰
-    private let guideView = ForgotAccountCertifyEmailGuideView(Text.SUPVC_1, guideText: Text.SUPVC_2)
+    private let guideView = ForgotAccountGuideView(Text.SUPVC_1, guideText: Text.SUPVC_2)
     
     lazy var emailTextFieldView = ForgotAccountCertifyEmailTextFieldView(
         Text.SUPVC_3,
