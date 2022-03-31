@@ -114,7 +114,6 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 self?.confirmButton.isEnabled = !isEditing
                 self?.certifyEmailView.authNumberTextFieldView.isHidden = isEditing
                 self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
-                self?.certifyEmailView.authNumberTextFieldView.textField.text = ""
             }
         }).disposed(by: self.disposeBag)
         
@@ -135,11 +134,11 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 guard let self = self else { return }
                 
                 self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
+                self.certifyEmailView.authNumberTextFieldView.textField.text = ""
+                self.certifyEmailView.authNumber.accept("")
                 
-                // '확인' 버튼 활성화 조건
-                Observable.just(true)
-                    .bind(to: self.isConfirmButtonisEnable)
-                    .disposed(by: self.disposeBag)
+                // '확인' 버튼 활성화 조건r
+                self.isConfirmButtonisEnable.accept(true)
                 // 인증번호 입력 텍스트 필드 표시
                 self.certifyEmailView.authNumberTextFieldView.isHidden = false
                 // '인증' -> '재인증' 문구 변경
@@ -154,9 +153,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                         let remainExpires = TimeInterval(expires - timer)
                         
                         if remainExpires == 0 {
-                            Observable.just(false)
-                                .bind(to: self.isConfirmButtonisEnable)
-                                .disposed(by: self.disposeBag)
+                            self.isConfirmButtonisEnable.accept(false)
                         }
                         
                         if remainExpires < 0 {
