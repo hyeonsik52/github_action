@@ -55,7 +55,7 @@ class CertifyEmailTextFieldView: UIView {
                 return .numberPad
             }
         }()
-        self.textField.returnKeyType = (viewType == .email ? .continue: .done)
+        self.textField.returnKeyType = (viewType == .email ? .next: .done)
         self.textField.autocapitalizationType = .none
         self.textField.placeholder = placeholder
         self.innerButton.setTitle(buttonTitle, for: .normal)
