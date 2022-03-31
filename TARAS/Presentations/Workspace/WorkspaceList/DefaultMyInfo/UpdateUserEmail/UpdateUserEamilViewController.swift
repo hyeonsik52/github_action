@@ -106,11 +106,13 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             self.certifyEmailView.email.distinctUntilChanged(),
             resultSelector:  { $0 || $1 == "" }
         )
-        .filter { $0 }
-        .subscribe(onNext: { [weak self] _ in
-            self?.serialTimer?.dispose()
-            self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
-            self?.confirmButton.isEnabled = false
+        .subscribe(onNext: { [weak self] isEditing in
+            if isEditing {
+                self?.serialTimer?.dispose()
+                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
+                self?.confirmButton.isEnabled = !isEditing
+                self?.certifyEmailView.authNumberTextFieldView.isHidden = isEditing
+            }
         }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
