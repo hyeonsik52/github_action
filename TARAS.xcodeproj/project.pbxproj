@@ -24,6 +24,13 @@
 		B597877427F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		B597877527F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		B597877627F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
+		B5D0605A27F5B95F00BCEE87 /* ForgotAccountGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */; };
+		B5D0605C27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
+		B5D0606027F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */; };
+		B5D0606227F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */; };
+		B5D0606427F5BA2800BCEE87 /* CompleteFindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */; };
+		B5D0606627F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */; };
+		B5D0606827F5BA4A00BCEE87 /* CompleteFindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */; };
 		BDDE4A428C2CB02AC2800130 /* Pods_TARAS_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */; };
 		C6B29AA5C3EC8DBD71B4B01F /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */; };
 		ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */; };
@@ -869,6 +876,13 @@
 		B597876327F2936500052A5C /* CertifyEmailGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailGuideView.swift; sourceTree = "<group>"; };
 		B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEamilViewController.swift; sourceTree = "<group>"; };
 		B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailViewReactor.swift; sourceTree = "<group>"; };
+		B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountGuideView.swift; sourceTree = "<group>"; };
+		B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountTextFieldView.swift; sourceTree = "<group>"; };
+		B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdCertifyEmailViewReactor.swift; sourceTree = "<group>"; };
+		B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdCertifyEmailViewController.swift; sourceTree = "<group>"; };
+		B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFindIdViewController.swift; sourceTree = "<group>"; };
+		B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFindIdViewReactor.swift; sourceTree = "<group>"; };
+		B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFindIdView.swift; sourceTree = "<group>"; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCell.swift; sourceTree = "<group>"; };
@@ -1222,6 +1236,52 @@
 				B597875F27F2934B00052A5C /* CertifyEmailView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B5D0605527F5B91E00BCEE87 /* ForgotAccount */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0605627F5B93500BCEE87 /* View */,
+				B5D0605727F5B93F00BCEE87 /* FindId */,
+			);
+			path = ForgotAccount;
+			sourceTree = "<group>";
+		};
+		B5D0605627F5B93500BCEE87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */,
+				B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5D0605727F5B93F00BCEE87 /* FindId */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0605D27F5B97F00BCEE87 /* FindidCertifyEmail */,
+				B5D0605E27F5B98B00BCEE87 /* CompleteFindId */,
+			);
+			path = FindId;
+			sourceTree = "<group>";
+		};
+		B5D0605D27F5B97F00BCEE87 /* FindidCertifyEmail */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */,
+				B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */,
+			);
+			path = FindidCertifyEmail;
+			sourceTree = "<group>";
+		};
+		B5D0605E27F5B98B00BCEE87 /* CompleteFindId */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */,
+				B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */,
+				B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */,
+			);
+			path = CompleteFindId;
 			sourceTree = "<group>";
 		};
 		B78B945B18F3A657F0DEEFC7 /* Frameworks */ = {
@@ -1985,6 +2045,7 @@
 		ED6B46A926B7EA3F00C2FA6D /* Intro */ = {
 			isa = PBXGroup;
 			children = (
+				B5D0605527F5B91E00BCEE87 /* ForgotAccount */,
 				ED6B46AA26B7EA3F00C2FA6D /* Launch */,
 				ED52730726C255FC0077CD9D /* SignIn */,
 				ED52735226C3A03C0077CD9D /* SignUp */,
@@ -3052,6 +3113,7 @@
 				ED416E0427A170FC0043A7A4 /* ManagerProvider.swift in Sources */,
 				ED416E0527A170FC0043A7A4 /* STSource.swift in Sources */,
 				ED98972E27BB5BA1000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
+				B5D0606227F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */,
 				ED416E0627A170FC0043A7A4 /* UIRefreshControl.swift in Sources */,
 				ED416E0A27A170FC0043A7A4 /* ServiceCreationSelectReceiverViewController.swift in Sources */,
 				ED416E0B27A170FC0043A7A4 /* RxCollectionViewDragAndDropSectionedReloadDataSource.swift in Sources */,
@@ -3074,6 +3136,7 @@
 				ED416E1B27A170FC0043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift in Sources */,
 				ED416E1C27A170FC0043A7A4 /* Reactor.swift in Sources */,
 				ED416E1D27A170FC0043A7A4 /* ServiceCreationRepeatCountViewController+Rx.swift in Sources */,
+				B5D0606027F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */,
 				ED416E1E27A170FC0043A7A4 /* STAUIComponent.swift in Sources */,
 				ED416E1F27A170FC0043A7A4 /* WorkspaceSelectView.swift in Sources */,
 				ED416E2027A170FC0043A7A4 /* PushManager.swift in Sources */,
@@ -3163,6 +3226,7 @@
 				ED28517A27EC0928003196AD /* SubscriptionManager_Service.swift in Sources */,
 				ED416E7F27A170FC0043A7A4 /* ServiceDetailLogViewReactor.swift in Sources */,
 				ED416E8027A170FC0043A7A4 /* UpdateUserInfoViewReactor.swift in Sources */,
+				B5D0606427F5BA2800BCEE87 /* CompleteFindIdViewController.swift in Sources */,
 				ED416E8127A170FC0043A7A4 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				ED416E8227A170FC0043A7A4 /* SRPDetailInfoCellView.swift in Sources */,
 				ED416E8327A170FC0043A7A4 /* NotificationManager.swift in Sources */,
@@ -3188,6 +3252,7 @@
 				ED416E9E27A170FC0043A7A4 /* GenericScalar.swift in Sources */,
 				ED53081027B24682003B0FB0 /* ProgressLineView.swift in Sources */,
 				ED416E9F27A170FC0043A7A4 /* BaseManager.swift in Sources */,
+				B5D0606827F5BA4A00BCEE87 /* CompleteFindIdView.swift in Sources */,
 				ED416EA127A170FC0043A7A4 /* ServiceCreationDetailViewReactor.swift in Sources */,
 				ED78EC5227DB1588007EBE70 /* NetworkManager_FCM.swift in Sources */,
 				ED416EA327A170FC0043A7A4 /* RestAPIRequest.swift in Sources */,
@@ -3200,6 +3265,7 @@
 				ED416EAA27A170FC0043A7A4 /* ServiceTemplateCell.swift in Sources */,
 				ED416EAB27A170FC0043A7A4 /* ServiceDetailLogViewController.swift in Sources */,
 				ED416EAC27A170FC0043A7A4 /* ConfirmInputView.swift in Sources */,
+				B5D0605C27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift in Sources */,
 				ED416EAE27A170FC0043A7A4 /* UIButton.swift in Sources */,
 				ED416EB127A170FC0043A7A4 /* LogoutResponseModel.swift in Sources */,
 				ED416EB227A170FC0043A7A4 /* LoggingInterceptor.swift in Sources */,
@@ -3257,6 +3323,7 @@
 				ED416EEF27A170FC0043A7A4 /* UIView+Search.swift in Sources */,
 				ED416EF227A170FC0043A7A4 /* NotificationType.swift in Sources */,
 				ED416EF327A170FC0043A7A4 /* ServiceDetailLogTableViewCell.swift in Sources */,
+				B5D0605A27F5B95F00BCEE87 /* ForgotAccountGuideView.swift in Sources */,
 				ED416EF427A170FC0043A7A4 /* SignUpPasswordViewReactor.swift in Sources */,
 				ED416EF527A170FC0043A7A4 /* ServiceUnitCreationModel.swift in Sources */,
 				ED416EF627A170FC0043A7A4 /* SignUpNameViewReactor.swift in Sources */,
@@ -3281,6 +3348,7 @@
 				ED416F0927A170FC0043A7A4 /* WorkspaceSearchResultViewReactor.swift in Sources */,
 				ED416F0A27A170FC0043A7A4 /* ServiceCreationSelectStopViewReactor.swift in Sources */,
 				ED416F0B27A170FC0043A7A4 /* InputPolicy.swift in Sources */,
+				B5D0606627F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift in Sources */,
 				ED416F0C27A170FC0043A7A4 /* STParser.swift in Sources */,
 				ED416F0E27A170FC0043A7A4 /* ServiceCreationRepeatCountViewController.swift in Sources */,
 				ED416F0F27A170FC0043A7A4 /* SceneDelegate.swift in Sources */,
