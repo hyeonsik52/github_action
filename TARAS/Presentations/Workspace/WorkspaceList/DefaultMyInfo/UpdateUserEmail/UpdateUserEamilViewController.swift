@@ -106,14 +106,15 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         Observable.combineLatest(
             reactor.state.map { $0.isDispose }.distinctUntilChanged(),
             self.certifyEmailView.email.distinctUntilChanged(),
-            resultSelector:  { $0 || $1 == "" }
+            resultSelector:  { $0 || $1.isEmpty }
         )
         .subscribe(onNext: { [weak self] isEditing in
             if isEditing {
                 self?.serialTimer?.dispose()
-                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
                 self?.confirmButton.isEnabled = !isEditing
                 self?.certifyEmailView.authNumberTextFieldView.isHidden = isEditing
+                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = ""
+                self?.certifyEmailView.authNumberTextFieldView.textField.text = ""
             }
         }).disposed(by: self.disposeBag)
         
@@ -121,7 +122,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             reactor.state.map { $0.isEnable }.distinctUntilChanged(),
             self.certifyEmailView.authNumber.distinctUntilChanged(),
             self.isConfirmButtonisEnable,
-            resultSelector: { $0 && ($1 != "") && $2 }
+            resultSelector: { $0 && !$1.isEmpty && $2 }
         )
         .bind(to: self.confirmButton.rx.isEnabled)
         .disposed(by: self.disposeBag)
