@@ -26,15 +26,15 @@
 		B597877627F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		B5D0605A27F5B95F00BCEE87 /* ForgotAccountGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */; };
 		B5D0605C27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
-		B5D0606027F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */; };
-		B5D0606227F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */; };
+		B5D0606027F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */; };
+		B5D0606227F5BA1200BCEE87 /* ForgotAccountCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* ForgotAccountCertifyEmailViewController.swift */; };
 		B5D0606427F5BA2800BCEE87 /* CompleteFindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */; };
 		B5D0606627F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */; };
 		B5D0606827F5BA4A00BCEE87 /* CompleteFindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */; };
-		B5D0606927F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */; };
-		B5D0606A27F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */; };
-		B5D0606B27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */; };
-		B5D0606C27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */; };
+		B5D0606927F5BAFA00BCEE87 /* ForgotAccountCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* ForgotAccountCertifyEmailViewController.swift */; };
+		B5D0606A27F5BAFA00BCEE87 /* ForgotAccountCertifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606127F5BA1200BCEE87 /* ForgotAccountCertifyEmailViewController.swift */; };
+		B5D0606B27F5BAFD00BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */; };
+		B5D0606C27F5BAFD00BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */; };
 		B5D0606D27F5BB0000BCEE87 /* CompleteFindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */; };
 		B5D0606E27F5BB0000BCEE87 /* CompleteFindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */; };
 		B5D0606F27F5BB0200BCEE87 /* CompleteFindIdViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */; };
@@ -45,6 +45,15 @@
 		B5D0607427F5BB5200BCEE87 /* ForgotAccountGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */; };
 		B5D0607527F5BB5400BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
 		B5D0607627F5BB5500BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
+		B5D0607A27F5BEB500BCEE87 /* ForgotAccountCertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607927F5BEB500BCEE87 /* ForgotAccountCertifyEmailGuideView.swift */; };
+		B5D0607C27F5BECA00BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607B27F5BECA00BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift */; };
+		B5D0607E27F5BEDC00BCEE87 /* ForgotAccountCertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607D27F5BEDC00BCEE87 /* ForgotAccountCertifyEmailView.swift */; };
+		B5D0607F27F5BEE200BCEE87 /* ForgotAccountCertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607927F5BEB500BCEE87 /* ForgotAccountCertifyEmailGuideView.swift */; };
+		B5D0608027F5BEE300BCEE87 /* ForgotAccountCertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607927F5BEB500BCEE87 /* ForgotAccountCertifyEmailGuideView.swift */; };
+		B5D0608127F5BEE500BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607B27F5BECA00BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift */; };
+		B5D0608227F5BEE600BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607B27F5BECA00BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift */; };
+		B5D0608327F5BEE800BCEE87 /* ForgotAccountCertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607D27F5BEDC00BCEE87 /* ForgotAccountCertifyEmailView.swift */; };
+		B5D0608427F5BEE800BCEE87 /* ForgotAccountCertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0607D27F5BEDC00BCEE87 /* ForgotAccountCertifyEmailView.swift */; };
 		BDDE4A428C2CB02AC2800130 /* Pods_TARAS_DevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF75F11F010DE47F5D8C78E /* Pods_TARAS_DevTests.framework */; };
 		C6B29AA5C3EC8DBD71B4B01F /* Pods_TARAS_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */; };
 		ED06C6FA277C285300F9D0A5 /* ServiceTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */; };
@@ -892,11 +901,14 @@
 		B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailViewReactor.swift; sourceTree = "<group>"; };
 		B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountGuideView.swift; sourceTree = "<group>"; };
 		B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountTextFieldView.swift; sourceTree = "<group>"; };
-		B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdCertifyEmailViewReactor.swift; sourceTree = "<group>"; };
-		B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdCertifyEmailViewController.swift; sourceTree = "<group>"; };
+		B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailViewReactor.swift; sourceTree = "<group>"; };
+		B5D0606127F5BA1200BCEE87 /* ForgotAccountCertifyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailViewController.swift; sourceTree = "<group>"; };
 		B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFindIdViewController.swift; sourceTree = "<group>"; };
 		B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFindIdViewReactor.swift; sourceTree = "<group>"; };
 		B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFindIdView.swift; sourceTree = "<group>"; };
+		B5D0607927F5BEB500BCEE87 /* ForgotAccountCertifyEmailGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailGuideView.swift; sourceTree = "<group>"; };
+		B5D0607B27F5BECA00BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailTextFieldView.swift; sourceTree = "<group>"; };
+		B5D0607D27F5BEDC00BCEE87 /* ForgotAccountCertifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailView.swift; sourceTree = "<group>"; };
 		D8E05CDEA4DF226CF034A0C9 /* Pods-TARAS-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-Dev.release.xcconfig"; path = "Target Support Files/Pods-TARAS-Dev/Pods-TARAS-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED06C6F9277C285300F9D0A5 /* ServiceTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTemplateCell.swift; sourceTree = "<group>"; };
@@ -1256,6 +1268,7 @@
 			isa = PBXGroup;
 			children = (
 				B5D0605627F5B93500BCEE87 /* View */,
+				B5D0607727F5BE7500BCEE87 /* ForgotAccountCertifyEmail */,
 				B5D0605727F5B93F00BCEE87 /* FindId */,
 			);
 			path = ForgotAccount;
@@ -1273,29 +1286,31 @@
 		B5D0605727F5B93F00BCEE87 /* FindId */ = {
 			isa = PBXGroup;
 			children = (
-				B5D0605D27F5B97F00BCEE87 /* FindidCertifyEmail */,
-				B5D0605E27F5B98B00BCEE87 /* CompleteFindId */,
-			);
-			path = FindId;
-			sourceTree = "<group>";
-		};
-		B5D0605D27F5B97F00BCEE87 /* FindidCertifyEmail */ = {
-			isa = PBXGroup;
-			children = (
-				B5D0606127F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift */,
-				B5D0605F27F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift */,
-			);
-			path = FindidCertifyEmail;
-			sourceTree = "<group>";
-		};
-		B5D0605E27F5B98B00BCEE87 /* CompleteFindId */ = {
-			isa = PBXGroup;
-			children = (
 				B5D0606327F5BA2800BCEE87 /* CompleteFindIdViewController.swift */,
 				B5D0606527F5BA3800BCEE87 /* CompleteFindIdViewReactor.swift */,
 				B5D0606727F5BA4A00BCEE87 /* CompleteFindIdView.swift */,
 			);
-			path = CompleteFindId;
+			path = FindId;
+			sourceTree = "<group>";
+		};
+		B5D0607727F5BE7500BCEE87 /* ForgotAccountCertifyEmail */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0606127F5BA1200BCEE87 /* ForgotAccountCertifyEmailViewController.swift */,
+				B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */,
+				B5D0607827F5BE9B00BCEE87 /* View */,
+			);
+			path = ForgotAccountCertifyEmail;
+			sourceTree = "<group>";
+		};
+		B5D0607827F5BE9B00BCEE87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0607927F5BEB500BCEE87 /* ForgotAccountCertifyEmailGuideView.swift */,
+				B5D0607B27F5BECA00BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift */,
+				B5D0607D27F5BEDC00BCEE87 /* ForgotAccountCertifyEmailView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B78B945B18F3A657F0DEEFC7 /* Frameworks */ = {
@@ -2868,6 +2883,7 @@
 				ED416CC927A16C640043A7A4 /* TokenAddingInterceptor.swift in Sources */,
 				ED416CCA27A16C640043A7A4 /* SRPButton.swift in Sources */,
 				ED416CCB27A16C640043A7A4 /* ServiceCreationSelectReceiverViewReactor.swift in Sources */,
+				B5D0608127F5BEE500BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift in Sources */,
 				ED416CCC27A16C640043A7A4 /* ServiceCreationSummaryViewController.swift in Sources */,
 				ED416CCE27A16C640043A7A4 /* Robot.swift in Sources */,
 				ED416CCF27A16C640043A7A4 /* SignUpPasswordView.swift in Sources */,
@@ -2973,7 +2989,7 @@
 				ED416D3B27A16C640043A7A4 /* UpdateUserInfoViewReactor.swift in Sources */,
 				ED416D3C27A16C640043A7A4 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				ED416D3D27A16C640043A7A4 /* SRPDetailInfoCellView.swift in Sources */,
-				B5D0606927F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */,
+				B5D0606927F5BAFA00BCEE87 /* ForgotAccountCertifyEmailViewController.swift in Sources */,
 				ED416D3E27A16C640043A7A4 /* NotificationManager.swift in Sources */,
 				ED416D3F27A16C640043A7A4 /* WorkspaceSearchResultViewController.swift in Sources */,
 				ED416D4027A16C640043A7A4 /* UIViewController+Rx.swift in Sources */,
@@ -3032,6 +3048,7 @@
 				ED416D8227A16C640043A7A4 /* List_BaseObject.swift in Sources */,
 				ED416D8327A16C640043A7A4 /* WorkspaceListViewReactor.swift in Sources */,
 				ED416D8527A16C640043A7A4 /* ServiceCreationDetailViewController+Rx.swift in Sources */,
+				B5D0608327F5BEE800BCEE87 /* ForgotAccountCertifyEmailView.swift in Sources */,
 				ED416D8627A16C640043A7A4 /* WorkspaceSearchViewController.swift in Sources */,
 				ED416D8727A16C640043A7A4 /* ServiceCreationHeader.swift in Sources */,
 				ED416D8827A16C640043A7A4 /* User.swift in Sources */,
@@ -3092,6 +3109,7 @@
 				B5D0607327F5BB5200BCEE87 /* ForgotAccountGuideView.swift in Sources */,
 				ED416DC127A16C640043A7A4 /* TRSTag.swift in Sources */,
 				ED416DC427A16C640043A7A4 /* WorkspaceSearchResultViewReactor.swift in Sources */,
+				B5D0607F27F5BEE200BCEE87 /* ForgotAccountCertifyEmailGuideView.swift in Sources */,
 				ED98972F27BB5BA6000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
 				ED416DC527A16C640043A7A4 /* ServiceCreationSelectStopViewReactor.swift in Sources */,
 				ED416DC627A16C640043A7A4 /* InputPolicy.swift in Sources */,
@@ -3100,7 +3118,7 @@
 				ED416DCA27A16C640043A7A4 /* SceneDelegate.swift in Sources */,
 				ED416DCB27A16C640043A7A4 /* String.swift in Sources */,
 				ED416DCC27A16C640043A7A4 /* UserManager.swift in Sources */,
-				B5D0606B27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */,
+				B5D0606B27F5BAFD00BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */,
 				ED416DCD27A16C640043A7A4 /* ThreadConfined_BaseObject.swift in Sources */,
 				ED416DCE27A16C640043A7A4 /* SettingTextCellView.swift in Sources */,
 				ED416DCF27A16C640043A7A4 /* TRSPlaceholderView.swift in Sources */,
@@ -3134,7 +3152,7 @@
 				ED416E0427A170FC0043A7A4 /* ManagerProvider.swift in Sources */,
 				ED416E0527A170FC0043A7A4 /* STSource.swift in Sources */,
 				ED98972E27BB5BA1000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
-				B5D0606227F5BA1200BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */,
+				B5D0606227F5BA1200BCEE87 /* ForgotAccountCertifyEmailViewController.swift in Sources */,
 				ED416E0627A170FC0043A7A4 /* UIRefreshControl.swift in Sources */,
 				ED416E0A27A170FC0043A7A4 /* ServiceCreationSelectReceiverViewController.swift in Sources */,
 				ED416E0B27A170FC0043A7A4 /* RxCollectionViewDragAndDropSectionedReloadDataSource.swift in Sources */,
@@ -3142,6 +3160,7 @@
 				ED416E0D27A170FC0043A7A4 /* TRSError.swift in Sources */,
 				ED416E0E27A170FC0043A7A4 /* TokenAddingInterceptor.swift in Sources */,
 				ED416E0F27A170FC0043A7A4 /* SRPButton.swift in Sources */,
+				B5D0607C27F5BECA00BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift in Sources */,
 				ED416E1027A170FC0043A7A4 /* ServiceCreationSelectReceiverViewReactor.swift in Sources */,
 				ED416E1127A170FC0043A7A4 /* ServiceCreationSummaryViewController.swift in Sources */,
 				ED416E1327A170FC0043A7A4 /* Robot.swift in Sources */,
@@ -3157,7 +3176,7 @@
 				ED416E1B27A170FC0043A7A4 /* TRSNetworDisconnectedPlaceholderView.swift in Sources */,
 				ED416E1C27A170FC0043A7A4 /* Reactor.swift in Sources */,
 				ED416E1D27A170FC0043A7A4 /* ServiceCreationRepeatCountViewController+Rx.swift in Sources */,
-				B5D0606027F5B9F800BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */,
+				B5D0606027F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */,
 				ED416E1E27A170FC0043A7A4 /* STAUIComponent.swift in Sources */,
 				ED416E1F27A170FC0043A7A4 /* WorkspaceSelectView.swift in Sources */,
 				ED416E2027A170FC0043A7A4 /* PushManager.swift in Sources */,
@@ -3306,6 +3325,7 @@
 				ED416EC327A170FC0043A7A4 /* UITableView.swift in Sources */,
 				ED416EC627A170FC0043A7A4 /* SignUpNameViewController.swift in Sources */,
 				ED416EC727A170FC0043A7A4 /* List_BaseObject.swift in Sources */,
+				B5D0607E27F5BEDC00BCEE87 /* ForgotAccountCertifyEmailView.swift in Sources */,
 				ED416EC827A170FC0043A7A4 /* WorkspaceListViewReactor.swift in Sources */,
 				ED416ECA27A170FC0043A7A4 /* ServiceCreationDetailViewController+Rx.swift in Sources */,
 				ED416ECB27A170FC0043A7A4 /* WorkspaceSearchViewController.swift in Sources */,
@@ -3366,6 +3386,7 @@
 				ED416F0427A170FC0043A7A4 /* JoinRequestView.swift in Sources */,
 				ED416F0527A170FC0043A7A4 /* SignUpPasswordViewController.swift in Sources */,
 				ED416F0627A170FC0043A7A4 /* TRSTag.swift in Sources */,
+				B5D0607A27F5BEB500BCEE87 /* ForgotAccountCertifyEmailGuideView.swift in Sources */,
 				ED416F0927A170FC0043A7A4 /* WorkspaceSearchResultViewReactor.swift in Sources */,
 				ED416F0A27A170FC0043A7A4 /* ServiceCreationSelectStopViewReactor.swift in Sources */,
 				ED416F0B27A170FC0043A7A4 /* InputPolicy.swift in Sources */,
@@ -3443,6 +3464,7 @@
 				ED6B467E26B7E8B500C2FA6D /* TokenAddingInterceptor.swift in Sources */,
 				ED52732926C255FC0077CD9D /* SRPButton.swift in Sources */,
 				ED06C757277DBD2D00F9D0A5 /* ServiceCreationSelectReceiverViewReactor.swift in Sources */,
+				B5D0608227F5BEE600BCEE87 /* ForgotAccountCertifyEmailTextFieldView.swift in Sources */,
 				ED06C74F277DBD2D00F9D0A5 /* ServiceCreationSummaryViewController.swift in Sources */,
 				ED6B46A626B7E9CE00C2FA6D /* Robot.swift in Sources */,
 				ED52737726C3A03C0077CD9D /* SignUpPasswordView.swift in Sources */,
@@ -3548,7 +3570,7 @@
 				ED7A0E782721539400AD6678 /* UpdateUserInfoViewReactor.swift in Sources */,
 				EDC11A7A26D3A39D0020AB09 /* WorkspaceTabBarControllerReactor.swift in Sources */,
 				EDC11A3C26D3A39D0020AB09 /* SRPDetailInfoCellView.swift in Sources */,
-				B5D0606A27F5BAFA00BCEE87 /* FindIdCertifyEmailViewController.swift in Sources */,
+				B5D0606A27F5BAFA00BCEE87 /* ForgotAccountCertifyEmailViewController.swift in Sources */,
 				EDC6CAF0278BD05E004C5881 /* NotificationManager.swift in Sources */,
 				EDC11B0126D3A39E0020AB09 /* WorkspaceSearchResultViewController.swift in Sources */,
 				ED6B465326B7E7CC00C2FA6D /* UIViewController+Rx.swift in Sources */,
@@ -3607,6 +3629,7 @@
 				ED6B465926B7E7CC00C2FA6D /* List_BaseObject.swift in Sources */,
 				EDC11A3126D3A39D0020AB09 /* WorkspaceListViewReactor.swift in Sources */,
 				ED06C751277DBD2D00F9D0A5 /* ServiceCreationDetailViewController+Rx.swift in Sources */,
+				B5D0608427F5BEE800BCEE87 /* ForgotAccountCertifyEmailView.swift in Sources */,
 				EDC11B0426D3A39E0020AB09 /* WorkspaceSearchViewController.swift in Sources */,
 				ED06C74A277DBD2D00F9D0A5 /* ServiceCreationHeader.swift in Sources */,
 				EDA1FA3126C1564700E8C39B /* User.swift in Sources */,
@@ -3667,6 +3690,7 @@
 				B5D0607427F5BB5200BCEE87 /* ForgotAccountGuideView.swift in Sources */,
 				ED416CAA27A0DB9F0043A7A4 /* TRSTag.swift in Sources */,
 				EDC11B0326D3A39E0020AB09 /* WorkspaceSearchResultViewReactor.swift in Sources */,
+				B5D0608027F5BEE300BCEE87 /* ForgotAccountCertifyEmailGuideView.swift in Sources */,
 				ED98973027BB5BA6000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
 				ED06C745277DBD2D00F9D0A5 /* ServiceCreationSelectStopViewReactor.swift in Sources */,
 				ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */,
@@ -3675,7 +3699,7 @@
 				EDF0C39C26B405F70061552F /* SceneDelegate.swift in Sources */,
 				ED6B464C26B7E7CC00C2FA6D /* String.swift in Sources */,
 				ED6B468B26B7E8B500C2FA6D /* UserManager.swift in Sources */,
-				B5D0606C27F5BAFD00BCEE87 /* FindIdCertifyEmailViewReactor.swift in Sources */,
+				B5D0606C27F5BAFD00BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */,
 				ED6B465A26B7E7CC00C2FA6D /* ThreadConfined_BaseObject.swift in Sources */,
 				EDC11A9326D3A39D0020AB09 /* SettingTextCellView.swift in Sources */,
 				ED416CA627A0CE310043A7A4 /* TRSPlaceholderView.swift in Sources */,
