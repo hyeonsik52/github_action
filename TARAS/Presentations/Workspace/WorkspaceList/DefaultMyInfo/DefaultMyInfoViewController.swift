@@ -162,6 +162,13 @@ class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
         
+        self.emailCellView.didSelect
+            .subscribe(onNext: { [weak self] in
+                let viewController = UpdateUserEmailViewController()
+                viewController.reactor = reactor.reactorForUpdateEmail()
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: self.disposeBag)
+        
         self.signOutButton.rx.throttleTap
             .subscribe(onNext: { [weak self] in
                 self?.logout(reactor)
