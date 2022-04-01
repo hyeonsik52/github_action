@@ -1,8 +1,8 @@
 //
-//  CertifyEmailView.swift
+//  ForgotAccountCertifyEmailView.swift
 //  TARAS
 //
-//  Created by 오현식 on 2022/03/29.
+//  Created by 오현식 on 2022/03/31.
 //
 
 import UIKit
@@ -11,11 +11,11 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-class CertifyEmailView: UIView {
+class ForgotAccountCertifyEmailView: UIView {
     
     enum Text {
-        static let SUPVC_1 = "이메일 입력"
-        static let SUPVC_2 = "계정 찾기, 비밀번호 재설정에 이용할 이메일을 입력해주세요."
+        static let SUPVC_1 = "이메일 인증"
+        static let SUPVC_2 = "가입 시 등록한 이메일로 인증을 진행해주세요."
         static let SUPVC_3 = "이메일 주소"
         static let SUPVC_4 = "인증"
         static let SUPVC_6 = "인증번호 입력"
@@ -41,9 +41,9 @@ class CertifyEmailView: UIView {
     // MARK: - UI
     
     /// 이메일 등록 가이드 뷰
-    private let guideView = CertifyEmailGuideView(Text.SUPVC_1, guideText: Text.SUPVC_2)
+    private let guideView = ForgotAccountGuideView(Text.SUPVC_1, guideText: Text.SUPVC_2)
     
-    lazy var emailTextFieldView = CertifyEmailTextFieldView(
+    lazy var emailTextFieldView = ForgotAccountCertifyEmailTextFieldView(
         Text.SUPVC_3,
         buttonTitle: Text.SUPVC_4
     ).then {
@@ -51,7 +51,7 @@ class CertifyEmailView: UIView {
         $0.textField.delegate = self
     }
     
-    lazy var authNumberTextFieldView = CertifyEmailTextFieldView(
+    lazy var authNumberTextFieldView = ForgotAccountCertifyEmailTextFieldView(
         Text.SUPVC_6,
         viewType: .authNumber
     ).then {
@@ -160,7 +160,7 @@ class CertifyEmailView: UIView {
 
 // MARK: - UITextFieldDelegate
 
-extension CertifyEmailView: UITextFieldDelegate {
+extension ForgotAccountCertifyEmailView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.emailTextFieldView.textField {

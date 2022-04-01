@@ -71,6 +71,17 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
         
+        // 아이디 · 비밀번호 찾기
+        signInView.findIdAndPwButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.forgotAccountAlert(idHandler: {
+                    let viewController = ForgotAccountCertifyEmailViewController()
+                    self?.navigationController?.pushViewController(viewController, animated: true)
+                }, passwordHandler: {
+                    // todo: 비밀번호 재설정 시
+                })
+            }).disposed(by: self.disposeBag)
+        
         
         // State
         // indicator 활성화

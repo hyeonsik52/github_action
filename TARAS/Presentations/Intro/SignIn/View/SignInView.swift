@@ -15,8 +15,8 @@ class SignInView: UIView {
         static let SIVC_1 = "로그인"
         static let SIVC_2 = "아이디"
         static let SIVC_3 = "비밀번호"
-        static let finedAccount = "아이디 찾기"
-        static let resetPassword = "비밀번호 재설정"
+        static let findIdAndPw = "아이디·비밀번호 찾기"
+        static let signUpLabel = "아직 TARAS 계정이 없나요?"
         static let signUp = "회원가입"
     }
     
@@ -48,12 +48,27 @@ class SignInView: UIView {
         $0.isEnabled = false
     }
     
+    /// '아이디 · 비밀번호 찾기' 버튼
+    let findIdAndPwButton = UIButton().then {
+        $0.titleLabel?.font = .bold[14]
+        $0.setTitleColor(.black0F0F0F, for: .normal)
+        $0.setTitleWithUnderLine(Text.findIdAndPw, for: .normal)
+        $0.setBackgroundColor(color: .clear, forState: .normal)
+    }
+    
     /// '회원가입' 버튼
     let signUpButton = UIButton().then {
-        $0.titleLabel?.font = .regular[12]
-        $0.setTitleColor(.black0F0F0F, for: .normal)
+        $0.titleLabel?.font = .bold[16]
+        $0.setTitleColor(.purple4A3C9F, for: .normal)
         $0.setTitle(Text.signUp, for: .normal)
-        $0.setBackgroundImage(.init(), for: .normal)
+        $0.setBackgroundColor(color: .clear, forState: .normal)
+    }
+    
+    /// '회원가입' 라벨
+    let signUpLabel = UILabel().then {
+        $0.textColor = .gray9A9A9A
+        $0.font = .medium[16]
+        $0.text = Text.signUpLabel
     }
     
     
@@ -109,26 +124,31 @@ class SignInView: UIView {
             $0.height.equalTo(60)
         }
         
-//        self.addSubview(self.findAccountButton)
-//        self.findAccountButton.snp.makeConstraints {
-//            $0.top.equalTo(self.signInButton.snp.bottom).offset(12)
-//            $0.centerX.equalToSuperview()
-//            $0.height.equalTo(40)
-//        }
-//
-//        self.addSubview(self.resetPasswordButton)
-//        self.resetPasswordButton.snp.makeConstraints {
-//            $0.top.equalTo(self.findAccountButton.snp.bottom)
-//            $0.centerX.equalToSuperview()
-//            $0.height.equalTo(40)
-//        }
-        
-        self.addSubview(self.signUpButton)
-        self.signUpButton.snp.makeConstraints {
+        self.addSubview(self.findIdAndPwButton)
+        self.findIdAndPwButton.snp.makeConstraints {
             $0.top.equalTo(self.signInButton.snp.bottom).offset(12)
-//            $0.top.equalTo(self.resetPasswordButton.snp.bottom)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40)
+        }
+        
+        let stackView = UIStackView().then {
+            $0.axis = .horizontal
+            $0.spacing = 23
+        }
+        self.addSubview(stackView)
+
+        stackView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-38)
+            $0.centerX.equalToSuperview()
+        }
+
+        stackView.addArrangedSubview(self.signUpLabel)
+        self.signUpLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+        }
+        stackView.addArrangedSubview(self.signUpButton)
+        self.signUpButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
         }
     }
 }
