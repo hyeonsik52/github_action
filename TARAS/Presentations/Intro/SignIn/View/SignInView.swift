@@ -52,8 +52,8 @@ class SignInView: UIView {
     let findIdAndPwButton = UIButton().then {
         $0.titleLabel?.font = .bold[14]
         $0.setTitleColor(.black0F0F0F, for: .normal)
-        $0.setTitle(Text.findIdAndPw, for: .normal)
-        $0.setBackgroundImage(.init(), for: .normal)
+        $0.setTitleWithUnderLine(Text.findIdAndPw, for: .normal)
+        $0.setBackgroundColor(color: .clear, forState: .normal)
     }
     
     /// '회원가입' 버튼
@@ -61,7 +61,7 @@ class SignInView: UIView {
         $0.titleLabel?.font = .bold[16]
         $0.setTitleColor(.purple4A3C9F, for: .normal)
         $0.setTitle(Text.signUp, for: .normal)
-        $0.setBackgroundImage(.init(), for: .normal)
+        $0.setBackgroundColor(color: .clear, forState: .normal)
     }
     
     /// '회원가입' 라벨

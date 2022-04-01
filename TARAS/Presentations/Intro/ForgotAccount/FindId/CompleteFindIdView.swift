@@ -33,8 +33,8 @@ class CompleteFindIdView: UIView {
     let findPwButton = UIButton().then {
         $0.titleLabel?.font = .bold[16]
         $0.setTitleColor(.purple4A3C9F, for: .normal)
-        $0.setTitle(Text.SUVC_3, for: .normal)
-        $0.setBackgroundImage(.init(), for: .normal)
+        $0.setTitleWithUnderLine(Text.SUVC_3, for: .normal)
+        $0.setBackgroundColor(color: .clear, forState: .normal)
     }
     
     

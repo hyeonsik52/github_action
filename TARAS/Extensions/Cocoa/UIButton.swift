@@ -18,4 +18,14 @@ extension UIButton {
         UIGraphicsEndImageContext()
         self.setBackgroundImage(colorImage, for: forState)
     }
+    
+    func setTitleWithUnderLine(_ title: String, for state: UIControl.State) {
+        let attributedString = NSMutableAttributedString(string: title)
+        attributedString.addAttribute(
+            .underlineStyle,
+            value: NSUnderlineStyle.single.rawValue,
+            range: NSRange(location: 0, length: title.count)
+        )
+        setAttributedTitle(attributedString, for: state)
+    }
 }
