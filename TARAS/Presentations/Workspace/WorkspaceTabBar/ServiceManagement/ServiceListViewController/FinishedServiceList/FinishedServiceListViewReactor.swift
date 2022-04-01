@@ -14,10 +14,23 @@ class FinishedServiceListViewReactor: Reactor {
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     let disposeBag = DisposeBag()
     
-    enum Action {
+    enum Action: Equatable {
         case refresh
         case moreFind(IndexPath)  //last item
         case notification(Notification)
+        
+        static func == (lhs: Action, rhs: Action) -> Bool {
+            switch (lhs, rhs) {
+            case (.refresh, .refresh):
+                return true
+            case (.moreFind(let left), .moreFind(let right)):
+                return left == right
+            case (.notification(let left), .notification(let right)):
+                return (try? left.uniqueDescription()) == (try? right.uniqueDescription())
+            default:
+                return false
+            }
+        }
     }
     
     enum Mutation {

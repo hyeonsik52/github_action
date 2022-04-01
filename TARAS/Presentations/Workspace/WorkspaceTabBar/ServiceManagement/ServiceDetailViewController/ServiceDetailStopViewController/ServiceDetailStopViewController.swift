@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
+//TODO: 목적지 정보가 제대로 표시되는지 단위테스트 필요
 class ServiceDetailStopViewController: BaseViewController, View {
     
     enum Text {

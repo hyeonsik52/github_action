@@ -24,7 +24,7 @@ class UpdateUserInfoViewController: BaseNavigationViewController, ReactorKit.Vie
         static let UpdatedRear = "변경 완료"
     }
     
-    private lazy var userInputView = ConfirmInputView(
+    lazy var userInputView = ConfirmInputView(
         placeholder: "",
         buttonTitle: Text.UUIVC_1
     ).then {

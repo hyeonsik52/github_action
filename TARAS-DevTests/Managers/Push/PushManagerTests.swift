@@ -27,8 +27,8 @@ class PushManagerTests: XCTestCase {
 
     func testSetupTabBarController() throws {
         
-        let workspaceId = "ws_\(MockModel.id)"
-        let serviceId = "s_\(MockModel.id)"
+        let workspaceId = "ws_\(DummyModel.id)"
+        let serviceId = "s_\(DummyModel.id)"
         
         let notificationInfo = NotificationInfo([
             "workspaceId": workspaceId,

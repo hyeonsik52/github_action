@@ -17,7 +17,7 @@ class ServiceCreationSelectReceiverViewReactor: Reactor {
     
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     
-    enum Action {
+    enum Action: Equatable {
         case refresh(term: String?)
         case select(model: User)
     }

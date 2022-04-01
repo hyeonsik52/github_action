@@ -20,7 +20,7 @@ class ServiceDetailLogViewController: BaseNavigationViewController, View {
         static let title = "서비스 로그"
     }
     
-    private let tableView = UITableView().then {
+    let tableView = UITableView().then {
         
         $0.separatorStyle = .none
         $0.backgroundColor = .clear

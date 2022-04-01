@@ -17,7 +17,7 @@ class SRPDetailInfoCellView: UIView {
         $0.textColor = .black0F0F0F
         $0.setContentCompressionResistancePriority(.defaultHigh+1, for: .horizontal)
     }
-    private let contentLabel = UILabel().then {
+    let contentLabel = UILabel().then {
         $0.font = .bold[16]
         $0.textColor = .black0F0F0F
     }

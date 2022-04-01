@@ -101,6 +101,28 @@ extension NetworkManager: FCMSupport {
 extension NetworkManagerType {
     
     var fcm: FCMSupport {
-        return self as! FCMSupport
+        guard let converted = self as? FCMSupport else {
+            return FCMSupportDefault()
+        }
+        return converted
+    }
+}
+
+struct FCMSupportDefault: FCMSupport {
+    
+    func register(with tokenSet: PushTokenSet, _ func: String) {
+        
+    }
+    
+    func register(auto func: String) {
+        
+    }
+    
+    func register<T>(auto func: String) -> Observable<T> {
+        return .empty()
+    }
+    
+    func unregister() -> Observable<Bool> {
+        return .empty()
     }
 }

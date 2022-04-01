@@ -58,7 +58,7 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
         action: nil
     )
     
-    private let headerContainer = UIView().then {
+    let headerContainer = UIView().then {
         $0.backgroundColor = .grayF6F6F6
         $0.isHidden = true
     }
@@ -67,49 +67,49 @@ class ServiceDetailViewController: BaseNavigationViewController, View {
         $0.axis = .vertical
     }
     
-    private let authNumberContainer = UIView().then {
+    let authNumberContainer = UIView().then {
         $0.isHidden = true
     }
-    private let authNumberLabel = UILabel().then {
+    let authNumberLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .black0F0F0F
         $0.textAlignment = .right
     }
     
-    private let detailContainer = UIView().then {
+    let detailContainer = UIView().then {
         $0.isHidden = true
     }
-    private let detailLabel = UILabel().then {
+    let detailLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .black0F0F0F
         $0.numberOfLines = 0
     }
     
-    private let completedTimeContainer = UIView().then {
+    let completedTimeContainer = UIView().then {
         $0.isHidden = true
     }
-    private let completedTimeLabel = UILabel().then {
+    let completedTimeLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .black0F0F0F
         $0.textAlignment = .right
     }
     
-    private let errorContainer = UIView().then {
+    let errorContainer = UIView().then {
         $0.isHidden = true
     }
-    private let errorLabel = UILabel().then {
+    let errorLabel = UILabel().then {
         $0.font = .medium[14]
         $0.textColor = .redEB4D39
     }
     
-    private let workCompletionButtonContainer = UIView().then {
+    let workCompletionButtonContainer = UIView().then {
         $0.isHidden = true
     }
-    private let workCompletionButton = SRPButton(Text.workCompletion)
+    let workCompletionButton = SRPButton(Text.workCompletion)
     
-    private let refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     
-    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
+    lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.backgroundColor = .white
         
         $0.register(ServiceDetailServiceUnitCell.self)

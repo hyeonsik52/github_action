@@ -16,15 +16,15 @@ import RxDataSources
 
 class WorkspaceHomeViewController: BaseViewController, View {
     
-    private var workspaceView = WorkspaceSelectView()
-    private var headerView = WorkspaceHeaderView()
+    let workspaceView = WorkspaceSelectView()
+    let headerView = WorkspaceHeaderView()
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         let width = UIScreen.main.bounds.width - 16 * 2
         $0.minimumLineSpacing = 12
         $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     }
-    private lazy var collectionView = UICollectionView.init(
+    lazy var collectionView = UICollectionView.init(
         frame: .zero,
         collectionViewLayout: self.flowLayout
     ).then {
@@ -185,7 +185,7 @@ class WorkspaceHomeViewController: BaseViewController, View {
             }).disposed(by: self.disposeBag)
         
         //State
-        reactor.state.compactMap { $0.worspace }
+        reactor.state.compactMap { $0.workspace }
             .bind(to: self.workspaceView.rx.workspace)
             .disposed(by: self.disposeBag)
         

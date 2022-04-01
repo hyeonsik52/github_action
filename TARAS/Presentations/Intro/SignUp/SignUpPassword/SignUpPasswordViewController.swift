@@ -61,17 +61,9 @@ class SignUpPasswordViewController: BaseNavigationViewController, ReactorKit.Vie
         let password = self.signUpPasswordView.password.distinctUntilChanged()
         let passwordConfirmed = self.signUpPasswordView.passwordConfirmed.distinctUntilChanged()
         
-        let combine = Observable.combineLatest(password, passwordConfirmed)
-            
-        combine
-            .distinctUntilChanged { $0.0 == $1.0 }
+        Observable.combineLatest(password, passwordConfirmed)
+            .distinctUntilChanged { $0.0 == $1.0 && $0.1 == $1.1 }
             .map(Reactor.Action.checkPasswordValidation)
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        combine
-            .distinctUntilChanged { $0.1 == $1.1 }
-            .map(Reactor.Action.checkConfirmValidation)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         

@@ -14,17 +14,17 @@ import RxSwift
 
 class SettingTextCellView: UIView {
     
-    private var titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.font = .bold[16]
         $0.textColor = .black0F0F0F
         $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
-    private let descriptionLabel = UILabel().then {
+    let descriptionLabel = UILabel().then {
         $0.font = .regular[14]
     }
     
-    private let detailLabel = UILabel().then {
+    let detailLabel = UILabel().then {
         $0.font = .bold[16]
         $0.textColor = .black0F0F0F
         $0.textAlignment = .right

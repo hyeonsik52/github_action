@@ -17,7 +17,7 @@ class ServiceShortcutRegistrationViewReactor: Reactor {
     
     let scheduler: Scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     
-    enum Action {
+    enum Action: Equatable {
         case register(name: String, description: String?)
     }
     

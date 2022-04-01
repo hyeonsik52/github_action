@@ -45,6 +45,20 @@ extension SubscriptionManager: ServiceSubscriptionSupport {
 extension SubscriptionManagerType {
     
     var service: ServiceSubscriptionSupport {
-        return self as! ServiceSubscriptionSupport
+        guard let converted = self as? ServiceSubscriptionSupport else {
+            return ServiceSubscriptionSupportDefault()
+        }
+        return converted
+    }
+}
+
+struct ServiceSubscriptionSupportDefault: ServiceSubscriptionSupport {
+    
+    func changes(in workspace: String) -> Observable<[ServicesByWorkspaceIdSubscription.Data.ServiceChangeSet]> {
+        return .just([])
+    }
+    
+    func single(id: String) -> Observable<Result<ServiceByIdSubscription.Data, Error>> {
+        return .just(.success(.init(serviceTmp: [])))
     }
 }

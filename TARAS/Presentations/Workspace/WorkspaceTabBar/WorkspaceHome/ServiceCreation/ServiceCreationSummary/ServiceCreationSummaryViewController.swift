@@ -28,33 +28,33 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         $0.keyboardDismissMode = .onDrag
     }
     
-    private let stopLabel = UILabel().then {
+    let stopLabel = UILabel().then {
         $0.font = .medium[16]
         $0.textColor = .darkGray303030
         $0.textAlignment = .right
     }
     private let stopSelectButton = UIButton()
     
-    private let workWaitingSwitchContainer = UIView().then {
+    let workWaitingSwitchContainer = UIView().then {
         $0.isHidden = true
     }
-    private let workWaitingSwitch = UISwitch().then {
+    let workWaitingSwitch = UISwitch().then {
         $0.onTintColor = .purple4A3C9F
     }
     
-    private var loadingTypeSwitchContainer = UIView().then {
+    var loadingTypeSwitchContainer = UIView().then {
         $0.isHidden = true
     }
-    private let loadingTypeSwitch = UISwitch().then {
+    let loadingTypeSwitch = UISwitch().then {
         $0.onTintColor = .purple4A3C9F
     }
-    private let loadingTypeSwitchStateLabel = UILabel().then {
+    let loadingTypeSwitchStateLabel = UILabel().then {
         $0.font = .regular[16]
         $0.textColor = .grayA0A0A0
         $0.textAlignment = .right
     }
     
-    private let detailTextView = UITextView().then {
+    let detailTextView = UITextView().then {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 4
         $0.backgroundColor = .lightGrayF0F0F0
@@ -63,10 +63,10 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
         $0.placeholder = "요청사항을 입력해주세요"
     }
     
-    private var receiverListContainer = UIView().then {
+    var receiverListContainer = UIView().then {
         $0.isHidden = true
     }
-    private let receiverLabel = UILabel().then {
+    let receiverLabel = UILabel().then {
         $0.font = .regular[16]
         $0.textColor = .darkGray303030
         $0.numberOfLines = 0
@@ -74,7 +74,7 @@ class ServiceCreationSummaryViewController: BaseNavigationViewController, View {
     }
     private let receiverSelectButton = UIButton()
     
-    private let confirmButton = SRPButton("정차지 추가")
+    let confirmButton = SRPButton("정차지 추가")
     
     override var navigationPopWithBottomBarHidden: Bool {
         return true

@@ -25,7 +25,7 @@ class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View
         static let SVC_13 = "취소"
     }
     
-    private let refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     private lazy var scrollView = UIScrollView().then {
         $0.refreshControl = self.refreshControl
         $0.isScrollEnabled = true
@@ -33,13 +33,13 @@ class DefaultMyInfoViewController: BaseNavigationViewController, ReactorKit.View
     }
     
     private let myInfoHeader = SettingScrollViewHeader(title: "내 정보")
-    private let idCellView = SettingTextCellView(title: "아이디", isArrowHidden: true)
-    private let nameCellView = SettingTextCellView(title: "이름")
-    private let emailCellView = SettingTextCellView(title: "이메일")
-    private let phoneNumberCellView = SettingTextCellView(title: "전화번호")
+    let idCellView = SettingTextCellView(title: "아이디", isArrowHidden: true)
+    let nameCellView = SettingTextCellView(title: "이름")
+    let emailCellView = SettingTextCellView(title: "이메일")
+    let phoneNumberCellView = SettingTextCellView(title: "전화번호")
 
     private let appInfoHeader = SettingScrollViewHeader(title: "앱 정보")
-    private let versionCellView = SettingTextCellView(title: "버전")
+    let versionCellView = SettingTextCellView(title: "버전")
     
     private let signOutButton = SRPButton(
         Text.SVC_7,
