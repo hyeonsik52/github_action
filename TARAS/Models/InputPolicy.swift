@@ -69,8 +69,8 @@ extension InputPolicy {
     static let name = InputPolicy(range: 1...20, format: "^.+$")
     
     /// 이메일
-    /// 6~128자의 xxx@yyy.zzz 형태. x, y, z 각 x, y 1자 이상 z 2자 이상
-    static let email = InputPolicy(range: 6...128, format: "^[0-9a-zA-Z-_.]+@[0-9a-zA-Z-_]+([.][a-zA-Z]{2,})+$")
+    /// 6~128자의 xxx@yyy.zzz 형태. x, y, z 각 x, y, z 1자 이상
+    static let email = InputPolicy(range: 2...128, format: "^[0-9a-zA-Z-_.]+@[0-9a-zA-Z-_]+([.][a-zA-Z]+)+$")
     
     /// 전화번호
     /// 1~21자의 숫자만
