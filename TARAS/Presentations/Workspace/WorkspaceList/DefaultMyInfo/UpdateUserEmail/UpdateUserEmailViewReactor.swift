@@ -119,15 +119,6 @@ class UpdateUserEmailViewReactor: Reactor {
             .just(.updateIsProcessing(true)),
             
             self.provider.networkManager.perform(mutation)
-                .catch { error in
-                    let message = "\(error)"
-
-                    if message.contains("already"),
-                       message.contains("exists") {
-                        return .just(RequestAuthMutation.Data())
-                    }
-                    return .empty()
-                }
                 .flatMapLatest { [weak self] result -> Observable<Mutation> in
                     guard let result = result.requestVerificationNumber else {
                         return .just(.updateError(.account(.authNumberSendFailed)))
@@ -143,7 +134,17 @@ class UpdateUserEmailViewReactor: Reactor {
                         .just(.updateError(nil)),
                         .just(.calculateRemainExpires(convertExpiresSeconds))
                     ])
-                }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+                }.catch { error -> Observable<Mutation> in
+                    let message = "\(error)"
+                    
+                    if message.contains("already exists") {
+                        return .just(.updateError(.account(.authNumberSendFailed)))
+                    } else if message.contains("유효한 이메일 주소를 입력하십시오.") {
+                        return .just(.updateError(.etc("유효한 이메일 주소를 입력하십시오.")))
+                    } else {
+                        return .just(.updateError(.common(.networkNotConnect)))
+                    }
+                },
             
             .just(.updateIsProcessing(false))
         ])
@@ -161,16 +162,6 @@ class UpdateUserEmailViewReactor: Reactor {
             .just(.updateError(nil)),
             
             self.provider.networkManager.perform(mutation)
-                .catch { error in
-                    let message = "\(error)"
-                    
-                    if message.contains("Invalid"),
-                       message.contains("verification"),
-                       message.contains("number") {
-                        return .just(CheckAuthMutation.Data())
-                    }
-                    return .empty()
-                }
                 .map { $0.checkVerificationNumber }
                 .flatMapLatest { result -> Observable<Mutation> in
                     guard let token = result?.id else {
@@ -180,7 +171,16 @@ class UpdateUserEmailViewReactor: Reactor {
                     let mutation = UpdateUserEmailMutation(token: token)
                     return self.provider.networkManager.perform(mutation)
                         .map { .updateUserEmail($0.updateUserEmail ?? false) }
-                }.catchAndReturn(.updateError(.common(.networkNotConnect))),
+                }
+                .catch { error in
+                    let message = "\(error)"
+                    
+                    if message.contains("Invalid verification number") {
+                        return .just(.updateError(.account(.authNumberNotMatch)))
+                    } else {
+                        return .just(.updateError(.common(.networkNotConnect)))
+                    }
+                },
             
                 .just(.updateIsProcessing(false))
         ])
