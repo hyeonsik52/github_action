@@ -36,13 +36,6 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
         super.viewDidLoad()
 
         self.forgotAccountCertifyEmailView.emailTextFieldBecomeFirstResponse()
-        
-        // UI 확인하기 위한 tap
-        self.confirmButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                let viewController = CompleteFindIdViewController()
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
     }
 
     override func setupConstraints() {
