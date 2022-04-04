@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class ForgotAccountCertifyEmailViewController: BaseNavigationViewController {
+class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, ReactorKit.View {
     
     enum Text {
         static let completeCertifyEmailButtonTitle = "확인"
@@ -21,9 +21,13 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController {
     
     lazy var forgotAccountCertifyEmailView = ForgotAccountCertifyEmailView()
     
-    let confirmButton = SRPButton(Text.completeCertifyEmailButtonTitle)/*.then { // UI 확인하기 위한 주석
+    let confirmButton = SRPButton(Text.completeCertifyEmailButtonTitle).then {
         $0.isEnabled = false
-    }*/
+    }
+    
+    let isConfirmButtonisEnable = PublishRelay<Bool>()
+        
+    var serialTimer: Disposable?
     
     
     // MARK: - Life Cycles
@@ -64,6 +68,118 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController {
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    
+    // MARK: - ReactorKit
+        
+        func bind(reactor: ForgotAccountCertifyEmailViewReactor) {
+            
+        // Action
+        self.forgotAccountCertifyEmailView.email
+            .distinctUntilChanged()
+            .map { Reactor.Action.checkValidation(email: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.forgotAccountCertifyEmailView.authNumber
+            .distinctUntilChanged()
+            .map { Reactor.Action.checkEnable(authNumber: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.forgotAccountCertifyEmailView.certifyButtonDidTap
+            .withLatestFrom(self.forgotAccountCertifyEmailView.email)
+            .map(Reactor.Action.sendAuthNumber)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.confirmButton.rx.throttleTap(.seconds(3))
+            .withLatestFrom(self.forgotAccountCertifyEmailView.authNumber)
+            .map(Reactor.Action.checkAuthNumber)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // State
+        reactor.state.map { $0.isValid }
+            .distinctUntilChanged()
+            .bind(to: self.forgotAccountCertifyEmailView.isCertifyButtonEnabled)
+            .disposed(by: self.disposeBag)
+        
+        self.forgotAccountCertifyEmailView.email.distinctUntilChanged()
+            .subscribe(onNext: { [weak self] _ in
+                self?.serialTimer?.dispose()
+                self?.forgotAccountCertifyEmailView.authNumberTextFieldView.isHidden = true
+                self?.forgotAccountCertifyEmailView.clearAuthNumberTextField()
+                self?.forgotAccountCertifyEmailView.authNumberTextFieldView.innerLabel.text = nil
+            }).disposed(by: self.disposeBag)
+        
+        Observable.combineLatest(
+            reactor.state.map { $0.isEnable }.distinctUntilChanged(),
+            self.forgotAccountCertifyEmailView.authNumber.distinctUntilChanged(),
+            self.isConfirmButtonisEnable,
+            resultSelector: { $0 && !$1.isEmpty && $2 }
+        )
+        .bind(to: self.confirmButton.rx.isEnabled)
+        .disposed(by: self.disposeBag)
+        
+        // 만료시간 표시
+        reactor.state.map { $0.authNumberExpires }
+            .distinctUntilChanged()
+            .filter { $0 > 0 }
+            .subscribe(onNext: { [weak self] expires in
+                guard let self = self else { return }
+                
+                self.forgotAccountCertifyEmailView.authNumberTextFieldBecomeFirstResponse()
+                self.forgotAccountCertifyEmailView.clearAuthNumberTextField()
+                
+                // '확인' 버튼 활성화 조건
+                self.isConfirmButtonisEnable.accept(true)
+                // 인증번호 입력 텍스트 필드 표시
+                self.forgotAccountCertifyEmailView.authNumberTextFieldView.isHidden = false
+                // '인증' -> '재인증' 문구 변경
+                self.forgotAccountCertifyEmailView.emailTextFieldView.innerButton.setTitle(
+                    Text.retryCertifyEmailButtonTitle,
+                    for: .normal
+                )
+                
+                self.serialTimer?.dispose()
+                self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+                    .map { timer in
+                        let remainExpires = TimeInterval(expires - timer)
+                        
+                        if remainExpires == 0 {
+                            self.isConfirmButtonisEnable.accept(false)
+                        }
+                        
+                        if remainExpires < 0 {
+                            self.serialTimer?.dispose()
+                        }
+
+                        return remainExpires.toTimeString
+                    }
+                    .bind(to: self.forgotAccountCertifyEmailView.remainExpires)
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.findUsername }
+            .distinctUntilChanged()
+            .map { reactor.reactorForCompleteFindId($0) }
+            .subscribe(onNext: { [weak self] reactor in
+                self?.serialTimer?.dispose()
+                let viewController = CompleteFindIdViewController()
+                viewController.reactor = reactor
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isProcessing }
+            .distinctUntilChanged()
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.errorMessage }
+            .distinctUntilChanged()
+            .bind(to: self.forgotAccountCertifyEmailView.errorMessage)
+            .disposed(by: self.disposeBag)
     }
     
     override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {
