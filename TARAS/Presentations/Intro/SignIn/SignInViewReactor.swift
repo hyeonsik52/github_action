@@ -42,7 +42,7 @@ class SignInViewReactor: Reactor {
         errorMessage: nil
     )
     
-    init(provider: ManagerProviderType, id: String) {
+    init(provider: ManagerProviderType, id: String? = nil) {
         self.provider = provider
         self.id = id
     }
