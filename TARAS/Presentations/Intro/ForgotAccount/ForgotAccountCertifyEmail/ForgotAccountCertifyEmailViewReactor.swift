@@ -140,8 +140,8 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
                     
                     if message.contains("does not exist") {
                         return .just(.updateError(.account(.unregisteredEmail)))
-                    } else if message.contains("유효하지 않은 이메일 입니다.") {
-                        return .just(.updateError(.etc("유효하지 않은 이메일 입니다.")))
+                    } else if message.contains("유효한 이메일 주소를 입력하십시오.") {
+                        return .just(.updateError(.etc("유효한 이메일 주소를 입력하십시오.")))
                     } else {
                         return .just(.updateError(.common(.networkNotConnect)))
                     }
