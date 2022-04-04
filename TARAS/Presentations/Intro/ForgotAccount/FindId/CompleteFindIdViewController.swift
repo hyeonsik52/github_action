@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class CompleteFindIdViewController: BaseNavigationViewController {
+class CompleteFindIdViewController: BaseNavigationViewController, ReactorKit.View {
     
     enum Text {
         static let SUVC_1 = "로그인하기"
@@ -47,6 +47,22 @@ class CompleteFindIdViewController: BaseNavigationViewController {
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    func bind(reactor: CompleteFindIdViewReactor) {
+            
+        self.completeFindIdView.idTextFieldView.textField.text = reactor.id
+        
+        // todo: findPwButton tap code
+        
+        self.toLoginButton.rx.throttleTap(.seconds(3))
+            .map { reactor.reactorForSignIn(reactor.id) }
+            .subscribe(onNext: { [weak self] reactor in
+                let viewController = SignInViewController()
+                viewController.reactor = reactor
+                let navigationController = UINavigationController(rootViewController: viewController)
+                self?.view.window?.rootViewController = navigationController
+            }).disposed(by: self.disposeBag)
     }
     
     override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {
