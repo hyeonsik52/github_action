@@ -103,7 +103,8 @@ extension AppDelegate {
                             UIAlertController.AlertAction(title: exitTitle, style: .destructive),
                             UIAlertController.AlertAction(title: actionTitle, style: .default)
                         ],
-                        usingCancel: false
+                        usingCancel: false,
+                        onGlobal: true
                     ).map(\.0)
                 } else {
                     Log.error(message ?? "error message empty")

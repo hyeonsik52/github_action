@@ -65,12 +65,27 @@ extension UIAlertController {
         )
     }
     
+    static let alertWindow: UIWindow = {
+        var newWindow: UIWindow!
+        if #available(iOS 13.0, *),
+           let scene = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).first as? UIWindowScene {
+            newWindow = .init(windowScene: scene)
+        } else {
+            newWindow = .init(frame: UIScreen.main.bounds)
+        }
+        newWindow.backgroundColor = .clear
+        newWindow.rootViewController = UIViewController()
+        newWindow.accessibilityViewIsModal = true
+        return newWindow
+    }()
+    
     static func show(
         _ style: Style = .alert,
         title: String? = nil,
         message: String? = nil,
         items: [AlertAction],
-        usingCancel: Bool = true
+        usingCancel: Bool = true,
+        onGlobal: Bool = false
     ) -> Observable<(Int, String?)> {
         return .create { observer in
             
@@ -85,12 +100,27 @@ extension UIAlertController {
                 alertController.addAction(.init(title: "취소", style: .cancel))
             }
             
-            if let viewController = UIApplication.topViewController {
-                viewController.present(alertController, animated: true, completion: nil)
+            let mainWindow = UIApplication.shared.keyWindow
+            var alertWindow: UIWindow?
+            var viewController: UIViewController?
+            
+            if onGlobal {
+                
+                alertWindow = self.alertWindow
+                viewController = alertWindow?.rootViewController
+                alertWindow?.makeKeyAndVisible()
+                
+            } else {
+                
+                viewController = UIApplication.topViewController
             }
             
+            viewController?.present(alertController, animated: true, completion: nil)
+            
             return Disposables.create {
-                alertController.dismiss(animated: true)
+                alertController.dismiss(animated: true) {
+                    mainWindow?.makeKeyAndVisible()
+                }
             }
         }
     }
