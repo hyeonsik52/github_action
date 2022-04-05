@@ -47,6 +47,10 @@ class CompleteFindIdViewController: BaseNavigationViewController, ReactorKit.Vie
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
+        
+        self.navigationItem.setLeftBarButton(nil, animated: false)
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     func bind(reactor: CompleteFindIdViewReactor) {
