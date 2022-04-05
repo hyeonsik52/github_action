@@ -17,7 +17,6 @@
 		B543051227FC08E2007C995A /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051127FC08E2007C995A /* ResetPasswordView.swift */; };
 		B543051427FC08F2007C995A /* CompleteResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */; };
 		B543051627FC08FA007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
-		B543051827FC0900007C995A /* CompleteResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051727FC0900007C995A /* CompleteResetPasswordView.swift */; };
 		B543051927FC0C92007C995A /* CheckIdValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */; };
 		B543051A27FC0C93007C995A /* CheckIdValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */; };
 		B543051B27FC0C95007C995A /* CheckIdValidationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */; };
@@ -34,8 +33,6 @@
 		B543052627FC0CA7007C995A /* CompleteResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */; };
 		B543052727FC0CA9007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
 		B543052827FC0CAA007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
-		B543052927FC0CAC007C995A /* CompleteResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051727FC0900007C995A /* CompleteResetPasswordView.swift */; };
-		B543052A27FC0CAD007C995A /* CompleteResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051727FC0900007C995A /* CompleteResetPasswordView.swift */; };
 		B597876027F2934B00052A5C /* CertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597875F27F2934B00052A5C /* CertifyEmailView.swift */; };
 		B597876227F2935600052A5C /* CertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */; };
 		B597876427F2936500052A5C /* CertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876327F2936500052A5C /* CertifyEmailGuideView.swift */; };
@@ -952,7 +949,6 @@
 		B543051127FC08E2007C995A /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteResetPasswordViewController.swift; sourceTree = "<group>"; };
 		B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteResetPasswordViewReactor.swift; sourceTree = "<group>"; };
-		B543051727FC0900007C995A /* CompleteResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteResetPasswordView.swift; sourceTree = "<group>"; };
 		B597875F27F2934B00052A5C /* CertifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailView.swift; sourceTree = "<group>"; };
 		B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailTextFieldView.swift; sourceTree = "<group>"; };
 		B597876327F2936500052A5C /* CertifyEmailGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailGuideView.swift; sourceTree = "<group>"; };
@@ -1361,7 +1357,6 @@
 			children = (
 				B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */,
 				B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */,
-				B543051727FC0900007C995A /* CompleteResetPasswordView.swift */,
 			);
 			path = CompleteResetPassword;
 			sourceTree = "<group>";
@@ -3166,7 +3161,6 @@
 				ED416D0B27A16C640043A7A4 /* NotificationManager+Rx.swift in Sources */,
 				ED40515C27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				ED416D0C27A16C640043A7A4 /* SettingTextCellView_Reactive.swift in Sources */,
-				B543052927FC0CAC007C995A /* CompleteResetPasswordView.swift in Sources */,
 				ED416D0D27A16C640043A7A4 /* SignInView.swift in Sources */,
 				B543051B27FC0C95007C995A /* CheckIdValidationViewReactor.swift in Sources */,
 				ED416D0E27A16C640043A7A4 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
@@ -3452,7 +3446,6 @@
 				ED416E4F27A170FC0043A7A4 /* SimpleReactor.swift in Sources */,
 				ED40515B27E2019900AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				ED416E5027A170FC0043A7A4 /* NotificationManager+Rx.swift in Sources */,
-				B543051827FC0900007C995A /* CompleteResetPasswordView.swift in Sources */,
 				ED416E5127A170FC0043A7A4 /* SettingTextCellView_Reactive.swift in Sources */,
 				B543050A27FC08BD007C995A /* CheckIdValidationViewReactor.swift in Sources */,
 				ED416E5227A170FC0043A7A4 /* SignInView.swift in Sources */,
@@ -3788,7 +3781,6 @@
 				EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */,
 				ED40515D27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */,
-				B543052A27FC0CAD007C995A /* CompleteResetPasswordView.swift in Sources */,
 				ED52732626C255FC0077CD9D /* SignInView.swift in Sources */,
 				B543051C27FC0C95007C995A /* CheckIdValidationViewReactor.swift in Sources */,
 				ED06C758277DBD2D00F9D0A5 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
