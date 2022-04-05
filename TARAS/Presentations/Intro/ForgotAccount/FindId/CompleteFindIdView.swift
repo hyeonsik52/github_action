@@ -11,7 +11,6 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-/// SignUpIdViewController 에서 사용되는 커스텀 뷰 입니다.
 class CompleteFindIdView: UIView {
     
     enum Text {
@@ -24,7 +23,7 @@ class CompleteFindIdView: UIView {
     // MARK: - UI
     
     /// 시스템 라지 네비바 형태의 뷰 + "고객님의 정보와 일치하는 아이디는 아래와 같습니다." 라벨
-    private let guideView = SignUpGuideView(Text.SUVC_1, guideText: Text.SUVC_2)
+    private let guideView = ForgotAccountGuideView(Text.SUVC_1, guideText: Text.SUVC_2)
     
     /// 유저 아이디 표시 텍스트 필드
     lazy var idTextFieldView = ForgotAccountTextFieldView(viewType: .deliveryRequest)
