@@ -17,7 +17,7 @@ class CompleteResetPasswordViewController: BaseNavigationViewController {
     enum Text {
         static let SUVC_1 = "비밀번호가 재설정되었습니다."
         static let SUVC_2 = "변경된 정보로 로그인해주세요."
-        static let SUVC_3 = "다음"
+        static let SUVC_3 = "로그인하기"
     }
     
     let guideView = ForgotAccountGuideView(Text.SUVC_1, guideText: Text.SUVC_2)
