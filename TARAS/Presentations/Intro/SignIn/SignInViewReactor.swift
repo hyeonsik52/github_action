@@ -33,6 +33,8 @@ class SignInViewReactor: Reactor {
     
     let provider: ManagerProviderType
     
+    var id: String?
+    
     let initialState: State = .init(
         isValid: false,
         isSignIn: nil,
@@ -40,8 +42,9 @@ class SignInViewReactor: Reactor {
         errorMessage: nil
     )
     
-    init(provider: ManagerProviderType) {
+    init(provider: ManagerProviderType, id: String? = nil) {
         self.provider = provider
+        self.id = id
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -127,9 +130,9 @@ class SignInViewReactor: Reactor {
     func reactorForWorkspaceList() -> WorkspaceListViewReactor {
         return WorkspaceListViewReactor(provider: self.provider, isFrom: .signIn)
     }
-
-    func reactorForForgotAccount() -> SignInViewReactor {
-        return SignInViewReactor(provider: self.provider)
+    
+    func reactorForFindId() -> ForgotAccountCertifyEmailViewReactor {
+        return ForgotAccountCertifyEmailViewReactor(provider: self.provider)
     }
 }
 

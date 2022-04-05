@@ -46,6 +46,8 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
 
     func bind(reactor: SignInViewReactor) {
         
+        if let id = reactor.id { self.signInView.idTextFieldView.textField.text = id }
+        
         // Action
         let id = self.signInView.idTextFieldView.textField.rx.text.orEmpty.distinctUntilChanged()
         let password = self.signInView.passwordTextFieldView.textField.rx.text.orEmpty.distinctUntilChanged()
@@ -73,9 +75,11 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
         
         // 아이디 · 비밀번호 찾기
         signInView.findIdAndPwButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
+            .map { _ in reactor.reactorForFindId() }
+            .subscribe(onNext: { [weak self] reactor in
                 self?.forgotAccountAlert(idHandler: {
                     let viewController = ForgotAccountCertifyEmailViewController()
+                    viewController.reactor = reactor
                     self?.navigationController?.pushViewController(viewController, animated: true)
                 }, passwordHandler: {
                     // todo: 비밀번호 재설정 시
