@@ -82,9 +82,7 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
                     viewController.reactor = reactor
                     self?.navigationController?.pushViewController(viewController, animated: true)
                 }, passwordHandler: {
-                    // ui 확인용 push navigation
-                    let viewController = CheckIdValidationViewController()
-                    self?.navigationController?.pushViewController(viewController, animated: true)
+                    
                 })
             }).disposed(by: self.disposeBag)
         

@@ -25,19 +25,6 @@ class ResetPasswordViewController: BaseNavigationViewController {
     
     // MARK: - Life Cycles
     
-    // ui 확인용 push navigation
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.toCompleteResetPasswordButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                let viewController = CompleteResetPasswordViewController()
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
-        
-        self.resetPasswordView.passwordTextFieldBecomeFirstResponse()
-    }
-    
     override func setupConstraints() {
 
         self.view.addSubview(self.resetPasswordView)

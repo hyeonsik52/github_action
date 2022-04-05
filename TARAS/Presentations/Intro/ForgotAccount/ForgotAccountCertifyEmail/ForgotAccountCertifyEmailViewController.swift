@@ -21,9 +21,9 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
     
     lazy var forgotAccountCertifyEmailView = ForgotAccountCertifyEmailView()
     
-    let confirmButton = SRPButton(Text.completeCertifyEmailButtonTitle)/*.then { // ui 확인용 주석
+    let confirmButton = SRPButton(Text.completeCertifyEmailButtonTitle).then {
         $0.isEnabled = false
-    }*/
+    }
     
     let isConfirmButtonisEnable = PublishRelay<Bool>()
         
@@ -36,13 +36,6 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
         super.viewDidLoad()
 
         self.forgotAccountCertifyEmailView.emailTextFieldBecomeFirstResponse()
-        
-        // ui 확인용 push navigation
-        self.confirmButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                let viewController = ResetPasswordViewController()
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
     }
 
     override func setupConstraints() {
@@ -94,12 +87,11 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-            // ui 확인용 주석
-//        self.confirmButton.rx.throttleTap(.seconds(3))
-//            .withLatestFrom(self.forgotAccountCertifyEmailView.authNumber)
-//            .map(Reactor.Action.checkAuthNumber)
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
+        self.confirmButton.rx.throttleTap(.seconds(3))
+            .withLatestFrom(self.forgotAccountCertifyEmailView.authNumber)
+            .map(Reactor.Action.checkAuthNumber)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
         
         // State
         reactor.state.map { $0.isValid }

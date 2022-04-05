@@ -33,7 +33,6 @@ class CheckIdValidationView: UIView {
         $0.textColor = .redEB4D39
         $0.font = .bold[14]
         $0.numberOfLines = 0
-        $0.text = "error message" // ui 확인용 텍스트
     }
     
     

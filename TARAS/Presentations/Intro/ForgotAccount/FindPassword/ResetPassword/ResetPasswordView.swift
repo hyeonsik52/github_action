@@ -27,14 +27,11 @@ class ResetPasswordView: UIView {
     private let guideView = ForgotAccountGuideView(Text.SUVC_1, guideText: Text.SUVC_2)
     
     /// 유저 비밀번호 입력 텍스트 필드
-    lazy var passwordTextFieldView = ForgotAccountTextFieldView(viewType: .password).then {
-        $0.textField.text = "ui 확인용 텍스트"
-    }
+    lazy var passwordTextFieldView = ForgotAccountTextFieldView(viewType: .password)
     
     /// 유저 비밀번호 확인 입력 텍스트 필드
     lazy var passwordConfirmTextFieldView = ForgotAccountTextFieldView(viewType: .password).then {
         $0.textField.returnKeyType = .done
-        $0.textField.text = "ui 확인용 텍스트"
     }
     
     /// 에러 메시지 라벨
@@ -42,7 +39,6 @@ class ResetPasswordView: UIView {
         $0.textColor = .redEB4D39
         $0.font = .bold[14]
         $0.numberOfLines = 0
-        $0.text = "error message" // ui 확인용 텍스트
     }
     
     

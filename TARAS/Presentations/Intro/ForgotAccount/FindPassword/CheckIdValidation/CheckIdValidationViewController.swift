@@ -25,19 +25,6 @@ class CheckIdValidationViewController: BaseNavigationViewController {
     
     // MARK: - Life Cycles
     
-    // ui 확인용 push navigation
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.toResetPasswordButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                let viewController = ForgotAccountCertifyEmailViewController()
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
-        
-        self.checkIdValidationView.idTextFieldBecomeFirstResponse()
-    }
-    
     override func setupConstraints() {
 
         self.view.addSubview(self.checkIdValidationView)
