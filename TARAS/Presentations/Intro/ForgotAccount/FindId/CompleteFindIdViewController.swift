@@ -57,7 +57,12 @@ class CompleteFindIdViewController: BaseNavigationViewController, ReactorKit.Vie
             
         self.completeFindIdView.idTextFieldView.textField.text = reactor.id
         
-        // todo: findPwButton tap code
+        // ui 확인용 push navigation
+        self.completeFindIdView.findPwButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                let viewController = CheckIdValidationViewController()
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: self.disposeBag)
         
         self.toLoginButton.rx.throttleTap(.seconds(3))
             .map { reactor.reactorForSignIn(reactor.id) }
