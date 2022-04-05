@@ -73,5 +73,9 @@ class CheckIdValidationView: UIView {
             $0.bottom.equalToSuperview()
         }
     }
+    
+    func idTextFieldBecomeFirstResponse() {
+        self.idTextFieldView.textField.becomeFirstResponder()
+    }
 }
 
