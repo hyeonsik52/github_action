@@ -18,6 +18,24 @@
 		B543051427FC08F2007C995A /* CompleteResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */; };
 		B543051627FC08FA007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
 		B543051827FC0900007C995A /* CompleteResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051727FC0900007C995A /* CompleteResetPasswordView.swift */; };
+		B543051927FC0C92007C995A /* CheckIdValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */; };
+		B543051A27FC0C93007C995A /* CheckIdValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */; };
+		B543051B27FC0C95007C995A /* CheckIdValidationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */; };
+		B543051C27FC0C95007C995A /* CheckIdValidationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */; };
+		B543051D27FC0C97007C995A /* CheckIdValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050B27FC08C5007C995A /* CheckIdValidationView.swift */; };
+		B543051E27FC0C98007C995A /* CheckIdValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050B27FC08C5007C995A /* CheckIdValidationView.swift */; };
+		B543051F27FC0C9D007C995A /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050D27FC08D6007C995A /* ResetPasswordViewController.swift */; };
+		B543052027FC0C9D007C995A /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050D27FC08D6007C995A /* ResetPasswordViewController.swift */; };
+		B543052127FC0CA0007C995A /* ResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050F27FC08DD007C995A /* ResetPasswordViewReactor.swift */; };
+		B543052227FC0CA0007C995A /* ResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050F27FC08DD007C995A /* ResetPasswordViewReactor.swift */; };
+		B543052327FC0CA2007C995A /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051127FC08E2007C995A /* ResetPasswordView.swift */; };
+		B543052427FC0CA3007C995A /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051127FC08E2007C995A /* ResetPasswordView.swift */; };
+		B543052527FC0CA6007C995A /* CompleteResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */; };
+		B543052627FC0CA7007C995A /* CompleteResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */; };
+		B543052727FC0CA9007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
+		B543052827FC0CAA007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
+		B543052927FC0CAC007C995A /* CompleteResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051727FC0900007C995A /* CompleteResetPasswordView.swift */; };
+		B543052A27FC0CAD007C995A /* CompleteResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051727FC0900007C995A /* CompleteResetPasswordView.swift */; };
 		B597876027F2934B00052A5C /* CertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597875F27F2934B00052A5C /* CertifyEmailView.swift */; };
 		B597876227F2935600052A5C /* CertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */; };
 		B597876427F2936500052A5C /* CertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876327F2936500052A5C /* CertifyEmailGuideView.swift */; };
@@ -3148,7 +3166,9 @@
 				ED416D0B27A16C640043A7A4 /* NotificationManager+Rx.swift in Sources */,
 				ED40515C27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				ED416D0C27A16C640043A7A4 /* SettingTextCellView_Reactive.swift in Sources */,
+				B543052927FC0CAC007C995A /* CompleteResetPasswordView.swift in Sources */,
 				ED416D0D27A16C640043A7A4 /* SignInView.swift in Sources */,
+				B543051B27FC0C95007C995A /* CheckIdValidationViewReactor.swift in Sources */,
 				ED416D0E27A16C640043A7A4 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
 				ED416D0F27A16C640043A7A4 /* UIViewController+PushAndPop.swift in Sources */,
 				ED416D1127A16C640043A7A4 /* STNode.swift in Sources */,
@@ -3161,11 +3181,13 @@
 				ED416D1B27A16C640043A7A4 /* SettingScrollViewHeader.swift in Sources */,
 				ED416D1C27A16C640043A7A4 /* KeyboardExtension.swift in Sources */,
 				ED416D1D27A16C640043A7A4 /* BaseViewController.swift in Sources */,
+				B543052527FC0CA6007C995A /* CompleteResetPasswordViewController.swift in Sources */,
 				ED416D1E27A16C640043A7A4 /* WorkspaceMoreViewReactor.swift in Sources */,
 				ED416D2027A16C640043A7A4 /* WorkspaceHomeReactor.swift in Sources */,
 				ED416D2127A16C640043A7A4 /* WorkspaceMoreViewController.swift in Sources */,
 				ED416D2327A16C640043A7A4 /* ServiceLogCellReactor.swift in Sources */,
 				ED416D2527A16C640043A7A4 /* ServiceUnitTargetModelSection.swift in Sources */,
+				B543052727FC0CA9007C995A /* CompleteResetPasswordViewReactor.swift in Sources */,
 				ED416D2627A16C640043A7A4 /* UIButton+Rx.swift in Sources */,
 				ED416D2727A16C640043A7A4 /* SignInViewController.swift in Sources */,
 				ED416D2827A16C640043A7A4 /* RealmManager.swift in Sources */,
@@ -3179,6 +3201,7 @@
 				ED416D3027A16C640043A7A4 /* WorkspaceListCellReactor.swift in Sources */,
 				ED416D3127A16C640043A7A4 /* LoginResponseModel.swift in Sources */,
 				ED416D3227A16C640043A7A4 /* ServiceTemplateCellReactor.swift in Sources */,
+				B543052127FC0CA0007C995A /* ResetPasswordViewReactor.swift in Sources */,
 				ED416D3427A16C640043A7A4 /* AppDelegate.swift in Sources */,
 				ED416D3627A16C640043A7A4 /* FilterNil.swift in Sources */,
 				ED416D3727A16C640043A7A4 /* DefaultMyInfoViewController.swift in Sources */,
@@ -3196,6 +3219,7 @@
 				ED416D4427A16C640043A7A4 /* RestAPIResponse.swift in Sources */,
 				ED416D4527A16C640043A7A4 /* ServiceTemplateType.swift in Sources */,
 				ED416D4727A16C640043A7A4 /* LaunchScreenViewReactor.swift in Sources */,
+				B543052327FC0CA2007C995A /* ResetPasswordView.swift in Sources */,
 				ED416D4827A16C640043A7A4 /* SignTextFieldView.swift in Sources */,
 				ED416D4927A16C640043A7A4 /* TimeInterval.swift in Sources */,
 				ED416D4A27A16C640043A7A4 /* WorkspaceTitleView.swift in Sources */,
@@ -3275,7 +3299,9 @@
 				ED416D9D27A16C640043A7A4 /* TRSListPlaceholderView.swift in Sources */,
 				ED416DA027A16C640043A7A4 /* TRSSearchView.swift in Sources */,
 				ED416DA127A16C640043A7A4 /* ServiceTemplateListSection.swift in Sources */,
+				B543051D27FC0C97007C995A /* CheckIdValidationView.swift in Sources */,
 				ED416DA227A16C640043A7A4 /* WorkspaceListViewController.swift in Sources */,
+				B543051927FC0C92007C995A /* CheckIdValidationViewController.swift in Sources */,
 				ED416DA327A16C640043A7A4 /* SignUpGuideView.swift in Sources */,
 				ED416DA427A16C640043A7A4 /* ServiceDetailViewReactor.swift in Sources */,
 				ED416DA627A16C640043A7A4 /* Identifiable.swift in Sources */,
@@ -3311,6 +3337,7 @@
 				ED416DC127A16C640043A7A4 /* TRSTag.swift in Sources */,
 				ED416DC427A16C640043A7A4 /* WorkspaceSearchResultViewReactor.swift in Sources */,
 				ED98972F27BB5BA6000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
+				B543051F27FC0C9D007C995A /* ResetPasswordViewController.swift in Sources */,
 				ED416DC527A16C640043A7A4 /* ServiceCreationSelectStopViewReactor.swift in Sources */,
 				ED416DC627A16C640043A7A4 /* InputPolicy.swift in Sources */,
 				ED416DC727A16C640043A7A4 /* STParser.swift in Sources */,
@@ -3761,7 +3788,9 @@
 				EDC6CAF1278BD05E004C5881 /* NotificationManager+Rx.swift in Sources */,
 				ED40515D27E201F100AC411E /* ServiceArgumentGeneralization.swift in Sources */,
 				EDC11A9626D3A39D0020AB09 /* SettingTextCellView_Reactive.swift in Sources */,
+				B543052A27FC0CAD007C995A /* CompleteResetPasswordView.swift in Sources */,
 				ED52732626C255FC0077CD9D /* SignInView.swift in Sources */,
+				B543051C27FC0C95007C995A /* CheckIdValidationViewReactor.swift in Sources */,
 				ED06C758277DBD2D00F9D0A5 /* ServiceCreationSelectReceiverViewController+Rx.swift in Sources */,
 				ED06C75E277DCB0A00F9D0A5 /* UIViewController+PushAndPop.swift in Sources */,
 				ED06C773278688F500F9D0A5 /* STNode.swift in Sources */,
@@ -3774,11 +3803,13 @@
 				EDC11A9426D3A39D0020AB09 /* SettingScrollViewHeader.swift in Sources */,
 				ED633E31279F936300585AB0 /* KeyboardExtension.swift in Sources */,
 				ED6B45F526B7DF7D00C2FA6D /* BaseViewController.swift in Sources */,
+				B543052627FC0CA7007C995A /* CompleteResetPasswordViewController.swift in Sources */,
 				EDC11A9826D3A39D0020AB09 /* WorkspaceMoreViewReactor.swift in Sources */,
 				EDC11B0026D3A39E0020AB09 /* WorkspaceHomeReactor.swift in Sources */,
 				EDC11A8B26D3A39D0020AB09 /* WorkspaceMoreViewController.swift in Sources */,
 				EDC11A4926D3A39D0020AB09 /* ServiceLogCellReactor.swift in Sources */,
 				ED06C75A277DBD2D00F9D0A5 /* ServiceUnitTargetModelSection.swift in Sources */,
+				B543052827FC0CAA007C995A /* CompleteResetPasswordViewReactor.swift in Sources */,
 				ED6B465226B7E7CC00C2FA6D /* UIButton+Rx.swift in Sources */,
 				ED52732A26C255FC0077CD9D /* SignInViewController.swift in Sources */,
 				ED6B468F26B7E8B500C2FA6D /* RealmManager.swift in Sources */,
@@ -3792,6 +3823,7 @@
 				EDC11A3426D3A39D0020AB09 /* WorkspaceListCellReactor.swift in Sources */,
 				ED508CD5272298D40029AF7B /* LoginResponseModel.swift in Sources */,
 				ED06C6FF277C48DA00F9D0A5 /* ServiceTemplateCellReactor.swift in Sources */,
+				B543052227FC0CA0007C995A /* ResetPasswordViewReactor.swift in Sources */,
 				EDF0C39A26B405F60061552F /* AppDelegate.swift in Sources */,
 				ED6B464F26B7E7CC00C2FA6D /* FilterNil.swift in Sources */,
 				EDC11A2F26D3A39D0020AB09 /* DefaultMyInfoViewController.swift in Sources */,
@@ -3809,6 +3841,7 @@
 				ED508CD4272298D40029AF7B /* RestAPIResponse.swift in Sources */,
 				ED06C767277EFE7B00F9D0A5 /* ServiceTemplateType.swift in Sources */,
 				ED6B46AE26B7EA4000C2FA6D /* LaunchScreenViewReactor.swift in Sources */,
+				B543052427FC0CA3007C995A /* ResetPasswordView.swift in Sources */,
 				ED52732826C255FC0077CD9D /* SignTextFieldView.swift in Sources */,
 				ED6B465826B7E7CC00C2FA6D /* TimeInterval.swift in Sources */,
 				ED7A0E7C272160C300AD6678 /* WorkspaceTitleView.swift in Sources */,
@@ -3888,7 +3921,9 @@
 				ED416CAE27A1153D0043A7A4 /* TRSListPlaceholderView.swift in Sources */,
 				EDC6CAFA27969E79004C5881 /* TRSSearchView.swift in Sources */,
 				ED06C701277C490500F9D0A5 /* ServiceTemplateListSection.swift in Sources */,
+				B543051E27FC0C98007C995A /* CheckIdValidationView.swift in Sources */,
 				EDC11A3726D3A39D0020AB09 /* WorkspaceListViewController.swift in Sources */,
+				B543051A27FC0C93007C995A /* CheckIdValidationViewController.swift in Sources */,
 				ED52737F26C3A03C0077CD9D /* SignUpGuideView.swift in Sources */,
 				EDC11A4E26D3A39D0020AB09 /* ServiceDetailViewReactor.swift in Sources */,
 				ED7BCE20277160200074BFFA /* Identifiable.swift in Sources */,
@@ -3924,6 +3959,7 @@
 				ED416CAA27A0DB9F0043A7A4 /* TRSTag.swift in Sources */,
 				EDC11B0326D3A39E0020AB09 /* WorkspaceSearchResultViewReactor.swift in Sources */,
 				ED98973027BB5BA6000C9246 /* ServiceDetailStopViewController+Rx.swift in Sources */,
+				B543052027FC0C9D007C995A /* ResetPasswordViewController.swift in Sources */,
 				ED06C745277DBD2D00F9D0A5 /* ServiceCreationSelectStopViewReactor.swift in Sources */,
 				ED6B46A726B7E9CE00C2FA6D /* InputPolicy.swift in Sources */,
 				ED06C76B278688B100F9D0A5 /* STParser.swift in Sources */,
