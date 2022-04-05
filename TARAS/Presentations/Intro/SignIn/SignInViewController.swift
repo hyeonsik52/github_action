@@ -82,7 +82,9 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
                     viewController.reactor = reactor
                     self?.navigationController?.pushViewController(viewController, animated: true)
                 }, passwordHandler: {
-                    // todo: 비밀번호 재설정 시
+                    // ui 확인용 push navigation
+                    let viewController = CheckIdValidationViewController()
+                    self?.navigationController?.pushViewController(viewController, animated: true)
                 })
             }).disposed(by: self.disposeBag)
         

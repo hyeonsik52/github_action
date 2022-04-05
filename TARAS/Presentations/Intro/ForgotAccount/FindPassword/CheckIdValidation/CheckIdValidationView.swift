@@ -1,8 +1,8 @@
 //
-//  CompleteFindIdView.swift
+//  CheckIdValidationView.swift
 //  TARAS
 //
-//  Created by 오현식 on 2022/03/31.
+//  Created by 오현식 on 2022/04/05.
 //
 
 import UIKit
@@ -11,29 +11,29 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-class CompleteFindIdView: UIView {
+class CheckIdValidationView: UIView {
     
     enum Text {
-        static let SUVC_1 = "아이디를 찾았습니다."
-        static let SUVC_2 = "고객님의 정보와 일치하는 아이디는 아래와 같습니다."
-        static let SUVC_3 = "비밀번호 찾기"
+        static let SUVC_1 = "아이디 입력"
+        static let SUVC_2 = "비밀번호를 찾을 아이디를 입력해주세요."
+        static let SUVC_3 = "아이디"
     }
     
     
     // MARK: - UI
     
-    /// 시스템 라지 네비바 형태의 뷰 + "고객님의 정보와 일치하는 아이디는 아래와 같습니다." 라벨
+    /// 시스템 라지 네비바 형태의 뷰 + "비밀번호를 찾을 아이디를 입력해주세요." 라벨
     private let guideView = ForgotAccountGuideView(Text.SUVC_1, guideText: Text.SUVC_2)
     
     /// 유저 아이디 표시 텍스트 필드
-    lazy var idTextFieldView = ForgotAccountTextFieldView(viewType: .deliveryRequest)
+    lazy var idTextFieldView = ForgotAccountTextFieldView(viewType: .id)
     
-    /// '비밀번호 찾기' 버튼
-    let findPwButton = UIButton().then {
-        $0.titleLabel?.font = .bold[16]
-        $0.setTitleColor(.purple4A3C9F, for: .normal)
-        $0.setTitleWithUnderLine(Text.SUVC_3, for: .normal)
-        $0.setBackgroundColor(color: .clear, forState: .normal)
+    /// 에러 메시지 라벨
+    let errorMessageLabel = UILabel().then {
+        $0.textColor = .redEB4D39
+        $0.font = .bold[14]
+        $0.numberOfLines = 0
+        $0.text = "error message" // ui 확인용 텍스트
     }
     
     
@@ -66,11 +66,16 @@ class CompleteFindIdView: UIView {
             $0.trailing.equalToSuperview().offset(-20)
         }
         
-        self.addSubview(self.findPwButton)
-        self.findPwButton.snp.makeConstraints {
-            $0.height.equalTo(40)
-            $0.top.equalTo(self.idTextFieldView.snp.bottom).offset(24)
-            $0.centerX.equalToSuperview()
+        self.addSubview(self.errorMessageLabel)
+        self.errorMessageLabel.snp.makeConstraints {
+            $0.top.equalTo(self.idTextFieldView.snp.bottom).offset(14)
+            $0.leading.trailing.equalTo(self.idTextFieldView)
+            $0.bottom.equalToSuperview()
         }
     }
+    
+    func idTextFieldBecomeFirstResponse() {
+        self.idTextFieldView.textField.becomeFirstResponder()
+    }
 }
+

@@ -14,7 +14,7 @@ class ForgotAccountTextFieldView: UIView {
     
     enum ViewType {
         case id
-        case pw
+        case password
         case deliveryRequest
     }
     
@@ -41,7 +41,8 @@ class ForgotAccountTextFieldView: UIView {
         // text presentation 용도로 사용하므로 isUserInteractionEnabled 을 false 로 처리
         self.textField.isUserInteractionEnabled = !(viewType == .deliveryRequest)
         self.textField.keyboardType = { return .asciiCapable }()
-        self.textField.returnKeyType = (viewType == .pw ? .continue: .done)
+        self.textField.returnKeyType = (viewType == .password ? .continue: .done)
+        self.textField.isSecureTextEntry = (viewType == .password ? true: false)
         self.textField.autocapitalizationType = .none
         self.textField.placeholder = placeholder
         self.setupConstraints(viewType)
