@@ -132,7 +132,11 @@ class SignInViewReactor: Reactor {
     }
     
     func reactorForFindId() -> ForgotAccountCertifyEmailViewReactor {
-        return ForgotAccountCertifyEmailViewReactor(provider: self.provider)
+        return ForgotAccountCertifyEmailViewReactor(provider: self.provider, isFindId: true)
+    }
+    
+    func reactorForResetPassword() -> CheckIdValidationViewReactor {
+        return CheckIdValidationViewReactor(provider: self.provider)
     }
 }
 

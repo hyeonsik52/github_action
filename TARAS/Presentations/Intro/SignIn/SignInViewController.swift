@@ -75,15 +75,14 @@ class SignInViewController: BaseNavigationViewController, ReactorKit.View {
         
         // 아이디 · 비밀번호 찾기
         signInView.findIdAndPwButton.rx.tap
-            .map { _ in reactor.reactorForFindId() }
-            .subscribe(onNext: { [weak self] reactor in
+            .subscribe(onNext: { [weak self] _ in
                 self?.forgotAccountAlert(idHandler: {
                     let viewController = ForgotAccountCertifyEmailViewController()
-                    viewController.reactor = reactor
+                    viewController.reactor = reactor.reactorForFindId()
                     self?.navigationController?.pushViewController(viewController, animated: true)
                 }, passwordHandler: {
-                    // ui 확인용 push navigation
                     let viewController = CheckIdValidationViewController()
+                    viewController.reactor = reactor.reactorForResetPassword()
                     self?.navigationController?.pushViewController(viewController, animated: true)
                 })
             }).disposed(by: self.disposeBag)

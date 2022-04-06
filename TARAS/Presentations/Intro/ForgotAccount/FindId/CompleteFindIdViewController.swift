@@ -30,7 +30,7 @@ class CompleteFindIdViewController: BaseNavigationViewController, ReactorKit.Vie
         self.view.addSubview(self.completeFindIdView)
         self.completeFindIdView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            $0.leading.trailing.equalToSuperview()
+            $0.bottom.leading.trailing.equalToSuperview()
         }
         
         self.view.addSubview(self.toLoginButton)
@@ -57,11 +57,21 @@ class CompleteFindIdViewController: BaseNavigationViewController, ReactorKit.Vie
             
         self.completeFindIdView.idTextFieldView.textField.text = reactor.id
         
-        // ui 확인용 push navigation
         self.completeFindIdView.findPwButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
+            .map { reactor.reactorForResetPasswordWithId(reactor.id) }
+            .subscribe(onNext: { [weak self] reactor in
                 let viewController = CheckIdValidationViewController()
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                viewController.reactor = reactor
+                self?.navigationController?.pushViewController(viewController, animated: true) {
+                    guard let navigationController = self?.navigationController else { return }
+        
+                    var navigationArray = navigationController.viewControllers
+                    navigationArray.removeAll(where: {
+                        $0.isKind(of: ForgotAccountCertifyEmailViewController.self) || $0.isKind(of: CompleteFindIdViewController.self)
+                    })
+                    
+                    self?.navigationController?.viewControllers = navigationArray
+                }
             }).disposed(by: self.disposeBag)
         
         self.toLoginButton.rx.throttleTap(.seconds(3))

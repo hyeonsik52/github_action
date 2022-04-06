@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class CompleteResetPasswordViewController: BaseNavigationViewController {
+class CompleteResetPasswordViewController: BaseNavigationViewController, ReactorKit.View {
     
     enum Text {
         static let SUVC_1 = "비밀번호가 재설정되었습니다."
@@ -53,6 +53,32 @@ class CompleteResetPasswordViewController: BaseNavigationViewController {
         self.navigationItem.setLeftBarButton(nil, animated: false)
         self.navigationItem.hidesBackButton = true
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    func bind(reactor: CompleteResetPasswordViewReactor) {
+        
+        // Action
+        self.toWorkspaceButton.rx.throttleTap(.seconds(3))
+            .map { Reactor.Action.logIn }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // State
+        reactor.state.map { $0.isLogIn }
+            .distinctUntilChanged()
+            .map { _ in reactor.reactorForWorkspaceList() }
+            .subscribe(onNext: { [weak self] reactor in
+                guard let self = self else { return }
+                let viewController = WorkspaceListViewController()
+                viewController.reactor = reactor
+                let navigationController = UINavigationController(rootViewController: viewController)
+                self.view.window?.rootViewController = navigationController
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isProcessing }
+            .distinctUntilChanged()
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
+            .disposed(by: self.disposeBag)
     }
     
     override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {

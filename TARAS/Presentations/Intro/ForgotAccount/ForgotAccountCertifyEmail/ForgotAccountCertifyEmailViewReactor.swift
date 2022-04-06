@@ -26,6 +26,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
         case updateEnable(Bool)
         case calculateRemainExpires(Int)
         case findUsername(String)
+        case requestToken(String)
         case updateIsProcessing(Bool)
         case updateError(TRSError?)
     }
@@ -35,23 +36,29 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
         var isEnable: Bool
         var authNumberExpires: Int
         var findUsername: String
+        var requestToken: String
         var isProcessing: Bool
         var errorMessage: String?
     }
     
     let provider: ManagerProviderType
+    var isFindId: Bool
+    var id: String
     
     var initialState: State = .init(
         isValid: false,
         isEnable: false,
         authNumberExpires: 0,
         findUsername: "",
+        requestToken: "",
         isProcessing: false,
         errorMessage: nil
     )
     
-    init(provider: ManagerProviderType) {
+    init(provider: ManagerProviderType, isFindId: Bool = false, id: String = "") {
         self.provider = provider
+        self.isFindId = isFindId
+        self.id = id
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -78,6 +85,8 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
             state.authNumberExpires = authNumberExpires
         case .findUsername(let findUsername):
             state.findUsername = findUsername
+        case .requestToken(let requestToken):
+            state.requestToken = requestToken
         case .updateIsProcessing(let isProcessing):
             state.isProcessing = isProcessing
         case .updateError(let error):
@@ -107,10 +116,12 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
     }
     
     private func sendAuthNumber(email: String) -> Observable<Mutation> {
+        let purpose: VerificationPurpose = self.isFindId ? .findUser: .resetPassword
+        
         let input = RequestVerificationNumberMutationInput(
             data: email,
             methodType: .email,
-            purpose: .findUser
+            purpose: purpose
         )
         let mutation = RequestAuthMutation(input: input)
         
@@ -165,9 +176,13 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
             self.provider.networkManager.perform(mutation)
                 .compactMap { $0.checkVerificationNumber }
                 .flatMapLatest { result -> Observable<Mutation> in
-                    return self.provider.networkManager.fetch(FindUserQuery(token: result.id))
-                        .compactMap { $0.findUser }
-                        .map { .findUsername($0.username) }
+                    if self.isFindId {
+                        return self.provider.networkManager.fetch(FindUserQuery(token: result.id))
+                            .compactMap { $0.findUser }
+                            .map { .findUsername($0.username) }
+                    } else {
+                        return .just(.requestToken(result.id))
+                    }
                 }
                 .catch { error in
                     let message = "\(error)"
@@ -202,6 +217,10 @@ extension ForgotAccountCertifyEmailViewReactor {
 
     func reactorForCompleteFindId(_ id: String) -> CompleteFindIdViewReactor {
         return CompleteFindIdViewReactor(provider: self.provider, id: id)
+    }
+    
+    func reactorForResetPassword(_ token: String) -> ResetPasswordViewReactor {
+        return ResetPasswordViewReactor(provider: self.provider, id: self.id, token: token)
     }
 }
 

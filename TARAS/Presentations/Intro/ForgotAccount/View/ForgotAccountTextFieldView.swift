@@ -9,6 +9,10 @@ import UIKit
 import Then
 import SnapKit
 
+protocol ForgotAccountTextFieldDelegate: AnyObject {
+    func textFieldShouldReturn(_ sender: UITextField)
+}
+
 /// 아이디 · 비밀번호 찾기에서 유저 인풋을 받는 커스텀 텍스트필드 뷰
 class ForgotAccountTextFieldView: UIView {
     
@@ -41,7 +45,7 @@ class ForgotAccountTextFieldView: UIView {
         // text presentation 용도로 사용하므로 isUserInteractionEnabled 을 false 로 처리
         self.textField.isUserInteractionEnabled = !(viewType == .deliveryRequest)
         self.textField.keyboardType = { return .asciiCapable }()
-        self.textField.returnKeyType = (viewType == .password ? .continue: .done)
+        self.textField.returnKeyType = (viewType == .password ? .next: .done)
         self.textField.isSecureTextEntry = (viewType == .password ? true: false)
         self.textField.autocapitalizationType = .none
         self.textField.placeholder = placeholder

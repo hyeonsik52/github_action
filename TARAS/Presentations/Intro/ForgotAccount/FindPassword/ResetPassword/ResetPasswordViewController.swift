@@ -12,28 +12,25 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-class ResetPasswordViewController: BaseNavigationViewController {
+class ResetPasswordViewController: BaseNavigationViewController, ReactorKit.View {
     
     enum Text {
         static let SUVC_1 = "다음"
     }
     
-    lazy var resetPasswordView = ResetPasswordView()
+    lazy var resetPasswordView = ResetPasswordView().then {
+        $0.passwordTextFieldsDelegate = self
+    }
     
-    let toCompleteResetPasswordButton = SRPButton(Text.SUVC_1)
+    let toCompleteResetPasswordButton = SRPButton(Text.SUVC_1).then {
+        $0.isEnabled = false
+    }
     
     
     // MARK: - Life Cycles
     
-    // ui 확인용 push navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.toCompleteResetPasswordButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                let viewController = CompleteResetPasswordViewController()
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: self.disposeBag)
         
         self.resetPasswordView.passwordTextFieldBecomeFirstResponse()
     }
@@ -62,6 +59,55 @@ class ResetPasswordViewController: BaseNavigationViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
+    
+    // MARK: - ReactorKit
+    
+    func bind(reactor: ResetPasswordViewReactor) {
+
+        //Action
+        let password = self.resetPasswordView.password.distinctUntilChanged()
+        let passwordConfirmed = self.resetPasswordView.passwordConfirmed.distinctUntilChanged()
+        
+        Observable.combineLatest(password, passwordConfirmed)
+            .distinctUntilChanged { $0.0 == $1.0 && $0.1 == $1.1 }
+            .map(Reactor.Action.checkPasswordValidation)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.toCompleteResetPasswordButton.rx.throttleTap(.seconds(3))
+            .withLatestFrom(self.resetPasswordView.password)
+            .map(Reactor.Action.updatePassword)
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // State
+        reactor.state.map { $0.isValid }
+            .distinctUntilChanged()
+            .bind(to: self.toCompleteResetPasswordButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isUpdate }
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .withLatestFrom(password)
+            .map(reactor.reactorForCompleteResetPassword)
+            .subscribe(onNext: { [weak self] reactor in
+                let viewController = CompleteResetPasswordViewController()
+                viewController.reactor = reactor
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isProcessing }
+            .distinctUntilChanged()
+            .bind(to: self.activityIndicatorView.rx.isAnimating)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.errorMessage }
+            .distinctUntilChanged()
+            .bind(to: self.resetPasswordView.errorMessage)
+            .disposed(by: self.disposeBag)
+    }
+    
     override func updatedKeyboard(withoutBottomSafeInset height: CGFloat) {
         super.updatedKeyboard(withoutBottomSafeInset: height)
         
@@ -72,4 +118,16 @@ class ResetPasswordViewController: BaseNavigationViewController {
     }
 }
 
+extension ResetPasswordViewController: ForgotAccountTextFieldDelegate {
+    
+    func textFieldShouldReturn(_ sender: UITextField) {
 
+        if sender.returnKeyType == .next{
+            self.resetPasswordView.passwordConfirmTextFieldBecomeFirstResponse()
+        } else {
+            if self.toCompleteResetPasswordButton.isEnabled {
+                self.toCompleteResetPasswordButton.sendActions(for: .touchUpInside)
+            }
+        }
+    }
+}

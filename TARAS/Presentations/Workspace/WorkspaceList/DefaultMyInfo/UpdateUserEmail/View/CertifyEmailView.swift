@@ -151,9 +151,11 @@ class CertifyEmailView: UIView {
     }
     
     // rx의 textfield의 이벤트가 딜레이 되어 묶어줌
-    func clearAuthNumberTextField() {
+    func clearAuthNumberTextFieldView() {
         self.authNumberTextFieldView.textField.text = nil
         self.authNumber.accept("")
+        self.authNumberTextFieldView.isHidden = true
+        self.authNumberTextFieldView.innerLabel.text = nil
     }
 }
 

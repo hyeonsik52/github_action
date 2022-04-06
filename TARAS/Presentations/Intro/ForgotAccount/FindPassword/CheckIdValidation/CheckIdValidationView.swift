@@ -19,6 +19,14 @@ class CheckIdValidationView: UIView {
         static let SUVC_3 = "아이디"
     }
     
+    let id = PublishRelay<String>()
+    
+    let errorMessage = PublishRelay<String?>()
+    
+    weak var idTextFieldViewDelegate: ForgotAccountTextFieldDelegate?
+    
+    let disposeBag = DisposeBag()
+    
     
     // MARK: - UI
     
@@ -26,14 +34,15 @@ class CheckIdValidationView: UIView {
     private let guideView = ForgotAccountGuideView(Text.SUVC_1, guideText: Text.SUVC_2)
     
     /// 유저 아이디 표시 텍스트 필드
-    lazy var idTextFieldView = ForgotAccountTextFieldView(viewType: .id)
+    lazy var idTextFieldView = ForgotAccountTextFieldView(Text.SUVC_3).then {
+        $0.textField.delegate = self
+    }
     
     /// 에러 메시지 라벨
     let errorMessageLabel = UILabel().then {
         $0.textColor = .redEB4D39
         $0.font = .bold[14]
         $0.numberOfLines = 0
-        $0.text = "error message" // ui 확인용 텍스트
     }
     
     
@@ -43,6 +52,14 @@ class CheckIdValidationView: UIView {
         super.init(frame: .zero)
         
         self.setupContraints()
+        
+        self.idTextFieldView.textField.rx.text.orEmpty
+            .bind(to: self.id)
+            .disposed(by: self.disposeBag)
+        
+        self.errorMessage
+            .bind(to: self.errorMessageLabel.rx.text)
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -79,3 +96,20 @@ class CheckIdValidationView: UIView {
     }
 }
 
+// MARK: - UITextFieldDelegate
+
+extension CheckIdValidationView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.idTextFieldViewDelegate?.textFieldShouldReturn(textField)
+        return true
+    }
+    
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        return textField.shouldChangeCharactersIn(in: range, replacementString: string, policy: .id)
+    }
+}
