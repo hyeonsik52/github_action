@@ -107,9 +107,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         self.certifyEmailView.email.distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
-                self?.certifyEmailView.authNumberTextFieldView.isHidden = true
                 self?.certifyEmailView.clearAuthNumberTextField()
-                self?.certifyEmailView.authNumberTextFieldView.innerLabel.text = nil
             }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
