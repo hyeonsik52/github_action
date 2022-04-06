@@ -102,7 +102,7 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
         self.forgotAccountCertifyEmailView.email.distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
-                self?.forgotAccountCertifyEmailView.clearAuthNumberTextField()
+                self?.forgotAccountCertifyEmailView.clearAuthNumberTextFieldView()
             }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
@@ -122,7 +122,7 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                 guard let self = self else { return }
                 
                 self.forgotAccountCertifyEmailView.authNumberTextFieldBecomeFirstResponse()
-                self.forgotAccountCertifyEmailView.clearAuthNumberTextField()
+                self.forgotAccountCertifyEmailView.clearAuthNumberTextFieldView()
                 
                 // '확인' 버튼 활성화 조건
                 self.isConfirmButtonisEnable.accept(true)
@@ -167,7 +167,7 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                 .map { reactor.reactorForResetPassword($0) }
                 .subscribe(onNext: { [weak self] reactor in
                     self?.serialTimer?.dispose()
-                    self?.forgotAccountCertifyEmailView.clearAuthNumberTextField()
+                    self?.forgotAccountCertifyEmailView.clearAuthNumberTextFieldView()
                     let viewController = ResetPasswordViewController()
                     viewController.reactor = reactor
                     self?.navigationController?.pushViewController(viewController, animated: true)

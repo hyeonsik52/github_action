@@ -107,7 +107,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         self.certifyEmailView.email.distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
-                self?.certifyEmailView.clearAuthNumberTextField()
+                self?.certifyEmailView.clearAuthNumberTextFieldView()
             }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
@@ -127,7 +127,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 guard let self = self else { return }
                 
                 self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
-                self.certifyEmailView.clearAuthNumberTextField()
+                self.certifyEmailView.clearAuthNumberTextFieldView()
                 
                 // '확인' 버튼 활성화 조건
                 self.isConfirmButtonisEnable.accept(true)
