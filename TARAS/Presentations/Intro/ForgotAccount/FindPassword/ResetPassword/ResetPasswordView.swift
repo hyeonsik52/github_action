@@ -37,12 +37,12 @@ class ResetPasswordView: UIView {
     private let guideView = ForgotAccountGuideView(Text.SUVC_1, guideText: Text.SUVC_2)
     
     /// 유저 비밀번호 입력 텍스트 필드
-    lazy var passwordTextFieldView = ForgotAccountTextFieldView(viewType: .password).then {
+    lazy var passwordTextFieldView = ForgotAccountTextFieldView(Text.SUVC_3, viewType: .password).then {
         $0.textField.delegate = self
     }
     
     /// 유저 비밀번호 확인 입력 텍스트 필드
-    lazy var passwordConfirmTextFieldView = ForgotAccountTextFieldView(viewType: .password).then {
+    lazy var passwordConfirmTextFieldView = ForgotAccountTextFieldView(Text.SUVC_4, viewType: .password).then {
         $0.textField.delegate = self
         $0.textField.returnKeyType = .done
     }
