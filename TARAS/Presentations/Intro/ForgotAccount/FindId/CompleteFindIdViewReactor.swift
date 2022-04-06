@@ -32,4 +32,8 @@ extension CompleteFindIdViewReactor {
     func reactorForSignIn(_ id: String) -> SignInViewReactor {
         return SignInViewReactor(provider: self.provider, id: self.id)
     }
+    
+    func reactorForResetPasswordWithId(_ id: String) -> CheckIdValidationViewReactor {
+        return CheckIdValidationViewReactor(provider: self.provider, id: self.id)
+    }
 }
