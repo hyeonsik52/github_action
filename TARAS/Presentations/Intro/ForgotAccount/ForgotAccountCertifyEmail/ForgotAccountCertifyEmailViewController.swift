@@ -102,9 +102,7 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
         self.forgotAccountCertifyEmailView.email.distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
-                self?.forgotAccountCertifyEmailView.authNumberTextFieldView.isHidden = true
                 self?.forgotAccountCertifyEmailView.clearAuthNumberTextField()
-                self?.forgotAccountCertifyEmailView.authNumberTextFieldView.innerLabel.text = nil
             }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
@@ -163,6 +161,17 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                 viewController.reactor = reactor
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: self.disposeBag)
+            
+            reactor.state.map { $0.requestToken }
+                .distinctUntilChanged()
+                .map { reactor.reactorForResetPassword($0) }
+                .subscribe(onNext: { [weak self] reactor in
+                    self?.serialTimer?.dispose()
+                    self?.forgotAccountCertifyEmailView.clearAuthNumberTextField()
+                    let viewController = ResetPasswordViewController()
+                    viewController.reactor = reactor
+                    self?.navigationController?.pushViewController(viewController, animated: true)
+                }).disposed(by: self.disposeBag)
         
         reactor.state.map { $0.isProcessing }
             .distinctUntilChanged()
