@@ -89,7 +89,7 @@ class ResetPasswordViewReactor: Reactor {
                         if message.contains("No user with username") {
                             return .just(.updateError(.etc("아이디와 일치하는 사용자가 없습니다.")))
                         } else if message.contains("Given password is not changed") {
-                            return .just(.updateError(.etc("새로 입력한 비밀번호가 이전 비밀번호와 같습니다.")))
+                            return .just(.updateError(.etc("새로운 비밀번호를 입력해주세요.")))
                         } else if message.contains("Invalid authentication token") {
                             return .just(.updateError(.etc("이메일 인증 토큰이 유효하지 않습니다. 이메일 인증을 다시 시도해주세요.")))
                         } else {
