@@ -62,7 +62,16 @@ class CompleteFindIdViewController: BaseNavigationViewController, ReactorKit.Vie
             .subscribe(onNext: { [weak self] reactor in
                 let viewController = CheckIdValidationViewController()
                 viewController.reactor = reactor
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                self?.navigationController?.pushViewController(viewController, animated: true) {
+                    guard let navigationController = self?.navigationController else { return }
+        
+                    var navigationArray = navigationController.viewControllers
+                    navigationArray.removeAll(where: {
+                        $0.isKind(of: ForgotAccountCertifyEmailViewController.self) || $0.isKind(of: CompleteFindIdViewController.self)
+                    })
+                    
+                    self?.navigationController?.viewControllers = navigationArray
+                }
             }).disposed(by: self.disposeBag)
         
         self.toLoginButton.rx.throttleTap(.seconds(3))
