@@ -19,6 +19,7 @@ mutation requestAuth($input: RequestVerificationNumberMutationInput!) {
     requestVerificationNumber(input: $input) {
         id
         verificationNumber
+        createdAt
         expires
         user {
             id

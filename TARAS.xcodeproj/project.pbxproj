@@ -33,6 +33,9 @@
 		B543052627FC0CA7007C995A /* CompleteResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */; };
 		B543052727FC0CA9007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
 		B543052827FC0CAA007C995A /* CompleteResetPasswordViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */; };
+		B58F30EA27FD98420049EF3B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F30E927FD98420049EF3B /* API.swift */; };
+		B58F30EB27FD98420049EF3B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F30E927FD98420049EF3B /* API.swift */; };
+		B58F30EC27FD98420049EF3B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F30E927FD98420049EF3B /* API.swift */; };
 		B597876027F2934B00052A5C /* CertifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597875F27F2934B00052A5C /* CertifyEmailView.swift */; };
 		B597876227F2935600052A5C /* CertifyEmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */; };
 		B597876427F2936500052A5C /* CertifyEmailGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597876327F2936500052A5C /* CertifyEmailGuideView.swift */; };
@@ -48,6 +51,9 @@
 		B597877427F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		B597877527F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		B597877627F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
+		B59EA3A027FE70460015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA39F27FE70110015EBA1 /* schema.json */; };
+		B59EA3A127FE70460015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA39F27FE70110015EBA1 /* schema.json */; };
+		B59EA3A227FE70470015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA39F27FE70110015EBA1 /* schema.json */; };
 		B5D0605A27F5B95F00BCEE87 /* ForgotAccountGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */; };
 		B5D0605C27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
 		B5D0606027F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */; };
@@ -247,7 +253,6 @@
 		ED416CFE27A16C640043A7A4 /* ServiceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */; };
 		ED416CFF27A16C640043A7A4 /* ServiceModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195C26D3A39D0020AB09 /* ServiceModelSection.swift */; };
 		ED416D0027A16C640043A7A4 /* ServicePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2B27716C0E0074BFFA /* ServicePhase.swift */; };
-		ED416D0127A16C640043A7A4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		ED416D0227A16C640043A7A4 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2727716B1B0074BFFA /* ServiceState.swift */; };
 		ED416D0327A16C640043A7A4 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469B26B7E9CE00C2FA6D /* Account.swift */; };
 		ED416D0427A16C640043A7A4 /* WorkspaceHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0E26D3A39D0020AB09 /* WorkspaceHomeViewController.swift */; };
@@ -415,7 +420,6 @@
 		ED416DD927A16C640043A7A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED416DDA27A16C640043A7A4 /* AccountInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE1D277160080074BFFA /* AccountInputType.swift */; };
 		ED416DDE27A16C640043A7A4 /* Mutation.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1927713CED0074BFFA /* Mutation.graphql */; };
-		ED416DDF27A16C640043A7A4 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		ED416DE027A16C640043A7A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
 		ED416DE127A16C640043A7A4 /* Query.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1727713CDB0074BFFA /* Query.graphql */; };
 		ED416DE227A16C640043A7A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -487,7 +491,6 @@
 		ED416E4327A170FC0043A7A4 /* ServiceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06C6FC277C28CA00F9D0A5 /* ServiceTemplate.swift */; };
 		ED416E4427A170FC0043A7A4 /* ServiceModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1195C26D3A39D0020AB09 /* ServiceModelSection.swift */; };
 		ED416E4527A170FC0043A7A4 /* ServicePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2B27716C0E0074BFFA /* ServicePhase.swift */; };
-		ED416E4627A170FC0043A7A4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		ED416E4727A170FC0043A7A4 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE2727716B1B0074BFFA /* ServiceState.swift */; };
 		ED416E4827A170FC0043A7A4 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B469B26B7E9CE00C2FA6D /* Account.swift */; };
 		ED416E4927A170FC0043A7A4 /* WorkspaceHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC11A0E26D3A39D0020AB09 /* WorkspaceHomeViewController.swift */; };
@@ -655,7 +658,6 @@
 		ED416F1E27A170FC0043A7A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6B46B126B7EE5B00C2FA6D /* Constants.swift */; };
 		ED416F1F27A170FC0043A7A4 /* AccountInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BCE1D277160080074BFFA /* AccountInputType.swift */; };
 		ED416F2327A170FC0043A7A4 /* Mutation.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1927713CED0074BFFA /* Mutation.graphql */; };
-		ED416F2427A170FC0043A7A4 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
 		ED416F2627A170FC0043A7A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A426B405F70061552F /* LaunchScreen.storyboard */; };
 		ED416F2727A170FC0043A7A4 /* Query.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED7BCE1727713CDB0074BFFA /* Query.graphql */; };
 		ED416F2827A170FC0043A7A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF0C3A226B405F70061552F /* Assets.xcassets */; };
@@ -834,8 +836,6 @@
 		ED99E78327CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
 		ED99E78427CC60880083007B /* Fragment_raw.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED99E78127CC60880083007B /* Fragment_raw.graphql */; };
 		ED99E78E27CCD0E50083007B /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99E78D27CCD0E50083007B /* ModelTests.swift */; };
-		EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA1FA2626C14B9A00E8C39B /* schema.json */; };
-		EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2826C14B9F00E8C39B /* API.swift */; };
 		EDA1FA2F26C152E000E8C39B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA2E26C152E000E8C39B /* Stop.swift */; };
 		EDA1FA3126C1564700E8C39B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3026C1564700E8C39B /* User.swift */; };
 		EDA1FA3326C1590100E8C39B /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1FA3226C1590100E8C39B /* FragmentModel.swift */; };
@@ -949,11 +949,13 @@
 		B543051127FC08E2007C995A /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B543051327FC08F2007C995A /* CompleteResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteResetPasswordViewController.swift; sourceTree = "<group>"; };
 		B543051527FC08FA007C995A /* CompleteResetPasswordViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteResetPasswordViewReactor.swift; sourceTree = "<group>"; };
+		B58F30E927FD98420049EF3B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B597875F27F2934B00052A5C /* CertifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailView.swift; sourceTree = "<group>"; };
 		B597876127F2935600052A5C /* CertifyEmailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailTextFieldView.swift; sourceTree = "<group>"; };
 		B597876327F2936500052A5C /* CertifyEmailGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailGuideView.swift; sourceTree = "<group>"; };
 		B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEamilViewController.swift; sourceTree = "<group>"; };
 		B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailViewReactor.swift; sourceTree = "<group>"; };
+		B59EA39F27FE70110015EBA1 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountGuideView.swift; sourceTree = "<group>"; };
 		B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountTextFieldView.swift; sourceTree = "<group>"; };
 		B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailViewReactor.swift; sourceTree = "<group>"; };
@@ -1200,8 +1202,6 @@
 		ED99E78127CC60880083007B /* Fragment_raw.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fragment_raw.graphql; sourceTree = "<group>"; };
 		ED99E78B27CCD0E50083007B /* TARAS-DevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TARAS-DevTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED99E78D27CCD0E50083007B /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
-		EDA1FA2626C14B9A00E8C39B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schema.json; path = TARAS/Resources/GraphQL/schema.json; sourceTree = SOURCE_ROOT; };
-		EDA1FA2826C14B9F00E8C39B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = TARAS/Resources/GraphQL/API.swift; sourceTree = SOURCE_ROOT; };
 		EDA1FA2E26C152E000E8C39B /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		EDA1FA3026C1564700E8C39B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EDA1FA3226C1590100E8C39B /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
@@ -1830,8 +1830,8 @@
 		ED5860FA27C4ACC5002B38D3 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				EDA1FA2626C14B9A00E8C39B /* schema.json */,
-				EDA1FA2826C14B9F00E8C39B /* API.swift */,
+				B59EA39F27FE70110015EBA1 /* schema.json */,
+				B58F30E927FD98420049EF3B /* API.swift */,
 				ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */,
 				ED7BCE1527713CCD0074BFFA /* Fragment.graphql */,
 				ED99E78127CC60880083007B /* Fragment_raw.graphql */,
@@ -2803,12 +2803,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED416DDE27A16C640043A7A4 /* Mutation.graphql in Resources */,
-				ED416DDF27A16C640043A7A4 /* schema.json in Resources */,
 				ED416F3527A176570043A7A4 /* GoogleService-Info.plist in Resources */,
 				ED416DF327A16E200043A7A4 /* Info-qa.plist in Resources */,
 				ED99E78327CC60880083007B /* Fragment_raw.graphql in Resources */,
 				ED416DE027A16C640043A7A4 /* LaunchScreen.storyboard in Resources */,
 				ED416DE127A16C640043A7A4 /* Query.graphql in Resources */,
+				B59EA3A127FE70460015EBA1 /* schema.json in Resources */,
 				ED416DE227A16C640043A7A4 /* Assets.xcassets in Resources */,
 				ED416DE427A16C640043A7A4 /* Subscription.graphql in Resources */,
 				ED416DE527A16C640043A7A4 /* Fragment.graphql in Resources */,
@@ -2822,10 +2822,10 @@
 				ED416F3327A171320043A7A4 /* Info-prod.plist in Resources */,
 				ED416F2327A170FC0043A7A4 /* Mutation.graphql in Resources */,
 				ED416F3727A176AE0043A7A4 /* GoogleService-Info.plist in Resources */,
-				ED416F2427A170FC0043A7A4 /* schema.json in Resources */,
 				ED99E78427CC60880083007B /* Fragment_raw.graphql in Resources */,
 				ED416F2627A170FC0043A7A4 /* LaunchScreen.storyboard in Resources */,
 				ED416F2727A170FC0043A7A4 /* Query.graphql in Resources */,
+				B59EA3A027FE70460015EBA1 /* schema.json in Resources */,
 				ED416F2827A170FC0043A7A4 /* Assets.xcassets in Resources */,
 				ED416F2927A170FC0043A7A4 /* Subscription.graphql in Resources */,
 				ED416F2A27A170FC0043A7A4 /* Fragment.graphql in Resources */,
@@ -2844,12 +2844,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7BCE1A27713CED0074BFFA /* Mutation.graphql in Resources */,
-				EDA1FA2726C14B9A00E8C39B /* schema.json in Resources */,
 				ED416DF027A16DFD0043A7A4 /* Info-dev.plist in Resources */,
 				ED416DEF27A16DFD0043A7A4 /* GoogleService-Info.plist in Resources */,
 				ED99E78227CC60880083007B /* Fragment_raw.graphql in Resources */,
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				ED7BCE1827713CDB0074BFFA /* Query.graphql in Resources */,
+				B59EA3A227FE70470015EBA1 /* schema.json in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				ED7BCE1C27713CFE0074BFFA /* Subscription.graphql in Resources */,
 				ED7BCE1627713CCD0074BFFA /* Fragment.graphql in Resources */,
@@ -3148,7 +3148,6 @@
 				B5D0606F27F5BB0200BCEE87 /* CompleteFindIdViewReactor.swift in Sources */,
 				ED416CFF27A16C640043A7A4 /* ServiceModelSection.swift in Sources */,
 				ED416D0027A16C640043A7A4 /* ServicePhase.swift in Sources */,
-				ED416D0127A16C640043A7A4 /* API.swift in Sources */,
 				ED416D0227A16C640043A7A4 /* ServiceState.swift in Sources */,
 				B597877527F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED416D0327A16C640043A7A4 /* Account.swift in Sources */,
@@ -3189,6 +3188,7 @@
 				ED416D2927A16C640043A7A4 /* GraphQLOperation.swift in Sources */,
 				ED416D2A27A16C640043A7A4 /* DefaultMyInfoViewReactor.swift in Sources */,
 				ED416D2B27A16C640043A7A4 /* ServiceType.swift in Sources */,
+				B58F30EB27FD98420049EF3B /* API.swift in Sources */,
 				ED416D2C27A16C640043A7A4 /* ErrorInterceptor.swift in Sources */,
 				ED416D2D27A16C640043A7A4 /* InProgressServiceListViewReactor.swift in Sources */,
 				ED416D2F27A16C640043A7A4 /* ServiceLog.swift in Sources */,
@@ -3434,7 +3434,6 @@
 				ED28516127EBFED0003196AD /* SessionAPIRequest.swift in Sources */,
 				ED416E4427A170FC0043A7A4 /* ServiceModelSection.swift in Sources */,
 				ED416E4527A170FC0043A7A4 /* ServicePhase.swift in Sources */,
-				ED416E4627A170FC0043A7A4 /* API.swift in Sources */,
 				ED416E4727A170FC0043A7A4 /* ServiceState.swift in Sources */,
 				B597877627F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED416E4827A170FC0043A7A4 /* Account.swift in Sources */,
@@ -3474,6 +3473,7 @@
 				ED416E6D27A170FC0043A7A4 /* RealmManager.swift in Sources */,
 				ED416E6E27A170FC0043A7A4 /* GraphQLOperation.swift in Sources */,
 				B597876427F2936500052A5C /* CertifyEmailGuideView.swift in Sources */,
+				B58F30EC27FD98420049EF3B /* API.swift in Sources */,
 				ED416E6F27A170FC0043A7A4 /* DefaultMyInfoViewReactor.swift in Sources */,
 				ED416E7027A170FC0043A7A4 /* ServiceType.swift in Sources */,
 				ED416E7127A170FC0043A7A4 /* ErrorInterceptor.swift in Sources */,
@@ -3768,7 +3768,6 @@
 				B5D0607027F5BB0300BCEE87 /* CompleteFindIdViewReactor.swift in Sources */,
 				EDC11A7326D3A39D0020AB09 /* ServiceModelSection.swift in Sources */,
 				ED7BCE2C27716C0E0074BFFA /* ServicePhase.swift in Sources */,
-				EDA1FA2926C14B9F00E8C39B /* API.swift in Sources */,
 				ED7BCE2827716B1B0074BFFA /* ServiceState.swift in Sources */,
 				B597877427F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */,
 				ED6B46A526B7E9CE00C2FA6D /* Account.swift in Sources */,
@@ -3809,6 +3808,7 @@
 				ED6B464B26B7E7CC00C2FA6D /* GraphQLOperation.swift in Sources */,
 				EDC11A2E26D3A39D0020AB09 /* DefaultMyInfoViewReactor.swift in Sources */,
 				ED7BCE2A27716BFF0074BFFA /* ServiceType.swift in Sources */,
+				B58F30EA27FD98420049EF3B /* API.swift in Sources */,
 				ED6B467F26B7E8B500C2FA6D /* ErrorInterceptor.swift in Sources */,
 				EDC11A6726D3A39D0020AB09 /* InProgressServiceListViewReactor.swift in Sources */,
 				ED6B46A426B7E9CE00C2FA6D /* ServiceLog.swift in Sources */,
