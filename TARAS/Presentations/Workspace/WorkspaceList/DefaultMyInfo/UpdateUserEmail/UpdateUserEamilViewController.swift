@@ -137,7 +137,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 self.certifyEmailView.emailTextFieldView.innerButton.setTitle(
                     Text.retryCertifyEmailButtonTitle,
                     for: .normal
-                    )
+                )
                 
                 self.serialTimer?.dispose()
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)

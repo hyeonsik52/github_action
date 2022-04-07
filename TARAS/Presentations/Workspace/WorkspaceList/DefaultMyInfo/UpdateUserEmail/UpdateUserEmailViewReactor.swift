@@ -125,9 +125,9 @@ class UpdateUserEmailViewReactor: Reactor {
                     }
                     
                     self?.requestId = result.id
-                    let authNumberExpires = result.expires
                     let convertExpiresSeconds = self?.convertExpiresSeconds(
-                        expires: authNumberExpires
+                        createdAt: result.createdAt,
+                        expires: result.expires
                     ) ?? 0
 
                     return .concat([
@@ -186,15 +186,16 @@ class UpdateUserEmailViewReactor: Reactor {
         ])
     }
     
-    func convertExpiresSeconds(expires: DateTime) -> Int {
+    func convertExpiresSeconds(createdAt: DateTime, expires: DateTime) -> Int {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
-        guard let date = dateFormatter.date(from: String(expires.ISO8601Format))
+        guard let startDate = dateFormatter.date(from: String(createdAt.ISO8601Format)),
+              let endDate = dateFormatter.date(from: String(expires.ISO8601Format))
             else { return 0 }
         
-        let remainExpires = Int(date.timeIntervalSinceNow)
+        let remainExpires = Int(endDate.timeIntervalSince(startDate))
         
         return remainExpires > 1800 ? 1800 : remainExpires
     }
