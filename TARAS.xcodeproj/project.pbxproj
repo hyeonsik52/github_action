@@ -51,9 +51,9 @@
 		B597877427F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		B597877527F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
 		B597877627F2945E00052A5C /* UpdateUserEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */; };
-		B59EA3A027FE70460015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA39F27FE70110015EBA1 /* schema.json */; };
-		B59EA3A127FE70460015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA39F27FE70110015EBA1 /* schema.json */; };
-		B59EA3A227FE70470015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA39F27FE70110015EBA1 /* schema.json */; };
+		B59EA3B427FEADAE0015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA3B327FEADAE0015EBA1 /* schema.json */; };
+		B59EA3B527FEADAE0015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA3B327FEADAE0015EBA1 /* schema.json */; };
+		B59EA3B627FEADAE0015EBA1 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B59EA3B327FEADAE0015EBA1 /* schema.json */; };
 		B5D0605A27F5B95F00BCEE87 /* ForgotAccountGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */; };
 		B5D0605C27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */; };
 		B5D0606027F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */; };
@@ -955,7 +955,7 @@
 		B597876327F2936500052A5C /* CertifyEmailGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyEmailGuideView.swift; sourceTree = "<group>"; };
 		B597876527F2937700052A5C /* UpdateUserEamilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEamilViewController.swift; sourceTree = "<group>"; };
 		B597877327F2945E00052A5C /* UpdateUserEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailViewReactor.swift; sourceTree = "<group>"; };
-		B59EA39F27FE70110015EBA1 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		B59EA3B327FEADAE0015EBA1 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B5D0605927F5B95F00BCEE87 /* ForgotAccountGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountGuideView.swift; sourceTree = "<group>"; };
 		B5D0605B27F5B96D00BCEE87 /* ForgotAccountTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountTextFieldView.swift; sourceTree = "<group>"; };
 		B5D0605F27F5B9F800BCEE87 /* ForgotAccountCertifyEmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailViewReactor.swift; sourceTree = "<group>"; };
@@ -1830,7 +1830,7 @@
 		ED5860FA27C4ACC5002B38D3 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				B59EA39F27FE70110015EBA1 /* schema.json */,
+				B59EA3B327FEADAE0015EBA1 /* schema.json */,
 				B58F30E927FD98420049EF3B /* API.swift */,
 				ED7BCE2F2771712C0074BFFA /* GenericScalar.swift */,
 				ED7BCE1527713CCD0074BFFA /* Fragment.graphql */,
@@ -2808,7 +2808,7 @@
 				ED99E78327CC60880083007B /* Fragment_raw.graphql in Resources */,
 				ED416DE027A16C640043A7A4 /* LaunchScreen.storyboard in Resources */,
 				ED416DE127A16C640043A7A4 /* Query.graphql in Resources */,
-				B59EA3A127FE70460015EBA1 /* schema.json in Resources */,
+				B59EA3B527FEADAE0015EBA1 /* schema.json in Resources */,
 				ED416DE227A16C640043A7A4 /* Assets.xcassets in Resources */,
 				ED416DE427A16C640043A7A4 /* Subscription.graphql in Resources */,
 				ED416DE527A16C640043A7A4 /* Fragment.graphql in Resources */,
@@ -2825,7 +2825,7 @@
 				ED99E78427CC60880083007B /* Fragment_raw.graphql in Resources */,
 				ED416F2627A170FC0043A7A4 /* LaunchScreen.storyboard in Resources */,
 				ED416F2727A170FC0043A7A4 /* Query.graphql in Resources */,
-				B59EA3A027FE70460015EBA1 /* schema.json in Resources */,
+				B59EA3B627FEADAE0015EBA1 /* schema.json in Resources */,
 				ED416F2827A170FC0043A7A4 /* Assets.xcassets in Resources */,
 				ED416F2927A170FC0043A7A4 /* Subscription.graphql in Resources */,
 				ED416F2A27A170FC0043A7A4 /* Fragment.graphql in Resources */,
@@ -2849,7 +2849,7 @@
 				ED99E78227CC60880083007B /* Fragment_raw.graphql in Resources */,
 				EDF0C3A626B405F70061552F /* LaunchScreen.storyboard in Resources */,
 				ED7BCE1827713CDB0074BFFA /* Query.graphql in Resources */,
-				B59EA3A227FE70470015EBA1 /* schema.json in Resources */,
+				B59EA3B427FEADAE0015EBA1 /* schema.json in Resources */,
 				EDF0C3A326B405F70061552F /* Assets.xcassets in Resources */,
 				ED7BCE1C27713CFE0074BFFA /* Subscription.graphql in Resources */,
 				ED7BCE1627713CCD0074BFFA /* Fragment.graphql in Resources */,
