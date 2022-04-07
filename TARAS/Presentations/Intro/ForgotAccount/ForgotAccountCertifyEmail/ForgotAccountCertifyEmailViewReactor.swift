@@ -135,11 +135,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
                         return .just(.updateError(.account(.authNumberSendFailed)))
                     }
                     
-                    self?.requestId = result.id
-                    let authNumberExpires = result.expires
-                    let convertExpiresSeconds = self?.convertExpiresSeconds(
-                        expires: authNumberExpires
-                    ) ?? 0
+                    let convertExpiresSeconds = Int(result.expires.timeIntervalSince(result.createdAt))
 
                     return .concat([
                         .just(.updateError(nil)),
@@ -196,19 +192,6 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
             
                 .just(.updateIsProcessing(false))
         ])
-    }
-    
-    func convertExpiresSeconds(expires: DateTime) -> Int {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        guard let date = dateFormatter.date(from: String(expires.ISO8601Format))
-            else { return 0 }
-        
-        let remainExpires = Int(date.timeIntervalSinceNow)
-        
-        return remainExpires > 1800 ? 1800 : remainExpires
     }
 }
 

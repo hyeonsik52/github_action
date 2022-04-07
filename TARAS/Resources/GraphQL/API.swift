@@ -844,6 +844,7 @@ public final class RequestAuthMutation: GraphQLMutation {
         __typename
         id
         verificationNumber
+        createdAt
         expires
         user {
           __typename
@@ -902,6 +903,7 @@ public final class RequestAuthMutation: GraphQLMutation {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .nonNull(.scalar(String.self))),
           GraphQLField("verificationNumber", type: .scalar(String.self)),
+          GraphQLField("createdAt", type: .nonNull(.scalar(DateTime.self))),
           GraphQLField("expires", type: .nonNull(.scalar(DateTime.self))),
           GraphQLField("user", type: .object(User.selections)),
         ]
@@ -913,8 +915,8 @@ public final class RequestAuthMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: String, verificationNumber: String? = nil, expires: DateTime, user: User? = nil) {
-        self.init(unsafeResultMap: ["__typename": "AuthenticationRequestType", "id": id, "verificationNumber": verificationNumber, "expires": expires, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
+      public init(id: String, verificationNumber: String? = nil, createdAt: DateTime, expires: DateTime, user: User? = nil) {
+        self.init(unsafeResultMap: ["__typename": "AuthenticationRequestType", "id": id, "verificationNumber": verificationNumber, "createdAt": createdAt, "expires": expires, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -941,6 +943,15 @@ public final class RequestAuthMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "verificationNumber")
+        }
+      }
+
+      public var createdAt: DateTime {
+        get {
+          return resultMap["createdAt"]! as! DateTime
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "createdAt")
         }
       }
 
