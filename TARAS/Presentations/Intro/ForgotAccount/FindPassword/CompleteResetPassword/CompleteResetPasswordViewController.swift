@@ -69,16 +69,14 @@ class CompleteResetPasswordViewController: BaseNavigationViewController, Reactor
             .subscribe(onNext: { [weak self] isAutoLogin in
                 guard let self = self else { return }
                 
-                let workspaceListViewController = WorkspaceListViewController()
-                workspaceListViewController.reactor = reactor.reactorForWorkspaceList()
-                var navigationController = UINavigationController(rootViewController: workspaceListViewController)
-                
                 if isAutoLogin.1 == false {
-                    let signInViewController = SignInViewController()
-                    signInViewController.reactor = reactor.reactorForSignIn()
-                    navigationController = UINavigationController(rootViewController: signInViewController)
+                    self.navigationController?.popToRootViewController(animated: false)
+                    return
                 }
                 
+                let viewController = WorkspaceListViewController()
+                viewController.reactor = reactor.reactorForWorkspaceList()
+                let navigationController = UINavigationController(rootViewController: viewController)
                 self.view.window?.rootViewController = navigationController
             }).disposed(by: self.disposeBag)
         
