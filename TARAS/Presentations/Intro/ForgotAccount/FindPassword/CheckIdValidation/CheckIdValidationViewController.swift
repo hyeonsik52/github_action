@@ -37,6 +37,14 @@ class CheckIdValidationViewController: BaseNavigationViewController, ReactorKit.
         self.checkIdValidationView.idTextFieldView.textField.text = reactor?.id
     }
     
+    override func bind() {
+        
+        self.backButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.navigationController?.popToRootViewController(animated: true)
+            }).disposed(by: self.disposeBag)
+    }
+    
     override func setupConstraints() {
 
         self.view.addSubview(self.checkIdValidationView)
@@ -59,6 +67,8 @@ class CheckIdValidationViewController: BaseNavigationViewController, ReactorKit.
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = false
+        
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     
