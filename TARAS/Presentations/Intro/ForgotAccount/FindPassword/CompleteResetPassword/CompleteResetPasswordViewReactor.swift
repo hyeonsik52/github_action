@@ -97,10 +97,6 @@ class CompleteResetPasswordViewReactor: Reactor {
     func reactorForWorkspaceList() -> WorkspaceListViewReactor {
         return WorkspaceListViewReactor(provider: self.provider, isFrom: .signIn)
     }
-    
-    func reactorForSignIn() -> SignInViewReactor {
-        return SignInViewReactor(provider: self.provider)
-    }
 }
 
 extension CompleteResetPasswordViewReactor {
