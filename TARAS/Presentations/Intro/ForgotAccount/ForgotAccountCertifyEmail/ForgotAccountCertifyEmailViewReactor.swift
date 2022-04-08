@@ -135,6 +135,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
                         return .just(.updateError(.account(.authNumberSendFailed)))
                     }
                     
+                    self?.requestId = result.id
                     let convertExpiresSeconds = Int(result.expires.timeIntervalSince(result.createdAt))
 
                     return .concat([

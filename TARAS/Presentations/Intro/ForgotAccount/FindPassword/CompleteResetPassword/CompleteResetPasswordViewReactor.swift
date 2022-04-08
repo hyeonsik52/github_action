@@ -11,21 +11,21 @@ import RxSwift
 class CompleteResetPasswordViewReactor: Reactor {
     
     enum Action {
-        case logIn
+        case autoLogIn
     }
     
     enum Mutation {
-        case updateIsLogIn(Bool)
+        case updateIsAutoLogIn(Bool, Bool)
         case updateIsProcessing(Bool)
     }
     
     struct State {
-        var isLogIn: Bool
+        var isAutoLogIn: (Bool, Bool)
         var isProcessing: Bool
     }
     
     let initialState: State = .init(
-        isLogIn: false,
+        isAutoLogIn: (false, false),
         isProcessing: false
     )
     
@@ -41,7 +41,7 @@ class CompleteResetPasswordViewReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .logIn:
+        case .autoLogIn:
             let request = LoginRequestModel(
                 grantType: "password",
                 username: self.id,
@@ -74,9 +74,9 @@ class CompleteResetPasswordViewReactor: Reactor {
                                 self.loadUserInfo()
                             ])
                         case .failure(_):
-                            return .just(.updateIsLogIn(false))
+                            return .just(.updateIsAutoLogIn(true, false))
                         }
-                    },
+                    }.catchAndReturn(.updateIsAutoLogIn(true, false)),
                 
                 .just(.updateIsProcessing(false))
             ])
@@ -86,8 +86,8 @@ class CompleteResetPasswordViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .updateIsLogIn(let isLogIn):
-            state.isLogIn = isLogIn
+        case .updateIsAutoLogIn(let isAutoLogIn):
+            state.isAutoLogIn = isAutoLogIn
         case .updateIsProcessing(let isProcessing):
             state.isProcessing = isProcessing
         }
@@ -109,9 +109,9 @@ extension CompleteResetPasswordViewReactor {
                 
                 if let user = data {
                     self.provider.userManager.updateUserInfo(user)
-                    return .just(.updateIsLogIn(true))
+                    return .just(.updateIsAutoLogIn(true, true))
                 } else {
-                    return .just(.updateIsLogIn(false))
+                    return .just(.updateIsAutoLogIn(true, false))
                 }
             }
     }

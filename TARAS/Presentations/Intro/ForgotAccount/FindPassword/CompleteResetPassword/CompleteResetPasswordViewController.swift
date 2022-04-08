@@ -59,18 +59,23 @@ class CompleteResetPasswordViewController: BaseNavigationViewController, Reactor
         
         // Action
         self.toWorkspaceButton.rx.throttleTap(.seconds(3))
-            .map { Reactor.Action.logIn }
+            .map { Reactor.Action.autoLogIn }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         // State
-        reactor.state.map { $0.isLogIn }
-            .distinctUntilChanged()
-            .map { _ in reactor.reactorForWorkspaceList() }
-            .subscribe(onNext: { [weak self] reactor in
+        reactor.state.map(\.isAutoLogIn)
+            .filter { $0.0 == true }
+            .subscribe(onNext: { [weak self] isAutoLogin in
                 guard let self = self else { return }
+                
+                if isAutoLogin.1 == false {
+                    self.navigationController?.popToRootViewController(animated: false)
+                    return
+                }
+                
                 let viewController = WorkspaceListViewController()
-                viewController.reactor = reactor
+                viewController.reactor = reactor.reactorForWorkspaceList()
                 let navigationController = UINavigationController(rootViewController: viewController)
                 self.view.window?.rootViewController = navigationController
             }).disposed(by: self.disposeBag)
