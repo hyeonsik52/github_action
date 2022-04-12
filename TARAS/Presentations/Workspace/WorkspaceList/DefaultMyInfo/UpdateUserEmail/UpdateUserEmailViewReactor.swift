@@ -24,7 +24,7 @@ class UpdateUserEmailViewReactor: Reactor {
     enum Mutation {
         case updateIsvalid(Bool)
         case updateEnable(Bool)
-        case calculateRemainExpires(Int)
+        case calculateRemainExpires(Int?)
         case updateUserEmail(Bool)
         case updateIsProcessing(Bool)
         case updateError(TRSError?)
@@ -33,7 +33,7 @@ class UpdateUserEmailViewReactor: Reactor {
     struct State {
         var isValid: Bool
         var isEnable: Bool
-        var authNumberExpires: Int
+        var authNumberExpires: Int?
         var isUpdateUserEmail: Bool
         var isProcessing: Bool
         var errorMessage: String?
@@ -44,7 +44,7 @@ class UpdateUserEmailViewReactor: Reactor {
     var initialState: State = .init(
         isValid: false,
         isEnable: false,
-        authNumberExpires: 0,
+        authNumberExpires: nil,
         isUpdateUserEmail: false,
         isProcessing: false,
         errorMessage: nil
