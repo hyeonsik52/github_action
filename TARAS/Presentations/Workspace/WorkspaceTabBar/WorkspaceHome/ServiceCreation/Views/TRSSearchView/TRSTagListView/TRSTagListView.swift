@@ -22,6 +22,8 @@ class TRSTagListView: UICollectionView {
     
     private var tagList = [TRSTagListViewModel]()
     
+    var userInfo = [AnyHashable: Any]()
+    
     init() {
         super.init(frame: .zero, collectionViewLayout: self.flowLayout)
         
