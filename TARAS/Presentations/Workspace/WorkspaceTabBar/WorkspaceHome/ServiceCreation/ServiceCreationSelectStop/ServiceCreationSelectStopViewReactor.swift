@@ -53,7 +53,7 @@ class ServiceCreationSelectStopViewReactor: Reactor {
     )
     
     let provider: ManagerProviderType
-    private let workspaceId: String
+    let workspaceId: String
     private var serviceUnit: ServiceUnit
     let mode: ServiceCreationEditMode
     let entry: Entry
