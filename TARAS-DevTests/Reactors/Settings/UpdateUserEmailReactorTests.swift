@@ -75,11 +75,9 @@ class UpdateUserEmailReactorTests: XCTestCase {
         )
         reactor.stub.state.value = state
         
-        let authNumberExpires = state.authNumberExpires != nil ? String(state.authNumberExpires!): nil
-        
         // 4. assert view properties
         XCTAssertEqual(viewController.certifyEmailView.emailTextFieldView.innerButton.isEnabled, state.isValid)
-        XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.innerLabel.text, authNumberExpires)
+        XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.innerLabel.text, state.authNumberExpires?.description)
         XCTAssertEqual(viewController.confirmButton.isEnabled, state.isEnable)
         XCTAssertEqual(viewController.activityIndicatorView.isAnimating, state.isProcessing)
         XCTAssertEqual(viewController.certifyEmailView.errorMessageLabel.text, state.errorMessage)
