@@ -60,10 +60,7 @@ class TRSSearchView: UIView {
         $0.isHidden = true
     }
     
-    private lazy var recentKeywordsView = TRSRecentSearchTermsView().then {
-        $0.tagListView.tagListDelegate = self
-        $0.isHidden = true
-    }
+    private var recentKeywordsView: TRSRecentSearchTermsView!
     
     let searchTerm = BehaviorRelay<String?>(value: nil)
     var usingRecentSearchTerms: Bool = true
@@ -72,9 +69,15 @@ class TRSSearchView: UIView {
     
     init(
         placeholder: String = Text.placeholderDefault,
-        usingRecentSearchTerms: Bool = true
+        usingRecentSearchTerms: Bool = true,
+        recentSearchTermsKey: String = "default"
     ) {
         super.init(frame: .zero)
+        
+        self.recentKeywordsView = .init(unique: recentSearchTermsKey).then {
+            $0.tagListView.tagListDelegate = self
+            $0.isHidden = true
+        }
         
         self.textField.attributedPlaceholder = .init(
             string: placeholder,
@@ -86,7 +89,7 @@ class TRSSearchView: UIView {
         self.usingRecentSearchTerms = usingRecentSearchTerms
         
         self.setupConstraints()
-        self.bind()
+        self.bind(with: recentSearchTermsKey)
     }
     
     required init(coder: NSCoder) {
@@ -166,7 +169,7 @@ class TRSSearchView: UIView {
         }
     }
     
-    private func bind() {
+    private func bind(with unique: String) {
         
         self.clearButton.rx.tap
             .subscribe(onNext: { [weak self] in
@@ -174,47 +177,47 @@ class TRSSearchView: UIView {
                 if self?.textField.isFirstResponder == false {
                     self?.textField.becomeFirstResponder()
                 }
-                self?.updateUI()
+                self?.updateUI(recentSearchTermsKey: unique)
             }).disposed(by: self.disposeBag)
         
         self.cancelButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.endEditing()
+                self?.endEditing(with: unique)
             }).disposed(by: self.disposeBag)
         
         self.textField.rx.text.skip(1)
             .subscribe(onNext: { [weak self] text in
-                self?.updateUI()
+                self?.updateUI(recentSearchTermsKey: unique)
             }).disposed(by: self.disposeBag)
         
         self.textField.rx.controlEvent(.editingDidEndOnExit)
             .subscribe(onNext: { [weak self] in
                 guard let term = self?.textField.text else { return }
-                SimpleDefualts.shared.saveRecentSearchTerms(term)
-                self?.updateUI(with: true)
+                SimpleDefualts.shared.saveRecentSearchTerms(term, with: unique)
+                self?.updateUI(with: true, recentSearchTermsKey: unique)
             }).disposed(by: self.disposeBag)
         
         if self.usingRecentSearchTerms {
             self.recentKeywordsView.deleteAllButton.rx.tap
                 .subscribe(onNext: { [weak self] in
-                    SimpleDefualts.shared.removeRecentSearchTermsAll()
-                    self?.updateUI(with: true)
+                    SimpleDefualts.shared.removeRecentSearchTermsAll(with: unique)
+                    self?.updateUI(with: true, recentSearchTermsKey: unique)
                 }).disposed(by: self.disposeBag)
         }
     }
     
-    func endEditing() {
+    func endEditing(with unique: String) {
         self.textField.text = nil
         if self.textField.isFirstResponder == true {
             self.endEditing(true)
         }
-        self.updateUI(with: true)
+        self.updateUI(with: true, recentSearchTermsKey: unique)
     }
     
-    func updateUI(with recentSearchTerms: Bool = false) {
+    func updateUI(with recentSearchTerms: Bool = false, recentSearchTermsKey: String) {
         
         if recentSearchTerms, self.usingRecentSearchTerms == true {
-            self.recentKeywordsView.update()
+            self.recentKeywordsView.update(with: recentSearchTermsKey)
         }
         
         self.searchTerm.accept(self.textField.text)
@@ -223,7 +226,7 @@ class TRSSearchView: UIView {
         
         let isClearHidden = isEmpty
         let isCnacelHidden = (!isKeyboardActive && isEmpty)
-        let isRecentHidden = SimpleDefualts.shared.isRecentSearchTermsEmpty || !(isKeyboardActive && isEmpty)
+        let isRecentHidden = SimpleDefualts.shared.isRecentSearchTermsEmpty(with: recentSearchTermsKey) || !(isKeyboardActive && isEmpty)
         
         self.clearButton.isHidden = isClearHidden
         self.inputContainer.layoutIfNeeded()
@@ -251,14 +254,16 @@ class TRSSearchView: UIView {
 extension TRSSearchView: TRSTagListViewDelegate {
     
     func tagListView(_ tagListView: TRSTagListView, didSelect model: TRSTagListViewModel) {
+        guard let uniqueKey = tagListView.userInfo[TRSRecentSearchTermsView.uniqueKey] as? String else { return }
         self.textField.text = model.string
-        SimpleDefualts.shared.saveRecentSearchTerms(model.string)
-        self.updateUI(with: true)
+        SimpleDefualts.shared.saveRecentSearchTerms(model.string, with: uniqueKey)
+        self.updateUI(with: true, recentSearchTermsKey: uniqueKey)
     }
     
     func tagListView(_ tagListView: TRSTagListView, didRemove model: TRSTagListViewModel) {
-        SimpleDefualts.shared.removeRecentSearchTerms(model.string)
-        self.updateUI(with: true)
+        guard let uniqueKey = tagListView.userInfo[TRSRecentSearchTermsView.uniqueKey] as? String else { return }
+        SimpleDefualts.shared.removeRecentSearchTerms(model.string, with: uniqueKey)
+        self.updateUI(with: true, recentSearchTermsKey: uniqueKey)
     }
 }
 
