@@ -141,15 +141,12 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 
                 self.serialTimer?.dispose()
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+                    .take(while: { $0 <= expires })
                     .map { timer in
                         let remainExpires = TimeInterval(expires - timer)
                         
                         if remainExpires == 0 {
                             self.isConfirmButtonisEnable.accept(false)
-                        }
-                        
-                        if remainExpires < 0 {
-                            self.serialTimer?.dispose()
                         }
 
                         return remainExpires.toTimeString
