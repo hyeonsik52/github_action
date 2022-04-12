@@ -13,28 +13,28 @@ class SimpleDefualts {
     private let recentSearchTermsKey = "kr.co.twinny.taras.search.terms.recent"
     
     @discardableResult
-    func initRecentSearchTerms() -> [String] {
+    func initRecentSearchTerms(with unique: String) -> [String] {
         objc_sync_enter(self); defer{ objc_sync_exit(self) }
-        UserDefaults.standard.set([], forKey: recentSearchTermsKey)
+        UserDefaults.standard.set([], forKey: "\(recentSearchTermsKey).\(unique)")
         return []
     }
     
-    func loadRecentSearchTerms() -> [String] {
+    func loadRecentSearchTerms(with unique: String) -> [String] {
         objc_sync_enter(self); defer{ objc_sync_exit(self) }
-        guard let array = UserDefaults.standard.array(forKey: recentSearchTermsKey) as? [String] else {
-            return self.initRecentSearchTerms()
+        guard let array = UserDefaults.standard.array(forKey: "\(recentSearchTermsKey).\(unique)") as? [String] else {
+            return self.initRecentSearchTerms(with: unique)
         }
         return array
     }
     
-    var isRecentSearchTermsEmpty: Bool {
-        return self.loadRecentSearchTerms().isEmpty
+    func isRecentSearchTermsEmpty(with unique: String) -> Bool {
+        return self.loadRecentSearchTerms(with: unique).isEmpty
     }
     
     @discardableResult
-    func saveRecentSearchTerms(_ terms: String...) -> [String] {
+    func saveRecentSearchTerms(_ terms: String..., with unique: String) -> [String] {
         objc_sync_enter(self); defer{ objc_sync_exit(self) }
-        var new = self.loadRecentSearchTerms()
+        var new = self.loadRecentSearchTerms(with: unique)
         new.removeAll { terms.contains($0) }
         terms.forEach {
             let trimmed = $0.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -45,24 +45,24 @@ class SimpleDefualts {
         if new.count > 10 {
             new = Array(new[0..<10])
         }
-        UserDefaults.standard.set(new, forKey: recentSearchTermsKey)
+        UserDefaults.standard.set(new, forKey: "\(recentSearchTermsKey).\(unique)")
         return new
     }
     
     @discardableResult
-    func removeRecentSearchTerms(_ terms: String...) -> [String] {
+    func removeRecentSearchTerms(_ terms: String..., with unique: String) -> [String] {
         objc_sync_enter(self); defer{ objc_sync_exit(self) }
-        var new = self.loadRecentSearchTerms()
+        var new = self.loadRecentSearchTerms(with: unique)
         new.removeAll { terms.contains($0) }
-        UserDefaults.standard.set(new, forKey: recentSearchTermsKey)
+        UserDefaults.standard.set(new, forKey: "\(recentSearchTermsKey).\(unique)")
         return new
     }
     
     @discardableResult
-    func removeRecentSearchTermsAll() -> [String]  {
+    func removeRecentSearchTermsAll(with unique: String) -> [String]  {
         objc_sync_enter(self); defer{ objc_sync_exit(self) }
-        let current = self.loadRecentSearchTerms()
-        self.initRecentSearchTerms()
+        let current = self.loadRecentSearchTerms(with: unique)
+        self.initRecentSearchTerms(with: unique)
         return current
     }
 }
