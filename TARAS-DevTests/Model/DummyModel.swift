@@ -17,6 +17,8 @@ struct DummyModel {
     static let phoneNumber = "01012345678"
     static let password = "hgfH432!"
     
+    static let authNumber = "123456"
+    
     static let userRole = UserRole.member
     
     static let dateFormatter: DateFormatter = {
