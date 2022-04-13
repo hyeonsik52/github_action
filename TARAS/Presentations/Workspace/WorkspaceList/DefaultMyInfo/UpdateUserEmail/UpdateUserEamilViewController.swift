@@ -99,7 +99,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             .disposed(by: self.disposeBag)
         
         // State
-        reactor.state.map { $0.isValid }
+        reactor.state.map { $0.isEmailValid }
             .distinctUntilChanged()
             .bind(to: self.certifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
@@ -111,7 +111,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
-            reactor.state.map { $0.isEnable }.distinctUntilChanged(),
+            reactor.state.map { $0.isAuthNumberValid }.distinctUntilChanged(),
             self.certifyEmailView.authNumber.distinctUntilChanged(),
             self.isConfirmButtonisEnable,
             resultSelector: { $0 && !$1.isEmpty && $2 }
