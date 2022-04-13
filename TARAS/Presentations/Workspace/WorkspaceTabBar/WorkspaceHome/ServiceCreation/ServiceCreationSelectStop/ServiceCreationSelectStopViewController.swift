@@ -15,7 +15,7 @@ import RxDataSources
 
 class ServiceCreationSelectStopViewController: BaseNavigationViewController, View {
     
-    let searchView = TRSSearchView(placeholder: "장소명(초성) 검색")
+    private(set) var searchView: TRSSearchView!
     let listPlaceholderView = TRSListPlaceholderView()
     
     lazy var tableView = UITableView(frame: .zero, style: .plain).then {
@@ -72,6 +72,9 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
     
     func bind(reactor: ServiceCreationSelectStopViewReactor) {
         
+        //workspaceId로 searchView 초기화
+        self.searchView = .init(placeholder: "장소명(초성) 검색", recentSearchTermsKey: reactor.workspaceId)
+        
         //Action
         self.tableView.refreshControl?.rx.controlEvent(.valueChanged)
             .withLatestFrom(self.searchView.searchTerm)
@@ -91,8 +94,8 @@ class ServiceCreationSelectStopViewController: BaseNavigationViewController, Vie
                 
                 let stop = cellReactor.initialState
                 
-                SimpleDefualts.shared.saveRecentSearchTerms(stop.name)
-                self?.searchView.endEditing()
+                SimpleDefualts.shared.saveRecentSearchTerms(stop.name, with: reactor.workspaceId)
+                self?.searchView.endEditing(with: reactor.workspaceId)
                 
                 if reactor.mode == .create {
                     switch reactor.entry {

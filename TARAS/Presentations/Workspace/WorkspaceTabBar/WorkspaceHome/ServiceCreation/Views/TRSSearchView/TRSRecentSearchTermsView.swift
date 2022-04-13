@@ -13,6 +13,8 @@ import RxCocoa
 
 class TRSRecentSearchTermsView: UIView {
     
+    static let uniqueKey = "TRSRecentSearchTermsViewUniqueKey"
+    
     enum Text {
         static let title = "최근 검색어"
         static let delete = "전체삭제"
@@ -35,11 +37,13 @@ class TRSRecentSearchTermsView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    init() {
+    init(unique: String) {
         super.init(frame: .zero)
         
+        self.tagListView.userInfo[Self.uniqueKey] = unique
+        
         self.setupConstraints()
-        self.bind()
+        self.bind(with: unique)
     }
     
     required init(coder: NSCoder) {
@@ -81,14 +85,14 @@ class TRSRecentSearchTermsView: UIView {
         }
     }
     
-    private func bind() {
+    private func bind(with unique: String) {
         
-        self.update()
+        self.update(with: unique)
     }
     
-    func update() {
+    func update(with unique: String) {
         
-        let terms = SimpleDefualts.shared.loadRecentSearchTerms()
+        let terms = SimpleDefualts.shared.loadRecentSearchTerms(with: unique)
         self.tagListView.setTags(terms)
     }
 }
