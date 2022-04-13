@@ -70,8 +70,8 @@ class UpdateUserEmailReactorTests: XCTestCase {
         // 3. set a stub state
         //유효한 이메일로 인증코드 요청 직후
         let state = UpdateUserEmailViewReactor.State(
-            isValid: true,
-            isEnable: false,
+            isEmailValid: true,
+            isAuthNumberValid: false,
             authNumberExpires: 1800,
             isUpdateUserEmail: false,
             isProcessing: false,
@@ -79,43 +79,29 @@ class UpdateUserEmailReactorTests: XCTestCase {
         )
         reactor.stub.state.value = state
         
-        // 만료시간 존재 여부 및 계산
-        var isExpireExits = false
-        var remainExpires: String?
-        if let expires = state.authNumberExpires {
-            isExpireExits = expires > 0 ? true: false
-            remainExpires = TimeInterval(expires).toTimeString
-        }
-        
-        // 이메일 수정 여부
-        var isEditEmail = false
-        viewController.certifyEmailView.email.distinctUntilChanged()
-            .subscribe(onNext: { isEditEmail = !$0.isEmpty })
-            .disposed(by: self.disposeBag)
-        
         // 4. assert view properties
-        XCTAssertEqual(viewController.certifyEmailView.emailTextFieldView.innerButton.isEnabled, state.isValid)
+        XCTAssertEqual(viewController.certifyEmailView.emailTextFieldView.innerButton.isEnabled, state.isEmailValid)
         XCTAssertEqual(
             viewController.certifyEmailView.emailTextFieldView.innerButton.title(for: .normal),
-            isExpireExits ? UpdateUserEmailViewController.Text.retryCertifyEmailButtonTitle: CertifyEmailView.Text.SUPVC_4
+            UpdateUserEmailViewController.Text.retryCertifyEmailButtonTitle
         )
         
-        XCTAssertEqual(
-            viewController.certifyEmailView.authNumberTextFieldView.isHidden,
-            (isEditEmail || !isExpireExits)
-        )
-        XCTAssertEqual(
-            viewController.certifyEmailView.authNumberTextFieldView.textField.text,
-            isEditEmail ? nil: ""
-        )
-        XCTAssertEqual(
-            viewController.certifyEmailView.authNumberTextFieldView.innerLabel.text,
-            isEditEmail ? nil: remainExpires
-        )
+        XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.isHidden, false)
+        XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.textField.text, "")
         
-        XCTAssertEqual(viewController.confirmButton.isEnabled, state.isEnable && !isEditEmail && isExpireExits)
+        
+        XCTAssertEqual(viewController.confirmButton.isEnabled, state.isAuthNumberValid && true)
         
         XCTAssertEqual(viewController.activityIndicatorView.isAnimating, state.isProcessing)
         XCTAssertEqual(viewController.certifyEmailView.errorMessageLabel.text, state.errorMessage)
+        
+        let expectation = XCTestExpectation(description: "TimerTest")
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: expectation.fulfill)
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(
+            viewController.certifyEmailView.authNumberTextFieldView.timerLabel.text,
+            TimeInterval(state.authNumberExpires ?? -1).toTimeString
+        )
     }
 }
