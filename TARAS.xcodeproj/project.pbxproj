@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0937600DE4462FD39D4C2B1F /* Pods_TARAS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */; };
 		29777413D700174F2A955E98 /* Pods_TARAS_QA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DE2B466381FA202337AA9F /* Pods_TARAS_QA.framework */; };
+		B5092A9228042B7500B8F3AC /* UpdateUserEmailReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5092A9128042B7500B8F3AC /* UpdateUserEmailReactorTests.swift */; };
 		B543050827FC08B4007C995A /* CheckIdValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */; };
 		B543050A27FC08BD007C995A /* CheckIdValidationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */; };
 		B543050C27FC08C5007C995A /* CheckIdValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050B27FC08C5007C995A /* CheckIdValidationView.swift */; };
@@ -941,6 +942,7 @@
 		9EA65A5FDCD13B0B8020A7D7 /* Pods_TARAS_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TARAS_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8F340D7BE2D88A2CF04EB05 /* Pods-TARAS-QA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-QA.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-QA/Pods-TARAS-QA.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A5806CEC45543BC5AC2AF3 /* Pods-TARAS-DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-DevTests.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B5092A9128042B7500B8F3AC /* UpdateUserEmailReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailReactorTests.swift; sourceTree = "<group>"; };
 		B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationViewController.swift; sourceTree = "<group>"; };
 		B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationViewReactor.swift; sourceTree = "<group>"; };
 		B543050B27FC08C5007C995A /* CheckIdValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationView.swift; sourceTree = "<group>"; };
@@ -2318,6 +2320,7 @@
 			children = (
 				EDB401C927F1678C00021594 /* DefaultMyInfoReactorTests.swift */,
 				EDB401CC27F1709200021594 /* UpdateUserInfoReactorTests.swift */,
+				B5092A9128042B7500B8F3AC /* UpdateUserEmailReactorTests.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -3669,6 +3672,7 @@
 				ED5BC9CF27F42801006C995E /* InProgressServiceListReactorTests.swift in Sources */,
 				ED5BC9C427F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift in Sources */,
 				ED5BC9CA27F4218F006C995E /* ServiceCreationSummaryReactorTests.swift in Sources */,
+				B5092A9228042B7500B8F3AC /* UpdateUserEmailReactorTests.swift in Sources */,
 				ED46A17F27F451A100018576 /* ServiceBasicInfoReactorTests.swift in Sources */,
 				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
 				EDB401CA27F1678C00021594 /* DefaultMyInfoReactorTests.swift in Sources */,

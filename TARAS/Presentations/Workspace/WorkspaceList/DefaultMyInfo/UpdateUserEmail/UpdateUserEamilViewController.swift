@@ -99,7 +99,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             .disposed(by: self.disposeBag)
         
         // State
-        reactor.state.map { $0.isValid }
+        reactor.state.map { $0.isEmailValid }
             .distinctUntilChanged()
             .bind(to: self.certifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
@@ -111,7 +111,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
-            reactor.state.map { $0.isEnable }.distinctUntilChanged(),
+            reactor.state.map { $0.isAuthNumberValid }.distinctUntilChanged(),
             self.certifyEmailView.authNumber.distinctUntilChanged(),
             self.isConfirmButtonisEnable,
             resultSelector: { $0 && !$1.isEmpty && $2 }
@@ -120,7 +120,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         .disposed(by: self.disposeBag)
         
         // 만료시간 표시
-        reactor.state.map { $0.authNumberExpires }
+        reactor.state.compactMap { $0.authNumberExpires }
             .distinctUntilChanged()
             .filter { $0 > 0 }
             .subscribe(onNext: { [weak self] expires in
@@ -141,15 +141,12 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 
                 self.serialTimer?.dispose()
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+                    .take(while: { $0 <= expires })
                     .map { timer in
                         let remainExpires = TimeInterval(expires - timer)
                         
                         if remainExpires == 0 {
                             self.isConfirmButtonisEnable.accept(false)
-                        }
-                        
-                        if remainExpires < 0 {
-                            self.serialTimer?.dispose()
                         }
 
                         return remainExpires.toTimeString

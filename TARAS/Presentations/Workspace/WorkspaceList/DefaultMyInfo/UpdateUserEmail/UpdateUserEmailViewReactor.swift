@@ -24,16 +24,16 @@ class UpdateUserEmailViewReactor: Reactor {
     enum Mutation {
         case updateIsvalid(Bool)
         case updateEnable(Bool)
-        case calculateRemainExpires(Int)
+        case calculateRemainExpires(Int?)
         case updateUserEmail(Bool)
         case updateIsProcessing(Bool)
         case updateError(TRSError?)
     }
     
     struct State {
-        var isValid: Bool
-        var isEnable: Bool
-        var authNumberExpires: Int
+        var isEmailValid: Bool
+        var isAuthNumberValid: Bool
+        var authNumberExpires: Int?
         var isUpdateUserEmail: Bool
         var isProcessing: Bool
         var errorMessage: String?
@@ -42,9 +42,9 @@ class UpdateUserEmailViewReactor: Reactor {
     let provider: ManagerProviderType
     
     var initialState: State = .init(
-        isValid: false,
-        isEnable: false,
-        authNumberExpires: 0,
+        isEmailValid: false,
+        isAuthNumberValid: false,
+        authNumberExpires: nil,
         isUpdateUserEmail: false,
         isProcessing: false,
         errorMessage: nil
@@ -70,10 +70,10 @@ class UpdateUserEmailViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .updateIsvalid(let isValid):
-            state.isValid = isValid
-        case .updateEnable(let isEnable):
-            state.isEnable = isEnable
+        case .updateIsvalid(let isEmailValid):
+            state.isEmailValid = isEmailValid
+        case .updateEnable(let isAuthNumberValid):
+            state.isAuthNumberValid = isAuthNumberValid
         case .calculateRemainExpires(let authNumberExpires):
             state.authNumberExpires = authNumberExpires
         case .updateUserEmail(let isUpdateUserEmail):

@@ -36,7 +36,7 @@ class CertifyEmailTextFieldView: UIView {
         $0.isEnabled = false
     }
     
-    let innerLabel = UILabel().then {
+    let timerLabel = UILabel().then {
         $0.font = .bold[14]
         $0.textColor = .redEB4D39
     }
@@ -107,11 +107,11 @@ class CertifyEmailTextFieldView: UIView {
             }
         } else {
             // viewType.authNumber
-            stackView.addArrangedSubview(self.innerLabel)
+            stackView.addArrangedSubview(self.timerLabel)
             
-            innerLabel.sizeToFit()
+            timerLabel.sizeToFit()
 
-            self.innerLabel.snp.makeConstraints {
+            self.timerLabel.snp.makeConstraints {
                 $0.width.equalTo(48)
                 $0.height.equalToSuperview()
             }
