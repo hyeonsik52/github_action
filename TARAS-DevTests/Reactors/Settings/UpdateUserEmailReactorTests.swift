@@ -68,10 +68,11 @@ class UpdateUserEmailReactorTests: XCTestCase {
         viewController.reactor = reactor
 
         // 3. set a stub state
+        //유효한 이메일로 인증코드 요청 직후
         let state = UpdateUserEmailViewReactor.State(
-            isValid: false,
+            isValid: true,
             isEnable: false,
-            authNumberExpires: nil,
+            authNumberExpires: 1800,
             isUpdateUserEmail: false,
             isProcessing: false,
             errorMessage: nil
