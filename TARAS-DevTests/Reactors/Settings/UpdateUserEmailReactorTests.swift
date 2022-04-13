@@ -7,10 +7,13 @@
 
 import XCTest
 @testable import TARAS_Dev
+import RxSwift
 
 class UpdateUserEmailReactorTests: XCTestCase {
     
     var provider: ManagerProviderType!
+    
+    var disposeBag = DisposeBag()
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -75,11 +78,42 @@ class UpdateUserEmailReactorTests: XCTestCase {
         )
         reactor.stub.state.value = state
         
+        // 만료시간 존재 여부 및 계산
+        var isExpireExits = false
+        var remainExpires: String?
+        if let expires = state.authNumberExpires {
+            isExpireExits = expires > 0 ? true: false
+            remainExpires = TimeInterval(expires).toTimeString
+        }
+        
+        // 이메일 수정 여부
+        var isEditEmail = false
+        viewController.certifyEmailView.email.distinctUntilChanged()
+            .subscribe(onNext: { isEditEmail = !$0.isEmpty })
+            .disposed(by: self.disposeBag)
+        
         // 4. assert view properties
         XCTAssertEqual(viewController.certifyEmailView.emailTextFieldView.innerButton.isEnabled, state.isValid)
-        XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.isHidden, true)
-        XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.innerLabel.text, state.authNumberExpires?.description)
-        XCTAssertEqual(viewController.confirmButton.isEnabled, state.isEnable)
+        XCTAssertEqual(
+            viewController.certifyEmailView.emailTextFieldView.innerButton.title(for: .normal),
+            isExpireExits ? UpdateUserEmailViewController.Text.retryCertifyEmailButtonTitle: CertifyEmailView.Text.SUPVC_4
+        )
+        
+        XCTAssertEqual(
+            viewController.certifyEmailView.authNumberTextFieldView.isHidden,
+            (isEditEmail || !isExpireExits)
+        )
+        XCTAssertEqual(
+            viewController.certifyEmailView.authNumberTextFieldView.textField.text,
+            isEditEmail ? nil: ""
+        )
+        XCTAssertEqual(
+            viewController.certifyEmailView.authNumberTextFieldView.innerLabel.text,
+            isEditEmail ? nil: remainExpires
+        )
+        
+        XCTAssertEqual(viewController.confirmButton.isEnabled, state.isEnable && !isEditEmail && isExpireExits)
+        
         XCTAssertEqual(viewController.activityIndicatorView.isAnimating, state.isProcessing)
         XCTAssertEqual(viewController.certifyEmailView.errorMessageLabel.text, state.errorMessage)
     }
