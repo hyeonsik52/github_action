@@ -10,6 +10,7 @@
 		0937600DE4462FD39D4C2B1F /* Pods_TARAS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE91F07FD5681949F989FF3E /* Pods_TARAS.framework */; };
 		29777413D700174F2A955E98 /* Pods_TARAS_QA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DE2B466381FA202337AA9F /* Pods_TARAS_QA.framework */; };
 		B5092A9228042B7500B8F3AC /* UpdateUserEmailReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5092A9128042B7500B8F3AC /* UpdateUserEmailReactorTests.swift */; };
+		B50C947C2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C947B2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift */; };
 		B543050827FC08B4007C995A /* CheckIdValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */; };
 		B543050A27FC08BD007C995A /* CheckIdValidationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */; };
 		B543050C27FC08C5007C995A /* CheckIdValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050B27FC08C5007C995A /* CheckIdValidationView.swift */; };
@@ -943,6 +944,7 @@
 		A8F340D7BE2D88A2CF04EB05 /* Pods-TARAS-QA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-QA.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-QA/Pods-TARAS-QA.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A5806CEC45543BC5AC2AF3 /* Pods-TARAS-DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-DevTests.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5092A9128042B7500B8F3AC /* UpdateUserEmailReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailReactorTests.swift; sourceTree = "<group>"; };
+		B50C947B2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailReactorTests.swift; sourceTree = "<group>"; };
 		B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationViewController.swift; sourceTree = "<group>"; };
 		B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationViewReactor.swift; sourceTree = "<group>"; };
 		B543050B27FC08C5007C995A /* CheckIdValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationView.swift; sourceTree = "<group>"; };
@@ -2292,6 +2294,7 @@
 				EDB401BF27ED5A5E00021594 /* SignUpIdReactorTests.swift */,
 				EDB401C127ED78AF00021594 /* SignUpPasswordReactorTests.swift */,
 				EDB401C327EDA2D800021594 /* SignUpNameReactorTests.swift */,
+				B50C947B2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -3664,6 +3667,7 @@
 				EDB401D127F17D8E00021594 /* WorkspaceSearchResultReactorTests.swift in Sources */,
 				EDB401D927F19A9200021594 /* ServiceCreationReactorTests.swift in Sources */,
 				ED46A18127F4562B00018576 /* ServiceDetailLogReactorTests.swift in Sources */,
+				B50C947C2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift in Sources */,
 				ED28514F27E9CE40003196AD /* SubscriptionManagerTests.swift in Sources */,
 				ED5BC9C627F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift in Sources */,
 				EDB401CF27F1769100021594 /* WorkspaceSearchReactorTests.swift in Sources */,
