@@ -32,9 +32,9 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
     }
     
     struct State {
-        var isValid: Bool
-        var isEnable: Bool
-        var authNumberExpires: Int
+        var isEmailValid: Bool
+        var isAuthNumberValid: Bool
+        var authNumberExpires: Int?
         var findUsername: String
         var requestToken: String
         var isProcessing: Bool
@@ -46,9 +46,9 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
     var id: String
     
     var initialState: State = .init(
-        isValid: false,
-        isEnable: false,
-        authNumberExpires: 0,
+        isEmailValid: false,
+        isAuthNumberValid: false,
+        authNumberExpires: nil,
         findUsername: "",
         requestToken: "",
         isProcessing: false,
@@ -77,10 +77,10 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .updateIsvalid(let isValid):
-            state.isValid = isValid
-        case .updateEnable(let isEnable):
-            state.isEnable = isEnable
+        case .updateIsvalid(let isEmailValid):
+            state.isEmailValid = isEmailValid
+        case .updateEnable(let isAuthNumberValid):
+            state.isAuthNumberValid = isAuthNumberValid
         case .calculateRemainExpires(let authNumberExpires):
             state.authNumberExpires = authNumberExpires
         case .findUsername(let findUsername):

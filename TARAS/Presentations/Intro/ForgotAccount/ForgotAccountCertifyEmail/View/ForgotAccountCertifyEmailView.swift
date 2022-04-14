@@ -97,7 +97,7 @@ class ForgotAccountCertifyEmailView: UIView {
         
         // 만료시간 라벨에 표시
         remainExpires
-            .bind(to: self.authNumberTextFieldView.innerLabel.rx.text)
+            .bind(to: self.authNumberTextFieldView.timerLabel.rx.text)
             .disposed(by: self.disposeBag)
             
         errorMessage
@@ -155,7 +155,7 @@ class ForgotAccountCertifyEmailView: UIView {
         self.authNumberTextFieldView.textField.text = nil
         self.authNumber.accept("")
         self.authNumberTextFieldView.isHidden = true
-        self.authNumberTextFieldView.innerLabel.text = nil
+        self.authNumberTextFieldView.timerLabel.text = nil
     }
 }
 
