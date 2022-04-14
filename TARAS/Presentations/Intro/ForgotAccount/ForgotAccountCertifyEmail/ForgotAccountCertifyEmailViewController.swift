@@ -94,7 +94,7 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
             .disposed(by: self.disposeBag)
         
         // State
-        reactor.state.map { $0.isValid }
+        reactor.state.map { $0.isEmailValid }
             .distinctUntilChanged()
             .bind(to: self.forgotAccountCertifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
@@ -106,7 +106,7 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
             }).disposed(by: self.disposeBag)
         
         Observable.combineLatest(
-            reactor.state.map { $0.isEnable }.distinctUntilChanged(),
+            reactor.state.map { $0.isAuthNumberValid }.distinctUntilChanged(),
             self.forgotAccountCertifyEmailView.authNumber.distinctUntilChanged(),
             self.isConfirmButtonisEnable,
             resultSelector: { $0 && !$1.isEmpty && $2 }
@@ -115,7 +115,7 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
         .disposed(by: self.disposeBag)
         
         // 만료시간 표시
-        reactor.state.map { $0.authNumberExpires }
+        reactor.state.compactMap { $0.authNumberExpires }
             .distinctUntilChanged()
             .filter { $0 > 0 }
             .subscribe(onNext: { [weak self] expires in
