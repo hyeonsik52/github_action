@@ -104,7 +104,9 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
             .bind(to: self.certifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
         
-        self.certifyEmailView.email.distinctUntilChanged()
+        reactor.state.map { $0.isEmailEdited }
+            .distinctUntilChanged()
+            .filter { $0 == true }
             .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
                 self?.certifyEmailView.clearAuthNumberTextFieldView()
