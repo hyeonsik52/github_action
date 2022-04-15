@@ -29,8 +29,6 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         $0.isEnabled = false
     }
     
-    let isConfirmButtonisEnable = PublishRelay<Bool>()
-    
     var serialTimer: Disposable?
     
     
@@ -114,9 +112,8 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         
         Observable.combineLatest(
             reactor.state.map { $0.isAuthNumberValid }.distinctUntilChanged(),
-            self.certifyEmailView.authNumber.distinctUntilChanged(),
-            self.isConfirmButtonisEnable,
-            resultSelector: { $0 && !$1.isEmpty && $2 }
+            self.certifyEmailView.remainExpires,
+            resultSelector: { $0 && $1 != "00:00" }
         )
         .bind(to: self.confirmButton.rx.isEnabled)
         .disposed(by: self.disposeBag)
@@ -131,8 +128,6 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
                 self.certifyEmailView.clearAuthNumberTextFieldView()
                 
-                // '확인' 버튼 활성화 조건
-                self.isConfirmButtonisEnable.accept(true)
                 // 인증번호 입력 텍스트 필드 표시
                 self.certifyEmailView.authNumberTextFieldView.isHidden = false
                 // '인증' -> '재인증' 문구 변경
@@ -146,10 +141,6 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                     .take(while: { $0 <= expires })
                     .map { timer in
                         let remainExpires = TimeInterval(expires - timer)
-                        
-                        if remainExpires == 0 {
-                            self.isConfirmButtonisEnable.accept(false)
-                        }
 
                         return remainExpires.toTimeString
                     }
