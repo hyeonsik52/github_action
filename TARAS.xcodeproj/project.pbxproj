@@ -11,6 +11,9 @@
 		29777413D700174F2A955E98 /* Pods_TARAS_QA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DE2B466381FA202337AA9F /* Pods_TARAS_QA.framework */; };
 		B5092A9228042B7500B8F3AC /* UpdateUserEmailReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5092A9128042B7500B8F3AC /* UpdateUserEmailReactorTests.swift */; };
 		B50C947C2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C947B2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift */; };
+		B50C94842807F592004F0AB8 /* CheckIdValidationReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C94832807F592004F0AB8 /* CheckIdValidationReactorTests.swift */; };
+		B50C94862807F63E004F0AB8 /* ResetPasswordReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C94852807F63E004F0AB8 /* ResetPasswordReactorTests.swift */; };
+		B50C94882807F870004F0AB8 /* CompleteResetPasswordReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C94872807F870004F0AB8 /* CompleteResetPasswordReactorTests.swift */; };
 		B543050827FC08B4007C995A /* CheckIdValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */; };
 		B543050A27FC08BD007C995A /* CheckIdValidationViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */; };
 		B543050C27FC08C5007C995A /* CheckIdValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543050B27FC08C5007C995A /* CheckIdValidationView.swift */; };
@@ -945,6 +948,9 @@
 		B1A5806CEC45543BC5AC2AF3 /* Pods-TARAS-DevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TARAS-DevTests.debug.xcconfig"; path = "Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5092A9128042B7500B8F3AC /* UpdateUserEmailReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserEmailReactorTests.swift; sourceTree = "<group>"; };
 		B50C947B2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotAccountCertifyEmailReactorTests.swift; sourceTree = "<group>"; };
+		B50C94832807F592004F0AB8 /* CheckIdValidationReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationReactorTests.swift; sourceTree = "<group>"; };
+		B50C94852807F63E004F0AB8 /* ResetPasswordReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordReactorTests.swift; sourceTree = "<group>"; };
+		B50C94872807F870004F0AB8 /* CompleteResetPasswordReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteResetPasswordReactorTests.swift; sourceTree = "<group>"; };
 		B543050727FC08B4007C995A /* CheckIdValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationViewController.swift; sourceTree = "<group>"; };
 		B543050927FC08BD007C995A /* CheckIdValidationViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationViewReactor.swift; sourceTree = "<group>"; };
 		B543050B27FC08C5007C995A /* CheckIdValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIdValidationView.swift; sourceTree = "<group>"; };
@@ -2295,6 +2301,9 @@
 				EDB401C127ED78AF00021594 /* SignUpPasswordReactorTests.swift */,
 				EDB401C327EDA2D800021594 /* SignUpNameReactorTests.swift */,
 				B50C947B2807B972004F0AB8 /* ForgotAccountCertifyEmailReactorTests.swift */,
+				B50C94832807F592004F0AB8 /* CheckIdValidationReactorTests.swift */,
+				B50C94852807F63E004F0AB8 /* ResetPasswordReactorTests.swift */,
+				B50C94872807F870004F0AB8 /* CompleteResetPasswordReactorTests.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -3672,11 +3681,13 @@
 				ED5BC9C627F41534006C995E /* ServiceCreationSelectReceiverReactorTests.swift in Sources */,
 				EDB401CF27F1769100021594 /* WorkspaceSearchReactorTests.swift in Sources */,
 				ED28513F27E991E5003196AD /* MockNotificationManager.swift in Sources */,
+				B50C94882807F870004F0AB8 /* CompleteResetPasswordReactorTests.swift in Sources */,
 				ED28518127EC49DA003196AD /* ResultsTests.swift in Sources */,
 				ED5BC9CF27F42801006C995E /* InProgressServiceListReactorTests.swift in Sources */,
 				ED5BC9C427F2EC43006C995E /* ServiceCreationSelectStopReactorTests.swift in Sources */,
 				ED5BC9CA27F4218F006C995E /* ServiceCreationSummaryReactorTests.swift in Sources */,
 				B5092A9228042B7500B8F3AC /* UpdateUserEmailReactorTests.swift in Sources */,
+				B50C94862807F63E004F0AB8 /* ResetPasswordReactorTests.swift in Sources */,
 				ED46A17F27F451A100018576 /* ServiceBasicInfoReactorTests.swift in Sources */,
 				ED7B19D027EC57DE00FC0B71 /* LaunchScreenReactorTests.swift in Sources */,
 				EDB401CA27F1678C00021594 /* DefaultMyInfoReactorTests.swift in Sources */,
@@ -3697,6 +3708,7 @@
 				ED46A18327F45C5100018576 /* ServiceShortcutRegistrationReactorTests.swift in Sources */,
 				ED28517F27EC49D3003196AD /* BaseObjectTests.swift in Sources */,
 				EDB401D627F1968F00021594 /* WorkspaceMoreReactorTests.swift in Sources */,
+				B50C94842807F592004F0AB8 /* CheckIdValidationReactorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
