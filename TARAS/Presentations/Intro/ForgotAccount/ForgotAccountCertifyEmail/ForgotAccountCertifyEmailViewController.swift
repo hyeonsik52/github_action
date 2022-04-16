@@ -99,7 +99,9 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
             .bind(to: self.forgotAccountCertifyEmailView.isCertifyButtonEnabled)
             .disposed(by: self.disposeBag)
         
-        self.forgotAccountCertifyEmailView.email.distinctUntilChanged()
+        reactor.state.map { $0.isEmailEdited }
+            .distinctUntilChanged()
+            .filter { $0 == true }
             .subscribe(onNext: { [weak self] _ in
                 self?.serialTimer?.dispose()
                 self?.forgotAccountCertifyEmailView.clearAuthNumberTextFieldView()
