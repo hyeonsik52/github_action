@@ -24,8 +24,6 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
     let confirmButton = SRPButton(Text.completeCertifyEmailButtonTitle).then {
         $0.isEnabled = false
     }
-    
-    let isConfirmButtonisEnable = PublishRelay<Bool>()
         
     var serialTimer: Disposable?
     
@@ -109,9 +107,8 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
         
         Observable.combineLatest(
             reactor.state.map { $0.isAuthNumberValid }.distinctUntilChanged(),
-            self.forgotAccountCertifyEmailView.authNumber.distinctUntilChanged(),
-            self.isConfirmButtonisEnable,
-            resultSelector: { $0 && !$1.isEmpty && $2 }
+            self.forgotAccountCertifyEmailView.remainExpires,
+            resultSelector: { $0 && $1 != "00:00" }
         )
         .bind(to: self.confirmButton.rx.isEnabled)
         .disposed(by: self.disposeBag)
@@ -126,8 +123,6 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                 self.forgotAccountCertifyEmailView.authNumberTextFieldBecomeFirstResponse()
                 self.forgotAccountCertifyEmailView.clearAuthNumberTextFieldView()
                 
-                // '확인' 버튼 활성화 조건
-                self.isConfirmButtonisEnable.accept(true)
                 // 인증번호 입력 텍스트 필드 표시
                 self.forgotAccountCertifyEmailView.authNumberTextFieldView.isHidden = false
                 // '인증' -> '재인증' 문구 변경
@@ -140,10 +135,6 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
                     .map { timer in
                         let remainExpires = TimeInterval(expires - timer)
-                        
-                        if remainExpires == 0 {
-                            self.isConfirmButtonisEnable.accept(false)
-                        }
                         
                         if remainExpires < 0 {
                             self.serialTimer?.dispose()
