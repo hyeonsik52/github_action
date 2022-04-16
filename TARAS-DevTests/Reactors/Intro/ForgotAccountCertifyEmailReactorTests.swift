@@ -67,6 +67,7 @@ class ForgotAccountCertifyEmailReactorTests: XCTestCase {
         //유효한 이메일로 인증코드 요청 직후
         let state = ForgotAccountCertifyEmailViewReactor.State(
             isEmailValid: true,
+            isEmailEdited: false,
             isAuthNumberValid: false,
             authNumberExpires: 1800,
             findUsername: "",
