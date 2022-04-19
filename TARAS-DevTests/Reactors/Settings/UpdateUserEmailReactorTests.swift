@@ -87,19 +87,14 @@ class UpdateUserEmailReactorTests: XCTestCase {
         XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.isHidden, false)
         XCTAssertEqual(viewController.certifyEmailView.authNumberTextFieldView.textField.text, "")
         
+        XCTAssertEqual(
+            viewController.certifyEmailView.authNumberTextFieldView.timerLabel.text,
+            TimeInterval(state.authNumberExpires ?? -1).toTimeString
+        )
         
         XCTAssertEqual(viewController.confirmButton.isEnabled, state.isAuthNumberValid && true)
         
         XCTAssertEqual(viewController.activityIndicatorView.isAnimating, state.isProcessing)
         XCTAssertEqual(viewController.certifyEmailView.errorMessageLabel.text, state.errorMessage)
-        
-        let expectation = XCTestExpectation(description: "TimerTest")
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: expectation.fulfill)
-        wait(for: [expectation], timeout: 1.0)
-        
-        XCTAssertEqual(
-            viewController.certifyEmailView.authNumberTextFieldView.timerLabel.text,
-            TimeInterval(state.authNumberExpires ?? -1).toTimeString
-        )
     }
 }
