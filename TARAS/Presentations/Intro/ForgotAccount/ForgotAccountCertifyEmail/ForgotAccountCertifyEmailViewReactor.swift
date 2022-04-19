@@ -136,7 +136,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
             self.provider.networkManager.perform(mutation)
                 .flatMapLatest { [weak self] result -> Observable<Mutation> in
                     guard let result = result.requestVerificationNumber else {
-                        return .just(.updateError(.account(.authNumberSendFailed)))
+                        return .just(.updateError(.etc("인증번호 전송에 실패했습니다.")))
                     }
                     
                     self?.requestId = result.id
@@ -147,17 +147,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
                         .just(.calculateRemainExpires(convertExpiresSeconds))
                     ])
                 }
-                .catch { error in
-                    let message = "\(error)"
-                    
-                    if message.contains("does not exist") {
-                        return .just(.updateError(.account(.unregisteredEmail)))
-                    } else if message.contains("유효한 이메일 주소를 입력하십시오.") {
-                        return .just(.updateError(.etc("유효한 이메일 주소를 입력하십시오.")))
-                    } else {
-                        return .just(.updateError(.common(.networkNotConnect)))
-                    }
-                },
+                .catch { .just(.updateError(.certify(.sendAuthNumber("\($0)")))) },
             
             .just(.updateIsProcessing(false))
         ])
@@ -185,15 +175,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
                         return .just(.requestToken(result.id))
                     }
                 }
-                .catch { error in
-                    let message = "\(error)"
-                    
-                    if message.contains("Invalid verification number") {
-                        return .just(.updateError(.account(.authNumberNotMatch)))
-                    } else {
-                        return .just(.updateError(.common(.networkNotConnect)))
-                    }
-                },
+                .catch { .just(.updateError(.certify(.checkAuthNumber("\($0)")))) },
             
                 .just(.updateIsProcessing(false))
         ])
