@@ -32,6 +32,7 @@ class UpdateUserEmailViewReactor: Reactor {
     
     struct State {
         var isEmailValid: Bool
+        var isEmailEdited: Bool
         var isAuthNumberValid: Bool
         var authNumberExpires: Int?
         var isUpdateUserEmail: Bool
@@ -43,6 +44,7 @@ class UpdateUserEmailViewReactor: Reactor {
     
     var initialState: State = .init(
         isEmailValid: false,
+        isEmailEdited: false,
         isAuthNumberValid: false,
         authNumberExpires: nil,
         isUpdateUserEmail: false,
@@ -72,9 +74,11 @@ class UpdateUserEmailViewReactor: Reactor {
         switch mutation {
         case .updateIsvalid(let isEmailValid):
             state.isEmailValid = isEmailValid
+            state.isEmailEdited = true
         case .updateEnable(let isAuthNumberValid):
             state.isAuthNumberValid = isAuthNumberValid
         case .calculateRemainExpires(let authNumberExpires):
+            state.isEmailEdited = false
             state.authNumberExpires = authNumberExpires
         case .updateUserEmail(let isUpdateUserEmail):
             state.isUpdateUserEmail = isUpdateUserEmail
