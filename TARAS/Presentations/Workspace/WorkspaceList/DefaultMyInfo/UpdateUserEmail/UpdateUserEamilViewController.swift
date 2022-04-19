@@ -138,6 +138,7 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 
                 self.serialTimer?.dispose()
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+                    .startWith(0)
                     .take(while: { $0 <= expires })
                     .map { TimeInterval(expires - $0).toTimeString }
                     .bind(to: self.certifyEmailView.remainExpires)
