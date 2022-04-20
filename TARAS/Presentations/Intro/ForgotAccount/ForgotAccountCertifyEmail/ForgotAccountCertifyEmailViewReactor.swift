@@ -147,7 +147,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
                         .just(.calculateRemainExpires(convertExpiresSeconds))
                     ])
                 }
-                .catch { .just(.updateError(.certify(.sendAuthNumber("\($0)")))) },
+                .catch { .just(.updateError(.certify(.sendAuthNumber($0.localizedDescription)))) },
             
             .just(.updateIsProcessing(false))
         ])
@@ -175,7 +175,7 @@ class ForgotAccountCertifyEmailViewReactor: Reactor {
                         return .just(.requestToken(result.id))
                     }
                 }
-                .catch { .just(.updateError(.certify(.checkAuthNumber("\($0)")))) },
+                .catch { .just(.updateError(.certify(.checkAuthNumber($0.localizedDescription)))) },
             
                 .just(.updateIsProcessing(false))
         ])
