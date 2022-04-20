@@ -19,6 +19,8 @@ enum TRSError: Error {
     case etc(String)
     /// 오류 목록
     case list([TRSError])
+    /// 인증 관련 오류
+    case certify(CertifyError)
 }
 extension TRSError {
 
@@ -34,6 +36,8 @@ extension TRSError {
             return message
         case .list(let errors):
             return errors.map(\.description).reduce("", { "\($0) | \($1)" })
+        case .certify(let subError):
+            return subError.description
         }
     }
 }
@@ -67,12 +71,6 @@ enum AccountError {
     case idNotExist
     /// 아이디-비밀번호 불일치
     case idPasswordNotMatch
-    /// 미등록 이메일 입력
-    case unregisteredEmail
-    /// 인증번호 전송 실패
-    case authNumberSendFailed
-    /// 인증번호 불일치
-    case authNumberNotMatch
     /// 아이디-이메일 불일치
     case idEmailNotMatch
     /// 틀린 비밀번호 입력
@@ -90,12 +88,6 @@ extension AccountError {
             return "존재하지 않는 아이디입니다."
         case .idPasswordNotMatch:
             return "아이디 또는 비밀번호가 일치하지 않습니다."
-        case .unregisteredEmail:
-            return "등록되어 있지 않은 이메일입니다."
-        case .authNumberSendFailed:
-            return "인증번호 전송에 실패했습니다."
-        case .authNumberNotMatch:
-            return "인증번호가 일치하지 않습니다."
         case .idEmailNotMatch:
             return "등록된 이메일 정보와 일치하지 않습니다."
         case .invalidPassword:
@@ -170,4 +162,42 @@ extension ServiceLogError {
 //            self = .unknown
 //        }
 //    }
+}
+
+enum CertifyError: Error {
+    /// 인증번호 발송
+    case sendAuthNumber(String)
+    /// 인증번호 확인
+    case checkAuthNumber(String)
+}
+extension CertifyError {
+    
+    var description: String {
+        switch self {
+        case .sendAuthNumber(let message):
+            if message.contains("already exists") {
+                return "이미 사용중인 이메일입니다."
+            } else if message.contains("does not exist") {
+                return "등록되어 있지 않은 이메일입니다."
+            } else if message.contains("유효한 이메일 주소를 입력하십시오.") {
+                return "유효한 이메일 주소를 입력하십시오."
+            } else if message.contains("failed to get verification code") {
+                return "알 수 없는 오류로 실패했습니다. 잠시 후 다시 시도해주세요."
+            } else if message.contains("requested too many authentications with same email") {
+                return "동일한 이메일의 인증 요청 횟수를 초과했습니다. 관리자에게 문의해주세요."
+            } else if message.contains("already requested with same email") {
+                return "1분 이내에 동일한 이메일로 이미 요청되었습니다. 1분 후에 다시 시도해주세요."
+            } else {
+                return TRSError.common(.networkNotConnect).description
+            }
+        case .checkAuthNumber(let message):
+            if message.contains("Invalid verification number") {
+                return "인증번호가 일치하지 않습니다."
+            } else if message.contains("No authentication request") {
+                return "토큰이 유효하지 않습니다. 인증을 다시 시도해주세요."
+            } else {
+                return TRSError.common(.networkNotConnect).description
+            }
+        }
+    }
 }
