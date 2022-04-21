@@ -46,10 +46,15 @@ class ServiceCreationRepeatCountViewController: BaseViewController {
     
     let confirmButton = SRPButton("서비스 생성하기")
     
+    let maxValue: Int
+    let minValue: Int
+    
     var value: Int
     
-    init(value: Int) {
-        self.value = max(1, min(.max, value))
+    init(value: Int, maxValue: Int = .max, minValue: Int? = nil) {
+        self.value = min(maxValue, value)
+        self.maxValue = maxValue
+        self.minValue = minValue ?? self.value
         super.init()
     }
     
@@ -145,8 +150,8 @@ class ServiceCreationRepeatCountViewController: BaseViewController {
     }
     
     private func updateUI(_ textUpdate: Bool = true) {
-        self.decreaseButton.isEnabled = (self.value > 1)
-        self.increaseButton.isEnabled = (self.value < Int.max)
+        self.decreaseButton.isEnabled = (self.value > self.minValue)
+        self.increaseButton.isEnabled = (self.value < self.maxValue)
         if textUpdate {
             self.valueTextField.text = self.value.description
         }
@@ -161,16 +166,15 @@ extension ServiceCreationRepeatCountViewController: UITextFieldDelegate {
         let newString = nsString?.replacingCharacters(in: range, with: string) ?? ""
         
         if let parsed = Int(newString) {
-            self.value = parsed
-            self.updateUI(false)
-            return true
+            self.value = max(self.minValue, min(self.maxValue, parsed))
         } else {
             let onlyDigits = newString.onlyDigits
-            let isOverflow = (newString.digitCompare(Int.max.description) == .orderedDescending)
-            self.value = Int(onlyDigits) ?? (isOverflow ? .max: 1)
-            self.updateUI()
-            return false
+            let isOverflow = (newString.digitCompare(self.maxValue.description) == .orderedDescending)
+            self.value = Int(onlyDigits) ?? (isOverflow ? self.maxValue: self.minValue)
         }
+        
+        self.updateUI()
+        return false
     }
 }
 

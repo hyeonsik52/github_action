@@ -199,7 +199,7 @@ class ServiceCreationViewController: BaseNavigationViewController, View {
                     //반복 획수 받기, 초기화해서 보여주기
                     print("repeat count", repeatCount)
                     let value: Int = repeatCount.asArgument?.ui.defaultValue() ?? 1
-                    return ServiceCreationRepeatCountViewController.count(value: value)
+                    return ServiceCreationRepeatCountViewController.count(value: value, maxValue: 9)
                         .map { .request(repeat: $0) }
                 } else {
                     return .just(.request(repeat: nil))

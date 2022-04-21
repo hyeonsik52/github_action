@@ -13,10 +13,10 @@ extension ServiceCreationRepeatCountViewController {
     
     static let ViewID = "ServiceCreationRepeatCountViewController"
     
-    static func count(value: Int) -> Observable<Int> {
+    static func count(value: Int, maxValue: Int, minValue: Int? = nil) -> Observable<Int> {
         return .create { observer in
             
-            let viewController = ServiceCreationRepeatCountViewController(value: value)
+            let viewController = ServiceCreationRepeatCountViewController(value: value, maxValue: maxValue, minValue: minValue)
             var wrapper = viewController.sek
             wrapper.entryName = self.ViewID
             wrapper.showBottomSheet()
