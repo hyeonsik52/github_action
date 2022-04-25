@@ -2702,6 +2702,7 @@
 				ED416DDB27A16C640043A7A4 /* Frameworks */,
 				ED416DDD27A16C640043A7A4 /* Resources */,
 				ED416DE627A16C640043A7A4 /* [CP] Embed Pods Frameworks */,
+				B5420F1F28167B6A003C18A5 /* Run Script For Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2722,6 +2723,7 @@
 				ED416F2027A170FC0043A7A4 /* Frameworks */,
 				ED416F2227A170FC0043A7A4 /* Resources */,
 				ED416F2B27A170FC0043A7A4 /* [CP] Embed Pods Frameworks */,
+				B5420F2028167BA3003C18A5 /* Run Script For Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2762,6 +2764,7 @@
 				EDF0C39326B405F60061552F /* Frameworks */,
 				EDF0C39426B405F60061552F /* Resources */,
 				B8644044C0CCB20F37BBB37C /* [CP] Embed Pods Frameworks */,
+				B5420F1E28167B39003C18A5 /* Run Script For Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2934,6 +2937,66 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TARAS-DevTests/Pods-TARAS-DevTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B5420F1E28167B39003C18A5 /* Run Script For Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Script For Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 프로젝트의 dSYM 파일을 처리하고 파일을 Crashlytics에 업로드\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		B5420F1F28167B6A003C18A5 /* Run Script For Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Script For Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 프로젝트의 dSYM 파일을 처리하고 파일을 Crashlytics에 업로드\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		B5420F2028167BA3003C18A5 /* Run Script For Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Script For Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 프로젝트의 dSYM 파일을 처리하고 파일을 Crashlytics에 업로드\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		B8644044C0CCB20F37BBB37C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4029,6 +4092,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TARAS/Resources/TARAS-Dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(TRS_APP_BUILD)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y4DVJNGENA;
 				INFOPLIST_FILE = "TARAS/Resources/QA/Info-qa.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -4090,6 +4154,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TARAS/Resources/TARAS-Dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(TRS_APP_BUILD)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y4DVJNGENA;
 				INFOPLIST_FILE = "TARAS/Resources/Production/Info-prod.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -4319,6 +4384,7 @@
 				CODE_SIGN_ENTITLEMENTS = "TARAS/Resources/TARAS-Dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(TRS_APP_BUILD)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y4DVJNGENA;
 				INFOPLIST_FILE = "TARAS/Resources/Develop/Info-dev.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
