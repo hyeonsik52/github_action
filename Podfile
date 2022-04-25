@@ -17,6 +17,7 @@ def pods
   pod 'RxAlamofire', '~> 6'
 
   pod 'Firebase/Analytics', '~> 8'
+  pod 'Firebase/Crashlytics', '~> 8'
   pod 'Firebase/Messaging', '~> 8'
 
   pod 'RealmSwift', '~> 10'
