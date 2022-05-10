@@ -133,8 +133,14 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                 self.serialTimer?.dispose()
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
                     .startWith(0)
-                    .take(while: { _ in expires.timeIntervalSinceNow >= 0 })
-                    .map { _ in expires.timeIntervalSinceNow.toTimeString }
+                    .map { _ in
+                        if expires.timeIntervalSinceNow <= 0.0 {
+                            self.serialTimer?.dispose()
+                            return "00:00"
+                        }
+                        
+                        return expires.timeIntervalSinceNow.toTimeString
+                    }
                     .bind(to: self.forgotAccountCertifyEmailView.remainExpires)
             }).disposed(by: self.disposeBag)
         
