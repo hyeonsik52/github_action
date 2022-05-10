@@ -135,7 +135,6 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                     .startWith(0)
                     .map { _ in
                         if expires.timeIntervalSinceNow <= 0.0 {
-                            self.serialTimer?.dispose()
                             return "00:00"
                         }
                         
