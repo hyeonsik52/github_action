@@ -114,11 +114,11 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
         .disposed(by: self.disposeBag)
         
         // 만료시간 표시
-        reactor.state.compactMap { $0.authNumberExpires }
+        reactor.state.map { $0.authNumberExpires }
             .distinctUntilChanged()
-            .filter { $0 > 0 }
+            .filter { $0 != nil }
             .subscribe(onNext: { [weak self] expires in
-                guard let self = self else { return }
+                guard let self = self, let expires = expires else { return }
                 
                 self.forgotAccountCertifyEmailView.authNumberTextFieldBecomeFirstResponse()
                 self.forgotAccountCertifyEmailView.clearAuthNumberTextFieldView()
@@ -134,8 +134,8 @@ class ForgotAccountCertifyEmailViewController: BaseNavigationViewController, Rea
                 self.serialTimer?.dispose()
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
                     .startWith(0)
-                    .take(while: { $0 <= expires })
-                    .map { TimeInterval(expires - $0).toTimeString }
+                    .take(while: { _ in expires.timeIntervalSinceNow >= 0 })
+                    .map { _ in expires.timeIntervalSinceNow.toTimeString }
                     .bind(to: self.forgotAccountCertifyEmailView.remainExpires)
             }).disposed(by: self.disposeBag)
         
