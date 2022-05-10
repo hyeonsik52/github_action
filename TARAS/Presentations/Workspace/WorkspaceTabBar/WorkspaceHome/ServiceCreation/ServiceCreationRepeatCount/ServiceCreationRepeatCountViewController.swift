@@ -34,6 +34,8 @@ class ServiceCreationRepeatCountViewController: BaseViewController {
         $0.textAlignment = .center
         $0.keyboardType = .asciiCapableNumberPad
         $0.delegate = self
+        // 키보드 입력 제한 (임시)
+        $0.isEnabled = false
     }
     
     private let increaseButton = UIButton().then {
