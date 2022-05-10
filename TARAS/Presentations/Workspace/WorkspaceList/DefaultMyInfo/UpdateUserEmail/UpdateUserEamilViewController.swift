@@ -121,7 +121,6 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         // 만료시간 표시
         reactor.state.map { $0.authNumberExpires }
             .distinctUntilChanged()
-            .filter { $0 != nil }
             .subscribe(onNext: { [weak self] expires in
                 guard let self = self, let expires = expires else { return }
                 
