@@ -119,11 +119,10 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
         .disposed(by: self.disposeBag)
         
         // 만료시간 표시
-        reactor.state.compactMap { $0.authNumberExpires }
+        reactor.state.map { $0.authNumberExpires }
             .distinctUntilChanged()
-            .filter { $0 > 0 }
             .subscribe(onNext: { [weak self] expires in
-                guard let self = self else { return }
+                guard let self = self, let expires = expires else { return }
                 
                 self.certifyEmailView.authNumberTextFieldBecomeFirstResponse()
                 self.certifyEmailView.clearAuthNumberTextFieldView()
@@ -139,8 +138,13 @@ class UpdateUserEmailViewController: BaseNavigationViewController, ReactorKit.Vi
                 self.serialTimer?.dispose()
                 self.serialTimer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
                     .startWith(0)
-                    .take(while: { $0 <= expires })
-                    .map { TimeInterval(expires - $0).toTimeString }
+                    .map { _ in
+                        if expires.timeIntervalSinceNow <= 0.0 {
+                            return "00:00"
+                        }
+                        
+                        return expires.timeIntervalSinceNow.toTimeString
+                    }
                     .bind(to: self.certifyEmailView.remainExpires)
             }).disposed(by: self.disposeBag)
         

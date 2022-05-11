@@ -24,7 +24,7 @@ class UpdateUserEmailViewReactor: Reactor {
     enum Mutation {
         case updateIsvalid(Bool)
         case updateEnable(Bool)
-        case calculateRemainExpires(Int?)
+        case calculateRemainExpires(Date?)
         case updateUserEmail(Bool)
         case updateIsProcessing(Bool)
         case updateError(TRSError?)
@@ -34,7 +34,7 @@ class UpdateUserEmailViewReactor: Reactor {
         var isEmailValid: Bool
         var isEmailEdited: Bool
         var isAuthNumberValid: Bool
-        var authNumberExpires: Int?
+        var authNumberExpires: Date?
         var isUpdateUserEmail: Bool
         var isProcessing: Bool
         var errorMessage: String?
@@ -119,7 +119,7 @@ class UpdateUserEmailViewReactor: Reactor {
         let mutation = RequestAuthMutation(input: input)
         
         return .concat([
-            .just(.calculateRemainExpires(0)),
+            .just(.calculateRemainExpires(nil)),
             .just(.updateIsProcessing(true)),
             
             self.provider.networkManager.perform(mutation)
@@ -129,11 +129,13 @@ class UpdateUserEmailViewReactor: Reactor {
                     }
                     
                     self?.requestId = result.id
-                    let convertExpiresSeconds = Int(result.expires.timeIntervalSince(result.createdAt))
+                    let convertExpiresSeconds = result.expires.timeIntervalSince(result.createdAt)
+                    let currentDate = Date()
+                    let expires = currentDate.addingTimeInterval(convertExpiresSeconds)
 
                     return .concat([
                         .just(.updateError(nil)),
-                        .just(.calculateRemainExpires(convertExpiresSeconds))
+                        .just(.calculateRemainExpires(expires))
                     ])
                 }
                 .catch { .just(.updateError(.certify(.sendAuthNumber($0.localizedDescription)))) },
