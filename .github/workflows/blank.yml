@@ -28,4 +28,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          pod install --repo-update --clean-install --project-directory=taras-ios/xcodebuild clean test -workspace taras-ios/TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=12"
+          pod install --repo-update --clean-install --project-directory=taras-ios/xcodebuild clean test -workspace taras-ios/TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=12.1"
