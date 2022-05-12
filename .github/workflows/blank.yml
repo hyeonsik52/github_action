@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v3
         with:
             path: Pods
-            key: ${{ runner.os }}-pods-${{ hashFiles("**/Podfile.lock") }}
+            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
             restore-keys: "pods-cache"
             
       # Runs a single command using the runners shell
