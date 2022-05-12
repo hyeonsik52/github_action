@@ -27,11 +27,11 @@ jobs:
         with:
             path: Pods
             key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-            restore-keys: "pods-cache"
+            restore-keys: 'pods-cache'
             
       # Runs a single command using the runners shell
       - name: Pod install
-        if: steps.pods-cache.outputs.cache-hit != "ture"
+        if: steps.pods-cache.outputs.cache-hit != 'ture'
         run: |
           pod install --repo-update --clean-install
           
