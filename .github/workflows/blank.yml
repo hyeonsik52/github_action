@@ -26,11 +26,11 @@ jobs:
         uses: actions/cache@v3
         id: pods-cache
         with:
-            path: Pods
+            path: taras-ios/Pods
             key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
             
       # Runs a single command using the runners shell
-      - name: Pods
+      - name: Pod install
         if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
           pod install --repo-update --clean-install
