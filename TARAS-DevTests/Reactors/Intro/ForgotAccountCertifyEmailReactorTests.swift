@@ -69,7 +69,7 @@ class ForgotAccountCertifyEmailReactorTests: XCTestCase {
             isEmailValid: true,
             isEmailEdited: false,
             isAuthNumberValid: false,
-            authNumberExpires: 1800,
+            authNumberExpires: Date().addingTimeInterval(1800),
             findUsername: "",
             requestToken: "",
             isProcessing: false,
@@ -89,7 +89,7 @@ class ForgotAccountCertifyEmailReactorTests: XCTestCase {
         
         XCTAssertEqual(
             viewController.forgotAccountCertifyEmailView.authNumberTextFieldView.timerLabel.text,
-            TimeInterval(state.authNumberExpires ?? -1).toTimeString
+            (state.authNumberExpires ?? Date()).timeIntervalSinceNow.toTimeString
         )
         
         XCTAssertEqual(viewController.confirmButton.isEnabled, state.isAuthNumberValid && true)

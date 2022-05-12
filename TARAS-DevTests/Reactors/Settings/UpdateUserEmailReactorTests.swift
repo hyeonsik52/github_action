@@ -70,7 +70,7 @@ class UpdateUserEmailReactorTests: XCTestCase {
             isEmailValid: true,
             isEmailEdited: false,
             isAuthNumberValid: false,
-            authNumberExpires: 1800,
+            authNumberExpires: Date().addingTimeInterval(1800),
             isUpdateUserEmail: false,
             isProcessing: false,
             errorMessage: nil
@@ -89,7 +89,7 @@ class UpdateUserEmailReactorTests: XCTestCase {
         
         XCTAssertEqual(
             viewController.certifyEmailView.authNumberTextFieldView.timerLabel.text,
-            TimeInterval(state.authNumberExpires ?? -1).toTimeString
+            (state.authNumberExpires ?? Date()).timeIntervalSinceNow.toTimeString
         )
         
         XCTAssertEqual(viewController.confirmButton.isEnabled, state.isAuthNumberValid && true)
