@@ -28,4 +28,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run script
         run: |
-          xcodebuild clean test -project TARAS.xcodeproj -scheme TARAS -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
+          xcodebuild clean test -project TARAS.xcodeproj -scheme TARAS-DevTests -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
