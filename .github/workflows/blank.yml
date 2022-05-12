@@ -30,8 +30,8 @@ jobs:
             key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
             
       # Runs a single command using the runners shell
-      - name: Pod install
-        if: steps.pods-cache.outputs.cache-hit == ''
+      - name: Pods
+        if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
           pod install --repo-update --clean-install
           
