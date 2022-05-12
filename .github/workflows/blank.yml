@@ -31,4 +31,4 @@ jobs:
           pod install --repo-update --clean-install
       - name: Run script
         run: |
-          xcodebuild clean test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
+          xcodebuild clean -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
