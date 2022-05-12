@@ -37,8 +37,8 @@ jobs:
           
       - name: Build
         run: |
-          xcodebuild clean -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
+          xcodebuild -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
 
       - name: Run tests
         run: |
-          xcodebuild clean test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
+          xcodebuild test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
