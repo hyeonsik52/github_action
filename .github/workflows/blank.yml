@@ -31,10 +31,10 @@ jobs:
             
       # Runs a single command using the runners shell
       - name: Pod install
-#        if: steps.pods-cache.outputs.cache-hit != 'true'
+        if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
           pod install --repo-update --clean-install
           
-      - name: Build & Run tests - TARAS-Dev
+      - name: Build & Run tests
         run: |
           xcodebuild clean test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 11,OS=15.2"
