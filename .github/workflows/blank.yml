@@ -22,7 +22,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: Pods-Cache
+      - name: Pods cache
         id: pods-cache
         uses: actions/cache@v3
         with:
@@ -30,8 +30,8 @@ jobs:
             key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
             
       # Runs a single command using the runners shell
-      - name: pod install
-        if: steps.pods-cache.output.cache-hit != 'ture'
+      - name: Pod install
+        if: steps.pods-cache.outputs.cache-hit != 'ture'
         run: |
           pod install --repo-update --clean-install
           
