@@ -56,7 +56,7 @@ class ServiceCreationRepeatCountViewController: BaseViewController {
     init(value: Int, maxValue: Int = .max, minValue: Int? = nil) {
         self.value = min(maxValue, value)
         self.maxValue = maxValue
-        self.minValue = minValue ?? self.value
+        self.minValue = minValue ?? value
         super.init()
     }
     
