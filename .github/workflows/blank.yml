@@ -18,7 +18,7 @@ jobs:
         id: pods-cache
         with:
             path: Pods
-            key: ${{ runner.os }}-pods-${{ hashFiles('Podfile.lock') }}
+            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
             restore-keys: |
               ${{ runner.os }}-pods-
               
@@ -29,5 +29,6 @@ jobs:
 
       - name: Build & Run tests
         run: |
+          cd Pods/
           ls
           xcodebuild clean test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
