@@ -18,7 +18,7 @@ jobs:
         id: pods-cache
         with:
             path: Pods
-            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+            key: ${{ runner.os }}-pods-${{ hashFiles('Podfile.lock') }}
             restore-keys: |
               ${{ runner.os }}-pods-
               
