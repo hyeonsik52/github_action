@@ -13,21 +13,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-#      - name: Pods cache
-#        uses: actions/cache@v3
-#        id: pods-cache
-#        with:
-#            path: Pods
-#            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-#            restore-keys: |
-#              ${{ runner.os }}-pods-
+      - name: Pods cache
+        uses: actions/cache@v3
+        id: pods-cache
+        with:
+            path: |
+              Pods
+              Podfile.lock
+            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+            restore-keys: |
+              ${{ runner.os }}-pods-
               
       - name: Pod install
-#        if: steps.pods-cache.outputs.cache-hit != 'true'
+        if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
           pod install --repo-update --clean-install
-          ls
 
       - name: Build & Run tests
         run: |
+          ls
           xcodebuild clean test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
