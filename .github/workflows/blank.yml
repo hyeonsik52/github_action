@@ -31,4 +31,6 @@ jobs:
 
       - name: Build & Run tests
         run: |
-          xcodebuild clean test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
+          xcodebuild clean -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
+          ls
+#          xcodebuild clean test -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
