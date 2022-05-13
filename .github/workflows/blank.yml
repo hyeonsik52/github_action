@@ -26,7 +26,13 @@ jobs:
         if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
           pod install --repo-update --clean-install
-          
+
+      - name: Check pods cache
+        uses: actions/cache@v3
+        with:
+            path: Pods
+            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+
       - name: Build
         run: |
           xcodebuild clean -workspace TARAS.xcworkspace -scheme TARAS-Dev -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
