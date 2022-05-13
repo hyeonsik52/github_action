@@ -18,7 +18,7 @@ jobs:
         id: pods-cache
         with:
             path: Pods
-            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+            key: ${{ runner.os }}-pods-${{ hashFiles('Podfile.lock') }}
             restore-keys: |
               ${{ runner.os }}-pods-
             
@@ -26,12 +26,6 @@ jobs:
         if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
           pod install --repo-update --clean-install
-
-      - name: Check pods cache
-        uses: actions/cache@v3
-        with:
-            path: Pods
-            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
 
       - name: Build
         run: |
