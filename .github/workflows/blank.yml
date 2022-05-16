@@ -34,11 +34,11 @@ jobs:
         run: |
           pod install --repo-update --clean-install
           
-#      - name: Make archive
-#        run: |
-#          mkdir -p artifact && cd artifact
-#          echo "This is a file to artifact" > build-artifact.txt
-#          echo "This is a file to artifact" > test-artifact.txt
+      - name: Make archive
+        run: |
+          mkdir -p Artifact && cd Artifact
+          > build-artifact.txt
+          > test-artifact.txt
           
       - name: Build
         run: |
@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: artifact/build-artifact.txt
+          path: Artifact/build-artifact.txt
           
       - name: Run tests
         run: |
@@ -64,4 +64,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-artifact
-          path: artifact/test-artifact.txt
+          path: Artifact/test-artifact.txt
