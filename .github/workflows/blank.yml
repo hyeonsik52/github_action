@@ -9,9 +9,15 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    
+    env:
+      XC_WORKSPACE: ${{ 'TARAS.xcworkspace' }}
+      XC_SCHEME: ${{ 'TARAS-Dev' }}
+      XC_DESTINATION: ${{ 'platform=iOS Simulator,name=iPhone 13,OS=15.2' }}
 
     steps:
       - uses: actions/checkout@v3
+      - shell: bash
       
       - name: Pods cache
         uses: actions/cache@v3
@@ -34,14 +40,26 @@ jobs:
           mkdir -p artifact && cd artifact
           echo "This is a file to upload" > run-result.txt
           
-      - name: Build and Run tests
+      - name: Build
         run: |
           xcodebuild clean build test \
-          -workspace TARAS.xcworkspace \
-          -scheme TARAS-Dev \
-          -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
-      - name: Upload result
+          -workspace '$XC_WORKSPACE' \
+          -scheme '$XC_SCHEME' \
+          -destination '$XC_DESTINATION'
+      - name: Upload build result
         uses: actions/upload-artifact@v3
         with:
-          name: run-result
-          path: artifact/run-result.txt
+          name: build-artifact
+          path: artifact/build-artifact.txt
+          
+      - name: Run tests
+        run: |
+          xcodebuild clean test \
+          -workspace '$XC_WORKSPACE' \
+          -scheme '$XC_SCHEME' \
+          -destination '$XC_DESTINATION'
+      - name: Upload test result
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-artifact
+          path: artifact/test-artifact.txt
