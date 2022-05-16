@@ -42,9 +42,9 @@ jobs:
       - name: Build
         run: |
           xcodebuild clean build \
-          -workspace '$XC_WORKSPACE' \
-          -scheme '$XC_SCHEME' \
-          -destination '$XC_DESTINATION'
+          -workspace $XC_WORKSPACE \
+          -scheme $XC_SCHEME \
+          -destination $XC_DESTINATION
       - name: Upload build result
         uses: actions/upload-artifact@v3
         with:
@@ -54,9 +54,9 @@ jobs:
       - name: Run tests
         run: |
           xcodebuild clean test \
-          -workspace '$XC_WORKSPACE' \
-          -scheme '$XC_SCHEME' \
-          -destination '$XC_DESTINATION'
+          -workspace $XC_WORKSPACE \
+          -scheme $XC_SCHEME \
+          -destination $XC_DESTINATION
       - name: Upload test result
         uses: actions/upload-artifact@v3
         with:
