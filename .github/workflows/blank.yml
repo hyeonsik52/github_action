@@ -13,7 +13,7 @@ jobs:
     env:
       XC_WORKSPACE: ${{ 'TARAS.xcworkspace' }}
       XC_SCHEME: ${{ 'TARAS-Dev' }}
-      XC_DESTINATION: ${{ 'platform=iOS Simulator,name=iPhone 13,OS=15.2' }}
+      XC_DESTINATION: ${{ "platform=iOS Simulator,name=iPhone 13,OS=15.2" }}
 
     steps:
       - uses: actions/checkout@v3
@@ -41,7 +41,7 @@ jobs:
           
       - name: Build
         run: |
-          xcodebuild clean build test \
+          xcodebuild clean build \
           -workspace '$XC_WORKSPACE' \
           -scheme '$XC_SCHEME' \
           -destination '$XC_DESTINATION'
