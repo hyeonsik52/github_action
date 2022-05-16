@@ -29,23 +29,19 @@ jobs:
         run: |
           pod install --repo-update --clean-install
           
-      - name: Build and run tests
+      - name: Make archive
+        run: |
+          mkdir -p artifact && cd artifact
+          echo "This is a file to upload" > run-result.txt
+          
+      - name: Build and Run tests
         run: |
           xcodebuild clean build test \
           -workspace TARAS.xcworkspace \
           -scheme TARAS-Dev \
           -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
-          mkdir -p artifact && cd artifact
-          echo "" > result.txt
       - name: Upload result
         uses: actions/upload-artifact@v3
         with:
-          name: result
-          path: artifact/result.txt
-
-#      - name: Run tests
-#        run: |
-#          xcodebuild clean test \
-#          -workspace TARAS.xcworkspace \
-#          -scheme TARAS-Dev \
-#          -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
+          name: run-result
+          path: artifact/run-result.txt
