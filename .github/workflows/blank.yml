@@ -48,7 +48,7 @@ jobs:
           -destination "$XC_DESTINATION"
       - name: Archive build artifact
         if: failure()
-        uses: actions/download-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifact
           path: artifact/build-artifact.txt
@@ -61,7 +61,7 @@ jobs:
           -destination "$XC_DESTINATION"
       - name: Archive test artifact
         if: failure()
-        uses: actions/download-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: test-artifact
           path: artifact/test-artifact.txt
