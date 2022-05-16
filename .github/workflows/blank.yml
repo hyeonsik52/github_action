@@ -35,13 +35,12 @@ jobs:
           -workspace TARAS.xcworkspace \
           -scheme TARAS-Dev \
           -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
-#      - name: Save build result
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: build-artifact
-#          path: artifact/build-artifact.txt
-          
-      - run: ls
+          mkdir -p artifact
+      - name: Store build result
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: artifact/build-artifact.txt
 
       - name: Run tests
         run: |
