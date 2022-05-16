@@ -35,10 +35,8 @@ jobs:
           -workspace TARAS.xcworkspace \
           -scheme TARAS-Dev \
           -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
-    
-      - run: |
-        mkdir -p artifact && cd artifact
-        echo "" > result.txt
+          mkdir -p artifact && cd artifact
+          echo "" > result.txt
       - name: Upload result
         uses: actions/upload-artifact@v3
         with:
