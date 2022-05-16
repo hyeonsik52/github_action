@@ -28,8 +28,15 @@ jobs:
         if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
           pod install --repo-update --clean-install
+          
+      - name: Build
+        run: |
+          xcodebuild clean build \
+          -workspace TARAS.xcworkspace \
+          -scheme TARAS-Dev \
+          -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2" \
 
-      - name: Build & Run tests
+      - name: Run tests
         run: |
           xcodebuild clean test \
           -workspace TARAS.xcworkspace \
