@@ -17,7 +17,6 @@ class WorkspaceTabBarController: UITabBarController, View {
         static let tab1 = "요청"
         static let tab2 = "목록"
         static let tab3 = "정보"
-        stat
     }
     
     init() {
