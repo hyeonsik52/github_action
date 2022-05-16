@@ -37,6 +37,7 @@ jobs:
           -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2" \
 
       - run: |
+        ls
         mkdir -p artifact
         ls
 
