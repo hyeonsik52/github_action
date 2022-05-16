@@ -37,7 +37,8 @@ jobs:
       - name: Make archive
         run: |
           mkdir -p artifact && cd artifact
-          echo "This is a file to upload" > run-result.txt
+          echo "This is a file to upload" > build-artifact.txt
+          echo "This is a file to upload" > test-artifact.txt
           
       - name: Build
         run: |
