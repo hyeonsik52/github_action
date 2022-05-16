@@ -47,6 +47,7 @@ jobs:
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
       - name: Archive build artifact
+        if: failure()
         uses: actions/download-artifact@v3
         with:
           name: build-artifact
@@ -59,6 +60,7 @@ jobs:
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
       - name: Archive test artifact
+        if: failure()
         uses: actions/download-artifact@v3
         with:
           name: test-artifact
