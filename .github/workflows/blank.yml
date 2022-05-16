@@ -37,8 +37,9 @@ jobs:
       - name: Make archive
         run: |
           mkdir -p artifact && cd artifact
-          echo "This is a file to upload" > build-artifact.txt
-          echo "This is a file to upload" > test-artifact.txt
+          echo "This is a file to artifact" > build-artifact.txt
+          echo "This is a file to artifact" > test-artifact.txt
+          ls
           
       - name: Build
         run: |
@@ -46,7 +47,8 @@ jobs:
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
-      - name: Upload build result
+          ls
+      - name: Archive build artifact
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
@@ -58,7 +60,7 @@ jobs:
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
-      - name: Upload test result
+      - name: Archive test artifact
         uses: actions/upload-artifact@v3
         with:
           name: test-artifact
