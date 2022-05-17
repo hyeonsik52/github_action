@@ -45,8 +45,9 @@ jobs:
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
+          
       - name: Archive build artifact
-        if: failure()
+        run: gh run view --log-failed | tee build-artifact.txt
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
