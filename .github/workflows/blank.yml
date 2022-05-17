@@ -30,6 +30,7 @@ jobs:
             pod install --repo-update --clean-install
             
   build-and-test:
+    needs: pod-install
     runs-on: macos-latest
     
     env:
