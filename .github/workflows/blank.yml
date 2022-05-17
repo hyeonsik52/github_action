@@ -7,9 +7,14 @@ on:
     branches: [ develop, master, 'release-**' ]
 
 jobs:
-  pod-install:
+  build-and-test:
     runs-on: macos-latest
     
+    env:
+      XC_WORKSPACE: TARAS.xcworkspace
+      XC_SCHEME: TARAS-Dev
+      XC_DESTINATION: platform=iOS Simulator,name=iPhone 13,OS=15.2
+
     steps:
       - uses: actions/checkout@v3
       
@@ -28,18 +33,6 @@ jobs:
         if: steps.pods-cache.outputs.cache-hit != 'true'
         run: |
             pod install --repo-update --clean-install
-            
-  build-and-test:
-    needs: pod-install
-    runs-on: macos-latest
-    
-    env:
-      XC_WORKSPACE: TARAS.xcworkspace
-      XC_SCHEME: TARAS-Dev
-      XC_DESTINATION: platform=iOS Simulator,name=iPhone 13,OS=15.2
-
-    steps:
-      - uses: actions/checkout@v3
       
       - name: Make archive
         run: |
