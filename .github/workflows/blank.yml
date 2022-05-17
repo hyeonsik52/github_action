@@ -7,7 +7,29 @@ on:
     branches: [ develop, master, 'release-**' ]
 
 jobs:
-  iOS-CI:
+  pod install:
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Pods cache
+        uses: actions/cache@v3
+        id: pods-cache
+        with:
+          path: |
+            Pods
+            Podfile.lock
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+            
+      - name: Pod install
+        if: steps.pods-cache.outputs.cache-hit != 'true'
+        run: |
+            pod install --repo-update --clean-install
+            
+  build-and-test:
     runs-on: macos-latest
     
     env:
@@ -18,22 +40,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Pods cache
-        uses: actions/cache@v3
-        id: pods-cache
-        with:
-            path: |
-              Pods
-              Podfile.lock
-            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-            restore-keys: |
-              ${{ runner.os }}-pods-
-              
-      - name: Pod install
-        if: steps.pods-cache.outputs.cache-hit != 'true'
-        run: |
-          pod install --repo-update --clean-install
-          
       - name: Make archive
         run: |
           > build-artifact.txt
@@ -59,6 +65,7 @@ jobs:
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
+          tee test-artifact.txt
       - name: Archive test artifact
         if: failure()
         uses: actions/upload-artifact@v3
