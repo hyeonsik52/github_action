@@ -45,7 +45,9 @@ jobs:
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
+          echo 'This is line'
           tee build-artifact.txt
+          head build-artifact.txt
       - name: Archive build artifact
         if: failure()
         uses: actions/upload-artifact@v3
