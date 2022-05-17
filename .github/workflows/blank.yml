@@ -40,7 +40,6 @@ jobs:
           > test-artifact.txt
           
       - name: Build
-        id: build
         run: |
           xcodebuild clean build \
           -workspace "$XC_WORKSPACE" \
@@ -48,6 +47,7 @@ jobs:
           -destination "$XC_DESTINATION"
           tee build-artifact.txt
       - name: Archive build artifact
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
