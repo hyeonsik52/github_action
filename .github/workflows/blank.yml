@@ -34,10 +34,10 @@ jobs:
         run: |
           pod install --repo-update --clean-install
           
-      - name: Make archive
-        run: |
-          > build-artifact.txt
-          > test-artifact.txt
+#      - name: Make archive
+#        run: |
+#          > build-artifact.txt
+#          > test-artifact.txt
           
       - name: Build
         run: |
