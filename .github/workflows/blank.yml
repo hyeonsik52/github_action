@@ -46,22 +46,22 @@ jobs:
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION"
-          gh run view --job build | tee build-artifact.txt
+          gh run view --job build
       - name: Archive build artifact
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
           path: build-artifact.txt
           
-      - name: Run tests
-        run: |
-          xcodebuild clean test \
-          -workspace "$XC_WORKSPACE" \
-          -scheme "$XC_SCHEME" \
-          -destination "$XC_DESTINATION"
-      - name: Archive test artifact
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-artifact
-          path: test-artifact.txt
+#      - name: Run tests
+#        run: |
+#          xcodebuild clean test \
+#          -workspace "$XC_WORKSPACE" \
+#          -scheme "$XC_SCHEME" \
+#          -destination "$XC_DESTINATION"
+#      - name: Archive test artifact
+#        if: failure()
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: test-artifact
+#          path: test-artifact.txt
