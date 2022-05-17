@@ -34,18 +34,17 @@ jobs:
         run: |
           pod install --repo-update --clean-install
           
-#      - name: Make archive
-#        run: |
-#          > build-artifact.txt
-#          > test-artifact.txt
+      - name: Make archive
+        run: |
+          > build-artifact.txt
+          > test-artifact.txt
           
       - name: Build
         run: |
           xcodebuild clean build \
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
-          -destination "$XC_DESTINATION"
-          tee -i build-artifact.txt
+          -destination "$XC_DESTINATION" | tee build-artifact.txt
       - name: Archive build artifact
         if: failure()
         uses: actions/upload-artifact@v3
