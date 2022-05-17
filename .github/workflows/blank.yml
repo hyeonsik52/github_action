@@ -45,8 +45,12 @@ jobs:
           xcodebuild clean build \
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
-          -destination "$XC_DESTINATION" | tee -i build-artifact.txt
+          -destination "$XC_DESTINATION"
+          
       - name: Archive build artifact
+        if: failure()
+        run: |
+          tee -i build-artifact.txt
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
