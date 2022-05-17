@@ -40,6 +40,7 @@ jobs:
           > test-artifact.txt
           
       - name: Build
+        id: build
         run: |
           xcodebuild clean build \
           -workspace "$XC_WORKSPACE" \
@@ -47,8 +48,8 @@ jobs:
           -destination "$XC_DESTINATION"
           
       - name: Archive build artifact
-        run: gh run view --log-failed | tee build-artifact.txt
         uses: actions/upload-artifact@v3
+        run: gh run view --job build --log-failed | tee build-artifact.txt
         with:
           name: build-artifact
           path: build-artifact.txt
