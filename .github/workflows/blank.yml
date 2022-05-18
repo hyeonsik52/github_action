@@ -35,8 +35,7 @@ jobs:
             pod install --repo-update --clean-install
       
       - name: Artifat logs
-        run: |
-          gem install slather
+        run: gem install xcpretty
           
 #      - name: Build
 #        run: |
