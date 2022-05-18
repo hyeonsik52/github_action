@@ -59,7 +59,7 @@ jobs:
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION" \
           -enableCodeCoverage YES \
-          | xcpretty --report html --output /Desktop/GithubAction/taras-ios
+          | xcpretty --report html --output /report.html
 #      - name: Archive test artifact
 #        if: failure()
 #        uses: actions/upload-artifact@v3
