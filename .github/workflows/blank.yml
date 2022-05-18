@@ -35,7 +35,9 @@ jobs:
             pod install --repo-update --clean-install
       
       - name: Artifat logs
-        run: gem install xcpretty
+        run: |
+          gem install xcpretty
+          mkdir reports
           
 #      - name: Build
 #        run: |
@@ -59,7 +61,7 @@ jobs:
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION" \
           -enableCodeCoverage YES \
-          | xcpretty --report html --output /report.html
+          | xcpretty --report html --output /reports/
 #      - name: Archive test artifact
 #        if: failure()
 #        uses: actions/upload-artifact@v3
