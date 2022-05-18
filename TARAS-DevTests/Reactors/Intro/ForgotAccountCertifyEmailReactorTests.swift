@@ -85,7 +85,7 @@ class ForgotAccountCertifyEmailReactorTests: XCTestCase {
         )
         
         XCTAssertEqual(viewController.forgotAccountCertifyEmailView.authNumberTextFieldView.isHidden, false)
-        XCTAssertEqual(viewController.forgotAccountCertifyEmailView.authNumberTextFieldView.textField.text, "ㄴㄴ")
+        XCTAssertEqual(viewController.forgotAccountCertifyEmailView.authNumberTextFieldView.textField.text, "")
         
         XCTAssertEqual(
             viewController.forgotAccountCertifyEmailView.authNumberTextFieldView.timerLabel.text,
