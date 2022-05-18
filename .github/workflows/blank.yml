@@ -34,26 +34,22 @@ jobs:
         run: |
             pod install --repo-update --clean-install
       
-      - name: Make archive
-        run: |
-          > build-artifact.txt
-          > test-artifact.txt
+      - name: Artifat logs
+        run: sudo brew install xcpretty
           
       - name: Build
         run: |
           xcodebuild clean build \
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
-          -destination "$XC_DESTINATION"
-          echo 'This is line'
-          tee build-artifact.txt
-          head build-artifact.txt
+          -destination "$XC_DESTINATION" \
+          -enableCodeCoverage YES | xcpretty --report html
       - name: Archive build artifact
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: build-artifact.txt
+          path: User/twinny/Build/reports/*.html
           
 #      - name: Run tests
 #        run: |
