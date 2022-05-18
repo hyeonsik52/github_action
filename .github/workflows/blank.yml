@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: *.html
+          path: ~/Desktop/GithubAction/taras-ios/
           
 #      - name: Run tests
 #        run: |
