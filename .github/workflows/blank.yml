@@ -59,9 +59,9 @@ jobs:
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION" \
           -enableCodeCoverage YES \
-          | xcpretty -r html -o ~/Desktop/GithubAction/taras-ios
+          | xcpretty -r html -o ~/Desktop/artifact.html
       - name: Archive test artifact
         uses: actions/upload-artifact@v3
         with:
-          name: test-artifact
-          path: ~/Desktop/GithubAction/taras-ios/
+          name: artifact
+          path: ~/Desktop/artifact.html
