@@ -36,7 +36,7 @@ jobs:
       
       - name: Artifat logs
         run: |
-          gem install xcpretty
+          gem install slather
           mkdir reports
           
 #      - name: Build
@@ -61,7 +61,7 @@ jobs:
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION" \
           -enableCodeCoverage YES \
-          | xcpretty --report html --output /reports/
+          | xcpretty --report html --output /reports/reports.html
 #      - name: Archive test artifact
 #        if: failure()
 #        uses: actions/upload-artifact@v3
@@ -70,4 +70,6 @@ jobs:
 #          path: ~/Desktop/GithubAction/taras-ios/
           
       - name: ls
-        run: ls
+        run: |
+          ls
+          cd reports && ls
