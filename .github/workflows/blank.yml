@@ -35,7 +35,7 @@ jobs:
             pod install --repo-update --clean-install
       
       - name: Artifat logs
-        run: sudo brew install xcpretty
+        run: gem install xcpretty
           
       - name: Build
         run: |
@@ -43,13 +43,14 @@ jobs:
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION" \
-          -enableCodeCoverage YES | xcpretty --report html
+          -enableCodeCoverage YES \
+          | xcpretty --report html --output-directory ~/Desktop/GithubAction/taras-ios
       - name: Archive build artifact
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: User/twinny/Build/reports/*.html
+          path: *.html
           
 #      - name: Run tests
 #        run: |
