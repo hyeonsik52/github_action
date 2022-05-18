@@ -34,7 +34,7 @@ jobs:
         run: |
             pod install --repo-update --clean-install
       
-      - name: Artifat logs
+      - name: xcpretty install
         run: gem install xcpretty
           
 #      - name: Build
@@ -61,7 +61,6 @@ jobs:
           -enableCodeCoverage YES \
           | xcpretty -r html -o ~/Desktop/GithubAction/taras-ios
       - name: Archive test artifact
-        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: test-artifact
