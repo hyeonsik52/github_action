@@ -37,30 +37,32 @@ jobs:
       - name: Artifat logs
         run: gem install xcpretty
           
-      - name: Build
+#      - name: Build
+#        run: |
+#          xcodebuild clean build \
+#          -workspace "$XC_WORKSPACE" \
+#          -scheme "$XC_SCHEME" \
+#          -destination "$XC_DESTINATION" \
+#          -enableCodeCoverage YES \
+#          | xcpretty --report html --output-directory ~/Desktop/GithubAction/taras-ios
+#      - name: Archive build artifact
+#        if: failure()
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: build-artifact
+#          path: ~/Desktop/GithubAction/taras-ios/
+          
+      - name: Run tests
         run: |
-          xcodebuild clean build \
+          xcodebuild clean test \
           -workspace "$XC_WORKSPACE" \
           -scheme "$XC_SCHEME" \
           -destination "$XC_DESTINATION" \
           -enableCodeCoverage YES \
           | xcpretty --report html --output-directory ~/Desktop/GithubAction/taras-ios
-      - name: Archive build artifact
+      - name: Archive test artifact
         if: failure()
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifact
+          name: test-artifact
           path: ~/Desktop/GithubAction/taras-ios/
-          
-#      - name: Run tests
-#        run: |
-#          xcodebuild clean test \
-#          -workspace "$XC_WORKSPACE" \
-#          -scheme "$XC_SCHEME" \
-#          -destination "$XC_DESTINATION"
-#      - name: Archive test artifact
-#        if: failure()
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: test-artifact
-#          path: test-artifact.txt
