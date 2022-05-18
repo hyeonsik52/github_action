@@ -60,10 +60,12 @@ jobs:
           -destination "$XC_DESTINATION" \
           -enableCodeCoverage YES \
           | xcpretty --report html --output-directory ~/Desktop/GithubAction/taras-ios
-          ls
       - name: Archive test artifact
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: test-artifact
           path: ~/Desktop/GithubAction/taras-ios/
+          
+      - name: ls
+        run: ls
