@@ -34,7 +34,7 @@ class ForgotAccountCertifyEmailReactorTests: XCTestCase {
         
         // 3. send an user interaction programmatically
         viewController.forgotAccountCertifyEmailView.email.accept(DummyModel.email)
-        // 4. assert actions
+        // 4. assert actions 
         XCTAssertEqual(reactor.stub.actions.first, .checkValidation(email: DummyModel.email))
         
         // 3. send an user interaction programmatically
