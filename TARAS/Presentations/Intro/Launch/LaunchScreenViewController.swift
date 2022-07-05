@@ -12,7 +12,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-class LaunchScreenViewController: BaseViewController, ReactorKit.View {
+class LaunchScreenViewController: BaseViewController, ReactorKit.View {  
 
     let logoImageView = UIImageView(
         image: .init(named: "logo")
